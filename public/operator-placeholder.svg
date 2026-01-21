@@ -1,0 +1,30 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Circle background -->
+  <circle cx="100" cy="100" r="100" fill="#0693e3"/>
+
+  <!-- Headset icon in white -->
+  <g transform="translate(50, 50)">
+    <!-- Head/face circle -->
+    <circle cx="50" cy="40" r="25" fill="white"/>
+
+    <!-- Headset band -->
+    <path d="M30 35 Q30 15 50 15 Q70 15 70 35" stroke="white" strokeWidth="4" fill="none" strokeLinecap="round"/>
+
+    <!-- Left ear piece -->
+    <rect x="23" y="35" width="10" height="15" rx="3" fill="white"/>
+
+    <!-- Right ear piece -->
+    <rect x="67" y="35" width="10" height="15" rx="3" fill="white"/>
+
+    <!-- Microphone boom -->
+    <path d="M77 45 Q85 50 85 60" stroke="white" strokeWidth="3" fill="none" strokeLinecap="round"/>
+
+    <!-- Microphone -->
+    <circle cx="85" cy="63" r="4" fill="white"/>
+  </g>
+
+  <!-- Text -->
+  <text x="100" y="170" fontFamily="system-ui, sans-serif" fontSize="14" fontWeight="600" fill="white" textAnchor="middle">
+    Customer Support
+  </text>
+</svg>

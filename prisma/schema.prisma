@@ -1,0 +1,222 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Lead {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  firstName String?
+  lastName  String?
+  phone     String?
+
+  // Address information
+  address   String?
+  city      String?
+  state     String?
+  zipCode   String?
+
+  // Additional intake fields
+  homeValue          Float?
+  mortgageBalance    Float?
+  currentRate        Float?
+  creditScore        String?
+  propertyType       String?
+
+  // Metadata
+  source    String?
+  status    String   @default("new") // new, contacted, qualified, closed, lost
+  notes     String?
+
+  // Progressive intake
+  intakeJson           Json?     // Partial intake form data
+  completionPercentage Int?      @default(0) // 0-100
+  resumeToken          String?   @unique // Magic link token
+  tokenExpiresAt       DateTime? // Token expiration
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  quotes            Quote[]
+  activities        ActivityEvent[]
+  documents         Document[]
+  mortgageScenarios MortgageScenario[]
+  mortgageReferrals MortgageReferral[]
+
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+  @@index([resumeToken])
+}
+
+model Quote {
+  id        String   @id @default(cuid())
+  leadId    String
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  // Quote calculation inputs
+  homeValue          Float
+  mortgageBalance    Float
+  currentRate        Float
+  newRate            Float
+  creditScore        String
+  loanTerm           Int      @default(360) // months
+
+  // Quote results
+  currentMonthlyPayment Float
+  newMonthlyPayment     Float
+  monthlySavings        Float
+  totalInterestCurrent  Float
+  totalInterestNew      Float
+  lifetimeSavings       Float
+  closingCosts          Float?
+  breakEvenMonths       Int?
+
+  // Metadata
+  isValid   Boolean  @default(true)
+  expiresAt DateTime?
+  pdfUrl    String?  // S3 URL for generated PDF
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([leadId])
+  @@index([createdAt])
+}
+
+model Document {
+  id        String   @id @default(cuid())
+  leadId    String
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  // Document information
+  type      String   // pay_stub, bank_statement, tax_return, id_document, etc.
+  fileName  String
+  fileSize  Int      // bytes
+  mimeType  String
+  s3Key     String   // S3 object key
+  s3Url     String   // S3 URL
+
+  // Metadata
+  uploadedBy String?  // user or admin
+  notes      String?
+
+  createdAt DateTime @default(now())
+
+  @@index([leadId])
+  @@index([type])
+  @@index([createdAt])
+}
+
+model MortgageScenario {
+  id        String   @id @default(cuid())
+  leadId    String
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  // Source of data
+  source    String   // user_entered, partner_quote, internal
+
+  // Loan terms
+  lenderName       String?
+  loanAmount       Float
+  interestRate     Float
+  term             Int      // months
+  points           Float?   // discount points
+  lenderFees       Float?   // origination, processing, etc.
+
+  // Optional PITI components
+  propertyTaxes    Float?   // monthly
+  homeInsurance    Float?   // monthly
+  hoaFees          Float?   // monthly
+  pmi              Float?   // monthly
+
+  // Calculated values
+  principalInterest Float   // monthly P&I
+  totalMonthly      Float   // monthly PITI if provided, else P&I
+  totalUpfront      Float   // lender fees + points + closing costs
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([leadId])
+  @@index([source])
+  @@index([createdAt])
+}
+
+model MortgageReferral {
+  id        String   @id @default(cuid())
+  leadId    String
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  partnerId String?
+  partner   Partner? @relation(fields: [partnerId], references: [id])
+
+  // User preferences
+  creditBand        String   // excellent, good, fair, poor
+  occupancy         String   // primary, secondary, investment
+  propertyType      String   // single_family, condo, etc.
+  downPaymentPct    Float    // percentage
+  termPreference    String   // 30_year, 15_year, arm
+  contactPreference String   // email, phone, both
+
+  // Additional context
+  requestedLoanAmount Float?
+  notes               String?
+
+  // Referral status
+  status            String   @default("pending") // pending, contacted, quoted, closed, declined
+  partnerResponse   Json?    // Store partner's response
+  partnerContactedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([leadId])
+  @@index([partnerId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model Partner {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+
+  // Configuration
+  isActive  Boolean  @default(true)
+  priority  Int      @default(0) // Higher = preferred
+
+  // Specialties
+  specialties Json?   // { creditBands: [], propertyTypes: [], loanTypes: [] }
+
+  // Metadata
+  notes     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  referrals MortgageReferral[]
+
+  @@index([isActive])
+  @@index([priority])
+}
+
+model ActivityEvent {
+  id        String   @id @default(cuid())
+  leadId    String
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  type      String   // page_view, form_submit, email_sent, call_made, status_change, intake_started, intake_updated, doc_uploaded, mortgage_terms_added, mortgage_referral_requested
+  action    String
+  metadata  Json?
+
+  createdAt DateTime @default(now())
+
+  @@index([leadId])
+  @@index([type])
+  @@index([createdAt])
+}
