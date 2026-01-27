@@ -2,6 +2,7 @@
 
 import { useSearchParams } from 'next/navigation'
 import AICalculator from './AICalculator'
+import StoryCalculator from './StoryCalculator'
 
 interface HomePageContentProps {
   originalCalculator: React.ReactNode
@@ -10,10 +11,13 @@ interface HomePageContentProps {
 export default function HomePageContent({ originalCalculator }: HomePageContentProps) {
   const searchParams = useSearchParams()
   const variant = searchParams.get('variant')
-  const useAI = variant === 'ai'
 
-  if (useAI) {
+  if (variant === 'ai') {
     return <AICalculator />
+  }
+
+  if (variant === 'e') {
+    return <StoryCalculator />
   }
 
   return <>{originalCalculator}</>
