@@ -1,6 +1,6 @@
 export default function TrueFeelogo({ className = "h-8" }: { className?: string }) {
   return (
-    <svg className={className} viewBox="0 0 130 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg className={className} viewBox="0 0 180 40" fill="none" xmlns="http://www.w3.org/2000/svg">
       {/* Icon - House with checkmark */}
       <g>
         <path
@@ -20,9 +20,9 @@ export default function TrueFeelogo({ className = "h-8" }: { className?: string 
         />
       </g>
 
-      {/* Text - "TrueFee" as ONE WORD */}
-      <text x="42" y="28" fontFamily="system-ui, -apple-system, sans-serif" fontSize="22" fontWeight="700" fill="#0693e3" letterSpacing="-0.5">
-        TrueFee
+      {/* Text - "BetterClose" */}
+      <text x="42" y="25" fontFamily="system-ui, -apple-system, sans-serif" fontSize="22" fontWeight="700" fill="#0693e3" letterSpacing="-0.5" dominantBaseline="middle">
+        BetterClose
       </text>
     </svg>
   )

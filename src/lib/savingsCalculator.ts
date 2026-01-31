@@ -18,6 +18,7 @@ export interface SavingsBreakdown {
   averageClosingCost: number
   estimatedMonthlyImpact: number
   averageMonthlyImpact: number
+  lifetimeSavings: number
 }
 
 // State-based title insurance rates (average per $100k home value)
@@ -100,6 +101,9 @@ export function calculateSavings(
   const estimatedMonthlyImpact = (estimatedClosingCost * monthlyRate * Math.pow(1 + monthlyRate, numPayments)) /
                                   (Math.pow(1 + monthlyRate, numPayments) - 1)
 
+  // Calculate lifetime savings (total paid over 30 years)
+  const lifetimeSavings = (averageMonthlyImpact - estimatedMonthlyImpact) * numPayments
+
   return {
     baseSavings,
     remoteSavings,
@@ -109,7 +113,8 @@ export function calculateSavings(
     estimatedClosingCost: Math.round(estimatedClosingCost),
     averageClosingCost: Math.round(averageClosingCost),
     estimatedMonthlyImpact: Math.round(estimatedMonthlyImpact),
-    averageMonthlyImpact: Math.round(averageMonthlyImpact)
+    averageMonthlyImpact: Math.round(averageMonthlyImpact),
+    lifetimeSavings: Math.round(lifetimeSavings)
   }
 }
 

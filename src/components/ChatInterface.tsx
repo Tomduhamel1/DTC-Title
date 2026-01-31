@@ -86,7 +86,7 @@ export default function ChatInterface({
                 <div className={`text-xs font-semibold mb-1 ${
                   message.role === 'user' ? 'text-primary-100' : 'text-gray-500'
                 }`}>
-                  {message.role === 'user' ? 'You' : 'TrueFee'}
+                  {message.role === 'user' ? 'You' : 'BetterClose'}
                 </div>
                 <p className="text-sm whitespace-pre-wrap leading-snug">{message.content}</p>
               </div>
@@ -139,7 +139,7 @@ export default function ChatInterface({
             aria-label="Send message"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14m-7-7l7 7-7 7" />
             </svg>
           </button>
         </div>

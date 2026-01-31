@@ -34,7 +34,7 @@ export default function UnderwriterLogos() {
             Backed By America's Most Trusted Underwriters
           </h3>
           <p className="text-gray-600">
-            Same protection. Same reliability. Better price.
+            Same protection. Same reliability. <span className="text-primary-600 font-bold">Better price.</span>
           </p>
         </div>
 

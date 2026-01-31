@@ -57,8 +57,11 @@ export default function TrustBadges() {
   ]
 
   return (
-    <div className="bg-white border-y border-gray-200 py-8">
+    <div className="bg-white border-y border-gray-200 py-12">
       <div className="container mx-auto px-4">
+        <h2 className="text-3xl md:text-4xl font-black text-dark-900 text-center mb-8">
+          Same <span className="text-primary-600">Guaranteed Security</span>
+        </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
           {badges.map((badge, index) => (
             <div key={index} className="text-center">
