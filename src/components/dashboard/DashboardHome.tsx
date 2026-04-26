@@ -2,7 +2,11 @@
 
 import { signOut } from 'next-auth/react'
 import MilestoneTimeline from './MilestoneTimeline'
-import SectionCard from './SectionCard'
+import SectionShell from './SectionShell'
+import AccountSection from './AccountSection'
+import EditableFields from './EditableFields'
+import LineItemList, { LineItem } from './LineItemList'
+import ContactRail from './ContactRail'
 
 interface ClosingShape {
   id: string
@@ -43,10 +47,42 @@ export default function DashboardHome({ closing, userName, userEmail }: Dashboar
     .filter(Boolean)
     .join(', ')
 
+  const isPurchase = (closing.propertyType || 'purchase') === 'purchase'
+
+  // Standard line items expected on any closing. Real values come in when the
+  // title-software integration pushes the order; until then, "Pending".
+  const titleItems: LineItem[] = [
+    {
+      label: "Lender's Title Insurance",
+      description: 'A-rated underwriter coverage required by your lender',
+      amount: null,
+    },
+    ...(isPurchase
+      ? [
+          {
+            label: "Owner's Title Insurance",
+            description: 'Optional but strongly recommended — protects you',
+            amount: null,
+          } as LineItem,
+        ]
+      : []),
+  ]
+
+  const settlementItems: LineItem[] = [
+    { label: 'Settlement Fee', description: 'Closing coordination & disbursement', amount: null },
+    { label: 'Notary Fee', amount: null },
+    { label: 'Wire Transfer Fee', amount: null },
+    { label: 'Mortgage Recording Fee', amount: null, isFixed: true },
+    { label: 'Satisfaction (Release) Recording Fee', amount: null, isFixed: true },
+    ...(isPurchase
+      ? [{ label: 'Deed Recording Fee', amount: null, isFixed: true } as LineItem]
+      : []),
+  ]
+
   return (
-    <div className="space-y-6">
+    <div>
       {/* Top bar */}
-      <div className="flex items-baseline justify-between flex-wrap gap-3">
+      <div className="flex items-baseline justify-between flex-wrap gap-3 mb-6">
         <div>
           <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-1">
             Dashboard
@@ -54,7 +90,7 @@ export default function DashboardHome({ closing, userName, userEmail }: Dashboar
           <h1 className="text-3xl md:text-4xl font-black text-dark-900">
             {userName ? `${userName.split(' ')[0]}'s closing` : 'Your closing'}
           </h1>
-          <div className="text-sm text-gray-500 mt-1">{fullAddress || closing.propertyAddress}</div>
+          {fullAddress && <div className="text-sm text-gray-500 mt-1">{fullAddress}</div>}
         </div>
         <button
           onClick={() => signOut({ callbackUrl: '/' })}
@@ -64,135 +100,180 @@ export default function DashboardHome({ closing, userName, userEmail }: Dashboar
         </button>
       </div>
 
-      {/* Milestone timeline */}
-      <MilestoneTimeline milestones={closing.milestones} closingDate={closing.closingDate} />
+      <div className="grid lg:grid-cols-[1fr_320px] gap-6 items-start">
+        {/* Main column — single-column stack of numbered sections */}
+        <div className="space-y-4 min-w-0">
+          {/* 1. Account / invite status */}
+          <AccountSection userEmail={userEmail} />
 
-      {/* Section cards grid */}
-      <div className="grid sm:grid-cols-2 gap-4">
-        <SectionCard
-          closingId={closing.id}
-          title="Property"
-          emoji="🏠"
-          emptyHint="Tell us about your property."
-          fields={[
-            { key: 'propertyAddress', label: 'Address', value: closing.propertyAddress, placeholder: '123 Main St' },
-            { key: 'propertyCity', label: 'City', value: closing.propertyCity },
-            { key: 'propertyState', label: 'State', value: closing.propertyState },
-            { key: 'propertyZip', label: 'ZIP', value: closing.propertyZip },
-            { key: 'propertyType', label: 'Type', value: closing.propertyType, placeholder: 'purchase or refinance' },
-            { key: 'salePrice', label: 'Sale price', value: closing.salePrice ? `$${Math.round(closing.salePrice).toLocaleString()}` : null },
-            { key: 'loanAmount', label: 'Loan amount', value: closing.loanAmount ? `$${Math.round(closing.loanAmount).toLocaleString()}` : null },
-            { key: 'closingDate', label: 'Closing date', type: 'date', value: closing.closingDate ? new Date(closing.closingDate).toISOString().slice(0, 10) : null },
-          ]}
-        />
+          {/* 2. Closing progress */}
+          <SectionShell number={2} title="Closing Progress" emoji="📊">
+            <MilestoneTimeline
+              milestones={closing.milestones}
+              closingDate={closing.closingDate}
+            />
+          </SectionShell>
 
-        <SectionCard
-          closingId={closing.id}
-          title="Lender"
-          emoji="🏦"
-          emptyHint="We'll fill this in when your lender places the order. Or add it now."
-          fields={[
-            { key: 'lenderName', label: 'Loan officer', value: closing.lenderName },
-            { key: 'lenderCompany', label: 'Company', value: closing.lenderCompany },
-            { key: 'lenderEmail', label: 'Email', type: 'email', value: closing.lenderEmail },
-            { key: 'lenderPhone', label: 'Phone', type: 'tel', value: closing.lenderPhone },
-            { key: 'lenderNmls', label: 'NMLS', value: closing.lenderNmls },
-          ]}
-        />
+          {/* 3. Property */}
+          <SectionShell number={3} title="Property" emoji="🏠">
+            <EditableFields
+              closingId={closing.id}
+              emptyHint="Tell us about your property."
+              fields={[
+                { key: 'propertyAddress', label: 'Address', value: closing.propertyAddress, placeholder: '123 Main St' },
+                { key: 'propertyCity', label: 'City', value: closing.propertyCity },
+                { key: 'propertyState', label: 'State', value: closing.propertyState },
+                { key: 'propertyZip', label: 'ZIP', value: closing.propertyZip },
+                { key: 'propertyType', label: 'Type', value: closing.propertyType, placeholder: 'purchase or refinance' },
+                { key: 'salePrice', label: 'Sale price', value: closing.salePrice ? `$${Math.round(closing.salePrice).toLocaleString()}` : null },
+                { key: 'loanAmount', label: 'Loan amount', value: closing.loanAmount ? `$${Math.round(closing.loanAmount).toLocaleString()}` : null },
+                { key: 'closingDate', label: 'Closing date', type: 'date', value: closing.closingDate ? new Date(closing.closingDate).toISOString().slice(0, 10) : null },
+              ]}
+            />
+          </SectionShell>
 
-        <SectionCard
-          closingId={closing.id}
-          title="Agent"
-          emoji="🏘️"
-          emptyHint="Your real estate agent's contact info — pending."
-          fields={[
-            { key: 'agentName', label: 'Agent', value: closing.agentName },
-            { key: 'agentCompany', label: 'Brokerage', value: closing.agentCompany },
-            { key: 'agentEmail', label: 'Email', type: 'email', value: closing.agentEmail },
-            { key: 'agentPhone', label: 'Phone', type: 'tel', value: closing.agentPhone },
-          ]}
-        />
+          {/* 4. Loan */}
+          <SectionShell number={4} title="Loan" emoji="🏦">
+            <EditableFields
+              closingId={closing.id}
+              emptyHint="Add your loan officer's contact info, or wait — we'll fill this in when your lender places the order."
+              fields={[
+                { key: 'lenderName', label: 'Loan officer', value: closing.lenderName },
+                { key: 'lenderCompany', label: 'Company', value: closing.lenderCompany },
+                { key: 'lenderEmail', label: 'Email', type: 'email', value: closing.lenderEmail },
+                { key: 'lenderPhone', label: 'Phone', type: 'tel', value: closing.lenderPhone },
+                { key: 'lenderNmls', label: 'NMLS', value: closing.lenderNmls },
+              ]}
+              footnote={
+                <p className="text-xs text-gray-500">
+                  Want a different lender?{' '}
+                  <a href="mailto:hello@betterclose.co" className="text-primary-700 font-semibold underline-offset-2 hover:underline">
+                    Email us
+                  </a>{' '}
+                  — we can recommend partners.
+                </p>
+              }
+            />
+          </SectionShell>
 
-        <SectionCard
-          closingId={closing.id}
-          title="Contacts"
-          emoji="👤"
-          emptyHint="Your contact info on this closing."
-          fields={[
-            { key: 'borrowerEmail', label: 'Email', type: 'email', value: closing.borrowerEmail || userEmail },
-            { key: 'borrowerPhone', label: 'Phone', type: 'tel', value: closing.borrowerPhone },
-          ]}
-        />
+          {/* 5. Title */}
+          <SectionShell number={5} title="Title" emoji="📜" subtitle="A-rated underwriter coverage">
+            <dl className="grid sm:grid-cols-2 gap-x-6 gap-y-3">
+              <div>
+                <dt className="text-[11px] font-semibold uppercase tracking-wider text-gray-500">
+                  Underwriter
+                </dt>
+                <dd className="text-sm text-dark-900 font-medium mt-0.5">
+                  {closing.titleUnderwriter || (
+                    <span className="text-gray-400 italic">Pending — assigned at title order</span>
+                  )}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-[11px] font-semibold uppercase tracking-wider text-gray-500">
+                  Policy number
+                </dt>
+                <dd className="text-sm text-dark-900 font-medium mt-0.5">
+                  {closing.titlePolicyNo || (
+                    <span className="text-gray-400 italic">Pending — issued at title</span>
+                  )}
+                </dd>
+              </div>
+            </dl>
+            <LineItemList title="Title fees" items={titleItems} />
+          </SectionShell>
 
-        <ReadOnlySection
-          title="Title"
-          emoji="📜"
-          emptyHint="Underwriter and policy number will appear when title is issued."
-          fields={[
-            { label: 'Underwriter', value: closing.titleUnderwriter },
-            { label: 'Policy number', value: closing.titlePolicyNo },
-          ]}
-        />
+          {/* 6. Settlement */}
+          <SectionShell
+            number={6}
+            title="Settlement"
+            emoji="🤝"
+            subtitle="BetterClose handles your closing"
+          >
+            <dl className="grid sm:grid-cols-2 gap-x-6 gap-y-3">
+              <div>
+                <dt className="text-[11px] font-semibold uppercase tracking-wider text-gray-500">
+                  Settlement agent
+                </dt>
+                <dd className="text-sm text-dark-900 font-medium mt-0.5">
+                  BetterClose Title &amp; Closing
+                </dd>
+              </div>
+              <div>
+                <dt className="text-[11px] font-semibold uppercase tracking-wider text-gray-500">
+                  Closing date
+                </dt>
+                <dd className="text-sm text-dark-900 font-medium mt-0.5">
+                  {closing.closingDate ? (
+                    new Date(closing.closingDate).toLocaleDateString(undefined, {
+                      month: 'short',
+                      day: 'numeric',
+                      year: 'numeric',
+                    })
+                  ) : (
+                    <span className="text-gray-400 italic">Pending</span>
+                  )}
+                </dd>
+              </div>
+              <div className="sm:col-span-2">
+                <dt className="text-[11px] font-semibold uppercase tracking-wider text-gray-500">
+                  Closing location
+                </dt>
+                <dd className="text-sm text-dark-900 font-medium mt-0.5">
+                  {closing.closingLocation || (
+                    <span className="text-gray-400 italic">Confirmed closer to your closing date</span>
+                  )}
+                </dd>
+              </div>
+            </dl>
+            <LineItemList title="Settlement & recording fees" items={settlementItems} />
+          </SectionShell>
 
-        <ReadOnlySection
-          title="Settlement"
-          emoji="🤝"
-          emptyHint="BetterClose handles settlement. Closing details appear closer to your date."
-          fields={[
-            { label: 'Settlement agent', value: 'BetterClose Title & Closing' },
-            { label: 'Closing date', value: closing.closingDate ? new Date(closing.closingDate).toLocaleDateString() : null },
-            { label: 'Closing location', value: closing.closingLocation },
-          ]}
-        />
-      </div>
-
-      <div className="text-center text-xs text-gray-500 pt-4">
-        Anything missing? Email <a href="mailto:hello@betterclose.co" className="underline font-semibold">hello@betterclose.co</a> and we'll fix it.
-      </div>
-    </div>
-  )
-}
-
-function ReadOnlySection({
-  title,
-  emoji,
-  emptyHint,
-  fields,
-}: {
-  title: string
-  emoji: string
-  emptyHint: string
-  fields: { label: string; value: string | null }[]
-}) {
-  const allEmpty = fields.every((f) => !f.value)
-  return (
-    <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-      <div className="px-5 py-4 border-b border-gray-100 flex items-center justify-between gap-3">
-        <div className="flex items-center gap-2.5">
-          <span className="text-xl" aria-hidden="true">{emoji}</span>
-          <h3 className="text-base font-bold text-dark-900">{title}</h3>
-        </div>
-        {allEmpty && (
-          <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 text-[10px] font-bold uppercase tracking-wider">
-            Pending
-          </span>
-        )}
-      </div>
-      <div className="px-5 py-4">
-        {allEmpty ? (
-          <p className="text-xs text-gray-500">{emptyHint}</p>
-        ) : (
-          <dl className="space-y-2">
-            {fields.map((f) =>
-              f.value ? (
-                <div key={f.label} className="flex items-baseline justify-between gap-3">
-                  <dt className="text-xs text-gray-500">{f.label}</dt>
-                  <dd className="text-sm text-dark-900 font-medium text-right">{f.value}</dd>
+          {/* 7. Contacts */}
+          <SectionShell number={7} title="Contacts" emoji="👤">
+            <div className="space-y-5">
+              <div>
+                <div className="text-[11px] font-bold uppercase tracking-wider text-gray-500 mb-2">
+                  You (borrower)
                 </div>
-              ) : null,
-            )}
-          </dl>
-        )}
+                <EditableFields
+                  closingId={closing.id}
+                  emptyHint="Your contact info."
+                  fields={[
+                    { key: 'borrowerEmail', label: 'Email', type: 'email', value: closing.borrowerEmail || userEmail },
+                    { key: 'borrowerPhone', label: 'Phone', type: 'tel', value: closing.borrowerPhone },
+                  ]}
+                />
+              </div>
+              <div className="border-t border-gray-100 pt-5">
+                <div className="text-[11px] font-bold uppercase tracking-wider text-gray-500 mb-2">
+                  Real estate agent
+                </div>
+                <EditableFields
+                  closingId={closing.id}
+                  emptyHint="Add your agent's info — pending until then."
+                  fields={[
+                    { key: 'agentName', label: 'Agent', value: closing.agentName },
+                    { key: 'agentCompany', label: 'Brokerage', value: closing.agentCompany },
+                    { key: 'agentEmail', label: 'Email', type: 'email', value: closing.agentEmail },
+                    { key: 'agentPhone', label: 'Phone', type: 'tel', value: closing.agentPhone },
+                  ]}
+                />
+              </div>
+            </div>
+          </SectionShell>
+
+          <div className="text-center text-xs text-gray-400 pt-4">
+            Anything wrong? Email{' '}
+            <a href="mailto:hello@betterclose.co" className="underline">
+              hello@betterclose.co
+            </a>{' '}
+            and we'll fix it.
+          </div>
+        </div>
+
+        {/* Right rail — contact info, sticky on desktop */}
+        <ContactRail />
       </div>
     </div>
   )
