@@ -1,130 +1,188 @@
-# BetterClose — Private Beta Deploy Checklist
+# BetterClose — Private Beta Deploy Checklist (AWS Amplify)
 
 End-to-end steps to take this from local prototype to a private beta on
-**betterclose.co**, hosted on Render, with real magic-link auth and SES email.
+**betterclose.co**, hosted on AWS Amplify, with RDS Postgres + SES email.
 
-## 1. AWS
+The AWS-side resources have already been provisioned via CLI in account
+`621852467690` (`fnte` profile, us-east-1):
 
-### 1a. SES production access
-1. AWS Console → Simple Email Service → Account dashboard.
-2. Click **Request production access**. Use case: "Transactional email for
-   web app users (sign-in magic links and lender introductions)." Daily volume:
-   estimate ~100 to start, ~5k as we grow. Submit.
-3. Approval typically lands in a few hours to 1 day.
+- RDS instance `betterclose-db` (db.t4g.micro Postgres 16)
+- Security group `sg-0a942f22bd1acaabe` allowing :5432 from your laptop only
+- DB password in Secrets Manager `betterclose/db/master`
+- SES domain identity `betterclose.co` (DKIM tokens captured below)
+- IAM user `betterclose-app` with SES + S3 permissions
+- S3 bucket `betterclose-uploads` (public access blocked)
+- Access key for the app user (in Amplify env vars below)
 
-### 1b. Verify the domain
-1. SES → **Verified identities** → **Create identity** → **Domain** →
-   `betterclose.co`. Enable Easy DKIM.
-2. AWS will show 3 CNAME records — copy them.
-3. Publish the CNAMEs at your DNS registrar.
-4. Wait for SES status to flip to **Verified** (usually <30 min).
-5. Add **SPF** TXT record at the apex:
-   `v=spf1 include:amazonses.com ~all`
-6. Add **DMARC** TXT at `_dmarc.betterclose.co`:
-   `v=DMARC1; p=none; rua=mailto:dmarc@betterclose.co`
+## What's left for you to do
 
-### 1c. IAM user for the app
-1. IAM → Users → **Create user** → name: `betterclose-app`. No console access.
-2. Attach an inline policy:
-   ```json
-   {
-     "Version": "2012-10-17",
-     "Statement": [
-       { "Effect": "Allow", "Action": ["ses:SendEmail", "ses:SendRawEmail"], "Resource": "*" },
-       { "Effect": "Allow", "Action": ["s3:PutObject", "s3:GetObject"], "Resource": "arn:aws:s3:::betterclose-uploads/*" }
-     ]
-   }
-   ```
-3. Create access keys → record `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
-   for Render env.
+### 1. Add DNS records at GoDaddy
 
-### 1d. S3 bucket (only if you'll use the legacy /start doc-upload path)
-1. S3 → **Create bucket**: `betterclose-uploads`, same region as SES.
-2. Block public access (default). The IAM user gets PutObject above.
+Log into GoDaddy → My Products → DNS → Manage Zones → `betterclose.co`. Add:
 
-## 2. Email inboxes
+**SES DKIM (3 CNAMEs):**
+| Type  | Name                                                   | Value                                                              |
+|-------|--------------------------------------------------------|--------------------------------------------------------------------|
+| CNAME | `ljedsgoumykbxvi25udmmyjmforaz34r._domainkey`          | `ljedsgoumykbxvi25udmmyjmforaz34r.dkim.amazonses.com`             |
+| CNAME | `niam67csuiqdddrrfelyf23z77htpx7i._domainkey`          | `niam67csuiqdddrrfelyf23z77htpx7i.dkim.amazonses.com`             |
+| CNAME | `gn5inssofcyhhlbysmqvwe7fbutua3ej._domainkey`          | `gn5inssofcyhhlbysmqvwe7fbutua3ej.dkim.amazonses.com`             |
 
-You'll send from `noreply@betterclose.co` and want to *receive* on
-`hello@betterclose.co` and `orders@betterclose.co`.
+**SPF + DMARC:**
+| Type | Name    | Value                                                              |
+|------|---------|--------------------------------------------------------------------|
+| TXT  | `@`     | `v=spf1 include:amazonses.com include:spf.privateemail.com ~all`   |
+| TXT  | `_dmarc`| `v=DMARC1; p=none; rua=mailto:dmarc@betterclose.co`               |
 
-Easiest: **Google Workspace** ($6/user/mo) on `betterclose.co`.
+**Amplify CNAMEs (added later, once the app is deployed):**
+Amplify generates these in its Domain management UI — copy them when you reach
+step 4 below.
 
-1. Sign up → verify domain → add the **MX records** Google gives you.
-2. Create users (or aliases): `hello@`, `orders@`.
+**Namecheap MX records (added later, once you sign up for Private Email):**
+Namecheap will give you specific MX values to add at GoDaddy.
 
-## 3. Render
+DNS propagation: 5–60 minutes. Verify with `dig` once added:
+```
+dig +short TXT betterclose.co
+dig +short CNAME ljedsgoumykbxvi25udmmyjmforaz34r._domainkey.betterclose.co
+```
 
-### 3a. Postgres
-1. Render dashboard → **New** → **PostgreSQL**. Name: `betterclose-db`.
-   Plan: Starter ($7/mo) is fine to start.
-2. Wait until status = Available. Note the **Internal Database URL**.
+### 2. Request SES production access (web console)
 
-### 3b. Web service
-1. **New** → **Web Service** → connect to the GitHub repo.
-2. Settings:
-   - **Build command**:
-     ```
-     npm install && npx prisma generate && npx prisma migrate deploy && npm run build
-     ```
-   - **Start command**: `npm start`
-   - **Health check path**: `/api/health`
-   - **Auto-deploy**: on for `main`
-3. Environment tab — set every variable from `.env.example`. Notable:
-   - `DATABASE_URL` = the Internal Database URL from step 3a.
-   - `NEXTAUTH_SECRET` = `openssl rand -hex 32`
-   - `NEXTAUTH_URL` = `https://betterclose.co`
-   - `AUTH_EMAIL_DRY_RUN` = `false`
-   - `ORDER_INGEST_SECRET` = `openssl rand -hex 32` (keep private)
-   - AWS keys + SES from address from §1.
+1. AWS Console → SES → Account dashboard → **Request production access**.
+2. Use case: "Transactional email for web app sign-in (magic links) and
+   service introduction emails to lenders/realtors."
+3. Estimate: 100/day to start, ~5,000/day in 3 months. Expected complaint
+   rate <0.1%.
+4. Approval typically lands within hours. While you wait, sandbox mode lets
+   you send only to verified addresses — `tomduhamel@gmail.com` was already
+   verified for you (check your inbox for the verification email).
 
-### 3c. Custom domain
-1. In the web service → Settings → Custom Domains → add `betterclose.co` and
-   `www.betterclose.co`.
-2. Render shows DNS targets. At your registrar:
-   - apex `betterclose.co` → ALIAS / ANAME → Render's target
-     (or A record to Render's IP if your registrar doesn't support ALIAS)
-   - `www` → CNAME → same target
-3. Render auto-issues a Let's Encrypt cert (~1 min).
+### 3. Connect Amplify to GitHub
 
-## 4. First deploy verification
+1. AWS Console → Amplify → **Create new app** → **Host web app**.
+2. Connect to GitHub. Authorize the AWS Amplify app.
+3. Select the `GARDEN DTC` repo. Branch: `main`.
+4. Amplify auto-detects `amplify.yml` in repo root.
+5. **Service role**: let Amplify create one (the wizard does this).
+6. **App name**: `betterclose`.
 
-After Render shows "Live":
+### 4. Set Amplify environment variables
 
-1. Visit `https://betterclose.co/api/health` → expect `{"ok":true}`.
-2. Visit `https://betterclose.co/login`, enter your email → check inbox for the
-   magic-link email. Click it → land on `/dashboard`.
-3. Visit `/?variant=credible-c` → click the green CTA → run the share-sheet
-   "We'll email your lender" flow with your own email as the lender → check
-   that the email arrives, formatted correctly, with you CC'd.
-4. Test the order webhook:
-   ```
-   curl -X POST https://betterclose.co/api/orders/ingest \
-     -H "Authorization: Bearer $ORDER_INGEST_SECRET" \
-     -H "Content-Type: application/json" \
-     -d '{
-       "borrowerEmail":"newuser@example.com",
-       "borrowerName":"Casey Doe",
-       "propertyAddress":"123 Main St",
-       "propertyState":"TX",
-       "propertyType":"purchase",
-       "closingDate":"2026-08-15",
-       "lenderName":"Sarah Smith",
-       "lenderCompany":"Acme Lending",
-       "lenderEmail":"sarah@acme.example"
-     }'
-   ```
-   The borrower should get a welcome email with a sign-in link.
+In the same wizard (or later in App settings → Environment variables), paste:
 
-## 5. Post-launch monitoring
+```
+DATABASE_URL=postgresql://betterclose:<see-secrets-manager>@betterclose-db.c1w4gw68gn8k.us-east-1.rds.amazonaws.com:5432/betterclose?schema=public
+NEXTAUTH_SECRET=<generate: openssl rand -hex 32>
+NEXTAUTH_URL=https://betterclose.co
+AUTH_EMAIL_DRY_RUN=false
+AWS_REGION=us-east-1
+AWS_ACCESS_KEY_ID=<see /tmp/new-app-key.json on the deploy machine, or rotate via aws iam create-access-key --user-name betterclose-app>
+AWS_SECRET_ACCESS_KEY=<see /tmp/new-app-key.json>
+# NOTE: Never commit real keys. Generate with the IAM console or CLI; paste only into Amplify env vars.
+AWS_SES_FROM_EMAIL=noreply@betterclose.co
+HELLO_EMAIL=hello@betterclose.co
+ORDER_INGEST_SECRET=<generate: openssl rand -hex 32>
+AWS_S3_BUCKET=betterclose-uploads
+```
 
-- **Render logs**: tail the web service for any errors during the first day.
-- **Sentry** (if configured): create a project, paste DSN into env, redeploy.
-- **SES dashboard**: watch bounce/complaint rates — keep complaints <0.1%.
+Get the RDS endpoint from the AWS console (RDS → `betterclose-db` →
+Connectivity → Endpoint) once it shows status "Available".
 
-## 6. Things to revisit before opening to public
+Get the DB password:
+```
+aws --profile fnte --region us-east-1 secretsmanager get-secret-value \
+  --secret-id betterclose/db/master --query SecretString --output text
+```
 
-- Move rate-limit from in-memory to Redis (Upstash) so it survives multi-instance.
-- Move from sandbox AWS region to a region with reserved sender IPs.
+### 5. First deploy
+
+1. Trigger build (auto on connect, or in the Amplify console click "Run job").
+2. The build runs `prisma migrate deploy` against RDS — schema applies.
+3. ~5 min later you get an Amplify-hosted URL like `main.d1xxx.amplifyapp.com`.
+4. Visit `<that-url>/api/health` — expect `{"ok":true}`.
+
+### 6. Custom domain
+
+1. Amplify → App → Domain management → **Add domain** → `betterclose.co`.
+2. Amplify shows DNS records to add at GoDaddy:
+   - one CNAME for `betterclose.co` (or apex via ALIAS-equivalent)
+   - one CNAME for `www.betterclose.co`
+   - one CNAME for ACM cert validation
+3. Add them at GoDaddy. ACM validation takes a few minutes.
+4. Amplify auto-deploys the cert once DNS validates.
+
+### 7. Email inboxes (Namecheap Private Email)
+
+1. namecheap.com → Private Email → buy a plan (~$1.50/mo per mailbox is fine
+   for beta).
+2. Domain: `betterclose.co` (you'll select "external" since it's at GoDaddy).
+3. Namecheap gives you MX records — add them at GoDaddy.
+4. Create mailboxes:
+   - `hello@betterclose.co` (general inquiries / replies)
+   - `orders@betterclose.co` (lender orders by email)
+   - `dmarc@betterclose.co` (DMARC aggregate reports)
+   - `noreply@betterclose.co` (set up so bounces aren't lost)
+
+### 8. Smoke tests
+
+After custom domain resolves and SES production access is granted:
+
+- `https://betterclose.co/api/health` → `{"ok": true}`
+- `/login` → enter `tomduhamel@gmail.com` → check inbox → click magic link →
+  `/dashboard` → onboarding form
+- Submit onboarding → 6 section cards + milestone timeline
+- `/?variant=credible-c` → "Send BetterClose to my team" → "We'll email your
+  lender" → enter your own email → preview → send → check inbox
+- Order webhook test:
+  ```
+  curl -X POST https://betterclose.co/api/orders/ingest \
+    -H "Authorization: Bearer $ORDER_INGEST_SECRET" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "borrowerEmail":"newuser@example.com",
+      "borrowerName":"Casey Doe",
+      "propertyAddress":"123 Main St",
+      "propertyState":"TX",
+      "propertyType":"purchase",
+      "closingDate":"2026-08-15",
+      "lenderName":"Sarah Smith",
+      "lenderCompany":"Acme Lending",
+      "lenderEmail":"sarah@acme.example"
+    }'
+  ```
+  The borrower should get a welcome email with a sign-in link.
+
+## Useful commands later
+
+**Get RDS endpoint:**
+```
+aws --profile fnte --region us-east-1 rds describe-db-instances \
+  --db-instance-identifier betterclose-db \
+  --query 'DBInstances[0].Endpoint.Address' --output text
+```
+
+**Connect to RDS from your laptop:**
+```
+psql "postgresql://betterclose:<password>@<endpoint>:5432/betterclose"
+```
+
+**Reset your laptop's IP in the security group (if your IP changes):**
+```
+# get new IP
+NEW_IP=$(curl -s https://checkip.amazonaws.com)/32
+# revoke old, authorize new (replace OLD_CIDR)
+aws --profile fnte --region us-east-1 ec2 revoke-security-group-ingress \
+  --group-id sg-0a942f22bd1acaabe --protocol tcp --port 5432 --cidr <OLD>
+aws --profile fnte --region us-east-1 ec2 authorize-security-group-ingress \
+  --group-id sg-0a942f22bd1acaabe --protocol tcp --port 5432 --cidr $NEW_IP
+```
+
+## Things to revisit before opening to the public
+
+- Switch in-memory rate limit to Upstash Redis (multi-instance survival).
+- Move RDS to private subnets behind a VPC connector (no public IP).
+- Enable RDS Multi-AZ for HA (~+$13/mo).
+- Replace long-lived IAM access keys with Amplify-bound IAM role (no env keys).
+- Add `/admin` page for ops to view recent closings + lender requests.
+- Real `/terms` and `/privacy` pages (currently 404).
 - Add a way for users to delete their account / closing.
-- Term & privacy policy pages (currently link to `/terms` and `/privacy` which 404).
-- Real `/admin` for ops to view recent closings and lender-requests.
