@@ -3,13 +3,14 @@ frontend:
   phases:
     preBuild:
       commands:
-        # Skip puppeteer's Chromium download (~170MB) during install.
-        # Puppeteer is only used by a legacy quote-PDF route that isn't part
-        # of the active flow. Without this, install hangs ~25 min on the
-        # binary download.
         - export PUPPETEER_SKIP_DOWNLOAD=true
         - npm ci --legacy-peer-deps || npm install
         - npx prisma generate
+        # Amplify exposes app/branch env vars during build, but does NOT
+        # propagate them to the runtime SSR Lambdas. Persist them into
+        # .env.production so Next.js bakes them into the runtime bundle.
+        - env | grep -E '^(DATABASE_URL|NEXTAUTH_SECRET|NEXTAUTH_URL|AUTH_EMAIL_DRY_RUN|APP_AWS_|HELLO_EMAIL|ORDER_INGEST_SECRET)=' > .env.production
+        - echo "wrote $(wc -l < .env.production) env vars to .env.production"
         # DB migrations are NOT run during build. The Amplify build runners
         # don't have a route into RDS, and we deliberately keep RDS locked to
         # known IPs (your laptop). Run `npx prisma migrate deploy` from your
