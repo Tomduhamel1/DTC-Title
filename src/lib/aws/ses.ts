@@ -1,10 +1,13 @@
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses'
 
+// Amplify forbids env keys starting with "AWS_", so on Amplify we use APP_AWS_*.
+// Read both, prefer APP_AWS_* (set on Amplify), fall back to AWS_* (local dev).
 const sesClient = new SESClient({
-  region: process.env.AWS_REGION || 'us-east-1',
+  region: process.env.APP_AWS_REGION || process.env.AWS_REGION || 'us-east-1',
   credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID || '',
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '',
+    accessKeyId: process.env.APP_AWS_ACCESS_KEY_ID || process.env.AWS_ACCESS_KEY_ID || '',
+    secretAccessKey:
+      process.env.APP_AWS_SECRET_ACCESS_KEY || process.env.AWS_SECRET_ACCESS_KEY || '',
   },
 })
 
