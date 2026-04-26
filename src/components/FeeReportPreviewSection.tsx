@@ -1,11 +1,14 @@
 'use client'
 
 import Link from 'next/link'
+import { useState } from 'react'
 import FeeReportTable from './FeeReportTable'
+import ShareWithTeamSheet from './lender-request/ShareWithTeamSheet'
 import { getSampleFeeReport } from '@/lib/feeReport'
 
 export default function FeeReportPreviewSection() {
   const sample = getSampleFeeReport()
+  const [shareOpen, setShareOpen] = useState(false)
 
   return (
     <section className="py-20 lg:py-28 bg-gradient-to-b from-white to-gray-50">
@@ -35,6 +38,15 @@ export default function FeeReportPreviewSection() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </Link>
+              <p className="mt-4 text-sm text-gray-500">
+                Or skip the quote and{' '}
+                <button
+                  onClick={() => setShareOpen(true)}
+                  className="text-primary-700 font-semibold hover:text-primary-800 underline-offset-2 hover:underline"
+                >
+                  alert your team in 30 seconds →
+                </button>
+              </p>
             </div>
 
             {/* Right: Sample report */}
@@ -50,6 +62,11 @@ export default function FeeReportPreviewSection() {
           </div>
         </div>
       </div>
+      <ShareWithTeamSheet
+        open={shareOpen}
+        onClose={() => setShareOpen(false)}
+        source="fee_report_preview"
+      />
     </section>
   )
 }

@@ -1,44 +1,49 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
-import { useSavings } from '@/contexts/SavingsContext'
+import ShareWithTeamSheet from './lender-request/ShareWithTeamSheet'
 
 export default function HowItWorksSection() {
-  const { savings } = useSavings()
+  const [shareOpen, setShareOpen] = useState(false)
+
   const steps = [
     {
-      number: "1",
-      title: "Get Instant Quote",
-      description: "Use our AI-powered calculator to see your exact savings in 60 seconds. No hidden fees, no surprises.",
+      number: '1',
+      title: 'Alert Your Team',
+      description:
+        "Tell your lender or realtor you'd like to use BetterClose. Text, email, or copy a link — your choice. We can email them for you too.",
       icon: (
         <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.069-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
         </svg>
       ),
-      highlight: "60 seconds"
+      highlight: '30 seconds · no commitment',
     },
     {
-      number: "2",
-      title: "Submit Documents",
-      description: "Upload your documents securely and track your status in real-time. Same-day underwriting approval.",
+      number: '2',
+      title: 'Track Progress',
+      description:
+        "Watch your closing happen in real time. Every milestone — loan locked, title ordered, title issued, closed — updates as parties and services fill in.",
       icon: (
         <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
         </svg>
       ),
-      highlight: "Same-day approval"
+      highlight: 'Live dashboard',
     },
     {
-      number: "3",
-      title: "Close & Save",
-      description: "Close with confidence knowing you have the same protection as big companies, just at a fair price.",
+      number: '3',
+      title: 'Close & Save',
+      description:
+        "We coordinate with your lender, realtor, and underwriter. You show up to closing with the same protection — and a smaller bill.",
       icon: (
         <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
         </svg>
       ),
-      highlight: "$2,400 avg savings"
-    }
+      highlight: 'Average $2,400 saved',
+    },
   ]
 
   return (
@@ -47,10 +52,10 @@ export default function HowItWorksSection() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-black text-dark-900 mb-4">
-            Saving <span className="text-green-600">${savings.totalSavings.toLocaleString()}</span> Takes 2 Min
+            How it works
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Three simple steps to save thousands on title insurance
+            Three steps. The first one takes 30 seconds — and you don't even need a quote.
           </p>
         </div>
 
@@ -60,7 +65,10 @@ export default function HowItWorksSection() {
             <div key={index} className="relative">
               {/* Connector Line (desktop only) */}
               {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-24 left-1/2 w-full h-1 bg-gradient-to-r from-primary-200 to-primary-300 z-0" style={{ width: 'calc(100% + 2rem)' }} />
+                <div
+                  className="hidden md:block absolute top-24 left-1/2 w-full h-1 bg-gradient-to-r from-primary-200 to-primary-300 z-0"
+                  style={{ width: 'calc(100% + 2rem)' }}
+                />
               )}
 
               {/* Step Card */}
@@ -70,18 +78,12 @@ export default function HowItWorksSection() {
                   <div className="w-16 h-16 bg-gradient-to-br from-primary-600 to-primary-700 rounded-full flex items-center justify-center shadow-lg">
                     {step.icon}
                   </div>
-                  <div className="text-6xl font-black text-primary-100">
-                    {step.number}
-                  </div>
+                  <div className="text-6xl font-black text-primary-100">{step.number}</div>
                 </div>
 
                 {/* Step Content */}
-                <h3 className="text-2xl font-black text-dark-900 mb-3">
-                  {step.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed mb-4">
-                  {step.description}
-                </p>
+                <h3 className="text-2xl font-black text-dark-900 mb-3">{step.title}</h3>
+                <p className="text-gray-600 leading-relaxed mb-4">{step.description}</p>
 
                 {/* Highlight Badge */}
                 <div className="inline-block bg-green-50 text-green-700 px-4 py-2 rounded-lg font-bold text-sm">
@@ -94,20 +96,29 @@ export default function HowItWorksSection() {
 
         {/* CTA */}
         <div className="text-center">
-          <Link
-            href="/start"
-            className="inline-flex items-center gap-3 bg-primary-600 text-white px-10 py-4 rounded-xl font-bold text-xl hover:bg-primary-700 transition-all shadow-xl hover:shadow-2xl hover:scale-105 group"
+          <button
+            onClick={() => setShareOpen(true)}
+            className="inline-flex items-center gap-3 bg-green-600 text-white px-10 py-4 rounded-xl font-bold text-xl hover:bg-green-700 transition-all shadow-xl hover:shadow-2xl hover:scale-105 group"
           >
-            <span>Get Started Now</span>
+            <span>Send BetterClose to my team</span>
             <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </Link>
+          </button>
           <p className="mt-4 text-sm text-gray-500">
-            Takes 2 minutes • No commitment required
+            Takes 30 seconds. Or,{' '}
+            <Link href="/quote" className="text-primary-700 font-semibold hover:text-primary-800 underline-offset-2 hover:underline">
+              see your savings first →
+            </Link>
           </p>
         </div>
       </div>
+
+      <ShareWithTeamSheet
+        open={shareOpen}
+        onClose={() => setShareOpen(false)}
+        source="how_it_works"
+      />
     </section>
   )
 }

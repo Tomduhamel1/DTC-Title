@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -33,7 +33,7 @@ model Lead {
   notes     String?
 
   // Progressive intake
-  intakeJson           Json?     // Partial intake form data
+  intakeString           String?     // Partial intake form data
   completionPercentage Int?      @default(0) // 0-100
   resumeToken          String?   @unique // Magic link token
   tokenExpiresAt       DateTime? // Token expiration
@@ -168,7 +168,7 @@ model MortgageReferral {
 
   // Referral status
   status            String   @default("pending") // pending, contacted, quoted, closed, declined
-  partnerResponse   Json?    // Store partner's response
+  partnerResponse   String?    // Store partner's response
   partnerContactedAt DateTime?
 
   createdAt DateTime @default(now())
@@ -191,7 +191,7 @@ model Partner {
   priority  Int      @default(0) // Higher = preferred
 
   // Specialties
-  specialties Json?   // { creditBands: [], propertyTypes: [], loanTypes: [] }
+  specialties String?   // { creditBands: [], propertyTypes: [], loanTypes: [] }
 
   // Metadata
   notes     String?
@@ -212,11 +212,136 @@ model ActivityEvent {
 
   type      String   // page_view, form_submit, email_sent, call_made, status_change, intake_started, intake_updated, doc_uploaded, mortgage_terms_added, mortgage_referral_requested
   action    String
-  metadata  Json?
+  metadata  String?
 
   createdAt DateTime @default(now())
 
   @@index([leadId])
   @@index([type])
   @@index([createdAt])
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NextAuth (auth.js) required models
+// ─────────────────────────────────────────────────────────────────────────────
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  phone         String?
+  createdAt     DateTime  @default(now())
+
+  accounts Account[]
+  sessions Session[]
+  closings Closing[] @relation("UserClosings")
+
+  @@index([phone])
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Closing dashboard
+// ─────────────────────────────────────────────────────────────────────────────
+
+model Closing {
+  id     String  @id @default(cuid())
+  userId String?
+  user   User?   @relation("UserClosings", fields: [userId], references: [id], onDelete: SetNull)
+
+  propertyAddress    String?
+  propertyCity       String?
+  propertyState      String?
+  propertyZip        String?
+  propertyAddressKey String?
+  propertyType       String?
+  salePrice          Float?
+  loanAmount         Float?
+  closingDate        DateTime?
+
+  borrowerEmail String?
+  borrowerPhone String?
+
+  lenderName    String?
+  lenderCompany String?
+  lenderEmail   String?
+  lenderPhone   String?
+  lenderNmls    String?
+
+  agentName    String?
+  agentCompany String?
+  agentEmail   String?
+  agentPhone   String?
+
+  titleUnderwriter String?
+  titlePolicyNo    String?
+
+  closingLocation String?
+
+  status String @default("pending")
+  source String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  milestones Milestone[]
+
+  @@index([userId])
+  @@index([propertyAddressKey])
+  @@index([borrowerPhone])
+  @@index([borrowerEmail])
+  @@index([status])
+}
+
+model Milestone {
+  id          String    @id @default(cuid())
+  closingId   String
+  closing     Closing   @relation(fields: [closingId], references: [id], onDelete: Cascade)
+
+  kind        String    // loan_locked | title_ordered | title_search | title_issued | closed
+  status      String    @default("pending") // pending | active | done
+  completedAt DateTime?
+  metadata    String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([closingId, kind])
+  @@index([closingId])
 }

@@ -18,11 +18,27 @@ export default function HeroOptionC() {
                 <br />
                 <span className="text-primary-600">You have a choice.</span>
               </h1>
-              <p className="text-xl md:text-2xl text-gray-700 font-semibold mb-8 leading-snug">
+              <p className="text-xl md:text-2xl text-gray-700 font-semibold mb-7 leading-snug">
                 Same realtor. Same lender. Same insurer.
                 <br />
                 <span className="text-primary-600">Different closing cost.</span>
               </p>
+
+              {/* Primary CTA — alert your team (no quote needed) */}
+              <div className="mb-8">
+                <button
+                  onClick={() => setShareOpen(true)}
+                  className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold text-lg px-7 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all group"
+                >
+                  Send BetterClose to my team
+                  <svg className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </button>
+                <p className="text-sm text-gray-500 mt-2">
+                  Takes 30 seconds. Or, estimate your savings first →
+                </p>
+              </div>
 
               {/* Trust strip */}
               <div>
@@ -84,14 +100,6 @@ export default function HeroOptionC() {
               >
                 <AICalculatorWithIdeas compact />
               </Suspense>
-              <div className="text-center mt-4">
-                <button
-                  onClick={() => setShareOpen(true)}
-                  className="text-sm text-primary-700 font-semibold hover:text-primary-800 underline-offset-2 hover:underline"
-                >
-                  Or, send BetterClose to my lender →
-                </button>
-              </div>
             </div>
           </div>
         </div>
