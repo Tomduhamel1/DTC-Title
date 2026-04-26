@@ -3,6 +3,11 @@ frontend:
   phases:
     preBuild:
       commands:
+        # Skip puppeteer's Chromium download (~170MB) during install.
+        # Puppeteer is only used by a legacy quote-PDF route that isn't part
+        # of the active flow. Without this, install hangs ~25 min on the
+        # binary download.
+        - export PUPPETEER_SKIP_DOWNLOAD=true
         - npm ci --legacy-peer-deps || npm install
         - npx prisma generate
         # DB migrations are NOT run during build. The Amplify build runners
