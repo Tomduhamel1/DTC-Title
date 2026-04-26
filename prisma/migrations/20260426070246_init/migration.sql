@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "Lead" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "firstName" TEXT,
     "lastName" TEXT,
@@ -9,51 +9,54 @@ CREATE TABLE "Lead" (
     "city" TEXT,
     "state" TEXT,
     "zipCode" TEXT,
-    "homeValue" REAL,
-    "mortgageBalance" REAL,
-    "currentRate" REAL,
+    "homeValue" DOUBLE PRECISION,
+    "mortgageBalance" DOUBLE PRECISION,
+    "currentRate" DOUBLE PRECISION,
     "creditScore" TEXT,
     "propertyType" TEXT,
     "source" TEXT,
     "status" TEXT NOT NULL DEFAULT 'new',
     "notes" TEXT,
-    "intakeString" TEXT,
+    "intakeJson" JSONB,
     "completionPercentage" INTEGER DEFAULT 0,
     "resumeToken" TEXT,
-    "tokenExpiresAt" DATETIME,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL
+    "tokenExpiresAt" TIMESTAMP(3),
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Lead_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Quote" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "leadId" TEXT NOT NULL,
-    "homeValue" REAL NOT NULL,
-    "mortgageBalance" REAL NOT NULL,
-    "currentRate" REAL NOT NULL,
-    "newRate" REAL NOT NULL,
+    "homeValue" DOUBLE PRECISION NOT NULL,
+    "mortgageBalance" DOUBLE PRECISION NOT NULL,
+    "currentRate" DOUBLE PRECISION NOT NULL,
+    "newRate" DOUBLE PRECISION NOT NULL,
     "creditScore" TEXT NOT NULL,
     "loanTerm" INTEGER NOT NULL DEFAULT 360,
-    "currentMonthlyPayment" REAL NOT NULL,
-    "newMonthlyPayment" REAL NOT NULL,
-    "monthlySavings" REAL NOT NULL,
-    "totalInterestCurrent" REAL NOT NULL,
-    "totalInterestNew" REAL NOT NULL,
-    "lifetimeSavings" REAL NOT NULL,
-    "closingCosts" REAL,
+    "currentMonthlyPayment" DOUBLE PRECISION NOT NULL,
+    "newMonthlyPayment" DOUBLE PRECISION NOT NULL,
+    "monthlySavings" DOUBLE PRECISION NOT NULL,
+    "totalInterestCurrent" DOUBLE PRECISION NOT NULL,
+    "totalInterestNew" DOUBLE PRECISION NOT NULL,
+    "lifetimeSavings" DOUBLE PRECISION NOT NULL,
+    "closingCosts" DOUBLE PRECISION,
     "breakEvenMonths" INTEGER,
     "isValid" BOOLEAN NOT NULL DEFAULT true,
-    "expiresAt" DATETIME,
+    "expiresAt" TIMESTAMP(3),
     "pdfUrl" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL,
-    CONSTRAINT "Quote_leadId_fkey" FOREIGN KEY ("leadId") REFERENCES "Lead" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Quote_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Document" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "leadId" TEXT NOT NULL,
     "type" TEXT NOT NULL,
     "fileName" TEXT NOT NULL,
@@ -63,94 +66,101 @@ CREATE TABLE "Document" (
     "s3Url" TEXT NOT NULL,
     "uploadedBy" TEXT,
     "notes" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT "Document_leadId_fkey" FOREIGN KEY ("leadId") REFERENCES "Lead" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Document_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "MortgageScenario" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "leadId" TEXT NOT NULL,
     "source" TEXT NOT NULL,
     "lenderName" TEXT,
-    "loanAmount" REAL NOT NULL,
-    "interestRate" REAL NOT NULL,
+    "loanAmount" DOUBLE PRECISION NOT NULL,
+    "interestRate" DOUBLE PRECISION NOT NULL,
     "term" INTEGER NOT NULL,
-    "points" REAL,
-    "lenderFees" REAL,
-    "propertyTaxes" REAL,
-    "homeInsurance" REAL,
-    "hoaFees" REAL,
-    "pmi" REAL,
-    "principalInterest" REAL NOT NULL,
-    "totalMonthly" REAL NOT NULL,
-    "totalUpfront" REAL NOT NULL,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL,
-    CONSTRAINT "MortgageScenario_leadId_fkey" FOREIGN KEY ("leadId") REFERENCES "Lead" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+    "points" DOUBLE PRECISION,
+    "lenderFees" DOUBLE PRECISION,
+    "propertyTaxes" DOUBLE PRECISION,
+    "homeInsurance" DOUBLE PRECISION,
+    "hoaFees" DOUBLE PRECISION,
+    "pmi" DOUBLE PRECISION,
+    "principalInterest" DOUBLE PRECISION NOT NULL,
+    "totalMonthly" DOUBLE PRECISION NOT NULL,
+    "totalUpfront" DOUBLE PRECISION NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "MortgageScenario_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "MortgageReferral" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "leadId" TEXT NOT NULL,
     "partnerId" TEXT,
     "creditBand" TEXT NOT NULL,
     "occupancy" TEXT NOT NULL,
     "propertyType" TEXT NOT NULL,
-    "downPaymentPct" REAL NOT NULL,
+    "downPaymentPct" DOUBLE PRECISION NOT NULL,
     "termPreference" TEXT NOT NULL,
     "contactPreference" TEXT NOT NULL,
-    "requestedLoanAmount" REAL,
+    "requestedLoanAmount" DOUBLE PRECISION,
     "notes" TEXT,
     "status" TEXT NOT NULL DEFAULT 'pending',
-    "partnerResponse" TEXT,
-    "partnerContactedAt" DATETIME,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL,
-    CONSTRAINT "MortgageReferral_leadId_fkey" FOREIGN KEY ("leadId") REFERENCES "Lead" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT "MortgageReferral_partnerId_fkey" FOREIGN KEY ("partnerId") REFERENCES "Partner" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+    "partnerResponse" JSONB,
+    "partnerContactedAt" TIMESTAMP(3),
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "MortgageReferral_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Partner" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "phone" TEXT,
     "isActive" BOOLEAN NOT NULL DEFAULT true,
     "priority" INTEGER NOT NULL DEFAULT 0,
-    "specialties" TEXT,
+    "specialties" JSONB,
     "notes" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Partner_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "ActivityEvent" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "leadId" TEXT NOT NULL,
     "type" TEXT NOT NULL,
     "action" TEXT NOT NULL,
-    "metadata" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT "ActivityEvent_leadId_fkey" FOREIGN KEY ("leadId") REFERENCES "Lead" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+    "metadata" JSONB,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "ActivityEvent_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "User" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "name" TEXT,
     "email" TEXT NOT NULL,
-    "emailVerified" DATETIME,
+    "emailVerified" TIMESTAMP(3),
     "image" TEXT,
     "phone" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Account" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "type" TEXT NOT NULL,
     "provider" TEXT NOT NULL,
@@ -162,28 +172,30 @@ CREATE TABLE "Account" (
     "scope" TEXT,
     "id_token" TEXT,
     "session_state" TEXT,
-    CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+
+    CONSTRAINT "Account_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Session" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "sessionToken" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
-    "expires" DATETIME NOT NULL,
-    CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+    "expires" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Session_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "VerificationToken" (
     "identifier" TEXT NOT NULL,
     "token" TEXT NOT NULL,
-    "expires" DATETIME NOT NULL
+    "expires" TIMESTAMP(3) NOT NULL
 );
 
 -- CreateTable
 CREATE TABLE "Closing" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "userId" TEXT,
     "propertyAddress" TEXT,
     "propertyCity" TEXT,
@@ -191,9 +203,9 @@ CREATE TABLE "Closing" (
     "propertyZip" TEXT,
     "propertyAddressKey" TEXT,
     "propertyType" TEXT,
-    "salePrice" REAL,
-    "loanAmount" REAL,
-    "closingDate" DATETIME,
+    "salePrice" DOUBLE PRECISION,
+    "loanAmount" DOUBLE PRECISION,
+    "closingDate" TIMESTAMP(3),
     "borrowerEmail" TEXT,
     "borrowerPhone" TEXT,
     "lenderName" TEXT,
@@ -210,22 +222,43 @@ CREATE TABLE "Closing" (
     "closingLocation" TEXT,
     "status" TEXT NOT NULL DEFAULT 'pending',
     "source" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL,
-    CONSTRAINT "Closing_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Closing_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Milestone" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "closingId" TEXT NOT NULL,
     "kind" TEXT NOT NULL,
     "status" TEXT NOT NULL DEFAULT 'pending',
-    "completedAt" DATETIME,
-    "metadata" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL,
-    CONSTRAINT "Milestone_closingId_fkey" FOREIGN KEY ("closingId") REFERENCES "Closing" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+    "completedAt" TIMESTAMP(3),
+    "metadata" JSONB,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Milestone_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "LenderRequest" (
+    "id" TEXT NOT NULL,
+    "refId" TEXT NOT NULL,
+    "channel" TEXT NOT NULL,
+    "lenderEmail" TEXT,
+    "lenderFirstName" TEXT,
+    "lenderCompany" TEXT,
+    "clientName" TEXT,
+    "clientEmail" TEXT,
+    "note" TEXT,
+    "savingsEstimate" DOUBLE PRECISION,
+    "source" TEXT NOT NULL,
+    "status" TEXT NOT NULL DEFAULT 'sent',
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "LenderRequest_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -335,3 +368,45 @@ CREATE INDEX "Milestone_closingId_idx" ON "Milestone"("closingId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Milestone_closingId_kind_key" ON "Milestone"("closingId", "kind");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "LenderRequest_refId_key" ON "LenderRequest"("refId");
+
+-- CreateIndex
+CREATE INDEX "LenderRequest_refId_idx" ON "LenderRequest"("refId");
+
+-- CreateIndex
+CREATE INDEX "LenderRequest_createdAt_idx" ON "LenderRequest"("createdAt");
+
+-- CreateIndex
+CREATE INDEX "LenderRequest_channel_idx" ON "LenderRequest"("channel");
+
+-- AddForeignKey
+ALTER TABLE "Quote" ADD CONSTRAINT "Quote_leadId_fkey" FOREIGN KEY ("leadId") REFERENCES "Lead"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Document" ADD CONSTRAINT "Document_leadId_fkey" FOREIGN KEY ("leadId") REFERENCES "Lead"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "MortgageScenario" ADD CONSTRAINT "MortgageScenario_leadId_fkey" FOREIGN KEY ("leadId") REFERENCES "Lead"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "MortgageReferral" ADD CONSTRAINT "MortgageReferral_leadId_fkey" FOREIGN KEY ("leadId") REFERENCES "Lead"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "MortgageReferral" ADD CONSTRAINT "MortgageReferral_partnerId_fkey" FOREIGN KEY ("partnerId") REFERENCES "Partner"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ActivityEvent" ADD CONSTRAINT "ActivityEvent_leadId_fkey" FOREIGN KEY ("leadId") REFERENCES "Lead"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Closing" ADD CONSTRAINT "Closing_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Milestone" ADD CONSTRAINT "Milestone_closingId_fkey" FOREIGN KEY ("closingId") REFERENCES "Closing"("id") ON DELETE CASCADE ON UPDATE CASCADE;
