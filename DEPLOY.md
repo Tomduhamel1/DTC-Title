@@ -97,7 +97,15 @@ aws --profile fnte --region us-east-1 secretsmanager get-secret-value \
 ### 5. First deploy
 
 1. Trigger build (auto on connect, or in the Amplify console click "Run job").
-2. The build runs `prisma migrate deploy` against RDS — schema applies.
+2. The build does NOT run migrations. Apply schema changes manually from
+   your laptop *before* pushing schema-changing commits:
+   ```
+   DB_PW=$(aws --profile fnte --region us-east-1 secretsmanager get-secret-value \
+     --secret-id betterclose/db/master --query SecretString --output text | jq -r .password)
+   DATABASE_URL="postgresql://betterclose:${DB_PW}@betterclose-db.c1w4gw68gn8k.us-east-1.rds.amazonaws.com:5432/betterclose?schema=public" \
+     npx prisma migrate deploy
+   ```
+   This keeps RDS locked to your IP only (no public exposure).
 3. ~5 min later you get an Amplify-hosted URL like `main.d1xxx.amplifyapp.com`.
 4. Visit `<that-url>/api/health` — expect `{"ok":true}`.
 

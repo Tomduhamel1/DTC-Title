@@ -5,7 +5,11 @@ frontend:
       commands:
         - npm ci --legacy-peer-deps || npm install
         - npx prisma generate
-        - npx prisma migrate deploy
+        # DB migrations are NOT run during build. The Amplify build runners
+        # don't have a route into RDS, and we deliberately keep RDS locked to
+        # known IPs (your laptop). Run `npx prisma migrate deploy` from your
+        # laptop before deploying any schema-changing commit:
+        #   DATABASE_URL="<the-RDS-url>" npx prisma migrate deploy
     build:
       commands:
         - npm run build
