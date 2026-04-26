@@ -30,10 +30,10 @@ export default function UnderwriterLogos() {
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-10">
-          <h3 className="text-2xl md:text-3xl font-bold text-dark-900 mb-3">
+          <h2 className="text-4xl font-black text-dark-900 mb-3">
             Backed By America's Most Trusted Underwriters
-          </h3>
-          <p className="text-gray-600">
+          </h2>
+          <p className="text-xl text-gray-600">
             Same protection. Same reliability. <span className="text-primary-600 font-bold">Better price.</span>
           </p>
         </div>

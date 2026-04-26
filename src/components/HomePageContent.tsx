@@ -1,7 +1,7 @@
 'use client'
 
 import { useSearchParams } from 'next/navigation'
-import AICalculator from './AICalculator'
+import AICalculatorWithIdeas from './AICalculatorWithIdeas'
 import StoryCalculator from './StoryCalculator'
 
 interface HomePageContentProps {
@@ -12,8 +12,8 @@ export default function HomePageContent({ originalCalculator }: HomePageContentP
   const searchParams = useSearchParams()
   const variant = searchParams.get('variant')
 
-  if (variant === 'ai') {
-    return <AICalculator />
+  if (variant === 'ai' || variant === 'ai2') {
+    return <AICalculatorWithIdeas />
   }
 
   if (variant === 'e') {

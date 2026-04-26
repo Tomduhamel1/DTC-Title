@@ -100,7 +100,7 @@ export default function SavingsExamples() {
           <p className="text-sm text-gray-500 max-w-3xl mx-auto">
             Examples shown are representative of typical transactions and savings percentages.
             Actual savings vary based on property value, location, and transaction specifics.
-            All calculations use the same underwriter rates with TrueFee Closing's discounted fees.
+            All calculations use the same underwriter rates with BetterClose's discounted fees.
           </p>
         </div>
       </div>

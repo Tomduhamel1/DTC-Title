@@ -50,7 +50,11 @@ const getSavingsIdeas = (amount: number) => {
   return ideas.sort(() => Math.random() - 0.5).slice(0, 25)
 }
 
-export default function AICalculatorWithIdeas() {
+interface AICalculatorWithIdeasProps {
+  compact?: boolean
+}
+
+export default function AICalculatorWithIdeas({ compact = false }: AICalculatorWithIdeasProps) {
   // Track savings to display ideas
   const [transactionType] = useState<'purchase' | 'refinance'>('purchase')
   const [homeValue] = useState('500000')
@@ -67,7 +71,12 @@ export default function AICalculatorWithIdeas() {
   const savings = getInitialSavings(transactionType, homeValueNum, selectedState)
 
   const [currentIdeaIndex, setCurrentIdeaIndex] = useState(0)
-  const savingsIdeas = getSavingsIdeas(savings.totalSavings)
+  const [savingsIdeas, setSavingsIdeas] = useState<Array<{text: string, emoji: string}>>([])
+
+  // Compute savings ideas on client side only to avoid hydration mismatch
+  useEffect(() => {
+    setSavingsIdeas(getSavingsIdeas(savings.totalSavings))
+  }, [savings.totalSavings])
 
   useEffect(() => {
     if (savingsIdeas.length > 0) {
@@ -79,19 +88,59 @@ export default function AICalculatorWithIdeas() {
   }, [savingsIdeas.length])
 
   return (
-    <div className="flex flex-col gap-4">
-      <AICalculatorModule />
+    <div className={`flex flex-col ${compact ? 'gap-2' : 'gap-4'}`}>
+      <AICalculatorModule compact={compact} />
 
       {/* Rotating Savings Ideas - Below Calculator */}
       {savingsIdeas.length > 0 && (
-        <div className="flex justify-center">
-          <div className="bg-emerald-400 rounded-full px-8 py-4 shadow-lg inline-flex items-center gap-2">
-            <span className="text-emerald-900 text-sm uppercase tracking-wide font-bold leading-none">That's</span>
-            <span className="text-2xl leading-none">{savingsIdeas[currentIdeaIndex].emoji}</span>
-            <span className="text-lg font-black text-green-900 leading-none transition-all duration-500">{savingsIdeas[currentIdeaIndex].text}</span>
+        <div
+          className={`relative overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-50 via-white to-emerald-50 border border-emerald-200 shadow-md ${
+            compact ? 'px-5 py-4' : 'px-8 py-6'
+          }`}
+        >
+          <div className="absolute inset-y-0 left-0 w-1.5 bg-gradient-to-b from-emerald-400 to-emerald-600"></div>
+          <div className={`flex items-center ${compact ? 'gap-4' : 'gap-6'}`}>
+            <div
+              key={`emoji-${currentIdeaIndex}`}
+              className={`flex-shrink-0 flex items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-emerald-100 animate-[fadeSwap_500ms_ease-out] ${
+                compact ? 'w-14 h-14 text-3xl' : 'w-20 h-20 text-5xl'
+              }`}
+              aria-hidden="true"
+            >
+              {savingsIdeas[currentIdeaIndex].emoji}
+            </div>
+            <div className="min-w-0 flex-1">
+              <div
+                className={`text-emerald-700 uppercase tracking-[0.15em] font-semibold leading-none ${
+                  compact ? 'text-[11px] mb-1.5' : 'text-xs mb-2'
+                }`}
+              >
+                That's enough for
+              </div>
+              <div
+                key={`text-${currentIdeaIndex}`}
+                className={`font-bold text-dark-900 leading-tight animate-[fadeSwap_500ms_ease-out] ${
+                  compact ? 'text-xl md:text-2xl' : 'text-2xl md:text-3xl'
+                }`}
+              >
+                {savingsIdeas[currentIdeaIndex].text}
+              </div>
+            </div>
           </div>
         </div>
       )}
+      <style jsx>{`
+        @keyframes fadeSwap {
+          0% {
+            opacity: 0;
+            transform: translateY(6px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </div>
   )
 }

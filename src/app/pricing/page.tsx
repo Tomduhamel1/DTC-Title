@@ -70,10 +70,8 @@ export default function PricingPage() {
           <nav className="flex justify-between items-center h-20">
             <div className="flex items-center space-x-3">
               <Link href="/" className="text-2xl font-bold text-dark-800 hover:text-primary-600 transition-colors">
-                TrueFee Closing
+                BetterClose
               </Link>
-              <span className="text-gray-400 text-sm">|</span>
-              <span className="text-sm text-gray-500 font-medium">powered by eLEND</span>
             </div>
             <div className="flex items-center space-x-6">
               <a href="tel:1-800-316-9508" className="hidden lg:flex items-center text-dark-800 hover:text-primary-600 font-medium">

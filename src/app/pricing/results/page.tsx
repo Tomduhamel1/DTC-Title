@@ -153,10 +153,8 @@ export default function PricingResultsPage() {
           <nav className="flex justify-between items-center h-20">
             <div className="flex items-center space-x-3">
               <Link href="/" className="text-2xl font-bold text-dark-800 hover:text-primary-600 transition-colors">
-                TrueFee Closing
+                BetterClose
               </Link>
-              <span className="text-gray-400 text-sm">|</span>
-              <span className="text-sm text-gray-500 font-medium">powered by eLEND</span>
             </div>
             <div className="flex items-center space-x-6">
               <a href="tel:1-800-316-9508" className="hidden lg:flex items-center text-dark-800 hover:text-primary-600 font-medium">
@@ -234,7 +232,7 @@ export default function PricingResultsPage() {
                   </div>
 
                   <div className="border-l-4 border-primary-400 pl-4">
-                    <div className="text-sm text-gray-600 mb-1">TrueFee Closing Costs</div>
+                    <div className="text-sm text-gray-600 mb-1">BetterClose Costs</div>
                     <div className="text-2xl font-bold text-primary-600">
                       {formatCurrency(quote.trueFeeClosingCosts)}
                     </div>

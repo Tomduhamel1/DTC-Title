@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import ChatInterface, { Message } from './ChatInterface'
 import { calculateSavings, getInitialSavings, SavingsFactors } from '@/lib/savingsCalculator'
+import { useSavings } from '@/contexts/SavingsContext'
 
 // Item catalog with actual prices (singular form for multiples)
 const itemCatalog = [
@@ -162,7 +163,12 @@ function generateAIResponse(
   }
 }
 
-export default function AICalculatorModule() {
+interface AICalculatorModuleProps {
+  compact?: boolean
+}
+
+export default function AICalculatorModule({ compact = false }: AICalculatorModuleProps) {
+  const { setSavings } = useSavings()
   const [transactionType, setTransactionType] = useState<'purchase' | 'refinance'>('purchase')
   const [homeValue, setHomeValue] = useState('')
   const [selectedState, setSelectedState] = useState('Texas')
@@ -197,6 +203,11 @@ export default function AICalculatorModule() {
   const savings = conversationStarted
     ? calculateSavings(transactionType, homeValueNum, selectedState, factors)
     : getInitialSavings(transactionType, homeValueNum, selectedState)
+
+  // Update global savings context whenever local savings change
+  useEffect(() => {
+    setSavings(savings)
+  }, [savings, setSavings])
 
   // Rotating savings ideas
   const [currentIdeaIndex, setCurrentIdeaIndex] = useState(0)
@@ -270,8 +281,10 @@ export default function AICalculatorModule() {
   }
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl p-8">
-      <h2 className="text-2xl font-bold text-dark-900 mb-6 text-center">Calculate Your Savings</h2>
+    <div className={`bg-white rounded-2xl shadow-xl ${compact ? 'p-4' : 'p-8'}`}>
+      {!compact && (
+        <h2 className="text-2xl font-bold text-dark-900 mb-6 text-center">Calculate Your Savings</h2>
+      )}
 
       {/* Single Line Input Row */}
       <div className="flex gap-2 mb-4">
@@ -327,7 +340,9 @@ export default function AICalculatorModule() {
 
       {/* Chat Interface */}
       <div className={`mb-4 transition-all duration-500 ease-in-out ${
-        chatExpanded ? 'h-[320px]' : 'h-[240px]'
+        compact
+          ? (chatExpanded ? 'h-[240px]' : 'h-[180px]')
+          : (chatExpanded ? 'h-[320px]' : 'h-[240px]')
       }`}>
         <ChatInterface
           messages={messages}
@@ -338,12 +353,12 @@ export default function AICalculatorModule() {
       </div>
 
       {/* Estimate Row - Redesigned */}
-      <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-4 border-2 border-green-200">
-        <div className="flex items-start gap-6">
+      <div className={`bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg border-2 border-green-200 ${compact ? 'p-3' : 'p-4'}`}>
+        <div className={`flex items-start ${compact ? 'gap-3' : 'gap-6'}`}>
           {/* Left: Label and Amount Stacked */}
           <div className="flex flex-col gap-1">
-            <div className="text-xs text-green-700 font-semibold uppercase tracking-wide">EST. SAVINGS:</div>
-            <div className={`text-5xl font-black text-green-600 leading-none transition-all ${
+            <div className={`text-green-700 font-semibold uppercase tracking-wide ${compact ? 'text-xs' : 'text-xs'}`}>EST. SAVINGS:</div>
+            <div className={`font-black text-green-600 leading-none transition-all ${compact ? 'text-3xl' : 'text-5xl'} ${
               isLoading ? 'scale-110' : ''
             }`}>
               ${savings.totalSavings.toLocaleString()}
@@ -354,7 +369,7 @@ export default function AICalculatorModule() {
           <div className="border-l-2 border-green-300 self-stretch"></div>
 
           {/* Right: Details Vertically Centered */}
-          <div className="flex flex-col gap-2 text-sm">
+          <div className={`flex flex-col gap-2 ${compact ? 'text-xs' : 'text-sm'}`}>
             <div className="flex items-center gap-2 whitespace-nowrap">
               <span className="font-semibold text-gray-700">Closing:</span>
               <span className="font-bold text-green-600">${savings.estimatedClosingCost.toLocaleString()}</span>

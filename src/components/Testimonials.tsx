@@ -1,7 +1,7 @@
 export default function Testimonials() {
   const testimonials = [
     {
-      quote: "TrueFee Closing saved us over $1,200 on closing costs. The process was transparent and straightforward.",
+      quote: "BetterClose saved us over $1,200 on closing costs. The process was transparent and straightforward.",
       author: "Sarah M.",
       location: "Austin, TX",
       savings: 1200,

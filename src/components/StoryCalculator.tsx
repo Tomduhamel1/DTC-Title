@@ -240,12 +240,10 @@ export default function StoryCalculator() {
                     />
                   </g>
                   <text x="42" y="28" fontFamily="system-ui, -apple-system, sans-serif" fontSize="22" fontWeight="700" fill="#0693e3" letterSpacing="-0.5">
-                    TrueClose
+                    BetterClose
                   </text>
                 </svg>
               </Link>
-              <span className="text-gray-400 text-sm">|</span>
-              <span className="text-sm text-gray-500 font-medium">powered by eLEND</span>
             </div>
 
             <div className="hidden md:flex items-center space-x-8">
@@ -307,8 +305,11 @@ export default function StoryCalculator() {
       {/* The Savings Banner - FULL WIDTH */}
       <div className="w-full bg-gradient-to-r from-green-500 to-emerald-600 py-12">
         <div className="max-w-6xl mx-auto px-6 text-center">
-          <div className="text-white/80 text-sm md:text-base font-semibold mb-3">
-            In {selectedState} for a ${(homeValueNum || 500000).toLocaleString()} home you save:
+          <div className="text-white/80 text-sm md:text-base font-semibold mb-2">
+            In {selectedState} for a ${(homeValueNum || 500000).toLocaleString()} home
+          </div>
+          <div className="text-white text-3xl md:text-5xl font-black mb-2 tracking-wide">
+            YOU SAVE
           </div>
           <div className="text-white text-[100px] md:text-[140px] font-black leading-none mb-4">
             ${savings.totalSavings.toLocaleString()}
@@ -579,7 +580,7 @@ export default function StoryCalculator() {
               </div>
               <h3 className="font-black text-2xl text-dark-900 mb-3">Share with Team</h3>
               <p className="text-gray-600 text-sm mb-6 leading-relaxed">
-                Send TrueClose info to your realtor, lender, or broker. They can coordinate your closing directly with us.
+                Send BetterClose info to your realtor, lender, or broker. They can coordinate your closing directly with us.
               </p>
               <Link
                 href="/share"
@@ -733,7 +734,7 @@ export default function StoryCalculator() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
-              <div className="text-2xl font-bold mb-4">TrueClose</div>
+              <div className="text-2xl font-bold mb-4">BetterClose</div>
               <p className="text-gray-400">
                 Transparent, discounted title insurance and settlement services for your home purchase or refinance.
               </p>
@@ -762,7 +763,7 @@ export default function StoryCalculator() {
             </div>
           </div>
           <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 TrueClose. All rights reserved.</p>
+            <p>&copy; 2024 BetterClose. All rights reserved.</p>
           </div>
         </div>
       </footer>

@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
 import { Suspense } from 'react'
@@ -8,6 +10,9 @@ import SavingsExamples from '@/components/SavingsExamples'
 import Testimonials from '@/components/Testimonials'
 import TrueFeelogo from '@/components/TrueFeelogo'
 import HomePageContent from '@/components/HomePageContent'
+import TeamTrustSection from '@/components/TeamTrustSection'
+import ReadyToSaveSection from '@/components/ReadyToSaveSection'
+import { SavingsProvider } from '@/contexts/SavingsContext'
 
 interface HomePageOriginalProps {
   hideSavingsCards?: boolean
@@ -16,7 +21,8 @@ interface HomePageOriginalProps {
 
 export default function HomePageOriginal({ hideSavingsCards = false, useAlternateHero = false }: HomePageOriginalProps = {}) {
   return (
-    <div className="min-h-screen bg-white">
+    <SavingsProvider>
+      <div className="min-h-screen bg-white">
       {/* Header - eLEND Style */}
       <header className="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
         <div className="container mx-auto px-6">
@@ -204,10 +210,13 @@ export default function HomePageOriginal({ hideSavingsCards = false, useAlternat
         </div>
       </section>
 
+      {/* Everything Else Stays The Same Section */}
+      <TeamTrustSection />
+
       {/* Underwriter Logos Section - Uses Client Component for error handling */}
       <UnderwriterLogos />
 
-      {/* Simple Online Process Section */}
+      {/* Peace of Mind Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -261,7 +270,7 @@ export default function HomePageOriginal({ hideSavingsCards = false, useAlternat
                 ✓ Start Online. Get Support Your Way.
               </div>
               <h2 className="text-4xl md:text-5xl font-black text-dark-900 mb-4 leading-tight">
-                Simple Online Process.<br />
+                Peace of Mind.<br />
                 <span className="text-primary-600">Real People When You Need Them.</span>
               </h2>
               <p className="text-xl text-gray-700 mb-6 leading-relaxed">
@@ -327,184 +336,11 @@ export default function HomePageOriginal({ hideSavingsCards = false, useAlternat
         </div>
       </section>
 
-      {/* Everything Else Stays The Same Section */}
-      <section className="w-full bg-gray-50 py-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-black text-dark-900 mb-3">
-              Keep the <span className="text-primary-600">Team You Trust</span>
-            </h2>
-            <p className="text-xl text-gray-600">Same people. Same protection. Same quality.</p>
-          </div>
-
-          {/* Four Column Layout */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
-            {/* Your Realtor */}
-            <div className="text-center">
-              <div className="relative inline-block mb-4">
-                <div className="inline-flex items-center justify-center w-20 h-20 bg-primary-100 rounded-2xl">
-                  <svg className="w-10 h-10 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                  </svg>
-                </div>
-                <div className="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center border-2 border-white">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-              </div>
-              <h3 className="text-xl font-bold text-dark-900 mb-2">Your Realtor</h3>
-              <p className="text-gray-600">Same trusted advisor</p>
-            </div>
-
-            {/* Your Lender */}
-            <div className="text-center">
-              <div className="relative inline-block mb-4">
-                <div className="inline-flex items-center justify-center w-20 h-20 bg-primary-100 rounded-2xl">
-                  <svg className="w-10 h-10 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                  </svg>
-                </div>
-                <div className="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center border-2 border-white">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-              </div>
-              <h3 className="text-xl font-bold text-dark-900 mb-2">Your Lender</h3>
-              <p className="text-gray-600">Works with all banks</p>
-            </div>
-
-            {/* Your Mortgage Broker */}
-            <div className="text-center">
-              <div className="relative inline-block mb-4">
-                <div className="inline-flex items-center justify-center w-20 h-20 bg-primary-100 rounded-2xl">
-                  <svg className="w-10 h-10 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                </div>
-                <div className="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center border-2 border-white">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-              </div>
-              <h3 className="text-xl font-bold text-dark-900 mb-2">Your Mortgage Broker</h3>
-              <p className="text-gray-600">Same trusted partner</p>
-            </div>
-
-            {/* Same Insurance */}
-            <div className="text-center">
-              <div className="relative inline-block mb-4">
-                <div className="inline-flex items-center justify-center w-20 h-20 bg-primary-100 rounded-2xl">
-                  <svg className="w-10 h-10 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                </div>
-                <div className="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center border-2 border-white">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-              </div>
-              <h3 className="text-xl font-bold text-dark-900 mb-2">Same Insurance</h3>
-              <p className="text-gray-600">Same protection</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Trust Badges - Professional icons matching eLEND style */}
       <TrustBadges />
 
       {/* Ready to Get Started Section */}
-      <section className="w-full bg-gradient-to-br from-gray-50 to-white py-20">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-black text-dark-900 mb-4">
-              Ready to Save?
-            </h2>
-            <p className="text-xl text-gray-600">
-              Choose the option that works best for you
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Get Started Online - PRIMARY */}
-            <div className="bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl p-8 shadow-2xl transform hover:scale-105 transition-all">
-              <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-4">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <h3 className="font-black text-2xl text-white mb-3">Start Online</h3>
-              <p className="text-white/90 text-sm mb-6 leading-relaxed">
-                Complete our quick application online. Takes just 2 minutes. No commitment or credit check required.
-              </p>
-              <Link
-                href="/start"
-                className="block w-full bg-white text-primary-600 px-6 py-3 rounded-lg font-bold text-center hover:bg-gray-50 transition-colors shadow-lg"
-              >
-                Begin Application →
-              </Link>
-            </div>
-
-            {/* Share with Team */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-200 hover:border-emerald-500 hover:shadow-2xl transition-all">
-              <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mb-4">
-                <svg className="w-8 h-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-                </svg>
-              </div>
-              <h3 className="font-black text-2xl text-dark-900 mb-3">Share with Team</h3>
-              <p className="text-gray-600 text-sm mb-6 leading-relaxed">
-                Send BetterClose info to your realtor, lender, or broker. They can coordinate your closing directly with us.
-              </p>
-              <Link
-                href="/share"
-                className="block w-full bg-emerald-600 text-white px-6 py-3 rounded-lg font-bold text-center hover:bg-emerald-700 transition-colors"
-              >
-                Send Link
-              </Link>
-            </div>
-
-            {/* Chat with Us */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-200 hover:border-blue-500 hover:shadow-2xl transition-all">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                <svg className="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clipRule="evenodd" />
-                </svg>
-              </div>
-              <h3 className="font-black text-2xl text-dark-900 mb-3">Chat with Us</h3>
-              <p className="text-gray-600 text-sm mb-6 leading-relaxed">
-                Have questions? Get instant answers from our team. We're here to help you understand your options.
-              </p>
-              <button className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition-colors">
-                Start Chat
-              </button>
-            </div>
-
-            {/* Call Us */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-200 hover:border-gray-400 hover:shadow-2xl transition-all">
-              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                <svg className="w-8 h-8 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                </svg>
-              </div>
-              <h3 className="font-black text-2xl text-dark-900 mb-3">Call Us</h3>
-              <p className="text-gray-600 text-sm mb-6 leading-relaxed">
-                Prefer to talk? Call to speak with a closing specialist who can answer all your questions.
-              </p>
-              <a
-                href="tel:1-800-316-9508"
-                className="block w-full bg-gray-800 text-white px-6 py-3 rounded-lg font-bold text-center hover:bg-gray-900 transition-colors"
-              >
-                1.800.316.9508
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ReadyToSaveSection />
 
       {/* Testimonials - MOVED UP */}
       <Testimonials />
@@ -660,6 +496,7 @@ export default function HomePageOriginal({ hideSavingsCards = false, useAlternat
           </div>
         </div>
       </footer>
-    </div>
+      </div>
+    </SavingsProvider>
   )
 }

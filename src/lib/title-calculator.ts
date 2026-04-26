@@ -54,7 +54,7 @@ function calculateTitleInsurance(
   // Calculate traditional premium
   const traditional = (loanAmount / 1000) * baseRatePerThousand
 
-  // TrueFee Closing offers 30% savings on title insurance
+  // BetterClose offers 30% savings on title insurance
   const trueFeeClosing = traditional * 0.70
 
   return {
@@ -73,7 +73,7 @@ function calculateSettlementFee(
   // Traditional settlement fees are typically $800-1200
   const traditional = transactionType === 'purchase' ? 1000 : 800
 
-  // TrueFee Closing offers 40% savings on settlement fees
+  // BetterClose offers 40% savings on settlement fees
   const trueFeeClosing = traditional * 0.60
 
   return {
