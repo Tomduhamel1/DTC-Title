@@ -10,32 +10,41 @@ const sesClient = new SESClient({
 
 export interface SendEmailParams {
   to: string | string[]
+  cc?: string | string[]
+  bcc?: string | string[]
+  replyTo?: string | string[]
   subject: string
   htmlBody: string
   textBody?: string
   from?: string
 }
 
+const toArray = (v: string | string[] | undefined): string[] | undefined =>
+  v == null ? undefined : Array.isArray(v) ? v : [v]
+
 /**
  * Send an email via AWS SES
  */
 export async function sendEmail({
   to,
+  cc,
+  bcc,
+  replyTo,
   subject,
   htmlBody,
   textBody,
   from,
 }: SendEmailParams): Promise<string> {
-  const fromAddress = from || process.env.AWS_SES_FROM_EMAIL || 'noreply@truefeeclosing.com'
-
-  // Convert to array if single email
-  const toAddresses = Array.isArray(to) ? to : [to]
+  const fromAddress = from || process.env.AWS_SES_FROM_EMAIL || 'noreply@betterclose.co'
 
   const command = new SendEmailCommand({
     Source: fromAddress,
     Destination: {
-      ToAddresses: toAddresses,
+      ToAddresses: toArray(to),
+      CcAddresses: toArray(cc),
+      BccAddresses: toArray(bcc),
     },
+    ReplyToAddresses: toArray(replyTo),
     Message: {
       Subject: {
         Data: subject,

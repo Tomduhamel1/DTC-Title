@@ -147,7 +147,7 @@ export default function DashboardHome({ closing, userName, userEmail }: Dashboar
       </div>
 
       <div className="text-center text-xs text-gray-500 pt-4">
-        Anything missing? Email <a href="mailto:hello@betterclose.com" className="underline font-semibold">hello@betterclose.com</a> and we'll fix it.
+        Anything missing? Email <a href="mailto:hello@betterclose.co" className="underline font-semibold">hello@betterclose.co</a> and we'll fix it.
       </div>
     </div>
   )

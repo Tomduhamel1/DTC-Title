@@ -1,4 +1,5 @@
-// Frontend prototype stub. Replace with real fetch('/api/lender-request', ...) once backend lands.
+// Client-side helpers for the share-with-team flow.
+// Calls the real /api/lender-request endpoint.
 
 export type LenderRequestPayload = {
   lenderEmail: string
@@ -12,10 +13,17 @@ export type LenderRequestPayload = {
 }
 
 export async function submitLenderRequest(p: LenderRequestPayload) {
-  // eslint-disable-next-line no-console
-  console.log('[prototype] would send lender email:', p)
-  await new Promise((r) => setTimeout(r, 800))
-  return { ok: true, requestId: 'prototype-' + p.refId }
+  const res = await fetch('/api/lender-request', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ ...p, channel: 'we_email' }),
+  })
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}))
+    return { ok: false as const, requestId: null, error: err.error || 'send failed' }
+  }
+  const data = await res.json()
+  return { ok: true as const, requestId: data.requestId as string, messageId: data.messageId as string | undefined }
 }
 
 export type ShareEvent = {
@@ -25,9 +33,20 @@ export type ShareEvent = {
   savingsEstimate?: number
 }
 
+/**
+ * Fire-and-forget: persists the share event to the DB so we can analyze the
+ * funnel by channel. Doesn't send any emails.
+ */
 export function logShareEvent(e: ShareEvent) {
-  // eslint-disable-next-line no-console
-  console.log('[prototype] share event:', e)
+  // Don't await; this is best-effort tracking
+  fetch('/api/lender-request', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(e),
+    keepalive: true,
+  }).catch(() => {
+    /* swallow */
+  })
 }
 
 export function buildShareMessage(opts: { savingsEstimate?: number; refId: string }) {

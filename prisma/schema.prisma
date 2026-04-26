@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -33,7 +33,7 @@ model Lead {
   notes     String?
 
   // Progressive intake
-  intakeString           String?     // Partial intake form data
+  intakeJson           Json?     // Partial intake form data
   completionPercentage Int?      @default(0) // 0-100
   resumeToken          String?   @unique // Magic link token
   tokenExpiresAt       DateTime? // Token expiration
@@ -168,7 +168,7 @@ model MortgageReferral {
 
   // Referral status
   status            String   @default("pending") // pending, contacted, quoted, closed, declined
-  partnerResponse   String?    // Store partner's response
+  partnerResponse   Json?    // Store partner's response
   partnerContactedAt DateTime?
 
   createdAt DateTime @default(now())
@@ -191,7 +191,7 @@ model Partner {
   priority  Int      @default(0) // Higher = preferred
 
   // Specialties
-  specialties String?   // { creditBands: [], propertyTypes: [], loanTypes: [] }
+  specialties Json?   // { creditBands: [], propertyTypes: [], loanTypes: [] }
 
   // Metadata
   notes     String?
@@ -212,7 +212,7 @@ model ActivityEvent {
 
   type      String   // page_view, form_submit, email_sent, call_made, status_change, intake_started, intake_updated, doc_uploaded, mortgage_terms_added, mortgage_referral_requested
   action    String
-  metadata  String?
+  metadata  Json?
 
   createdAt DateTime @default(now())
 
@@ -247,12 +247,12 @@ model Account {
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String?
-  access_token      String?
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String?
+  id_token          String? @db.Text
   session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -337,11 +337,42 @@ model Milestone {
   kind        String    // loan_locked | title_ordered | title_search | title_issued | closed
   status      String    @default("pending") // pending | active | done
   completedAt DateTime?
-  metadata    String?
+  metadata    Json?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@unique([closingId, kind])
   @@index([closingId])
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Lender-request tracking (every share action — for funnel analytics + ops)
+// ─────────────────────────────────────────────────────────────────────────────
+
+model LenderRequest {
+  id     String  @id @default(cuid())
+  refId  String  @unique // short id used in share URLs
+
+  // Channel of the share
+  channel String // 'sms' | 'mailto' | 'we_email' | 'copy_link' | 'native_share'
+
+  // Only populated when channel = 'we_email'
+  lenderEmail     String?
+  lenderFirstName String?
+  lenderCompany   String?
+  clientName      String?
+  clientEmail     String?
+  note            String?
+
+  savingsEstimate Float?
+
+  source String // 'quote_results' | 'ready_to_save' | 'hero' | 'how_it_works' | 'fee_report_preview' | 'story_calculator'
+  status String @default("sent") // sent | failed | opened | replied | converted
+
+  createdAt DateTime @default(now())
+
+  @@index([refId])
+  @@index([createdAt])
+  @@index([channel])
 }

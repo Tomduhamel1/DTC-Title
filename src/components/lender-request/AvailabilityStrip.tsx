@@ -20,7 +20,7 @@ export default function AvailabilityStrip({ className = '' }: AvailabilityStripP
       <span className="text-gray-300">·</span>
 
       <a
-        href="mailto:hello@betterclose.com"
+        href="mailto:hello@betterclose.co"
         className="flex items-center gap-1.5 hover:text-primary-700 font-medium transition-colors"
       >
         <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>

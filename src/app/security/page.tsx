@@ -231,7 +231,7 @@ export default function SecurityPage() {
               Call 1-800-316-9508
             </a>
             <a
-              href="mailto:fraud@betterclose.com"
+              href="mailto:fraud@betterclose.co"
               className="inline-flex items-center justify-center gap-2 bg-red-800 text-white border-2 border-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-red-900 transition-colors"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

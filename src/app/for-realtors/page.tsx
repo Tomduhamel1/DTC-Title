@@ -36,7 +36,7 @@ export default function RealtorsPage() {
                   </svg>
                 </Link>
                 <a
-                  href="mailto:agents@betterclose.com"
+                  href="mailto:agents@betterclose.co"
                   className="inline-flex items-center justify-center gap-2 bg-white border-2 border-emerald-600 text-emerald-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-emerald-50 transition-colors"
                 >
                   Learn More

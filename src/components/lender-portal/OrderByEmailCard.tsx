@@ -8,7 +8,7 @@ const COMPANY_INFO = `BetterClose Title & Closing
 [City, State Zip]
 NPN: [NPN]
 State licenses: [list]
-Settlement agent contact: orders@betterclose.com  ·  (855) 555-SAVE`
+Settlement agent contact: orders@betterclose.co  ·  (855) 555-SAVE`
 
 const ORDER_BODY_TEMPLATE = `Hi BetterClose team,
 
@@ -53,7 +53,7 @@ export default function OrderByEmailCard({ refId }: OrderByEmailCardProps) {
     `New title order${refId ? ` — ref ${refId}` : ''}`
   )
   const body = encodeURIComponent(ORDER_BODY_TEMPLATE)
-  const mailtoHref = `mailto:orders@betterclose.com?subject=${subject}&body=${body}`
+  const mailtoHref = `mailto:orders@betterclose.co?subject=${subject}&body=${body}`
 
   return (
     <div className="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
@@ -77,7 +77,7 @@ export default function OrderByEmailCard({ refId }: OrderByEmailCardProps) {
               href={mailtoHref}
               className="font-semibold text-primary-700 underline-offset-2 hover:underline"
             >
-              orders@betterclose.com
+              orders@betterclose.co
             </a>
             . We'll confirm within 1 business day.
           </p>

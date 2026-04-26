@@ -30,10 +30,6 @@ export default function LenderRequestConfirmation({
 
       {/* Track-this-closing prompt */}
       <TrackThisClosingPrompt prefilledEmail={clientEmail} />
-
-      <div className="mt-5 px-3 py-2 bg-amber-50 border border-amber-200 rounded-lg text-[11px] text-amber-900">
-        <strong>Prototype:</strong> No email was actually sent. Check your browser console for the payload.
-      </div>
     </div>
   )
 }

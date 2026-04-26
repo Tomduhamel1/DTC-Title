@@ -3,6 +3,7 @@ import type { NextAuthOptions } from 'next-auth'
 import EmailProvider from 'next-auth/providers/email'
 import { prisma } from '@/lib/db'
 import { sendEmail } from '@/lib/aws/ses'
+import { rateLimit } from '@/lib/rate-limit'
 
 const dryRun = process.env.AUTH_EMAIL_DRY_RUN === 'true'
 
@@ -20,6 +21,14 @@ export const authOptions: NextAuthOptions = {
       server: { host: 'unused', port: 0, auth: { user: '', pass: '' } },
       from: process.env.AWS_SES_FROM_EMAIL || 'noreply@truefeeclosing.com',
       async sendVerificationRequest({ identifier, url, provider }) {
+        // 5 magic-link sends per email per 15 min
+        const limit = rateLimit(`magic:${identifier.toLowerCase()}`, 5, 15 * 60 * 1000)
+        if (!limit.ok) {
+          // eslint-disable-next-line no-console
+          console.warn(`[auth] rate-limit hit for ${identifier} — ${Math.round(limit.resetMs / 1000)}s remaining`)
+          throw new Error('Too many sign-in requests. Please wait a few minutes.')
+        }
+
         const subject = 'Sign in to BetterClose'
         const htmlBody = renderMagicLinkEmail({ url })
         const textBody = `Sign in to BetterClose\n\nClick the link below to sign in:\n${url}\n\nIf you didn't request this, you can safely ignore this email.\n— BetterClose`

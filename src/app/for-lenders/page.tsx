@@ -27,7 +27,7 @@ export default function LendersPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
-                  href="mailto:api@betterclose.com"
+                  href="mailto:api@betterclose.co"
                   className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition-colors shadow-lg"
                 >
                   Request API Access
@@ -36,7 +36,7 @@ export default function LendersPage() {
                   </svg>
                 </a>
                 <a
-                  href="mailto:api@betterclose.com"
+                  href="mailto:api@betterclose.co"
                   className="inline-flex items-center justify-center gap-2 bg-white border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-50 transition-colors"
                 >
                   Schedule Technical Demo
@@ -135,7 +135,7 @@ export default function LendersPage() {
 
           <div className="mt-12 text-center">
             <a
-              href="mailto:api@betterclose.com"
+              href="mailto:api@betterclose.co"
               className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition-colors shadow-lg"
             >
               Request Full API Documentation

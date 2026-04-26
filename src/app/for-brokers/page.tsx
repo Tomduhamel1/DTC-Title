@@ -36,7 +36,7 @@ export default function BrokersPage() {
                   </svg>
                 </Link>
                 <a
-                  href="mailto:partners@betterclose.com"
+                  href="mailto:partners@betterclose.co"
                   className="inline-flex items-center justify-center gap-2 bg-white border-2 border-primary-600 text-primary-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-primary-50 transition-colors"
                 >
                   Schedule a Demo

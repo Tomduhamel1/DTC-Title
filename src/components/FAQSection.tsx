@@ -117,7 +117,7 @@ export default function FAQSection() {
               Call 1-800-316-9508
             </a>
             <a
-              href="mailto:contact@betterclose.com"
+              href="mailto:contact@betterclose.co"
               className="inline-flex items-center justify-center gap-2 bg-white border-2 border-primary-600 text-primary-600 px-8 py-3 rounded-lg font-bold hover:bg-primary-50 transition-colors"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

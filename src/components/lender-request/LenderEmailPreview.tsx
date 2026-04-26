@@ -27,7 +27,7 @@ export default function LenderEmailPreview({
       <div className="bg-white border-b border-gray-200 px-5 py-3 text-xs space-y-1">
         <div className="flex gap-2">
           <span className="text-gray-400 w-14 flex-shrink-0">From:</span>
-          <span className="text-gray-700">BetterClose &lt;noreply@betterclose.com&gt;</span>
+          <span className="text-gray-700">BetterClose &lt;noreply@betterclose.co&gt;</span>
         </div>
         {clientEmail && (
           <div className="flex gap-2">
