@@ -7,10 +7,25 @@ frontend:
         - npm ci --legacy-peer-deps || npm install
         - npx prisma generate
         # Amplify exposes app/branch env vars during build, but does NOT
-        # propagate them to the runtime SSR Lambdas. Persist them into
+        # propagate them to the runtime SSR Lambdas. Persist each one into
         # .env.production so Next.js bakes them into the runtime bundle.
-        - env | grep -E '^(DATABASE_URL|NEXTAUTH_SECRET|NEXTAUTH_URL|AUTH_EMAIL_DRY_RUN|APP_AWS_|HELLO_EMAIL|ORDER_INGEST_SECRET)=' > .env.production
-        - echo "wrote $(wc -l < .env.production) env vars to .env.production"
+        # (Earlier `env | grep` approach only caught 6/12 — pull each by name.)
+        - |
+          : > .env.production
+          for k in DATABASE_URL NEXTAUTH_SECRET NEXTAUTH_URL AUTH_EMAIL_DRY_RUN \
+                  APP_AWS_REGION APP_AWS_ACCESS_KEY_ID APP_AWS_SECRET_ACCESS_KEY \
+                  APP_AWS_SES_FROM_EMAIL APP_AWS_S3_BUCKET HELLO_EMAIL \
+                  ORDER_INGEST_SECRET; do
+            v="${!k}"
+            if [ -n "$v" ]; then
+              # Quote the value so newlines/specials don't break parsing
+              printf '%s="%s"\n' "$k" "$v" >> .env.production
+              echo "  - $k (len=${#v})"
+            else
+              echo "  - $k MISSING!"
+            fi
+          done
+          echo "wrote $(wc -l < .env.production) env vars"
         # DB migrations are NOT run during build. The Amplify build runners
         # don't have a route into RDS, and we deliberately keep RDS locked to
         # known IPs (your laptop). Run `npx prisma migrate deploy` from your
