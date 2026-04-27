@@ -1,33 +1,50 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { getMockFeeReport } from '@/lib/feeReport'
 
 export default function QuotePage() {
   const router = useRouter()
   const [transactionType, setTransactionType] = useState<'purchase' | 'refinance'>('purchase')
+  const [zip, setZip] = useState('')
   const [homeValue, setHomeValue] = useState('500000')
-  const [state, setState] = useState('Texas')
+  const [loanAmount, setLoanAmount] = useState('')
   const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setSubmitting(true)
-
-    // Stash inputs for the working/results screens. When the real API lands,
-    // the working screen will issue the request using these inputs.
-    const inputs = {
-      transactionType,
-      homeValue: parseFloat(homeValue.replace(/[^0-9.]/g, '')) || 500000,
-      state,
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const stashed = sessionStorage.getItem('feeReportError')
+    if (stashed) {
+      setError(stashed)
+      sessionStorage.removeItem('feeReportError')
     }
-    sessionStorage.setItem('feeReportInputs', JSON.stringify(inputs))
+  }, [])
 
-    // Pre-compute mock report so working screen has something to hand off.
-    // Replace this with the real API call inside the working screen later.
-    const report = getMockFeeReport(inputs)
-    sessionStorage.setItem('feeReport', JSON.stringify(report))
+  const isPurchase = transactionType === 'purchase'
+  const zipValid = /^\d{5}$/.test(zip)
+  const homeValueNum = parseFloat(homeValue.replace(/[^0-9.]/g, '')) || 0
+  const loanAmountNum = parseFloat(loanAmount.replace(/[^0-9.]/g, '')) || 0
+  const valid =
+    zipValid &&
+    (isPurchase ? homeValueNum > 0 : loanAmountNum > 0)
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!valid || submitting) return
+    setSubmitting(true)
+    setError(null)
+
+    const payload = {
+      transactionType,
+      zip,
+      homeValue: isPurchase ? homeValueNum : undefined,
+      loanAmount: loanAmountNum > 0 ? loanAmountNum : undefined,
+    }
+
+    sessionStorage.setItem('feeReportInputs', JSON.stringify(payload))
+    sessionStorage.removeItem('feeReport')
+    sessionStorage.removeItem('feeReportError')
 
     router.push('/quote/working')
   }
@@ -36,7 +53,7 @@ export default function QuotePage() {
     <div className="bg-gradient-to-br from-primary-50 to-white py-16 px-6">
       <div className="max-w-xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-black text-dark-900 mb-3">Get your fee report</h1>
+          <h1 className="text-4xl font-black text-dark-900 mb-3">Get your fee estimate</h1>
           <p className="text-gray-600">
             Tell us about your closing. We'll show you every fee and how we compare to the typical range.
           </p>
@@ -69,44 +86,71 @@ export default function QuotePage() {
           </div>
 
           <div>
-            <label htmlFor="homeValue" className="block text-sm font-semibold text-gray-700 mb-2">
-              Home value
+            <label htmlFor="zip" className="block text-sm font-semibold text-gray-700 mb-2">
+              ZIP code
+            </label>
+            <input
+              id="zip"
+              type="text"
+              inputMode="numeric"
+              value={zip}
+              onChange={(e) => setZip(e.target.value.replace(/[^0-9]/g, '').slice(0, 5))}
+              maxLength={5}
+              className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none"
+            />
+          </div>
+
+          {isPurchase && (
+            <div>
+              <label htmlFor="homeValue" className="block text-sm font-semibold text-gray-700 mb-2">
+                Purchase amount
+              </label>
+              <div className="relative">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                <input
+                  id="homeValue"
+                  type="text"
+                  inputMode="numeric"
+                  value={homeValue}
+                  onChange={(e) => setHomeValue(e.target.value.replace(/[^0-9]/g, ''))}
+                  className="w-full pl-8 pr-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none"
+                />
+              </div>
+            </div>
+          )}
+
+          <div>
+            <label htmlFor="loanAmount" className="block text-sm font-semibold text-gray-700 mb-2">
+              Loan amount{' '}
+              {isPurchase && (
+                <span className="text-gray-400 font-normal">(optional)</span>
+              )}
             </label>
             <div className="relative">
               <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">$</span>
               <input
-                id="homeValue"
+                id="loanAmount"
                 type="text"
                 inputMode="numeric"
-                value={homeValue}
-                onChange={(e) => setHomeValue(e.target.value.replace(/[^0-9]/g, ''))}
+                value={loanAmount}
+                onChange={(e) => setLoanAmount(e.target.value.replace(/[^0-9]/g, ''))}
                 className="w-full pl-8 pr-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none"
               />
             </div>
           </div>
 
-          <div>
-            <label htmlFor="state" className="block text-sm font-semibold text-gray-700 mb-2">
-              State
-            </label>
-            <select
-              id="state"
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none bg-white"
-            >
-              {['Texas', 'Florida', 'California', 'New York', 'Georgia', 'Arizona', 'North Carolina'].map((s) => (
-                <option key={s} value={s}>{s}</option>
-              ))}
-            </select>
-          </div>
+          {error && (
+            <div className="bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-800">
+              {error}
+            </div>
+          )}
 
           <button
             type="submit"
-            disabled={submitting}
+            disabled={!valid || submitting}
             className="w-full bg-green-600 hover:bg-green-700 text-white font-bold text-lg py-4 rounded-lg shadow-md transition-colors disabled:opacity-60"
           >
-            {submitting ? 'Building your report…' : 'Get my fee report'}
+            {submitting ? 'Building your estimate…' : 'Get my fee estimate'}
           </button>
         </form>
       </div>

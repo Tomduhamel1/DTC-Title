@@ -91,12 +91,28 @@ export default function FeeReportTable({
             {formatRange(totals.marketLow, totals.marketHigh)}
           </span>
         </div>
-        <div className="border-t border-gray-200 pt-4 flex items-baseline justify-between">
-          <span className="text-base font-bold text-emerald-700">You save</span>
-          <span className="text-3xl font-black text-emerald-700 tabular-nums">
+        <div className="border-t border-gray-200 pt-4 flex items-baseline justify-between mb-2">
+          <span className="text-base font-bold text-emerald-700">You save at closing</span>
+          <span className="text-2xl font-black text-emerald-700 tabular-nums">
             {formatRange(totals.estimatedSavingsLow, totals.estimatedSavingsHigh)}
           </span>
         </div>
+        {totals.lifetimeSavingsHigh > 0 && (
+          <div className="bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3 mt-3">
+            <div className="flex items-baseline justify-between">
+              <span className="text-sm font-bold text-emerald-900">
+                Over the life of your loan
+              </span>
+              <span className="text-3xl font-black text-emerald-700 tabular-nums">
+                {formatRange(totals.lifetimeSavingsLow, totals.lifetimeSavingsHigh)}
+              </span>
+            </div>
+            <p className="text-[11px] text-emerald-800/70 mt-1.5 leading-snug">
+              Closing costs financed into your mortgage compound. This is what
+              you don't pay over a 30-year loan at 7%.
+            </p>
+          </div>
+        )}
       </div>
 
       <div className="px-7 py-3 text-[11px] text-gray-400 italic text-center border-t border-gray-100">
