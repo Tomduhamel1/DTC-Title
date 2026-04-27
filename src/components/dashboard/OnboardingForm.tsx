@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { formatPhoneInput } from '@/lib/phone'
 
 interface OnboardingFormProps {
   closingId: string
@@ -161,8 +162,8 @@ export default function OnboardingForm({ closingId, userName, userEmail }: Onboa
           <input
             type="tel"
             value={data.borrowerPhone}
-            onChange={(e) => setData({ ...data, borrowerPhone: e.target.value })}
-            placeholder="(555) 555-5555"
+            onChange={(e) => setData({ ...data, borrowerPhone: formatPhoneInput(e.target.value) })}
+            placeholder="555-555-5555"
             className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none"
           />
           <p className="text-xs text-gray-500 mt-1.5">

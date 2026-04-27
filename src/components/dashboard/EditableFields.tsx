@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { formatPhoneInput } from '@/lib/phone'
 
 export interface SectionField {
   key: string
@@ -101,7 +102,10 @@ export default function EditableFields({
                 <input
                   type={f.type || 'text'}
                   value={draft[f.key] || ''}
-                  onChange={(e) => setDraft({ ...draft, [f.key]: e.target.value })}
+                  onChange={(e) => {
+                    const next = f.type === 'tel' ? formatPhoneInput(e.target.value) : e.target.value
+                    setDraft({ ...draft, [f.key]: next })
+                  }}
                   placeholder={f.placeholder || ''}
                   className="w-full px-3 py-2 text-sm border-2 border-gray-200 rounded-lg focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none"
                 />

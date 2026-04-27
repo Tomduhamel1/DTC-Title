@@ -1,7 +1,7 @@
 // Fee report schema. This is the shape we expect the API to return.
 // Keep this file dependency-free so it can be imported on server or client.
 
-export type FeeCategory = 'title-settlement' | 'recording' | 'lender' | 'other'
+export type FeeCategory = 'title-settlement' | 'recording' | 'taxes' | 'endorsements' | 'lender' | 'other'
 
 export type FeeSource = 'state' | 'county' | 'service' | 'underwriter' | 'lender'
 
@@ -21,6 +21,8 @@ export interface FeeLineItem {
 
 export interface FeeReport {
   state: string
+  zip?: string
+  county?: string
   homeValue: number
   loanAmount?: number
   transactionType: 'purchase' | 'refinance'
@@ -35,11 +37,41 @@ export interface FeeReportTotals {
   marketHigh: number
   estimatedSavingsLow: number
   estimatedSavingsHigh: number
+  // Lifetime cost of financing the closing-cost savings. Reflects what users
+  // would actually pay over their loan if they rolled closing costs in.
+  lifetimeSavingsLow: number
+  lifetimeSavingsHigh: number
+}
+
+// Default assumptions for financed-closing-cost lifetime calc.
+export const LIFETIME_RATE_PCT = 7
+export const LIFETIME_TERM_YEARS = 30
+
+/**
+ * Total amount paid on `principal` if financed at `ratePct` (annual %) over
+ * `years`. Standard amortization. Used to project the lifetime impact of
+ * rolling closing-cost savings into the loan.
+ */
+export function lifetimeFinancedAmount(
+  principal: number,
+  ratePct: number = LIFETIME_RATE_PCT,
+  years: number = LIFETIME_TERM_YEARS,
+): number {
+  if (principal <= 0) return 0
+  const monthlyRate = ratePct / 100 / 12
+  const n = years * 12
+  if (monthlyRate === 0) return principal
+  const monthly =
+    (principal * monthlyRate * Math.pow(1 + monthlyRate, n)) /
+    (Math.pow(1 + monthlyRate, n) - 1)
+  return Math.round(monthly * n)
 }
 
 export const CATEGORY_LABELS: Record<FeeCategory, string> = {
   'title-settlement': 'Title & Settlement',
   recording: 'Recording Fees',
+  taxes: 'Taxes',
+  endorsements: 'Endorsements',
   lender: 'Lender Fees',
   other: 'Other',
 }
@@ -60,12 +92,17 @@ export function computeTotals(report: FeeReport): FeeReportTotals {
     }
   }
 
+  const estimatedSavingsLow = Math.max(0, marketLow - ourTotal)
+  const estimatedSavingsHigh = Math.max(0, marketHigh - ourTotal)
+
   return {
     ourTotal,
     marketLow,
     marketHigh,
-    estimatedSavingsLow: Math.max(0, marketLow - ourTotal),
-    estimatedSavingsHigh: Math.max(0, marketHigh - ourTotal),
+    estimatedSavingsLow,
+    estimatedSavingsHigh,
+    lifetimeSavingsLow: lifetimeFinancedAmount(estimatedSavingsLow),
+    lifetimeSavingsHigh: lifetimeFinancedAmount(estimatedSavingsHigh),
   }
 }
 
@@ -249,14 +286,13 @@ export function getMockFeeReport(input: {
 
 export function groupByCategory(items: FeeLineItem[]): Map<FeeCategory, FeeLineItem[]> {
   const map = new Map<FeeCategory, FeeLineItem[]>()
-  const order: FeeCategory[] = ['title-settlement', 'recording', 'lender', 'other']
+  const order: FeeCategory[] = ['title-settlement', 'recording', 'taxes', 'endorsements', 'lender', 'other']
   for (const cat of order) map.set(cat, [])
   for (const item of items) {
     const arr = map.get(item.category) ?? []
     arr.push(item)
     map.set(item.category, arr)
   }
-  // remove empty
   for (const [k, v] of map) if (v.length === 0) map.delete(k)
   return map
 }

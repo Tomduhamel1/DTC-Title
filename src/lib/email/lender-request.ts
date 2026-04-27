@@ -20,7 +20,7 @@ export interface LenderRequestEmailData {
 export async function sendLenderRequestEmail(d: LenderRequestEmailData): Promise<string> {
   const greeting = d.lenderFirstName ? `Hi ${d.lenderFirstName},` : 'Hi there,'
   const client = d.clientName || 'Your client'
-  const subject = `${client} would like you to consider BetterClose for their closing`
+  const subject = `${client} is using BetterClose for title & settlement on their closing`
   const reviewUrl = `${d.baseUrl}/for-my-lender?ref=${d.refId}`
 
   const cc = d.clientEmail ? [d.clientEmail] : undefined
@@ -37,7 +37,7 @@ export async function sendLenderRequestEmail(d: LenderRequestEmailData): Promise
 
 function renderHtml(d: LenderRequestEmailData & { greeting: string; client: string; reviewUrl: string }) {
   const savings = d.savingsEstimate
-    ? `<p><em>Estimated savings on this closing: <strong>$${d.savingsEstimate.toLocaleString()}</strong>.</em></p>`
+    ? `<p><strong>Estimated savings for ${escapeHtml(d.client)} on this closing: $${d.savingsEstimate.toLocaleString()}</strong> over the life of the loan, on the same A-rated underwriters.</p>`
     : ''
   const note = d.note
     ? `<p style="border-left:3px solid #cbd5e1;padding:8px 12px;color:#475569;font-style:italic;background:#f8fafc;">"${escapeHtml(d.note)}"</p>`
@@ -49,15 +49,14 @@ function renderHtml(d: LenderRequestEmailData & { greeting: string; client: stri
   <div style="max-width:560px;margin:0 auto;background:#fff;border-radius:16px;padding:36px 32px;border:1px solid #e2e8f0;line-height:1.6;font-size:15px;">
     <div style="font-size:11px;font-weight:700;letter-spacing:0.2em;color:#0f172a;margin-bottom:24px;">BETTERCLOSE</div>
     <p>${d.greeting}</p>
-    <p>${escapeHtml(d.client)} is preparing for their upcoming home closing and asked us to introduce you to BetterClose, an alternative title and closing company they'd like considered for the transaction.</p>
-    <p><strong>Why your client is reaching out:</strong> Closing costs vary widely between title companies — often by thousands of dollars on the same transaction. BetterClose offers transparent flat-rate pricing, the same A-rated underwriters you already work with (First American, Old Republic, Stewart, Fidelity), and full digital coordination.</p>
+    <p><strong>${escapeHtml(d.client)} is using BetterClose for title and settlement on their upcoming closing</strong> and asked us to send you everything you need to place the order.</p>
+    <p>BetterClose uses the same A-rated underwriters you already work with (First American, Old Republic, Stewart, Fidelity) and integrates with SmartFees, Encompass, Qualia, and ResWare. Same coverage, transparent flat-rate pricing.</p>
     ${savings}
-    <p><strong>What we're asking:</strong> Take 60 seconds to review BetterClose at the link below. If it works for the file, you can place the title order directly — or find us in SmartFees, Encompass, Qualia, or ResWare.</p>
     ${note}
     <p style="margin:28px 0;">
-      <a href="${d.reviewUrl}" style="display:inline-block;background:#16a34a;color:#fff;text-decoration:none;padding:14px 28px;border-radius:8px;font-weight:700;">Review BetterClose →</a>
+      <a href="${d.reviewUrl}" style="display:inline-block;background:#16a34a;color:#fff;text-decoration:none;padding:14px 28px;border-radius:8px;font-weight:700;">Get the order details →</a>
     </p>
-    <p>Questions? Reply to this email.</p>
+    <p>If you have questions about the file, reply to this email — we'll get back to you in minutes, not days.</p>
     <p style="margin-top:28px;">
       Thanks,<br>
       The BetterClose Team<br>
@@ -73,19 +72,19 @@ function renderHtml(d: LenderRequestEmailData & { greeting: string; client: stri
 }
 
 function renderText(d: LenderRequestEmailData & { greeting: string; client: string; reviewUrl: string }) {
-  const savings = d.savingsEstimate ? `\nEstimated savings on this closing: $${d.savingsEstimate.toLocaleString()}.\n` : ''
+  const savings = d.savingsEstimate
+    ? `\nEstimated savings for ${d.client} on this closing: $${d.savingsEstimate.toLocaleString()} over the life of the loan, on the same A-rated underwriters.\n`
+    : ''
   const note = d.note ? `\n"${d.note}"\n` : ''
   return `${d.greeting}
 
-${d.client} is preparing for their upcoming home closing and asked us to introduce you to BetterClose.
+${d.client} is using BetterClose for title and settlement on their upcoming closing and asked us to send you everything you need to place the order.
 
-Why your client is reaching out: Closing costs vary widely between title companies — often by thousands of dollars on the same transaction. BetterClose offers transparent flat-rate pricing, the same A-rated underwriters you already work with (First American, Old Republic, Stewart, Fidelity), and full digital coordination.
-${savings}
-What we're asking: Take 60 seconds to review BetterClose. If it works for the file, you can place the title order directly — or find us in SmartFees, Encompass, Qualia, or ResWare.
-${note}
-Review BetterClose: ${d.reviewUrl}
+BetterClose uses the same A-rated underwriters you already work with (First American, Old Republic, Stewart, Fidelity) and integrates with SmartFees, Encompass, Qualia, and ResWare. Same coverage, transparent flat-rate pricing.
+${savings}${note}
+Get the order details: ${d.reviewUrl}
 
-Questions? Reply to this email.
+If you have questions about the file, reply to this email — we'll get back to you in minutes, not days.
 
 Thanks,
 The BetterClose Team

@@ -7,6 +7,7 @@ import {
   logShareEvent,
 } from '@/lib/lender-request-stub'
 import LenderRequestForm from './LenderRequestForm'
+import TrackThisClosingPrompt from './TrackThisClosingPrompt'
 
 interface ShareWithTeamSheetProps {
   open: boolean
@@ -15,7 +16,7 @@ interface ShareWithTeamSheetProps {
   source: string
 }
 
-type View = 'menu' | 'we-email'
+type View = 'menu' | 'we-email' | 'shared'
 
 export default function ShareWithTeamSheet({
   open,
@@ -24,8 +25,8 @@ export default function ShareWithTeamSheet({
   source,
 }: ShareWithTeamSheetProps) {
   const [view, setView] = useState<View>('menu')
+  const [sharedChannel, setSharedChannel] = useState<string | null>(null)
   const [toast, setToast] = useState<string | null>(null)
-  const [canNativeShare, setCanNativeShare] = useState(false)
   const refId = useMemo(() => generateRefId(), [])
 
   const message = useMemo(
@@ -33,13 +34,12 @@ export default function ShareWithTeamSheet({
     [savingsEstimate, refId]
   )
 
-  useEffect(() => {
-    setCanNativeShare(typeof navigator !== 'undefined' && 'share' in navigator)
-  }, [])
-
   // Reset to menu whenever sheet reopens
   useEffect(() => {
-    if (open) setView('menu')
+    if (open) {
+      setView('menu')
+      setSharedChannel(null)
+    }
   }, [open])
 
   // Esc to close
@@ -69,39 +69,38 @@ export default function ShareWithTeamSheet({
     setTimeout(() => setToast(null), 3000)
   }
 
+  const goToShared = (channel: string) => {
+    // Stash the refId so the post-share sign-up can claim this invite onto
+    // the new account once auth completes.
+    try {
+      sessionStorage.setItem('pendingInviteClaim', refId)
+    } catch {}
+    setSharedChannel(channel)
+    setView('shared')
+  }
+
   const handleSms = () => {
     logShareEvent({ channel: 'sms', refId, source, savingsEstimate })
     const href = `sms:?&body=${encodeURIComponent(message.full)}`
-    window.location.href = href
+    window.open(href, '_blank')
+    goToShared('sms')
   }
 
   const handleMailto = () => {
     logShareEvent({ channel: 'mailto', refId, source, savingsEstimate })
     const subject = encodeURIComponent("Let's use BetterClose for our closing")
     const body = encodeURIComponent(message.full)
-    window.location.href = `mailto:?subject=${subject}&body=${body}`
+    window.open(`mailto:?subject=${subject}&body=${body}`, '_blank')
+    goToShared('mailto')
   }
 
   const handleCopy = async () => {
     logShareEvent({ channel: 'copy_link', refId, source, savingsEstimate })
     try {
       await navigator.clipboard.writeText(message.full)
-      showToast('Link copied. Paste it anywhere.')
+      goToShared('copy_link')
     } catch {
       showToast('Could not copy — please try another option.')
-    }
-  }
-
-  const handleNativeShare = async () => {
-    logShareEvent({ channel: 'native_share', refId, source, savingsEstimate })
-    try {
-      await navigator.share({
-        title: 'BetterClose for our closing',
-        text: message.text,
-        url: message.url,
-      })
-    } catch {
-      // user canceled
     }
   }
 
@@ -124,13 +123,19 @@ export default function ShareWithTeamSheet({
         <div className="sticky top-0 bg-white px-6 pt-6 pb-4 border-b border-gray-100 flex items-start justify-between gap-3">
           <div>
             <h2 className="text-xl font-bold text-dark-900">
-              {view === 'menu' ? 'Send a link to BetterClose' : "We'll email your lender"}
-            </h2>
-            <p className="text-sm text-gray-500 mt-0.5">
               {view === 'menu'
-                ? 'Choose how you’d like to share.'
-                : 'Pre-written, professional. We CC you.'}
-            </p>
+                ? 'Send a link to BetterClose'
+                : view === 'we-email'
+                ? "We'll email your lender"
+                : 'Done — one more step'}
+            </h2>
+            {view !== 'shared' && (
+              <p className="text-sm text-gray-500 mt-0.5">
+                {view === 'menu'
+                  ? "Choose how you'd like to share BetterClose with your lender, broker, or agent."
+                  : 'Pre-written, professional. We CC you.'}
+              </p>
+            )}
           </div>
           <button
             onClick={onClose}
@@ -171,16 +176,8 @@ export default function ShareWithTeamSheet({
               hint="Paste it anywhere"
               onClick={handleCopy}
             />
-            {canNativeShare && (
-              <ChannelRow
-                icon="📤"
-                title="More…"
-                hint="WhatsApp, Slack, anything"
-                onClick={handleNativeShare}
-              />
-            )}
           </div>
-        ) : (
+        ) : view === 'we-email' ? (
           <div className="p-6">
             <button
               onClick={() => setView('menu')}
@@ -196,6 +193,41 @@ export default function ShareWithTeamSheet({
               source={source}
               savingsEstimate={savingsEstimate}
             />
+          </div>
+        ) : (
+          <div className="p-6">
+            <div className="text-center py-2 mb-5">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-100 mb-3 animate-[pop_320ms_ease-out]">
+                <svg className="w-8 h-8 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-black text-dark-900 mb-1.5">
+                {sharedChannel === 'copy_link'
+                  ? 'Link copied!'
+                  : sharedChannel === 'sms'
+                  ? 'Message ready to send'
+                  : sharedChannel === 'mailto'
+                  ? 'Email ready to send'
+                  : 'Shared!'}
+              </h3>
+              <p className="text-sm text-gray-600 max-w-xs mx-auto">
+                {sharedChannel === 'copy_link'
+                  ? 'Paste it wherever you talk to your team — text, email, Slack, anywhere.'
+                  : sharedChannel === 'sms'
+                  ? "We opened your messages app with the link prefilled. Hit send when you're ready."
+                  : sharedChannel === 'mailto'
+                  ? "We opened your email app with the link prefilled. Hit send when you're ready."
+                  : 'Nice — your team has the link.'}
+              </p>
+            </div>
+            <TrackThisClosingPrompt />
+            <button
+              onClick={() => setView('menu')}
+              className="block mx-auto mt-4 text-xs text-gray-500 hover:text-gray-700"
+            >
+              Send to someone else
+            </button>
           </div>
         )}
 
@@ -218,6 +250,11 @@ export default function ShareWithTeamSheet({
         @keyframes fadeIn {
           from { opacity: 0; }
           to { opacity: 1; }
+        }
+        @keyframes pop {
+          0% { transform: scale(0.4); opacity: 0; }
+          60% { transform: scale(1.15); }
+          100% { transform: scale(1); opacity: 1; }
         }
       `}</style>
     </div>

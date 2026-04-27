@@ -3,9 +3,10 @@
 import { useState } from 'react'
 
 interface SectionShellProps {
-  number: number
   title: string
-  emoji: string
+  icon?: React.ReactNode
+  /** When true, renders the icon without the rounded emerald background (useful for brand marks with their own colors). */
+  iconBare?: boolean
   subtitle?: string
   /** When true, the body is collapsed by default with a chevron toggle. */
   collapsible?: boolean
@@ -16,9 +17,9 @@ interface SectionShellProps {
 }
 
 export default function SectionShell({
-  number,
   title,
-  emoji,
+  icon,
+  iconBare = false,
   subtitle,
   collapsible = false,
   defaultOpen = true,
@@ -33,10 +34,17 @@ export default function SectionShell({
       <div
         className={`px-5 py-4 ${isOpen ? 'border-b border-gray-100' : ''} flex items-center gap-3`}
       >
-        <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 text-xs font-black flex-shrink-0">
-          {number}
-        </span>
-        <span className="text-xl flex-shrink-0" aria-hidden="true">{emoji}</span>
+        {icon && (
+          <span
+            className={
+              iconBare
+                ? 'inline-flex items-center justify-center w-9 h-9 flex-shrink-0'
+                : 'inline-flex items-center justify-center w-9 h-9 rounded-full bg-emerald-50 text-emerald-700 flex-shrink-0'
+            }
+          >
+            {icon}
+          </span>
+        )}
         <div className="flex-1 min-w-0">
           <h3 className="text-base font-bold text-dark-900 leading-tight">{title}</h3>
           {subtitle && <p className="text-xs text-gray-500 mt-0.5 truncate">{subtitle}</p>}

@@ -100,16 +100,16 @@ export default function HeroOptionB() {
 
           {/* CTA Button */}
           <a
-            href="/start"
+            href="/quote"
             className="inline-flex items-center gap-3 bg-primary-600 text-white px-12 py-5 rounded-xl font-bold text-2xl hover:bg-primary-700 transition-all shadow-2xl hover:shadow-3xl hover:scale-105 group"
           >
-            <span>Start Saving Now</span>
+            <span>Get my fee estimate</span>
             <svg className="w-8 h-8 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </a>
           <p className="mt-4 text-sm text-gray-600">
-            Takes 60 seconds • No credit check • No commitment
+            Takes 30 seconds • No commitment
           </p>
 
           {/* Trust Badges */}

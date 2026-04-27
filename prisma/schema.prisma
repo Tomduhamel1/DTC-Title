@@ -237,6 +237,7 @@ model User {
   accounts Account[]
   sessions Session[]
   closings Closing[] @relation("UserClosings")
+  lenderRequests LenderRequest[]
 
   @@index([phone])
 }
@@ -321,6 +322,7 @@ model Closing {
   updatedAt DateTime @updatedAt
 
   milestones Milestone[]
+  lenderRequests LenderRequest[]
 
   @@index([userId])
   @@index([propertyAddressKey])
@@ -354,6 +356,13 @@ model LenderRequest {
   id     String  @id @default(cuid())
   refId  String  @unique // short id used in share URLs
 
+  // Optional links — populated when a logged-in user triggers the share from
+  // the dashboard. Anonymous shares from marketing pages leave these null.
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  closingId String?
+  closing   Closing? @relation(fields: [closingId], references: [id], onDelete: SetNull)
+
   // Channel of the share
   channel String // 'sms' | 'mailto' | 'we_email' | 'copy_link' | 'native_share'
 
@@ -367,7 +376,7 @@ model LenderRequest {
 
   savingsEstimate Float?
 
-  source String // 'quote_results' | 'ready_to_save' | 'hero' | 'how_it_works' | 'fee_report_preview' | 'story_calculator'
+  source String // 'quote_results' | 'ready_to_save' | 'hero' | 'how_it_works' | 'fee_report_preview' | 'story_calculator' | 'dashboard_account'
   status String @default("sent") // sent | failed | opened | replied | converted
 
   createdAt DateTime @default(now())
@@ -375,4 +384,6 @@ model LenderRequest {
   @@index([refId])
   @@index([createdAt])
   @@index([channel])
+  @@index([userId])
+  @@index([closingId])
 }

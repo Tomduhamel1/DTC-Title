@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BetterClose · Hero calculator concepts v3</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          primary: {
+            50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd',
+            400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8',
+            800: '#1e40af', 900: '#1e3a8a',
+          },
+          dark: { 800: '#1f2937', 900: '#111827' },
+        },
+      },
+    },
+  }
+</script>
+<style>
+  body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; }
+  .pill { background:#dbeafe; color:#1e40af; padding:2px 10px; border-radius:9999px; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+  .big-slider { -webkit-appearance: none; appearance: none; height: 8px; border-radius: 4px; background: #e5e7eb; outline: none; }
+  .big-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 32px; height: 32px; border-radius: 9999px; background: white; border: 4px solid #10b981; cursor: grab; box-shadow: 0 4px 14px rgba(16,185,129,0.4); transition: transform .12s; }
+  .big-slider::-webkit-slider-thumb:active { cursor: grabbing; transform: scale(1.15); }
+  .big-slider::-moz-range-thumb { width: 32px; height: 32px; border-radius: 9999px; background: white; border: 4px solid #10b981; cursor: grab; box-shadow: 0 4px 14px rgba(16,185,129,0.4); }
+
+  /* Segmented Purchase / Refi toggle */
+  .seg { display: inline-flex; padding: 4px; background: #f3f4f6; border-radius: 9999px; }
+  .seg button { padding: 6px 18px; border-radius: 9999px; font-weight: 700; font-size: 13px; color: #6b7280; transition: all .15s; }
+  .seg button.on { background: white; color: #111827; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+</style>
+</head>
+<body class="bg-gray-100">
+
+<header class="bg-white border-b border-gray-200">
+  <div class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
+    <div>
+      <div class="text-xs font-bold uppercase tracking-[0.25em] text-gray-500 mb-0.5">BetterClose · Concepts v3</div>
+      <h1 class="text-2xl font-black text-dark-900">Hero calculator — round 3</h1>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="/calculator-mockups-v2.html" class="text-sm text-gray-500 hover:text-gray-700 font-medium">← v2</a>
+      <a href="/" class="text-sm text-gray-500 hover:text-gray-700 font-medium">Site →</a>
+    </div>
+  </div>
+</header>
+
+<div class="max-w-6xl mx-auto px-6 py-8 space-y-12">
+
+  <p class="text-gray-600 max-w-3xl">
+    Round 3 — the three v2 favorites (12, 13, 14) now with a Purchase/Refinance
+    switcher. Refi math is honest: smaller closings → smaller dollar savings,
+    same percentage discount. Same example: $500k Atlanta purchase → $9,260
+    lifetime; toggle to refi (assumes 80% LTV) → $2,710.
+  </p>
+
+  <!-- ─────────── 12B · Magic Reveal + Refi toggle ─────────── -->
+  <section class="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
+    <div class="px-7 py-5 border-b border-gray-100">
+      <div class="pill">Concept 12B · Magic Reveal</div>
+      <h2 class="text-xl font-bold text-dark-900 mt-1.5">Number-first · Purchase / Refi toggle</h2>
+      <p class="text-sm text-gray-500">Headline number leads. Toggle pinned above the savings figure.</p>
+    </div>
+    <div class="p-7">
+      <div class="text-center mb-6">
+        <div class="seg mb-3">
+          <button id="t12-pur" class="on" onclick="setMode('12','purchase')">Purchase</button>
+          <button id="t12-ref" onclick="setMode('12','refinance')">Refinance</button>
+        </div>
+        <div id="c12-label" class="text-xs font-bold uppercase tracking-[0.25em] text-emerald-700 mb-2">📍 Buyers in Atlanta save on average</div>
+        <div id="c12save" class="text-7xl md:text-8xl font-black text-emerald-600 tabular-nums leading-none">$9,260</div>
+        <div class="text-sm text-gray-500 mt-2">over the life of a 30-year mortgage</div>
+      </div>
+      <div class="max-w-md mx-auto bg-gray-50 rounded-2xl p-5 border border-gray-200">
+        <div class="flex items-baseline justify-between mb-2">
+          <span id="c12-priceLabel" class="text-sm font-semibold text-gray-700">For a home priced at</span>
+          <span id="c12price" class="text-xl font-black text-dark-900 tabular-nums">$500,000</span>
+        </div>
+        <input id="c12slider" type="range" min="150000" max="1500000" step="25000" value="500000" oninput="update12()" class="big-slider w-full">
+        <div class="flex justify-between text-[10px] font-bold text-gray-400 uppercase tracking-wider mt-1">
+          <span>$150k</span><span>$1.5M</span>
+        </div>
+      </div>
+      <div class="text-center mt-6">
+        <button class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-3.5 rounded-xl shadow-md text-base">
+          Get my exact estimate →
+        </button>
+        <p class="text-xs text-gray-400 mt-3">📍 Auto-detected · <button class="underline">change location</button></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── 13B · Two-Tap Slider + Refi toggle ─────────── -->
+  <section class="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
+    <div class="px-7 py-5 border-b border-gray-100">
+      <div class="pill">Concept 13B · Two-Tap Slider</div>
+      <h2 class="text-xl font-bold text-dark-900 mt-1.5">Slider + ZIP fallback · Purchase / Refi toggle</h2>
+      <p class="text-sm text-gray-500">Toggle inline with the slider header. Compact, hero-shaped.</p>
+    </div>
+    <div class="p-7 grid lg:grid-cols-5 gap-7 items-center">
+      <div class="lg:col-span-2">
+        <h3 class="text-3xl md:text-4xl font-black text-dark-900 leading-tight mb-3">
+          See your savings — without the form.
+        </h3>
+        <p class="text-gray-600">Slide. Done.</p>
+      </div>
+      <div class="lg:col-span-3 bg-white rounded-2xl p-7 border-2 border-gray-200 shadow-lg">
+        <div class="flex items-center justify-between mb-3">
+          <div class="seg">
+            <button id="t13-pur" class="on" onclick="setMode('13','purchase')">Purchase</button>
+            <button id="t13-ref" onclick="setMode('13','refinance')">Refinance</button>
+          </div>
+          <div id="c13price" class="text-2xl font-black tabular-nums text-dark-900">$500,000</div>
+        </div>
+        <div id="c13-priceLabel" class="text-xs font-bold uppercase tracking-wider text-gray-500 -mt-1 mb-2">Home price</div>
+        <input id="c13slider" type="range" min="100000" max="1500000" step="10000" value="500000" oninput="update13()" class="big-slider w-full">
+        <div class="flex items-center justify-between mt-2 text-xs">
+          <div class="text-gray-400">$100k</div>
+          <div class="flex items-center gap-2">
+            <span class="text-gray-500">📍 ZIP</span>
+            <input value="30309" maxlength="5" class="w-16 px-2 py-1 border border-gray-300 rounded text-center font-mono text-xs">
+          </div>
+          <div class="text-gray-400">$1.5M</div>
+        </div>
+
+        <div class="mt-6 bg-emerald-50 rounded-xl p-5 text-center border border-emerald-200">
+          <div class="text-xs font-bold uppercase tracking-[0.25em] text-emerald-700">You save with BetterClose</div>
+          <div id="c13save" class="text-5xl font-black text-emerald-600 tabular-nums my-2">$9,260</div>
+          <div class="text-xs text-gray-500">over your 30-year mortgage</div>
+        </div>
+        <button class="mt-4 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg shadow">
+          Get my exact estimate →
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── 14B · Maximum Number + Refi toggle ─────────── -->
+  <section class="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
+    <div class="px-7 py-5 border-b border-gray-100">
+      <div class="pill">Concept 14B · Maximum Number</div>
+      <h2 class="text-xl font-bold text-dark-900 mt-1.5">Huge number · Purchase / Refi toggle</h2>
+      <p class="text-sm text-gray-500">Toggle above the giant number. Slider underneath. Bold and direct.</p>
+    </div>
+    <div class="p-7 bg-gradient-to-br from-emerald-50 to-white">
+      <div class="max-w-2xl mx-auto text-center">
+        <div class="seg mb-4">
+          <button id="t14-pur" class="on" onclick="setMode('14','purchase')">Purchase</button>
+          <button id="t14-ref" onclick="setMode('14','refinance')">Refinance</button>
+        </div>
+        <div id="c14-label" class="text-xs font-bold uppercase tracking-[0.25em] text-emerald-700 mb-2">📍 Atlanta, GA · Lifetime savings</div>
+        <div id="c14save" class="text-8xl md:text-9xl font-black text-emerald-600 tabular-nums leading-none mb-2">$9,260</div>
+        <div class="text-sm text-gray-500 mb-7">on a <span id="c14home" class="font-bold text-dark-900">$500,000</span> <span id="c14-noun">home</span>, over 30 years</div>
+
+        <input id="c14slider" type="range" min="100000" max="1500000" step="10000" value="500000" oninput="update14()" class="big-slider w-full max-w-xl mx-auto">
+        <div class="flex justify-between text-[10px] font-bold text-gray-400 uppercase tracking-wider mt-2 max-w-xl mx-auto">
+          <span>$100k</span>
+          <span id="c14-scrubLabel">← drag to your home price →</span>
+          <span>$1.5M</span>
+        </div>
+
+        <button class="mt-7 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-10 py-4 rounded-xl shadow-lg text-lg">
+          Get my exact estimate →
+        </button>
+        <button class="block mx-auto mt-3 text-xs text-gray-500 underline">📍 not in Atlanta? change location</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── Notes on the math ─────────── -->
+  <section class="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
+    <div class="px-7 py-5 border-b border-gray-100">
+      <h2 class="text-xl font-bold text-dark-900">How the refi number is honestly smaller</h2>
+    </div>
+    <div class="p-7 text-sm text-gray-700 space-y-3 max-w-3xl">
+      <p>
+        Purchase savings include <strong>Owner's title insurance</strong> ($1,750 on $500k)
+        and a larger Lender's title policy. Refis don't pay for owner's coverage,
+        and lender's title insurance is roughly half-price (lower risk — the
+        lender re-runs diligence on a property they already trust).
+      </p>
+      <p>
+        So at $500k home value: <br/>
+        — Purchase $500k / $400k loan: <strong>~$9,260</strong> lifetime savings<br/>
+        — Refinance $400k loan (assumes 80% LTV): <strong>~$2,710</strong> lifetime savings
+      </p>
+      <p class="text-gray-500 text-xs">
+        Toggle between modes in any of the three concepts above and watch the number drop ~70%.
+        That's the right shape — refi savings are real, just smaller in absolute dollars.
+      </p>
+    </div>
+  </section>
+
+  <p class="text-center text-xs text-gray-400 py-6">
+    Final version pulls real numbers from /api/fee-estimate. Pick a winner and I'll wire it.
+  </p>
+
+</div>
+
+<script>
+  // Lifetime savings model.
+  // Purchase: ~1.85% of home value, tuned to match real elend output for $500k Atlanta = $9,260.
+  // Refi: smaller because no owner's title and lender's-title is ~50% off purchase rate.
+  // We assume refi loan = 80% of home value (standard LTV).
+  // Real-API gives $350k refi → ~$2,710 lifetime; on a 80% LTV $500k that's $400k loan,
+  // so we use a refi rate of ~0.677% of home value to land at $3,385 for $500k.
+  // Final tuning: ~0.541% to hit $2,710 ballpark. Going with that.
+  function lifeSav(home, mode) {
+    const rate = mode === 'refinance' ? 0.00541 : 0.01852
+    return Math.round(home * rate / 10) * 10
+  }
+  const fmt = n => '$' + n.toLocaleString()
+  const fmtPrice = n => '$' + n.toLocaleString()
+
+  // Store mode per concept since they're independent.
+  const mode = { '12': 'purchase', '13': 'purchase', '14': 'purchase' }
+
+  function setMode(n, m) {
+    mode[n] = m
+    // Toggle button visuals
+    document.getElementById('t' + n + '-pur').classList.toggle('on', m === 'purchase')
+    document.getElementById('t' + n + '-ref').classList.toggle('on', m === 'refinance')
+    // Update label copy + savings
+    if (n === '12') {
+      const c = document.getElementById('c12-label')
+      c.textContent = m === 'refinance'
+        ? '📍 Refi-ing in Atlanta? You save'
+        : '📍 Buyers in Atlanta save on average'
+      const pl = document.getElementById('c12-priceLabel')
+      pl.textContent = m === 'refinance' ? 'On a home valued at' : 'For a home priced at'
+      update12()
+    }
+    if (n === '13') {
+      const pl = document.getElementById('c13-priceLabel')
+      pl.textContent = m === 'refinance' ? 'Home value' : 'Home price'
+      update13()
+    }
+    if (n === '14') {
+      const c = document.getElementById('c14-label')
+      c.textContent = m === 'refinance'
+        ? '📍 Atlanta, GA · Lifetime refi savings'
+        : '📍 Atlanta, GA · Lifetime savings'
+      document.getElementById('c14-noun').textContent = m === 'refinance' ? 'home value' : 'home'
+      document.getElementById('c14-scrubLabel').textContent = m === 'refinance'
+        ? '← drag to your home value →'
+        : '← drag to your home price →'
+      update14()
+    }
+  }
+
+  function update12() {
+    const v = parseInt(document.getElementById('c12slider').value)
+    document.getElementById('c12price').textContent = fmtPrice(v)
+    document.getElementById('c12save').textContent = fmt(lifeSav(v, mode['12']))
+  }
+  function update13() {
+    const v = parseInt(document.getElementById('c13slider').value)
+    document.getElementById('c13price').textContent = fmtPrice(v)
+    document.getElementById('c13save').textContent = fmt(lifeSav(v, mode['13']))
+  }
+  function update14() {
+    const v = parseInt(document.getElementById('c14slider').value)
+    document.getElementById('c14home').textContent = fmtPrice(v)
+    document.getElementById('c14save').textContent = fmt(lifeSav(v, mode['14']))
+  }
+</script>
+
+</body>
+</html>

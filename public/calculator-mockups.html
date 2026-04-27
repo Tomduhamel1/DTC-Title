@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BetterClose · Hero calculator concepts</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          primary: {
+            50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd',
+            400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8',
+            800: '#1e40af', 900: '#1e3a8a',
+          },
+          dark: { 800: '#1f2937', 900: '#111827' },
+        },
+      },
+    },
+  }
+</script>
+<style>
+  body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; }
+  .pill { background:#dbeafe; color:#1e40af; padding:2px 10px; border-radius:9999px; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+</style>
+</head>
+<body class="bg-gray-100">
+
+<!-- Page header -->
+<header class="bg-white border-b border-gray-200">
+  <div class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
+    <div>
+      <div class="text-xs font-bold uppercase tracking-[0.25em] text-gray-500 mb-0.5">BetterClose · Concepts</div>
+      <h1 class="text-2xl font-black text-dark-900">Hero calculator — 8 alternatives</h1>
+    </div>
+    <a href="/" class="text-sm text-gray-500 hover:text-gray-700 font-medium">← Back to site</a>
+  </div>
+</header>
+
+<div class="max-w-6xl mx-auto px-6 py-8 space-y-12">
+
+  <p class="text-gray-600 max-w-3xl">
+    Each card below shows a different interaction pattern for the homepage hero
+    calculator. They're all populated with the same example data — Atlanta, GA
+    ZIP 30309, $500k purchase — so you can compare interaction styles directly.
+    Click around; the inputs are interactive but don't call the real API.
+  </p>
+
+  <!-- ─────────── 1. One-Field ZIP ─────────── -->
+  <section class="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
+    <div class="px-7 py-5 border-b border-gray-100 flex items-center justify-between gap-3">
+      <div>
+        <div class="pill">Concept 01</div>
+        <h2 class="text-xl font-bold text-dark-900 mt-1.5">One-Field ZIP</h2>
+        <p class="text-sm text-gray-500">Lowest friction. Single ZIP input, instant location-aware estimate.</p>
+      </div>
+    </div>
+    <div class="p-7 grid lg:grid-cols-2 gap-7 items-center">
+      <div>
+        <h3 class="text-3xl font-black text-dark-900 leading-tight mb-3">
+          See your closing costs in 5 seconds.
+        </h3>
+        <p class="text-gray-600">Just your ZIP. We'll show you the average BetterClose savings for your county.</p>
+      </div>
+      <div class="bg-gradient-to-br from-emerald-50 to-white border-2 border-emerald-200 rounded-2xl p-6">
+        <label class="block text-xs font-bold uppercase tracking-wider text-emerald-700 mb-2">Your ZIP</label>
+        <input
+          id="z01"
+          type="text"
+          inputmode="numeric"
+          maxlength="5"
+          value="30309"
+          oninput="updateCard1(this.value)"
+          class="w-full text-3xl font-black tracking-widest px-4 py-4 border-2 border-emerald-300 rounded-xl bg-white focus:border-emerald-500 outline-none text-center"
+        />
+        <div id="z01result" class="mt-4 text-center">
+          <div class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">Estimated savings in <span id="z01county">Fulton County, GA</span></div>
+          <div class="text-4xl font-black text-emerald-600">$1,750 – $5,950</div>
+          <div class="text-xs text-gray-500 mt-1">on a typical $500k purchase</div>
+        </div>
+        <button class="mt-5 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg shadow">
+          Get my full fee estimate →
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── 2. Slider Triple ─────────── -->
+  <section class="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
+    <div class="px-7 py-5 border-b border-gray-100">
+      <div class="pill">Concept 02</div>
+      <h2 class="text-xl font-bold text-dark-900 mt-1.5">Live Sliders</h2>
+      <p class="text-sm text-gray-500">Tactile. Drag price + loan term, watch savings update in real time.</p>
+    </div>
+    <div class="p-7 grid lg:grid-cols-2 gap-7 items-center">
+      <div>
+        <h3 class="text-3xl font-black text-dark-900 leading-tight mb-3">
+          What will <span class="text-primary-600">your</span> closing cost?
+        </h3>
+        <p class="text-gray-600">Slide to your numbers. We update instantly.</p>
+      </div>
+      <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200">
+        <div class="space-y-5">
+          <div>
+            <div class="flex justify-between text-sm font-semibold mb-1.5">
+              <span class="text-gray-700">Home value</span>
+              <span id="s02home" class="text-primary-700 tabular-nums">$500,000</span>
+            </div>
+            <input id="s02homeRange" type="range" min="100000" max="1500000" step="10000" value="500000"
+              oninput="updateCard2()"
+              class="w-full accent-primary-600">
+          </div>
+          <div>
+            <div class="flex justify-between text-sm font-semibold mb-1.5">
+              <span class="text-gray-700">ZIP</span>
+              <span class="text-primary-700">Atlanta, GA</span>
+            </div>
+            <input value="30309" maxlength="5" class="w-full px-3 py-2 border-2 border-gray-200 rounded-lg text-center font-mono">
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="setS02Type('purchase')" id="s02pur" class="py-2.5 rounded-lg border-2 border-primary-500 bg-primary-50 text-primary-700 font-bold text-sm">Purchase</button>
+            <button onclick="setS02Type('refi')" id="s02refi" class="py-2.5 rounded-lg border-2 border-gray-200 text-gray-600 font-semibold text-sm">Refinance</button>
+          </div>
+        </div>
+        <div class="mt-6 pt-5 border-t border-gray-300 text-center">
+          <div class="text-xs font-bold uppercase tracking-wider text-gray-500">You save with BetterClose</div>
+          <div id="s02savings" class="text-5xl font-black text-emerald-600 my-1">$3,860</div>
+          <div class="text-xs text-gray-500">vs a typical Georgia title company</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── 3. Map Pin ─────────── -->
+  <section class="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
+    <div class="px-7 py-5 border-b border-gray-100">
+      <div class="pill">Concept 03</div>
+      <h2 class="text-xl font-bold text-dark-900 mt-1.5">Pick your state</h2>
+      <p class="text-sm text-gray-500">Visual. Click your state, see the average BetterClose savings for it.</p>
+    </div>
+    <div class="p-7 grid lg:grid-cols-2 gap-7 items-center">
+      <div>
+        <h3 class="text-3xl font-black text-dark-900 leading-tight mb-3">
+          Where are you closing?
+        </h3>
+        <p class="text-gray-600 mb-4">Tap your state. We've already calculated the average for it.</p>
+        <div class="grid grid-cols-5 gap-1.5 max-w-md">
+          <!-- Compact "state map" as a grid of buttons -->
+          <button class="state-btn" data-state="WA">WA</button><button class="state-btn" data-state="MT">MT</button><button class="state-btn" data-state="ND">ND</button><button class="state-btn" data-state="MN">MN</button><button class="state-btn" data-state="WI">WI</button>
+          <button class="state-btn" data-state="OR">OR</button><button class="state-btn" data-state="ID">ID</button><button class="state-btn" data-state="SD">SD</button><button class="state-btn" data-state="IA">IA</button><button class="state-btn" data-state="IL">IL</button>
+          <button class="state-btn" data-state="CA">CA</button><button class="state-btn" data-state="NV">NV</button><button class="state-btn" data-state="UT">UT</button><button class="state-btn" data-state="NE">NE</button><button class="state-btn" data-state="MO">MO</button>
+          <button class="state-btn" data-state="AZ">AZ</button><button class="state-btn" data-state="NM">NM</button><button class="state-btn" data-state="CO">CO</button><button class="state-btn" data-state="KS">KS</button><button class="state-btn" data-state="OK">OK</button>
+          <button class="state-btn" data-state="TX">TX</button><button class="state-btn" data-state="LA">LA</button><button class="state-btn" data-state="AR">AR</button><button class="state-btn" data-state="TN">TN</button><button class="state-btn" data-state="KY">KY</button>
+          <button class="state-btn" data-state="MS">MS</button><button class="state-btn" data-state="AL">AL</button><button class="state-btn selected" data-state="GA">GA</button><button class="state-btn" data-state="FL">FL</button><button class="state-btn" data-state="SC">SC</button>
+        </div>
+        <p class="text-xs text-gray-400 mt-2">Showing 30 most-active states. <a href="#" class="underline">All 50 →</a></p>
+      </div>
+      <div class="bg-gradient-to-br from-emerald-500 to-emerald-700 text-white rounded-2xl p-7 shadow-xl">
+        <div class="text-xs font-bold uppercase tracking-[0.25em] text-emerald-100 mb-1">Average savings in</div>
+        <div id="m03state" class="text-3xl font-black mb-4">Georgia</div>
+        <div class="text-6xl font-black tabular-nums leading-none">$3,860</div>
+        <div class="text-emerald-100 text-sm mt-2">on a $500k purchase, financed</div>
+        <div class="border-t border-emerald-400/40 mt-5 pt-4">
+          <div class="text-xs text-emerald-100">Across the life of a 30-year loan:</div>
+          <div class="text-3xl font-black mt-1">$9,260 saved</div>
+        </div>
+        <button class="w-full mt-5 bg-white text-emerald-700 font-bold py-3 rounded-lg hover:bg-gray-100">Get my exact estimate →</button>
+      </div>
+    </div>
+    <style>
+      .state-btn { padding: 10px 0; border-radius: 8px; background: #f3f4f6; color: #374151; font-weight: 700; font-size: 12px; transition: all 0.15s; }
+      .state-btn:hover { background: #dbeafe; color: #1e40af; }
+      .state-btn.selected { background: #10b981; color: white; box-shadow: 0 4px 12px rgba(16,185,129,0.3); }
+    </style>
+  </section>
+
+  <!-- ─────────── 4. Conversational One-Liner ─────────── -->
+  <section class="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
+    <div class="px-7 py-5 border-b border-gray-100">
+      <div class="pill">Concept 04</div>
+      <h2 class="text-xl font-bold text-dark-900 mt-1.5">One-Sentence Input</h2>
+      <p class="text-sm text-gray-500">Type how you'd say it. We parse it.</p>
+    </div>
+    <div class="p-7 grid lg:grid-cols-2 gap-7 items-center">
+      <div>
+        <h3 class="text-3xl font-black text-dark-900 leading-tight mb-3">
+          Just tell us about your closing.
+        </h3>
+        <p class="text-gray-600 mb-4">No forms, no dropdowns. Type it like a human.</p>
+        <div class="space-y-2">
+          <div class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Examples</div>
+          <button onclick="setOneLiner('Buying a $500k home in 30309')" class="block text-left w-full px-3 py-2 text-sm text-gray-700 bg-gray-50 hover:bg-gray-100 rounded-lg">"Buying a $500k home in 30309"</button>
+          <button onclick="setOneLiner('Refinancing $350k in Atlanta')" class="block text-left w-full px-3 py-2 text-sm text-gray-700 bg-gray-50 hover:bg-gray-100 rounded-lg">"Refinancing $350k in Atlanta"</button>
+          <button onclick="setOneLiner('$800k purchase, Texas')" class="block text-left w-full px-3 py-2 text-sm text-gray-700 bg-gray-50 hover:bg-gray-100 rounded-lg">"$800k purchase, Texas"</button>
+        </div>
+      </div>
+      <div class="bg-gray-900 text-white rounded-2xl p-6 shadow-xl">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="w-2 h-2 rounded-full bg-red-400"></div>
+          <div class="w-2 h-2 rounded-full bg-yellow-400"></div>
+          <div class="w-2 h-2 rounded-full bg-green-400"></div>
+          <span class="text-xs text-gray-400 ml-2">tell us about your closing</span>
+        </div>
+        <input id="oneLiner" type="text" value="Buying a $500k home in 30309"
+          oninput="parseOneLiner()"
+          class="w-full bg-transparent border-b-2 border-emerald-500 text-xl font-mono py-3 focus:border-emerald-400 outline-none text-emerald-300 placeholder-gray-600"
+          placeholder="$500k purchase in 30309..." />
+        <div class="mt-5 grid grid-cols-3 gap-3 text-center">
+          <div><div class="text-[10px] text-gray-400 uppercase">Type</div><div id="ol-type" class="text-sm font-bold">Purchase</div></div>
+          <div><div class="text-[10px] text-gray-400 uppercase">Amount</div><div id="ol-amt" class="text-sm font-bold">$500k</div></div>
+          <div><div class="text-[10px] text-gray-400 uppercase">Where</div><div id="ol-loc" class="text-sm font-bold">30309</div></div>
+        </div>
+        <div class="mt-5 pt-5 border-t border-gray-700 text-center">
+          <div class="text-xs text-gray-400 uppercase tracking-wider">You'd save</div>
+          <div id="ol-save" class="text-4xl font-black text-emerald-400">$3,860</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── 5. Pre-Set Tiles ─────────── -->
+  <section class="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
+    <div class="px-7 py-5 border-b border-gray-100">
+      <div class="pill">Concept 05</div>
+      <h2 class="text-xl font-bold text-dark-900 mt-1.5">Pre-set tiles</h2>
+      <p class="text-sm text-gray-500">No typing. Pick a price band tile + ZIP, see savings.</p>
+    </div>
+    <div class="p-7">
+      <h3 class="text-3xl font-black text-dark-900 leading-tight mb-5 text-center">
+        Find your savings in 2 taps.
+      </h3>
+      <div class="text-center mb-5">
+        <div class="inline-flex bg-gray-100 rounded-full p-1">
+          <button class="px-5 py-1.5 rounded-full bg-white shadow text-sm font-bold text-dark-900">Purchase</button>
+          <button class="px-5 py-1.5 rounded-full text-sm font-semibold text-gray-600">Refinance</button>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+        <button onclick="selectTile(this, 1500)" class="tile-btn">
+          <div class="text-xs text-gray-500 mb-1">Under</div>
+          <div class="text-xl font-black">$300k</div>
+          <div class="text-xs text-emerald-600 font-bold mt-2">~$1,500 saved</div>
+        </button>
+        <button onclick="selectTile(this, 3860)" class="tile-btn selected-tile">
+          <div class="text-xs mb-1">Around</div>
+          <div class="text-xl font-black">$500k</div>
+          <div class="text-xs font-bold mt-2">~$3,860 saved</div>
+        </button>
+        <button onclick="selectTile(this, 5400)" class="tile-btn">
+          <div class="text-xs text-gray-500 mb-1">Around</div>
+          <div class="text-xl font-black">$750k</div>
+          <div class="text-xs text-emerald-600 font-bold mt-2">~$5,400 saved</div>
+        </button>
+        <button onclick="selectTile(this, 7200)" class="tile-btn">
+          <div class="text-xs text-gray-500 mb-1">Over</div>
+          <div class="text-xl font-black">$1M</div>
+          <div class="text-xs text-emerald-600 font-bold mt-2">~$7,200 saved</div>
+        </button>
+      </div>
+      <div class="flex items-center justify-center gap-3 text-center max-w-md mx-auto">
+        <input value="30309" maxlength="5" class="w-32 px-3 py-2.5 border-2 border-gray-300 rounded-lg text-center font-mono font-bold">
+        <button class="flex-1 bg-primary-600 hover:bg-primary-700 text-white font-bold py-2.5 rounded-lg">
+          See exact savings →
+        </button>
+      </div>
+    </div>
+    <style>
+      .tile-btn { padding: 16px; border: 2px solid #e5e7eb; border-radius: 12px; background: white; transition: all .15s; }
+      .tile-btn:hover { border-color: #93c5fd; }
+      .tile-btn.selected-tile { background: #10b981; color: white; border-color: #10b981; }
+      .tile-btn.selected-tile .text-emerald-600, .tile-btn.selected-tile .text-gray-500 { color: white; }
+    </style>
+  </section>
+
+  <!-- ─────────── 6. Side-by-Side Comparison ─────────── -->
+  <section class="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
+    <div class="px-7 py-5 border-b border-gray-100">
+      <div class="pill">Concept 06</div>
+      <h2 class="text-xl font-bold text-dark-900 mt-1.5">Side-by-Side</h2>
+      <p class="text-sm text-gray-500">Direct comparison: typical title company vs BetterClose.</p>
+    </div>
+    <div class="p-7">
+      <div class="flex flex-wrap items-center justify-center gap-3 mb-7 text-center">
+        <input value="500000" oninput="updateCard6(this.value)" id="s06home" class="px-3 py-2 border-2 border-gray-300 rounded-lg text-center font-bold w-32" placeholder="Home value">
+        <span class="text-gray-500 text-sm">in</span>
+        <input value="30309" maxlength="5" class="px-3 py-2 border-2 border-gray-300 rounded-lg text-center font-mono font-bold w-24">
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-red-50 border-2 border-red-200 rounded-2xl p-6 text-center">
+          <div class="text-xs font-bold uppercase tracking-wider text-red-700 mb-2">Typical Atlanta title co.</div>
+          <div id="s06typical" class="text-4xl font-black text-red-700 line-through tabular-nums">$9,360</div>
+          <div class="mt-3 text-xs text-red-600">Inflated fees, opaque pricing</div>
+        </div>
+        <div class="bg-emerald-50 border-2 border-emerald-300 rounded-2xl p-6 text-center relative">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-500 text-white text-[10px] font-bold uppercase px-3 py-1 rounded-full">BetterClose</div>
+          <div class="text-xs font-bold uppercase tracking-wider text-emerald-700 mb-2">You pay</div>
+          <div id="s06ours" class="text-5xl font-black text-emerald-700 tabular-nums">$5,500</div>
+          <div class="mt-3 text-xs text-emerald-600 font-bold">Save $3,860 today · $9,260 over your loan</div>
+        </div>
+      </div>
+      <button class="mt-5 w-full max-w-md mx-auto block bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg">
+        See full breakdown →
+      </button>
+    </div>
+  </section>
+
+  <!-- ─────────── 7. Stepper Wizard (compact) ─────────── -->
+  <section class="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
+    <div class="px-7 py-5 border-b border-gray-100">
+      <div class="pill">Concept 07</div>
+      <h2 class="text-xl font-bold text-dark-900 mt-1.5">3-Step Stepper</h2>
+      <p class="text-sm text-gray-500">One question at a time, 3 dots — quick to feel done.</p>
+    </div>
+    <div class="p-7 max-w-md mx-auto">
+      <!-- Stepper dots -->
+      <div class="flex justify-center items-center gap-2 mb-6">
+        <div id="dot1" class="step-dot active"></div>
+        <div class="w-8 h-px bg-gray-300"></div>
+        <div id="dot2" class="step-dot"></div>
+        <div class="w-8 h-px bg-gray-300"></div>
+        <div id="dot3" class="step-dot"></div>
+        <div class="w-8 h-px bg-gray-300"></div>
+        <div id="dot4" class="step-dot"></div>
+      </div>
+
+      <!-- Step content -->
+      <div id="stepBox" class="bg-gray-50 rounded-2xl p-6 border border-gray-200 min-h-[200px]">
+        <div id="step1" class="step-content">
+          <div class="text-xs font-bold uppercase tracking-wider text-primary-700 mb-2">Step 1 of 3</div>
+          <div class="text-xl font-bold text-dark-900 mb-4">What kind of closing?</div>
+          <div class="grid grid-cols-2 gap-3">
+            <button onclick="goStep(2)" class="py-4 border-2 border-primary-500 bg-primary-50 text-primary-700 font-bold rounded-lg">Purchase</button>
+            <button onclick="goStep(2)" class="py-4 border-2 border-gray-300 text-gray-600 font-semibold rounded-lg">Refinance</button>
+          </div>
+        </div>
+        <div id="step2" class="step-content hidden">
+          <div class="text-xs font-bold uppercase tracking-wider text-primary-700 mb-2">Step 2 of 3</div>
+          <div class="text-xl font-bold text-dark-900 mb-4">How much?</div>
+          <div class="relative">
+            <span class="absolute left-3 top-3 text-gray-500">$</span>
+            <input type="text" value="500,000" class="w-full text-2xl font-bold pl-8 pr-3 py-3 border-2 border-gray-300 rounded-lg">
+          </div>
+          <button onclick="goStep(3)" class="w-full mt-4 bg-primary-600 hover:bg-primary-700 text-white font-bold py-3 rounded-lg">Continue →</button>
+        </div>
+        <div id="step3" class="step-content hidden">
+          <div class="text-xs font-bold uppercase tracking-wider text-primary-700 mb-2">Step 3 of 3</div>
+          <div class="text-xl font-bold text-dark-900 mb-4">Where?</div>
+          <input type="text" value="30309" maxlength="5" class="w-full text-2xl font-bold tracking-widest text-center px-3 py-3 border-2 border-gray-300 rounded-lg font-mono">
+          <button onclick="goStep(4)" class="w-full mt-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg">Calculate →</button>
+        </div>
+        <div id="step4" class="step-content hidden text-center">
+          <div class="text-xs font-bold uppercase tracking-wider text-emerald-700 mb-2">Done.</div>
+          <div class="text-sm text-gray-600 mb-1">You'd save with BetterClose</div>
+          <div class="text-5xl font-black text-emerald-600 my-2">$3,860</div>
+          <div class="text-xs text-gray-500 mb-5">at closing — $9,260 over your 30-year loan</div>
+          <button class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg">Send to my team →</button>
+          <button onclick="goStep(1)" class="text-xs text-gray-500 mt-3">← Start over</button>
+        </div>
+      </div>
+    </div>
+    <style>
+      .step-dot { width: 12px; height: 12px; border-radius: 9999px; background: #d1d5db; transition: all .2s; }
+      .step-dot.active { background: #2563eb; box-shadow: 0 0 0 4px rgba(37,99,235,0.15); }
+      .step-dot.done { background: #10b981; }
+    </style>
+  </section>
+
+  <!-- ─────────── 8. Auto-Detect Location ─────────── -->
+  <section class="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
+    <div class="px-7 py-5 border-b border-gray-100">
+      <div class="pill">Concept 08</div>
+      <h2 class="text-xl font-bold text-dark-900 mt-1.5">Auto-Detect Location</h2>
+      <p class="text-sm text-gray-500">Geolocation API: "Looks like you're in Atlanta — here's what it'd cost."</p>
+    </div>
+    <div class="p-7 grid lg:grid-cols-2 gap-7 items-center">
+      <div>
+        <h3 class="text-3xl font-black text-dark-900 leading-tight mb-3">
+          We already know where you are.
+        </h3>
+        <p class="text-gray-600 mb-4">Tap the dot to confirm your area. Adjust price if you want.</p>
+        <p class="text-xs text-gray-500">No account needed. We never store your location.</p>
+      </div>
+      <div class="bg-gradient-to-br from-primary-50 via-white to-emerald-50 rounded-2xl p-6 border-2 border-primary-200">
+        <div class="flex items-start gap-3 mb-4">
+          <div class="relative flex-shrink-0">
+            <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+            <div class="absolute inset-0 w-3 h-3 rounded-full bg-emerald-500 animate-ping"></div>
+          </div>
+          <div class="flex-1">
+            <div class="text-xs text-gray-500 font-bold uppercase tracking-wider">Detected</div>
+            <div class="font-bold text-dark-900">Atlanta, GA · Fulton County</div>
+            <button class="text-xs text-primary-700 underline mt-0.5">not me — change location</button>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-xs text-gray-500 mb-1">Price (you can adjust)</div>
+          <input value="500,000" class="w-full text-xl font-bold border-0 outline-none" />
+        </div>
+        <div class="text-center">
+          <div class="text-xs font-bold uppercase tracking-wider text-emerald-700">Average savings near you</div>
+          <div class="text-5xl font-black text-emerald-600 my-2">$3,860</div>
+          <div class="text-xs text-gray-500">at closing · <span class="text-emerald-700 font-bold">$9,260 over 30 yrs</span></div>
+        </div>
+        <button class="mt-5 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg">
+          Get exact estimate for my closing →
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compare summary -->
+  <section class="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
+    <div class="px-7 py-5 border-b border-gray-100">
+      <h2 class="text-xl font-bold text-dark-900">Compare at a glance</h2>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead class="bg-gray-50 text-xs uppercase text-gray-500">
+          <tr>
+            <th class="px-4 py-3 text-left">Concept</th>
+            <th class="px-4 py-3 text-left">Time to result</th>
+            <th class="px-4 py-3 text-left">Inputs</th>
+            <th class="px-4 py-3 text-left">Best for</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr><td class="px-4 py-3 font-bold">01 · One-Field ZIP</td><td class="px-4 py-3">~3s</td><td class="px-4 py-3">1 (ZIP)</td><td class="px-4 py-3 text-gray-600">Mobile, lowest friction, returning visitors</td></tr>
+          <tr><td class="px-4 py-3 font-bold">02 · Live Sliders</td><td class="px-4 py-3">~10s</td><td class="px-4 py-3">3 (price, ZIP, type)</td><td class="px-4 py-3 text-gray-600">Tactile users, wants to play with numbers</td></tr>
+          <tr><td class="px-4 py-3 font-bold">03 · State Map</td><td class="px-4 py-3">~5s</td><td class="px-4 py-3">1 click</td><td class="px-4 py-3 text-gray-600">Visual learners, shows national reach</td></tr>
+          <tr><td class="px-4 py-3 font-bold">04 · One-Sentence</td><td class="px-4 py-3">~8s</td><td class="px-4 py-3">1 freeform</td><td class="px-4 py-3 text-gray-600">Tech-savvy, AI-curious audience</td></tr>
+          <tr><td class="px-4 py-3 font-bold">05 · Pre-set Tiles</td><td class="px-4 py-3">~5s</td><td class="px-4 py-3">2 taps</td><td class="px-4 py-3 text-gray-600">Quick browsers, mobile, no typing</td></tr>
+          <tr><td class="px-4 py-3 font-bold">06 · Side-by-Side</td><td class="px-4 py-3">~10s</td><td class="px-4 py-3">2 (price, ZIP)</td><td class="px-4 py-3 text-gray-600">Comparison-shoppers, anchor on contrast</td></tr>
+          <tr><td class="px-4 py-3 font-bold">07 · 3-Step Stepper</td><td class="px-4 py-3">~15s</td><td class="px-4 py-3">3 sequential</td><td class="px-4 py-3 text-gray-600">Methodical users, Apple-style guided UX</td></tr>
+          <tr><td class="px-4 py-3 font-bold">08 · Auto-Detect</td><td class="px-4 py-3">~2s</td><td class="px-4 py-3">0 (geo)</td><td class="px-4 py-3 text-gray-600">Mobile-first, "magic" feel, repeat visitors</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <p class="text-center text-xs text-gray-400 py-6">
+    Mock data — not connected to the real fee API. Pick the pattern you want to ship and I'll wire it to /api/fee-estimate.
+  </p>
+
+</div>
+
+<script>
+  // ── 1. One-Field ZIP ──
+  const zipMap = {
+    '30309': 'Fulton County, GA',
+    '78701': 'Travis County, TX',
+    '90210': 'Los Angeles County, CA',
+    '10001': 'New York County, NY',
+  }
+  function updateCard1(z) {
+    const el = document.getElementById('z01county')
+    el.textContent = zipMap[z] || 'your county'
+  }
+
+  // ── 2. Live Sliders ──
+  function updateCard2() {
+    const v = parseInt(document.getElementById('s02homeRange').value)
+    document.getElementById('s02home').textContent = '$' + v.toLocaleString()
+    // Heuristic: ~0.77% of home value
+    const sav = Math.round(v * 0.0077 / 10) * 10
+    document.getElementById('s02savings').textContent = '$' + sav.toLocaleString()
+  }
+  function setS02Type(t) {
+    const p = document.getElementById('s02pur')
+    const r = document.getElementById('s02refi')
+    if (t === 'purchase') {
+      p.className = 'py-2.5 rounded-lg border-2 border-primary-500 bg-primary-50 text-primary-700 font-bold text-sm'
+      r.className = 'py-2.5 rounded-lg border-2 border-gray-200 text-gray-600 font-semibold text-sm'
+    } else {
+      r.className = 'py-2.5 rounded-lg border-2 border-primary-500 bg-primary-50 text-primary-700 font-bold text-sm'
+      p.className = 'py-2.5 rounded-lg border-2 border-gray-200 text-gray-600 font-semibold text-sm'
+    }
+  }
+
+  // ── 3. State map ──
+  const stateAvg = {
+    'CA': 4200, 'TX': 3950, 'FL': 4100, 'NY': 4800, 'GA': 3860,
+    'AZ': 3400, 'NC': 3700, 'WA': 4500, 'CO': 3900, 'IL': 3500,
+  }
+  document.querySelectorAll('.state-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.state-btn').forEach(b => b.classList.remove('selected'))
+      btn.classList.add('selected')
+      const s = btn.dataset.state
+      document.getElementById('m03state').textContent = s
+      // (Could update savings number from stateAvg[s] here.)
+    })
+  })
+
+  // ── 4. One-sentence parser ──
+  function setOneLiner(t) {
+    document.getElementById('oneLiner').value = t
+    parseOneLiner()
+  }
+  function parseOneLiner() {
+    const v = document.getElementById('oneLiner').value.toLowerCase()
+    const isRefi = /refi|refinance/.test(v)
+    document.getElementById('ol-type').textContent = isRefi ? 'Refinance' : 'Purchase'
+    const amt = v.match(/\$?(\d{2,4})\s*k|\$?(\d{3,7})/i)
+    let dollars = 500000
+    if (amt) {
+      if (amt[1]) dollars = parseInt(amt[1]) * 1000
+      else if (amt[2]) dollars = parseInt(amt[2])
+    }
+    document.getElementById('ol-amt').textContent = '$' + Math.round(dollars / 1000) + 'k'
+    const zip = v.match(/\b(\d{5})\b/)
+    const city = v.match(/\b(atlanta|austin|los angeles|new york|miami|denver|seattle|chicago|texas|california|florida|georgia)\b/i)
+    document.getElementById('ol-loc').textContent = zip ? zip[1] : (city ? city[1] : '—')
+    const sav = Math.round(dollars * (isRefi ? 0.0035 : 0.0077) / 10) * 10
+    document.getElementById('ol-save').textContent = '$' + sav.toLocaleString()
+  }
+
+  // ── 5. Tile picker ──
+  function selectTile(el, sav) {
+    document.querySelectorAll('.tile-btn').forEach(b => b.classList.remove('selected-tile'))
+    el.classList.add('selected-tile')
+  }
+
+  // ── 6. Side by side ──
+  function updateCard6(v) {
+    const home = parseInt(v.replace(/[^0-9]/g, '')) || 0
+    const ours = Math.round(home * 0.011 / 10) * 10
+    const typical = Math.round(home * 0.0187 / 10) * 10
+    document.getElementById('s06ours').textContent = '$' + ours.toLocaleString()
+    document.getElementById('s06typical').textContent = '$' + typical.toLocaleString()
+  }
+
+  // ── 7. Stepper ──
+  function goStep(n) {
+    for (let i = 1; i <= 4; i++) {
+      const c = document.getElementById('step' + i)
+      if (c) c.classList.toggle('hidden', i !== n)
+      const d = document.getElementById('dot' + i)
+      if (d) {
+        d.classList.toggle('active', i === n)
+        d.classList.toggle('done', i < n)
+      }
+    }
+  }
+</script>
+
+</body>
+</html>

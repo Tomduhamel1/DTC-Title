@@ -39,6 +39,9 @@ export default function LenderRequestForm({
       source,
       refId,
     })
+    try {
+      sessionStorage.setItem('pendingInviteClaim', refId)
+    } catch {}
     setSubmitting(false)
     setStep('confirmed')
   }

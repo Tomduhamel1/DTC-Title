@@ -27,7 +27,7 @@ export default function RealtorsPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
-                  href="/start"
+                  href="mailto:agents@betterclose.co"
                   className="inline-flex items-center justify-center gap-2 bg-emerald-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-emerald-700 transition-colors shadow-lg"
                 >
                   Become a Preferred Agent

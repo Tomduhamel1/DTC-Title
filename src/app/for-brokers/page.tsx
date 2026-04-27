@@ -27,7 +27,7 @@ export default function BrokersPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
-                  href="/start"
+                  href="mailto:partners@betterclose.co"
                   className="inline-flex items-center justify-center gap-2 bg-primary-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-primary-700 transition-colors shadow-lg"
                 >
                   Partner with BetterClose

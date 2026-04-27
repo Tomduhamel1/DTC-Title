@@ -56,7 +56,7 @@ export default function QuoteResultsPage() {
         <div className="mt-8">
           <NextStepsPanel
             savingsEstimate={Math.round(
-              (computeTotals(report).estimatedSavingsLow + computeTotals(report).estimatedSavingsHigh) / 2
+              (computeTotals(report).lifetimeSavingsLow + computeTotals(report).lifetimeSavingsHigh) / 2
             )}
             source="quote_results"
           />

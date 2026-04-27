@@ -20,7 +20,7 @@ const DEFAULT_STEPS: ProgressStep[] = [
   { label: 'Pulling underwriter rates', durationMs: 2200 },
   { label: 'Fetching county recording fees', durationMs: 2400 },
   { label: 'Comparing to local market range', durationMs: 2600 },
-  { label: 'Building your fee report', durationMs: 2200 },
+  { label: 'Building your fee estimate', durationMs: 2200 },
 ]
 
 export default function FeeReportProgress({
@@ -59,7 +59,7 @@ export default function FeeReportProgress({
             <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary-100 mb-4">
               <Spinner />
             </div>
-            <h2 className="text-2xl font-bold text-dark-900 mb-1">Building your fee report</h2>
+            <h2 className="text-2xl font-bold text-dark-900 mb-1">Building your fee estimate</h2>
             <p className="text-sm text-gray-500">This usually takes about 10 seconds.</p>
           </div>
 
