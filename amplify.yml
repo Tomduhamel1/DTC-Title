@@ -15,7 +15,7 @@ frontend:
           for k in DATABASE_URL NEXTAUTH_SECRET NEXTAUTH_URL AUTH_EMAIL_DRY_RUN \
                   APP_AWS_REGION APP_AWS_ACCESS_KEY_ID APP_AWS_SECRET_ACCESS_KEY \
                   APP_AWS_SES_FROM_EMAIL APP_AWS_S3_BUCKET HELLO_EMAIL \
-                  ORDER_INGEST_SECRET; do
+                  ORDER_INGEST_SECRET COMING_SOON_MODE; do
             v="${!k}"
             if [ -n "$v" ]; then
               # Quote the value so newlines/specials don't break parsing
