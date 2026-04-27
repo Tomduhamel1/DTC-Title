@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { z } from 'zod'
 import { prisma } from '@/lib/db'
 import { sendLenderRequestEmail } from '@/lib/email/lender-request'
+import { getSession } from '@/lib/auth/session'
 
 const Body = z.object({
   channel: z.enum(['sms', 'mailto', 'we_email', 'copy_link', 'native_share']),
@@ -30,6 +31,25 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'lenderEmail required for we_email channel' }, { status: 400 })
   }
 
+  // Only auto-attribute when the share originated from inside the dashboard.
+  // Public shares (quote_results, hero, etc.) stay anonymous and get claimed
+  // on sign-up via /api/lender-request/claim — that way an invite sent before
+  // the user creates an account ends up on the *right* account.
+  const session = await getSession()
+  // @ts-expect-error — id is added in session callback
+  const sessionUserId = (session?.user?.id as string | undefined) ?? null
+  const isDashboardShare = data.source === 'dashboard_account'
+  const userId = isDashboardShare ? sessionUserId : null
+  let closingId: string | null = null
+  if (userId) {
+    const closing = await prisma.closing.findFirst({
+      where: { userId, status: { in: ['pending', 'active'] } },
+      orderBy: { createdAt: 'desc' },
+      select: { id: true },
+    })
+    closingId = closing?.id ?? null
+  }
+
   // Persist the share event regardless of channel
   const record = await prisma.lenderRequest.create({
     data: {
@@ -43,6 +63,8 @@ export async function POST(req: Request) {
       clientEmail: data.clientEmail?.toLowerCase(),
       note: data.note,
       savingsEstimate: data.savingsEstimate,
+      userId,
+      closingId,
     },
   })
 

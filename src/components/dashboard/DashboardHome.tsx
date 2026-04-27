@@ -3,7 +3,8 @@
 import { signOut } from 'next-auth/react'
 import MilestoneTimeline from './MilestoneTimeline'
 import SectionShell from './SectionShell'
-import AccountSection from './AccountSection'
+import { ProgressIcon, PropertyIcon, LoanIcon, TitleIcon, SettlementIcon, ContactsIcon } from './SectionIcons'
+import AccountSection, { type AccountStep } from './AccountSection'
 import EditableFields from './EditableFields'
 import LineItemList, { LineItem } from './LineItemList'
 import ContactRail from './ContactRail'
@@ -40,9 +41,10 @@ interface DashboardHomeProps {
   closing: ClosingShape
   userName: string | null
   userEmail: string
+  accountSteps: AccountStep[]
 }
 
-export default function DashboardHome({ closing, userName, userEmail }: DashboardHomeProps) {
+export default function DashboardHome({ closing, userName, userEmail, accountSteps }: DashboardHomeProps) {
   const fullAddress = [closing.propertyAddress, closing.propertyCity, closing.propertyState, closing.propertyZip]
     .filter(Boolean)
     .join(', ')
@@ -104,10 +106,10 @@ export default function DashboardHome({ closing, userName, userEmail }: Dashboar
         {/* Main column — single-column stack of numbered sections */}
         <div className="space-y-4 min-w-0">
           {/* 1. Account / invite status */}
-          <AccountSection userEmail={userEmail} />
+          <AccountSection accountSteps={accountSteps} />
 
           {/* 2. Closing progress */}
-          <SectionShell number={2} title="Closing Progress" emoji="📊">
+          <SectionShell title="Closing Progress" icon={<ProgressIcon />}>
             <MilestoneTimeline
               milestones={closing.milestones}
               closingDate={closing.closingDate}
@@ -115,7 +117,7 @@ export default function DashboardHome({ closing, userName, userEmail }: Dashboar
           </SectionShell>
 
           {/* 3. Property */}
-          <SectionShell number={3} title="Property" emoji="🏠">
+          <SectionShell title="Property" icon={<PropertyIcon />}>
             <EditableFields
               closingId={closing.id}
               emptyHint="Tell us about your property."
@@ -133,7 +135,7 @@ export default function DashboardHome({ closing, userName, userEmail }: Dashboar
           </SectionShell>
 
           {/* 4. Loan */}
-          <SectionShell number={4} title="Loan" emoji="🏦">
+          <SectionShell title="Loan" icon={<LoanIcon />}>
             <EditableFields
               closingId={closing.id}
               emptyHint="Add your loan officer's contact info, or wait — we'll fill this in when your lender places the order."
@@ -157,7 +159,7 @@ export default function DashboardHome({ closing, userName, userEmail }: Dashboar
           </SectionShell>
 
           {/* 5. Title */}
-          <SectionShell number={5} title="Title" emoji="📜" subtitle="A-rated underwriter coverage">
+          <SectionShell title="Title" icon={<TitleIcon />} subtitle="A-rated underwriter coverage">
             <dl className="grid sm:grid-cols-2 gap-x-6 gap-y-3">
               <div>
                 <dt className="text-[11px] font-semibold uppercase tracking-wider text-gray-500">
@@ -185,9 +187,8 @@ export default function DashboardHome({ closing, userName, userEmail }: Dashboar
 
           {/* 6. Settlement */}
           <SectionShell
-            number={6}
             title="Settlement"
-            emoji="🤝"
+            icon={<SettlementIcon />}
             subtitle="BetterClose handles your closing"
           >
             <dl className="grid sm:grid-cols-2 gap-x-6 gap-y-3">
@@ -230,7 +231,7 @@ export default function DashboardHome({ closing, userName, userEmail }: Dashboar
           </SectionShell>
 
           {/* 7. Contacts */}
-          <SectionShell number={7} title="Contacts" emoji="👤">
+          <SectionShell title="Contacts" icon={<ContactsIcon />}>
             <div className="space-y-5">
               <div>
                 <div className="text-[11px] font-bold uppercase tracking-wider text-gray-500 mb-2">
