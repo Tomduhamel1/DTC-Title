@@ -27,15 +27,21 @@ export default function NextStepsPanel({
       <div className="bg-white rounded-3xl border border-gray-200 p-6 lg:p-7 shadow-sm">
         <div className="text-center mb-5">
           <h2 className="text-2xl md:text-3xl font-black text-dark-900 mb-1.5">
-            {isPre
-              ? 'The fast way is the easy way.'
-              : savingsEstimate
-              ? `Lock in $${savingsEstimate.toLocaleString()} in savings`
-              : 'Make BetterClose your closing company'}
+            {isPre ? (
+              'Tell your team you want to use BetterClose.'
+            ) : savingsEstimate ? (
+              <>
+                Lock in <span className="text-emerald-600">${savingsEstimate.toLocaleString()}</span> over your loan
+              </>
+            ) : (
+              'Make BetterClose your closing company'
+            )}
           </h2>
           <p className="text-sm md:text-base text-gray-600">
             {isPre
               ? '30 seconds — alert your team you want to use BetterClose. No quote needed.'
+              : savingsEstimate
+              ? "Closing costs financed into your mortgage compound. Tell your team to use BetterClose so you actually capture this."
               : 'Three ways to make BetterClose your closing company.'}
           </p>
         </div>
@@ -86,7 +92,7 @@ export default function NextStepsPanel({
                     See your savings first
                   </h4>
                   <p className="text-xs text-gray-600">
-                    Get a personalized fee report. Takes 30 seconds.
+                    Get a personalized fee estimate. Takes 30 seconds.
                   </p>
                 </div>
                 <svg className="w-5 h-5 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>

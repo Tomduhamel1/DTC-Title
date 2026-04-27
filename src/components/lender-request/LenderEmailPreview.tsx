@@ -19,7 +19,7 @@ export default function LenderEmailPreview({
 }: LenderEmailPreviewProps) {
   const greeting = lenderFirstName ? `Hi ${lenderFirstName},` : 'Hi there,'
   const client = clientName || 'Your client'
-  const subject = `${clientName || 'Your client'} would like you to consider BetterClose for their closing`
+  const subject = `${clientName || 'Your client'} is using BetterClose for title & settlement on their closing`
 
   return (
     <div className="bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden">
@@ -45,20 +45,16 @@ export default function LenderEmailPreview({
       <div className="px-5 py-5 text-sm text-gray-800 leading-relaxed space-y-3 bg-white">
         <p>{greeting}</p>
         <p>
-          {client} is preparing for their upcoming home closing and asked us to introduce you to BetterClose, an alternative title and closing company they'd like considered for the transaction.
+          <strong>{client} is using BetterClose for title and settlement on their upcoming closing</strong> and asked us to send you everything you need to place the order.
         </p>
         <p>
-          <strong>Why your client is reaching out:</strong> Closing costs vary widely between title companies — often by thousands of dollars on the same transaction. BetterClose offers transparent flat-rate pricing, the same A-rated underwriters you already work with (First American, Old Republic, Stewart, Fidelity), and full digital coordination.
-          {savingsEstimate ? (
-            <>
-              {' '}
-              <em>Estimated savings on this closing: ${savingsEstimate.toLocaleString()}.</em>
-            </>
-          ) : null}
+          BetterClose uses the same A-rated underwriters you already work with (First American, Old Republic, Stewart, Fidelity) and integrates with SmartFees, Encompass, Qualia, and ResWare. Same coverage, transparent flat-rate pricing.
         </p>
-        <p>
-          <strong>What we're asking:</strong> Take 60 seconds to review BetterClose at the link below. If it works for the file, you can place the title order directly — or find us in SmartFees, Encompass, Qualia, or ResWare.
-        </p>
+        {savingsEstimate ? (
+          <p>
+            <strong>Estimated savings for {client} on this closing: ${savingsEstimate.toLocaleString()}</strong> over the life of the loan, on the same A-rated underwriters.
+          </p>
+        ) : null}
         {note && (
           <p className="italic text-gray-600 border-l-2 border-gray-200 pl-3">
             "{note}"
@@ -69,11 +65,11 @@ export default function LenderEmailPreview({
             href={`/for-my-lender?ref=${refId}`}
             className="inline-block bg-green-600 text-white font-bold px-5 py-2.5 rounded-lg no-underline"
           >
-            Review BetterClose →
+            Get the order details →
           </a>
         </p>
         <p>
-          Questions? Just reply to this email.
+          If you have questions about the file, reply to this email — we'll get back to you in minutes, not days.
         </p>
         <p className="pt-2">
           Thanks,
