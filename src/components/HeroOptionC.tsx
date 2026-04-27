@@ -21,7 +21,7 @@ export default function HeroOptionC() {
               <p className="text-xl md:text-2xl text-gray-700 font-semibold mb-7 leading-snug">
                 Same realtor. Same lender. Same insurer.
                 <br />
-                <span className="text-primary-600">Different closing cost.</span>
+                <span className="text-primary-600">Better closing cost.</span>
               </p>
 
               {/* Primary CTA — alert your team (no quote needed) */}

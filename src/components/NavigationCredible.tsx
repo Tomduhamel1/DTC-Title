@@ -1,10 +1,15 @@
 'use client'
 
 import { useState } from 'react'
+import { useSession } from 'next-auth/react'
 import TrueFeelogo from './TrueFeelogo'
+import ShareWithTeamSheet from './lender-request/ShareWithTeamSheet'
 
 export default function NavigationCredible() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [shareOpen, setShareOpen] = useState(false)
+  const { status } = useSession()
+  const signedIn = status === 'authenticated'
 
   return (
     <header className="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
@@ -61,10 +66,30 @@ export default function NavigationCredible() {
               </div>
             </a>
 
-            {/* Get Quote Button */}
-            <a href="/start" className="bg-primary-600 text-white px-5 py-2.5 rounded-md font-semibold hover:bg-primary-700 transition-colors shadow-md hover:shadow-lg">
-              Get Quote
-            </a>
+            {/* Login or Dashboard */}
+            {signedIn ? (
+              <a
+                href="/dashboard"
+                className="hidden sm:inline-block text-dark-800 hover:text-primary-600 font-semibold transition-colors"
+              >
+                Dashboard
+              </a>
+            ) : (
+              <a
+                href="/login"
+                className="hidden sm:inline-block text-dark-800 hover:text-primary-600 font-semibold transition-colors"
+              >
+                Log in
+              </a>
+            )}
+
+            {/* Primary CTA */}
+            <button
+              onClick={() => setShareOpen(true)}
+              className="bg-primary-600 text-white px-5 py-2.5 rounded-md font-semibold hover:bg-primary-700 transition-colors shadow-md hover:shadow-lg"
+            >
+              Send to my team
+            </button>
 
             {/* Mobile Menu Button */}
             <button
@@ -104,6 +129,15 @@ export default function NavigationCredible() {
               <a href="/security" className="block text-dark-800 hover:text-primary-600 font-medium py-2">
                 Security & Protection
               </a>
+              {signedIn ? (
+                <a href="/dashboard" className="block text-dark-800 hover:text-primary-600 font-bold py-2">
+                  Dashboard
+                </a>
+              ) : (
+                <a href="/login" className="block text-dark-800 hover:text-primary-600 font-bold py-2">
+                  Log in
+                </a>
+              )}
               <a href="tel:1-800-316-9508" className="block text-primary-600 font-bold py-2">
                 📞 Call 1-800-316-9508
               </a>
@@ -111,6 +145,12 @@ export default function NavigationCredible() {
           </div>
         )}
       </div>
+
+      <ShareWithTeamSheet
+        open={shareOpen}
+        onClose={() => setShareOpen(false)}
+        source="nav_cta"
+      />
     </header>
   )
 }

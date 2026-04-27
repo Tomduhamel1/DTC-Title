@@ -5,19 +5,21 @@ import NavigationCredible from './NavigationCredible'
 import HeroOptionA from './HeroOptionA'
 import HeroOptionB from './HeroOptionB'
 import HeroOptionC from './HeroOptionC'
+import HeroMagicReveal from './HeroMagicReveal'
 import CompanyCredentialsSection from './CompanyCredentialsSection'
 import HowItWorksSection from './HowItWorksSection'
 import FeeReportPreviewSection from './FeeReportPreviewSection'
 import TeamTrustSection from './TeamTrustSection'
+import PeaceOfMindSection from './PeaceOfMindSection'
 import UnderwriterLogos from './UnderwriterLogos'
-import TestimonialsCredible from './TestimonialsCredible'
+import TrustStripSection from './TrustStripSection'
 import FAQSection from './FAQSection'
 import SecurityTrustSection from './SecurityTrustSection'
 import ReadyToSaveSection from './ReadyToSaveSection'
 import FooterComprehensive from './FooterComprehensive'
 
 interface HomePageCredibleProps {
-  heroVersion?: 'A' | 'B' | 'C'
+  heroVersion?: 'A' | 'B' | 'C' | 'magic'
 }
 
 export default function HomePageCredible({ heroVersion = 'A' }: HomePageCredibleProps) {
@@ -30,11 +32,25 @@ export default function HomePageCredible({ heroVersion = 'A' }: HomePageCredible
         {/* Spacer for fixed header */}
         <div className="h-20"></div>
 
-        {/* Hero Section - Toggle between options A, B, and C */}
-        {heroVersion === 'C' ? <HeroOptionC /> : heroVersion === 'B' ? <HeroOptionB /> : <HeroOptionA />}
+        {/* Hero Section - Toggle between hero variants */}
+        {heroVersion === 'magic' ? (
+          <HeroMagicReveal />
+        ) : heroVersion === 'C' ? (
+          <HeroOptionC />
+        ) : heroVersion === 'B' ? (
+          <HeroOptionB />
+        ) : (
+          <HeroOptionA />
+        )}
 
-        {/* Fee Report Preview - the transparency story */}
+        {/* Fee Estimate Preview */}
         <FeeReportPreviewSection />
+
+        {/* Team Trust Section */}
+        <TeamTrustSection />
+
+        {/* Peace of Mind */}
+        <PeaceOfMindSection />
 
         {/* Company Credentials */}
         <CompanyCredentialsSection />
@@ -42,14 +58,11 @@ export default function HomePageCredible({ heroVersion = 'A' }: HomePageCredible
         {/* How It Works */}
         <HowItWorksSection />
 
-        {/* Team Trust Section */}
-        <TeamTrustSection />
-
         {/* Underwriter Logos */}
         <UnderwriterLogos />
 
-        {/* Testimonials */}
-        <TestimonialsCredible />
+        {/* Trust Strip — pillars + stats */}
+        <TrustStripSection />
 
         {/* FAQ Section */}
         <FAQSection />

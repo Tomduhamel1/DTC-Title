@@ -250,8 +250,8 @@ export default function StoryCalculator() {
               <Link href="/pricing" className="text-dark-800 hover:text-primary-600 font-medium transition-colors">
                 Calculate Savings
               </Link>
-              <Link href="/start" className="text-dark-800 hover:text-primary-600 font-medium transition-colors">
-                Get Started
+              <Link href="/quote" className="text-dark-800 hover:text-primary-600 font-medium transition-colors">
+                Fee estimate
               </Link>
               <Link href="#how-it-works" className="text-dark-800 hover:text-primary-600 font-medium transition-colors">
                 How It Works
@@ -277,8 +277,8 @@ export default function StoryCalculator() {
                   <div className="font-bold text-lg text-primary-600 group-hover:text-primary-700">1.800.316.9508</div>
                 </div>
               </a>
-              <Link href="/start" className="bg-primary-600 text-white px-5 py-2.5 rounded-md font-semibold hover:bg-primary-700 transition-colors">
-                Get Quote
+              <Link href="/quote" className="bg-primary-600 text-white px-5 py-2.5 rounded-md font-semibold hover:bg-primary-700 transition-colors">
+                Get fee estimate
               </Link>
             </div>
           </nav>
@@ -297,7 +297,7 @@ export default function StoryCalculator() {
           </h1>
           <p className="text-2xl md:text-3xl text-gray-700 font-semibold">
             Same realtor. Same lender. Same insurer.<br />
-            <span className="text-primary-600">Different closing cost.</span>
+            <span className="text-primary-600">Better closing cost.</span>
           </p>
         </div>
       </div>
@@ -436,16 +436,16 @@ export default function StoryCalculator() {
               {/* Primary CTA - Online */}
               <div className="space-y-3 mb-6">
                 <Link
-                  href="/start"
+                  href="/quote"
                   className="inline-flex items-center gap-3 bg-primary-600 text-white px-8 py-4 rounded-xl font-bold text-xl hover:bg-primary-700 transition-all shadow-xl hover:shadow-2xl hover:scale-105 group w-full justify-center"
                 >
-                  <span>Get Started Online</span>
+                  <span>Get my fee estimate</span>
                   <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </Link>
                 <div className="text-center text-sm text-gray-500">
-                  Takes 2 minutes • No commitment
+                  Takes 30 seconds • No commitment
                 </div>
               </div>
 
@@ -559,15 +559,15 @@ export default function StoryCalculator() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="font-black text-2xl text-white mb-3">Start Online</h3>
+              <h3 className="font-black text-2xl text-white mb-3">See your fees</h3>
               <p className="text-white/90 text-sm mb-6 leading-relaxed">
-                Complete our quick application online. Takes just 2 minutes. No commitment or credit check required.
+                Get a personalized fee estimate for your closing. Takes 30 seconds. No commitment.
               </p>
               <Link
-                href="/start"
+                href="/quote"
                 className="block w-full bg-white text-primary-600 px-6 py-3 rounded-lg font-bold text-center hover:bg-gray-50 transition-colors shadow-lg"
               >
-                Begin Application →
+                Get my estimate →
               </Link>
             </div>
 
@@ -748,8 +748,8 @@ export default function StoryCalculator() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/start" className="hover:text-white transition-colors">
-                    Get Started
+                  <Link href="/quote" className="hover:text-white transition-colors">
+                    Fee estimate
                   </Link>
                 </li>
               </ul>

@@ -29,6 +29,11 @@ export default function PageWrapper() {
     return <HomePageCredible heroVersion="C" />
   }
 
+  // Magic Reveal — auto-located hero with single big savings number + slider + purchase/refi toggle.
+  if (variant === 'magic') {
+    return <HomePageCredible heroVersion="magic" />
+  }
+
   // Credible variant (default to A)
   if (variant === 'credible') {
     return <HomePageCredible heroVersion="A" />

@@ -121,13 +121,13 @@ export default function AboutPage() {
             Ready to Save on Your Closing?
           </h2>
           <p className="text-xl text-primary-100 mb-8">
-            See your exact savings in 60 seconds
+            Tell your lender or realtor — takes 30 seconds
           </p>
           <Link
-            href="/start"
+            href="/?variant=credible"
             className="inline-flex items-center gap-2 bg-white text-primary-600 px-10 py-4 rounded-xl font-bold text-xl hover:bg-gray-100 transition-colors shadow-xl"
           >
-            Get Your Free Quote
+            Send BetterClose to my team
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>

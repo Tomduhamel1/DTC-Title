@@ -26,8 +26,8 @@ export default function FooterComprehensive() {
                 </Link>
               </li>
               <li>
-                <Link href="/start" className="hover:text-primary-400 transition-colors">
-                  Get a Quote
+                <Link href="/quote" className="hover:text-primary-400 transition-colors">
+                  Fee estimate
                 </Link>
               </li>
             </ul>
