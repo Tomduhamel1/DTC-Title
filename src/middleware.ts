@@ -5,6 +5,13 @@ import type { NextRequest } from 'next/server'
 // marketing pages to /coming-soon. Functional routes — auth, dashboard, the
 // fee-estimate flow, the for-my-lender landing, all API routes — stay live so
 // the team can keep testing and authenticated users keep working.
+//
+// Bypass paths:
+//   1. ?preview=<COMING_SOON_BYPASS_KEY>  -> sets a 30-day cookie and lets the
+//      browser through. Share the key with anyone who needs preview access.
+//   2. NextAuth session cookie present    -> any signed-in user passes through.
+//      Combined with the admin email allowlist this means admins can browse
+//      the real site without a separate bypass key.
 
 const FUNCTIONAL_PREFIXES = [
   '/dashboard',
@@ -18,11 +25,15 @@ const FUNCTIONAL_PREFIXES = [
   '/admin',
 ]
 
-// File extensions and Next internals that should always pass through.
+const BYPASS_COOKIE = 'cs_bypass'
+const SESSION_COOKIE_HINTS = [
+  'next-auth.session-token',
+  '__Secure-next-auth.session-token',
+]
+
 function isStaticAsset(pathname: string) {
   if (pathname.startsWith('/_next')) return true
   if (pathname === '/favicon.ico' || pathname === '/robots.txt' || pathname === '/sitemap.xml') return true
-  // Anything with a file extension (.png, .svg, .css, .js, .webp, etc.)
   return /\.[a-zA-Z0-9]+$/.test(pathname)
 }
 
@@ -38,8 +49,36 @@ export function middleware(req: NextRequest) {
     return NextResponse.next()
   }
 
-  // Everything else (homepage, /about, /for-brokers, /for-realtors, /security,
-  // /pricing, etc.) → coming-soon.
+  // Path 1 — query string preview key. Set a cookie so subsequent navigation
+  // doesn't need the param.
+  const previewKey = req.nextUrl.searchParams.get('preview')
+  const expectedKey = process.env.COMING_SOON_BYPASS_KEY
+  if (expectedKey && previewKey === expectedKey) {
+    const url = req.nextUrl.clone()
+    url.searchParams.delete('preview')
+    const res = NextResponse.redirect(url)
+    res.cookies.set(BYPASS_COOKIE, '1', {
+      maxAge: 60 * 60 * 24 * 30, // 30 days
+      httpOnly: true,
+      secure: true,
+      sameSite: 'lax',
+      path: '/',
+    })
+    return res
+  }
+  if (req.cookies.get(BYPASS_COOKIE)?.value === '1') {
+    return NextResponse.next()
+  }
+
+  // Path 2 — any NextAuth session cookie present. We can't validate the
+  // session in middleware (Edge runtime, no Prisma) but the cookie's presence
+  // is a sufficient bypass signal: it means the user has at least authenticated
+  // recently. They'll still hit auth checks on protected routes.
+  for (const hint of SESSION_COOKIE_HINTS) {
+    if (req.cookies.get(hint)) return NextResponse.next()
+  }
+
+  // Otherwise: rewrite to coming-soon.
   const url = req.nextUrl.clone()
   url.pathname = '/coming-soon'
   url.search = ''
@@ -47,6 +86,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  // Run on every request except static asset paths handled above.
   matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
 }
