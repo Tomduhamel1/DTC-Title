@@ -223,25 +223,25 @@ export default function LoanCalculator() {
         </div>
 
         {/* Savings Summary */}
-        <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 border-2 border-green-200">
+        <div className="bg-gradient-to-r from-emerald-50 to-emerald-50 rounded-xl p-4 border-2 border-emerald-200">
           <div className="text-center mb-3">
-            <div className="text-xs font-bold text-green-700 mb-1">YOUR TOTAL SAVINGS</div>
-            <div className="text-5xl font-black text-green-600">${firstYearSavings.toLocaleString()}</div>
+            <div className="text-xs font-bold text-emerald-700 mb-1">YOUR TOTAL SAVINGS</div>
+            <div className="text-5xl font-black text-emerald-600">${firstYearSavings.toLocaleString()}</div>
             <div className="text-xs text-gray-600">in the first year alone!</div>
           </div>
 
-          <div className="space-y-2 text-sm border-t border-green-200 pt-3">
+          <div className="space-y-2 text-sm border-t border-emerald-200 pt-3">
             <div className="flex justify-between">
               <span className="text-gray-700">Closing Cost Savings:</span>
-              <span className="font-bold text-green-700">${savings.totalSavings.toLocaleString()}</span>
+              <span className="font-bold text-emerald-700">${savings.totalSavings.toLocaleString()}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-700">Monthly Payment Savings:</span>
-              <span className="font-bold text-green-700">${monthlyPaymentSavings.toLocaleString()}/mo</span>
+              <span className="font-bold text-emerald-700">${monthlyPaymentSavings.toLocaleString()}/mo</span>
             </div>
-            <div className="border-t border-green-200 pt-2 flex justify-between">
+            <div className="border-t border-emerald-200 pt-2 flex justify-between">
               <span className="font-semibold text-gray-700">30-Year Total Savings:</span>
-              <span className="font-black text-green-700 text-lg">${totalThirtyYearSavings.toLocaleString()}</span>
+              <span className="font-black text-emerald-700 text-lg">${totalThirtyYearSavings.toLocaleString()}</span>
             </div>
           </div>
         </div>

@@ -199,10 +199,10 @@ export default function SideBySideCalculator() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-3 border border-green-200">
+            <div className="bg-gradient-to-r from-emerald-50 to-emerald-50 rounded-lg p-3 border border-emerald-200">
               <div className="text-center">
-                <div className="text-xs font-bold text-green-700 mb-1">YOU SAVE</div>
-                <div className="text-3xl font-black text-green-600">${closingCostSavings.totalSavings.toLocaleString()}</div>
+                <div className="text-xs font-bold text-emerald-700 mb-1">YOU SAVE</div>
+                <div className="text-3xl font-black text-emerald-600">${closingCostSavings.totalSavings.toLocaleString()}</div>
                 <div className="text-xs text-gray-600">on closing costs</div>
               </div>
             </div>
@@ -211,19 +211,19 @@ export default function SideBySideCalculator() {
           {/* What's Included */}
           <div className="mb-4 text-xs text-gray-600 space-y-1">
             <div className="flex items-center gap-2">
-              <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
               <span>Digital title & escrow</span>
             </div>
             <div className="flex items-center gap-2">
-              <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
               <span>Remote or in-person signing</span>
             </div>
             <div className="flex items-center gap-2">
-              <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
               <span>Works with any lender</span>
@@ -271,12 +271,12 @@ export default function SideBySideCalculator() {
                 </div>
 
                 {monthlyPaymentSavings > 0 ? (
-                  <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-3 border border-green-200">
+                  <div className="bg-gradient-to-r from-emerald-50 to-emerald-50 rounded-lg p-3 border border-emerald-200">
                     <div className="text-center">
-                      <div className="text-xs font-bold text-green-700 mb-1">ADDITIONAL SAVINGS</div>
-                      <div className="text-3xl font-black text-green-600">${monthlyPaymentSavings.toLocaleString()}</div>
+                      <div className="text-xs font-bold text-emerald-700 mb-1">ADDITIONAL SAVINGS</div>
+                      <div className="text-3xl font-black text-emerald-600">${monthlyPaymentSavings.toLocaleString()}</div>
                       <div className="text-xs text-gray-600 mb-1">per month</div>
-                      <div className="text-xs text-green-700 font-semibold">
+                      <div className="text-xs text-emerald-700 font-semibold">
                         ${thirtyYearPaymentSavings.toLocaleString()} over 30 years
                       </div>
                     </div>
@@ -294,19 +294,19 @@ export default function SideBySideCalculator() {
               {/* What's Included */}
               <div className="mb-4 text-xs text-gray-600 space-y-1">
                 <div className="flex items-center gap-2">
-                  <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <span>Pre-vetted lender partners</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <span>Competitive rates & fees</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <span>Seamless closing process</span>
@@ -346,19 +346,19 @@ export default function SideBySideCalculator() {
                 {/* What's Included */}
                 <div className="text-xs text-gray-600 space-y-1">
                   <div className="flex items-center gap-2">
-                    <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span>Pre-vetted lender partners</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span>Competitive rates & fees</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span>Seamless closing process</span>
@@ -380,7 +380,7 @@ export default function SideBySideCalculator() {
 
       {/* Combined Potential Savings - Only show if they entered rate */}
       {hasEnteredRate && monthlyPaymentSavings > 0 && (
-        <div className="mt-4 bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl p-4 text-white text-center">
+        <div className="mt-4 bg-gradient-to-r from-emerald-600 to-emerald-600 rounded-xl p-4 text-white text-center">
           <div className="text-sm font-bold mb-1">TOTAL POTENTIAL SAVINGS (WITH BOTH)</div>
           <div className="text-4xl font-black mb-1">${(closingCostSavings.totalSavings + thirtyYearPaymentSavings).toLocaleString()}</div>
           <div className="text-xs opacity-90">Closing savings + 30-year loan savings</div>

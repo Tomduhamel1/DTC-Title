@@ -103,7 +103,7 @@ export default function LendersPage() {
                 REQUEST
               </div>
               <div className="bg-gray-950 rounded-b-lg p-6 font-mono text-sm overflow-x-auto">
-                <pre className="text-green-400">
+                <pre className="text-emerald-400">
 {`POST /api/quote/quick
 
 {

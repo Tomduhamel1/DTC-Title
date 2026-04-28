@@ -98,16 +98,16 @@ export default function StorytellingSection({ homeValue, state, transactionType,
           {/* Rotating Savings Ideas */}
           {savingsIdeas.length > 0 && (
             <div className="inline-block">
-              <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-300 rounded-2xl px-8 py-4 shadow-lg">
+              <div className="bg-gradient-to-r from-emerald-50 to-emerald-50 border-2 border-emerald-300 rounded-2xl px-8 py-4 shadow-lg">
                 <div className="flex items-center gap-3">
-                  <div className="text-green-600">
+                  <div className="text-emerald-600">
                     <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
                   <div className="text-left">
-                    <div className="text-sm font-semibold text-green-700">Save ${estimatedSavings.toLocaleString()} = Enjoy</div>
-                    <div className="text-lg font-bold text-green-800 transition-all duration-500">
+                    <div className="text-sm font-semibold text-emerald-700">Save ${estimatedSavings.toLocaleString()} = Enjoy</div>
+                    <div className="text-lg font-bold text-emerald-800 transition-all duration-500">
                       {savingsIdeas[currentIdeaIndex].text}
                     </div>
                   </div>
@@ -231,10 +231,10 @@ export default function StorytellingSection({ homeValue, state, transactionType,
                 </div>
 
                 {/* Result */}
-                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 text-center border-2 border-green-400 shadow-lg">
-                  <div className="text-sm text-green-700 font-semibold mb-2">You Pay</div>
-                  <div className="text-4xl font-black text-green-700 mb-3">${(traditionalCost - estimatedSavings).toLocaleString()}</div>
-                  <div className="inline-flex items-center gap-2 bg-gradient-to-r from-green-600 to-emerald-600 text-white text-lg font-black px-6 py-3 rounded-full shadow-lg animate-pulse">
+                <div className="bg-gradient-to-br from-emerald-50 to-emerald-50 rounded-xl p-6 text-center border-2 border-emerald-400 shadow-lg">
+                  <div className="text-sm text-emerald-700 font-semibold mb-2">You Pay</div>
+                  <div className="text-4xl font-black text-emerald-700 mb-3">${(traditionalCost - estimatedSavings).toLocaleString()}</div>
+                  <div className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-emerald-600 text-white text-lg font-black px-6 py-3 rounded-full shadow-lg animate-pulse">
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>

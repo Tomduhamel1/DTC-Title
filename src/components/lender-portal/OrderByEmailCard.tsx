@@ -83,7 +83,7 @@ export default function OrderByEmailCard({ refId }: OrderByEmailCardProps) {
           </p>
           <a
             href={mailtoHref}
-            className="block w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg shadow transition-colors"
+            className="block w-full text-center bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg shadow transition-colors"
           >
             Email your order →
           </a>

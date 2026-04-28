@@ -26,7 +26,7 @@ export default function HeroOptionB() {
   }
 
   return (
-    <section className="relative bg-gradient-to-br from-primary-50 via-white to-green-50 py-20">
+    <section className="relative bg-gradient-to-br from-primary-50 via-white to-emerald-50 py-20">
       <div className="container mx-auto px-6">
         <div className="max-w-5xl mx-auto text-center">
           {/* Alert Badge */}
@@ -66,7 +66,7 @@ export default function HeroOptionB() {
           </h1>
 
           {/* Savings Result - BIG */}
-          <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-3xl p-12 shadow-2xl mb-8 transform hover:scale-105 transition-transform">
+          <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-3xl p-12 shadow-2xl mb-8 transform hover:scale-105 transition-transform">
             <div className="text-white">
               <div className="text-xl md:text-2xl font-bold mb-2">You could save</div>
               <div className="text-6xl md:text-7xl lg:text-8xl font-black mb-4">
@@ -77,12 +77,12 @@ export default function HeroOptionB() {
               </div>
               <div className="flex justify-center gap-8 text-sm md:text-base">
                 <div>
-                  <div className="text-green-100">They charge</div>
+                  <div className="text-emerald-100">They charge</div>
                   <div className="font-bold text-xl">{formatCurrency(savings.avgPrice)}</div>
                 </div>
                 <div className="text-4xl font-bold">→</div>
                 <div>
-                  <div className="text-green-100">We charge</div>
+                  <div className="text-emerald-100">We charge</div>
                   <div className="font-bold text-xl">{formatCurrency(savings.ourPrice)}</div>
                 </div>
               </div>
@@ -91,7 +91,7 @@ export default function HeroOptionB() {
 
           {/* Subheading */}
           <p className="text-2xl md:text-3xl text-gray-800 font-bold mb-4">
-            Same coverage. Same A-rated insurers. <span className="text-green-600">75% less cost.</span>
+            Same coverage. Same A-rated insurers. <span className="text-emerald-600">75% less cost.</span>
           </p>
 
           <p className="text-xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed">
@@ -115,19 +115,19 @@ export default function HeroOptionB() {
           {/* Trust Badges */}
           <div className="flex flex-wrap justify-center gap-6 mt-12 text-sm text-gray-700">
             <div className="flex items-center gap-2">
-              <svg className="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+              <svg className="w-6 h-6 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
               <span className="font-semibold">Licensed in all 50 states</span>
             </div>
             <div className="flex items-center gap-2">
-              <svg className="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+              <svg className="w-6 h-6 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
               <span className="font-semibold">A+ rated underwriters</span>
             </div>
             <div className="flex items-center gap-2">
-              <svg className="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+              <svg className="w-6 h-6 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
               <span className="font-semibold">12,000+ closings</span>

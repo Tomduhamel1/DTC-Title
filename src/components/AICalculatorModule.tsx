@@ -353,12 +353,12 @@ export default function AICalculatorModule({ compact = false }: AICalculatorModu
       </div>
 
       {/* Estimate Row - Redesigned */}
-      <div className={`bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg border-2 border-green-200 ${compact ? 'p-3' : 'p-4'}`}>
+      <div className={`bg-gradient-to-r from-emerald-50 to-emerald-50 rounded-lg border-2 border-emerald-200 ${compact ? 'p-3' : 'p-4'}`}>
         <div className={`flex items-start ${compact ? 'gap-3' : 'gap-6'}`}>
           {/* Left: Label and Amount Stacked */}
           <div className="flex flex-col gap-1">
-            <div className={`text-green-700 font-semibold uppercase tracking-wide ${compact ? 'text-xs' : 'text-xs'}`}>EST. SAVINGS:</div>
-            <div className={`font-black text-green-600 leading-none transition-all ${compact ? 'text-3xl' : 'text-5xl'} ${
+            <div className={`text-emerald-700 font-semibold uppercase tracking-wide ${compact ? 'text-xs' : 'text-xs'}`}>EST. SAVINGS:</div>
+            <div className={`font-black text-emerald-600 leading-none transition-all ${compact ? 'text-3xl' : 'text-5xl'} ${
               isLoading ? 'scale-110' : ''
             }`}>
               ${savings.totalSavings.toLocaleString()}
@@ -366,23 +366,23 @@ export default function AICalculatorModule({ compact = false }: AICalculatorModu
           </div>
 
           {/* Vertical Divider */}
-          <div className="border-l-2 border-green-300 self-stretch"></div>
+          <div className="border-l-2 border-emerald-300 self-stretch"></div>
 
           {/* Right: Details Vertically Centered */}
           <div className={`flex flex-col gap-2 ${compact ? 'text-xs' : 'text-sm'}`}>
             <div className="flex items-center gap-2 whitespace-nowrap">
               <span className="font-semibold text-gray-700">Closing:</span>
-              <span className="font-bold text-green-600">${savings.estimatedClosingCost.toLocaleString()}</span>
+              <span className="font-bold text-emerald-600">${savings.estimatedClosingCost.toLocaleString()}</span>
               <span className="text-gray-400">vs ${savings.averageClosingCost.toLocaleString()}</span>
             </div>
             <div className="flex items-center gap-2 whitespace-nowrap">
               <span className="font-semibold text-gray-700">Monthly:</span>
-              <span className="font-bold text-green-600">${savings.estimatedMonthlyImpact.toLocaleString()}/mo</span>
+              <span className="font-bold text-emerald-600">${savings.estimatedMonthlyImpact.toLocaleString()}/mo</span>
               <span className="text-gray-400">vs ${savings.averageMonthlyImpact.toLocaleString()}/mo</span>
             </div>
             <div className="flex items-center gap-2 whitespace-nowrap">
               <span className="font-semibold text-gray-700">Lifetime:</span>
-              <span className="font-bold text-green-600">${savings.lifetimeSavings.toLocaleString()} saved over loan</span>
+              <span className="font-bold text-emerald-600">${savings.lifetimeSavings.toLocaleString()} saved over loan</span>
             </div>
           </div>
         </div>

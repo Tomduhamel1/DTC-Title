@@ -49,7 +49,7 @@ export default function NextStepsPanel({
         {/* Primary tile — same in both modes */}
         <button
           onClick={() => setShareOpen(true)}
-          className="w-full bg-gradient-to-br from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-2xl p-6 text-left shadow-md hover:shadow-lg transition-all group"
+          className="w-full bg-gradient-to-br from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white rounded-2xl p-6 text-left shadow-md hover:shadow-lg transition-all group"
         >
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1">
@@ -63,7 +63,7 @@ export default function NextStepsPanel({
                   ? 'Send BetterClose to my team'
                   : 'Send BetterClose to my lender or agent'}
               </h3>
-              <p className="text-sm text-green-50">
+              <p className="text-sm text-emerald-50">
                 Text, email, or copy a link — your choice. We can email them for you too.
               </p>
             </div>

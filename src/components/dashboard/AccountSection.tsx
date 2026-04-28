@@ -61,7 +61,7 @@ export default function AccountSection({ accountSteps }: AccountSectionProps) {
                   <div className="mt-3">
                     <button
                       onClick={() => setShareOpen(true)}
-                      className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold px-5 py-2.5 rounded-lg shadow transition-colors"
+                      className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-lg shadow transition-colors"
                     >
                       Send BetterClose to my team →
                     </button>

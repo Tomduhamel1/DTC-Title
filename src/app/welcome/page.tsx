@@ -69,7 +69,7 @@ function WelcomeInner() {
                 <button
                   type="submit"
                   disabled={!valid || submitting}
-                  className="w-full py-3 rounded-lg bg-green-600 hover:bg-green-700 text-white font-bold shadow transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full py-3 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold shadow transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {submitting ? 'Sending sign-in link…' : 'Email me a sign-in link →'}
                 </button>

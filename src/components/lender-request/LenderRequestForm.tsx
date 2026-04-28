@@ -71,7 +71,7 @@ export default function LenderRequestForm({
           <button
             onClick={handleSubmit}
             disabled={submitting}
-            className="flex-[2] py-3 rounded-lg bg-green-600 hover:bg-green-700 text-white font-bold shadow transition-colors disabled:opacity-60"
+            className="flex-[2] py-3 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold shadow transition-colors disabled:opacity-60"
           >
             {submitting ? 'Sending…' : 'Send email'}
           </button>
@@ -161,7 +161,7 @@ export default function LenderRequestForm({
       <button
         onClick={() => setStep('preview')}
         disabled={!valid}
-        className="w-full mt-4 py-3 rounded-lg bg-green-600 hover:bg-green-700 text-white font-bold shadow transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full mt-4 py-3 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold shadow transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       >
         Preview email →
       </button>

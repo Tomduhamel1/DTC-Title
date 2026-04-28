@@ -302,11 +302,11 @@ export default function AICalculator() {
       </div>
 
       {/* Single Line Estimate Row */}
-      <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-3 border-2 border-green-200">
+      <div className="bg-gradient-to-r from-emerald-50 to-emerald-50 rounded-lg p-3 border-2 border-emerald-200">
         <div className="flex items-center justify-between text-sm">
           <div className="flex items-baseline gap-2">
-            <span className="text-xs text-green-700 font-semibold">EST. SAVINGS:</span>
-            <span className={`text-2xl font-black text-green-600 transition-all ${
+            <span className="text-xs text-emerald-700 font-semibold">EST. SAVINGS:</span>
+            <span className={`text-2xl font-black text-emerald-600 transition-all ${
               isLoading ? 'scale-110' : ''
             }`}>
               ${savings.totalSavings.toLocaleString()}

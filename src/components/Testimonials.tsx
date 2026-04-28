@@ -79,7 +79,7 @@ export default function Testimonials() {
               </p>
 
               {/* Savings Badge */}
-              <div className="inline-block bg-green-50 text-green-700 px-4 py-2 rounded-lg font-bold">
+              <div className="inline-block bg-emerald-50 text-emerald-700 px-4 py-2 rounded-lg font-bold">
                 Saved ${testimonial.savings.toLocaleString()}
               </div>
 

@@ -148,7 +148,7 @@ export default function QuotePage() {
           <button
             type="submit"
             disabled={!valid || submitting}
-            className="w-full bg-green-600 hover:bg-green-700 text-white font-bold text-lg py-4 rounded-lg shadow-md transition-colors disabled:opacity-60"
+            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg py-4 rounded-lg shadow-md transition-colors disabled:opacity-60"
           >
             {submitting ? 'Building your estimate…' : 'Get my fee estimate'}
           </button>

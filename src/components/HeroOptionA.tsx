@@ -16,7 +16,7 @@ export default function HeroOptionA() {
             <div className="text-left">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-dark-900 leading-tight mb-6">
                 Don't overpay for closing costs!
-                <span className="block text-green-600 mt-3">
+                <span className="block text-emerald-600 mt-3">
                   Save ${savings.totalSavings.toLocaleString()}
                 </span>
               </h1>
@@ -26,14 +26,14 @@ export default function HeroOptionA() {
               </p>
 
               <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                You have a choice in title insurance. Keep the same professionals, get the same A-rated protection – just pay <span className="font-bold text-green-600">75% less</span>.
+                You have a choice in title insurance. Keep the same professionals, get the same A-rated protection – just pay <span className="font-bold text-emerald-600">75% less</span>.
               </p>
 
-              <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-l-4 border-green-500 p-6 rounded-r-lg mb-8 shadow-lg">
+              <div className="bg-gradient-to-r from-emerald-50 to-emerald-50 border-l-4 border-emerald-500 p-6 rounded-r-lg mb-8 shadow-lg">
                 <div className="flex items-start gap-4">
                   <div className="text-4xl">💰</div>
                   <div>
-                    <div className="font-black text-2xl text-green-700 mb-1">
+                    <div className="font-black text-2xl text-emerald-700 mb-1">
                       Average savings: ${savings.totalSavings.toLocaleString()}
                     </div>
                     <div className="text-gray-700">
@@ -45,19 +45,19 @@ export default function HeroOptionA() {
 
               <div className="flex flex-wrap gap-4 text-sm text-gray-600">
                 <div className="flex items-center gap-2">
-                  <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   <span>Same A-rated underwriters</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   <span>Licensed in all 50 states</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   <span>Closes in days, not weeks</span>

@@ -174,7 +174,7 @@ export default function OnboardingForm({ closingId, userName, userEmail }: Onboa
         <button
           type="submit"
           disabled={!valid || submitting}
-          className="w-full py-3.5 rounded-lg bg-green-600 hover:bg-green-700 text-white font-bold shadow transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full py-3.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold shadow transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {submitting ? 'Setting up…' : 'Open my dashboard →'}
         </button>

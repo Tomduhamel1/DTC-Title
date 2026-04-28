@@ -56,7 +56,7 @@ export default function PortalWaitlist({ title, description, portalType }: Porta
             </p>
           </form>
         ) : (
-          <div className="bg-green-500 text-white px-8 py-6 rounded-xl max-w-md mx-auto">
+          <div className="bg-emerald-500 text-white px-8 py-6 rounded-xl max-w-md mx-auto">
             <svg className="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>

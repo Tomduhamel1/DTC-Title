@@ -43,6 +43,9 @@ export default function HomePageCredible({ heroVersion = 'A' }: HomePageCredible
           <HeroOptionA />
         )}
 
+        {/* Trust Strip — pillars + stats (moved up to anchor the value prop) */}
+        <TrustStripSection />
+
         {/* Fee Estimate Preview */}
         <FeeReportPreviewSection />
 
@@ -60,9 +63,6 @@ export default function HomePageCredible({ heroVersion = 'A' }: HomePageCredible
 
         {/* Underwriter Logos */}
         <UnderwriterLogos />
-
-        {/* Trust Strip — pillars + stats */}
-        <TrustStripSection />
 
         {/* FAQ Section */}
         <FAQSection />

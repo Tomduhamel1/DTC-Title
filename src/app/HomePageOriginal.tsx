@@ -59,7 +59,7 @@ export default function HomePageOriginal({ hideSavingsCards = false, useAlternat
                     alt="Customer service representative"
                     className="w-16 h-16 rounded-full object-cover border-3 border-primary-400 shadow-lg"
                   />
-                  <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-green-500 rounded-full border-3 border-white flex items-center justify-center shadow-md">
+                  <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-emerald-500 rounded-full border-3 border-white flex items-center justify-center shadow-md">
                     <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                     </svg>
@@ -119,20 +119,20 @@ export default function HomePageOriginal({ hideSavingsCards = false, useAlternat
               {/* Savings Preview Cards */}
               {!hideSavingsCards && (
                 <div className="grid grid-cols-2 gap-4 mb-8">
-                  <div className="bg-white rounded-xl shadow-lg p-4 text-center border-2 border-green-200">
+                  <div className="bg-white rounded-xl shadow-lg p-4 text-center border-2 border-emerald-200">
                     <div className="text-xs font-semibold text-gray-500 mb-2">TEXAS • $500K HOME</div>
                     <div className="text-sm text-gray-500 mb-1">Others charge</div>
                     <div className="text-lg font-bold text-gray-400 line-through mb-1">$1,600</div>
-                    <div className="text-xs font-bold text-green-700 mb-1">YOU SAVE</div>
-                    <div className="text-5xl font-black text-green-600 mb-2">-$800</div>
+                    <div className="text-xs font-bold text-emerald-700 mb-1">YOU SAVE</div>
+                    <div className="text-5xl font-black text-emerald-600 mb-2">-$800</div>
                     <div className="text-xs text-gray-600">Pay only <span className="font-bold text-gray-800">$800</span></div>
                   </div>
-                  <div className="bg-white rounded-xl shadow-lg p-4 text-center border-2 border-green-200">
+                  <div className="bg-white rounded-xl shadow-lg p-4 text-center border-2 border-emerald-200">
                     <div className="text-xs font-semibold text-gray-500 mb-2">CALIFORNIA • $750K</div>
                     <div className="text-sm text-gray-500 mb-1">Others charge</div>
                     <div className="text-lg font-bold text-gray-400 line-through mb-1">$2,400</div>
-                    <div className="text-xs font-bold text-green-700 mb-1">YOU SAVE</div>
-                    <div className="text-5xl font-black text-green-600 mb-2">-$950</div>
+                    <div className="text-xs font-bold text-emerald-700 mb-1">YOU SAVE</div>
+                    <div className="text-5xl font-black text-emerald-600 mb-2">-$950</div>
                     <div className="text-xs text-gray-600">Pay only <span className="font-bold text-gray-800">$1,450</span></div>
                   </div>
                 </div>
@@ -141,7 +141,7 @@ export default function HomePageOriginal({ hideSavingsCards = false, useAlternat
               {/* Trust Badges */}
               <div className="mb-6">
                 <div className="flex items-center gap-2 mb-2">
-                  <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   <span className="font-bold text-dark-900">Works with ANY lender you choose</span>
@@ -275,7 +275,7 @@ export default function HomePageOriginal({ hideSavingsCards = false, useAlternat
                 </div>
               </div>
 
-              <div className="inline-block bg-green-100 text-green-700 px-4 py-2 rounded-lg font-bold text-lg">
+              <div className="inline-block bg-emerald-100 text-emerald-700 px-4 py-2 rounded-lg font-bold text-lg">
                 Save -$800
               </div>
             </div>
@@ -304,7 +304,7 @@ export default function HomePageOriginal({ hideSavingsCards = false, useAlternat
                 </div>
               </div>
 
-              <div className="inline-block bg-green-100 text-green-700 px-4 py-2 rounded-lg font-bold text-lg">
+              <div className="inline-block bg-emerald-100 text-emerald-700 px-4 py-2 rounded-lg font-bold text-lg">
                 Save -$950
               </div>
             </div>
@@ -333,7 +333,7 @@ export default function HomePageOriginal({ hideSavingsCards = false, useAlternat
                 </div>
               </div>
 
-              <div className="inline-block bg-green-100 text-green-700 px-4 py-2 rounded-lg font-bold text-lg">
+              <div className="inline-block bg-emerald-100 text-emerald-700 px-4 py-2 rounded-lg font-bold text-lg">
                 Save -$800
               </div>
             </div>

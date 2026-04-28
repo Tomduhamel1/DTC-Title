@@ -152,29 +152,29 @@ export default function ShareWithTeamSheet({
         {view === 'menu' ? (
           <div className="p-3">
             <ChannelRow
-              icon="📱"
+              icon={<MailIcon />}
+              title="Email it from your inbox"
+              hint="Recommended — comes directly from you, not us"
+              onClick={handleMailto}
+              highlight
+            />
+            <ChannelRow
+              icon={<SmsIcon />}
               title="Text it (SMS)"
               hint="Opens your messages app"
               onClick={handleSms}
             />
             <ChannelRow
-              icon="✉️"
-              title="Email it (your mail app)"
-              hint="Opens your email app, prefilled"
-              onClick={handleMailto}
-            />
-            <ChannelRow
-              icon="✨"
-              title="We’ll email your lender for you"
-              hint="Pre-written, professional. We CC you."
-              onClick={() => setView('we-email')}
-              highlight
-            />
-            <ChannelRow
-              icon="🔗"
+              icon={<LinkIcon />}
               title="Copy link"
               hint="Paste it anywhere"
               onClick={handleCopy}
+            />
+            <ChannelRow
+              icon={<SparkleIcon />}
+              title="We'll send it on your behalf"
+              hint="Last resort — easier to ignore than a note from you"
+              onClick={() => setView('we-email')}
             />
           </div>
         ) : view === 'we-email' ? (
@@ -268,7 +268,7 @@ function ChannelRow({
   onClick,
   highlight = false,
 }: {
-  icon: string
+  icon: React.ReactNode
   title: string
   hint: string
   onClick: () => void
@@ -281,7 +281,12 @@ function ChannelRow({
         highlight ? 'bg-emerald-50 hover:bg-emerald-100' : 'hover:bg-gray-50'
       }`}
     >
-      <span className="text-2xl flex-shrink-0" aria-hidden="true">
+      <span
+        className={`flex-shrink-0 inline-flex items-center justify-center w-10 h-10 rounded-full ${
+          highlight ? 'bg-emerald-200 text-emerald-700' : 'bg-gray-100 text-gray-700'
+        }`}
+        aria-hidden="true"
+      >
         {icon}
       </span>
       <div className="flex-1 min-w-0">
@@ -292,5 +297,45 @@ function ChannelRow({
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
       </svg>
     </button>
+  )
+}
+
+const baseIconProps = {
+  className: 'w-5 h-5',
+  fill: 'none',
+  stroke: 'currentColor',
+  viewBox: '0 0 24 24',
+  strokeWidth: 1.75,
+} as const
+
+function SmsIcon() {
+  return (
+    <svg {...baseIconProps}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.86 9.86 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+    </svg>
+  )
+}
+
+function MailIcon() {
+  return (
+    <svg {...baseIconProps}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+    </svg>
+  )
+}
+
+function SparkleIcon() {
+  return (
+    <svg {...baseIconProps}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4M4 19h4M13 3l3.5 8L24 13l-7.5 2L13 23l-3.5-8L2 13l7.5-2L13 3z" />
+    </svg>
+  )
+}
+
+function LinkIcon() {
+  return (
+    <svg {...baseIconProps}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+    </svg>
   )
 }

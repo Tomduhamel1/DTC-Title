@@ -86,7 +86,7 @@ export default function HowItWorksSection() {
                 <p className="text-gray-600 leading-relaxed mb-4">{step.description}</p>
 
                 {/* Highlight Badge */}
-                <div className="inline-block bg-green-50 text-green-700 px-4 py-2 rounded-lg font-bold text-sm">
+                <div className="inline-block bg-emerald-50 text-emerald-700 px-4 py-2 rounded-lg font-bold text-sm">
                   ✓ {step.highlight}
                 </div>
               </div>
@@ -98,7 +98,7 @@ export default function HowItWorksSection() {
         <div className="text-center">
           <button
             onClick={() => setShareOpen(true)}
-            className="inline-flex items-center gap-3 bg-green-600 text-white px-10 py-4 rounded-xl font-bold text-xl hover:bg-green-700 transition-all shadow-xl hover:shadow-2xl hover:scale-105 group"
+            className="inline-flex items-center gap-3 bg-emerald-600 text-white px-10 py-4 rounded-xl font-bold text-xl hover:bg-emerald-700 transition-all shadow-xl hover:shadow-2xl hover:scale-105 group"
           >
             <span>Send BetterClose to my team</span>
             <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

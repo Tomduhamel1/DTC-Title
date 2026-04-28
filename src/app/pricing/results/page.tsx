@@ -265,7 +265,7 @@ export default function PricingResultsPage() {
                               {formatCurrency(item.trueFeeClosing)}
                             </span>
                             {item.savings > 0 && (
-                              <span className="text-xs text-green-600 font-medium bg-green-50 px-2 py-1 rounded">
+                              <span className="text-xs text-emerald-600 font-medium bg-emerald-50 px-2 py-1 rounded">
                                 Save -{formatCurrency(item.savings)}
                               </span>
                             )}
@@ -678,11 +678,11 @@ export default function PricingResultsPage() {
 
               {/* Success Message */}
               {submitSuccess && (
-                <div className="bg-green-50 border border-green-200 rounded-xl p-6">
-                  <h3 className="font-bold text-green-900 mb-2">
+                <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-6">
+                  <h3 className="font-bold text-emerald-900 mb-2">
                     ✓ Thank you! Your information has been saved.
                   </h3>
-                  <p className="text-green-800 text-sm">
+                  <p className="text-emerald-800 text-sm">
                     {selectedPath === 'referral'
                       ? 'A lending partner will reach out to you shortly with personalized loan options.'
                       : 'Your mortgage scenario has been saved. You can view it in your dashboard.'}

@@ -101,16 +101,11 @@ export default function AboutPage() {
             Serving All 50 States
           </h2>
           <p className="text-xl text-gray-700 mb-8">
-            Licensed and regulated nationwide. Whether you're buying in California, Texas, Florida, New York, or anywhere in the US, we're here to help you save.
+            Directly licensed in 34 states, with workshare partners covering
+            the remaining 16. Whether you're buying in California, Texas,
+            Florida, New York, or anywhere in the US, you get the same
+            BetterClose pricing and digital experience.
           </p>
-          <div className="bg-primary-50 rounded-2xl p-8">
-            <p className="text-gray-700 mb-4">
-              <strong>Headquartered in:</strong> Austin, Texas
-            </p>
-            <p className="text-gray-700">
-              <strong>Operating since:</strong> 2018 (as part of First National Title & Escrow)
-            </p>
-          </div>
         </div>
       </section>
 

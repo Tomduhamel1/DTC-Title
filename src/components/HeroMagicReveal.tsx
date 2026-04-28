@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { estimateLifetimeSavings } from '@/lib/regionRates'
+import { useSavings } from '@/contexts/SavingsContext'
 
 const STATES = [
   'AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY','DC',
@@ -16,8 +17,8 @@ export default function HeroMagicReveal() {
   const [state, setState] = useState<string | null>(null)
   const [city, setCity] = useState<string | null>(null)
   const [editingLocation, setEditingLocation] = useState(false)
+  const { savings: ctxSavings, setSavings } = useSavings()
 
-  // IP geolocation on mount. Failure is silent — we just default to national.
   useEffect(() => {
     let cancelled = false
     fetch('/api/geo')
@@ -34,23 +35,27 @@ export default function HeroMagicReveal() {
   }, [])
 
   const savings = estimateLifetimeSavings(homeValue, mode, state)
-  const locationLabel = city
-    ? `${city}${state ? `, ${state}` : ''}`
-    : state
-    ? state
-    : 'your area'
+
+  // Push hero savings into the shared SavingsContext so downstream sections
+  // (TeamTrustSection, etc.) display the same number the user is seeing here.
+  useEffect(() => {
+    setSavings({ ...ctxSavings, totalSavings: savings, lifetimeSavings: savings })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [savings])
+
   const headlineCopy =
     mode === 'refinance'
-      ? `${city ? `Refinancing in ${city}?` : 'Refinancing?'} You'd save`
+      ? `${city ? `Refinancings in ${city}` : 'Refinancings in your area'} save on average`
       : `${city ? `Buyers in ${city}` : 'Buyers in your area'} save on average`
 
   return (
-    <section className="relative bg-gradient-to-br from-primary-50 to-white py-12 md:py-16 px-6">
+    <section className="relative bg-white py-12 md:py-16 px-6">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
         {/* Left: hero copy */}
         <div className="text-left">
-          <div className="inline-block bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
-            ✓ Same realtor. Same lender. Better cost.
+          <div className="inline-flex items-center gap-2 bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
+            <span className="text-emerald-600">✓</span>
+            <span>Same realtor. Same lender. Better cost.</span>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-dark-900 leading-tight mb-5">
             Don't overpay for closing costs.
@@ -59,12 +64,12 @@ export default function HeroMagicReveal() {
           <p className="text-lg text-gray-700 mb-6 leading-relaxed">
             BetterClose handles your title and settlement at a fair price.
             Same A-rated underwriters every other title company uses — just up
-            to <strong>75% less</strong>.
+            to <strong>50% less</strong>.
           </p>
           <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-600">
-            <span className="flex items-center gap-1.5">✓ <span>50 states</span></span>
-            <span className="flex items-center gap-1.5">✓ <span>Bonded $5M</span></span>
-            <span className="flex items-center gap-1.5">✓ <span>30,000+ closings</span></span>
+            <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>50 states</span></span>
+            <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>Bonded $5M</span></span>
+            <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>30,000+ closings</span></span>
           </div>
         </div>
 
@@ -72,7 +77,7 @@ export default function HeroMagicReveal() {
         <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-6 md:p-7">
           <div className="text-center mb-5">
             {/* Purchase / Refinance toggle */}
-            <div className="inline-flex p-1 bg-gray-100 rounded-full mb-3">
+            <div className="inline-flex p-1 bg-gray-100 rounded-full mb-4">
               <button
                 onClick={() => setMode('purchase')}
                 className={`px-5 py-1.5 rounded-full text-sm font-bold transition-all ${
@@ -91,13 +96,13 @@ export default function HeroMagicReveal() {
               </button>
             </div>
 
-            <div className="text-[11px] font-bold uppercase tracking-[0.25em] text-emerald-700 mb-1">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-500 mb-1">
               📍 {headlineCopy}
             </div>
             <div className="text-6xl md:text-7xl font-black text-emerald-600 tabular-nums leading-none">
               ${savings.toLocaleString()}
             </div>
-            <div className="text-xs text-gray-500 mt-1">
+            <div className="text-xs text-gray-500 mt-2">
               over the life of a 30-year mortgage
             </div>
           </div>
@@ -163,7 +168,7 @@ export default function HeroMagicReveal() {
                 </select>
                 <button
                   onClick={() => setEditingLocation(false)}
-                  className="text-emerald-700 underline"
+                  className="text-emerald-600 underline"
                 >
                   done
                 </button>

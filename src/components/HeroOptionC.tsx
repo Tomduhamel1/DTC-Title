@@ -28,7 +28,7 @@ export default function HeroOptionC() {
               <div className="mb-8">
                 <button
                   onClick={() => setShareOpen(true)}
-                  className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold text-lg px-7 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all group"
+                  className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg px-7 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all group"
                 >
                   Send BetterClose to my team
                   <svg className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
@@ -43,7 +43,7 @@ export default function HeroOptionC() {
               {/* Trust strip */}
               <div>
                 <div className="flex items-center gap-2 mb-3">
-                  <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
                     <path
                       fillRule="evenodd"
                       d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"

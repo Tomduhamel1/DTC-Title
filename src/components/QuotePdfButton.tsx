@@ -76,7 +76,7 @@ export default function QuotePdfButton({
       </button>
 
       {pdfUrl && (
-        <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg">
+        <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 px-4 py-3 rounded-lg">
           <p className="font-semibold mb-2">
             {sendEmail ? '✓ PDF generated and sent!' : '✓ PDF generated!'}
           </p>
@@ -84,7 +84,7 @@ export default function QuotePdfButton({
             href={pdfUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-green-600 hover:text-green-800 underline"
+            className="text-emerald-600 hover:text-emerald-800 underline"
           >
             View PDF
           </a>

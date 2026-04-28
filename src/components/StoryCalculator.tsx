@@ -266,7 +266,7 @@ export default function StoryCalculator() {
                     alt="Customer service representative"
                     className="w-16 h-16 rounded-full object-cover border-3 border-primary-400 shadow-lg"
                   />
-                  <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-green-500 rounded-full border-3 border-white flex items-center justify-center shadow-md">
+                  <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-emerald-500 rounded-full border-3 border-white flex items-center justify-center shadow-md">
                     <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                     </svg>
@@ -303,7 +303,7 @@ export default function StoryCalculator() {
       </div>
 
       {/* The Savings Banner - FULL WIDTH */}
-      <div className="w-full bg-gradient-to-r from-green-500 to-emerald-600 py-12">
+      <div className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 py-12">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <div className="text-white/80 text-sm md:text-base font-semibold mb-2">
             In {selectedState} for a ${(homeValueNum || 500000).toLocaleString()} home
@@ -323,7 +323,7 @@ export default function StoryCalculator() {
             <div className="max-w-2xl mx-auto mt-8">
               <div className="bg-emerald-400 rounded-lg p-4 shadow-lg">
                 <div className="text-emerald-900 text-xs uppercase tracking-wide font-bold mb-1">That's enough for</div>
-                <div className="text-xl md:text-2xl font-black text-green-900 transition-all duration-500">
+                <div className="text-xl md:text-2xl font-black text-emerald-900 transition-all duration-500">
                   <span className="text-3xl mr-2">{savingsIdeas[currentIdeaIndex].emoji}</span>
                   {savingsIdeas[currentIdeaIndex].text}
                 </div>
@@ -348,7 +348,7 @@ export default function StoryCalculator() {
                     className="w-48 h-48 rounded-2xl object-cover border-4 border-primary-500 shadow-2xl"
                   />
                   {/* Online Chat Indicator */}
-                  <div className="absolute -bottom-3 -right-3 bg-green-500 text-white px-4 py-2 rounded-full shadow-xl flex items-center gap-2 border-4 border-white">
+                  <div className="absolute -bottom-3 -right-3 bg-emerald-500 text-white px-4 py-2 rounded-full shadow-xl flex items-center gap-2 border-4 border-white">
                     <svg className="w-4 h-4 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clipRule="evenodd" />
                     </svg>
@@ -397,8 +397,8 @@ export default function StoryCalculator() {
               {/* Trust Points */}
               <div className="space-y-4 mb-8">
                 <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mt-1">
-                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="flex-shrink-0 w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center mt-1">
+                    <svg className="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
@@ -409,8 +409,8 @@ export default function StoryCalculator() {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mt-1">
-                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="flex-shrink-0 w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center mt-1">
+                    <svg className="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
@@ -421,8 +421,8 @@ export default function StoryCalculator() {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mt-1">
-                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="flex-shrink-0 w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center mt-1">
+                    <svg className="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
@@ -699,11 +699,11 @@ export default function StoryCalculator() {
             </div>
 
             {/* Single Line Estimate Row */}
-            <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-3 border-2 border-green-200">
+            <div className="bg-gradient-to-r from-emerald-50 to-emerald-50 rounded-lg p-3 border-2 border-emerald-200">
               <div className="flex items-center justify-between text-sm">
                 <div className="flex items-baseline gap-2">
-                  <span className="text-xs text-green-700 font-semibold">EST. SAVINGS:</span>
-                  <span className={`text-2xl font-black text-green-600 transition-all ${
+                  <span className="text-xs text-emerald-700 font-semibold">EST. SAVINGS:</span>
+                  <span className={`text-2xl font-black text-emerald-600 transition-all ${
                     isLoading ? 'scale-110' : ''
                   }`}>
                     ${savings.totalSavings.toLocaleString()}
