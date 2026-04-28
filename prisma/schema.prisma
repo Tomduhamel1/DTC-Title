@@ -238,6 +238,7 @@ model User {
   sessions Session[]
   closings Closing[] @relation("UserClosings")
   lenderRequests LenderRequest[]
+  notifications NotificationLog[]
 
   @@index([phone])
 }
@@ -318,11 +319,19 @@ model Closing {
   status String @default("pending")
   source String?
 
+  // Snapshot of the fee report at the moment this closing was marked `closed`.
+  // Frozen so the final-summary email and any post-close dashboard view show
+  // the actual savings the customer locked in, not whatever the live fee API
+  // returns later.
+  snapshotFeeReport Json?
+  closedAt DateTime?
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   milestones Milestone[]
   lenderRequests LenderRequest[]
+  notifications NotificationLog[]
 
   @@index([userId])
   @@index([propertyAddressKey])
@@ -339,6 +348,7 @@ model Milestone {
   kind        String    // loan_locked | title_ordered | title_search | title_issued | closed
   status      String    @default("pending") // pending | active | done
   completedAt DateTime?
+  notifiedAt  DateTime? // when the user was emailed about this milestone reaching `done`
   metadata    Json?
 
   createdAt DateTime @default(now())
@@ -386,4 +396,45 @@ model LenderRequest {
   @@index([channel])
   @@index([userId])
   @@index([closingId])
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NotificationLog — every transactional email (or other notification) we send,
+// recorded so admins can audit "did the user get this, when, and from whom".
+// One row per send attempt; failures stay in the table with status=failed.
+// ─────────────────────────────────────────────────────────────────────────────
+
+model NotificationLog {
+  id        String   @id @default(cuid())
+
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  closingId String?
+  closing   Closing? @relation(fields: [closingId], references: [id], onDelete: SetNull)
+
+  // Channel of delivery — currently only 'email', but leaves room for sms etc.
+  channel   String   @default("email")
+
+  // Logical kind of notification. Use prefixes to keep this groupable, e.g.
+  // 'milestone:loan_locked', 'milestone:closed', 'magic_link',
+  // 'lender_invite', 'admin_resend:closing_update'.
+  kind      String
+
+  // Where it was sent and what it said.
+  recipient String
+  subject   String
+
+  // Provider message id (SES MessageId) when the send succeeded.
+  providerMessageId String?
+
+  // sent | failed | skipped (e.g. dry-run)
+  status    String   @default("sent")
+  error     String?
+
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([closingId])
+  @@index([kind])
+  @@index([createdAt])
 }
