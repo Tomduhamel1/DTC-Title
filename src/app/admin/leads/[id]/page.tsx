@@ -1,6 +1,7 @@
 import { prisma } from '@/lib/db'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import { requireAdmin } from '@/lib/auth/admin'
 
 export const dynamic = 'force-dynamic'
 
@@ -38,6 +39,7 @@ interface PageProps {
 }
 
 export default async function LeadDetailPage({ params }: PageProps) {
+  await requireAdmin()
   const { id } = await params
   const lead = await getLead(id)
 
@@ -68,7 +70,7 @@ export default async function LeadDetailPage({ params }: PageProps) {
       case 'contacted':
         return 'bg-yellow-100 text-yellow-800'
       case 'qualified':
-        return 'bg-green-100 text-green-800'
+        return 'bg-emerald-100 text-emerald-800'
       case 'closed':
         return 'bg-purple-100 text-purple-800'
       case 'lost':
@@ -313,7 +315,7 @@ export default async function LeadDetailPage({ params }: PageProps) {
                     </h4>
                     <div className="space-y-4">
                       {lead.mortgageReferrals.map((referral) => (
-                        <div key={referral.id} className="border border-green-200 rounded-lg p-4 bg-green-50">
+                        <div key={referral.id} className="border border-emerald-200 rounded-lg p-4 bg-emerald-50">
                           <div className="flex justify-between items-start mb-3">
                             <div>
                               <div className="font-semibold text-gray-900">
@@ -336,7 +338,7 @@ export default async function LeadDetailPage({ params }: PageProps) {
                                     : referral.status === 'quoted'
                                     ? 'bg-purple-100 text-purple-800'
                                     : referral.status === 'closed'
-                                    ? 'bg-green-100 text-green-800'
+                                    ? 'bg-emerald-100 text-emerald-800'
                                     : 'bg-red-100 text-red-800'
                                 }`}
                               >
@@ -370,7 +372,7 @@ export default async function LeadDetailPage({ params }: PageProps) {
                             </div>
                           </div>
 
-                          <div className="mt-3 pt-3 border-t border-green-200 grid grid-cols-2 gap-4 text-sm">
+                          <div className="mt-3 pt-3 border-t border-emerald-200 grid grid-cols-2 gap-4 text-sm">
                             <div>
                               <div className="text-gray-600">Term Preference</div>
                               <div className="font-semibold">
@@ -386,23 +388,23 @@ export default async function LeadDetailPage({ params }: PageProps) {
                           </div>
 
                           {referral.requestedLoanAmount && (
-                            <div className="mt-3 pt-3 border-t border-green-200">
+                            <div className="mt-3 pt-3 border-t border-emerald-200">
                               <div className="text-gray-600 text-sm">Requested Loan Amount</div>
-                              <div className="font-bold text-lg text-green-700">
+                              <div className="font-bold text-lg text-emerald-700">
                                 {formatCurrency(referral.requestedLoanAmount)}
                               </div>
                             </div>
                           )}
 
                           {referral.notes && (
-                            <div className="mt-3 pt-3 border-t border-green-200">
+                            <div className="mt-3 pt-3 border-t border-emerald-200">
                               <div className="text-gray-600 text-sm">Notes</div>
                               <div className="text-gray-800 text-sm mt-1">{referral.notes}</div>
                             </div>
                           )}
 
                           {referral.partnerContactedAt && (
-                            <div className="mt-3 pt-3 border-t border-green-200 text-xs text-gray-500">
+                            <div className="mt-3 pt-3 border-t border-emerald-200 text-xs text-gray-500">
                               Partner contacted on {formatDate(referral.partnerContactedAt)}
                             </div>
                           )}
