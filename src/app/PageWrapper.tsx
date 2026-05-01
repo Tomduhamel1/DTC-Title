@@ -49,6 +49,6 @@ export default function PageWrapper() {
     return <HomePage hideSavingsCards={true} useAlternateHero={true} />
   }
 
-  // Default to ai2 variant (new hero language, no savings cards, AI calculator)
-  return <HomePage hideSavingsCards={true} useAlternateHero={true} />
+  // Default homepage: Magic Reveal hero
+  return <HomePageCredible heroVersion="magic" />
 }

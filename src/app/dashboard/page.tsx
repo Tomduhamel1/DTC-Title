@@ -5,6 +5,7 @@ import { requireUser } from '@/lib/auth/session'
 import { getOrCreateClosingForUser } from '@/lib/closing'
 import { prisma } from '@/lib/db'
 import DashboardHome from '@/components/dashboard/DashboardHome'
+import DashboardHomeUnified from '@/components/dashboard/DashboardHomeUnified'
 import OnboardingForm from '@/components/dashboard/OnboardingForm'
 import type { AccountStep } from '@/components/dashboard/AccountSection'
 
@@ -28,7 +29,7 @@ function formatSentDetail(invite: { createdAt: Date; channel: string; lenderEmai
 export default async function DashboardPage({
   searchParams,
 }: {
-  searchParams?: { claim?: string }
+  searchParams?: { claim?: string; variant?: string }
 }) {
   const user = await requireUser()
   if (!user) {
@@ -101,6 +102,13 @@ export default async function DashboardPage({
         <div className="max-w-5xl mx-auto">
           {needsOnboarding ? (
             <OnboardingForm closingId={closing.id} userName={user.name} userEmail={user.email} />
+          ) : searchParams?.variant === 'unified' ? (
+            <DashboardHomeUnified
+              closing={closing}
+              userName={user.name}
+              userEmail={user.email}
+              accountSteps={accountSteps}
+            />
           ) : (
             <DashboardHome
               closing={closing}

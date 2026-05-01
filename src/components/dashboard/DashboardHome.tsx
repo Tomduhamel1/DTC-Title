@@ -134,58 +134,7 @@ export default function DashboardHome({ closing, userName, userEmail, accountSte
             />
           </SectionShell>
 
-          {/* 4. Loan */}
-          <SectionShell title="Loan" icon={<LoanIcon />}>
-            <EditableFields
-              closingId={closing.id}
-              emptyHint="Add your loan officer's contact info, or wait — we'll fill this in when your lender places the order."
-              fields={[
-                { key: 'lenderName', label: 'Loan officer', value: closing.lenderName },
-                { key: 'lenderCompany', label: 'Company', value: closing.lenderCompany },
-                { key: 'lenderEmail', label: 'Email', type: 'email', value: closing.lenderEmail },
-                { key: 'lenderPhone', label: 'Phone', type: 'tel', value: closing.lenderPhone },
-                { key: 'lenderNmls', label: 'NMLS', value: closing.lenderNmls },
-              ]}
-              footnote={
-                <p className="text-xs text-gray-500">
-                  Want a different lender?{' '}
-                  <a href="mailto:hello@betterclose.co" className="text-primary-700 font-semibold underline-offset-2 hover:underline">
-                    Email us
-                  </a>{' '}
-                  — we can recommend partners.
-                </p>
-              }
-            />
-          </SectionShell>
-
-          {/* 5. Title */}
-          <SectionShell title="Title" icon={<TitleIcon />} subtitle="A-rated underwriter coverage">
-            <dl className="grid sm:grid-cols-2 gap-x-6 gap-y-3">
-              <div>
-                <dt className="text-[11px] font-semibold uppercase tracking-wider text-gray-500">
-                  Underwriter
-                </dt>
-                <dd className="text-sm text-dark-900 font-medium mt-0.5">
-                  {closing.titleUnderwriter || (
-                    <span className="text-gray-400 italic">Pending — assigned at title order</span>
-                  )}
-                </dd>
-              </div>
-              <div>
-                <dt className="text-[11px] font-semibold uppercase tracking-wider text-gray-500">
-                  Policy number
-                </dt>
-                <dd className="text-sm text-dark-900 font-medium mt-0.5">
-                  {closing.titlePolicyNo || (
-                    <span className="text-gray-400 italic">Pending — issued at title</span>
-                  )}
-                </dd>
-              </div>
-            </dl>
-            <LineItemList title="Title fees" items={titleItems} />
-          </SectionShell>
-
-          {/* 6. Settlement */}
+          {/* 4. Settlement */}
           <SectionShell
             title="Settlement"
             icon={<SettlementIcon />}
@@ -228,6 +177,57 @@ export default function DashboardHome({ closing, userName, userEmail, accountSte
               </div>
             </dl>
             <LineItemList title="Settlement & recording fees" items={settlementItems} />
+          </SectionShell>
+
+          {/* 5. Loan */}
+          <SectionShell title="Loan" icon={<LoanIcon />}>
+            <EditableFields
+              closingId={closing.id}
+              emptyHint="Add your loan officer's contact info, or wait — we'll fill this in when your lender places the order."
+              fields={[
+                { key: 'lenderName', label: 'Loan officer', value: closing.lenderName },
+                { key: 'lenderCompany', label: 'Company', value: closing.lenderCompany },
+                { key: 'lenderEmail', label: 'Email', type: 'email', value: closing.lenderEmail },
+                { key: 'lenderPhone', label: 'Phone', type: 'tel', value: closing.lenderPhone },
+                { key: 'lenderNmls', label: 'NMLS', value: closing.lenderNmls },
+              ]}
+              footnote={
+                <p className="text-xs text-gray-500">
+                  Want a different lender?{' '}
+                  <a href="mailto:hello@betterclose.co" className="text-primary-700 font-semibold underline-offset-2 hover:underline">
+                    Email us
+                  </a>{' '}
+                  — we can recommend partners.
+                </p>
+              }
+            />
+          </SectionShell>
+
+          {/* 6. Title */}
+          <SectionShell title="Title" icon={<TitleIcon />} subtitle="A-rated underwriter coverage">
+            <dl className="grid sm:grid-cols-2 gap-x-6 gap-y-3">
+              <div>
+                <dt className="text-[11px] font-semibold uppercase tracking-wider text-gray-500">
+                  Underwriter
+                </dt>
+                <dd className="text-sm text-dark-900 font-medium mt-0.5">
+                  {closing.titleUnderwriter || (
+                    <span className="text-gray-400 italic">Pending — assigned at title order</span>
+                  )}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-[11px] font-semibold uppercase tracking-wider text-gray-500">
+                  Policy number
+                </dt>
+                <dd className="text-sm text-dark-900 font-medium mt-0.5">
+                  {closing.titlePolicyNo || (
+                    <span className="text-gray-400 italic">Pending — issued at title</span>
+                  )}
+                </dd>
+              </div>
+            </dl>
+            <LineItemList title="Title fees" items={titleItems} />
           </SectionShell>
 
           {/* 7. Contacts */}
