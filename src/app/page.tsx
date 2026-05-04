@@ -1,6 +1,8 @@
 import { Suspense } from 'react'
 import PageWrapper from './PageWrapper'
 
+export const dynamic = 'force-dynamic'
+
 export default function Page() {
   return (
     <Suspense fallback={
