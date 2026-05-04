@@ -23,6 +23,7 @@ const FUNCTIONAL_PREFIXES = [
   '/welcome',
   '/resume',
   '/admin',
+  '/preview',
 ]
 
 const BYPASS_COOKIE = 'cs_bypass'
@@ -49,6 +50,20 @@ export function middleware(req: NextRequest) {
     return NextResponse.next()
   }
 
+  // Helper: when an authorized previewer lands on /, send them to /preview
+  // instead of falling through. CloudFront on Amplify pins the / response in
+  // the edge cache (cache-control s-maxage=31536000, cache key ignores
+  // cookies), so even with the bypass cookie they'd get the cached gated
+  // HTML. /preview lives at a separate URL the cache has never poisoned.
+  const sendAuthorizedToPreview = () => {
+    if (pathname === '/') {
+      const url = req.nextUrl.clone()
+      url.pathname = '/preview'
+      return NextResponse.rewrite(url)
+    }
+    return NextResponse.next()
+  }
+
   // Path 1 — query string preview key. Set a cookie so subsequent navigation
   // doesn't need the param.
   const previewKey = req.nextUrl.searchParams.get('preview')
@@ -56,6 +71,9 @@ export function middleware(req: NextRequest) {
   if (expectedKey && previewKey === expectedKey) {
     const url = req.nextUrl.clone()
     url.searchParams.delete('preview')
+    // Land them directly on /preview so the very first paint is the real
+    // homepage rather than a redirect-then-cache-hit on /.
+    url.pathname = '/preview'
     const res = NextResponse.redirect(url)
     res.cookies.set(BYPASS_COOKIE, '1', {
       maxAge: 60 * 60 * 24 * 30, // 30 days
@@ -67,7 +85,7 @@ export function middleware(req: NextRequest) {
     return res
   }
   if (req.cookies.get(BYPASS_COOKIE)?.value === '1') {
-    return NextResponse.next()
+    return sendAuthorizedToPreview()
   }
 
   // Path 2 — any NextAuth session cookie present. We can't validate the
@@ -75,7 +93,7 @@ export function middleware(req: NextRequest) {
   // is a sufficient bypass signal: it means the user has at least authenticated
   // recently. They'll still hit auth checks on protected routes.
   for (const hint of SESSION_COOKIE_HINTS) {
-    if (req.cookies.get(hint)) return NextResponse.next()
+    if (req.cookies.get(hint)) return sendAuthorizedToPreview()
   }
 
   // Otherwise: rewrite to coming-soon.
