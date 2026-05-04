@@ -23,6 +23,22 @@ const nextConfig = {
       },
     ],
   },
+  // The homepage is gated by the coming-soon middleware which inspects the
+  // cs_bypass cookie / NextAuth session. CloudFront's default cache key on
+  // Amplify ignores cookies, so without an explicit no-store header it
+  // pinned a single rendered HTML response (often the gated one) and served
+  // it to every visitor regardless of bypass state. Force no-store on /
+  // so the middleware runs per-request.
+  async headers() {
+    return [
+      {
+        source: '/',
+        headers: [
+          { key: 'Cache-Control', value: 'no-store, must-revalidate' },
+        ],
+      },
+    ]
+  },
 }
 
 const sentryWebpackPluginOptions = {
