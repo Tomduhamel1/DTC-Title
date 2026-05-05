@@ -150,11 +150,9 @@ export default function FooterComprehensive() {
             <div className="flex flex-wrap items-center gap-6 opacity-50">
               <span className="text-xs">First American</span>
               <span className="text-gray-700">•</span>
-              <span className="text-xs">Fidelity National</span>
+              <span className="text-xs">AmTrust Title</span>
               <span className="text-gray-700">•</span>
-              <span className="text-xs">Stewart Title</span>
-              <span className="text-gray-700">•</span>
-              <span className="text-xs">Chicago Title</span>
+              <span className="text-xs">Westcor Land Title</span>
               <span className="text-gray-700">•</span>
               <span className="text-xs">CATIC</span>
             </div>
