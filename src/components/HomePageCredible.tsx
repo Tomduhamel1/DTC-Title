@@ -10,7 +10,7 @@ import CompanyCredentialsSection from './CompanyCredentialsSection'
 import HowItWorksSection from './HowItWorksSection'
 import FeeReportPreviewSection from './FeeReportPreviewSection'
 import TeamTrustSection from './TeamTrustSection'
-import PeaceOfMindSection from './PeaceOfMindSection'
+import DashboardTrustSection from './DashboardTrustSection'
 import UnderwriterLogos from './UnderwriterLogos'
 import TrustStripSection from './TrustStripSection'
 import FAQSection from './FAQSection'
@@ -52,8 +52,9 @@ export default function HomePageCredible({ heroVersion = 'A' }: HomePageCredible
         {/* Team Trust Section */}
         <TeamTrustSection />
 
-        {/* Peace of Mind */}
-        <PeaceOfMindSection />
+        {/* Dashboard + dedicated escrow officer trust section
+            (replaces the old PeaceOfMindSection on the magic-reveal homepage) */}
+        <DashboardTrustSection />
 
         {/* Company Credentials */}
         <CompanyCredentialsSection />

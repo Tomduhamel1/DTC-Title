@@ -26,37 +26,37 @@ export default function EscrowOfficerCard({ officer, variant = 'main' }: EscrowO
   if (variant === 'rail') {
     return (
       <div className="bg-white border border-emerald-100 rounded-2xl p-5 shadow-sm">
-        <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-700 mb-3">
+        <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-700 mb-4">
           Your closing officer
         </div>
         {assigned ? (
           <>
-            <div className="flex items-center gap-3 mb-3">
-              <div className="flex-shrink-0 w-14 h-14 rounded-full overflow-hidden bg-gray-100 ring-2 ring-emerald-100">
+            <div className="flex flex-col items-center text-center mb-4">
+              <div className="w-32 h-32 rounded-full overflow-hidden bg-gray-100 ring-4 ring-emerald-50 mb-3">
                 {officer.photoUrl ? (
                   <Image
                     src={officer.photoUrl}
                     alt={officer.name || ''}
-                    width={56}
-                    height={56}
-                    className="object-cover w-full h-full"
+                    width={128}
+                    height={128}
+                    className="object-cover object-[center_30%] w-full h-full"
                     unoptimized
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-emerald-700 font-bold text-lg">
+                  <div className="w-full h-full flex items-center justify-center text-emerald-700 font-bold text-3xl">
                     {(officer.name || '').slice(0, 1)}
                   </div>
                 )}
               </div>
-              <div className="min-w-0">
-                <div className="font-bold text-dark-900 leading-tight truncate">
+              <div className="min-w-0 w-full">
+                <div className="font-bold text-dark-900 leading-tight text-base">
                   {officer.name}
                 </div>
-                <div className="text-[11px] text-gray-500 leading-tight mt-0.5 truncate">
+                <div className="text-[12px] text-gray-500 leading-tight mt-0.5">
                   {officer.title || 'Escrow Officer'}
                 </div>
                 {officer.nmls && (
-                  <div className="text-[10px] text-gray-400 mt-0.5">NMLS #{officer.nmls}</div>
+                  <div className="text-[10px] text-gray-400 mt-1">NMLS #{officer.nmls}</div>
                 )}
               </div>
             </div>
@@ -99,19 +99,19 @@ export default function EscrowOfficerCard({ officer, variant = 'main' }: EscrowO
       </div>
       <div className="p-5">
         {assigned ? (
-          <div className="flex flex-col sm:flex-row gap-5 items-start">
-            <div className="flex-shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden bg-gray-100 ring-4 ring-emerald-50">
+          <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
+            <div className="flex-shrink-0 w-40 h-40 sm:w-44 sm:h-44 rounded-full overflow-hidden bg-gray-100 ring-4 ring-emerald-50">
               {officer.photoUrl ? (
                 <Image
                   src={officer.photoUrl}
                   alt={officer.name || ''}
-                  width={112}
-                  height={112}
-                  className="object-cover w-full h-full"
+                  width={176}
+                  height={176}
+                  className="object-cover object-[center_30%] w-full h-full"
                   unoptimized
                 />
               ) : (
-                <div className="w-full h-full flex items-center justify-center text-emerald-700 font-bold text-3xl">
+                <div className="w-full h-full flex items-center justify-center text-emerald-700 font-bold text-5xl">
                   {(officer.name || '').slice(0, 1)}
                 </div>
               )}
