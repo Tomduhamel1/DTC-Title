@@ -67,7 +67,7 @@ function LenderPageInner() {
               <ReasonCard
                 emoji="🛡️"
                 title="Same A-rated underwriters"
-                body="First American · Old Republic · Stewart · Fidelity. The title insurance is identical to what you already place with anyone else."
+                body="First American · AmTrust · Westcor · Old Republic. The title insurance is identical to what you already place with anyone else."
               />
               <ReasonCard
                 emoji="📊"

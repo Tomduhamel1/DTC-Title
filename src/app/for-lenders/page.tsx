@@ -126,7 +126,7 @@ export default function LendersPage() {
   "ourPrice": 800,
   "avgPrice": 3200,
   "savings": 2400,
-  "underwriter": "Stewart Title"
+  "underwriter": "AmTrust Title"
 }`}
                 </pre>
               </div>

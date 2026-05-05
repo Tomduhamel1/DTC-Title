@@ -50,7 +50,7 @@ function renderHtml(d: LenderRequestEmailData & { greeting: string; client: stri
     <div style="font-size:11px;font-weight:700;letter-spacing:0.2em;color:#0f172a;margin-bottom:24px;">BETTERCLOSE</div>
     <p>${d.greeting}</p>
     <p><strong>${escapeHtml(d.client)} is using BetterClose for title and settlement on their upcoming closing</strong> and asked us to send you everything you need to place the order.</p>
-    <p>BetterClose uses the same A-rated underwriters you already work with (First American, Old Republic, Stewart, Fidelity) and integrates with SmartFees, Encompass, Qualia, and ResWare. Same coverage, transparent flat-rate pricing.</p>
+    <p>BetterClose uses the same A-rated underwriters you already work with (First American, AmTrust, Westcor, Old Republic) and integrates with SmartFees, Encompass, Qualia, and ResWare. Same coverage, transparent flat-rate pricing.</p>
     ${savings}
     ${note}
     <p style="margin:28px 0;">
@@ -80,7 +80,7 @@ function renderText(d: LenderRequestEmailData & { greeting: string; client: stri
 
 ${d.client} is using BetterClose for title and settlement on their upcoming closing and asked us to send you everything you need to place the order.
 
-BetterClose uses the same A-rated underwriters you already work with (First American, Old Republic, Stewart, Fidelity) and integrates with SmartFees, Encompass, Qualia, and ResWare. Same coverage, transparent flat-rate pricing.
+BetterClose uses the same A-rated underwriters you already work with (First American, AmTrust, Westcor, Old Republic) and integrates with SmartFees, Encompass, Qualia, and ResWare. Same coverage, transparent flat-rate pricing.
 ${savings}${note}
 Get the order details: ${d.reviewUrl}
 

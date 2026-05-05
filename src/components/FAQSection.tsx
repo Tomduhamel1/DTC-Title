@@ -8,11 +8,11 @@ export default function FAQSection() {
   const faqs = [
     {
       question: "How can you be so much cheaper than traditional title companies?",
-      answer: "We use technology to eliminate administrative costs that traditional companies pass to you. Instead of expensive offices and large sales teams, we've built an AI-powered platform that automates underwriting and processing. You get the same protection from the same A-rated underwriters (like Stewart, First American, and Fidelity National) - we just run a smarter, more efficient operation."
+      answer: "We use technology to eliminate administrative costs that traditional companies pass to you. Instead of expensive offices and large sales teams, we've built an AI-powered platform that automates underwriting and processing. You get the same protection from the same A-rated underwriters (like First American, AmTrust, and Westcor) - we just run a smarter, more efficient operation."
     },
     {
       question: "Is this real title insurance?",
-      answer: "Yes, absolutely. We're underwritten by industry-leading title insurance companies with A.M. Best ratings of A or higher. These are the same underwriters that back First American, Chicago Title, and other major title companies. You get identical coverage and protection - the only difference is the price you pay."
+      answer: "Yes, absolutely. We're underwritten by industry-leading title insurance companies with A.M. Best ratings of A or higher — including First American, AmTrust, and Westcor. You get identical coverage and protection that any major title company would issue — the only difference is the price you pay."
     },
     {
       question: "Will my lender accept BetterClose?",
