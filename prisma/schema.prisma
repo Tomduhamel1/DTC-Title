@@ -314,6 +314,16 @@ model Closing {
   titleUnderwriter String?
   titlePolicyNo    String?
 
+  // Assigned BetterClose escrow officer. Populated when the order is opened;
+  // assignment rules are based on order type (TBD with operations). Photo is
+  // an absolute URL — uploaded to S3 (APP_AWS_S3_BUCKET) via the admin UI.
+  escrowOfficerName     String?
+  escrowOfficerTitle    String?
+  escrowOfficerEmail    String?
+  escrowOfficerPhone    String?
+  escrowOfficerNmls     String?
+  escrowOfficerPhotoUrl String?
+
   closingLocation String?
 
   status String @default("pending")

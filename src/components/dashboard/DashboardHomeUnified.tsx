@@ -16,6 +16,7 @@ import {
 import EditableFields from './EditableFields'
 import LineItemList, { LineItem } from './LineItemList'
 import ContactRail from './ContactRail'
+import EscrowOfficerCard from './EscrowOfficerCard'
 import ShareWithTeamSheet from '@/components/lender-request/ShareWithTeamSheet'
 import type { AccountStep } from './AccountSection'
 
@@ -43,6 +44,12 @@ interface ClosingShape {
   titleUnderwriter: string | null
   titlePolicyNo: string | null
   closingLocation: string | null
+  escrowOfficerName: string | null
+  escrowOfficerTitle: string | null
+  escrowOfficerEmail: string | null
+  escrowOfficerPhone: string | null
+  escrowOfficerNmls: string | null
+  escrowOfficerPhotoUrl: string | null
   status: string
   milestones: { kind: string; status: string; completedAt: Date | string | null; metadata: string | null }[]
 }
@@ -109,6 +116,15 @@ export default function DashboardHomeUnified({
   const orderStep = accountSteps.find((s) => s.key === 'order')
   const showPrimaryShareCta = inviteStep?.status === 'active'
   const showResendCtas = inviteStep?.status === 'done' && orderStep?.status === 'active'
+
+  const escrowOfficer = {
+    name: closing.escrowOfficerName,
+    title: closing.escrowOfficerTitle,
+    email: closing.escrowOfficerEmail,
+    phone: closing.escrowOfficerPhone,
+    nmls: closing.escrowOfficerNmls,
+    photoUrl: closing.escrowOfficerPhotoUrl,
+  }
 
   return (
     <div>
@@ -200,6 +216,9 @@ export default function DashboardHomeUnified({
               ))}
             </ol>
           </SectionShell>
+
+          {/* Your dedicated officer — pairs with Settlement Agent */}
+          <EscrowOfficerCard officer={escrowOfficer} variant="main" />
 
           {/* 2. Lender */}
           <SectionShell
@@ -445,7 +464,10 @@ export default function DashboardHomeUnified({
           </div>
         </div>
 
-        <ContactRail />
+        <div className="lg:sticky lg:top-24 space-y-4">
+          <EscrowOfficerCard officer={escrowOfficer} variant="rail" />
+          <ContactRail />
+        </div>
       </div>
 
       <ShareWithTeamSheet
