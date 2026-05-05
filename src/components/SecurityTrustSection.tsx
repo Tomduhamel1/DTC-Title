@@ -92,9 +92,6 @@ export default function SecurityTrustSection() {
               </div>
             </div>
 
-            <div className="text-xs text-primary-200">
-              🔒 SOC 2 Compliant • PCI DSS Certified
-            </div>
           </div>
         </div>
       </div>

@@ -40,7 +40,7 @@ export default function HomePageOriginal({ hideSavingsCards = false, useAlternat
             {/* Center: Main Navigation */}
             <div className="hidden md:flex items-center space-x-8">
               <Link href="/pricing" className="text-dark-800 hover:text-primary-600 font-medium transition-colors">
-                For Brokers
+                For Mortgage Brokers
               </Link>
               <Link href="/for-realtors" className="text-dark-800 hover:text-primary-600 font-medium transition-colors">
                 For Realtors

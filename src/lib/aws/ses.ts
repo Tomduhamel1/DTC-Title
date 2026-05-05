@@ -40,8 +40,15 @@ export async function sendEmail({
 }: SendEmailParams): Promise<string> {
   const fromAddress = from || process.env.AWS_SES_FROM_EMAIL || 'noreply@betterclose.co'
 
+  // SES Source supports RFC 5322 "Display Name <addr@host>" format. Inboxes
+  // surface the display name to recipients (e.g. "BetterClose" instead of
+  // "noreply"). If the caller already supplied "Name <addr>", leave it as-is.
+  const formattedSource = /<[^>]+>/.test(fromAddress)
+    ? fromAddress
+    : `BetterClose <${fromAddress}>`
+
   const command = new SendEmailCommand({
-    Source: fromAddress,
+    Source: formattedSource,
     Destination: {
       ToAddresses: toArray(to),
       CcAddresses: toArray(cc),

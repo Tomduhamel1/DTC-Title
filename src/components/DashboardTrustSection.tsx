@@ -69,9 +69,7 @@ export default function DashboardTrustSection() {
               ✓ Real people. Real-time progress.
             </div>
             <h2 className="text-4xl md:text-5xl font-black text-dark-900 mb-5 leading-tight">
-              A real person handles your closing.
-              <br />
-              <span className="text-primary-600">You watch every step from one dashboard.</span>
+              Real people. <span className="text-primary-600">Real-time progress.</span>
             </h2>
             <p className="text-xl text-gray-700 mb-8 leading-relaxed">
               You&apos;re not buying a service from a faceless company. The moment your order

@@ -191,21 +191,11 @@ export default function SecurityPage() {
           <h2 className="text-4xl font-black text-dark-900 mb-8">
             Compliance & Certifications
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <div className="text-5xl mb-4">🔒</div>
-              <h3 className="font-bold text-lg mb-2">SOC 2 Compliant</h3>
-              <p className="text-gray-600 text-sm">Industry-standard security auditing</p>
-            </div>
-            <div>
+          <div className="max-w-md mx-auto">
+            <div className="text-center">
               <div className="text-5xl mb-4">🏛️</div>
               <h3 className="font-bold text-lg mb-2">State Licensed</h3>
               <p className="text-gray-600 text-sm">Licensed and regulated in all 50 states</p>
-            </div>
-            <div>
-              <div className="text-5xl mb-4">🛡️</div>
-              <h3 className="font-bold text-lg mb-2">PCI DSS Certified</h3>
-              <p className="text-gray-600 text-sm">Payment card industry data security</p>
             </div>
           </div>
         </div>

@@ -9,21 +9,17 @@ export default function UnderwriterLogos() {
       logoUrl: '/logos/FAF.png',
     },
     {
-      name: 'Fidelity National Title',
-      logoUrl: '/logos/fntstackedlogoblue_220.png',
+      name: 'AmTrust Title',
+      logoUrl: '/logos/amtrust.jpg',
     },
     {
-      name: 'Chicago Title',
-      logoUrl: '/logos/chititle.jpg',
+      name: 'Westcor Land Title',
+      logoUrl: '/logos/westcor.png',
     },
     {
       name: 'CATIC',
       logoUrl: '/logos/catic_logo-1-768x137.png',
     },
-    {
-      name: 'Stewart Title',
-      logoUrl: '/logos/660ff209cc165c0812779128_IMG_1896.webp',
-    }
   ]
 
   return (
@@ -39,7 +35,7 @@ export default function UnderwriterLogos() {
         </div>
 
         {/* Logo Grid with REAL Logo Images */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-6xl mx-auto items-center">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto items-center">
           {underwriters.map((underwriter) => (
             <div
               key={underwriter.name}

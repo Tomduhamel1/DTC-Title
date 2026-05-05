@@ -37,12 +37,15 @@ export async function sendPartnerReferralEmail(
   data: PartnerReferralEmailData
 ): Promise<boolean> {
   const fromEmail = process.env.AWS_SES_FROM_EMAIL || 'noreply@truefeeclosing.com'
+  const formattedSource = /<[^>]+>/.test(fromEmail)
+    ? fromEmail
+    : `BetterClose <${fromEmail}>`
 
   const htmlBody = generatePartnerEmailHTML(data)
   const textBody = generatePartnerEmailText(data)
 
   const params = {
-    Source: fromEmail,
+    Source: formattedSource,
     Destination: {
       ToAddresses: [data.partnerEmail],
     },
