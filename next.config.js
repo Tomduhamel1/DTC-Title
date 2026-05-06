@@ -39,6 +39,23 @@ const nextConfig = {
       },
     ]
   },
+  // /for-my-lender was renamed to /for-my-team. Permanent redirect so
+  // already-sent outreach emails (which contain /for-my-lender?ref=...)
+  // keep working forever.
+  async redirects() {
+    return [
+      {
+        source: '/for-my-lender',
+        destination: '/for-my-team',
+        permanent: true,
+      },
+      {
+        source: '/for-my-lender/:path*',
+        destination: '/for-my-team/:path*',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 const sentryWebpackPluginOptions = {

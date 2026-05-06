@@ -102,7 +102,7 @@ export default function NextStepsPanel({
             </Link>
           ) : (
             <Link
-              href="/for-my-lender"
+              href="/for-my-team"
               className="block rounded-xl border-2 border-primary-200 hover:border-primary-400 hover:bg-primary-50/50 p-5 transition-colors"
             >
               <div className="flex items-start justify-between gap-3">

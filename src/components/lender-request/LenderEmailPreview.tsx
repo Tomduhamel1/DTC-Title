@@ -62,7 +62,7 @@ export default function LenderEmailPreview({
         )}
         <p>
           <a
-            href={`/for-my-lender?ref=${refId}`}
+            href={`/for-my-team?ref=${refId}`}
             className="inline-block bg-emerald-600 text-white font-bold px-5 py-2.5 rounded-lg no-underline"
           >
             Get the order details →

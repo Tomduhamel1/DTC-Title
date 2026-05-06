@@ -21,7 +21,7 @@ export async function sendLenderRequestEmail(d: LenderRequestEmailData): Promise
   const greeting = d.lenderFirstName ? `Hi ${d.lenderFirstName},` : 'Hi there,'
   const client = d.clientName || 'Your client'
   const subject = `${client} is using BetterClose for title & settlement on their closing`
-  const reviewUrl = `${d.baseUrl}/for-my-lender?ref=${d.refId}`
+  const reviewUrl = `${d.baseUrl}/for-my-team?ref=${d.refId}`
 
   const cc = d.clientEmail ? [d.clientEmail] : undefined
 

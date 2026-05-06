@@ -33,9 +33,23 @@ Thanks,`
 
 interface OrderByEmailCardProps {
   refId?: string
+  // Pre-built subject and body (already filled with borrower/closing data
+  // from the server when /for-my-team has a known refId). When omitted we
+  // fall back to the generic blank template.
+  prefilledSubject?: string
+  prefilledBody?: string
+  // Hint that the body already contains borrower-side data, so the
+  // helper copy under the button changes from "pre-filled order template"
+  // to "pre-filled with your client's details".
+  isPersonalized?: boolean
 }
 
-export default function OrderByEmailCard({ refId }: OrderByEmailCardProps) {
+export default function OrderByEmailCard({
+  refId,
+  prefilledSubject,
+  prefilledBody,
+  isPersonalized,
+}: OrderByEmailCardProps) {
   const [toast, setToast] = useState<string | null>(null)
 
   const handleCopyInfo = async () => {
@@ -50,9 +64,9 @@ export default function OrderByEmailCard({ refId }: OrderByEmailCardProps) {
   }
 
   const subject = encodeURIComponent(
-    `New title order${refId ? ` — ref ${refId}` : ''}`
+    prefilledSubject || `New title order${refId ? ` — ref ${refId}` : ''}`
   )
-  const body = encodeURIComponent(ORDER_BODY_TEMPLATE)
+  const body = encodeURIComponent(prefilledBody || ORDER_BODY_TEMPLATE)
   const mailtoHref = `mailto:orders@betterclose.co?subject=${subject}&body=${body}`
 
   return (
@@ -88,7 +102,9 @@ export default function OrderByEmailCard({ refId }: OrderByEmailCardProps) {
             Email your order →
           </a>
           <p className="text-[11px] text-gray-400 mt-3">
-            Opens your mail app with a pre-filled order template.
+            {isPersonalized
+              ? "Opens your mail app — pre-filled with your client's details."
+              : 'Opens your mail app with a pre-filled order template.'}
           </p>
         </div>
 

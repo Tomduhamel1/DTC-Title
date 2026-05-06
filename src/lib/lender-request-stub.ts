@@ -50,7 +50,7 @@ export function logShareEvent(e: ShareEvent) {
 }
 
 export function buildShareMessage(opts: { savingsEstimate?: number; refId: string }) {
-  const url = `${typeof window !== 'undefined' ? window.location.origin : ''}/for-my-lender?ref=${opts.refId}`
+  const url = `${typeof window !== 'undefined' ? window.location.origin : ''}/for-my-team?ref=${opts.refId}`
   const savingsLine = opts.savingsEstimate
     ? ` That's about $${opts.savingsEstimate.toLocaleString()} I'd be saving over the life of the loan, on the same A-rated underwriters.`
     : ''

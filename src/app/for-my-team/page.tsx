@@ -1,19 +1,29 @@
-'use client'
-
-import { useSearchParams } from 'next/navigation'
-import { Suspense } from 'react'
 import NavigationCredible from '@/components/NavigationCredible'
 import FooterComprehensive from '@/components/FooterComprehensive'
 import UnderwriterLogos from '@/components/UnderwriterLogos'
 import OrderByEmailCard from '@/components/lender-portal/OrderByEmailCard'
+import {
+  buildOrderMailto,
+  getLenderRequestContext,
+} from '@/lib/teammate/lender-request-context'
+import HeroCtas from './HeroCtas'
 
-function LenderPageInner() {
-  const searchParams = useSearchParams()
-  const refId = searchParams.get('ref') || undefined
+// Renamed from /for-my-lender. Recipients of a borrower's outreach (lender,
+// broker, or realtor) land here. When the URL has ?ref=<refId> we hydrate
+// the linked LenderRequest + Closing server-side and prefill the order
+// mailto with everything we already know about the borrower's transaction.
 
-  const scrollTo = (id: string) => () => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
+export const dynamic = 'force-dynamic'
+
+interface Props {
+  searchParams?: { ref?: string }
+}
+
+export default async function ForMyTeamPage({ searchParams }: Props) {
+  const refId = searchParams?.ref
+  const ctx = await getLenderRequestContext(refId)
+  const { subject, body } = buildOrderMailto(ctx)
+  const isPersonalized = Boolean(ctx?.closing)
 
   return (
     <>
@@ -25,7 +35,7 @@ function LenderPageInner() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-100 text-primary-800 text-xs font-bold uppercase tracking-wider mb-5">
-              For lenders & realtors
+              For lenders, brokers, &amp; realtors
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-dark-900 leading-tight tracking-tight mb-5">
               A client asked you to consider BetterClose for their closing.
@@ -33,20 +43,12 @@ function LenderPageInner() {
             <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
               Same A-rated underwriters. Lower closing costs. Five-minute review.
             </p>
-            <div className="flex items-center justify-center gap-3 flex-wrap">
-              <button
-                onClick={scrollTo('place-order')}
-                className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all"
-              >
-                Email your order →
-              </button>
-              <button
-                onClick={scrollTo('how-we-work')}
-                className="inline-flex items-center gap-2 bg-white hover:bg-gray-50 border-2 border-gray-200 text-gray-800 font-bold text-lg px-8 py-4 rounded-lg transition-colors"
-              >
-                How we work
-              </button>
-            </div>
+            <HeroCtas
+              primaryLabel="Email your order →"
+              primaryTarget="place-order"
+              secondaryLabel="How we work"
+              secondaryTarget="how-we-work"
+            />
           </div>
         </div>
       </section>
@@ -72,7 +74,7 @@ function LenderPageInner() {
               <ReasonCard
                 emoji="📊"
                 title="Transparent flat-rate pricing"
-                body="Your client sees every line item before signing. No junk fees, no surprises at the table — fewer last-minute escalations on your end."
+                body="Your client sees every line item ahead of time. No junk fees, no surprises at the table — fewer last-minute escalations on your end."
               />
               <ReasonCard
                 emoji="🤝"
@@ -108,7 +110,12 @@ function LenderPageInner() {
       <section id="place-order" className="py-16 lg:py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto">
-            <OrderByEmailCard refId={refId} />
+            <OrderByEmailCard
+              refId={refId}
+              prefilledSubject={subject}
+              prefilledBody={body}
+              isPersonalized={isPersonalized}
+            />
           </div>
         </div>
       </section>
@@ -128,13 +135,5 @@ function ReasonCard({ emoji, title, body }: { emoji: string; title: string; body
       <h3 className="text-lg font-bold text-dark-900 mb-2">{title}</h3>
       <p className="text-sm text-gray-600 leading-relaxed">{body}</p>
     </div>
-  )
-}
-
-export default function ForMyLenderPage() {
-  return (
-    <Suspense fallback={<div className="h-screen" />}>
-      <LenderPageInner />
-    </Suspense>
   )
 }

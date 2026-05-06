@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server'
 
 // When COMING_SOON_MODE=true (set on the live deploy only), redirect public
 // marketing pages to /coming-soon. Functional routes — auth, dashboard, the
-// fee-estimate flow, the for-my-lender landing, all API routes — stay live so
+// fee-estimate flow, the for-my-team landing, all API routes — stay live so
 // the team can keep testing and authenticated users keep working.
 //
 // Bypass paths:
@@ -15,10 +15,11 @@ import type { NextRequest } from 'next/server'
 
 const FUNCTIONAL_PREFIXES = [
   '/dashboard',
+  '/teammate',
   '/login',
   '/quote',
   '/api',
-  '/for-my-lender',
+  '/for-my-team',
   '/coming-soon',
   '/welcome',
   '/resume',
