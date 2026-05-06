@@ -2,6 +2,7 @@ import NavigationCredible from '@/components/NavigationCredible'
 import FooterComprehensive from '@/components/FooterComprehensive'
 import UnderwriterLogos from '@/components/UnderwriterLogos'
 import OrderByEmailCard from '@/components/lender-portal/OrderByEmailCard'
+import TeammateAccountInvite from '@/components/lender-portal/TeammateAccountInvite'
 import {
   buildOrderMailto,
   getLenderRequestContext,
@@ -122,6 +123,9 @@ export default async function ForMyTeamPage({ searchParams }: Props) {
 
       {/* Trust strip */}
       <UnderwriterLogos />
+
+      {/* Optional teammate account signup */}
+      <TeammateAccountInvite refId={refId} />
 
       <FooterComprehensive />
     </>

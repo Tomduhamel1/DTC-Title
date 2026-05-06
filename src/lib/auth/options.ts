@@ -78,6 +78,17 @@ export const authOptions: NextAuthOptions = {
         // eslint-disable-next-line no-console
         console.error('[auth] failed to claim orphan closings on signIn', e)
       }
+
+      // Also claim any TeammateClosing rows for this email — handles the
+      // teammate-first flow: a TPS-ingested closing or a borrower-side share
+      // matched their email before they had an account.
+      try {
+        const { claimTeammateClosingsForUser } = await import('@/lib/teammate/match')
+        await claimTeammateClosingsForUser(user.id, user.email)
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error('[auth] failed to claim teammate closings on signIn', e)
+      }
     },
   },
 }

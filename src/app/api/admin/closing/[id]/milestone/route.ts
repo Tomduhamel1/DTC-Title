@@ -173,6 +173,72 @@ export async function POST(req: Request, { params }: { params: { id: string } })
         }
       }
 
+      // Teammate fanout — same milestone, same email body, but to anyone
+      // named on the file (lender / broker / realtor) who has a BetterClose
+      // account and hasn't muted this client. Orphans (userId is null) are
+      // skipped: we don't have explicit opt-in to email them yet.
+      if (kind !== 'closed') {
+        try {
+          const teammates = await prisma.teammateClosing.findMany({
+            where: { closingId: closing.id, userId: { not: null } },
+            include: { user: { select: { id: true, email: true, name: true } } },
+          })
+          for (const t of teammates) {
+            if (!t.user?.email) continue
+            // Skip the borrower if they happen to also be on the teammate
+            // table (shouldn't happen, but guard anyway).
+            if (recipient && t.user.email.toLowerCase() === recipient.toLowerCase()) continue
+
+            const teammateDashboardUrl = `${baseUrl}/teammate/dashboard/${closing.id}`
+            const teammateSubject = `${MILESTONE_LABELS[kind]} · ${fullAddress(closing) || 'BetterClose'}`
+
+            if (t.muted) {
+              await logNotification({
+                userId: t.user.id,
+                closingId: closing.id,
+                kind: `teammate:milestone_skipped:${kind}`,
+                recipient: t.user.email,
+                subject: teammateSubject,
+                status: 'skipped',
+              })
+              continue
+            }
+
+            try {
+              const messageId = await sendClosingUpdateEmail({
+                to: t.user.email,
+                borrowerFirstName: firstName(t.user.name),
+                milestoneKind: kind,
+                propertyAddress: fullAddress(closing),
+                dashboardUrl: teammateDashboardUrl,
+              })
+              await logNotification({
+                userId: t.user.id,
+                closingId: closing.id,
+                kind: `teammate:milestone:${kind}`,
+                recipient: t.user.email,
+                subject: teammateSubject,
+                status: dryRun ? 'skipped' : 'sent',
+                providerMessageId: messageId,
+              })
+            } catch (err) {
+              console.error('[admin] teammate milestone email failed:', err)
+              await logNotification({
+                userId: t.user.id,
+                closingId: closing.id,
+                kind: `teammate:milestone:${kind}`,
+                recipient: t.user.email,
+                subject: teammateSubject,
+                status: 'failed',
+                error: err instanceof Error ? err.message : String(err),
+              })
+            }
+          }
+        } catch (err) {
+          console.error('[admin] teammate fanout failed:', err)
+        }
+      }
+
       // Record the notify time so toggling done→pending→done doesn't re-send.
       await prisma.milestone.update({
         where: { id: milestone.id },

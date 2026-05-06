@@ -237,6 +237,7 @@ model User {
   accounts Account[]
   sessions Session[]
   closings Closing[] @relation("UserClosings")
+  teammateClosings TeammateClosing[] @relation("UserTeammateClosings")
   lenderRequests LenderRequest[]
   notifications NotificationLog[]
 
@@ -341,6 +342,7 @@ model Closing {
 
   milestones Milestone[]
   lenderRequests LenderRequest[]
+  teammates TeammateClosing[]
   notifications NotificationLog[]
 
   @@index([userId])
@@ -406,6 +408,47 @@ model LenderRequest {
   @@index([channel])
   @@index([userId])
   @@index([closingId])
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TeammateClosing — many-to-many link between a teammate (lender / broker /
+// realtor) and a Closing. A single closing can have multiple teammates
+// (lender + agent + broker all subscribed to its updates).
+//
+// matchedEmail is the lower-cased email we used to attribute this row to a
+// teammate — either a teammate-side email field on the Closing
+// (lenderEmail / agentEmail / escrowOfficerEmail) or the lenderEmail on a
+// LenderRequest the borrower sent. Stored separately from userId so we can
+// create orphan rows the moment TPS opens an order, even if the teammate
+// has not yet signed up. On signup the orphan rows get claimed by email.
+// ─────────────────────────────────────────────────────────────────────────────
+
+model TeammateClosing {
+  id String @id @default(cuid())
+
+  userId String?
+  user   User?   @relation("UserTeammateClosings", fields: [userId], references: [id], onDelete: SetNull)
+
+  closingId String
+  closing   Closing @relation(fields: [closingId], references: [id], onDelete: Cascade)
+
+  matchedEmail String
+
+  // Inferred role for UI labelling. 'lender' | 'broker' | 'realtor' | 'unknown'.
+  // Derived from how we matched (e.g. matched on Closing.lenderEmail -> 'lender').
+  role String @default("unknown")
+
+  // Per-client mute. When true, milestone notifications to this teammate
+  // for this closing are suppressed (and logged as status=skipped).
+  muted Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, closingId])
+  @@unique([matchedEmail, closingId])
+  @@index([closingId])
+  @@index([matchedEmail])
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
