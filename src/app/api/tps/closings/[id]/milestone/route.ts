@@ -1,13 +1,15 @@
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
-import { requireAdmin } from '@/lib/auth/admin'
 import { MILESTONE_KINDS, type MilestoneKind } from '@/lib/closing'
 import { applyMilestoneTransition } from '@/lib/closing-milestone'
 
-// Admin UI calls this when an operator toggles a milestone in /admin.
-// Shares all side-effect logic (email fanout, fee-report snapshot, audit
-// log, idempotency) with the TPS-callable counterpart at
-// /api/tps/closings/[id]/milestone.
+// TPS-callable milestone endpoint. Auth: shared secret in
+// `Authorization: Bearer <ORDER_INGEST_SECRET>` (same secret used by
+// /api/orders/ingest — TPS only needs to manage one credential).
+//
+// id is a BetterClose Closing.id (returned to TPS in the orders/ingest
+// response). TPS should store it on its file record so subsequent
+// milestone updates target the right closing.
 
 const Body = z.object({
   kind: z.enum(MILESTONE_KINDS as unknown as [MilestoneKind, ...MilestoneKind[]]),
@@ -15,7 +17,12 @@ const Body = z.object({
 })
 
 export async function POST(req: Request, { params }: { params: { id: string } }) {
-  await requireAdmin()
+  const auth = req.headers.get('authorization') || ''
+  const expected = `Bearer ${process.env.ORDER_INGEST_SECRET || ''}`
+  if (!process.env.ORDER_INGEST_SECRET || auth !== expected) {
+    return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
+  }
+
   const json = await req.json().catch(() => null)
   const parsed = Body.safeParse(json)
   if (!parsed.success) {
@@ -29,7 +36,7 @@ export async function POST(req: Request, { params }: { params: { id: string } })
     closingId: params.id,
     kind: parsed.data.kind,
     status: parsed.data.status,
-    origin: 'admin',
+    origin: 'tps',
   })
 
   if (!result.ok) {
