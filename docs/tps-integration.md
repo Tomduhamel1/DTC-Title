@@ -261,11 +261,25 @@ Content-Type: application/json
 }
 ```
 
-**Per-field semantics:**
+**Per-field semantics — read this carefully, it's the sharpest contract
+in this doc:**
 
-- Set a string to assign / change the value.
-- Set explicit `null` to clear it.
-- Omit a key entirely to leave it untouched.
+| What you send                | What BC does                              |
+|------------------------------|-------------------------------------------|
+| Key omitted                  | Field is **untouched**.                   |
+| `"key": "some string"`       | Field is **set** to that string.          |
+| `"key": null`                | Field is **cleared** (set to NULL).       |
+
+**Important rule of thumb for "I don't have a value" cases:** if Garden
+doesn't have an `nmls` or `photoUrl` for an escrow officer, **omit the
+key — do not send `null`**. Sending `null` is destructive: it will
+clear whatever BC already had on file (e.g. a value BC ops typed into
+the admin UI, or a value an earlier PATCH set). Only send `null` when
+the explicit intent is "clear this".
+
+The same rule applies to every nested field. Garden's pattern of "send
+only the changed fields" is exactly right; just make sure missing-data
+fields are dropped from the JSON, not coerced to `null`.
 
 When `escrowOfficer.email` is set, BC also creates a `TeammateClosing`
 row for that email so the officer (if they're a BC user) sees the file
@@ -531,3 +545,85 @@ curl -sX POST "https://www.betterclose.co/api/tps/closings/$CLOSING_ID/milestone
 ```
 
 If all four return `"ok": true`, the integration is live.
+
+---
+
+## 11. FAQ — questions that came up during the first TPS-side build
+
+These were resolved during Garden's v1 build (2026-05-08); recording
+the answers so future TPS-side engineers don't re-ask.
+
+**Q. What values does BC accept for `propertyType`?**
+
+`"purchase"` and `"refinance"`, lowercase, exactly as Garden sends.
+BC also accepts `null` or an omitted key — in which case BC defaults
+to `"purchase"` for fee calculations. Anything else (e.g. `"PURCHASE"`,
+`"refi"`, `"home equity"`) is stored verbatim but treated as purchase
+by the fee-quote calculator. Recommendation: stick to the two
+canonical lowercase values.
+
+**Q. For `details` PATCH, when Garden has `nmls` or `photoUrl` as null,
+should we send `null` or omit the key?**
+
+**Omit the key.** `null` means "clear the existing value", which would
+wipe out anything BC ops typed into the admin UI for that field. See
+§3 Flow C "Per-field semantics" — same rule applies to every nested
+field. Garden's existing pattern of sending only changed fields is
+correct; just make sure your serialiser drops `null`/`undefined`
+keys rather than including them.
+
+**Q. `closingLocation` shape?**
+
+Free-text, up to 500 characters. Whatever the user types is fine —
+"Remote — RON via Notarize", "BetterClose office, Austin", "Buyer's
+attorney's office", etc. BC renders it verbatim on the borrower's
+dashboard.
+
+**Q. Multi-property closings — Garden's `propertiesData` is plural;
+we currently send `propertiesData[0]`. Is that OK?**
+
+Yes for now. BC's `Closing` model is single-property today (one
+`propertyAddress` / `propertyCity` / etc.). When multi-property
+becomes a real volume problem, BC will add a `Property[]` relation
+and bump the spec to v2. Until then, sending the primary property is
+the right call.
+
+**Q. Does ingesting the same order twice create duplicates?**
+
+No — `/api/orders/ingest` is idempotent. BC matches an incoming order
+to an existing Closing in this priority order: `borrowerEmail` →
+existing User's email → last-10-digit `borrowerPhone` → normalised
+`propertyAddress` (lowercased, punctuation stripped, whitespace
+collapsed). On a match, BC fills only the blank fields on the
+existing Closing — TPS data does not clobber values the borrower
+already entered themselves on the dashboard. Resync from Garden's
+Overview page returns the same `closingId` it returned the first time.
+
+**Q. Will BC's welcome email always fire on `/orders/ingest`?**
+
+No — only when no match is found and a brand-new orphan Closing is
+created. If the borrower already has a BC account (e.g. they signed
+up via the public fee calculator first), `/orders/ingest` matches
+their User by email, attaches the Closing, and **does not send a
+welcome email** (they're already in). Your test runbook step 1
+should use a fresh email per run if you want to verify the welcome
+path; sequential runs with the same email will only welcome once.
+
+**Q. Can `/orders/ingest` clobber a borrower's manually-entered
+property address?**
+
+No. The "blanks-only" rule (§3 Flow A "Idempotency") prevents this:
+TPS data fills in only fields that are still null/empty on the
+existing Closing. If a borrower edits their property address on
+their dashboard and TPS later re-ingests with a different address,
+BC keeps the borrower's value. If TPS *needs* to override (data
+correction), BC ops has to do it via the admin UI — there's no
+TPS-side override flag today.
+
+**Q. What about milestone retro-fires when Garden flips an Auto
+toggle on a milestone that's already past?**
+
+Garden's "Auto" toggles are future-only by design (per Garden's v1
+note). Even if you did POST a `done` for an already-`done` milestone,
+BC's `notifiedAt` idempotency makes it a no-op — no duplicate emails.
+So both sides are defensive, which is what we want.
