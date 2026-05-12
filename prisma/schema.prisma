@@ -8,32 +8,32 @@ datasource db {
 }
 
 model Lead {
-  id        String   @id @default(cuid())
-  email     String   @unique
+  id        String  @id @default(cuid())
+  email     String  @unique
   firstName String?
   lastName  String?
   phone     String?
 
   // Address information
-  address   String?
-  city      String?
-  state     String?
-  zipCode   String?
+  address String?
+  city    String?
+  state   String?
+  zipCode String?
 
   // Additional intake fields
-  homeValue          Float?
-  mortgageBalance    Float?
-  currentRate        Float?
-  creditScore        String?
-  propertyType       String?
+  homeValue       Float?
+  mortgageBalance Float?
+  currentRate     Float?
+  creditScore     String?
+  propertyType    String?
 
   // Metadata
-  source    String?
-  status    String   @default("new") // new, contacted, qualified, closed, lost
-  notes     String?
+  source String?
+  status String  @default("new") // new, contacted, qualified, closed, lost
+  notes  String?
 
   // Progressive intake
-  intakeJson           Json?     // Partial intake form data
+  intakeJson           Json? // Partial intake form data
   completionPercentage Int?      @default(0) // 0-100
   resumeToken          String?   @unique // Magic link token
   tokenExpiresAt       DateTime? // Token expiration
@@ -54,17 +54,17 @@ model Lead {
 }
 
 model Quote {
-  id        String   @id @default(cuid())
-  leadId    String
-  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  id     String @id @default(cuid())
+  leadId String
+  lead   Lead   @relation(fields: [leadId], references: [id], onDelete: Cascade)
 
   // Quote calculation inputs
-  homeValue          Float
-  mortgageBalance    Float
-  currentRate        Float
-  newRate            Float
-  creditScore        String
-  loanTerm           Int      @default(360) // months
+  homeValue       Float
+  mortgageBalance Float
+  currentRate     Float
+  newRate         Float
+  creditScore     String
+  loanTerm        Int    @default(360) // months
 
   // Quote results
   currentMonthlyPayment Float
@@ -77,9 +77,9 @@ model Quote {
   breakEvenMonths       Int?
 
   // Metadata
-  isValid   Boolean  @default(true)
+  isValid   Boolean   @default(true)
   expiresAt DateTime?
-  pdfUrl    String?  // S3 URL for generated PDF
+  pdfUrl    String? // S3 URL for generated PDF
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -89,20 +89,20 @@ model Quote {
 }
 
 model Document {
-  id        String   @id @default(cuid())
-  leadId    String
-  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  id     String @id @default(cuid())
+  leadId String
+  lead   Lead   @relation(fields: [leadId], references: [id], onDelete: Cascade)
 
   // Document information
-  type      String   // pay_stub, bank_statement, tax_return, id_document, etc.
-  fileName  String
-  fileSize  Int      // bytes
-  mimeType  String
-  s3Key     String   // S3 object key
-  s3Url     String   // S3 URL
+  type     String // pay_stub, bank_statement, tax_return, id_document, etc.
+  fileName String
+  fileSize Int // bytes
+  mimeType String
+  s3Key    String // S3 object key
+  s3Url    String // S3 URL
 
   // Metadata
-  uploadedBy String?  // user or admin
+  uploadedBy String? // user or admin
   notes      String?
 
   createdAt DateTime @default(now())
@@ -113,31 +113,31 @@ model Document {
 }
 
 model MortgageScenario {
-  id        String   @id @default(cuid())
-  leadId    String
-  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  id     String @id @default(cuid())
+  leadId String
+  lead   Lead   @relation(fields: [leadId], references: [id], onDelete: Cascade)
 
   // Source of data
-  source    String   // user_entered, partner_quote, internal
+  source String // user_entered, partner_quote, internal
 
   // Loan terms
-  lenderName       String?
-  loanAmount       Float
-  interestRate     Float
-  term             Int      // months
-  points           Float?   // discount points
-  lenderFees       Float?   // origination, processing, etc.
+  lenderName   String?
+  loanAmount   Float
+  interestRate Float
+  term         Int // months
+  points       Float? // discount points
+  lenderFees   Float? // origination, processing, etc.
 
   // Optional PITI components
-  propertyTaxes    Float?   // monthly
-  homeInsurance    Float?   // monthly
-  hoaFees          Float?   // monthly
-  pmi              Float?   // monthly
+  propertyTaxes Float? // monthly
+  homeInsurance Float? // monthly
+  hoaFees       Float? // monthly
+  pmi           Float? // monthly
 
   // Calculated values
-  principalInterest Float   // monthly P&I
-  totalMonthly      Float   // monthly PITI if provided, else P&I
-  totalUpfront      Float   // lender fees + points + closing costs
+  principalInterest Float // monthly P&I
+  totalMonthly      Float // monthly PITI if provided, else P&I
+  totalUpfront      Float // lender fees + points + closing costs
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -155,20 +155,20 @@ model MortgageReferral {
   partner   Partner? @relation(fields: [partnerId], references: [id])
 
   // User preferences
-  creditBand        String   // excellent, good, fair, poor
-  occupancy         String   // primary, secondary, investment
-  propertyType      String   // single_family, condo, etc.
-  downPaymentPct    Float    // percentage
-  termPreference    String   // 30_year, 15_year, arm
-  contactPreference String   // email, phone, both
+  creditBand        String // excellent, good, fair, poor
+  occupancy         String // primary, secondary, investment
+  propertyType      String // single_family, condo, etc.
+  downPaymentPct    Float // percentage
+  termPreference    String // 30_year, 15_year, arm
+  contactPreference String // email, phone, both
 
   // Additional context
   requestedLoanAmount Float?
   notes               String?
 
   // Referral status
-  status            String   @default("pending") // pending, contacted, quoted, closed, declined
-  partnerResponse   Json?    // Store partner's response
+  status             String    @default("pending") // pending, contacted, quoted, closed, declined
+  partnerResponse    Json? // Store partner's response
   partnerContactedAt DateTime?
 
   createdAt DateTime @default(now())
@@ -181,20 +181,20 @@ model MortgageReferral {
 }
 
 model Partner {
-  id        String   @id @default(cuid())
-  name      String
-  email     String
-  phone     String?
+  id    String  @id @default(cuid())
+  name  String
+  email String
+  phone String?
 
   // Configuration
-  isActive  Boolean  @default(true)
-  priority  Int      @default(0) // Higher = preferred
+  isActive Boolean @default(true)
+  priority Int     @default(0) // Higher = preferred
 
   // Specialties
-  specialties Json?   // { creditBands: [], propertyTypes: [], loanTypes: [] }
+  specialties Json? // { creditBands: [], propertyTypes: [], loanTypes: [] }
 
   // Metadata
-  notes     String?
+  notes String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -206,13 +206,13 @@ model Partner {
 }
 
 model ActivityEvent {
-  id        String   @id @default(cuid())
-  leadId    String
-  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  id     String @id @default(cuid())
+  leadId String
+  lead   Lead   @relation(fields: [leadId], references: [id], onDelete: Cascade)
 
-  type      String   // page_view, form_submit, email_sent, call_made, status_change, intake_started, intake_updated, doc_uploaded, mortgage_terms_added, mortgage_referral_requested
-  action    String
-  metadata  Json?
+  type     String // page_view, form_submit, email_sent, call_made, status_change, intake_started, intake_updated, doc_uploaded, mortgage_terms_added, mortgage_referral_requested
+  action   String
+  metadata Json?
 
   createdAt DateTime @default(now())
 
@@ -232,16 +232,24 @@ model User {
   emailVerified DateTime?
   image         String?
   phone         String?
+  // 'borrower' | 'professional' | 'admin'. Default 'borrower' so all
+  // existing rows keep their current semantics. 'professional' is added
+  // when an admin adds the user as a BrokerMembership.member; 'admin' is
+  // reserved (today admin access is still derived from ADMIN_EMAILS).
+  accountType   String    @default("borrower")
   createdAt     DateTime  @default(now())
 
-  accounts Account[]
-  sessions Session[]
-  closings Closing[] @relation("UserClosings")
-  teammateClosings TeammateClosing[] @relation("UserTeammateClosings")
-  lenderRequests LenderRequest[]
-  notifications NotificationLog[]
+  accounts          Account[]
+  sessions          Session[]
+  closings          Closing[]          @relation("UserClosings")
+  teammateClosings  TeammateClosing[]  @relation("UserTeammateClosings")
+  lenderRequests    LenderRequest[]
+  notifications     NotificationLog[]
+  brokerMemberships BrokerMembership[]
+  feeQuotes         FeeQuote[]
 
   @@index([phone])
+  @@index([accountType])
 }
 
 model Account {
@@ -327,7 +335,7 @@ model Closing {
 
   closingLocation String?
 
-  status String @default("pending")
+  status String  @default("pending")
   source String?
 
   // Snapshot of the fee report at the moment this closing was marked `closed`.
@@ -335,15 +343,18 @@ model Closing {
   // the actual savings the customer locked in, not whatever the live fee API
   // returns later.
   snapshotFeeReport Json?
-  closedAt DateTime?
+  closedAt          DateTime?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  milestones Milestone[]
+  milestones     Milestone[]
   lenderRequests LenderRequest[]
-  teammates TeammateClosing[]
-  notifications NotificationLog[]
+  teammates      TeammateClosing[]
+  notifications  NotificationLog[]
+  // Back-relation only — the FK lives on FeeQuote.convertedClosingId.
+  // Adding this here is required by Prisma but adds NO column to Closing.
+  feeQuote       FeeQuote?
 
   @@index([userId])
   @@index([propertyAddressKey])
@@ -353,11 +364,11 @@ model Closing {
 }
 
 model Milestone {
-  id          String    @id @default(cuid())
-  closingId   String
-  closing     Closing   @relation(fields: [closingId], references: [id], onDelete: Cascade)
+  id        String  @id @default(cuid())
+  closingId String
+  closing   Closing @relation(fields: [closingId], references: [id], onDelete: Cascade)
 
-  kind        String    // loan_locked | title_ordered | title_search | title_issued | closed
+  kind        String // loan_locked | title_ordered | title_search | title_issued | closed
   status      String    @default("pending") // pending | active | done
   completedAt DateTime?
   notifiedAt  DateTime? // when the user was emailed about this milestone reaching `done`
@@ -375,8 +386,8 @@ model Milestone {
 // ─────────────────────────────────────────────────────────────────────────────
 
 model LenderRequest {
-  id     String  @id @default(cuid())
-  refId  String  @unique // short id used in share URLs
+  id    String @id @default(cuid())
+  refId String @unique // short id used in share URLs
 
   // Optional links — populated when a logged-in user triggers the share from
   // the dashboard. Anonymous shares from marketing pages leave these null.
@@ -458,7 +469,7 @@ model TeammateClosing {
 // ─────────────────────────────────────────────────────────────────────────────
 
 model NotificationLog {
-  id        String   @id @default(cuid())
+  id String @id @default(cuid())
 
   userId    String?
   user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
@@ -466,12 +477,12 @@ model NotificationLog {
   closing   Closing? @relation(fields: [closingId], references: [id], onDelete: SetNull)
 
   // Channel of delivery — currently only 'email', but leaves room for sms etc.
-  channel   String   @default("email")
+  channel String @default("email")
 
   // Logical kind of notification. Use prefixes to keep this groupable, e.g.
   // 'milestone:loan_locked', 'milestone:closed', 'magic_link',
   // 'lender_invite', 'admin_resend:closing_update'.
-  kind      String
+  kind String
 
   // Where it was sent and what it said.
   recipient String
@@ -481,13 +492,144 @@ model NotificationLog {
   providerMessageId String?
 
   // sent | failed | skipped (e.g. dry-run)
-  status    String   @default("sent")
-  error     String?
+  status String  @default("sent")
+  error  String?
 
   createdAt DateTime @default(now())
 
   @@index([userId])
   @@index([closingId])
+  @@index([kind])
+  @@index([createdAt])
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Broker portal foundation (PR 2 — schema only, no UI/route consumers yet).
+// All additive. Existing borrower flow, TPS integration, and the legacy
+// Lead/Quote/Document cluster are untouched.
+// ─────────────────────────────────────────────────────────────────────────────
+
+// A BrokerCompany is a brokerage / shop a professional belongs to. Used to
+// scope quote creation and (later) pipeline visibility. verifiedAt gates
+// quote-to-Closing conversion — an unverified company can draft and send
+// quotes but cannot push a real Closing into the BC↔TPS pipeline. Verified
+// is set manually by an admin after KYB.
+model BrokerCompany {
+  id            String    @id @default(cuid())
+  name          String
+  slug          String    @unique
+  // Informational only — NOT used for auth or auto-assignment. Domain-based
+  // membership is rejected on principle (one gmail address would misfile a
+  // member into a company within a week).
+  primaryDomain String?
+  verifiedAt    DateTime?
+  notes         String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  members   BrokerMembership[]
+  feeQuotes FeeQuote[]
+
+  @@index([verifiedAt])
+}
+
+// Membership of a User in a BrokerCompany. M2M so a professional with two
+// shops can see both. 'role' here is intra-company (owner = can manage
+// members + company profile; member = can create quotes) — independent of
+// User.accountType and TeammateClosing.role.
+model BrokerMembership {
+  id        String        @id @default(cuid())
+  userId    String
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  companyId String
+  company   BrokerCompany @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  // 'owner' | 'member'
+  role String @default("member")
+
+  createdAt DateTime @default(now())
+
+  @@unique([userId, companyId])
+  @@index([companyId])
+}
+
+// A persisted broker-prepared title fee quote. Distinct from the legacy
+// Lead-scoped `Quote` model (which is mortgage-refi shaped). Stores the
+// exact frozen output that was shown to the borrower so the savings figure
+// can't drift between send-time and convert-time even if upstream rates move.
+//
+// inputHash is sha256 of the normalized input JSON — lets us dedupe re-quotes
+// and detect when a broker has edited inputs after sending.
+//
+// expiresAt is NOT nullable: the application layer is expected to set
+// generatedAt + N days at creation. We prefer hard "row constructor must
+// supply expiresAt" over a `@default(now())` that would mark every quote
+// expired on the row it's created.
+model FeeQuote {
+  id              String         @id @default(cuid())
+  brokerUserId    String?
+  brokerUser      User?          @relation(fields: [brokerUserId], references: [id], onDelete: SetNull)
+  brokerCompanyId String?
+  brokerCompany   BrokerCompany? @relation(fields: [brokerCompanyId], references: [id], onDelete: SetNull)
+
+  // Opaque random ~32-char base64url string. Used in the public
+  // /quote/view?token=... URL. Unique → indexed.
+  shareToken String @unique
+  inputHash  String
+
+  // 'draft' | 'sent' | 'viewed' | 'converted' | 'expired'. Transitions are
+  // recorded as FeeQuoteEvent rows for funnel analytics; status here is the
+  // current state for fast filtering.
+  status String @default("draft")
+
+  inputJson  Json
+  outputJson Json
+
+  borrowerName    String?
+  borrowerEmail   String?
+  borrowerPhone   String?
+  propertyAddress String?
+  propertyCity    String?
+  propertyState   String?
+  propertyZip     String?
+
+  pdfS3Url  String?
+  expiresAt DateTime
+
+  // Set when a broker clicks "Convert to closing" on the FeeQuote. Unique
+  // so each Closing has at most one source FeeQuote. The reverse pointer
+  // lives ONLY here — Closing has no sourceFeeQuoteId column.
+  convertedClosingId String?  @unique
+  convertedClosing   Closing? @relation(fields: [convertedClosingId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  events FeeQuoteEvent[]
+
+  @@index([brokerUserId])
+  @@index([brokerCompanyId])
+  @@index([status])
+  @@index([borrowerEmail])
+  @@index([expiresAt])
+}
+
+// One row per state-changing or analytically-interesting event on a FeeQuote.
+// Cheap append-only audit. Kinds today: 'sent' | 'viewed' | 'converted' |
+// 'expired' | 'pdf_generated' | 'resent'. metadata holds context per kind
+// (e.g. { ip, userAgent } for 'viewed'; { closingId } for 'converted').
+model FeeQuoteEvent {
+  id         String   @id @default(cuid())
+  feeQuoteId String
+  feeQuote   FeeQuote @relation(fields: [feeQuoteId], references: [id], onDelete: Cascade)
+
+  kind     String
+  metadata Json?
+
+  createdAt DateTime @default(now())
+
+  @@index([feeQuoteId])
   @@index([kind])
   @@index([createdAt])
 }
