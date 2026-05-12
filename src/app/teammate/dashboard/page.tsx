@@ -10,6 +10,8 @@ import {
   MILESTONE_LABELS,
   type MilestoneKind,
 } from '@/lib/closing'
+import { getProfessionalContext } from '@/lib/professional'
+import TeammateTabs from '@/components/teammate/TeammateTabs'
 import MuteToggle from './MuteToggle'
 
 export const dynamic = 'force-dynamic'
@@ -64,6 +66,11 @@ export default async function TeammateDashboardPage({ searchParams }: PageProps)
   // load — cheap UPDATE, idempotent.
   await claimTeammateClosingsForUser(user.id, user.email)
 
+  // Resolve professional/broker context once so the tab bar can render
+  // broker-only tabs when appropriate. Read-only, no side-effects.
+  const professional = await getProfessionalContext(user.id)
+  const isBrokerMember = professional?.isBrokerMember ?? false
+
   const memberships = await prisma.teammateClosing.findMany({
     where: { userId: user.id },
     include: {
@@ -93,6 +100,7 @@ export default async function TeammateDashboardPage({ searchParams }: PageProps)
       <div className="h-20" />
       <main className="bg-gray-100 min-h-[calc(100vh-5rem)] py-10 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
+          <TeammateTabs active="files" isBrokerMember={isBrokerMember} />
           <div className="mb-8 flex items-baseline justify-between flex-wrap gap-3">
             <div>
               <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-1">
