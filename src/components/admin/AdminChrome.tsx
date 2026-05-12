@@ -5,12 +5,13 @@ export function AdminHeader({
   active,
 }: {
   admin: { email: string }
-  active: 'overview' | 'users' | 'closings' | 'notifications' | 'leads'
+  active: 'overview' | 'users' | 'closings' | 'broker-companies' | 'notifications' | 'leads'
 }) {
   const tabs: { key: typeof active; label: string; href: string }[] = [
     { key: 'overview', label: 'Overview', href: '/admin' },
     { key: 'users', label: 'Users', href: '/admin/users' },
     { key: 'closings', label: 'Closings', href: '/admin/closings' },
+    { key: 'broker-companies', label: 'Broker companies', href: '/admin/broker-companies' },
     { key: 'notifications', label: 'Notifications', href: '/admin/notifications' },
     { key: 'leads', label: 'Leads (legacy)', href: '/admin/leads' },
   ]
