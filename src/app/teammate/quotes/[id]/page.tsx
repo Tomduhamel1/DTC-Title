@@ -41,6 +41,7 @@ export default async function TeammateQuoteDetailPage({
       id: true,
       status: true,
       shareToken: true,
+      convertedClosingId: true,
       borrowerName: true,
       borrowerEmail: true,
       borrowerPhone: true,
@@ -144,6 +145,27 @@ export default async function TeammateQuoteDetailPage({
               />
             </div>
 
+            {quote.convertedClosingId && (
+              <div className="mt-5 pt-5 border-t border-gray-100">
+                <div className="rounded-xl bg-emerald-50 border border-emerald-200 px-4 py-3 flex items-baseline justify-between gap-3 flex-wrap">
+                  <div>
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-700">
+                      Converted
+                    </div>
+                    <div className="text-sm text-emerald-900">
+                      This quote was converted into a real closing.
+                    </div>
+                  </div>
+                  <a
+                    href={`/teammate/dashboard/${quote.convertedClosingId}`}
+                    className="text-xs font-semibold text-emerald-800 hover:underline"
+                  >
+                    View file →
+                  </a>
+                </div>
+              </div>
+            )}
+
             <div className="mt-5 pt-5 border-t border-gray-100">
               <BrokerQuoteActions
                 quoteId={quote.id}
@@ -151,6 +173,8 @@ export default async function TeammateQuoteDetailPage({
                 shareToken={quote.shareToken}
                 hasBorrowerEmail={Boolean(quote.borrowerEmail)}
                 publicViewBaseUrl={publicViewBaseUrl}
+                companyVerified={Boolean(quote.brokerCompany?.verifiedAt)}
+                convertedClosingId={quote.convertedClosingId}
               />
             </div>
           </div>
