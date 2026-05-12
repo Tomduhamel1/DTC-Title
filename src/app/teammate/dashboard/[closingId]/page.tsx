@@ -6,6 +6,8 @@ import MilestoneTimeline from '@/components/dashboard/MilestoneTimeline'
 import EscrowOfficerCard from '@/components/dashboard/EscrowOfficerCard'
 import { requireUser } from '@/lib/auth/session'
 import { prisma } from '@/lib/db'
+import { getProfessionalContext } from '@/lib/professional'
+import TeammateTabs from '@/components/teammate/TeammateTabs'
 import MuteToggle from '../MuteToggle'
 
 export const dynamic = 'force-dynamic'
@@ -35,6 +37,10 @@ export default async function TeammateClosingDetailPage({ params }: PageProps) {
   if (!membership || !membership.closing) {
     notFound()
   }
+
+  // Read-only: drives whether the broker-only tabs render in the bar above.
+  const professional = await getProfessionalContext(user.id)
+  const isBrokerMember = professional?.isBrokerMember ?? false
 
   const c = membership.closing
   const fullAddress = [c.propertyAddress, c.propertyCity, c.propertyState, c.propertyZip]
@@ -67,6 +73,7 @@ export default async function TeammateClosingDetailPage({ params }: PageProps) {
       <div className="h-20" />
       <main className="bg-gray-100 min-h-[calc(100vh-5rem)] py-10 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
+          <TeammateTabs active="files" isBrokerMember={isBrokerMember} />
           <Link
             href="/teammate/dashboard"
             className="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-500 hover:text-emerald-700 mb-4"
