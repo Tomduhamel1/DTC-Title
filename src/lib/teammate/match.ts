@@ -31,6 +31,21 @@ export async function claimTeammateClosingsForUser(
   return result.count
 }
 
+export type TeammateRole = 'lender' | 'broker' | 'realtor' | 'unknown'
+
+export interface UpsertTeammateClosingResult {
+  // True when the (matchedEmail, closingId) row did not exist before this call.
+  // Idempotency scope is per (email, closingId) — the same teammate email on a
+  // different closing is a fresh row and reports created=true.
+  created: boolean
+  // True when the row has a populated userId after the upsert (either we
+  // matched an existing User in this call or the row was already linked).
+  linkedToUser: boolean
+  matchedEmail: string
+  userId: string | null
+  role: TeammateRole
+}
+
 // Upsert a single (matchedEmail, closingId) -> TeammateClosing row. Used when
 // TPS opens an order and tells us who placed it. If a User with that email
 // already exists, we link them; otherwise we leave userId null and the
@@ -38,17 +53,22 @@ export async function claimTeammateClosingsForUser(
 export async function upsertTeammateClosing(opts: {
   closingId: string
   email: string
-  role?: 'lender' | 'broker' | 'realtor' | 'unknown'
-}): Promise<void> {
+  role?: TeammateRole
+}): Promise<UpsertTeammateClosingResult | null> {
   const matchedEmail = normaliseEmail(opts.email)
-  if (!matchedEmail) return
+  if (!matchedEmail) return null
 
   const existingUser = await prisma.user.findUnique({
     where: { email: matchedEmail },
     select: { id: true },
   })
 
-  await prisma.teammateClosing.upsert({
+  const existingRow = await prisma.teammateClosing.findUnique({
+    where: { matchedEmail_closingId: { matchedEmail, closingId: opts.closingId } },
+    select: { id: true, userId: true, role: true },
+  })
+
+  const upserted = await prisma.teammateClosing.upsert({
     where: { matchedEmail_closingId: { matchedEmail, closingId: opts.closingId } },
     create: {
       closingId: opts.closingId,
@@ -63,5 +83,14 @@ export async function upsertTeammateClosing(opts: {
       // Don't clobber a previously inferred role with 'unknown'.
       ...(opts.role && opts.role !== 'unknown' ? { role: opts.role } : {}),
     },
+    select: { userId: true, role: true },
   })
+
+  return {
+    created: !existingRow,
+    linkedToUser: Boolean(upserted.userId),
+    matchedEmail,
+    userId: upserted.userId ?? null,
+    role: (upserted.role as TeammateRole) ?? 'unknown',
+  }
 }

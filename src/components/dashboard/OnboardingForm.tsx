@@ -55,7 +55,7 @@ export default function OnboardingForm({ closingId, userName, userEmail }: Onboa
           Let's set up your dashboard
         </h1>
         <p className="text-gray-600">
-          Tell us about your closing so we can match it when your lender sends the order. Takes 30 seconds.
+          Tell us about your closing so we can match it when your closing team opens the order. Takes 30 seconds.
         </p>
       </div>
 
@@ -167,7 +167,7 @@ export default function OnboardingForm({ closingId, userName, userEmail }: Onboa
             className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none"
           />
           <p className="text-xs text-gray-500 mt-1.5">
-            We'll only use this to match your closing when your lender places the order. We never spam.
+            We'll only use this to match your closing when your closing team opens the order. We never spam.
           </p>
         </div>
 

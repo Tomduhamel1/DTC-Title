@@ -7,10 +7,12 @@
 import { prisma } from '@/lib/db'
 import { MILESTONE_LABELS, type MilestoneKind } from './closing'
 import { sendClosingUpdateEmail } from './email/closing-update'
+import { sendClosingUpdateTeammateEmail } from './email/closing-update-teammate'
 import { sendClosingCompletedEmail } from './email/closing-completed'
 import { fetchElendFeeEstimate } from './elendCalc'
 import type { FeeReport } from './feeReport'
 import { logNotification } from './notificationLog'
+import type { TeammateRole } from './professional/pronoun'
 
 function firstName(name?: string | null): string | null {
   if (!name) return null
@@ -204,6 +206,7 @@ export async function applyMilestoneTransition(
 
             const teammateDashboardUrl = `${baseUrl}/teammate/dashboard/${closing.id}`
             const teammateSubject = `${MILESTONE_LABELS[kind]} · ${fullAddress(closing) || 'BetterClose'}`
+            const teammateRole = ((t.role as TeammateRole) ?? 'unknown') as TeammateRole
 
             if (t.muted) {
               await logNotification({
@@ -218,12 +221,14 @@ export async function applyMilestoneTransition(
             }
 
             try {
-              const messageId = await sendClosingUpdateEmail({
+              const messageId = await sendClosingUpdateTeammateEmail({
                 to: t.user.email,
-                borrowerFirstName: firstName(t.user.name),
+                recipientFirstName: firstName(t.user.name),
+                role: teammateRole,
                 milestoneKind: kind,
                 propertyAddress: fullAddress(closing),
-                dashboardUrl: teammateDashboardUrl,
+                borrowerName: closing.user?.name ?? null,
+                teammateDashboardUrl,
               })
               await logNotification({
                 userId: t.user.id,

@@ -191,8 +191,8 @@ function MainPlaceholder() {
           Your officer will be assigned shortly
         </div>
         <p className="text-sm text-gray-600 mt-2 leading-relaxed">
-          Once your lender opens the order with us, we&apos;ll match you with the right closing
-          officer for your transaction — typically within one business day. They&apos;ll
+          Once your closing team opens the order with us, we&apos;ll match you with the right
+          closing officer for your transaction — typically within one business day. They&apos;ll
           introduce themselves by email and be your single point of contact through closing.
         </p>
       </div>

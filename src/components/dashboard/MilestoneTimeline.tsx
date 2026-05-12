@@ -32,7 +32,7 @@ export default function MilestoneTimeline({ milestones, closingDate }: Milestone
           </div>
           <h3 className="text-xl font-black text-dark-900">
             {doneCount === 0
-              ? 'Ready when your lender places the order'
+              ? 'Ready when your closing team opens the order'
               : doneCount === MILESTONE_KINDS.length
               ? 'Closed!'
               : `${doneCount} of ${MILESTONE_KINDS.length} milestones complete`}

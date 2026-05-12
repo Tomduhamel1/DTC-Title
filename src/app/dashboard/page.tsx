@@ -71,7 +71,7 @@ export default async function DashboardPage({
     {
       key: 'invite',
       status: latestInvite || orderPlaced ? 'done' : 'active',
-      title: latestInvite || orderPlaced ? 'Invited your team' : 'Invite your lender or realtor',
+      title: latestInvite || orderPlaced ? 'Invited your team' : 'Invite your closing team',
       detail: latestInvite
         ? formatSentDetail(latestInvite)
         : orderPlaced
