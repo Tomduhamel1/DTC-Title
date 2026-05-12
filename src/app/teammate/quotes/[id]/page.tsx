@@ -1,9 +1,11 @@
+import { headers } from 'next/headers'
 import Link from 'next/link'
 import { notFound, redirect } from 'next/navigation'
 import NavigationCredible from '@/components/NavigationCredible'
 import FooterComprehensive from '@/components/FooterComprehensive'
 import TeammateTabs from '@/components/teammate/TeammateTabs'
 import FeeReportTable from '@/components/FeeReportTable'
+import BrokerQuoteActions from '@/components/teammate/BrokerQuoteActions'
 import { requireUser, requireBrokerMember } from '@/lib/auth/session'
 import { prisma } from '@/lib/db'
 import { computeTotals, formatCurrency, type FeeReport } from '@/lib/feeReport'
@@ -11,9 +13,9 @@ import { computeTotals, formatCurrency, type FeeReport } from '@/lib/feeReport'
 // Broker quote detail page. Renders the frozen outputJson via the existing
 // FeeReportTable component plus borrower/property summary.
 //
-// Owner-only: the Prisma query filters by both id and brokerUserId, so a
-// broker can't view another broker's quote (notFound for them, indistinct
-// from a never-existed id).
+// Company-scoped: any member of the FeeQuote's brokerCompany can view it,
+// regardless of which co-member created it. Non-member access returns 404
+// (not 403) to avoid leaking quote-id existence.
 
 export const dynamic = 'force-dynamic'
 
@@ -38,6 +40,7 @@ export default async function TeammateQuoteDetailPage({
     select: {
       id: true,
       status: true,
+      shareToken: true,
       borrowerName: true,
       borrowerEmail: true,
       borrowerPhone: true,
@@ -50,9 +53,22 @@ export default async function TeammateQuoteDetailPage({
       expiresAt: true,
       brokerCompany: { select: { name: true, verifiedAt: true } },
       brokerUser: { select: { id: true, name: true, email: true } },
+      events: {
+        orderBy: { createdAt: 'desc' },
+        take: 10,
+        select: { id: true, kind: true, createdAt: true },
+      },
     },
   })
   if (!quote) notFound()
+
+  // Resolve the absolute base URL so the client component can build the
+  // public share link without guessing. Prefer the request's actual host
+  // header; fall back to NEXTAUTH_URL for environments where it isn't set.
+  const h = await headers()
+  const host = h.get('host')
+  const protocol = h.get('x-forwarded-proto') || (host?.startsWith('localhost') ? 'http' : 'https')
+  const publicViewBaseUrl = host ? `${protocol}://${host}` : process.env.NEXTAUTH_URL || ''
 
   const report = quote.outputJson as unknown as FeeReport | null
   const totals = report ? computeTotals(report) : null
@@ -128,10 +144,14 @@ export default async function TeammateQuoteDetailPage({
               />
             </div>
 
-            <div className="mt-5 pt-5 border-t border-gray-100 flex gap-2 flex-wrap">
-              <DisabledAction>Send to borrower (coming soon)</DisabledAction>
-              <DisabledAction>Copy share link (coming soon)</DisabledAction>
-              <DisabledAction>Convert to closing (coming soon)</DisabledAction>
+            <div className="mt-5 pt-5 border-t border-gray-100">
+              <BrokerQuoteActions
+                quoteId={quote.id}
+                status={quote.status}
+                shareToken={quote.shareToken}
+                hasBorrowerEmail={Boolean(quote.borrowerEmail)}
+                publicViewBaseUrl={publicViewBaseUrl}
+              />
             </div>
           </div>
 
@@ -140,6 +160,32 @@ export default async function TeammateQuoteDetailPage({
           ) : (
             <div className="bg-white rounded-2xl border border-gray-200 p-8 text-sm text-gray-500 text-center">
               No fee report stored on this quote.
+            </div>
+          )}
+
+          {quote.events.length > 0 && (
+            <div className="bg-white rounded-2xl border border-gray-200 mt-6 overflow-hidden">
+              <div className="px-5 py-3 border-b border-gray-100 flex items-baseline justify-between">
+                <h3 className="text-sm font-bold text-dark-900">
+                  Recent activity ({quote.events.length})
+                </h3>
+                <span className="text-xs text-gray-500">Most recent first</span>
+              </div>
+              <ul className="divide-y divide-gray-100">
+                {quote.events.map((e) => (
+                  <li
+                    key={e.id}
+                    className="px-5 py-2.5 flex items-baseline justify-between gap-3 text-sm"
+                  >
+                    <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-gray-100 text-gray-700">
+                      {e.kind}
+                    </span>
+                    <span className="text-xs text-gray-500">
+                      {new Date(e.createdAt).toLocaleString()}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
         </div>
@@ -179,10 +225,3 @@ function StatusPill({ status }: { status: string }) {
   )
 }
 
-function DisabledAction({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-400 bg-gray-50 border border-gray-200 cursor-not-allowed">
-      {children}
-    </span>
-  )
-}
