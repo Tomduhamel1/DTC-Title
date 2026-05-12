@@ -22,7 +22,7 @@ const KIND_BODY: Record<MilestoneKind, string> = {
   loan_locked:
     "Your lender finalized your interest rate. From here, we'll wait for the title order to come through and then start your search.",
   title_ordered:
-    "Your lender (or you) placed the title order with BetterClose. We're starting on it now — most searches finish within a few business days.",
+    "Your closing team opened your title order with BetterClose. We're starting on it now — most searches finish within a few business days.",
   title_search:
     "We've completed the title search and confirmed clean title — no liens, no surprises. Next up: issuing the policy.",
   title_issued:

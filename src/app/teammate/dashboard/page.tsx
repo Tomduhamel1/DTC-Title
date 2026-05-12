@@ -207,7 +207,7 @@ function FileRow({ membership }: { membership: MembershipRow }) {
     membership.role === 'lender'
       ? 'Lender'
       : membership.role === 'realtor'
-      ? 'Realtor'
+      ? 'Real estate agent'
       : membership.role === 'broker'
       ? 'Broker'
       : 'Teammate'

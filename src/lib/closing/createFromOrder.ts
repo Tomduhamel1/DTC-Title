@@ -6,7 +6,9 @@ import {
   resolveClosingForOrder,
 } from '@/lib/closing'
 import { sendWelcomeEmail } from '@/lib/email/welcome'
+import { sendTeammateInviteEmail } from '@/lib/email/teammate-invite'
 import { upsertTeammateClosing } from '@/lib/teammate/match'
+import type { TeammateRole } from '@/lib/professional/pronoun'
 
 // Shared write path for inbound orders. Used by:
 //   - POST /api/orders/ingest (TPS / title-software integration)
@@ -120,7 +122,7 @@ export async function createClosingFromOrder(
     (typeof orderingPartyEmail === 'string' && orderingPartyEmail) ||
     (typeof lenderEmail === 'string' && lenderEmail) ||
     null
-  const teammateRoleResolved =
+  const teammateRoleResolved: TeammateRole =
     typeof teammateRole === 'string' &&
     (teammateRole === 'lender' || teammateRole === 'broker' || teammateRole === 'realtor')
       ? teammateRole
@@ -142,11 +144,25 @@ export async function createClosingFromOrder(
 
     if (teammateEmailResolved) {
       try {
-        await upsertTeammateClosing({
+        const upsertResult = await upsertTeammateClosing({
           closingId: updated.id,
           email: teammateEmailResolved,
           role: teammateRoleResolved,
         })
+        if (upsertResult && upsertResult.created && !upsertResult.linkedToUser) {
+          try {
+            await sendTeammateInviteEmail({
+              email: upsertResult.matchedEmail,
+              role: upsertResult.role,
+              closingId: updated.id,
+              placingBorrowerName: typeof borrowerName === 'string' ? borrowerName : null,
+              propertyAddress: baseData.propertyAddress,
+            })
+          } catch (inviteErr) {
+            // eslint-disable-next-line no-console
+            console.error('[orders/ingest] teammate invite send failed (matched branch)', inviteErr)
+          }
+        }
       } catch (err) {
         // eslint-disable-next-line no-console
         console.error('[orders/ingest] teammate upsert failed (matched branch)', err)
@@ -176,8 +192,11 @@ export async function createClosingFromOrder(
         borrowerEmail: baseData.borrowerEmail,
         borrowerName: typeof borrowerName === 'string' ? borrowerName : undefined,
         propertyAddress: baseData.propertyAddress || undefined,
-        lenderCompany: baseData.lenderCompany || undefined,
         baseUrl,
+        placingParty: {
+          role: teammateRoleResolved,
+          lenderCompany: baseData.lenderCompany || undefined,
+        },
       })
     } catch (err) {
       // eslint-disable-next-line no-console
@@ -188,11 +207,25 @@ export async function createClosingFromOrder(
 
   if (teammateEmailResolved) {
     try {
-      await upsertTeammateClosing({
+      const upsertResult = await upsertTeammateClosing({
         closingId: created.id,
         email: teammateEmailResolved,
         role: teammateRoleResolved,
       })
+      if (upsertResult && upsertResult.created && !upsertResult.linkedToUser) {
+        try {
+          await sendTeammateInviteEmail({
+            email: upsertResult.matchedEmail,
+            role: upsertResult.role,
+            closingId: created.id,
+            placingBorrowerName: typeof borrowerName === 'string' ? borrowerName : null,
+            propertyAddress: baseData.propertyAddress,
+          })
+        } catch (inviteErr) {
+          // eslint-disable-next-line no-console
+          console.error('[orders/ingest] teammate invite send failed (orphan branch)', inviteErr)
+        }
+      }
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error('[orders/ingest] teammate upsert failed (orphan branch)', err)

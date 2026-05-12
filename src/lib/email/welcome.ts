@@ -1,19 +1,46 @@
 import { sendEmail } from '@/lib/aws/ses'
+import type { TeammateRole } from '@/lib/professional/pronoun'
+
+export interface PlacingParty {
+  role: TeammateRole
+  // Only consumed when role === 'lender'. For any other role, lenderCompany
+  // is ignored so we never produce "Your broker from Acme Lending".
+  lenderCompany?: string | null
+}
 
 export interface WelcomeEmailData {
   borrowerEmail: string
   borrowerName?: string
   propertyAddress?: string
-  lenderCompany?: string
   baseUrl: string
+  // Optional structured placing-party. If omitted, copy defaults to "Your
+  // closing team just opened your title order..."
+  placingParty?: PlacingParty
+}
+
+// Build the sentence prefix for "${prefix} just opened your title order...".
+// Only the lender case opts into the company-name suffix — brokers/realtors/
+// unknown never append a lender company even if one was passed.
+function placingPartySentencePrefix(p?: PlacingParty): string {
+  if (!p) return 'Your closing team'
+  switch (p.role) {
+    case 'lender':
+      return p.lenderCompany ? `Your lender from ${p.lenderCompany}` : 'Your lender'
+    case 'broker':
+      return 'Your broker'
+    case 'realtor':
+      return 'Your real estate agent'
+    default:
+      return 'Your closing team'
+  }
 }
 
 export async function sendWelcomeEmail(d: WelcomeEmailData): Promise<string> {
   const greeting = d.borrowerName ? `Hi ${d.borrowerName.split(' ')[0]},` : 'Hi,'
   const claimUrl = `${d.baseUrl}/welcome?email=${encodeURIComponent(d.borrowerEmail)}`
-  const lender = d.lenderCompany ? ` from ${d.lenderCompany}` : ''
   const property = d.propertyAddress ? ` for <strong>${escapeHtml(d.propertyAddress)}</strong>` : ''
   const propertyText = d.propertyAddress ? ` for ${d.propertyAddress}` : ''
+  const placingPrefix = placingPartySentencePrefix(d.placingParty)
 
   const subject = 'Your BetterClose dashboard is ready'
   const htmlBody = `<!DOCTYPE html>
@@ -23,7 +50,7 @@ export async function sendWelcomeEmail(d: WelcomeEmailData): Promise<string> {
     <div style="font-size:11px;font-weight:700;letter-spacing:0.2em;color:#0f172a;margin-bottom:24px;">BETTERCLOSE</div>
     <h1 style="font-size:24px;font-weight:800;margin:0 0 16px 0;">Your closing is with BetterClose</h1>
     <p>${greeting}</p>
-    <p>Your lender${lender} just placed your title order with BetterClose${property}. We've created a dashboard so you can track every step — loan locked, title ordered, title issued, and closed.</p>
+    <p>${escapeHtml(placingPrefix)} just opened your title order with BetterClose${property}. We've created a dashboard so you can track every step — loan locked, title ordered, title issued, and closed.</p>
     <p style="margin:28px 0;">
       <a href="${claimUrl}" style="display:inline-block;background:#16a34a;color:#fff;text-decoration:none;padding:14px 28px;border-radius:8px;font-weight:700;">Open my dashboard →</a>
     </p>
@@ -42,7 +69,7 @@ export async function sendWelcomeEmail(d: WelcomeEmailData): Promise<string> {
 
   const textBody = `${greeting}
 
-Your lender${lender} just placed your title order with BetterClose${propertyText}. We've created a dashboard so you can track every step — loan locked, title ordered, title issued, and closed.
+${placingPrefix} just opened your title order with BetterClose${propertyText}. We've created a dashboard so you can track every step — loan locked, title ordered, title issued, and closed.
 
 Open your dashboard: ${claimUrl}
 

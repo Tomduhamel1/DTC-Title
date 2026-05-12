@@ -391,7 +391,7 @@ export default function DashboardHomeUnified({
                 </div>
                 <EditableFields
                   closingId={closing.id}
-                  emptyHint="Add your loan officer's contact info, or wait — we'll fill this in when your lender places the order."
+                  emptyHint="Add your loan officer's contact info, or wait — we'll fill this in when your closing team opens the order."
                   fields={[
                     { key: 'lenderName', label: 'Loan officer', value: closing.lenderName },
                     { key: 'lenderCompany', label: 'Company', value: closing.lenderCompany },
