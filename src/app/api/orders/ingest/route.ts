@@ -1,13 +1,5 @@
 import { NextResponse } from 'next/server'
-import { prisma } from '@/lib/db'
-import {
-  MILESTONE_KINDS,
-  normalizePhoneKey,
-  normalizePropertyKey,
-  resolveClosingForOrder,
-} from '@/lib/closing'
-import { sendWelcomeEmail } from '@/lib/email/welcome'
-import { upsertTeammateClosing } from '@/lib/teammate/match'
+import { createClosingFromOrder } from '@/lib/closing/createFromOrder'
 
 /**
  * Accepts an inbound order from the title-software integration (or manual ops).
@@ -18,6 +10,11 @@ import { upsertTeammateClosing } from '@/lib/teammate/match'
  *   2. Matched: attach + fill in any blanks.
  *   3. Unmatched: create a new orphan Closing AND send a welcome email so the
  *      borrower can sign in and claim it.
+ *
+ * Domain logic lives in src/lib/closing/createFromOrder.ts so other callers
+ * (e.g. a broker-originated quote-to-order conversion) can reuse the same
+ * matching, milestone seeding, welcome-email, and teammate-attribution
+ * behavior without re-implementing it.
  */
 export async function POST(req: Request) {
   // Auth gate
@@ -32,155 +29,24 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'invalid body' }, { status: 400 })
   }
 
-  const {
-    borrowerEmail,
-    borrowerName,
-    borrowerPhone,
-    propertyAddress,
-    propertyCity,
-    propertyState,
-    propertyZip,
-    propertyType,
-    closingDate,
-    salePrice,
-    loanAmount,
-    lenderName,
-    lenderCompany,
-    lenderEmail,
-    lenderPhone,
-    lenderNmls,
-    // Teammate attribution: who in TPS placed this order? Accept the
-    // canonical name plus a few legacy aliases so resilience to TPS schema
-    // drift doesn't require redeploying us.
-    teammateEmail,
-    teammateRole,
-    placedByEmail,
-    lenderContactEmail,
-    orderingPartyEmail,
-  } = body as Record<string, string | number | null | undefined>
+  const result = await createClosingFromOrder(
+    body as Record<string, string | number | null | undefined>,
+  )
 
-  const match = await resolveClosingForOrder({
-    borrowerEmail: typeof borrowerEmail === 'string' ? borrowerEmail.toLowerCase() : null,
-    borrowerPhone: typeof borrowerPhone === 'string' ? borrowerPhone : null,
-    propertyAddress: typeof propertyAddress === 'string' ? propertyAddress : null,
-  })
-
-  const baseData = {
-    propertyAddress: typeof propertyAddress === 'string' ? propertyAddress : null,
-    propertyCity: typeof propertyCity === 'string' ? propertyCity : null,
-    propertyState: typeof propertyState === 'string' ? propertyState : null,
-    propertyZip: typeof propertyZip === 'string' ? propertyZip : null,
-    propertyAddressKey: normalizePropertyKey(typeof propertyAddress === 'string' ? propertyAddress : null),
-    propertyType: typeof propertyType === 'string' ? propertyType : null,
-    closingDate: typeof closingDate === 'string' ? new Date(closingDate) : null,
-    salePrice: typeof salePrice === 'number' ? salePrice : null,
-    loanAmount: typeof loanAmount === 'number' ? loanAmount : null,
-    borrowerEmail: typeof borrowerEmail === 'string' ? borrowerEmail.toLowerCase() : null,
-    borrowerPhone: normalizePhoneKey(typeof borrowerPhone === 'string' ? borrowerPhone : null),
-    lenderName: typeof lenderName === 'string' ? lenderName : null,
-    lenderCompany: typeof lenderCompany === 'string' ? lenderCompany : null,
-    lenderEmail: typeof lenderEmail === 'string' ? lenderEmail : null,
-    lenderPhone: typeof lenderPhone === 'string' ? lenderPhone : null,
-    lenderNmls: typeof lenderNmls === 'string' ? lenderNmls : null,
-    status: 'active',
-    source: 'inbound_order',
-  }
-
-  // Resolve the teammate email TPS told us placed this order, normalising
-  // across aliases. Falls back to lenderEmail when nothing more specific is
-  // available — the lender field is the most-likely "placing party" for a
-  // typical title-software integration.
-  const teammateEmailResolved =
-    (typeof teammateEmail === 'string' && teammateEmail) ||
-    (typeof placedByEmail === 'string' && placedByEmail) ||
-    (typeof lenderContactEmail === 'string' && lenderContactEmail) ||
-    (typeof orderingPartyEmail === 'string' && orderingPartyEmail) ||
-    (typeof lenderEmail === 'string' && lenderEmail) ||
-    null
-  const teammateRoleResolved =
-    typeof teammateRole === 'string' &&
-    (teammateRole === 'lender' || teammateRole === 'broker' || teammateRole === 'realtor')
-      ? teammateRole
-      : teammateEmailResolved && teammateEmailResolved === lenderEmail
-      ? 'lender'
-      : 'unknown'
-
-  if (match.closing) {
-    const updated = await prisma.closing.update({
-      where: { id: match.closing.id },
-      // Don't clobber existing user-entered values; only fill blanks.
-      data: Object.fromEntries(
-        Object.entries(baseData).filter(([k, v]) => {
-          const existing = (match.closing as Record<string, unknown>)[k]
-          return v != null && (existing == null || existing === '')
-        }),
-      ),
-    })
-
-    if (teammateEmailResolved) {
-      try {
-        await upsertTeammateClosing({
-          closingId: updated.id,
-          email: teammateEmailResolved,
-          role: teammateRoleResolved,
-        })
-      } catch (err) {
-        // eslint-disable-next-line no-console
-        console.error('[orders/ingest] teammate upsert failed (matched branch)', err)
-      }
-    }
-
+  if (result.matched) {
     return NextResponse.json({
       ok: true,
-      matchedBy: match.matchedBy,
-      closingId: updated.id,
-      teammateLinked: Boolean(teammateEmailResolved),
+      matchedBy: result.matchedBy,
+      closingId: result.closingId,
+      teammateLinked: result.teammateLinked,
     })
-  }
-
-  // No match — create orphan closing + send welcome email
-  const created = await prisma.closing.create({
-    data: {
-      ...baseData,
-      milestones: { create: MILESTONE_KINDS.map((kind) => ({ kind })) },
-    },
-  })
-
-  if (baseData.borrowerEmail) {
-    const baseUrl = process.env.NEXTAUTH_URL || 'https://betterclose.co'
-    try {
-      await sendWelcomeEmail({
-        borrowerEmail: baseData.borrowerEmail,
-        borrowerName: typeof borrowerName === 'string' ? borrowerName : undefined,
-        propertyAddress: baseData.propertyAddress || undefined,
-        lenderCompany: baseData.lenderCompany || undefined,
-        baseUrl,
-      })
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error('[orders/ingest] welcome email failed', err)
-      // Closing still created; we just couldn't notify. Ops can manually resend.
-    }
-  }
-
-  if (teammateEmailResolved) {
-    try {
-      await upsertTeammateClosing({
-        closingId: created.id,
-        email: teammateEmailResolved,
-        role: teammateRoleResolved,
-      })
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error('[orders/ingest] teammate upsert failed (orphan branch)', err)
-    }
   }
 
   return NextResponse.json({
     ok: true,
     matchedBy: null,
-    closingId: created.id,
-    welcomeEmailedTo: baseData.borrowerEmail,
-    teammateLinked: Boolean(teammateEmailResolved),
+    closingId: result.closingId,
+    welcomeEmailedTo: result.welcomeEmailedTo,
+    teammateLinked: result.teammateLinked,
   })
 }
