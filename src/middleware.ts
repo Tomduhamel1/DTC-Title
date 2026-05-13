@@ -20,6 +20,7 @@ const FUNCTIONAL_PREFIXES = [
   '/quote',
   '/api',
   '/for-my-team',
+  '/for-brokers',
   '/coming-soon',
   '/welcome',
   '/resume',
