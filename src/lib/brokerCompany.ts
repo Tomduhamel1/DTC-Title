@@ -1,10 +1,13 @@
 // Helpers for BrokerCompany admin tooling. Pure logic kept out of route
 // handlers so the rules are easy to reason about and (eventually) test.
 //
-// All callers are admin-gated. Nothing here issues emails, mints tokens,
-// or interacts with the magic-link auth flow.
+// All callers are admin-gated. The DB writes (User upsert, BrokerMembership
+// upsert) run in a single transaction. After a successful new-membership
+// commit, addBrokerCompanyMember fires a best-effort broker portal welcome
+// email — never inside the transaction, never blocking the admin write.
 
 import { prisma } from '@/lib/db'
+import { sendBrokerPortalWelcomeEmail } from '@/lib/email/broker-portal-welcome'
 
 const MAX_SLUG_LEN = 64
 
@@ -78,9 +81,17 @@ export async function addBrokerCompanyMember(args: {
   const email = args.email.trim().toLowerCase()
   const role = args.role ?? 'member'
 
-  // All work in one transaction so a half-completed add (e.g. User created
-  // but membership insert fails) can't leave orphan rows.
-  return prisma.$transaction(async (tx) => {
+  // All DB work in one transaction so a half-completed add (e.g. User created
+  // but membership insert fails) can't leave orphan rows. Email sending lives
+  // OUTSIDE this block so an SES failure can't roll back the membership.
+  const txResult = await prisma.$transaction(async (tx) => {
+    // Read company name + verifiedAt so the post-transaction welcome email
+    // can branch its body without a second round-trip. Cheap PK lookup.
+    const company = await tx.brokerCompany.findUnique({
+      where: { id: args.companyId },
+      select: { name: true, verifiedAt: true },
+    })
+
     let user = await tx.user.findUnique({
       where: { email },
       select: { id: true, accountType: true },
@@ -140,6 +151,35 @@ export async function addBrokerCompanyMember(args: {
       userCreated,
       accountTypeUpgraded,
       membershipCreated,
+      // Internal-only — used to drive the post-transaction welcome email.
+      // Stripped before return to the caller so the public AddMemberResult
+      // shape is unchanged.
+      _companyName: company?.name ?? null,
+      _isVerifiedCompany: company?.verifiedAt != null,
     }
   })
+
+  // Best-effort welcome email — fires only on initial membership creation,
+  // never on idempotent re-add. Wrapped in try/catch so SES failures cannot
+  // affect the admin write that already committed.
+  if (txResult.membershipCreated) {
+    try {
+      await sendBrokerPortalWelcomeEmail({
+        email,
+        memberName: args.name?.trim() || null,
+        brokerCompanyName: txResult._companyName,
+        isVerifiedCompany: txResult._isVerifiedCompany,
+      })
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error('[brokerCompany] portal-welcome email send failed', {
+        companyId: args.companyId,
+        err,
+      })
+    }
+  }
+
+  // Strip internal fields so the public AddMemberResult shape is unchanged.
+  const { _companyName: _cn, _isVerifiedCompany: _iv, ...publicResult } = txResult
+  return publicResult
 }
