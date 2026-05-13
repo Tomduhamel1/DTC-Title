@@ -44,7 +44,7 @@ export default function NavigationCredible() {
               For Mortgage Brokers
             </a>
             <a href="/for-realtors" className="text-dark-800 hover:text-primary-600 font-medium transition-colors">
-              For Realtors
+              For Real Estate Agents
             </a>
             <a href="/for-lenders" className="text-dark-800 hover:text-primary-600 font-medium transition-colors">
               For Lenders
