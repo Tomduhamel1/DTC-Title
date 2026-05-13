@@ -26,6 +26,30 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+/*
+ * Form inputs render on light backgrounds throughout the app, so they must
+ * not inherit the body's white text color when the OS reports
+ * prefers-color-scheme: dark. Force a dark text color and visible placeholder
+ * here so per-form components don't have to remember to set text-* on every
+ * <input>. Surfaces that need a different palette can still override via
+ * Tailwind utility classes — these rules sit in @layer base and lose
+ * specificity to any later utility.
+ */
+@layer base {
+  input,
+  textarea,
+  select {
+    color: #0f172a; /* slate-900 / matches text-dark-900 */
+    background-color: #ffffff;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: #64748b; /* slate-500 — visible but clearly distinct from typed text */
+    opacity: 1; /* Firefox defaults to lower opacity; normalize across browsers */
+  }
+}
+
 @layer components {
   .btn-primary {
     @apply px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-semibold;
