@@ -12,6 +12,7 @@ import {
 } from '@/lib/closing'
 import { getProfessionalContext } from '@/lib/professional'
 import TeammateTabs from '@/components/teammate/TeammateTabs'
+import RoleSelfIdentifyBanner from '@/components/teammate/RoleSelfIdentifyBanner'
 import MuteToggle from './MuteToggle'
 
 export const dynamic = 'force-dynamic'
@@ -40,6 +41,13 @@ export default async function TeammateDashboardPage({ searchParams }: PageProps)
         // Also create / update the TeammateClosing row for this invite if
         // we have a closing on it.
         if (invite.closingId && invite.lenderEmail) {
+          // Role is set to 'unknown' here on purpose. The borrower's invite
+          // flow is role-agnostic — they invite "their closing team", not a
+          // specifically-classified professional. The signed-in professional
+          // self-identifies their role from /teammate/dashboard's banner
+          // (see RoleSelfIdentifyBanner + RoleSelfIdentifyPicker). On the
+          // update path we deliberately don't touch role: a TPS-ingested
+          // role or a previously self-identified role wins.
           await prisma.teammateClosing.upsert({
             where: {
               matchedEmail_closingId: {
@@ -51,7 +59,7 @@ export default async function TeammateDashboardPage({ searchParams }: PageProps)
               userId: user.id,
               closingId: invite.closingId,
               matchedEmail: invite.lenderEmail.toLowerCase(),
-              role: 'lender',
+              role: 'unknown',
             },
             update: { userId: user.id },
           })
@@ -82,6 +90,27 @@ export default async function TeammateDashboardPage({ searchParams }: PageProps)
     },
     orderBy: [{ updatedAt: 'desc' }],
   })
+
+  // Build the input for the self-identify banner: every TeammateClosing on
+  // this user whose role is still 'unknown'. Borrower-led claims write
+  // role='unknown' (the role is genuinely unknown until the professional
+  // tells us). The banner only renders when rows.length > 0; user picks a
+  // concrete role to clear each row from the banner.
+  const unknownRows = memberships
+    .filter((m) => m.role === 'unknown')
+    .map((m) => {
+      const c = m.closing
+      const fullAddress =
+        [c.propertyAddress, c.propertyCity, c.propertyState, c.propertyZip]
+          .filter(Boolean)
+          .join(', ') || null
+      return {
+        membershipId: m.id,
+        closingId: c.id,
+        propertyAddress: fullAddress,
+        borrowerLabel: c.borrowerEmail ?? null,
+      }
+    })
 
   // Sort: active first (anything not closed), then by closing date asc, then
   // pending. Done last.
@@ -114,6 +143,11 @@ export default async function TeammateDashboardPage({ searchParams }: PageProps)
               </div>
             </div>
           </div>
+
+          <RoleSelfIdentifyBanner
+            rows={unknownRows}
+            hasBrokerMembership={isBrokerMember}
+          />
 
           {sorted.length === 0 ? (
             <EmptyState />
