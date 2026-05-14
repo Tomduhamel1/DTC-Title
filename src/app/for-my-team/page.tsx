@@ -11,10 +11,14 @@ import {
 // borrower's invite is role-agnostic — they invited "their closing team",
 // not a specifically-classified mortgage broker or real estate agent. This
 // page lets the professional choose what they want to do next:
-//   1. Preview the borrower quote / dashboard / support experience (in-page)
+//   1. Generate a real fee estimate at /for-my-team/quote
 //   2. Send/email the title order
 //   3. Create or continue to their free dashboard
 // plus a soft below-fold path to request broker/LO portal access.
+//
+// The visual mockup section (id="preview") stays below-fold as supporting
+// persuasion — it explains what the client experiences without claiming to
+// be a real quote. The real-quote funnel lives at /for-my-team/quote.
 //
 // When the URL has ?ref=<refId>, we hydrate the linked LenderRequest +
 // Closing server-side so the email-order mailto is prefilled with the
@@ -49,13 +53,15 @@ export default async function ForMyTeamPage({ searchParams }: Props) {
     ? `/login?callbackUrl=${encodeURIComponent(`/teammate/dashboard?claim=${refId}`)}`
     : `/login?callbackUrl=${encodeURIComponent('/teammate/dashboard')}`
 
-  // In-page anchor that smooth-scrolls to the visual mockup row below ("What
-  // your client will see"). Intentionally NOT the public /quote calculator —
-  // sending a borrower-invited professional to /quote dumps them into the
-  // borrower-funnel NextStepsPanel afterwards. The on-page preview is honest
-  // about being a mockup; a dedicated professional quote route (with
-  // professional-specific post-quote CTAs) is followup work.
-  const quoteHref = '#preview'
+  // Dedicated professional quote route. Reuses the public /api/fee-estimate
+  // engine but renders professional-specific post-quote CTAs (email order,
+  // continue-with-email to dashboard, request broker/LO portal access) —
+  // not the borrower-funnel CTAs that /quote/results renders below the fee
+  // table. Threads refId through so the resulting page can prefill the form
+  // from the linked Closing and personalize the post-quote mailto.
+  const quoteHref = refId
+    ? `/for-my-team/quote?ref=${encodeURIComponent(refId)}`
+    : '/for-my-team/quote'
 
   const companyInfoHref = `mailto:orders@betterclose.co?subject=${encodeURIComponent(
     'BetterClose company info request',
@@ -144,10 +150,10 @@ Thanks,`,
             <div className="grid md:grid-cols-3 gap-5">
               <ActionCard
                 emoji="⚡"
-                title="Preview the borrower quote experience"
-                body="See how your client will see savings, transparent line items, and a clear path through closing."
-                cta={{ label: 'Preview what your client sees →', href: quoteHref }}
-                helper="Side-by-side preview of the borrower quote, dashboard, and support experience."
+                title="Show your client what they save"
+                body="Generate a real BetterClose fee estimate for your client — line-item pricing, A-rated underwriters, no login required."
+                cta={{ label: 'Get the fee estimate →', href: quoteHref }}
+                helper="Uses the same fee engine as the borrower quote. We confirm orders within one business day."
                 primary
               />
               <ActionCard
