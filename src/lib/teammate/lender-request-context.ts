@@ -43,6 +43,11 @@ export interface LenderRequestContext {
   // from their account display name. Useful when the borrower hasn't
   // populated their User.name field yet.
   clientName: string | null
+  // Persisted savings number the borrower's own /quote flow stamped onto the
+  // LenderRequest when they shared. Used by /for-my-team to show a realistic
+  // "this is what your client will see" preview without re-calling the fee
+  // API. Null when the borrower shared without running /quote first.
+  savingsEstimate: number | null
 }
 
 export async function getLenderRequestContext(
@@ -88,6 +93,7 @@ export async function getLenderRequestContext(
       : null,
     borrower: row.user,
     clientName: row.clientName,
+    savingsEstimate: row.savingsEstimate,
   }
 }
 
