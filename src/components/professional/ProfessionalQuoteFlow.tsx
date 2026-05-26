@@ -419,14 +419,16 @@ function ResultPanel({
               <span className="text-xl" aria-hidden="true">
                 ✉️
               </span>
-              <h3 className="text-base font-black">Email this order to BetterClose</h3>
+              <h3 className="text-base font-black">Send this order to BetterClose</h3>
             </div>
             <p className="text-xs text-emerald-50">
+              Send the file details to BetterClose so we can help open or route
+              the order.
               {isPersonalized
-                ? "Pre-filled with your client's details. We confirm within one business day."
-                : 'Generic order template. We confirm within one business day.'}
+                ? " Pre-filled with your client's details."
+                : ' Uses a generic order template.'}
             </p>
-            <div className="text-sm font-bold mt-3">Email an order →</div>
+            <div className="text-sm font-bold mt-3">Email the order team →</div>
           </a>
 
           <Link
@@ -438,27 +440,29 @@ function ResultPanel({
                 📊
               </span>
               <h3 className="text-base font-black text-primary-700">
-                Continue with email to track this file
+                Track this file online
               </h3>
             </div>
             <p className="text-xs text-gray-600">
-              No password — we&apos;ll email you a secure link. We&apos;ll create
-              your account if you don&apos;t have one.
+              We&apos;ll email you a magic link so you can view this file in your
+              BetterClose dashboard. No password &mdash; we&apos;ll create your
+              account if you don&apos;t have one.
             </p>
             <div className="text-sm font-bold text-primary-700 mt-3">
-              Continue with email →
+              Get a secure sign-in link →
             </div>
           </Link>
         </div>
 
         <div className="mt-5 pt-4 border-t border-gray-100 text-center">
           <p className="text-xs text-gray-700">
-            Run a brokerage or lending team?{' '}
+            Need broker/LO portal access? For brokers and loan officers who want
+            to create quotes and manage files.{' '}
             <a
               href={brokerPortalAccessHref}
               className="font-bold underline underline-offset-2 text-primary-700 hover:text-primary-800"
             >
-              Request broker/LO portal access →
+              Request portal access →
             </a>
           </p>
         </div>
