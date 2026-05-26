@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { SUPPORT_PHONE_DISPLAY } from '@/lib/contact'
 
 const COMPANY_INFO = `BetterClose Title & Closing
 [Legal entity name]
@@ -8,7 +9,7 @@ const COMPANY_INFO = `BetterClose Title & Closing
 [City, State Zip]
 NPN: [NPN]
 State licenses: [list]
-Settlement agent contact: orders@betterclose.co  ·  (855) 555-SAVE`
+Settlement agent contact: orders@betterclose.co  ·  ${SUPPORT_PHONE_DISPLAY}`
 
 const ORDER_BODY_TEMPLATE = `Hi BetterClose team,
 

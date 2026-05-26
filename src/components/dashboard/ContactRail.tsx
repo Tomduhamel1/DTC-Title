@@ -1,5 +1,7 @@
 'use client'
 
+import { SUPPORT_PHONE_DISPLAY, SUPPORT_PHONE_TEL } from '@/lib/contact'
+
 export default function ContactRail() {
   return (
     <aside className="lg:sticky lg:top-24 bg-gradient-to-br from-emerald-50 to-white border border-emerald-100 rounded-2xl p-6 shadow-sm">
@@ -34,23 +36,37 @@ export default function ContactRail() {
           </svg>
         </a>
 
-        <a
-          href="tel:18555557283"
-          className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-white border border-gray-200 hover:border-emerald-300 hover:bg-emerald-50/50 transition-colors group"
-        >
-          <span className="text-lg flex-shrink-0">📞</span>
-          <div className="flex-1 min-w-0">
-            <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-              Call
+        {SUPPORT_PHONE_TEL ? (
+          <a
+            href={`tel:${SUPPORT_PHONE_TEL}`}
+            className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-white border border-gray-200 hover:border-emerald-300 hover:bg-emerald-50/50 transition-colors group"
+          >
+            <span className="text-lg flex-shrink-0">📞</span>
+            <div className="flex-1 min-w-0">
+              <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                Call
+              </div>
+              <div className="text-sm font-medium text-dark-900">
+                {SUPPORT_PHONE_DISPLAY}
+              </div>
             </div>
-            <div className="text-sm font-medium text-dark-900">
-              (855) 555-SAVE
+            <svg className="w-4 h-4 text-gray-400 group-hover:text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        ) : (
+          <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-white border border-gray-200">
+            <span className="text-lg flex-shrink-0">📞</span>
+            <div className="flex-1 min-w-0">
+              <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                Call
+              </div>
+              <div className="text-sm font-medium text-dark-900">
+                {SUPPORT_PHONE_DISPLAY}
+              </div>
             </div>
           </div>
-          <svg className="w-4 h-4 text-gray-400 group-hover:text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
+        )}
       </div>
 
       <div className="mt-5 pt-4 border-t border-emerald-100 text-xs text-gray-600 leading-relaxed">

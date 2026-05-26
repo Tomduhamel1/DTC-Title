@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { SUPPORT_PHONE_DISPLAY } from '@/lib/contact'
 
 // Marketing section that previews the dashboard. The right column is a
 // hand-rendered mockup of the two cards a customer cares most about during
@@ -13,7 +14,7 @@ const SAMPLE_OFFICER = {
   name: 'Jamie Doe',
   title: 'Senior Escrow Officer',
   email: 'jamie.doe@betterclose.co',
-  phone: '(855) 555-0142',
+  phone: SUPPORT_PHONE_DISPLAY,
   nmls: '2184593',
   // Tight face-area crop matches the dashboard photo styling.
   photoUrl:
@@ -299,7 +300,7 @@ function DashboardMockup() {
                   <div className="font-semibold text-gray-500 uppercase tracking-wider text-[7px]">
                     Call
                   </div>
-                  <div className="text-dark-900 font-medium">(855) 555-SAVE</div>
+                  <div className="text-dark-900 font-medium">{SUPPORT_PHONE_DISPLAY}</div>
                 </div>
               </div>
               <div className="flex items-center gap-1 mt-2">

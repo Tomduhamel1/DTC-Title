@@ -1,4 +1,5 @@
 import { sendEmail } from '@/lib/aws/ses'
+import { SUPPORT_PHONE_DISPLAY } from '@/lib/contact'
 import type { TeammateRole } from '@/lib/professional/pronoun'
 
 export interface PlacingParty {
@@ -61,7 +62,7 @@ export async function sendWelcomeEmail(d: WelcomeEmailData): Promise<string> {
     </p>
     <hr style="border:none;border-top:1px solid #e2e8f0;margin:28px 0;">
     <p style="font-size:12px;color:#94a3b8;">
-      Questions? Reply to this email or call (855) 555-SAVE.
+      Questions? Reply to this email or call ${SUPPORT_PHONE_DISPLAY}.
     </p>
   </div>
 </body>
@@ -78,7 +79,7 @@ One-tap sign-in. No password to remember.
 Welcome,
 The BetterClose Team
 
-Questions? Reply to this email or call (855) 555-SAVE.`
+Questions? Reply to this email or call ${SUPPORT_PHONE_DISPLAY}.`
 
   return sendEmail({
     to: d.borrowerEmail,
