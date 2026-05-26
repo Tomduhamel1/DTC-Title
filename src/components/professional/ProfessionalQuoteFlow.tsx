@@ -40,6 +40,9 @@ export interface ProfessionalQuoteFlowProps {
   emailOrderHref: string
   dashboardClaimHref: string
   brokerPortalAccessHref: string
+  // Borrower-invite ref, if any. Sent to the persist route for server-side-only
+  // attribution (never exposed on the public quote view).
+  refId?: string | null
 }
 
 type FlowState = 'form' | 'loading' | 'result' | 'error'
@@ -52,6 +55,7 @@ export default function ProfessionalQuoteFlow({
   emailOrderHref,
   dashboardClaimHref,
   brokerPortalAccessHref,
+  refId,
 }: ProfessionalQuoteFlowProps) {
   const [state, setState] = useState<FlowState>('form')
   const [transactionType, setTransactionType] = useState<'purchase' | 'refinance'>(
@@ -62,6 +66,10 @@ export default function ProfessionalQuoteFlow({
   const [loanAmount, setLoanAmount] = useState(initialInputs.loanAmount)
   const [report, setReport] = useState<FeeReport | null>(null)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  // Relative /quote/view?token=... path returned by the persist route. Null
+  // when persistence failed — the result still renders (ephemeral fallback),
+  // just without a shareable link.
+  const [viewUrl, setViewUrl] = useState<string | null>(null)
 
   const isPurchase = transactionType === 'purchase'
   const zipValid = /^\d{5}$/.test(zip)
@@ -74,8 +82,13 @@ export default function ProfessionalQuoteFlow({
     if (!valid || state === 'loading') return
     setState('loading')
     setErrorMessage(null)
+    setViewUrl(null)
     try {
-      const res = await fetch('/api/fee-estimate', {
+      // Persist route: returns the fee report AND a durable shareable link in
+      // one round-trip (one upstream fee-estimate call). If persistence failed
+      // server-side, viewUrl comes back null and we render the ephemeral
+      // result without a share link — the report is still present.
+      const res = await fetch('/api/professional/quotes', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -83,6 +96,8 @@ export default function ProfessionalQuoteFlow({
           zip,
           homeValue: isPurchase ? homeValueNum : undefined,
           loanAmount: loanAmountNum > 0 ? loanAmountNum : undefined,
+          borrowerName: clientName || undefined,
+          refId: refId || undefined,
         }),
       })
       const json = await res.json().catch(() => ({}))
@@ -90,6 +105,7 @@ export default function ProfessionalQuoteFlow({
         throw new Error(json.error || `Request failed (${res.status})`)
       }
       setReport(json.report as FeeReport)
+      setViewUrl(typeof json.viewUrl === 'string' ? json.viewUrl : null)
       setState('result')
     } catch (err) {
       setErrorMessage(err instanceof Error ? err.message : 'Something went wrong')
@@ -156,6 +172,7 @@ export default function ProfessionalQuoteFlow({
               report && (
                 <ResultPanel
                   report={report}
+                  viewUrl={viewUrl}
                   emailOrderHref={emailOrderHref}
                   dashboardClaimHref={dashboardClaimHref}
                   brokerPortalAccessHref={brokerPortalAccessHref}
@@ -323,6 +340,8 @@ function LoadingCard() {
 
 interface ResultPanelProps {
   report: FeeReport
+  // Relative /quote/view?token=... path, or null if persistence failed.
+  viewUrl: string | null
   emailOrderHref: string
   dashboardClaimHref: string
   brokerPortalAccessHref: string
@@ -332,6 +351,7 @@ interface ResultPanelProps {
 
 function ResultPanel({
   report,
+  viewUrl,
   emailOrderHref,
   dashboardClaimHref,
   brokerPortalAccessHref,
@@ -380,6 +400,8 @@ function ResultPanel({
       )}
 
       <FeeReportTable report={report} />
+
+      {viewUrl && <ShareLinkCard viewUrl={viewUrl} />}
 
       <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
         <h2 className="text-xl font-black text-dark-900 mb-1">Your next step</h2>
@@ -440,6 +462,59 @@ function ResultPanel({
             </a>
           </p>
         </div>
+      </div>
+    </div>
+  )
+}
+
+// ─── Shareable link ─────────────────────────────────────────────────────
+//
+// Rendered only when the persist route returned a viewUrl. The link is the
+// public /quote/view?token=... page — durable (survives tab close), no login.
+// We build the absolute URL from the current origin so the copied value is a
+// full shareable link the professional can paste to a borrower.
+
+function ShareLinkCard({ viewUrl }: { viewUrl: string }) {
+  const [copied, setCopied] = useState(false)
+
+  const absoluteUrl = useMemo(() => {
+    if (typeof window === 'undefined') return viewUrl
+    return `${window.location.origin}${viewUrl}`
+  }, [viewUrl])
+
+  async function onCopy() {
+    try {
+      await navigator.clipboard.writeText(absoluteUrl)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {
+      // Clipboard API can be unavailable (insecure context / permissions).
+      // The input is selectable as a manual fallback, so do nothing here.
+    }
+  }
+
+  return (
+    <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+      <h2 className="text-xl font-black text-dark-900 mb-1">Share this quote</h2>
+      <p className="text-sm text-gray-600 mb-4">
+        A durable link to this estimate — your client can open it any time, no
+        login needed. The quote is saved for 30 days.
+      </p>
+      <div className="flex flex-col sm:flex-row gap-2">
+        <input
+          type="text"
+          readOnly
+          value={absoluteUrl}
+          onFocus={(e) => e.currentTarget.select()}
+          className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-lg text-sm text-gray-700 bg-gray-50 font-mono truncate"
+        />
+        <button
+          type="button"
+          onClick={onCopy}
+          className="px-5 py-3 rounded-lg bg-primary-600 hover:bg-primary-700 text-white font-bold text-sm transition-colors whitespace-nowrap"
+        >
+          {copied ? 'Copied ✓' : 'Copy link'}
+        </button>
       </div>
     </div>
   )
