@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 import { fetchElendFeeEstimate } from '@/lib/elendCalc'
+import { rateLimit } from '@/lib/rate-limit'
 
 const Body = z.object({
   transactionType: z.enum(['purchase', 'refinance']),
@@ -10,6 +11,26 @@ const Body = z.object({
 })
 
 export async function POST(req: Request) {
+  // Rate limit before parsing the body or calling the upstream fee calculator.
+  // This route is public + unauthenticated and fans every successful request
+  // out to a third-party fee API (src/lib/elendCalc.ts), so an unbounded loop
+  // would hammer that upstream. Per-IP, in-memory sliding window — same
+  // limiter pattern as auth (src/lib/auth/options.ts) and the public quote
+  // view (src/app/quote/view/page.tsx). Inline IP idiom matches those sites.
+  const ipHeader = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || ''
+  const ip = ipHeader.split(',')[0].trim() || 'unknown'
+  const limit = rateLimit(`fee-estimate:${ip}`, 20, 60_000)
+  if (!limit.ok) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error: 'Too many requests. Please wait a minute and try again.',
+        retryAfterSeconds: 60,
+      },
+      { status: 429, headers: { 'Retry-After': '60' } },
+    )
+  }
+
   const json = await req.json().catch(() => null)
   const parsed = Body.safeParse(json)
   if (!parsed.success) {
