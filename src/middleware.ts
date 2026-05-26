@@ -13,6 +13,13 @@ import type { NextRequest } from 'next/server'
 //      Combined with the admin email allowlist this means admins can browse
 //      the real site without a separate bypass key.
 
+// Route-posture note (launch safety): do NOT add '/licenses' or '/for-lenders'
+// to this allowlist until their content is fixed. /licenses currently renders
+// placeholder "[number]" state license numbers, and /for-lenders advertises an
+// API / developer portal / webhooks that are not live. Both are intentionally
+// gated to /coming-soon for the public until those are corrected in follow-up
+// PRs. Un-gating either before then would expose legally/credibility-risky
+// claims.
 const FUNCTIONAL_PREFIXES = [
   '/dashboard',
   '/teammate',

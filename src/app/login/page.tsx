@@ -3,7 +3,6 @@
 import { Suspense, useState } from 'react'
 import { signIn } from 'next-auth/react'
 import { useSearchParams } from 'next/navigation'
-import Link from 'next/link'
 import NavigationCredible from '@/components/NavigationCredible'
 import FooterComprehensive from '@/components/FooterComprehensive'
 
@@ -75,9 +74,7 @@ function LoginInner() {
             </form>
 
             <p className="text-xs text-gray-500 text-center mt-6">
-              By signing in you agree to our{' '}
-              <Link href="/terms" className="underline">terms</Link> and{' '}
-              <Link href="/privacy" className="underline">privacy policy</Link>.
+              By continuing, you agree to receive a secure sign-in link from BetterClose.
             </p>
           </div>
         </div>
