@@ -6,9 +6,10 @@ behaves today. It is a runbook, not a spec — if the code changes, update this.
 
 **One-line summary:** Admins create and verify a broker company, add a broker/LO
 (who gets a welcome email), the broker creates/sends quotes and — once their
-company is verified — converts a quote into a real Closing. **Conversion is
-silent: it does not notify ops or push to Garden. An admin must notice it by
-checking `/admin/closings` and then handle the file operationally.**
+company is verified — converts a quote into a real Closing. **Conversion sends an
+internal ops handoff email (to `BROKER_OPS_EMAIL`, default `orders@betterclose.co`)
+but does not push to Garden. A human must open the order from that email (or from
+`/admin/closings`) and handle the file operationally.**
 
 ---
 
@@ -136,15 +137,28 @@ resulting Closing is **shaped identically to one TPS would create**:
 
 ---
 
-## ⚠️ The manual ops gap — read carefully
+## ⚠️ The manual ops handoff — read carefully
 
-**Conversion creates the file and then stops. Nothing automatic happens next.**
+**Conversion creates the file, emails ops, and then stops. A human must run it.**
 
-- **Conversions are silent.** Converting a quote does **not** notify the ops team
-  — there is **no Slack message, no ops email, no admin alert** on conversion.
-  (The borrower may get a welcome email on the orphan branch; ops gets nothing.)
-- **Conversion does not push to Garden** or any downstream processing. It only
-  creates the BetterClose `Closing` row + seeded milestones.
+- **Conversion sends an internal ops handoff email.** When a verified broker
+  converts a quote, BetterClose sends a best-effort internal email to
+  **`BROKER_OPS_EMAIL`** (defaults to `orders@betterclose.co`) so a human knows
+  to open and handle the order. The email includes the borrower, the broker +
+  company, a link to the source quote, and a link to the closing in admin, and
+  it states plainly that this is a temporary manual handoff until Garden
+  linkage exists. The send is also recorded as a `NotificationLog` row
+  (`kind='broker_conversion:ops_handoff'`), visible on the closing's admin
+  detail page — so you can confirm it fired (or see `status='failed'` if SES
+  hiccuped).
+  - **Fires exactly once per conversion.** Replays / double-clicks / race-losers
+    do **not** re-send (guarded on the genuine-conversion branch).
+  - **Best-effort:** an email failure never blocks the conversion. If it fails,
+    the `NotificationLog` row is `status='failed'` — the daily ritual below is
+    still the backstop.
+- **Conversion still does not push to Garden** or any downstream processing. It
+  creates the BetterClose `Closing` row + seeded milestones and notifies ops by
+  email — nothing more.
 - **Milestones do not advance on their own.** The file sits `active` with all 5
   milestones in their initial state until **a human advances them** — an admin in
   `/admin/closing/[id]` (milestone controls) or the TPS/Garden integration calling
@@ -184,16 +198,19 @@ row appearing in `/admin/closings`.
 
 ---
 
-## Daily admin ritual (while the beta is silent)
+## Daily admin ritual
 
-Because conversions don't notify anyone, do this **once per business day** (more
-often if a broker is mid-deal):
+Conversions now email `BROKER_OPS_EMAIL` (default `orders@betterclose.co`), so the
+primary signal is that inbox. Still do a daily sweep as a backstop (in case an
+email failed to send) — once per business day, more often if a broker is mid-deal:
 
-1. [ ] Open **`/admin/closings`** and scan the most-recent rows (it's sorted by
-       last updated). Filter by **Active** to focus on live files.
-2. [ ] For any **new file you didn't already know about**, confirm it's a broker
-       conversion (recently created, `inbound_order`) and **open it operationally**
-       — i.e. begin the same handling you'd do for a TPS order.
+1. [ ] Work the **ops inbox** first: each "New broker-converted order" email links
+       straight to the closing in admin and to the source quote. Open and handle it.
+2. [ ] Then open **`/admin/closings`** and scan the most-recent rows (sorted by last
+       updated; filter by **Active**) to catch anything whose ops email **failed**
+       (look for a `broker_conversion:ops_handoff` notification with `status='failed'`
+       on the closing detail page) or that you haven't handled yet. Begin the same
+       handling you'd do for a TPS order.
 3. [ ] **Advance milestones** as the file progresses (`/admin/closing/[id]`), which
        is what triggers borrower + teammate update emails.
 4. [ ] Sanity-check for an **orphaned Closing** (rare worst case: a Closing got
@@ -210,13 +227,16 @@ often if a broker is mid-deal):
 These are accepted gaps for a **small, hands-on, controlled** beta. They become
 priorities as volume grows.
 
-1. **Silent conversions (no ops notification).** Mitigated by the daily admin
-   ritual above. Acceptable at low volume where an admin is already watching.
-2. **No automated milestone progression / no Garden auto-push on conversion.**
-   Files are driven to close manually/TPS, exactly as today's TPS orders are.
-3. **Thin admin traceability.** The admin closing detail doesn't yet link back to
-   the source quote/broker; the company page doesn't show quote/conversion counts.
-   Workaround: the data exists in the DB and the file behaves like any order.
+1. **No Garden auto-push / no automated milestone progression on conversion.**
+   Conversion now emails ops, but it does **not** push to Garden and does not
+   advance milestones — a human still drives the file to close manually/TPS,
+   exactly as today's TPS orders are. This is the remaining real gap.
+2. **Ops email is best-effort.** If SES fails, the conversion still succeeds and a
+   `broker_conversion:ops_handoff` `NotificationLog` row is written with
+   `status='failed'`. The daily `/admin/closings` sweep is the backstop.
+3. **Company-page activity counts.** The admin company page doesn't yet show a
+   company's quote/conversion counts. (The closing detail page *does* now show
+   source-quote/broker traceability.) Workaround: the data exists in the DB.
 4. **Verification is a manual toggle** with no in-app vetting workflow. Fine — the
    vetting is a human conversation; the toggle records the decision.
 
@@ -226,13 +246,13 @@ functionally complete and safe.
 
 ---
 
-## Tier 3 (conversion → ops notification) is DEFERRED
+## Garden push is still DEFERRED (the ops email is the temporary handoff)
 
-A push notification to ops on conversion (Slack/email/log) is the highest-value
-next improvement, but it is a **product code change** and is **explicitly deferred**.
-**It is NOT a launch blocker for the first controlled beta** — the daily admin
-ritual covers it at beta volume. Revisit and prioritize Tier 3 if/when conversion
-volume makes the manual check unreliable.
+The conversion → **ops email** is now implemented (this is the temporary manual
+handoff). The remaining deferred piece is the **Garden push / automated downstream
+processing** on conversion — that is **NOT a launch blocker for the first controlled
+beta**: the ops email + daily sweep cover the handoff at beta volume. Revisit Garden
+automation when conversion volume makes the manual handoff unreliable.
 
 ---
 
@@ -247,4 +267,5 @@ volume makes the manual check unreliable.
 | Send quote | `POST /api/broker/quotes/[id]/send` | membership |
 | Convert quote | `POST /api/broker/quotes/[id]/convert` | membership **+ verified** |
 | Advance milestone | `/admin/closing/[id]` (UI) / `POST /api/admin/closing/[id]/milestone` | admin |
-| Watch for conversions | `/admin/closings` (manual, daily) | admin |
+| Conversion ops handoff | email to `BROKER_OPS_EMAIL` (default `orders@betterclose.co`) on convert | automatic |
+| Watch for conversions | ops inbox (primary) + `/admin/closings` daily sweep (backstop) | admin |
