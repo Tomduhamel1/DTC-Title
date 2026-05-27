@@ -10,6 +10,21 @@ interface Props {
   // Whether borrowerEmail is present on the quote — the Send button is
   // disabled when there's no recipient, since the server would reject.
   hasBorrowerEmail: boolean
+  // Whether the quote already has the full minimum order set required to
+  // convert (borrower name + email + full property address). When false and
+  // the broker clicks Convert, the "Complete order details" panel opens.
+  hasMinimumOrderFields: boolean
+  // Current borrower/property values, so the panel prefills what's known and
+  // only asks for blanks.
+  initial: {
+    borrowerName: string | null
+    borrowerEmail: string | null
+    borrowerPhone: string | null
+    propertyAddress: string | null
+    propertyCity: string | null
+    propertyState: string | null
+    propertyZip: string | null
+  }
   // For the public-view URL the broker copies to clipboard.
   publicViewBaseUrl: string
   // Convert-button gating:
@@ -30,6 +45,8 @@ export default function BrokerQuoteActions({
   status,
   shareToken,
   hasBorrowerEmail,
+  hasMinimumOrderFields,
+  initial,
   publicViewBaseUrl,
   companyVerified,
   convertedClosingId,
@@ -43,12 +60,13 @@ export default function BrokerQuoteActions({
   const [convertError, setConvertError] = useState<string | null>(null)
 
   // Fast-quote support: a broker can generate a quote with only ZIP + amount,
-  // then add borrower details at the moment they Send or Convert. We track
-  // whether borrower email is present locally so the panel can flip the
-  // buttons live after a save without a full reload.
+  // then add details at the moment they Send or Convert. We track locally
+  // whether email is present (gates Send) and whether the full minimum order
+  // set is present (gates Convert), so the buttons flip live after a save.
   const [emailPresent, setEmailPresent] = useState(hasBorrowerEmail)
-  // The action the broker intended when they clicked while email was missing,
-  // so we can auto-continue it after the details panel saves.
+  const [orderComplete, setOrderComplete] = useState(hasMinimumOrderFields)
+  // The action the broker intended when they clicked while details were
+  // missing, so we can auto-continue it after the panel saves.
   const [pendingAction, setPendingAction] = useState<'send' | 'convert' | null>(null)
   const [panelOpen, setPanelOpen] = useState(false)
 
@@ -106,24 +124,24 @@ export default function BrokerQuoteActions({
   const canConvert =
     !alreadyConverted &&
     companyVerified &&
-    emailPresent &&
+    orderComplete &&
     status !== 'expired' &&
     status !== 'converted'
-  // Whether convert is blocked ONLY by missing borrower email (vs. a hard
-  // block like unverified company / expired). Missing-email is recoverable
-  // inline via the details panel; the others are not.
-  const convertBlockedOnlyByEmail =
+  // Whether convert is blocked ONLY by missing order details (vs. a hard
+  // block like unverified company / expired). Missing details are recoverable
+  // inline via the "Complete order details" panel; the others are not.
+  const convertBlockedByMissingOrder =
     !alreadyConverted &&
     companyVerified &&
-    !emailPresent &&
+    !orderComplete &&
     status !== 'expired' &&
     status !== 'converted'
   const convertDisabledReason = alreadyConverted
     ? null
     : !companyVerified
     ? 'Your broker company must be verified before you can convert quotes. Contact your admin.'
-    : !emailPresent
-    ? 'Add borrower details to convert.'
+    : !orderComplete
+    ? 'Complete the order details (borrower + property address) to convert.'
     : status === 'expired'
     ? 'This quote has expired.'
     : status === 'converted'
@@ -165,9 +183,9 @@ export default function BrokerQuoteActions({
     }
   }
 
-  // Click intercepts: if borrower email is already present, run the action as
-  // before. If it's missing, open the "Add borrower details" panel and
-  // remember which action to continue after the details are saved.
+  // Click intercepts: Send needs only borrower email; Convert needs the full
+  // minimum order set. If what's required for the action is missing, open the
+  // details panel and remember which action to continue after saving.
   function handleSendClick() {
     if (status === 'converted' || status === 'expired') return
     if (emailPresent) {
@@ -178,20 +196,22 @@ export default function BrokerQuoteActions({
     }
   }
   function handleConvertClick() {
-    if (emailPresent) {
+    if (canConvert) {
       onConvert()
-    } else if (convertBlockedOnlyByEmail) {
+    } else if (convertBlockedByMissingOrder) {
       setPendingAction('convert')
       setPanelOpen(true)
     }
-    // If convert is blocked for a hard reason (unverified/expired), the button
-    // isn't rendered as clickable, so we never reach here for those.
+    // Hard blocks (unverified/expired) don't render a clickable button.
   }
 
-  // Called by the details panel after a successful PATCH. emailPresent flips
-  // true, the panel closes, and we auto-continue the intended action.
+  // Called by the details panel after a successful PATCH. Flip the local
+  // gates true, close the panel, and auto-continue the intended action. Send
+  // needs only email; convert needs the full set — the panel enforces the
+  // right requirement per action before calling this.
   function onDetailsSaved() {
     setEmailPresent(true)
+    if (pendingAction === 'convert') setOrderComplete(true)
     setPanelOpen(false)
     const next = pendingAction
     setPendingAction(null)
@@ -205,8 +225,9 @@ export default function BrokerQuoteActions({
   // missing, the click opens the details panel instead of being a dead button.
   const sendClickable = status !== 'converted' && status !== 'expired'
   // Convert is clickable when it can convert OR is blocked only by missing
-  // email (panel-recoverable). Hard blocks (unverified/expired) stay disabled.
-  const convertClickable = canConvert || convertBlockedOnlyByEmail
+  // order details (panel-recoverable). Hard blocks (unverified/expired) stay
+  // disabled.
+  const convertClickable = canConvert || convertBlockedByMissingOrder
 
   return (
     <div className="space-y-3">
@@ -255,8 +276,8 @@ export default function BrokerQuoteActions({
             onClick={handleConvertClick}
             className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600 text-white hover:bg-emerald-700 disabled:opacity-50"
             title={
-              convertBlockedOnlyByEmail
-                ? 'We’ll ask for borrower details, then convert.'
+              convertBlockedByMissingOrder
+                ? 'We’ll ask for the order details, then convert.'
                 : undefined
             }
           >
@@ -283,9 +304,10 @@ export default function BrokerQuoteActions({
       </div>
 
       {panelOpen && (
-        <AddBorrowerDetailsPanel
+        <CompleteOrderDetailsPanel
           quoteId={quoteId}
           intendedAction={pendingAction}
+          initial={initial}
           onCancel={() => {
             setPanelOpen(false)
             setPendingAction(null)
@@ -297,48 +319,84 @@ export default function BrokerQuoteActions({
   )
 }
 
-// Inline panel shown when a broker tries to Send/Convert a fast quote that has
-// no borrower email yet. Collects name + email (+ optional phone), PATCHes the
-// existing quote (no rerun, fee report untouched), then the parent
-// auto-continues the intended action.
-function AddBorrowerDetailsPanel({
+// Inline panel shown when a broker tries to Send/Convert a quote that's
+// missing the details that action requires. PATCHes the existing quote (no
+// rerun, fee report untouched), then the parent auto-continues the action.
+//
+// Requirement differs by action:
+//   - send    → borrower email only (lighter)
+//   - convert → full minimum order set: borrower name + email + full property
+//               address (address, city, state, ZIP)
+// Fields prefill from the quote's current values; the broker only fills blanks.
+function CompleteOrderDetailsPanel({
   quoteId,
   intendedAction,
+  initial,
   onCancel,
   onSaved,
 }: {
   quoteId: string
   intendedAction: 'send' | 'convert' | null
+  initial: {
+    borrowerName: string | null
+    borrowerEmail: string | null
+    borrowerPhone: string | null
+    propertyAddress: string | null
+    propertyCity: string | null
+    propertyState: string | null
+    propertyZip: string | null
+  }
   onCancel: () => void
   onSaved: () => void
 }) {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
+  const isConvert = intendedAction === 'convert'
+
+  const [name, setName] = useState(initial.borrowerName ?? '')
+  const [email, setEmail] = useState(initial.borrowerEmail ?? '')
+  const [phone, setPhone] = useState(initial.borrowerPhone ?? '')
+  const [address, setAddress] = useState(initial.propertyAddress ?? '')
+  const [city, setCity] = useState(initial.propertyCity ?? '')
+  const [stateCode, setStateCode] = useState(initial.propertyState ?? '')
+  const [zip, setZip] = useState(initial.propertyZip ?? '')
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())
-  const continueLabel =
-    intendedAction === 'send'
-      ? 'Save & send'
-      : intendedAction === 'convert'
-      ? 'Save & convert'
-      : 'Save'
+  const zipValid = /^\d{5}$/.test(zip.trim())
+
+  // Send needs only a valid email. Convert needs the full minimum order set.
+  const ready = isConvert
+    ? emailValid &&
+      name.trim().length > 0 &&
+      address.trim().length > 0 &&
+      city.trim().length > 0 &&
+      stateCode.trim().length > 0 &&
+      zipValid
+    : emailValid
+
+  const continueLabel = isConvert ? 'Save & convert' : 'Save & send'
+  const heading = isConvert ? 'Complete order details' : 'Add borrower details'
 
   async function onSave() {
-    if (!emailValid || saving) return
+    if (!ready || saving) return
     setSaving(true)
     setError(null)
     try {
+      const body: Record<string, string | null> = {
+        borrowerName: name.trim() || null,
+        borrowerEmail: email.trim(),
+        borrowerPhone: phone.trim() || null,
+      }
+      if (isConvert) {
+        body.propertyAddress = address.trim() || null
+        body.propertyCity = city.trim() || null
+        body.propertyState = stateCode.trim() || null
+        body.propertyZip = zip.trim() || null
+      }
       const res = await fetch(`/api/broker/quotes/${quoteId}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          borrowerName: name.trim() || null,
-          borrowerEmail: email.trim(),
-          borrowerPhone: phone.trim() || null,
-        }),
+        body: JSON.stringify(body),
       })
       const json = await res.json().catch(() => ({}))
       if (!res.ok) {
@@ -351,38 +409,79 @@ function AddBorrowerDetailsPanel({
     }
   }
 
+  const inputCls = 'text-sm rounded-lg border border-gray-300 px-3 py-2'
+
   return (
     <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
       <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-2">
-        Add borrower details
+        {heading}
       </div>
       <div className="grid sm:grid-cols-3 gap-2">
         <input
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="Borrower name"
-          className="text-sm rounded-lg border border-gray-300 px-3 py-2"
+          placeholder={isConvert ? 'Borrower name (required)' : 'Borrower name'}
+          className={inputCls}
         />
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Borrower email (required)"
-          className="text-sm rounded-lg border border-gray-300 px-3 py-2"
+          className={inputCls}
         />
         <input
           type="tel"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           placeholder="Phone (optional)"
-          className="text-sm rounded-lg border border-gray-300 px-3 py-2"
+          className={inputCls}
         />
       </div>
-      <div className="flex items-center gap-2 mt-3">
+
+      {isConvert && (
+        <div className="grid sm:grid-cols-4 gap-2 mt-2">
+          <input
+            type="text"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            placeholder="Property address (required)"
+            className={`${inputCls} sm:col-span-2`}
+          />
+          <input
+            type="text"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            placeholder="City (required)"
+            className={inputCls}
+          />
+          <div className="grid grid-cols-2 gap-2">
+            <input
+              type="text"
+              maxLength={2}
+              value={stateCode}
+              onChange={(e) => setStateCode(e.target.value.toUpperCase().slice(0, 2))}
+              placeholder="State"
+              className={`${inputCls} uppercase font-mono`}
+            />
+            <input
+              type="text"
+              inputMode="numeric"
+              maxLength={5}
+              value={zip}
+              onChange={(e) => setZip(e.target.value.replace(/[^0-9]/g, '').slice(0, 5))}
+              placeholder="ZIP"
+              className={`${inputCls} font-mono`}
+            />
+          </div>
+        </div>
+      )}
+
+      <div className="flex items-center gap-2 mt-3 flex-wrap">
         <button
           type="button"
-          disabled={!emailValid || saving}
+          disabled={!ready || saving}
           onClick={onSave}
           className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600 text-white hover:bg-emerald-700 disabled:opacity-50"
         >
@@ -395,8 +494,12 @@ function AddBorrowerDetailsPanel({
         >
           Cancel
         </button>
-        {!emailValid && email.length > 0 && (
-          <span className="text-xs text-gray-500">Enter a valid email.</span>
+        {!ready && (
+          <span className="text-xs text-gray-500">
+            {isConvert
+              ? 'Borrower name + email and full property address are required to convert.'
+              : 'Enter a valid borrower email.'}
+          </span>
         )}
         {error && <span className="text-xs text-red-700">{error}</span>}
       </div>
