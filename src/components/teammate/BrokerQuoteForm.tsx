@@ -51,6 +51,14 @@ export default function BrokerQuoteForm({ companies }: Props) {
     (isPurchase ? homeValueNum > 0 : loanAmountNum > 0) &&
     (!multipleCompanies || !!companyId)
 
+  // Human-readable reasons the Generate button is disabled, so it can never be
+  // a silent mystery. Order mirrors the form top-to-bottom.
+  const disabledReasons: string[] = []
+  if (multipleCompanies && !companyId) disabledReasons.push('Select a company')
+  if (!zipValid) disabledReasons.push('Enter a valid 5-digit property ZIP')
+  if (isPurchase && homeValueNum <= 0) disabledReasons.push('Enter a purchase price')
+  if (!isPurchase && loanAmountNum <= 0) disabledReasons.push('Enter a loan amount')
+
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!ready || submitting) return
@@ -226,15 +234,23 @@ export default function BrokerQuoteForm({ companies }: Props) {
         </div>
       </Section>
 
-      <div className="flex items-center gap-3 pt-2">
-        <button
-          type="submit"
-          disabled={!ready || submitting}
-          className="px-5 py-2.5 rounded-lg bg-emerald-600 text-white text-sm font-bold disabled:opacity-50 hover:bg-emerald-700"
-        >
-          {submitting ? 'Generating quote…' : 'Generate quote'}
-        </button>
-        {error && <span className="text-sm text-red-700">{error}</span>}
+      <div className="pt-2">
+        <div className="flex items-center gap-3">
+          <button
+            type="submit"
+            disabled={!ready || submitting}
+            className="px-5 py-2.5 rounded-lg bg-emerald-600 text-white text-sm font-bold disabled:opacity-50 hover:bg-emerald-700"
+          >
+            {submitting ? 'Generating quote…' : 'Generate quote'}
+          </button>
+          {error && <span className="text-sm text-red-700">{error}</span>}
+        </div>
+        {/* Always explain WHY the button is disabled, so it can't fail silently. */}
+        {!ready && !submitting && disabledReasons.length > 0 && (
+          <p className="mt-2 text-xs text-gray-500">
+            To generate a quote: {disabledReasons.join(' · ')}.
+          </p>
+        )}
       </div>
     </form>
   )
