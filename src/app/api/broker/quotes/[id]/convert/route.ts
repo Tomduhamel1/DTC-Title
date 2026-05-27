@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { requireBrokerMember } from '@/lib/auth/session'
 import { createClosingFromOrder } from '@/lib/closing/createFromOrder'
+import { sendBrokerConversionOpsEmail } from '@/lib/email/broker-conversion-ops'
+import { logNotification } from '@/lib/notificationLog'
 
 // POST /api/broker/quotes/[id]/convert
 //
@@ -42,6 +44,22 @@ interface ConvertSuccess {
   alreadyConverted: boolean
   matchedBy: string | null
   welcomeEmailedTo: string | null
+  // Populated ONLY on a genuine first conversion (alreadyConverted=false) so
+  // the post-transaction block can send the best-effort ops handoff email
+  // exactly once. Replays/race-losers leave this undefined → no email.
+  opsEmail?: {
+    closingId: string
+    brokerName: string | null
+    brokerEmail: string | null
+    brokerCompanyName: string | null
+    borrowerName: string | null
+    borrowerEmail: string | null
+    borrowerPhone: string | null
+    propertyAddress: string | null
+    quoteShareToken: string | null
+    convertedAt: Date
+    matched: boolean
+  }
 }
 
 export async function POST(_req: Request, { params }: { params: { id: string } }) {
@@ -101,7 +119,9 @@ export async function POST(_req: Request, { params }: { params: { id: string } }
           propertyCity: true,
           propertyState: true,
           propertyZip: true,
-          brokerCompany: { select: { verifiedAt: true } },
+          shareToken: true,
+          brokerCompany: { select: { verifiedAt: true, name: true } },
+          brokerUser: { select: { name: true } },
         },
       })
       if (!quote) {
@@ -230,7 +250,7 @@ export async function POST(_req: Request, { params }: { params: { id: string } }
         )
       }
 
-      await tx.feeQuoteEvent.create({
+      const convertedEvent = await tx.feeQuoteEvent.create({
         data: {
           feeQuoteId: quote.id,
           kind: 'converted',
@@ -241,6 +261,7 @@ export async function POST(_req: Request, { params }: { params: { id: string } }
             welcomeEmailedTo: result.matched ? null : result.welcomeEmailedTo,
           },
         },
+        select: { createdAt: true },
       })
 
       return {
@@ -250,6 +271,22 @@ export async function POST(_req: Request, { params }: { params: { id: string } }
         alreadyConverted: false,
         matchedBy: result.matched ? result.matchedBy : null,
         welcomeEmailedTo: result.matched ? null : result.welcomeEmailedTo,
+        // Carried out of the transaction so the post-commit block can send the
+        // ops handoff email exactly once (only this genuine-conversion branch
+        // sets it). Conversion-time uses the FeeQuoteEvent timestamp.
+        opsEmail: {
+          closingId: result.closingId,
+          brokerName: quote.brokerUser?.name ?? null,
+          brokerEmail: ctx.email,
+          brokerCompanyName: quote.brokerCompany?.name ?? null,
+          borrowerName: quote.borrowerName,
+          borrowerEmail: quote.borrowerEmail,
+          borrowerPhone: quote.borrowerPhone,
+          propertyAddress: quote.propertyAddress,
+          quoteShareToken: quote.shareToken,
+          convertedAt: convertedEvent.createdAt,
+          matched: result.matched,
+        },
       } as const
     })
   } catch (err) {
@@ -265,5 +302,41 @@ export async function POST(_req: Request, { params }: { params: { id: string } }
   if ('error' in outcome) {
     return NextResponse.json({ error: outcome.error }, { status: outcome.status })
   }
-  return NextResponse.json(outcome)
+
+  // Best-effort internal ops handoff email — fires EXACTLY ONCE per genuine
+  // conversion. outcome.opsEmail is populated only on the alreadyConverted=false
+  // branch, so replays / double-clicks / advisory-lock race-losers (all
+  // alreadyConverted=true) never reach this. A send failure must NOT affect the
+  // conversion, which already committed; we log it and move on.
+  //
+  // TEMPORARY: this email is the manual handoff to ops until Garden push exists.
+  if (outcome.opsEmail) {
+    const o = outcome.opsEmail
+    try {
+      const { recipient, subject, messageId } = await sendBrokerConversionOpsEmail(o)
+      await logNotification({
+        closingId: o.closingId,
+        kind: 'broker_conversion:ops_handoff',
+        recipient,
+        subject,
+        status: process.env.AUTH_EMAIL_DRY_RUN === 'true' ? 'skipped' : 'sent',
+        providerMessageId: messageId,
+      })
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error('[broker/quotes/convert] ops handoff email failed:', err)
+      await logNotification({
+        closingId: o.closingId,
+        kind: 'broker_conversion:ops_handoff',
+        recipient: process.env.BROKER_OPS_EMAIL || 'orders@betterclose.co',
+        subject: 'New broker-converted order (send failed)',
+        status: 'failed',
+        error: err instanceof Error ? err.message : String(err),
+      })
+    }
+  }
+
+  // Strip the internal opsEmail payload from the API response.
+  const { opsEmail: _opsEmail, ...publicOutcome } = outcome
+  return NextResponse.json(publicOutcome)
 }

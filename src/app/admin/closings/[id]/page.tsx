@@ -23,6 +23,27 @@ export default async function AdminClosingDetailPage({ params }: { params: Promi
   })
   if (!closing) notFound()
 
+  // Source traceability: if this Closing was created by a broker converting a
+  // FeeQuote, FeeQuote.convertedClosingId (which is @unique) points back here.
+  // Reverse-lookup is one clean query — no schema change. Renders nothing for
+  // TPS/non-broker closings. Conversion time comes from the 'converted'
+  // FeeQuoteEvent (per the ops-handoff design).
+  const sourceQuote = await prisma.feeQuote.findUnique({
+    where: { convertedClosingId: id },
+    select: {
+      shareToken: true,
+      brokerUser: { select: { email: true, name: true } },
+      brokerCompany: { select: { id: true, name: true } },
+      events: {
+        where: { kind: 'converted' },
+        orderBy: { createdAt: 'asc' },
+        take: 1,
+        select: { createdAt: true },
+      },
+    },
+  })
+  const convertedAt = sourceQuote?.events[0]?.createdAt ?? null
+
   const editorClosing = {
     ...closing,
     milestones: closing.milestones.map((m) => ({
@@ -72,6 +93,57 @@ export default async function AdminClosingDetailPage({ params }: { params: Promi
             </div>
           )}
         </div>
+
+        {sourceQuote && (
+          <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6 mb-6">
+            <div className="text-[10px] font-bold uppercase tracking-wider text-blue-700 mb-2">
+              Source · converted from broker quote
+            </div>
+            <div className="grid sm:grid-cols-2 gap-x-8 gap-y-2 text-sm">
+              <div>
+                <span className="text-gray-500">Broker</span>{' '}
+                <span className="font-semibold text-dark-900">
+                  {sourceQuote.brokerUser?.name || sourceQuote.brokerUser?.email || '—'}
+                </span>
+                {sourceQuote.brokerUser?.name && sourceQuote.brokerUser?.email && (
+                  <span className="text-gray-500"> · {sourceQuote.brokerUser.email}</span>
+                )}
+              </div>
+              <div>
+                <span className="text-gray-500">Company</span>{' '}
+                {sourceQuote.brokerCompany ? (
+                  <Link
+                    href={`/admin/broker-companies/${sourceQuote.brokerCompany.id}`}
+                    className="font-semibold text-primary-700 hover:text-primary-800"
+                  >
+                    {sourceQuote.brokerCompany.name}
+                  </Link>
+                ) : (
+                  <span className="font-semibold text-dark-900">—</span>
+                )}
+              </div>
+              <div>
+                <span className="text-gray-500">Converted</span>{' '}
+                <span className="font-semibold text-dark-900">
+                  {convertedAt ? new Date(convertedAt).toLocaleString() : '—'}
+                </span>
+              </div>
+              <div>
+                <span className="text-gray-500">Source quote</span>{' '}
+                {sourceQuote.shareToken ? (
+                  <Link
+                    href={`/quote/view?token=${sourceQuote.shareToken}`}
+                    className="font-semibold text-primary-700 hover:text-primary-800"
+                  >
+                    View quote →
+                  </Link>
+                ) : (
+                  <span className="font-semibold text-dark-900">—</span>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
 
         {snapshot && totals && (
           <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-6 mb-6">
