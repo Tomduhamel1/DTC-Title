@@ -146,7 +146,6 @@ export default function BrokerQuoteForm({ companies }: Props) {
               maxLength={5}
               value={zip}
               onChange={(e) => setZip(e.target.value.replace(/[^0-9]/g, '').slice(0, 5))}
-              placeholder="78704"
               className="w-full text-sm rounded-lg border border-gray-300 px-3 py-2 font-mono"
             />
           </Field>
@@ -157,7 +156,6 @@ export default function BrokerQuoteForm({ companies }: Props) {
                 inputMode="numeric"
                 value={homeValue}
                 onChange={(e) => setHomeValue(e.target.value)}
-                placeholder="$500,000"
                 className="w-full text-sm rounded-lg border border-gray-300 px-3 py-2"
               />
             </Field>
@@ -168,7 +166,6 @@ export default function BrokerQuoteForm({ companies }: Props) {
               inputMode="numeric"
               value={loanAmount}
               onChange={(e) => setLoanAmount(e.target.value)}
-              placeholder="$400,000"
               className="w-full text-sm rounded-lg border border-gray-300 px-3 py-2"
             />
           </Field>
