@@ -172,6 +172,23 @@ export default async function TeammateQuoteDetailPage({
                 status={quote.status}
                 shareToken={quote.shareToken}
                 hasBorrowerEmail={Boolean(quote.borrowerEmail)}
+                hasMinimumOrderFields={Boolean(
+                  quote.borrowerName &&
+                    quote.borrowerEmail &&
+                    quote.propertyAddress &&
+                    quote.propertyCity &&
+                    quote.propertyState &&
+                    quote.propertyZip,
+                )}
+                initial={{
+                  borrowerName: quote.borrowerName,
+                  borrowerEmail: quote.borrowerEmail,
+                  borrowerPhone: quote.borrowerPhone,
+                  propertyAddress: quote.propertyAddress,
+                  propertyCity: quote.propertyCity,
+                  propertyState: quote.propertyState,
+                  propertyZip: quote.propertyZip,
+                }}
                 publicViewBaseUrl={publicViewBaseUrl}
                 companyVerified={Boolean(quote.brokerCompany?.verifiedAt)}
                 convertedClosingId={quote.convertedClosingId}

@@ -56,6 +56,12 @@ interface ConvertSuccess {
     borrowerEmail: string | null
     borrowerPhone: string | null
     propertyAddress: string | null
+    propertyCity: string | null
+    propertyState: string | null
+    propertyZip: string | null
+    transactionType: 'purchase' | 'refinance' | null
+    homeValue: number | null
+    loanAmount: number | null
     quoteShareToken: string | null
     convertedAt: Date
     matched: boolean
@@ -153,24 +159,44 @@ export async function POST(_req: Request, { params }: { params: { id: string } }
         return { error: 'cannot convert an expired quote', status: 400 } as const
       }
 
-      // Borrower-email gate. Required to anchor the resulting Closing to a
-      // borrower account and to enable the welcome-email path on the
-      // orphan branch of createClosingFromOrder.
-      if (!quote.borrowerEmail) {
-        return {
-          error: 'borrower email required to convert',
-          status: 400,
-        } as const
-      }
-
-      // Pull transaction amounts from inputJson (FeeQuote denormalizes
-      // borrower/property to columns but keeps homeValue/loanAmount on the
-      // JSON payload only).
+      // Pull transaction inputs from inputJson (FeeQuote denormalizes
+      // borrower/property to columns but keeps transactionType/homeValue/
+      // loanAmount on the JSON payload only). These are inherited from the
+      // quote and not editable in the convert flow.
       const input = quote.inputJson as {
         transactionType?: 'purchase' | 'refinance'
         homeValue?: number | null
         loanAmount?: number | null
       } | null
+
+      // ── Minimum-order-fields gate (revised v1) ───────────────────────────
+      // A converted quote becomes a real title order; ops/Garden cannot begin
+      // work without the borrower and a full property address. Require the
+      // operational minimum and return a STRUCTURED list of what's missing so
+      // the UI can prompt for exactly those fields (then PATCH + retry).
+      // Borrower phone stays optional. transactionType + amount come from the
+      // quote and are validated here too (a healthy quote always has them).
+      const trimmed = (v: string | null | undefined) =>
+        typeof v === 'string' && v.trim().length > 0
+      const hasAmount =
+        (typeof input?.homeValue === 'number' && input.homeValue > 0) ||
+        (typeof input?.loanAmount === 'number' && input.loanAmount > 0)
+      const missing: string[] = []
+      if (!trimmed(quote.borrowerName)) missing.push('borrowerName')
+      if (!trimmed(quote.borrowerEmail)) missing.push('borrowerEmail')
+      if (!trimmed(quote.propertyAddress)) missing.push('propertyAddress')
+      if (!trimmed(quote.propertyCity)) missing.push('propertyCity')
+      if (!trimmed(quote.propertyState)) missing.push('propertyState')
+      if (!trimmed(quote.propertyZip)) missing.push('propertyZip')
+      if (!input?.transactionType) missing.push('transactionType')
+      if (!hasAmount) missing.push('amount')
+      if (missing.length > 0) {
+        return {
+          error: 'missing required order details to convert',
+          status: 400,
+          missingFields: missing,
+        } as const
+      }
 
       // Create the Closing via the shared helper. NOTE: this call uses the
       // outer prisma client, not `tx` — see the residual comment in the
@@ -283,6 +309,12 @@ export async function POST(_req: Request, { params }: { params: { id: string } }
           borrowerEmail: quote.borrowerEmail,
           borrowerPhone: quote.borrowerPhone,
           propertyAddress: quote.propertyAddress,
+          propertyCity: quote.propertyCity,
+          propertyState: quote.propertyState,
+          propertyZip: quote.propertyZip,
+          transactionType: input?.transactionType ?? null,
+          homeValue: input?.homeValue ?? null,
+          loanAmount: input?.loanAmount ?? null,
           quoteShareToken: quote.shareToken,
           convertedAt: convertedEvent.createdAt,
           matched: result.matched,
@@ -300,7 +332,10 @@ export async function POST(_req: Request, { params }: { params: { id: string } }
   }
 
   if ('error' in outcome) {
-    return NextResponse.json({ error: outcome.error }, { status: outcome.status })
+    const missingFields = (outcome as { missingFields?: string[] }).missingFields
+    const body: { error: string; missingFields?: string[] } = { error: outcome.error }
+    if (missingFields && missingFields.length > 0) body.missingFields = missingFields
+    return NextResponse.json(body, { status: outcome.status })
   }
 
   // Best-effort internal ops handoff email — fires EXACTLY ONCE per genuine
