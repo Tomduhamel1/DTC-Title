@@ -14,14 +14,14 @@ export default function HeroOptionC() {
             {/* Left: Headline + lender trust strip */}
             <div className="text-left">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-5 text-dark-900 leading-tight">
-                Save at closing. Save over the loan.
+                Don't overpay for closing costs!
                 <br />
-                <span className="text-primary-600">Close with confidence.</span>
+                <span className="text-primary-600">You have a choice.</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 font-semibold mb-7 leading-snug">
-                Same realtor. Same lender. Lower cost.
+                Same realtor. Same lender. Same insurer.
                 <br />
-                <span className="text-primary-600">Every fee in the open.</span>
+                <span className="text-primary-600">Better closing cost.</span>
               </p>
 
               {/* Primary CTA — alert your team (no quote needed) */}

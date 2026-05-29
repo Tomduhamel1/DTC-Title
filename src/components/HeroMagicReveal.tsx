@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { estimateSavings } from '@/lib/regionRates'
+import { estimateLifetimeSavings } from '@/lib/regionRates'
 import { useSavings } from '@/contexts/SavingsContext'
 
 const STATES = [
@@ -34,20 +34,19 @@ export default function HeroMagicReveal() {
     }
   }, [])
 
-  const { saveAtClosing, saveOverLoan } = estimateSavings(homeValue, mode, state)
+  const savings = estimateLifetimeSavings(homeValue, mode, state)
 
   // Push hero savings into the shared SavingsContext so downstream sections
-  // (TeamTrustSection, etc.) display the same numbers the user is seeing here.
-  // totalSavings = at-closing bucket, lifetimeSavings = over-the-loan bucket.
+  // (TeamTrustSection, etc.) display the same number the user is seeing here.
   useEffect(() => {
-    setSavings({ ...ctxSavings, totalSavings: saveAtClosing, lifetimeSavings: saveOverLoan })
+    setSavings({ ...ctxSavings, totalSavings: savings, lifetimeSavings: savings })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [saveAtClosing, saveOverLoan])
+  }, [savings])
 
   const headlineCopy =
     mode === 'refinance'
-      ? `${city ? `Refinancings in ${city}` : 'Refinancings in your area'} typically save`
-      : `${city ? `Buyers in ${city}` : 'Buyers in your area'} typically save`
+      ? `${city ? `Refinancings in ${city}` : 'Refinancings in your area'} save on average`
+      : `${city ? `Buyers in ${city}` : 'Buyers in your area'} save on average`
 
   return (
     <section className="relative bg-white py-12 md:py-16 px-6">
@@ -71,7 +70,6 @@ export default function HeroMagicReveal() {
             <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>50 states</span></span>
             <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>Bonded $5M</span></span>
             <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>30,000+ closings</span></span>
-            <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>A-rated underwriters</span></span>
           </div>
         </div>
 
@@ -98,29 +96,14 @@ export default function HeroMagicReveal() {
               </button>
             </div>
 
-            <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-500 mb-3">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-500 mb-1">
               📍 {headlineCopy}
             </div>
-            {/* Two savings buckets, visually separated */}
-            <div className="grid grid-cols-2 gap-3">
-              <div className="bg-emerald-50 border border-emerald-200 rounded-2xl py-4 px-3">
-                <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 mb-1">
-                  Save at closing
-                </div>
-                <div className="text-3xl md:text-4xl font-black text-emerald-600 tabular-nums leading-none">
-                  ${saveAtClosing.toLocaleString()}
-                </div>
-                <div className="text-[11px] text-gray-500 mt-1.5">Title &amp; settlement</div>
-              </div>
-              <div className="bg-emerald-50 border border-emerald-200 rounded-2xl py-4 px-3">
-                <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 mb-1">
-                  Save over the loan
-                </div>
-                <div className="text-3xl md:text-4xl font-black text-emerald-600 tabular-nums leading-none">
-                  ${saveOverLoan.toLocaleString()}
-                </div>
-                <div className="text-[11px] text-gray-500 mt-1.5">Long-term savings</div>
-              </div>
+            <div className="text-6xl md:text-7xl font-black text-emerald-600 tabular-nums leading-none">
+              ${savings.toLocaleString()}
+            </div>
+            <div className="text-xs text-gray-500 mt-2">
+              over the life of a 30-year mortgage
             </div>
           </div>
 
@@ -158,13 +141,6 @@ export default function HeroMagicReveal() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </Link>
-
-          {/* Plain-English footnote for the over-the-loan number */}
-          <p className="mt-3 text-[11px] text-gray-400 leading-snug">
-            Loan savings assumes you borrow less or get better loan pricing
-            because your closing costs are lower. Based on 6.5% over 30 years.
-            Final terms may vary.
-          </p>
 
           {/* Location override */}
           <div className="mt-2.5 text-center text-[11px] text-gray-400">

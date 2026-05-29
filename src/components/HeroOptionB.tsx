@@ -91,7 +91,7 @@ export default function HeroOptionB() {
 
           {/* Subheading */}
           <p className="text-2xl md:text-3xl text-gray-800 font-bold mb-4">
-            Same coverage. Same A-rated insurers. <span className="text-emerald-600">Lower cost.</span>
+            Same coverage. Same A-rated insurers. <span className="text-emerald-600">75% less cost.</span>
           </p>
 
           <p className="text-xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed">
@@ -124,13 +124,13 @@ export default function HeroOptionB() {
               <svg className="w-6 h-6 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
-              <span className="font-semibold">A-rated underwriters</span>
+              <span className="font-semibold">A+ rated underwriters</span>
             </div>
             <div className="flex items-center gap-2">
               <svg className="w-6 h-6 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
-              <span className="font-semibold">30,000+ closings</span>
+              <span className="font-semibold">12,000+ closings</span>
             </div>
           </div>
         </div>

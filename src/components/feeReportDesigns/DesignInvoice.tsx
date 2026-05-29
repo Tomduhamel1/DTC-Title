@@ -33,7 +33,7 @@ export default function DesignInvoice({ report }: { report: FeeReport }) {
             {formatCurrency(totals.ourTotal)}
           </div>
           <div className="text-xs text-emerald-600 font-semibold mt-1">
-            {formatCurrency(totals.estimatedSavings)} below typical
+            {formatRange(totals.estimatedSavingsLow, totals.estimatedSavingsHigh)} below typical
           </div>
         </div>
       </div>

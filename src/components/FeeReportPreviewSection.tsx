@@ -24,7 +24,7 @@ export default function FeeReportPreviewSection() {
                 See every fee, line by line.
               </h2>
               <p className="text-lg md:text-xl text-gray-600 leading-relaxed mb-8">
-                Every fee, line by line — with our price next to the typical range, so you see exactly what you're saving and what the state sets.
+                No surprises at closing. Get an itemized breakdown of every cost, with our price compared to the typical range so you know exactly what you're saving — and what's set by the state.
               </p>
               <p className="text-gray-600 mb-5">
                 Want a real estimate for your closing? Takes about 30 seconds.

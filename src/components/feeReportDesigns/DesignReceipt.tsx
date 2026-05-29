@@ -71,7 +71,7 @@ export default function DesignReceipt({ report }: { report: FeeReport }) {
                 YOU SAVED
               </div>
               <div className="text-xl font-black text-emerald-700 tabular-nums">
-                {formatCurrency(totals.estimatedSavings)}
+                {formatRange(totals.estimatedSavingsLow, totals.estimatedSavingsHigh)}
               </div>
             </div>
           </div>

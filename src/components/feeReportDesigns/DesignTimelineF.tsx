@@ -58,7 +58,7 @@ export default function DesignTimelineF({ report }: { report: FeeReport }) {
         <div className="bg-emerald-50 border border-emerald-100 rounded-xl px-4 py-3 flex items-center justify-between">
           <span className="text-sm font-semibold text-emerald-900">You save</span>
           <span className="text-xl font-black text-emerald-700 tabular-nums">
-            {formatCurrency(totals.estimatedSavings)}
+            {formatRange(totals.estimatedSavingsLow, totals.estimatedSavingsHigh)}
           </span>
         </div>
       </div>

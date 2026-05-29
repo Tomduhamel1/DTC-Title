@@ -8,68 +8,32 @@ interface CompanyOption {
   name: string
 }
 
-type TransactionType = 'purchase' | 'refinance'
-
-// Prefill payload imported from the public /quote flow when a broker arrives
-// via /teammate/quotes/new?prefillFromPublic=1.
-//   - Calc fields (transactionType, zip, amounts, propertyState) come from the
-//     public FeeReport.
-//   - Lead-capture fields (borrower contact, street address, city) come from
-//     the broker estimate's sessionStorage `brokerEstimateContext` — they
-//     were never on the public FeeReport. Hydrated by BrokerQuoteNewClient.
-export interface BrokerQuoteFormPrefill {
-  transactionType?: TransactionType
-  zip?: string
-  homeValue?: number
-  loanAmount?: number
-  propertyState?: string // 2-letter, already normalized
-  // Lead-capture fields (from brokerEstimateContext):
-  borrowerName?: string
-  borrowerEmail?: string
-  borrowerPhone?: string
-  propertyAddress?: string
-  propertyCity?: string
-}
-
-export type BrokerQuoteIntent = 'send' | 'convert'
-
 interface Props {
   // When the broker belongs to multiple companies, the form renders a
   // company picker. When they belong to exactly one, the parent omits
   // companies and the form submits without a companyId (the server picks
   // the only one).
   companies: CompanyOption[]
-  // Optional — when present, hydrates form state from a previously-run
-  // public quote so the broker doesn't re-key anything. See
-  // BrokerQuoteNewWrapper for where this comes from.
-  initialPrefill?: BrokerQuoteFormPrefill
-  // Orients the CTA copy after the form submits. 'send' = primary action is
-  // share with borrower; 'convert' = primary action is open a closing.
-  intent?: BrokerQuoteIntent
 }
 
-export default function BrokerQuoteForm({ companies, initialPrefill, intent }: Props) {
+type TransactionType = 'purchase' | 'refinance'
+
+export default function BrokerQuoteForm({ companies }: Props) {
   const router = useRouter()
   const multipleCompanies = companies.length > 1
 
-  const [transactionType, setTransactionType] = useState<TransactionType>(
-    initialPrefill?.transactionType ?? 'purchase',
-  )
-  const [zip, setZip] = useState(initialPrefill?.zip ?? '')
-  const [homeValue, setHomeValue] = useState(
-    initialPrefill?.homeValue ? String(initialPrefill.homeValue) : '',
-  )
-  const [loanAmount, setLoanAmount] = useState(
-    initialPrefill?.loanAmount ? String(initialPrefill.loanAmount) : '',
-  )
+  const [transactionType, setTransactionType] = useState<TransactionType>('purchase')
+  const [zip, setZip] = useState('')
+  const [homeValue, setHomeValue] = useState('')
+  const [loanAmount, setLoanAmount] = useState('')
 
-  const [borrowerName, setBorrowerName] = useState(initialPrefill?.borrowerName ?? '')
-  const [borrowerEmail, setBorrowerEmail] = useState(initialPrefill?.borrowerEmail ?? '')
-  const [borrowerPhone, setBorrowerPhone] = useState(initialPrefill?.borrowerPhone ?? '')
+  const [borrowerName, setBorrowerName] = useState('')
+  const [borrowerEmail, setBorrowerEmail] = useState('')
+  const [borrowerPhone, setBorrowerPhone] = useState('')
 
-  const [propertyAddress, setPropertyAddress] = useState(initialPrefill?.propertyAddress ?? '')
-  const [propertyCity, setPropertyCity] = useState(initialPrefill?.propertyCity ?? '')
-  const [propertyState, setPropertyState] = useState(initialPrefill?.propertyState ?? '')
+  const [propertyAddress, setPropertyAddress] = useState('')
+  const [propertyCity, setPropertyCity] = useState('')
+  const [propertyState, setPropertyState] = useState('')
   // propertyZip is omitted as a separate field — we reuse `zip` as the property zip.
 
   const [companyId, setCompanyId] = useState(multipleCompanies ? '' : companies[0]?.id ?? '')
@@ -274,13 +238,7 @@ export default function BrokerQuoteForm({ companies, initialPrefill, intent }: P
             disabled={!ready || submitting}
             className="px-5 py-2.5 rounded-lg bg-emerald-600 text-white text-sm font-bold disabled:opacity-50 hover:bg-emerald-700"
           >
-            {submitting
-              ? 'Generating quote…'
-              : intent === 'send'
-              ? 'Generate & prepare to send'
-              : intent === 'convert'
-              ? 'Generate & open closing'
-              : 'Generate quote'}
+            {submitting ? 'Generating quote…' : 'Generate quote'}
           </button>
           {error && <span className="text-sm text-red-700">{error}</span>}
         </div>

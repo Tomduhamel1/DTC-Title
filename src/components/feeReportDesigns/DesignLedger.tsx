@@ -69,7 +69,7 @@ export default function DesignLedger({ report }: { report: FeeReport }) {
       <div className="px-6 py-4 bg-emerald-600 text-white flex items-center justify-between">
         <span className="text-sm font-bold uppercase tracking-wider">You save</span>
         <span className="text-2xl font-black tabular-nums">
-          {formatCurrency(totals.estimatedSavings)}
+          {formatRange(totals.estimatedSavingsLow, totals.estimatedSavingsHigh)}
         </span>
       </div>
 

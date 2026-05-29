@@ -91,37 +91,27 @@ export default function FeeReportTable({
             {formatRange(totals.marketLow, totals.marketHigh)}
           </span>
         </div>
-        {/* Two savings buckets, visually separated. Single conservative
-            number (no low–high range) — compared against the LOW end of
-            typical local pricing only. */}
-        <div className="border-t border-gray-200 pt-4 grid grid-cols-2 gap-3">
-          <div className="bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3">
-            <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 mb-1">
-              Save at closing
-            </div>
-            <div className="text-2xl font-black text-emerald-700 tabular-nums leading-none">
-              {formatCurrency(totals.estimatedSavings)}
-            </div>
-            <div className="text-[11px] text-gray-500 mt-1.5">Title &amp; settlement</div>
-          </div>
-          {totals.lifetimeSavings > 0 && (
-            <div className="bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 mb-1">
-                Save over the loan
-              </div>
-              <div className="text-2xl font-black text-emerald-700 tabular-nums leading-none">
-                {formatCurrency(totals.lifetimeSavings)}
-              </div>
-              <div className="text-[11px] text-gray-500 mt-1.5">Long-term savings</div>
-            </div>
-          )}
+        <div className="border-t border-gray-200 pt-4 flex items-baseline justify-between mb-2">
+          <span className="text-base font-bold text-emerald-700">You save at closing</span>
+          <span className="text-2xl font-black text-emerald-700 tabular-nums">
+            {formatRange(totals.estimatedSavingsLow, totals.estimatedSavingsHigh)}
+          </span>
         </div>
-        {totals.lifetimeSavings > 0 && (
-          <p className="text-[11px] text-gray-400 mt-3 leading-snug">
-            Loan savings assumes you borrow less or get better loan pricing
-            because your closing costs are lower. Based on 6.5% over 30 years.
-            Final terms may vary.
-          </p>
+        {totals.lifetimeSavingsHigh > 0 && (
+          <div className="bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3 mt-3">
+            <div className="flex items-baseline justify-between">
+              <span className="text-sm font-bold text-emerald-900">
+                Over the life of your loan
+              </span>
+              <span className="text-3xl font-black text-emerald-700 tabular-nums">
+                {formatRange(totals.lifetimeSavingsLow, totals.lifetimeSavingsHigh)}
+              </span>
+            </div>
+            <p className="text-[11px] text-emerald-800/70 mt-1.5 leading-snug">
+              Closing costs financed into your mortgage compound. This is what
+              you don't pay over a 30-year loan at 7%.
+            </p>
+          </div>
         )}
       </div>
 

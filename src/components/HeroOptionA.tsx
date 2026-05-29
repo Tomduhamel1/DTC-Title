@@ -15,18 +15,18 @@ export default function HeroOptionA() {
             {/* Left: Savings Message */}
             <div className="text-left">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-dark-900 leading-tight mb-6">
-                Save at closing. Save over the loan.
+                Don't overpay for closing costs!
                 <span className="block text-emerald-600 mt-3">
-                  Close with confidence.
+                  Save ${savings.totalSavings.toLocaleString()}
                 </span>
               </h1>
 
               <p className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
-                Same realtor. Same lender. Lower cost.
+                Same realtor. Same lender. Same insurer.
               </p>
 
               <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                BetterClose helps you lower title and settlement costs, understand every fee, and track your closing with a trusted team.
+                You have a choice in title insurance. Keep the same professionals, get the same A-rated protection – just pay <span className="font-bold text-emerald-600">75% less</span>.
               </p>
 
               <div className="bg-gradient-to-r from-emerald-50 to-emerald-50 border-l-4 border-emerald-500 p-6 rounded-r-lg mb-8 shadow-lg">

@@ -91,8 +91,8 @@ export function calculateSavings(
   const estimatedClosingCost = averageClosingCost - totalSavings
 
   // Monthly payment impact (amortized over 30 years)
-  // Assumes closing costs would be financed at ~6.5% interest
-  const monthlyRate = 0.065 / 12
+  // Assumes closing costs would be financed at ~7% interest
+  const monthlyRate = 0.07 / 12
   const numPayments = 360 // 30 years
 
   const averageMonthlyImpact = (averageClosingCost * monthlyRate * Math.pow(1 + monthlyRate, numPayments)) /

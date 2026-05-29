@@ -1,17 +1,11 @@
-// Approximate AT-CLOSING savings as a fraction of home value, by state.
-//
-// Conservative model for a comparison-shopping borrower: ~10% off the LOW end
-// of the typical title-insurance range plus ~20% off settlement fees. We do NOT
-// compare against inflated high-end estimates. Multipliers below are tuned so a
-// $500k purchase returns a believable title+settlement at-closing number.
+// Approximate lifetime savings as a fraction of home value, by state.
+// Tuned against real elend-public-calc output: $500k Atlanta GA purchase
+// returns ~$9,260 lifetime savings (closing-cost savings financed at 7%/30y).
 //
 // These are rough averages used only to power the hero "what you'd save"
 // number — the actual /quote flow returns precise per-fee math from the API.
 //
-// Higher values = states where typical title companies charge more, so the
-// conservative 10%/20% cut yields a larger dollar saving.
-
-import { loanInterestAvoided } from './feeReport'
+// Higher values = states where typical title companies overcharge more.
 
 export type RegionRates = {
   purchase: number // multiplier on home value
@@ -84,34 +78,12 @@ export function getRatesForState(stateCode?: string | null): RegionRates {
   return RATES[stateCode.toUpperCase()] || NATIONAL_AVERAGE
 }
 
-// The RATES multipliers above were originally tuned to a 30-year-financed
-// lifetime number. We now lead with the conservative AT-CLOSING figure, which
-// is a fraction of that. This factor converts the legacy lifetime multiplier
-// back to a believable title+settlement-only at-closing saving.
-const AT_CLOSING_FACTOR = 0.3
-
-export interface RegionSavings {
-  /** Direct title + settlement savings paid at the closing table. */
-  saveAtClosing: number
-  /** At-closing savings plus interest avoided over the loan (see feeReport). */
-  saveOverLoan: number
-}
-
-/**
- * Conservative two-bucket savings estimate used by the homepage hero.
- *  - saveAtClosing: ~10% off low-end title + ~20% off settlement, by state.
- *  - saveOverLoan : saveAtClosing + interest avoided over 30 years at 6.5%,
- *                   i.e. what borrowing that much less (or better pricing)
- *                   saves over the life of the loan.
- */
-export function estimateSavings(
+export function estimateLifetimeSavings(
   homeValue: number,
   mode: 'purchase' | 'refinance',
   stateCode?: string | null,
-): RegionSavings {
+): number {
   const rates = getRatesForState(stateCode)
   const rate = mode === 'refinance' ? rates.refinance : rates.purchase
-  const saveAtClosing = Math.round((homeValue * rate * AT_CLOSING_FACTOR) / 10) * 10
-  const saveOverLoan = saveAtClosing + loanInterestAvoided(saveAtClosing)
-  return { saveAtClosing, saveOverLoan: Math.round(saveOverLoan / 10) * 10 }
+  return Math.round((homeValue * rate) / 10) * 10
 }

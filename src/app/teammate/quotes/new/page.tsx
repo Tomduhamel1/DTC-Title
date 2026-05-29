@@ -1,10 +1,9 @@
 import Link from 'next/link'
-import { Suspense } from 'react'
 import { redirect } from 'next/navigation'
 import NavigationCredible from '@/components/NavigationCredible'
 import FooterComprehensive from '@/components/FooterComprehensive'
 import TeammateTabs from '@/components/teammate/TeammateTabs'
-import BrokerQuoteNewClient from '@/components/teammate/BrokerQuoteNewClient'
+import BrokerQuoteForm from '@/components/teammate/BrokerQuoteForm'
 import { requireUser, requireBrokerMember } from '@/lib/auth/session'
 
 // New broker quote page. Renders the BrokerQuoteForm client component
@@ -52,9 +51,7 @@ export default async function TeammateQuoteNewPage() {
           </div>
 
           <div className="bg-white rounded-2xl border border-gray-200 p-6">
-            <Suspense fallback={<div className="text-sm text-gray-500 text-center py-10">Loading…</div>}>
-              <BrokerQuoteNewClient companies={companies} />
-            </Suspense>
+            <BrokerQuoteForm companies={companies} />
           </div>
         </div>
       </main>
