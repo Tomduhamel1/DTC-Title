@@ -18,7 +18,7 @@ import {
 export default function DesignBigNumber({ report }: { report: FeeReport }) {
   const totals = computeTotals(report)
   const grouped = groupByCategory(report.lineItems)
-  const savingsMid = Math.round((totals.estimatedSavingsLow + totals.estimatedSavingsHigh) / 2)
+  const savingsMid = totals.estimatedSavings
 
   return (
     <div className="bg-white rounded-3xl shadow-xl overflow-hidden max-w-md mx-auto border border-gray-200">
@@ -31,7 +31,7 @@ export default function DesignBigNumber({ report }: { report: FeeReport }) {
           {formatCurrency(savingsMid)}
         </div>
         <div className="text-sm text-gray-500">
-          range {formatRange(totals.estimatedSavingsLow, totals.estimatedSavingsHigh)}
+          vs. conservative local pricing
         </div>
       </div>
 

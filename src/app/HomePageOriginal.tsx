@@ -97,21 +97,21 @@ export default function HomePageOriginal({ hideSavingsCards = false, useAlternat
               {useAlternateHero ? (
                 <>
                   <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4 text-dark-900 leading-tight">
-                    Don't overpay for closing costs!<br />
-                    <span className="text-primary-600">You have a choice.</span>
+                    Save at closing. Save over the loan.<br />
+                    <span className="text-primary-600">Close with confidence.</span>
                   </h1>
                   <p className="text-xl md:text-2xl text-gray-700 font-semibold mb-8">
-                    Same realtor. Same lender. Same insurer.<br />
-                    <span className="text-primary-600">Better closing cost.</span>
+                    Same realtor. Same lender. Lower cost.<br />
+                    <span className="text-primary-600">Every fee in the open.</span>
                   </p>
                 </>
               ) : (
                 <>
                   <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-dark-900 leading-tight">
-                    Save Hundreds on Closing Costs
+                    Save at closing. Save over the loan.
                   </h1>
                   <p className="text-xl mb-8 text-gray-600">
-                    30-40% lower fees. Same coverage. Same underwriters.
+                    Lower closing costs. Same coverage. Same A-rated underwriters.
                   </p>
                 </>
               )}

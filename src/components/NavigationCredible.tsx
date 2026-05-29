@@ -41,13 +41,13 @@ export default function NavigationCredible() {
               How It Works
             </a>
             <a href="/for-brokers" className="text-dark-800 hover:text-primary-600 font-medium transition-colors">
-              For Mortgage Brokers
+              Mortgage Brokers
             </a>
             <a href="/for-realtors" className="text-dark-800 hover:text-primary-600 font-medium transition-colors">
-              For Real Estate Agents
+              Real Estate Agents
             </a>
             <a href="/for-lenders" className="text-dark-800 hover:text-primary-600 font-medium transition-colors">
-              For Lenders
+              Lenders
             </a>
             <a href="/security" className="text-dark-800 hover:text-primary-600 font-medium transition-colors">
               Security
@@ -164,13 +164,13 @@ export default function NavigationCredible() {
                 How It Works
               </a>
               <a href="/for-brokers" className="block text-dark-800 hover:text-primary-600 font-medium py-2">
-                For Mortgage Brokers
+                Mortgage Brokers
               </a>
               <a href="/for-realtors" className="block text-dark-800 hover:text-primary-600 font-medium py-2">
-                For Real Estate Agents
+                Real Estate Agents
               </a>
               <a href="/for-lenders" className="block text-dark-800 hover:text-primary-600 font-medium py-2">
-                For Lenders
+                Lenders
               </a>
               <a href="/security" className="block text-dark-800 hover:text-primary-600 font-medium py-2">
                 Security & Protection

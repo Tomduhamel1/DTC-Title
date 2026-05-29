@@ -14,7 +14,7 @@ import {
 export default function DesignDashboard({ report }: { report: FeeReport }) {
   const totals = computeTotals(report)
   const grouped = groupByCategory(report.lineItems)
-  const savingsMid = Math.round((totals.estimatedSavingsLow + totals.estimatedSavingsHigh) / 2)
+  const savingsMid = totals.estimatedSavings
 
   return (
     <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
@@ -27,10 +27,7 @@ export default function DesignDashboard({ report }: { report: FeeReport }) {
           {formatCurrency(savingsMid)}
         </div>
         <div className="text-emerald-50 text-lg">
-          Compared to the typical {report.state} closing
-          {totals.estimatedSavingsLow !== totals.estimatedSavingsHigh && (
-            <> · range {formatRange(totals.estimatedSavingsLow, totals.estimatedSavingsHigh)}</>
-          )}
+          Compared to conservative local pricing in {report.state}
         </div>
 
         {/* Stacked bar */}
