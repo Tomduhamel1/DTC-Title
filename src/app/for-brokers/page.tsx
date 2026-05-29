@@ -6,11 +6,16 @@ import UnderwriterLogos from '@/components/UnderwriterLogos'
 export const metadata = {
   title: 'BetterClose · For Mortgage Brokers & Loan Officers',
   description:
-    "Create instant fee quotes for your borrowers, convert them into real closings with one click, and track every file in your pipeline. BetterClose's broker/LO portal is live in early access.",
+    'Give your borrower a lower-cost closing and a better loan-cost story. Quote savings in under a minute, share a polished borrower page, open the order, and track every file without chasing status emails.',
 }
 
 const SIGN_IN_HREF = '/login?callbackUrl=/teammate/dashboard'
-const CREATE_QUOTE_HREF = '/login?callbackUrl=/teammate/quotes/new'
+// Public, ungated quote/savings test. No login required.
+// ?source=broker tags the flow so /quote/results renders broker-context CTAs
+// (Send to my borrower / Open a closing) instead of generic borrower CTAs.
+const PUBLIC_QUOTE_HREF = '/quote?source=broker'
+// Broker-only quote builder (co-branding, save, send, convert). Gated.
+const CREATE_BROKER_QUOTE_HREF = '/login?callbackUrl=/teammate/quotes/new'
 
 const REQUEST_ACCESS_BODY = `Hi BetterClose team,
 
@@ -57,6 +62,78 @@ const COMPANY_INFO_REQUEST_HREF = `mailto:orders@betterclose.co?subject=${encode
   'BetterClose company info request',
 )}`
 
+// Outline-style icons sized to fit OrderTile (w-5) and ReasonCard (w-6)
+// emerald/primary tinted backgrounds. Inline SVGs keep parity with the rest
+// of the site (no icon-lib dependency).
+const iconClass = 'w-5 h-5'
+const ICONS = {
+  // OrderTile (4 of them)
+  dashboard: (
+    <svg className={iconClass} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+    </svg>
+  ),
+  envelope: (
+    <svg className={iconClass} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+    </svg>
+  ),
+  workflow: (
+    <svg className={iconClass} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h11M4 12h11M4 18h7m5-2l3 3m0 0l3-3m-3 3V8" />
+    </svg>
+  ),
+  clipboard: (
+    <svg className={iconClass} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+    </svg>
+  ),
+  // ReasonCard (5) — slightly larger (w-6) reads better in the card layout
+  cash: (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+  ),
+  chartDown: (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
+    </svg>
+  ),
+  document: (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+    </svg>
+  ),
+  bolt: (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+    </svg>
+  ),
+  pin: (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+    </svg>
+  ),
+  // "Where the savings come from" (3)
+  gear: (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+    </svg>
+  ),
+  scroll: (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+    </svg>
+  ),
+  receipt: (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 17v-2a4 4 0 014-4h6m0 0l-3-3m3 3l-3 3M5 19a2 2 0 01-2-2V5a2 2 0 012-2h7l5 5v4" />
+    </svg>
+  ),
+}
+
 export default function BrokersPage() {
   return (
     <div className="min-h-screen bg-white">
@@ -72,45 +149,56 @@ export default function BrokersPage() {
                 FOR MORTGAGE BROKERS &amp; LOAN OFFICERS
               </div>
               <h1 className="text-5xl md:text-6xl font-black text-dark-900 mb-6 leading-tight">
-                Create quotes. Open closings. <span className="text-primary-600">Track every file.</span>
+                Give your borrower a lower-cost closing — without adding work to your file.
               </h1>
               <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                BetterClose&apos;s broker/LO portal is live in early access for approved brokerages and lending
-                teams. Build instant fee quotes for your borrowers, convert them into real closings with one
-                click, and see every file&apos;s milestones in your pipeline.
+                BetterClose helps mortgage brokers reduce title and settlement costs
+                for borrowers, send a clean borrower-ready estimate, and track the
+                file through closing.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
-                  href={SIGN_IN_HREF}
-                  className="inline-flex items-center justify-center gap-2 bg-primary-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-primary-700 transition-colors shadow-lg"
+                  href={PUBLIC_QUOTE_HREF}
+                  className="inline-flex items-center justify-center gap-2 bg-emerald-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-emerald-700 transition-colors shadow-lg"
                 >
-                  Sign in to broker dashboard
+                  Get a BetterClose estimate
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </Link>
                 <Link
-                  href={CREATE_QUOTE_HREF}
+                  href={SIGN_IN_HREF}
                   className="inline-flex items-center justify-center gap-2 bg-white border-2 border-primary-600 text-primary-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-primary-50 transition-colors"
                 >
-                  Create a quote
+                  Sign in to broker dashboard
                 </Link>
               </div>
               <p className="text-sm text-gray-500 mt-4">
-                Already onboarded? One-tap sign-in. New here? See <a href="#signin-or-request" className="underline font-semibold">Request access</a> below.
+                No login required to check pricing. Create an account when you&apos;re ready to send the estimate or open the closing.
               </p>
             </div>
 
             <div className="bg-white rounded-2xl shadow-2xl p-8 border-2 border-primary-200">
-              <div className="text-center mb-6">
-                <div className="text-5xl font-black text-emerald-600 mb-2">$2,400</div>
-                <div className="text-lg text-gray-600">Average borrower savings</div>
+              <div className="text-center text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-5">
+                What your borrower gets
               </div>
-              <div className="space-y-4">
-                <ValuePropRow>Instant fee quotes branded for your borrowers</ValuePropRow>
-                <ValuePropRow>One-click convert quote → closing</ValuePropRow>
-                <ValuePropRow>Live pipeline of every file you&apos;ve placed</ValuePropRow>
-              </div>
+              {/* Value-reinforcement card: what the borrower walks away with,
+                  not a step-by-step workflow. Workflow detail lives further
+                  down the page in "How the portal works". */}
+              <ul className="space-y-4">
+                <ValuePoint title="Lower title &amp; settlement costs">
+                  BetterClose prices the parts of closing we can control more competitively.
+                </ValuePoint>
+                <ValuePoint title="Clear fee comparison">
+                  Show what BetterClose charges and what costs are fixed or passed through.
+                </ValuePoint>
+                <ValuePoint title="A trusted closing team">
+                  Same type of title protection, real support, and status visibility.
+                </ValuePoint>
+                <ValuePoint title="Broker-ready handoff">
+                  Send the estimate, open the file, and track progress from one dashboard.
+                </ValuePoint>
+              </ul>
             </div>
           </div>
         </div>
@@ -191,7 +279,7 @@ export default function BrokersPage() {
               title="Already onboarded? Sign in."
               body="Your company has been onboarded by BetterClose admin? Sign in with your work email — we&apos;ll match your account to every BetterClose file you&apos;ve ever been on."
               primary={{ label: 'Sign in to broker dashboard →', href: SIGN_IN_HREF, style: 'solid' }}
-              secondary={{ label: 'Or jump straight to creating a quote →', href: CREATE_QUOTE_HREF }}
+              secondary={{ label: 'Or jump straight to creating a broker quote →', href: CREATE_BROKER_QUOTE_HREF }}
             />
             <ActionCard
               title="Not onboarded yet? Request access."
@@ -212,24 +300,24 @@ export default function BrokersPage() {
           </div>
           <div className="grid md:grid-cols-2 gap-6">
             <OrderTile
-              emoji="🟢"
+              icon={ICONS.dashboard}
               title="Broker dashboard"
               body="Use the portal to create quotes, convert to closings, and track the pipeline."
               cta={{ label: 'Sign in →', href: SIGN_IN_HREF }}
             />
             <OrderTile
-              emoji="✉️"
+              icon={ICONS.envelope}
               title="Email an order"
               body="Send a single email to orders@betterclose.co with the borrower and property details. We confirm within one business day."
               cta={{ label: 'Email an order →', href: EMAIL_ORDER_HREF }}
             />
             <OrderTile
-              emoji="🔧"
+              icon={ICONS.workflow}
               title="Your existing workflow"
               body="Use the LOS, pricing engine, or platform your team already runs on — SmartFees, Encompass, Qualia, ResWare, or email — and send the order to BetterClose."
             />
             <OrderTile
-              emoji="📋"
+              icon={ICONS.clipboard}
               title="Need our company info?"
               body="If your LOS, pricing engine, or closing instructions require settlement-agent details, email us and we&apos;ll provide the correct BetterClose information for the file."
               cta={{ label: 'Request company info', href: COMPANY_INFO_REQUEST_HREF }}
@@ -247,25 +335,104 @@ export default function BrokersPage() {
           <div className="text-center mb-12">
             <h2 className="text-4xl font-black text-dark-900 mb-3">Why brokers use BetterClose</h2>
             <p className="text-lg text-gray-600">
-              Same protection your borrower expects. Lower price. Easier on you.
+              A lower-cost closing for your borrower, a stronger pitch for you.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             <ReasonCard
-              emoji="🛡️"
-              title="Same A-rated underwriters"
-              body="The title insurance is identical to what you place with any other settlement company."
+              icon={ICONS.cash}
+              title="Lower cash to close"
+              body="Cut your borrower's title and settlement costs without changing the underwriter."
             />
             <ReasonCard
-              emoji="📊"
-              title="Transparent line-item pricing"
-              body="Your borrower sees every fee ahead of time. No junk fees, no surprises at the closing table — fewer last-minute escalations for you."
+              icon={ICONS.chartDown}
+              title="Two savings numbers to show your borrower"
+              body="Save at closing and save over the loan — both clearly displayed."
             />
             <ReasonCard
-              emoji="⚡"
-              title="Built for speed"
-              body="Quote in 60 seconds. Convert with one click. Pipeline updates in real time as milestones fire."
+              icon={ICONS.document}
+              title="A co-branded savings page"
+              body="Send a polished, borrower-ready page with your name on it. They view it without a login."
             />
+            <ReasonCard
+              icon={ICONS.bolt}
+              title="Convert quote to order"
+              body="When the borrower says yes, one click opens the closing. No re-keying."
+            />
+            <ReasonCard
+              icon={ICONS.pin}
+              title="Track every milestone"
+              body="Live pipeline status from order to close — no chasing title for updates."
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Credibility — defensible savings */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-black text-dark-900 mb-3 leading-tight">
+              Built to compete with your best title option
+            </h2>
+            <p className="text-lg text-gray-600">
+              No inflated comparisons. No fake savings on pass-through fees.
+            </p>
+          </div>
+          <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
+            BetterClose is designed to be compared against real quotes, not inflated estimates.
+            We price the parts of title and settlement we can control more competitively and
+            clearly separate government fees, recording charges, transfer taxes, and
+            lender-required third-party costs.
+          </p>
+        </div>
+      </section>
+
+      {/* 8. Where the savings come from */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-black text-dark-900 mb-3">
+              Where the savings come from
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            <ReasonCard
+              icon={ICONS.gear}
+              title="Lower settlement fees"
+              body="Settlement, processing, wire, and closing-related services priced more competitively."
+            />
+            <ReasonCard
+              icon={ICONS.scroll}
+              title="Lower title-related charges where permitted"
+              body="We price the parts of title we can control more competitively and pass those savings to the borrower."
+            />
+            <ReasonCard
+              icon={ICONS.receipt}
+              title="Pass-through fees clearly labeled"
+              body="Recording fees, transfer taxes, and lender-required third-party costs are passed through and shown line by line."
+            />
+          </div>
+
+          {/* For brokers who already have a low-cost option — invite the comparison. */}
+          <div className="max-w-3xl mx-auto mt-10 bg-white border border-gray-200 rounded-2xl shadow-sm p-7">
+            <h3 className="text-2xl font-black text-dark-900 mb-2">
+              Already have a preferred title option?
+            </h3>
+            <p className="text-base text-gray-700 leading-relaxed mb-5">
+              Put BetterClose next to it. If we&apos;re lower, you have another
+              option for your borrower. If we&apos;re not, you still have a clear
+              comparison.
+            </p>
+            <Link
+              href={PUBLIC_QUOTE_HREF}
+              className="inline-flex items-center gap-2 bg-emerald-600 text-white font-bold text-base px-6 py-3 rounded-lg hover:bg-emerald-700 transition-colors shadow"
+            >
+              Get an estimate
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
           </div>
         </div>
       </section>
@@ -275,16 +442,25 @@ export default function BrokersPage() {
   )
 }
 
-function ValuePropRow({ children }: { children: React.ReactNode }) {
+function ValuePoint({
+  title,
+  children,
+}: {
+  title: string
+  children: React.ReactNode
+}) {
   return (
-    <div className="flex items-center gap-3">
-      <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0">
-        <svg className="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+    <li className="flex items-start gap-3">
+      <div className="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mt-0.5">
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
         </svg>
       </div>
-      <div className="text-dark-900 font-medium">{children}</div>
-    </div>
+      <div>
+        <div className="text-sm font-bold text-dark-900 leading-tight">{title}</div>
+        <div className="text-sm text-gray-600 leading-snug mt-0.5">{children}</div>
+      </div>
+    </li>
   )
 }
 
@@ -347,12 +523,12 @@ function ActionCard({
 }
 
 function OrderTile({
-  emoji,
+  icon,
   title,
   body,
   cta,
 }: {
-  emoji: string
+  icon: React.ReactNode
   title: string
   body: string
   cta?: { label: string; href: string }
@@ -360,8 +536,13 @@ function OrderTile({
   return (
     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
       <div className="flex items-start gap-3 mb-3">
-        <span className="text-3xl flex-shrink-0" aria-hidden="true">{emoji}</span>
-        <h3 className="text-lg font-bold text-dark-900 leading-tight pt-1">{title}</h3>
+        <span
+          className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center"
+          aria-hidden="true"
+        >
+          {icon}
+        </span>
+        <h3 className="text-lg font-bold text-dark-900 leading-tight pt-2">{title}</h3>
       </div>
       <p className="text-sm text-gray-600 leading-relaxed mb-4">{body}</p>
       {cta && (
@@ -376,11 +557,22 @@ function OrderTile({
   )
 }
 
-function ReasonCard({ emoji, title, body }: { emoji: string; title: string; body: string }) {
+function ReasonCard({
+  icon,
+  title,
+  body,
+}: {
+  icon: React.ReactNode
+  title: string
+  body: string
+}) {
   return (
     <div className="text-center md:text-left">
-      <div className="text-4xl mb-3" aria-hidden="true">
-        {emoji}
+      <div
+        className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary-50 text-primary-600 mb-3"
+        aria-hidden="true"
+      >
+        {icon}
       </div>
       <h3 className="text-lg font-bold text-dark-900 mb-2">{title}</h3>
       <p className="text-sm text-gray-600 leading-relaxed">{body}</p>
