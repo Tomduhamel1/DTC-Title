@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { estimateSavings } from '@/lib/regionRates'
 import { useSavings } from '@/contexts/SavingsContext'
+import RotatingSavingsPill from '@/components/RotatingSavingsPill'
 
 const STATES = [
   'AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY','DC',
@@ -122,6 +123,10 @@ export default function HeroMagicReveal() {
                 <div className="text-[11px] text-gray-500 mt-1.5">Long-term savings</div>
               </div>
             </div>
+
+            {/* Rotating "that's enough for" payoff, anchored to the over-the-loan
+                figure so the items scale with the number the user is seeing. */}
+            <RotatingSavingsPill savings={saveOverLoan} tail="back in your pocket" className="mt-4" />
           </div>
 
           {/* Slider */}

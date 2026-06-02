@@ -90,6 +90,17 @@ export function getRatesForState(stateCode?: string | null): RegionRates {
 // back to a believable title+settlement-only at-closing saving.
 const AT_CLOSING_FACTOR = 0.3
 
+// Re-anchor the whole table to a conservative basis: at the default $500k home
+// value, the NATIONAL AVERAGE should show $520 purchase / $180 refi at closing.
+// We apply a per-mode scale factor here rather than rewriting all 51 state rows,
+// so each state keeps its existing RELATIVE position around the national average
+// (CA/NY higher, low-cost states lower) — just on this new, lower basis.
+//
+//   scale = targetSaveAtClosing / (homeValue * AT_CLOSING_FACTOR * oldNationalRate)
+//   purchase: 520 / (500000 * 0.3 * 0.0182) ≈ 0.19048
+//   refi    : 180 / (500000 * 0.3 * 0.0053) ≈ 0.22642
+const BASIS_SCALE = { purchase: 0.19048, refinance: 0.22642 } as const
+
 export interface RegionSavings {
   /** Direct title + settlement savings paid at the closing table. */
   saveAtClosing: number
@@ -111,7 +122,8 @@ export function estimateSavings(
 ): RegionSavings {
   const rates = getRatesForState(stateCode)
   const rate = mode === 'refinance' ? rates.refinance : rates.purchase
-  const saveAtClosing = Math.round((homeValue * rate * AT_CLOSING_FACTOR) / 10) * 10
+  const saveAtClosing =
+    Math.round((homeValue * rate * AT_CLOSING_FACTOR * BASIS_SCALE[mode]) / 10) * 10
   const saveOverLoan = saveAtClosing + loanInterestAvoided(saveAtClosing)
   return { saveAtClosing, saveOverLoan: Math.round(saveOverLoan / 10) * 10 }
 }
