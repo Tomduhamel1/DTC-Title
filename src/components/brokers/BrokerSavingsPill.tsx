@@ -13,6 +13,13 @@ const SAVINGS_ANCHORS = [
   { emoji: '🍽️', text: '10 dinners out' },
   { emoji: '🏖️', text: 'a weekend getaway' },
   { emoji: '☕', text: '68 coffees' },
+  { emoji: '🍕', text: '16 pizza nights' },
+  { emoji: '💪', text: 'a year of the gym' },
+  { emoji: '⛳', text: '9 rounds of golf' },
+  { emoji: '🎬', text: '11 movie nights' },
+  { emoji: '🎟️', text: '3 concert tickets' },
+  { emoji: '🛒', text: 'a month of groceries' },
+  { emoji: '💆', text: '4 spa massages' },
 ] as const
 
 const ROTATE_MS = 3000
