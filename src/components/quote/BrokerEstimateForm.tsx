@@ -184,7 +184,7 @@ export default function BrokerEstimateForm() {
               <select
                 value={transactionType}
                 onChange={(e) => setTransactionType(e.target.value as TransactionType)}
-                className={baseInput + ' bg-white'}
+                className="w-full h-[52px] px-3.5 rounded-lg text-base font-semibold text-dark-900 bg-gray-100 border border-gray-300 hover:bg-gray-200 cursor-pointer focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition-colors"
               >
                 <option value="purchase">Purchase</option>
                 <option value="refinance">Refinance</option>
@@ -200,7 +200,7 @@ export default function BrokerEstimateForm() {
                 }
                 placeholder="78701 or TX"
                 maxLength={5}
-                className={baseInput + ' uppercase'}
+                className={baseInput + ' uppercase placeholder:text-gray-400'}
               />
             </CompactField>
 
@@ -233,7 +233,9 @@ export default function BrokerEstimateForm() {
 
           {/* ───── Optional file details — open by default ───── */}
           <div className="mt-6 pt-5 border-t border-gray-100">
-            <h2 className="text-base font-bold text-dark-900 mb-4">Optional</h2>
+            <h2 className="text-base font-bold text-dark-900 mb-4">
+              Optional <span className="font-normal text-gray-400">(You can also add later)</span>
+            </h2>
             {/* 6-column grid so each field can claim only the width it
                 needs. Wide free-text fields (name, email, address) span 2;
                 short fields (state, zip, target close) span 1–2. */}
@@ -316,8 +318,9 @@ export default function BrokerEstimateForm() {
                     onChange={(e) =>
                       setPropertyZip(e.target.value.replace(/[^0-9]/g, '').slice(0, 5))
                     }
+                    placeholder="ZIP"
                     maxLength={5}
-                    className={smallInput}
+                    className={smallInput + ' placeholder:text-gray-400'}
                   />
                 </SmallField>
               </div>
