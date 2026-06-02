@@ -188,50 +188,70 @@ export default function BrokersPage() {
               </p>
             </div>
 
-            {/* Savings proof card — show the impact, don't just describe it.
-                All three savings figures derive from the same $450 closing
-                savings ($1,900 − $1,450) financed at 6.5% over 30 years:
-                monthly ≈ $2.84/mo (~$3), total avoided ≈ $1,024 (~$1,000).
-                Comparison shown so no number stands alone. */}
+            {/* Savings proof card — a visual borrower-impact moment, not a
+                spreadsheet. The "$450 lower" is the hero; monthly ($2.84/mo)
+                and over-the-loan ($1,024) are supporting chips. All figures
+                derive from the same $450 closing savings ($1,902 − $1,452)
+                financed at 6.5% over 30 years (monthly = $2.84, total = $1,024). */}
             <div className="bg-white rounded-2xl shadow-2xl p-7 border-2 border-primary-200">
               <div className="text-center text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-5">
                 Example borrower impact
               </div>
 
-              {/* Comparison: our estimate vs. a comparable option */}
-              <div className="space-y-2.5 mb-4">
-                <div className="flex items-baseline justify-between">
-                  <span className="text-sm text-gray-700">BetterClose estimate</span>
-                  <span className="text-lg font-black text-dark-900">$1,450</span>
+              {/* Compact two-up comparison: our estimate vs comparable */}
+              <div className="grid grid-cols-2 gap-3 mb-1">
+                <div className="rounded-xl border-2 border-emerald-200 bg-emerald-50/60 p-3 text-center">
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 mb-1">
+                    BetterClose
+                  </div>
+                  <div className="text-2xl font-black text-dark-900 leading-none">$1,452</div>
                 </div>
-                <div className="flex items-baseline justify-between">
-                  <span className="text-sm text-gray-500">Comparable title option</span>
-                  <span className="text-base font-semibold text-gray-400 line-through">$1,900</span>
-                </div>
-              </div>
-
-              {/* Savings highlight — emphasized first */}
-              <div className="bg-emerald-50 border border-emerald-100 rounded-xl p-4 space-y-3">
-                <div className="flex items-baseline justify-between">
-                  <span className="text-sm font-semibold text-emerald-900">Save at closing</span>
-                  <span className="text-2xl font-black text-emerald-700">$450</span>
-                </div>
-                <div className="flex items-baseline justify-between border-t border-emerald-100 pt-2.5">
-                  <span className="text-xs text-emerald-800">Monthly payment impact</span>
-                  <span className="text-sm font-bold text-emerald-700">$3/mo</span>
-                </div>
-                <div className="flex items-baseline justify-between">
-                  <span className="text-xs text-emerald-800">Save over the loan</span>
-                  <span className="text-sm font-bold text-emerald-700">$1,000</span>
+                <div className="rounded-xl border border-gray-200 bg-gray-50 p-3 text-center">
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">
+                    Comparable
+                  </div>
+                  <div className="text-2xl font-bold text-gray-400 leading-none line-through decoration-gray-300">
+                    $1,902
+                  </div>
                 </div>
               </div>
 
-              <p className="text-[11px] text-gray-400 leading-relaxed mt-3">
+              {/* Central moment: the savings, with a down-arrow tying it to the
+                  comparison above */}
+              <div className="flex flex-col items-center -mt-1 mb-4">
+                <svg className="w-5 h-5 text-emerald-500 my-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+                <div className="w-full rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 text-white text-center py-5 px-4 shadow-md shadow-emerald-600/20">
+                  <div className="text-5xl font-black leading-none tracking-tight">$450</div>
+                  <div className="text-sm font-semibold text-emerald-50 mt-1.5 uppercase tracking-wide">
+                    lower at closing
+                  </div>
+                </div>
+              </div>
+
+              {/* Two supporting chips */}
+              <div className="grid grid-cols-2 gap-3">
+                <div className="rounded-xl bg-gray-50 border border-gray-100 p-3 text-center">
+                  <div className="text-lg font-black text-dark-900 leading-none">$2.84<span className="text-xs font-bold text-gray-500">/mo</span></div>
+                  <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mt-1">
+                    Monthly impact
+                  </div>
+                </div>
+                <div className="rounded-xl bg-gray-50 border border-gray-100 p-3 text-center">
+                  <div className="text-lg font-black text-dark-900 leading-none">$1,024</div>
+                  <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mt-1">
+                    Over the loan
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-[11px] text-gray-400 leading-relaxed mt-4">
                 Example purchase shown. Actual quote uses the borrower&apos;s loan, property, and location.
               </p>
 
               {/* Support/trust — secondary to the savings */}
-              <div className="text-[11px] text-gray-500 text-center mt-4 pt-4 border-t border-gray-100">
+              <div className="text-[11px] text-gray-500 text-center mt-3 pt-3 border-t border-gray-100">
                 A-rated underwriters · Real closing team · Live file status
               </div>
             </div>
