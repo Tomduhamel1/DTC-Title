@@ -2,6 +2,7 @@ import Link from 'next/link'
 import NavigationCredible from '@/components/NavigationCredible'
 import FooterComprehensive from '@/components/FooterComprehensive'
 import UnderwriterLogos from '@/components/UnderwriterLogos'
+import BrokerSavingsPill from '@/components/brokers/BrokerSavingsPill'
 
 export const metadata = {
   title: 'BetterClose · For Mortgage Brokers & Loan Officers',
@@ -236,18 +237,9 @@ export default function BrokersPage() {
               </p>
             </div>
 
-            {/* "This buys" — translate the abstract savings into something the
-                borrower can picture. Styled as a pill directly under the card so
-                it reads as a payoff, not a footnote. One punchy anchor, kept
-                honest against the $410 over-the-loan figure (~$15/mo × 12). */}
-            <div className="flex justify-center mt-4">
-              <div className="inline-flex items-center gap-2 bg-white rounded-full shadow-md border border-emerald-100 px-5 py-2.5">
-                <span className="text-lg">💸</span>
-                <span className="text-sm text-gray-700">
-                  That&apos;s enough for <span className="font-bold text-emerald-700">a year of streaming</span> — back in your borrower&apos;s pocket.
-                </span>
-              </div>
-            </div>
+            {/* "This buys" — rotating payoff pill directly under the card.
+                Anchors kept honest against the $410 over-the-loan figure. */}
+            <BrokerSavingsPill />
             </div>
           </div>
         </div>
