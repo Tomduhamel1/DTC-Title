@@ -28,7 +28,7 @@ export default function BrokerSavingsPill() {
 
   return (
     <div className="flex justify-center mt-4">
-      <div className="inline-flex items-center gap-2 bg-white rounded-full shadow-md border border-emerald-100 px-5 py-2.5">
+      <div className="inline-flex items-center gap-2 bg-emerald-50/60 rounded-full shadow-md border border-emerald-100 px-5 py-2.5">
         <span className="text-lg">💸</span>
         <span className="text-sm text-gray-700">
           That&apos;s enough for{' '}
