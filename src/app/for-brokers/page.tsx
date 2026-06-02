@@ -6,7 +6,7 @@ import UnderwriterLogos from '@/components/UnderwriterLogos'
 export const metadata = {
   title: 'BetterClose · For Mortgage Brokers & Loan Officers',
   description:
-    'Give your borrower a lower-cost closing and a better loan-cost story. Quote savings in under a minute, share a polished borrower page, open the order, and track every file without chasing status emails.',
+    'Give your borrower a lower-cost closing without adding work to your file — lower title and settlement costs, real closing support, and live file visibility. A co-branded borrower page is available when you want it.',
 }
 
 const SIGN_IN_HREF = '/login?callbackUrl=/teammate/dashboard'
@@ -61,6 +61,17 @@ const EMAIL_ORDER_HREF = `mailto:orders@betterclose.co?subject=${encodeURICompon
 const COMPANY_INFO_REQUEST_HREF = `mailto:orders@betterclose.co?subject=${encodeURIComponent(
   'BetterClose company info request',
 )}`
+
+// Broker-framed credibility stats. Values match the borrower TrustStripSection
+// (src/components/TrustStripSection.tsx); labels are written for a broker
+// audience. "Closing coverage" (not "Licensed nationally") because the 50-state
+// figure includes workshare states — see the footnote and FooterComprehensive.
+const BROKER_TRUST_STATS = [
+  { value: '30,000+', label: 'Closings completed' },
+  { value: 'A-rated', label: 'Underwriters only' },
+  { value: '50 states', label: 'Closing coverage' },
+  { value: '$5M', label: 'Bonded & insured' },
+] as const
 
 // Outline-style icons sized to fit OrderTile (w-5) and ReasonCard (w-6)
 // emerald/primary tinted backgrounds. Inline SVGs keep parity with the rest
@@ -148,15 +159,14 @@ export default function BrokersPage() {
               <div className="inline-block bg-primary-100 text-primary-700 px-4 py-1 rounded-full text-sm font-bold mb-4">
                 FOR MORTGAGE BROKERS &amp; LOAN OFFICERS
               </div>
-              <h1 className="text-5xl md:text-6xl font-black text-dark-900 mb-6 leading-tight">
-                Give your borrower a lower-cost closing — without adding work to your file.
+              <h1 className="text-4xl md:text-5xl font-black text-dark-900 mb-5 leading-tight">
+                Give your borrower a lower-cost closing without adding work to your file.
               </h1>
-              <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                BetterClose helps mortgage brokers reduce title and settlement costs
-                for borrowers, send a clean borrower-ready estimate, and track the
-                file through closing.
+              <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+                BetterClose helps you offer lower title and settlement costs, backed by
+                real closing support, trusted underwriters, and live file visibility.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                 <Link
                   href={PUBLIC_QUOTE_HREF}
                   className="inline-flex items-center justify-center gap-2 bg-emerald-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-emerald-700 transition-colors shadow-lg"
@@ -168,9 +178,9 @@ export default function BrokersPage() {
                 </Link>
                 <Link
                   href={SIGN_IN_HREF}
-                  className="inline-flex items-center justify-center gap-2 bg-white border-2 border-primary-600 text-primary-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-primary-50 transition-colors"
+                  className="text-base font-semibold text-primary-700 hover:underline"
                 >
-                  Sign in to broker dashboard
+                  Already onboarded? Sign in →
                 </Link>
               </div>
               <p className="text-sm text-gray-500 mt-4">
@@ -186,21 +196,44 @@ export default function BrokersPage() {
                   not a step-by-step workflow. Workflow detail lives further
                   down the page in "How the portal works". */}
               <ul className="space-y-4">
-                <ValuePoint title="Lower title &amp; settlement costs">
-                  BetterClose prices the parts of closing we can control more competitively.
+                <ValuePoint title="Lower borrower costs">
+                  Competitive title and settlement pricing where permitted.
                 </ValuePoint>
-                <ValuePoint title="Clear fee comparison">
-                  Show what BetterClose charges and what costs are fixed or passed through.
+                <ValuePoint title="Trusted closing support">
+                  Experienced settlement team and A-rated underwriters.
                 </ValuePoint>
-                <ValuePoint title="A trusted closing team">
-                  Same type of title protection, real support, and status visibility.
-                </ValuePoint>
-                <ValuePoint title="Broker-ready handoff">
-                  Send the estimate, open the file, and track progress from one dashboard.
+                <ValuePoint title="File visibility">
+                  Track milestones without chasing status emails.
                 </ValuePoint>
               </ul>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* 1.5. Trust band — "who are these guys?" answered with company volume
+          and credentials, broker-framed. Underwriter logos (section 5) cover
+          underwriter backing; this covers BetterClose's own track record. */}
+      <section className="py-14 bg-white border-y border-gray-100">
+        <div className="container mx-auto px-4 max-w-6xl text-center">
+          <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-8">
+            The settlement partner behind your file
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-gray-100 rounded-3xl overflow-hidden border border-gray-200">
+            {BROKER_TRUST_STATS.map((s) => (
+              <div key={s.label} className="bg-white p-6">
+                <div className="text-3xl md:text-4xl font-black text-dark-900 leading-none mb-1">
+                  {s.value}
+                </div>
+                <div className="text-xs font-semibold uppercase tracking-wider text-gray-500">
+                  {s.label}
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-gray-500 mt-6">
+            A-rated underwriters only · directly licensed in 34 states; remaining states through licensed workshare partners · a division of First National Title &amp; Escrow.
+          </p>
         </div>
       </section>
 
@@ -351,8 +384,8 @@ export default function BrokersPage() {
             />
             <ReasonCard
               icon={ICONS.document}
-              title="A co-branded savings page"
-              body="Send a polished, borrower-ready page with your name on it. They view it without a login."
+              title="A co-branded savings page, if you want it"
+              body="Send a polished page with your name on it, or simply use the BetterClose numbers in your own borrower quote. Your choice."
             />
             <ReasonCard
               icon={ICONS.bolt}
