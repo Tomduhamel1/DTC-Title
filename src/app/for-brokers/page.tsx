@@ -70,7 +70,6 @@ const BROKER_TRUST_STATS = [
   { value: '30,000+', label: 'Closings completed' },
   { value: 'A-rated', label: 'Underwriters only' },
   { value: '50 states', label: 'Closing coverage' },
-  { value: '$5M', label: 'Bonded & insured' },
 ] as const
 
 // Outline-style icons sized to fit OrderTile (w-5) and ReasonCard (w-6)
@@ -192,9 +191,9 @@ export default function BrokersPage() {
                 only large green element in the hero is the primary button; this
                 card uses light surfaces with green number accents. The two
                 savings figures (at closing / over the loan) carry the emphasis.
-                All figures derive from the same $450 closing savings
-                ($1,902 − $1,452) financed at 6.5%/30y: monthly = $2.84,
-                total = $1,024. */}
+                All figures derive from the same $180 closing savings
+                ($1,632 − $1,452) financed at 6.5%/30y: monthly = $1.14,
+                total = $410. */}
             <div className="bg-white rounded-2xl shadow-2xl p-7 border border-gray-200">
               <div className="text-center text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-5">
                 Example borrower savings
@@ -203,13 +202,13 @@ export default function BrokersPage() {
               {/* Two equal savings cards — the primary emphasis */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="rounded-xl border border-emerald-100 bg-emerald-50/70 p-4 text-center">
-                  <div className="text-3xl font-black text-emerald-700 leading-none">$450</div>
+                  <div className="text-3xl font-black text-emerald-700 leading-none">$180</div>
                   <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-800/80 mt-1.5">
                     Save at closing
                   </div>
                 </div>
                 <div className="rounded-xl border border-emerald-100 bg-emerald-50/70 p-4 text-center">
-                  <div className="text-3xl font-black text-emerald-700 leading-none">$1,024</div>
+                  <div className="text-3xl font-black text-emerald-700 leading-none">$410</div>
                   <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-800/80 mt-1.5">
                     Save over the loan
                   </div>
@@ -222,7 +221,7 @@ export default function BrokersPage() {
                   Payment impact
                 </span>
                 <span className="text-sm font-bold text-gray-800">
-                  $2.84<span className="text-xs font-semibold text-gray-500">/mo</span>
+                  $1.14<span className="text-xs font-semibold text-gray-500">/mo</span>
                 </span>
               </div>
 
@@ -234,7 +233,7 @@ export default function BrokersPage() {
                 </div>
                 <div className="flex items-baseline justify-between">
                   <span className="text-xs text-gray-400">Comparable option</span>
-                  <span className="text-sm font-semibold text-gray-400 line-through decoration-gray-300">$1,902</span>
+                  <span className="text-sm font-semibold text-gray-400 line-through decoration-gray-300">$1,632</span>
                 </div>
               </div>
 
@@ -254,7 +253,7 @@ export default function BrokersPage() {
           <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-8">
             The settlement partner behind your file
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-gray-100 rounded-3xl overflow-hidden border border-gray-200">
+          <div className="grid grid-cols-3 gap-px bg-gray-100 rounded-3xl overflow-hidden border border-gray-200">
             {BROKER_TRUST_STATS.map((s) => (
               <div key={s.label} className="bg-white p-6">
                 <div className="text-3xl md:text-4xl font-black text-dark-900 leading-none mb-1">
@@ -272,7 +271,38 @@ export default function BrokersPage() {
         </div>
       </section>
 
-      {/* 2. How the portal works */}
+      {/* 2. Dashboard visualization — "Your pipeline, in one place" */}
+      <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-12 items-center">
+            <div>
+              <div className="inline-block bg-emerald-100 text-emerald-800 px-4 py-1 rounded-full text-sm font-bold mb-4">
+                ✓ Live in the broker dashboard
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black text-dark-900 mb-5 leading-tight">
+                Your closing pipeline,{' '}
+                <span className="text-primary-600">in one place.</span>
+              </h2>
+              <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+                Every quote and every closing you&apos;ve placed shows up the moment you sign in.
+                No spreadsheets, no chasing escrow officers for status updates.
+              </p>
+              <ul className="space-y-3 mb-8">
+                <FeatureBullet>Create quotes in under a minute.</FeatureBullet>
+                <FeatureBullet>See when borrowers view them.</FeatureBullet>
+                <FeatureBullet>Convert approved quotes into real BetterClose closings.</FeatureBullet>
+                <FeatureBullet>Track every file by status and milestone.</FeatureBullet>
+                <FeatureBullet>Keep email-order fallback for files that start outside the portal.</FeatureBullet>
+              </ul>
+            </div>
+
+            <DashboardMockup />
+          </div>
+        </div>
+      </section>
+
+      {/* 2.5. How the portal works — placed after the pipeline overview so the
+          big-picture value lands first, then the step-by-step detail. */}
       <section id="how-it-works" className="py-16 bg-white">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-12">
@@ -305,36 +335,6 @@ export default function BrokersPage() {
               title="Or email an order instead"
               body="Prefer the email workflow? Send orders to orders@betterclose.co. Same ops team, same SLA, same outcome."
             />
-          </div>
-        </div>
-      </section>
-
-      {/* 2.5. Dashboard visualization */}
-      <section className="py-20 bg-gradient-to-b from-white to-gray-50">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-12 items-center">
-            <div>
-              <div className="inline-block bg-emerald-100 text-emerald-800 px-4 py-1 rounded-full text-sm font-bold mb-4">
-                ✓ Live in the broker dashboard
-              </div>
-              <h2 className="text-4xl md:text-5xl font-black text-dark-900 mb-5 leading-tight">
-                Your closing pipeline,{' '}
-                <span className="text-primary-600">in one place.</span>
-              </h2>
-              <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-                Every quote and every closing you&apos;ve placed shows up the moment you sign in.
-                No spreadsheets, no chasing escrow officers for status updates.
-              </p>
-              <ul className="space-y-3 mb-8">
-                <FeatureBullet>Create quotes in under a minute.</FeatureBullet>
-                <FeatureBullet>See when borrowers view them.</FeatureBullet>
-                <FeatureBullet>Convert approved quotes into real BetterClose closings.</FeatureBullet>
-                <FeatureBullet>Track every file by status and milestone.</FeatureBullet>
-                <FeatureBullet>Keep email-order fallback for files that start outside the portal.</FeatureBullet>
-              </ul>
-            </div>
-
-            <DashboardMockup />
           </div>
         </div>
       </section>
