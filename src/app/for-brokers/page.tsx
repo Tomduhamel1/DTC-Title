@@ -160,7 +160,8 @@ export default function BrokersPage() {
                 FOR MORTGAGE BROKERS &amp; LOAN OFFICERS
               </div>
               <h1 className="text-4xl md:text-5xl font-black text-dark-900 mb-5 leading-tight">
-                Give your borrower a lower-cost closing without adding work to your file.
+                Give your borrower a lower-cost closing{' '}
+                <span className="text-primary-600">without adding work to your file.</span>
               </h1>
               <p className="text-lg text-gray-700 mb-8 leading-relaxed">
                 BetterClose helps you offer lower title and settlement costs, backed by
