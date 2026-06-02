@@ -12,6 +12,14 @@ export default function QuoteWorkingPage() {
   useEffect(() => {
     if (typeof window === 'undefined') return
 
+    // Where to send the user if the estimate fails. A broker who started from
+    // /quote?source=broker must land back on the BROKER calculator, not the
+    // borrower one. Source comes from the URL (?source=broker), falling back to
+    // the quoteSource we stashed when the broker form submitted.
+    const sourceParam = new URLSearchParams(window.location.search).get('source')
+    const source = sourceParam || sessionStorage.getItem('quoteSource')
+    const failureHref = source === 'broker' ? '/quote?source=broker' : '/quote'
+
     const inputsRaw = sessionStorage.getItem('feeReportInputs')
 
     // Direct landing with no inputs — show a sample so the screen is walkable.
@@ -75,7 +83,7 @@ export default function QuoteWorkingPage() {
               ? err.message
               : 'Something went wrong'
         sessionStorage.setItem('feeReportError', message)
-        router.replace('/quote')
+        router.replace(failureHref)
       }
     })()
 

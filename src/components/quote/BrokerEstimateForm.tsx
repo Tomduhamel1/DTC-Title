@@ -164,27 +164,27 @@ export default function BrokerEstimateForm() {
 
   return (
     <div className="bg-gradient-to-br from-primary-50 to-white pt-16 pb-24 px-4 sm:px-6">
-      <div className="max-w-3xl mx-auto">
-        <div className="mb-4 flex items-baseline justify-between gap-4 flex-wrap">
-          <h1 className="text-xl sm:text-2xl font-black text-dark-900">
+      <div className="max-w-4xl mx-auto">
+        <div className="mb-5 flex items-baseline justify-between gap-4 flex-wrap">
+          <h1 className="text-2xl sm:text-3xl font-black text-dark-900">
             Get estimate
           </h1>
-          <p className="text-xs text-gray-500">
+          <p className="text-sm text-gray-500">
             Price it now. Added details will carry forward.
           </p>
         </div>
 
         <form
           onSubmit={handleSubmit}
-          className="bg-white rounded-xl shadow-md border border-gray-200 p-4 sm:p-5"
+          className="bg-white rounded-xl shadow-md border border-gray-200 p-5 sm:p-7"
         >
           {/* ───── Calculator row: 5 cells on desktop ───── */}
-          <div className="grid grid-cols-2 sm:grid-cols-[120px_170px_130px_130px_auto] gap-3 items-end">
+          <div className="grid grid-cols-2 sm:grid-cols-[144px_204px_156px_156px_auto] gap-4 items-end">
             <CompactField label="Type">
               <select
                 value={transactionType}
                 onChange={(e) => setTransactionType(e.target.value as TransactionType)}
-                className={baseInput + ' bg-white'}
+                className="w-full h-[52px] px-3.5 rounded-lg text-base font-semibold text-dark-900 bg-gray-100 border border-gray-300 hover:bg-gray-200 cursor-pointer focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none transition-colors"
               >
                 <option value="purchase">Purchase</option>
                 <option value="refinance">Refinance</option>
@@ -200,7 +200,7 @@ export default function BrokerEstimateForm() {
                 }
                 placeholder="78701 or TX"
                 maxLength={5}
-                className={baseInput + ' uppercase'}
+                className={baseInput + ' uppercase placeholder:text-gray-400'}
               />
             </CompactField>
 
@@ -219,25 +219,27 @@ export default function BrokerEstimateForm() {
             <button
               type="submit"
               disabled={!valid || submitting}
-              className="h-[44px] inline-flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold px-5 rounded-lg shadow-sm transition-colors disabled:opacity-50 col-span-2 sm:col-span-1"
+              className="h-[52px] inline-flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-base font-bold px-6 rounded-lg shadow-sm transition-colors disabled:opacity-50 col-span-2 sm:col-span-1"
             >
               {submitting ? 'Building…' : 'Calculate'}
             </button>
           </div>
 
           {error && (
-            <div className="mt-3 bg-red-50 border border-red-200 rounded-md px-3 py-2 text-xs text-red-800">
+            <div className="mt-4 bg-red-50 border border-red-200 rounded-md px-3.5 py-2.5 text-sm text-red-800">
               {error}
             </div>
           )}
 
           {/* ───── Optional file details — open by default ───── */}
-          <div className="mt-5 pt-4 border-t border-gray-100">
-            <h2 className="text-sm font-bold text-dark-900 mb-3">Optional</h2>
+          <div className="mt-6 pt-5 border-t border-gray-100">
+            <h2 className="text-base font-bold text-dark-900 mb-4">
+              Optional <span className="font-normal text-gray-400">(You can also add later)</span>
+            </h2>
             {/* 6-column grid so each field can claim only the width it
                 needs. Wide free-text fields (name, email, address) span 2;
                 short fields (state, zip, target close) span 1–2. */}
-            <div className="grid grid-cols-1 sm:grid-cols-6 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-6 gap-4">
               <div className="sm:col-span-2">
                 <SmallField label="Borrower name">
                   <input
@@ -316,8 +318,9 @@ export default function BrokerEstimateForm() {
                     onChange={(e) =>
                       setPropertyZip(e.target.value.replace(/[^0-9]/g, '').slice(0, 5))
                     }
+                    placeholder="ZIP"
                     maxLength={5}
-                    className={smallInput}
+                    className={smallInput + ' placeholder:text-gray-400'}
                   />
                 </SmallField>
               </div>
@@ -345,10 +348,12 @@ export default function BrokerEstimateForm() {
 
 // ── Shared field/input styling — kept inline so the form is one file. ──────
 
+// Required-row and Optional-row inputs share the SAME styling so the field
+// containers match in height and shape across both sections. Sized ~20% larger
+// than the prior compact form.
 const baseInput =
-  'w-full h-[44px] px-3 border border-gray-300 rounded-lg text-sm focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none'
-const smallInput =
-  'w-full h-[38px] px-3 border border-gray-300 rounded-md text-sm focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none'
+  'w-full h-[52px] px-3.5 border border-gray-300 rounded-lg text-base focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none'
+const smallInput = baseInput
 
 function CompactField({
   label,
@@ -363,12 +368,12 @@ function CompactField({
 }) {
   return (
     <label className={`block ${dim ? 'opacity-50' : ''}`}>
-      <div className="flex items-baseline justify-between mb-1">
-        <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500">
+      <div className="flex items-baseline justify-between mb-1.5">
+        <span className="text-[11px] font-bold uppercase tracking-wider text-gray-500">
           {label}
         </span>
         {hint && (
-          <span className="text-[10px] text-gray-400 truncate ml-2">{hint}</span>
+          <span className="text-[11px] text-gray-400 truncate ml-2">{hint}</span>
         )}
       </div>
       {children}
@@ -385,7 +390,7 @@ function SmallField({
 }) {
   return (
     <label className="block">
-      <span className="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1">
+      <span className="block text-[11px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">
         {label}
       </span>
       {children}
@@ -412,14 +417,14 @@ function CurrencyInput({
 }) {
   return (
     <div className="relative">
-      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
+      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-base">$</span>
       <input
         type="text"
         inputMode="numeric"
         value={groupThousands(value)}
         onChange={(e) => onChange(e.target.value.replace(/[^0-9]/g, ''))}
         disabled={disabled}
-        className={baseInput + ' pl-7 disabled:bg-gray-50'}
+        className={baseInput + ' pl-8 disabled:bg-gray-50'}
       />
     </div>
   )
