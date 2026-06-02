@@ -188,24 +188,52 @@ export default function BrokersPage() {
               </p>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-2xl p-8 border-2 border-primary-200">
+            {/* Savings proof card — show the impact, don't just describe it.
+                All three savings figures derive from the same $450 closing
+                savings ($1,900 − $1,450) financed at 6.5% over 30 years:
+                monthly ≈ $2.84/mo (~$3), total avoided ≈ $1,024 (~$1,000).
+                Comparison shown so no number stands alone. */}
+            <div className="bg-white rounded-2xl shadow-2xl p-7 border-2 border-primary-200">
               <div className="text-center text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-5">
-                What your borrower gets
+                Example borrower impact
               </div>
-              {/* Value-reinforcement card: what the borrower walks away with,
-                  not a step-by-step workflow. Workflow detail lives further
-                  down the page in "How the portal works". */}
-              <ul className="space-y-4">
-                <ValuePoint title="Lower borrower costs">
-                  Competitive title and settlement pricing where permitted.
-                </ValuePoint>
-                <ValuePoint title="Trusted closing support">
-                  Experienced settlement team and A-rated underwriters.
-                </ValuePoint>
-                <ValuePoint title="File visibility">
-                  Track milestones without chasing status emails.
-                </ValuePoint>
-              </ul>
+
+              {/* Comparison: our estimate vs. a comparable option */}
+              <div className="space-y-2.5 mb-4">
+                <div className="flex items-baseline justify-between">
+                  <span className="text-sm text-gray-700">BetterClose estimate</span>
+                  <span className="text-lg font-black text-dark-900">$1,450</span>
+                </div>
+                <div className="flex items-baseline justify-between">
+                  <span className="text-sm text-gray-500">Comparable title option</span>
+                  <span className="text-base font-semibold text-gray-400 line-through">$1,900</span>
+                </div>
+              </div>
+
+              {/* Savings highlight — emphasized first */}
+              <div className="bg-emerald-50 border border-emerald-100 rounded-xl p-4 space-y-3">
+                <div className="flex items-baseline justify-between">
+                  <span className="text-sm font-semibold text-emerald-900">Save at closing</span>
+                  <span className="text-2xl font-black text-emerald-700">$450</span>
+                </div>
+                <div className="flex items-baseline justify-between border-t border-emerald-100 pt-2.5">
+                  <span className="text-xs text-emerald-800">Monthly payment impact</span>
+                  <span className="text-sm font-bold text-emerald-700">$3/mo</span>
+                </div>
+                <div className="flex items-baseline justify-between">
+                  <span className="text-xs text-emerald-800">Save over the loan</span>
+                  <span className="text-sm font-bold text-emerald-700">$1,000</span>
+                </div>
+              </div>
+
+              <p className="text-[11px] text-gray-400 leading-relaxed mt-3">
+                Example purchase shown. Actual quote uses the borrower&apos;s loan, property, and location.
+              </p>
+
+              {/* Support/trust — secondary to the savings */}
+              <div className="text-[11px] text-gray-500 text-center mt-4 pt-4 border-t border-gray-100">
+                A-rated underwriters · Real closing team · Live file status
+              </div>
             </div>
           </div>
         </div>
@@ -472,28 +500,6 @@ export default function BrokersPage() {
 
       <FooterComprehensive />
     </div>
-  )
-}
-
-function ValuePoint({
-  title,
-  children,
-}: {
-  title: string
-  children: React.ReactNode
-}) {
-  return (
-    <li className="flex items-start gap-3">
-      <div className="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mt-0.5">
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-        </svg>
-      </div>
-      <div>
-        <div className="text-sm font-bold text-dark-900 leading-tight">{title}</div>
-        <div className="text-sm text-gray-600 leading-snug mt-0.5">{children}</div>
-      </div>
-    </li>
   )
 }
 
