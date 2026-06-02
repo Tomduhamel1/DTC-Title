@@ -187,6 +187,10 @@ export default function BrokersPage() {
               </p>
             </div>
 
+            {/* Right grid cell: savings card + the "this buys" pill beneath it,
+                wrapped together so they form ONE column (otherwise the pill
+                becomes a third grid item and wraps to the next row). */}
+            <div>
             {/* Savings summary card — clean financial summary, NOT a CTA. The
                 only large green element in the hero is the primary button; this
                 card uses light surfaces with green number accents. The two
@@ -233,13 +237,17 @@ export default function BrokersPage() {
             </div>
 
             {/* "This buys" — translate the abstract savings into something the
-                borrower can picture. One punchy anchor, kept honest against the
-                $410 over-the-loan figure (~a year of streaming at ~$15/mo). */}
-            <div className="mt-4 flex items-center justify-center gap-2 text-sm text-gray-600">
-              <span className="text-base">💸</span>
-              <span>
-                That&apos;s about <span className="font-bold text-dark-900">a year of streaming</span> — back in your borrower&apos;s pocket.
-              </span>
+                borrower can picture. Styled as a pill directly under the card so
+                it reads as a payoff, not a footnote. One punchy anchor, kept
+                honest against the $410 over-the-loan figure (~$15/mo × 12). */}
+            <div className="flex justify-center mt-4">
+              <div className="inline-flex items-center gap-2 bg-white rounded-full shadow-md border border-emerald-100 px-5 py-2.5">
+                <span className="text-lg">💸</span>
+                <span className="text-sm text-gray-700">
+                  That&apos;s enough for <span className="font-bold text-emerald-700">a year of streaming</span> — back in your borrower&apos;s pocket.
+                </span>
+              </div>
+            </div>
             </div>
           </div>
         </div>
