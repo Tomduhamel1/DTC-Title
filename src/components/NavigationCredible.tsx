@@ -30,14 +30,14 @@ export default function NavigationCredible() {
         <nav className="flex justify-between items-center h-20">
           {/* Left: Logo */}
           <div className="flex items-center space-x-2">
-            <a href="/?variant=credible" className="hover:opacity-80 transition-opacity">
+            <a href="/" className="hover:opacity-80 transition-opacity">
               <TrueFeelogo className="h-10" />
             </a>
           </div>
 
           {/* Center: Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-6">
-            <a href="/?variant=credible#how-it-works" className="text-dark-800 hover:text-primary-600 font-medium transition-colors">
+            <a href="/#how-it-works" className="text-dark-800 hover:text-primary-600 font-medium transition-colors">
               How It Works
             </a>
             <a href="/for-brokers" className="text-dark-800 hover:text-primary-600 font-medium transition-colors">
@@ -160,7 +160,7 @@ export default function NavigationCredible() {
         {mobileMenuOpen && (
           <div className="lg:hidden border-t border-gray-200 py-4 pb-6">
             <div className="space-y-3">
-              <a href="/?variant=credible#how-it-works" className="block text-dark-800 hover:text-primary-600 font-medium transition-colors py-2">
+              <a href="/#how-it-works" className="block text-dark-800 hover:text-primary-600 font-medium transition-colors py-2">
                 How It Works
               </a>
               <a href="/for-brokers" className="block text-dark-800 hover:text-primary-600 font-medium py-2">

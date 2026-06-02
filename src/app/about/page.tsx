@@ -119,7 +119,7 @@ export default function AboutPage() {
             Tell your lender or realtor — takes 30 seconds
           </p>
           <Link
-            href="/?variant=credible"
+            href="/"
             className="inline-flex items-center gap-2 bg-white text-primary-600 px-10 py-4 rounded-xl font-bold text-xl hover:bg-gray-100 transition-colors shadow-xl"
           >
             Send BetterClose to my team
