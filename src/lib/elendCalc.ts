@@ -10,6 +10,14 @@ import type { FeeCategory, FeeLineItem, FeeReport, FeeSource } from './feeReport
 const ENDPOINT =
   'https://40c5js0bsd.execute-api.us-east-1.amazonaws.com/test/fee-calculator/elend-public-calc'
 
+// The upstream calculator is slow — real calls observed at 11–18s. Without a
+// bound, a hung upstream holds the request open until the hosting platform's
+// gateway kills it (a 504 with an empty body), which then surfaces to the
+// client as an opaque "Unexpected end of JSON input". Aborting here instead
+// lets us throw a clean, typed error the route can wrap as JSON. Set above the
+// observed worst case so healthy-but-slow ZIPs still succeed.
+const UPSTREAM_TIMEOUT_MS = 25_000
+
 export type ElendLoanPurpose = 'Purchase' | 'Refinance' | 'Cash'
 
 export interface ElendRequest {
@@ -143,13 +151,40 @@ function withTypicalRange(
 export async function fetchElendFeeEstimate(req: ElendRequest): Promise<FeeReport> {
   const body = buildBody(req)
 
-  const res = await fetch(ENDPOINT, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
-  })
+  const controller = new AbortController()
+  const timeout = setTimeout(() => controller.abort(), UPSTREAM_TIMEOUT_MS)
+  let res: Response
+  try {
+    res = await fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+      signal: controller.signal,
+    })
+  } catch (err) {
+    if (err instanceof Error && err.name === 'AbortError') {
+      throw new Error('fee calculator timed out')
+    }
+    throw err
+  } finally {
+    clearTimeout(timeout)
+  }
 
   if (!res.ok) {
+    // The upstream returns a 404 with a body like {"error":"Zip code X not
+    // found"} for ZIPs it doesn't have (e.g. PO-box-only ZIPs). Surface that
+    // specific reason when present so the borrower knows to try another ZIP,
+    // rather than a bare status code.
+    let detail = ''
+    try {
+      const errBody = (await res.json()) as ElendResponse
+      detail = errBody?.error || errBody?.message || ''
+    } catch {
+      // non-JSON / empty error body — fall back to status code below
+    }
+    if (res.status === 404 && /zip/i.test(detail)) {
+      throw new Error(detail)
+    }
     throw new Error(`fee calculator returned ${res.status}`)
   }
 

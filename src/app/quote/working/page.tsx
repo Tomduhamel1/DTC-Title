@@ -29,23 +29,51 @@ export default function QuoteWorkingPage() {
     }
 
     let cancelled = false
+    // Bound the request from the client too. The route already times the
+    // upstream out (~25s), but this guards against the route itself stalling
+    // and gives the user a clean message instead of an indefinite spinner.
+    const controller = new AbortController()
+    const clientTimeout = setTimeout(() => controller.abort(), 30_000)
     ;(async () => {
       try {
         const res = await fetch('/api/fee-estimate', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(JSON.parse(inputsRaw)),
+          signal: controller.signal,
         })
-        const json = await res.json()
+        // Read the body as text first and parse defensively. A gateway 504
+        // can return an empty body, and `res.json()` on empty/non-JSON throws
+        // an opaque "Unexpected end of JSON input" — so derive a real message
+        // from the status instead.
+        const raw = await res.text()
         if (cancelled) return
-        if (!res.ok || !json.ok) {
-          throw new Error(json.error || `Request failed (${res.status})`)
+        let json: { ok?: boolean; error?: string; report?: unknown } | null = null
+        if (raw) {
+          try {
+            json = JSON.parse(raw)
+          } catch {
+            json = null
+          }
+        }
+        if (!res.ok || !json || !json.ok) {
+          throw new Error(
+            json?.error ||
+              (res.status === 504 || res.status === 502
+                ? 'The fee calculator is taking too long right now. Please try again in a moment.'
+                : `Request failed (${res.status})`),
+          )
         }
         sessionStorage.setItem('feeReport', JSON.stringify(json.report))
         setReady(true)
       } catch (err) {
         if (cancelled) return
-        const message = err instanceof Error ? err.message : 'Something went wrong'
+        const message =
+          err instanceof Error && err.name === 'AbortError'
+            ? 'The fee calculator took too long to respond. Please try again.'
+            : err instanceof Error
+              ? err.message
+              : 'Something went wrong'
         sessionStorage.setItem('feeReportError', message)
         router.replace('/quote')
       }
@@ -53,6 +81,7 @@ export default function QuoteWorkingPage() {
 
     return () => {
       cancelled = true
+      clearTimeout(clientTimeout)
     }
   }, [router])
 

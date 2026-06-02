@@ -70,7 +70,7 @@ export default function DesignTimelineI({ report }: { report: FeeReport }) {
           <div className="border-t border-gray-100 pt-4 flex items-baseline justify-between">
             <span className="text-base font-bold text-emerald-700">You save</span>
             <span className="text-3xl font-black text-emerald-700 tabular-nums">
-              {formatRange(totals.estimatedSavingsLow, totals.estimatedSavingsHigh)}
+              {formatCurrency(totals.estimatedSavings)}
             </span>
           </div>
         </div>

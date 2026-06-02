@@ -1,15 +1,15 @@
 const PILLARS = [
   {
-    title: 'Better Cost',
-    body: 'Up to 75% less than what most title companies charge — same A-rated coverage.',
+    title: 'Save at closing',
+    body: 'Lower title and settlement costs from the same A-rated underwriters. No junk fees.',
   },
   {
-    title: 'Better Speed',
-    body: 'Most closings ready in days, not weeks. Real humans on chat, text, or email.',
+    title: 'Save over the loan',
+    body: 'Lower closing costs can mean borrowing less — and a lower total loan cost over time.',
   },
   {
-    title: 'Better Transparency',
-    body: 'Every fee, line by line, before you commit. Nothing buried, nothing surprise.',
+    title: 'Close with confidence',
+    body: 'Every fee line by line, a dedicated closing officer, and live status. No chasing.',
   },
 ] as const
 
@@ -29,7 +29,7 @@ export default function TrustStripSection() {
             Why BetterClose
           </div>
           <h2 className="text-3xl md:text-5xl font-black text-dark-900 leading-tight">
-            Better cost. Better speed. Better transparency.
+            Lower cost. Faster closings. Every fee in the open.
             <br />
             <span className="text-primary-600">BetterClose.</span>
           </h2>

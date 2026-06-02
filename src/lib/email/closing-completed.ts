@@ -38,9 +38,9 @@ export async function sendClosingCompletedEmail(d: ClosingCompletedEmailData): P
         ${
           lifetimeSavingsAvg > 0
             ? `<div style="margin-top:14px;padding-top:14px;border-top:1px solid #d1fae5;">
-                <div style="font-size:11px;font-weight:700;letter-spacing:0.2em;color:#047857;text-transform:uppercase;">Over the life of your loan</div>
+                <div style="font-size:11px;font-weight:700;letter-spacing:0.2em;color:#047857;text-transform:uppercase;">Save over the loan</div>
                 <div style="font-size:32px;font-weight:900;color:#047857;line-height:1;margin-top:4px;">${formatCurrency(lifetimeSavingsAvg)}</div>
-                <div style="font-size:11px;color:#64748b;margin-top:4px;">Closing-cost savings financed at 7% over 30 years.</div>
+                <div style="font-size:11px;color:#64748b;margin-top:4px;">Assumes you borrow less or get better loan pricing because your closing costs are lower. Based on 6.5% over 30 years.</div>
               </div>`
             : ''
         }
@@ -85,7 +85,7 @@ You're closed.${d.propertyAddress ? `\n${d.propertyAddress}` : ''}
 Funds have been disbursed and the deed is recorded. If you bought, the keys are yours. If you refinanced, the new loan is in place. Either way, this part is done.
 ${
   totals
-    ? `\n\nYou saved at closing: ${formatCurrency(closingSavingsAvg)}\nOver the life of your loan: ${formatCurrency(lifetimeSavingsAvg)} (closing-cost savings financed at 7% over 30 years).`
+    ? `\n\nSave at closing: ${formatCurrency(closingSavingsAvg)}\nSave over the loan: ${formatCurrency(lifetimeSavingsAvg)} (assumes you borrow less or get better loan pricing because your closing costs are lower; based on 6.5% over 30 years).`
     : ''
 }
 

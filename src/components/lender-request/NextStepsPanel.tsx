@@ -41,7 +41,7 @@ export default function NextStepsPanel({
             {isPre
               ? '30 seconds — alert your team you want to use BetterClose. No quote needed.'
               : savingsEstimate
-              ? "Closing costs financed into your mortgage compound. Tell your team to use BetterClose so you actually capture this."
+              ? 'Tell your team to use BetterClose so you actually capture these savings — at closing and over the loan.'
               : 'Three ways to make BetterClose your closing company.'}
           </p>
         </div>

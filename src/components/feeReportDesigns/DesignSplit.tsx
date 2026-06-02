@@ -36,7 +36,7 @@ export default function DesignSplit({ report }: { report: FeeReport }) {
           <div className="text-sm">
             You save{' '}
             <span className="font-bold text-emerald-700">
-              {formatRange(totals.estimatedSavingsLow, totals.estimatedSavingsHigh)}
+              {formatCurrency(totals.estimatedSavings)}
             </span>
           </div>
         </div>

@@ -32,7 +32,7 @@ export default function DesignCards({ report }: { report: FeeReport }) {
             You save vs. typical
           </div>
           <div className="text-3xl font-black text-emerald-600 tabular-nums leading-none">
-            {formatRange(totals.estimatedSavingsLow, totals.estimatedSavingsHigh)}
+            {formatCurrency(totals.estimatedSavings)}
           </div>
         </div>
       </div>
