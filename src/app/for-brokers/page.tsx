@@ -215,16 +215,6 @@ export default function BrokersPage() {
                 </div>
               </div>
 
-              {/* Payment-impact chip */}
-              <div className="flex items-center justify-between rounded-xl bg-gray-50 border border-gray-100 px-4 py-2.5 mt-3">
-                <span className="text-[11px] font-semibold uppercase tracking-wider text-gray-500">
-                  Payment impact
-                </span>
-                <span className="text-sm font-bold text-gray-800">
-                  $1.14<span className="text-xs font-semibold text-gray-500">/mo</span>
-                </span>
-              </div>
-
               {/* Smaller comparison row */}
               <div className="mt-4 pt-4 border-t border-gray-100 space-y-1.5">
                 <div className="flex items-baseline justify-between">
@@ -240,6 +230,16 @@ export default function BrokersPage() {
               <p className="text-[11px] text-gray-400 leading-relaxed mt-4">
                 Example purchase shown. Actual quote uses the borrower&apos;s loan, property, and location.
               </p>
+            </div>
+
+            {/* "This buys" — translate the abstract savings into something the
+                borrower can picture. One punchy anchor, kept honest against the
+                $410 over-the-loan figure (~a year of streaming at ~$15/mo). */}
+            <div className="mt-4 flex items-center justify-center gap-2 text-sm text-gray-600">
+              <span className="text-base">💸</span>
+              <span>
+                That&apos;s about <span className="font-bold text-dark-900">a year of streaming</span> — back in your borrower&apos;s pocket.
+              </span>
             </div>
           </div>
         </div>
