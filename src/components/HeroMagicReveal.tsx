@@ -46,13 +46,12 @@ export default function HeroMagicReveal() {
   }, [saveAtClosing, saveOverLoan])
 
   // Show the visitor's actual city when geolocation resolves it. If it doesn't
-  // (VPN, privacy blockers, failed lookup), drop the location/subject entirely
-  // and just say "typically save" — never the vague "your area".
+  // (VPN, privacy blockers, failed lookup), keep the subject but drop the
+  // location — "Buyers typically save" — never the vague "in your area".
+  const subject = mode === 'refinance' ? 'Refinancings' : 'Buyers'
   const headlineCopy = city
-    ? mode === 'refinance'
-      ? `Refinancings in ${city} typically save`
-      : `Buyers in ${city} typically save`
-    : 'Typically save'
+    ? `${subject} in ${city} typically save`
+    : `${subject} typically save`
 
   return (
     <section className="relative bg-white py-12 md:py-16 px-6">
