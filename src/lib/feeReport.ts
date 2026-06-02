@@ -5,6 +5,20 @@ export type FeeCategory = 'title-settlement' | 'recording' | 'taxes' | 'endorsem
 
 export type FeeSource = 'state' | 'county' | 'service' | 'underwriter' | 'lender'
 
+// Classifies *where* a line's savings (or non-savings) come from. Used by
+// computeTotals to produce a breakdown of total savings by source — so the
+// quote/report can show that pass-through fees don't drive savings, and that
+// title-related and settlement-fee savings are accounted for separately.
+//   title_related      — title-policy-side charges we can reduce where permitted
+//   settlement_fee     — settlement/processing/wire/notary; operational efficiency
+//   other_controllable — anything else BetterClose sets
+//   pass_through       — recording, taxes, lender-required 3rd party; never count as savings
+export type SavingsSource =
+  | 'title_related'
+  | 'settlement_fee'
+  | 'other_controllable'
+  | 'pass_through'
+
 export interface FeeLineItem {
   id: string
   label: string
@@ -17,7 +31,18 @@ export interface FeeLineItem {
   typicalRange?: { low: number; high: number }
   feeSource?: FeeSource
   description?: string
+  // Optional — when present, computeTotals classifies this line's savings into
+  // the breakdown. When absent, falls back to category-based inference.
+  savingsSource?: SavingsSource
 }
+
+// Location precision of this report. Drives result-page UX:
+//   'state'    — fast estimate from state-keyed multipliers only (no line items)
+//   'county'   — state + county supplied, but no ZIP yet (still no line items
+//                today; the upstream fee API only consumes ZIP)
+//   'detailed' — ZIP-driven, full per-fee breakdown from the upstream calc
+// Optional so legacy reports without the field continue to work as detailed.
+export type FeeReportPrecision = 'state' | 'county' | 'detailed'
 
 export interface FeeReport {
   state: string
@@ -29,28 +54,60 @@ export interface FeeReport {
   generatedAt: string // ISO
   lineItems: FeeLineItem[]
   isSample?: boolean
+  precision?: FeeReportPrecision
+  // When precision is 'state' or 'county' the report has no line items, so
+  // computeTotals reads these pre-computed numbers directly. Populated by the
+  // state-level synth path in /quote/working.
+  precomputedSavings?: {
+    saveAtClosing: number
+    saveOverLoan: number
+  }
+  // When the calc was driven by a representative ZIP (state-only entry on the
+  // broker estimate), these fields surface the substitution so the result
+  // page can disclose it. They describe the pricing input only — they must
+  // NEVER be confused with the actual property ZIP, which lives separately on
+  // sessionStorage.brokerEstimateContext.propertyZip.
+  representativeZipUsed?: boolean
+  representativeZip?: string
 }
 
 export interface FeeReportTotals {
   ourTotal: number
+  // marketLow/marketHigh describe the local typical range (kept so the report
+  // can still show "typical $A–$B" next to "you pay") but they do NOT drive
+  // the claimed savings number.
   marketLow: number
   marketHigh: number
+  // The canonical claimed savings figures — single conservative numbers, not
+  // a range. estimatedSavings = sum over lines of max(0, line.marketLow - line.ourCost).
+  estimatedSavings: number
+  // "Save over the loan": at-closing savings + interest avoided over 30 yrs
+  // at LIFETIME_RATE_PCT. principal + interest = total paid avoided.
+  lifetimeSavings: number
+  // Where the savings come from. Sums by SavingsSource. pass_through is the
+  // total of all pass-through fees (NOT savings — they don't generate any).
+  breakdown: {
+    title_related: number
+    settlement_fee: number
+    other_controllable: number
+    pass_through_total: number
+  }
+  // Backwards-compatibility — every component reading the old range fields now
+  // gets the same conservative number for low and high. Removes the "low–high
+  // savings range" framing from the UI without forcing a sweep of design files.
   estimatedSavingsLow: number
   estimatedSavingsHigh: number
-  // Lifetime cost of financing the closing-cost savings. Reflects what users
-  // would actually pay over their loan if they rolled closing costs in.
   lifetimeSavingsLow: number
   lifetimeSavingsHigh: number
 }
 
-// Default assumptions for financed-closing-cost lifetime calc.
-export const LIFETIME_RATE_PCT = 7
+// Default assumptions for the "save over the loan" projection.
+export const LIFETIME_RATE_PCT = 6.5
 export const LIFETIME_TERM_YEARS = 30
 
 /**
  * Total amount paid on `principal` if financed at `ratePct` (annual %) over
- * `years`. Standard amortization. Used to project the lifetime impact of
- * rolling closing-cost savings into the loan.
+ * `years`. Standard amortization. principal + interest.
  */
 export function lifetimeFinancedAmount(
   principal: number,
@@ -67,6 +124,19 @@ export function lifetimeFinancedAmount(
   return Math.round(monthly * n)
 }
 
+/**
+ * Interest-only portion avoided over the loan term — i.e. lifetimeFinancedAmount
+ * minus the principal itself. "Save over the loan" = principal + this.
+ */
+export function loanInterestAvoided(
+  principal: number,
+  ratePct: number = LIFETIME_RATE_PCT,
+  years: number = LIFETIME_TERM_YEARS,
+): number {
+  if (principal <= 0) return 0
+  return lifetimeFinancedAmount(principal, ratePct, years) - principal
+}
+
 export const CATEGORY_LABELS: Record<FeeCategory, string> = {
   'title-settlement': 'Title & Settlement',
   recording: 'Recording Fees',
@@ -76,33 +146,108 @@ export const CATEGORY_LABELS: Record<FeeCategory, string> = {
   other: 'Other',
 }
 
+// When a line has no explicit savingsSource we fall back to category +
+// isFixed to classify it. Keeps older quote data working.
+function inferSavingsSource(item: FeeLineItem): SavingsSource {
+  if (item.savingsSource) return item.savingsSource
+  if (item.isFixed) return 'pass_through'
+  if (item.category === 'recording' || item.category === 'taxes') return 'pass_through'
+  if (item.category === 'lender') return 'pass_through'
+  if (item.feeSource === 'underwriter') return 'title_related'
+  if (item.category === 'title-settlement') return 'settlement_fee'
+  return 'other_controllable'
+}
+
 export function computeTotals(report: FeeReport): FeeReportTotals {
+  // State- or county-level reports have no line items; the savings figures
+  // were computed up front from the state-keyed model (regionRates) and
+  // stored on the report. Short-circuit and surface those directly.
+  if (
+    (report.precision === 'state' || report.precision === 'county') &&
+    report.precomputedSavings
+  ) {
+    const { saveAtClosing, saveOverLoan } = report.precomputedSavings
+    return {
+      ourTotal: 0,
+      marketLow: 0,
+      marketHigh: 0,
+      estimatedSavings: saveAtClosing,
+      lifetimeSavings: saveOverLoan,
+      breakdown: {
+        title_related: 0,
+        settlement_fee: 0,
+        other_controllable: 0,
+        pass_through_total: 0,
+      },
+      estimatedSavingsLow: saveAtClosing,
+      estimatedSavingsHigh: saveAtClosing,
+      lifetimeSavingsLow: saveOverLoan,
+      lifetimeSavingsHigh: saveOverLoan,
+    }
+  }
+
   let ourTotal = 0
   let marketLow = 0
   let marketHigh = 0
 
+  // Per-line conservative savings = max(0, line.marketLow - line.ourCost).
+  // We compare against the LOW end of typical local pricing, never the high
+  // end or midpoint — this is the "no inflated comparisons" guarantee.
+  const breakdown = {
+    title_related: 0,
+    settlement_fee: 0,
+    other_controllable: 0,
+    pass_through_total: 0,
+  }
+
   for (const item of report.lineItems) {
     ourTotal += item.ourCost
+    const source = inferSavingsSource(item)
+
     if (item.isFixed || !item.typicalRange) {
+      // No comparison — pass-through, set by state/county, or unknown range.
       marketLow += item.ourCost
       marketHigh += item.ourCost
-    } else {
-      marketLow += item.typicalRange.low
-      marketHigh += item.typicalRange.high
+      if (source === 'pass_through') breakdown.pass_through_total += item.ourCost
+      continue
+    }
+
+    marketLow += item.typicalRange.low
+    marketHigh += item.typicalRange.high
+    const lineSavings = Math.max(0, item.typicalRange.low - item.ourCost)
+
+    switch (source) {
+      case 'title_related':
+        breakdown.title_related += lineSavings
+        break
+      case 'settlement_fee':
+        breakdown.settlement_fee += lineSavings
+        break
+      case 'other_controllable':
+        breakdown.other_controllable += lineSavings
+        break
+      case 'pass_through':
+        breakdown.pass_through_total += item.ourCost
+        break
     }
   }
 
-  const estimatedSavingsLow = Math.max(0, marketLow - ourTotal)
-  const estimatedSavingsHigh = Math.max(0, marketHigh - ourTotal)
+  const estimatedSavings =
+    breakdown.title_related + breakdown.settlement_fee + breakdown.other_controllable
+  const lifetimeSavings = lifetimeFinancedAmount(estimatedSavings)
 
   return {
     ourTotal,
     marketLow,
     marketHigh,
-    estimatedSavingsLow,
-    estimatedSavingsHigh,
-    lifetimeSavingsLow: lifetimeFinancedAmount(estimatedSavingsLow),
-    lifetimeSavingsHigh: lifetimeFinancedAmount(estimatedSavingsHigh),
+    estimatedSavings,
+    lifetimeSavings,
+    breakdown,
+    // Back-compat: identical low/high so legacy range UIs collapse to one number.
+    estimatedSavingsLow: estimatedSavings,
+    estimatedSavingsHigh: estimatedSavings,
+    lifetimeSavingsLow: lifetimeSavings,
+    lifetimeSavingsHigh: lifetimeSavings,
   }
 }
 
@@ -124,6 +269,7 @@ export function getSampleFeeReport(): FeeReport {
         isFixed: false,
         typicalRange: { low: 1100, high: 1800 },
         feeSource: 'underwriter',
+        savingsSource: 'title_related',
         description: 'A-rated underwriter coverage',
       },
       {
@@ -134,6 +280,7 @@ export function getSampleFeeReport(): FeeReport {
         isFixed: false,
         typicalRange: { low: 500, high: 950 },
         feeSource: 'service',
+        savingsSource: 'settlement_fee',
       },
       {
         id: 'notary-fee',
@@ -143,6 +290,7 @@ export function getSampleFeeReport(): FeeReport {
         isFixed: false,
         typicalRange: { low: 150, high: 300 },
         feeSource: 'service',
+        savingsSource: 'settlement_fee',
       },
       {
         id: 'mortgage-recording',
@@ -151,6 +299,7 @@ export function getSampleFeeReport(): FeeReport {
         ourCost: 101,
         isFixed: true,
         feeSource: 'county',
+        savingsSource: 'pass_through',
       },
       {
         id: 'satisfaction-recording',
@@ -159,6 +308,7 @@ export function getSampleFeeReport(): FeeReport {
         ourCost: 22,
         isFixed: true,
         feeSource: 'county',
+        savingsSource: 'pass_through',
       },
     ],
   }
@@ -187,6 +337,7 @@ export function getMockFeeReport(input: {
       isFixed: false,
       typicalRange: { low: lenderTitleMarketLow, high: lenderTitleMarketHigh },
       feeSource: 'underwriter',
+      savingsSource: 'title_related',
       description: 'A-rated underwriter coverage',
     },
     {
@@ -197,6 +348,7 @@ export function getMockFeeReport(input: {
       isFixed: false,
       typicalRange: { low: 500, high: 950 },
       feeSource: 'service',
+      savingsSource: 'settlement_fee',
     },
     {
       id: 'notary-fee',
@@ -206,6 +358,7 @@ export function getMockFeeReport(input: {
       isFixed: false,
       typicalRange: { low: 150, high: 300 },
       feeSource: 'service',
+      savingsSource: 'settlement_fee',
     },
     {
       id: 'wire-fee',
@@ -215,6 +368,7 @@ export function getMockFeeReport(input: {
       isFixed: false,
       typicalRange: { low: 25, high: 75 },
       feeSource: 'service',
+      savingsSource: 'settlement_fee',
     },
     {
       id: 'mortgage-recording',
@@ -223,6 +377,7 @@ export function getMockFeeReport(input: {
       ourCost: 101,
       isFixed: true,
       feeSource: 'county',
+      savingsSource: 'pass_through',
     },
     {
       id: 'affordable-housing',
@@ -231,6 +386,7 @@ export function getMockFeeReport(input: {
       ourCost: 225,
       isFixed: true,
       feeSource: 'state',
+      savingsSource: 'pass_through',
     },
     {
       id: 'satisfaction-recording',
@@ -239,6 +395,7 @@ export function getMockFeeReport(input: {
       ourCost: 22,
       isFixed: true,
       feeSource: 'county',
+      savingsSource: 'pass_through',
     },
     {
       id: 'recording-service',
@@ -247,6 +404,7 @@ export function getMockFeeReport(input: {
       ourCost: 25,
       isFixed: true,
       feeSource: 'service',
+      savingsSource: 'pass_through',
     },
   ]
 
@@ -262,6 +420,7 @@ export function getMockFeeReport(input: {
         high: Math.round(input.homeValue * 0.006),
       },
       feeSource: 'underwriter',
+      savingsSource: 'title_related',
       description: 'Optional but strongly recommended',
     })
     items.push({
@@ -271,6 +430,7 @@ export function getMockFeeReport(input: {
       ourCost: 65,
       isFixed: true,
       feeSource: 'county',
+      savingsSource: 'pass_through',
     })
   }
 
