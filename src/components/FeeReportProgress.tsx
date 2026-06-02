@@ -18,8 +18,11 @@ interface FeeReportProgressProps {
 
 const DEFAULT_STEPS: ProgressStep[] = [
   { label: 'Pulling underwriter rates', durationMs: 2200 },
-  { label: 'Fetching county recording fees', durationMs: 2400 },
-  { label: 'Comparing to local market range', durationMs: 2600 },
+  // The recording-fees and comparing steps are deliberately long so the bar
+  // keeps advancing during the upstream's ~15s call, instead of racing to the
+  // final step and stalling there.
+  { label: 'Fetching county recording fees', durationMs: 7200 },
+  { label: 'Comparing to local market range', durationMs: 5200 },
   { label: 'Building your fee estimate', durationMs: 2200 },
 ]
 
