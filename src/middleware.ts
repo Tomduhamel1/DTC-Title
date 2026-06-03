@@ -28,6 +28,7 @@ const FUNCTIONAL_PREFIXES = [
   '/api',
   '/for-my-team',
   '/for-brokers',
+  '/for-realtors',
   '/coming-soon',
   '/welcome',
   '/resume',
