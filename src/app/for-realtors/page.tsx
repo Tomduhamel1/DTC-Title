@@ -3,6 +3,7 @@ import NavigationCredible from '@/components/NavigationCredible'
 import FooterComprehensive from '@/components/FooterComprehensive'
 import UnderwriterLogos from '@/components/UnderwriterLogos'
 import DashboardTrustSection from '@/components/DashboardTrustSection'
+import RotatingSavingsPill from '@/components/RotatingSavingsPill'
 
 export const metadata = {
   title: 'BetterClose · For Real Estate Agents',
@@ -24,7 +25,6 @@ const AGENT_TRUST_STATS = [
   { value: '30,000+', label: 'Closings completed' },
   { value: 'A-rated', label: 'Underwriters only' },
   { value: '50 states', label: 'Closing coverage' },
-  { value: '$5M', label: 'Bonded & insured' },
 ] as const
 
 // Outline-style icons (w-6) for the reason cards. Inline SVGs keep parity with
@@ -114,11 +114,14 @@ export default function RealtorsPage() {
               </p>
             </div>
 
-            {/* Right cell: example savings card. Numbers are STATIC LITERALS,
-                consistent with the homepage/broker model and the same
-                $500k-purchase example: $520 at closing → $1,180 over the loan
-                (that $520 financed at 6.5% over 30 years); comparable option =
-                $1,452 + $520 = $1,972. Labeled "illustrative / not a quote". */}
+            {/* Right cell: example savings card + rotating "that's enough for"
+                pill, wrapped in ONE div so the pill forms part of the same grid
+                column rather than becoming a stray third grid item.
+                Numbers are STATIC LITERALS, consistent with the homepage/broker
+                model and the same $500k-purchase example: $520 at closing →
+                $1,180 over the loan (that $520 financed at 6.5% over 30 years);
+                comparable option = $1,452 + $520 = $1,972. */}
+            <div>
             <div className="bg-white rounded-2xl shadow-2xl p-7 border border-gray-200">
               <div className="flex items-center justify-center gap-2 mb-5">
                 <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">
@@ -160,6 +163,11 @@ export default function RealtorsPage() {
                 depend on your buyer&apos;s loan, property, and location.
               </p>
             </div>
+
+            {/* Rotating "that's enough for" pill, anchored to the over-the-loan
+                figure so the items scale with the number shown. */}
+            <RotatingSavingsPill savings={1180} tail="back in your buyer's pocket" className="mt-4" />
+            </div>
           </div>
         </div>
       </section>
@@ -171,7 +179,7 @@ export default function RealtorsPage() {
           <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-8">
             The settlement partner behind your file
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-gray-100 rounded-3xl overflow-hidden border border-gray-200">
+          <div className="grid grid-cols-3 gap-px bg-gray-100 rounded-3xl overflow-hidden border border-gray-200">
             {AGENT_TRUST_STATS.map((s) => (
               <div key={s.label} className="bg-white p-6">
                 <div className="text-3xl md:text-4xl font-black text-dark-900 leading-none mb-1">
