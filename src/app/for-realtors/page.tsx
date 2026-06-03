@@ -3,12 +3,11 @@ import NavigationCredible from '@/components/NavigationCredible'
 import FooterComprehensive from '@/components/FooterComprehensive'
 import UnderwriterLogos from '@/components/UnderwriterLogos'
 import DashboardTrustSection from '@/components/DashboardTrustSection'
-import RotatingSavingsPill from '@/components/RotatingSavingsPill'
 
 export const metadata = {
   title: 'BetterClose · For Real Estate Agents',
   description:
-    "Help your buyer lower closing costs and keep the deal on track — a lower-cost title and settlement option, real closing support, trusted underwriters, and live file visibility. We coordinate with the lender your buyer chooses.",
+    "Help your buyer lower closing costs and keep the closing on track. Whether you're opening title, coordinating escrow, or giving your buyer options — a lower-cost title and settlement option, trusted closing support, and live file visibility.",
 }
 
 // Public, ungated estimate flow. ?source=realtor preserves attribution; the
@@ -25,6 +24,7 @@ const AGENT_TRUST_STATS = [
   { value: '30,000+', label: 'Closings completed' },
   { value: 'A-rated', label: 'Underwriters only' },
   { value: '50 states', label: 'Closing coverage' },
+  { value: '$5M', label: 'Bonded & insured' },
 ] as const
 
 // Outline-style icons (w-6) for the reason cards. Inline SVGs keep parity with
@@ -84,13 +84,13 @@ export default function RealtorsPage() {
                 FOR REAL ESTATE AGENTS
               </div>
               <h1 className="text-4xl md:text-5xl font-black text-dark-900 mb-5 leading-tight">
-                Lower closing costs for your buyer.{' '}
-                <span className="text-primary-600">Keep the deal on track.</span>
+                Help your buyer lower closing costs —{' '}
+                <span className="text-primary-600">and keep the closing on track.</span>
               </h1>
               <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-                BetterClose helps agents give buyers a lower-cost title and settlement
-                option, backed by real closing support, trusted underwriters, and live
-                file visibility.
+                Whether you&apos;re opening title, coordinating escrow, or giving your
+                buyer options, BetterClose gives you a lower-cost title and settlement
+                option backed by trusted closing support and live file visibility.
               </p>
               <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                 <Link
@@ -114,15 +114,11 @@ export default function RealtorsPage() {
               </p>
             </div>
 
-            {/* Right cell: example savings card + rotating "that's enough for"
-                pill, wrapped in ONE div so the pill forms part of the same grid
-                column rather than becoming a stray third grid item.
-                Numbers are STATIC LITERALS, consistent with the homepage/broker
-                model and the same $500k-purchase example: $520 at closing →
-                $1,180 over the loan (that $520 financed at 6.5% over 30 years);
-                comparable option = $1,452 + $520 = $1,972. Labeled "illustrative
-                / not a quote". */}
-            <div>
+            {/* Right cell: example savings card. Numbers are STATIC LITERALS,
+                consistent with the homepage/broker model and the same
+                $500k-purchase example: $520 at closing → $1,180 over the loan
+                (that $520 financed at 6.5% over 30 years); comparable option =
+                $1,452 + $520 = $1,972. Labeled "illustrative / not a quote". */}
             <div className="bg-white rounded-2xl shadow-2xl p-7 border border-gray-200">
               <div className="flex items-center justify-center gap-2 mb-5">
                 <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">
@@ -164,11 +160,6 @@ export default function RealtorsPage() {
                 depend on your buyer&apos;s loan, property, and location.
               </p>
             </div>
-
-            {/* Rotating "that's enough for" pill, anchored to the over-the-loan
-                figure so the items scale with the number shown. */}
-            <RotatingSavingsPill savings={1180} tail="back in your buyer's pocket" className="mt-4" />
-            </div>
           </div>
         </div>
       </section>
@@ -180,7 +171,7 @@ export default function RealtorsPage() {
           <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-8">
             The settlement partner behind your file
           </div>
-          <div className="grid grid-cols-3 gap-px bg-gray-100 rounded-3xl overflow-hidden border border-gray-200">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-gray-100 rounded-3xl overflow-hidden border border-gray-200">
             {AGENT_TRUST_STATS.map((s) => (
               <div key={s.label} className="bg-white p-6">
                 <div className="text-3xl md:text-4xl font-black text-dark-900 leading-none mb-1">
@@ -195,6 +186,39 @@ export default function RealtorsPage() {
           <p className="text-xs text-gray-500 mt-6">
             A-rated underwriters only · Directly licensed in 34 states; remaining states through licensed workshare partners · a division of First National Title &amp; Escrow.
           </p>
+        </div>
+      </section>
+
+      {/* 1.75. Agent portal / workflow — agents open, route, and track files;
+          not just refer. Modeled on the broker dashboard-visualization section. */}
+      <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-12 items-center">
+            <div>
+              <div className="inline-block bg-emerald-100 text-emerald-800 px-4 py-1 rounded-full text-sm font-bold mb-4">
+                ✓ Live in the agent dashboard
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black text-dark-900 mb-5 leading-tight">
+                Your purchase files,{' '}
+                <span className="text-primary-600">in one place.</span>
+              </h2>
+              <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+                Open a file, track title and settlement milestones, and see what&apos;s
+                waiting on the buyer, lender, seller, or closing team — without chasing
+                escrow for status updates.
+              </p>
+              <ul className="space-y-3 mb-8">
+                <FeatureBullet>Start a title and settlement estimate for a buyer.</FeatureBullet>
+                <FeatureBullet>Open the file when your buyer is ready.</FeatureBullet>
+                <FeatureBullet>Upload the contract or file details.</FeatureBullet>
+                <FeatureBullet>Track title, escrow, signing, funding, and recording milestones.</FeatureBullet>
+                <FeatureBullet>See what&apos;s waiting on the buyer, lender, seller, or closing team.</FeatureBullet>
+                <FeatureBullet>Use email fallback when that&apos;s easier.</FeatureBullet>
+              </ul>
+            </div>
+
+            <AgentDashboardMockup />
+          </div>
         </div>
       </section>
 
@@ -216,26 +240,26 @@ export default function RealtorsPage() {
           <div className="grid md:grid-cols-3 gap-8">
             <ReasonCard
               icon={ICONS.cash}
-              title="Lower cash to close for your buyer"
+              title="Lower buyer cash to close"
               body="Lower title and settlement costs mean your buyer keeps more at closing — real help for first-timers covering movers and furniture."
             />
             <ReasonCard
               icon={ICONS.bolt}
-              title="An on-time close that protects your deal"
-              body="A smooth, predictable close so the deal doesn't fall apart at the table — protecting your timeline, your commission, and your reputation."
-            />
-            <ReasonCard
-              icon={ICONS.receipt}
-              title="No awkward fee conversations"
-              body={"Transparent, line-by-line fees mean no “what’s this charge?” surprises at signing — just a clean closing your client trusts."}
+              title="Trusted closing support"
+              body="An experienced settlement team and A-rated underwriters behind every file, so the closing goes smoothly and your deal stays on track."
             />
             <ReasonCard
               icon={ICONS.pin}
-              title="Live status — stop chasing the title company"
-              body="See every milestone in real time so you always know where the file stands, without emailing escrow for updates."
+              title="Track the file without chasing escrow"
+              body="Live milestone status — title, escrow, signing, funding, recording — so you always know where the file stands without emailing for updates."
             />
             <ReasonCard
               icon={ICONS.workflow}
+              title="Open or route title when the deal is ready"
+              body="Open the file yourself or send the order to our settlement team — through the portal or by email, whichever fits your workflow."
+            />
+            <ReasonCard
+              icon={ICONS.receipt}
               title="Works with the buyer's lender"
               body="We coordinate with the lender your buyer chooses."
             />
@@ -335,6 +359,189 @@ function ReasonCard({
       </div>
       <h3 className="text-lg font-bold text-dark-900 mb-2">{title}</h3>
       <p className="text-sm text-gray-600 leading-relaxed">{body}</p>
+    </div>
+  )
+}
+
+function FeatureBullet({ children }: { children: React.ReactNode }) {
+  return (
+    <li className="flex items-start gap-3">
+      <div className="flex-shrink-0 w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center mt-0.5">
+        <svg className="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+      <div className="text-base text-gray-800 leading-relaxed">{children}</div>
+    </li>
+  )
+}
+
+// Inline visual mockup of the agent portal dashboard. Sample data is hard-coded
+// so it reads like a screenshot — no fetch, no real auth. Agent-flavored (files,
+// milestones, "waiting on" status) — distinct from the broker quote pipeline.
+function AgentDashboardMockup() {
+  return (
+    <div className="bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+      {/* Browser chrome */}
+      <div className="bg-gray-100 border-b border-gray-200 px-4 py-2.5 flex items-center gap-2">
+        <span className="w-3 h-3 rounded-full bg-red-400" />
+        <span className="w-3 h-3 rounded-full bg-yellow-400" />
+        <span className="w-3 h-3 rounded-full bg-green-400" />
+        <span className="ml-3 text-[11px] text-gray-500 font-medium">betterclose.co/teammate/pipeline</span>
+      </div>
+
+      {/* Tab bar */}
+      <div className="bg-white border-b border-gray-200 px-4 sm:px-6 flex items-end gap-1">
+        <MockTab label="Files" active />
+        <MockTab label="Pipeline" />
+        <MockTab label="Estimates" />
+      </div>
+
+      <div className="grid md:grid-cols-[1.6fr_1fr] divide-y md:divide-y-0 md:divide-x divide-gray-100 bg-gray-50">
+        {/* Center: file rows */}
+        <div className="p-4 sm:p-5">
+          <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-1">
+            Agent Portal
+          </div>
+          <div className="text-base font-black text-dark-900 mb-4">Your files</div>
+
+          <div className="space-y-2.5">
+            <MockRow
+              property="14 Birch Ct"
+              status="Closing this week"
+              statusTone="emerald"
+              detail="Signing scheduled"
+              cta={null}
+              progress={{ done: 4, total: 5 }}
+            />
+            <MockRow
+              property="88 Pine Ave"
+              status="Active"
+              statusTone="violet"
+              detail="Title search"
+              cta={null}
+              progress={{ done: 2, total: 5 }}
+            />
+            <MockRow
+              property="123 Oak St"
+              status="Waiting on buyer"
+              statusTone="amber"
+              detail="Awaiting signed contract"
+              cta="Open file"
+              progress={{ done: 0, total: 5 }}
+            />
+          </div>
+        </div>
+
+        {/* Right: summary */}
+        <div className="p-4 sm:p-5">
+          <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-3">
+            This month
+          </div>
+          <div className="space-y-3">
+            <SummaryRow label="Active files" value="6" tone="emerald" />
+            <SummaryRow label="Closing this week" value="2" tone="amber" />
+            <SummaryRow label="Awaiting buyer" value="3" tone="violet" />
+            <SummaryRow label="Recorded" value="11" />
+          </div>
+          <div className="mt-5 pt-4 border-t border-gray-200 text-[10px] text-gray-400 italic leading-relaxed">
+            Sample data. Real files appear once you open your first one.
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function MockTab({ label, active }: { label: string; active?: boolean }) {
+  return (
+    <div
+      className={`px-3 py-2.5 text-xs font-bold border-b-2 -mb-px ${
+        active ? 'text-emerald-700 border-emerald-600' : 'text-gray-500 border-transparent'
+      }`}
+    >
+      {label}
+    </div>
+  )
+}
+
+interface MockRowProps {
+  property: string
+  status: string
+  statusTone: 'violet' | 'emerald' | 'amber'
+  detail: string
+  cta: string | null
+  progress: { done: number; total: number } | null
+}
+
+function MockRow({ property, status, statusTone, detail, cta, progress }: MockRowProps) {
+  const toneClasses: Record<MockRowProps['statusTone'], string> = {
+    violet: 'bg-violet-50 text-violet-700',
+    emerald: 'bg-emerald-50 text-emerald-700',
+    amber: 'bg-amber-50 text-amber-800',
+  }
+  return (
+    <div className="bg-white rounded-xl border border-gray-200 px-3 py-3">
+      <div className="flex items-start gap-3">
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-1.5 mb-1 flex-wrap">
+            <span
+              className={`inline-block text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded ${toneClasses[statusTone]}`}
+            >
+              {status}
+            </span>
+          </div>
+          <div className="text-[13px] font-bold text-dark-900 leading-tight">{property}</div>
+          <div className="text-[11px] text-gray-500 mt-0.5">{detail}</div>
+        </div>
+        {cta && (
+          <div className="flex-shrink-0">
+            <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[10px] font-bold bg-emerald-600 text-white">
+              {cta} →
+            </span>
+          </div>
+        )}
+      </div>
+      {progress && (
+        <div className="mt-2.5">
+          <div className="flex items-center gap-1.5">
+            {Array.from({ length: progress.total }).map((_, i) => (
+              <div
+                key={i}
+                className={`h-1.5 flex-1 rounded-full ${i < progress.done ? 'bg-emerald-500' : 'bg-gray-200'}`}
+              />
+            ))}
+            <span className="text-[10px] font-bold tabular-nums text-gray-500 ml-1.5 whitespace-nowrap">
+              {progress.done} / {progress.total}
+            </span>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+function SummaryRow({
+  label,
+  value,
+  tone,
+}: {
+  label: string
+  value: string
+  tone?: 'violet' | 'emerald' | 'amber'
+}) {
+  const valueColor =
+    tone === 'violet'
+      ? 'text-violet-700'
+      : tone === 'emerald'
+      ? 'text-emerald-700'
+      : tone === 'amber'
+      ? 'text-amber-700'
+      : 'text-dark-900'
+  return (
+    <div className="flex items-baseline justify-between gap-2">
+      <div className="text-[11px] text-gray-600">{label}</div>
+      <div className={`text-xl font-black tabular-nums ${valueColor}`}>{value}</div>
     </div>
   )
 }
