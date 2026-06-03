@@ -56,6 +56,17 @@ const ICONS = {
       <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h11M4 12h11M4 18h7m5-2l3 3m0 0l3-3m-3 3V8" />
     </svg>
   ),
+  gear: (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+    </svg>
+  ),
+  scroll: (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+    </svg>
+  ),
 }
 
 export default function RealtorsPage() {
@@ -232,33 +243,70 @@ export default function RealtorsPage() {
         </div>
       </section>
 
-      {/* 5. Testimonial */}
-      <section className="py-16 bg-gray-50">
+      {/* 5. Credibility — defensible savings (agent-voiced) */}
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4 max-w-4xl">
-          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-            <div className="flex gap-1 mb-4">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <svg key={star} className="w-6 h-6 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                  <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                </svg>
-              ))}
-            </div>
-            <p className="text-xl text-gray-700 mb-6 leading-relaxed italic">
-              &ldquo;I&apos;ve been an agent for 15 years and BetterClose changed how my
-              closings go. My first-time buyers love keeping more cash at the table, the
-              fees are clear so there are no surprises, and the file just moves — I&apos;m
-              not chasing the title company for updates. It makes me look like a hero. I
-              recommend them on every deal now.&rdquo;
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-black text-dark-900 mb-3 leading-tight">
+              Savings your buyer can actually see
+            </h2>
+            <p className="text-lg text-gray-600">
+              No inflated comparisons. No fake savings on pass-through fees.
             </p>
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center text-2xl font-bold text-emerald-600">
-                JP
-              </div>
-              <div>
-                <div className="font-bold text-dark-900">James P.</div>
-                <div className="text-gray-600">Real Estate Agent, Seattle WA</div>
-              </div>
-            </div>
+          </div>
+          <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
+            BetterClose is built to be compared against real quotes, not inflated
+            estimates. We price the parts of title and settlement we can control more
+            competitively, and clearly separate government fees, recording charges,
+            transfer taxes, and lender-required third-party costs.
+          </p>
+        </div>
+      </section>
+
+      {/* 6. Where the savings come from */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-black text-dark-900 mb-3">
+              Where the savings come from
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            <ReasonCard
+              icon={ICONS.gear}
+              title="Lower settlement fees"
+              body="Settlement, processing, wire, and closing-related services priced more competitively."
+            />
+            <ReasonCard
+              icon={ICONS.scroll}
+              title="Lower title-related charges where permitted"
+              body="We price the parts of title we can control more competitively and pass those savings to your buyer."
+            />
+            <ReasonCard
+              icon={ICONS.receipt}
+              title="Pass-through fees clearly labeled"
+              body="Recording fees, transfer taxes, and lender-required third-party costs are passed through and shown line by line."
+            />
+          </div>
+
+          {/* Already have a title company? Invite the comparison. */}
+          <div className="max-w-3xl mx-auto mt-10 bg-white border border-gray-200 rounded-2xl shadow-sm p-7">
+            <h3 className="text-2xl font-black text-dark-900 mb-2">
+              Already have a title company you use?
+            </h3>
+            <p className="text-base text-gray-700 leading-relaxed mb-5">
+              Put BetterClose next to it. If we&apos;re lower, you have another option for
+              your buyer. If we&apos;re not, you still have a clear comparison.
+            </p>
+            <Link
+              href={PUBLIC_QUOTE_HREF}
+              className="inline-flex items-center gap-2 bg-emerald-600 text-white font-bold text-base px-6 py-3 rounded-lg hover:bg-emerald-700 transition-colors shadow"
+            >
+              Get an estimate
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
           </div>
         </div>
       </section>
