@@ -54,7 +54,7 @@ function renderHtml(d: LenderRequestEmailData & { greeting: string; client: stri
     ${savings}
     ${note}
     <p style="margin:28px 0;">
-      <a href="${d.reviewUrl}" style="display:inline-block;background:#16a34a;color:#fff;text-decoration:none;padding:14px 28px;border-radius:8px;font-weight:700;">Get the order details →</a>
+      <a href="${d.reviewUrl}" style="display:inline-block;background:#059669;color:#fff;text-decoration:none;padding:14px 28px;border-radius:8px;font-weight:700;">Get the order details →</a>
     </p>
     <p>If you have questions about the file, reply to this email — we'll get back to you in minutes, not days.</p>
     <p style="margin-top:28px;">

@@ -143,8 +143,8 @@ export async function sendBrokerConversionOpsEmail(
     </table>
 
     <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;color:#64748b;margin:18px 0 6px;">LINKS</div>
-    <p style="margin:4px 0;"><a href="${adminUrl}" style="color:#0693e3;font-weight:600;">Open the closing in admin →</a></p>
-    ${quoteUrl ? `<p style="margin:4px 0;"><a href="${quoteUrl}" style="color:#0693e3;font-weight:600;">View the source quote →</a></p>` : ''}
+    <p style="margin:4px 0;"><a href="${adminUrl}" style="color:#0284c7;font-weight:600;">Open the closing in admin →</a></p>
+    ${quoteUrl ? `<p style="margin:4px 0;"><a href="${quoteUrl}" style="color:#0284c7;font-weight:600;">View the source quote →</a></p>` : ''}
 
     <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;color:#64748b;margin:18px 0 6px;">MISSING INFORMATION / NEXT ACTION</div>
     <p style="margin:4px 0;color:#0f172a;font-size:14px;">${escapeHtml(nextActionLead)}</p>

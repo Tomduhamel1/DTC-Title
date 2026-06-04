@@ -40,7 +40,7 @@ export async function sendTeammateInviteEmail(
     <p>You've been listed as the ${labelLower} on a BetterClose closing file${borrowerHtml ? ` for${borrowerHtml}` : ''}${propertyHtml}.</p>
     <p>Sign in with this email to see milestones in real time, share documents, and stay in sync with the rest of the team.</p>
     <p style="margin:28px 0;">
-      <a href="${inviteUrl}" style="display:inline-block;background:#10b981;color:#fff;text-decoration:none;padding:14px 28px;border-radius:8px;font-weight:700;">Open the file →</a>
+      <a href="${inviteUrl}" style="display:inline-block;background:#059669;color:#fff;text-decoration:none;padding:14px 28px;border-radius:8px;font-weight:700;">Open the file →</a>
     </p>
     <p style="color:#64748b;font-size:13px;">One-tap sign-in. No password to remember.</p>
     <p style="margin-top:28px;">— The BetterClose Team</p>

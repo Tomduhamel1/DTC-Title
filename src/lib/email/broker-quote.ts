@@ -77,7 +77,7 @@ export async function sendBrokerQuoteEmail(d: BrokerQuoteEmailData): Promise<str
     ${propertyLine}
     ${savingsBlockHtml}
     <p style="margin:28px 0;">
-      <a href="${d.publicViewUrl}" style="display:inline-block;background:#16a34a;color:#fff;text-decoration:none;padding:14px 28px;border-radius:8px;font-weight:700;">View my quote →</a>
+      <a href="${d.publicViewUrl}" style="display:inline-block;background:#059669;color:#fff;text-decoration:none;padding:14px 28px;border-radius:8px;font-weight:700;">View my quote →</a>
     </p>
     <p style="font-size:13px;color:#64748b;">
       This is an estimate based on the property and loan details provided. Final fees are determined at closing and may vary; some items are set by state/county or the lender and are not negotiable. Title insurance underwritten by A-rated underwriters.

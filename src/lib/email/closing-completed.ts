@@ -69,7 +69,7 @@ export async function sendClosingCompletedEmail(d: ClosingCompletedEmailData): P
       <li>Your dashboard stays open — sign in any time to revisit the fee breakdown or download your closing documents.</li>
     </ul>
     <p style="margin:28px 0;">
-      <a href="${d.dashboardUrl}" style="display:inline-block;background:#10b981;color:#fff;text-decoration:none;padding:12px 22px;border-radius:8px;font-weight:700;">View your closing summary →</a>
+      <a href="${d.dashboardUrl}" style="display:inline-block;background:#059669;color:#fff;text-decoration:none;padding:12px 22px;border-radius:8px;font-weight:700;">View your closing summary →</a>
     </p>
     <p style="color:#64748b;font-size:13px;">
       Thank you for choosing BetterClose. If we did right by you, telling a friend or family member is the best gift you can give us — and them.

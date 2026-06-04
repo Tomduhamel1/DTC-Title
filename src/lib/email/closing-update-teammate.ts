@@ -71,7 +71,7 @@ export async function sendClosingUpdateTeammateEmail(
     ${sublineHtml}
     <p style="margin-top:18px;">${body}</p>
     <p style="margin:28px 0;">
-      <a href="${d.teammateDashboardUrl}" style="display:inline-block;background:#10b981;color:#fff;text-decoration:none;padding:12px 22px;border-radius:8px;font-weight:700;">Open file →</a>
+      <a href="${d.teammateDashboardUrl}" style="display:inline-block;background:#059669;color:#fff;text-decoration:none;padding:12px 22px;border-radius:8px;font-weight:700;">Open file →</a>
     </p>
     <p style="color:#64748b;font-size:13px;">Questions? Reply to this email — a real person will get back to you.</p>
     <p style="margin-top:28px;">— The BetterClose Team</p>

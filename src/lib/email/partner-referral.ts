@@ -101,13 +101,13 @@ function generatePartnerEmailHTML(data: PartnerReferralEmailData): string {
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     .header {
-      border-bottom: 3px solid #10b981;
+      border-bottom: 3px solid #047857;
       padding-bottom: 20px;
       margin-bottom: 30px;
     }
     .header h1 {
       margin: 0;
-      color: #10b981;
+      color: #047857;
       font-size: 24px;
     }
     .section {
@@ -116,7 +116,7 @@ function generatePartnerEmailHTML(data: PartnerReferralEmailData): string {
     .section-title {
       font-size: 16px;
       font-weight: 600;
-      color: #10b981;
+      color: #047857;
       margin-bottom: 10px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -153,7 +153,7 @@ function generatePartnerEmailHTML(data: PartnerReferralEmailData): string {
     }
     .cta-button {
       display: inline-block;
-      background-color: #10b981;
+      background-color: #059669;
       color: white;
       padding: 14px 28px;
       text-decoration: none;
