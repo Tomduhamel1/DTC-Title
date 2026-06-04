@@ -58,7 +58,7 @@ export async function sendClosingUpdateEmail(d: ClosingUpdateEmailData): Promise
     <p style="margin-top:18px;">${body}</p>
     <p style="margin-top:14px;color:#64748b;font-size:13px;">${escapeHtml(MILESTONE_DESCRIPTIONS[d.milestoneKind])}</p>
     <p style="margin:28px 0;">
-      <a href="${d.dashboardUrl}" style="display:inline-block;background:#10b981;color:#fff;text-decoration:none;padding:12px 22px;border-radius:8px;font-weight:700;">View your closing →</a>
+      <a href="${d.dashboardUrl}" style="display:inline-block;background:#059669;color:#fff;text-decoration:none;padding:12px 22px;border-radius:8px;font-weight:700;">View your closing →</a>
     </p>
     <p style="color:#64748b;font-size:13px;">Questions? Reply to this email — a real person will get back to you.</p>
     <p style="margin-top:28px;">— The BetterClose Team</p>

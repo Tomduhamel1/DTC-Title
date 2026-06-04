@@ -218,9 +218,10 @@ function BrokerNextSteps({ isLoggedIn }: { isLoggedIn: boolean }) {
         </p>
       </div>
 
-      {/* Primary CTA — send to borrower */}
+      {/* Primary CTA — open a closing (brokers are far more likely to do this
+          than co-brand/send). */}
       <Link
-        href={sendHref}
+        href={openHref}
         className="block w-full bg-gradient-to-br from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white rounded-2xl p-5 shadow-md hover:shadow-lg transition-all"
       >
         <div className="flex items-center justify-between gap-4">
@@ -228,9 +229,9 @@ function BrokerNextSteps({ isLoggedIn }: { isLoggedIn: boolean }) {
             <div className="text-[10px] font-bold uppercase tracking-[0.2em] bg-white/20 inline-block px-2 py-0.5 rounded-full mb-1.5">
               Primary
             </div>
-            <div className="text-lg font-black">Send this to my borrower</div>
+            <div className="text-lg font-black">Open a closing from this estimate</div>
             <div className="text-sm text-emerald-50">
-              Co-brand the savings page and share it with your borrower.
+              Convert this estimate into a BetterClose order.
             </div>
           </div>
           <svg className="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
@@ -239,18 +240,18 @@ function BrokerNextSteps({ isLoggedIn }: { isLoggedIn: boolean }) {
         </div>
       </Link>
 
-      {/* Secondary — open a closing */}
+      {/* Secondary — send to borrower */}
       <Link
-        href={openHref}
+        href={sendHref}
         className="mt-3 block rounded-xl border-2 border-primary-200 hover:border-primary-400 hover:bg-primary-50/50 p-4 transition-colors"
       >
         <div className="flex items-center justify-between gap-3">
           <div>
             <h4 className="text-base font-bold text-primary-700 mb-0.5">
-              Open a closing from this estimate
+              Send this to my borrower
             </h4>
             <p className="text-xs text-gray-600">
-              Convert this estimate into a BetterClose order.
+              Co-brand the savings page and share it with your borrower.
             </p>
           </div>
           <svg className="w-5 h-5 text-primary-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>

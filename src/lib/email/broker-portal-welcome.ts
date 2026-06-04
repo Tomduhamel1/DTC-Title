@@ -59,7 +59,7 @@ export async function sendBrokerPortalWelcomeEmail(
     <p>${greeting}</p>
     <p>${introSentence}</p>
     <p style="margin:28px 0;">
-      <a href="${signInUrl}" style="display:inline-block;background:#10b981;color:#fff;text-decoration:none;padding:14px 28px;border-radius:8px;font-weight:700;">Sign in to broker dashboard →</a>
+      <a href="${signInUrl}" style="display:inline-block;background:#059669;color:#fff;text-decoration:none;padding:14px 28px;border-radius:8px;font-weight:700;">Sign in to broker dashboard →</a>
     </p>
     <p style="margin-top:24px;">Once you're in, you can:</p>
     <ul style="padding-left:20px;margin:8px 0 0 0;">

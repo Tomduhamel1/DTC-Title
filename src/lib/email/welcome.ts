@@ -53,7 +53,7 @@ export async function sendWelcomeEmail(d: WelcomeEmailData): Promise<string> {
     <p>${greeting}</p>
     <p>${escapeHtml(placingPrefix)} just opened your title order with BetterClose${property}. We've created a dashboard so you can track every step — loan locked, title ordered, title issued, and closed.</p>
     <p style="margin:28px 0;">
-      <a href="${claimUrl}" style="display:inline-block;background:#16a34a;color:#fff;text-decoration:none;padding:14px 28px;border-radius:8px;font-weight:700;">Open my dashboard →</a>
+      <a href="${claimUrl}" style="display:inline-block;background:#059669;color:#fff;text-decoration:none;padding:14px 28px;border-radius:8px;font-weight:700;">Open my dashboard →</a>
     </p>
     <p>One-tap sign-in. No password to remember.</p>
     <p style="margin-top:28px;">
