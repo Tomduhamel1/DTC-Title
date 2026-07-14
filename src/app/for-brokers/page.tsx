@@ -120,6 +120,11 @@ const ICONS = {
       <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
     </svg>
   ),
+  scale: (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+    </svg>
+  ),
   pin: (
     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -267,7 +272,7 @@ export default function BrokersPage() {
             ))}
           </div>
           <p className="text-xs text-gray-500 mt-6">
-            A-rated underwriters only · directly licensed in 34 states; remaining states through licensed workshare partners · a division of First National Title &amp; Escrow.
+            A-rated underwriters only · in-house and partner attorneys when a file needs legal work · directly licensed in 34 states; remaining states through licensed workshare partners · a division of First National Title &amp; Escrow.
           </p>
         </div>
       </section>
@@ -432,6 +437,11 @@ export default function BrokersPage() {
               icon={ICONS.pin}
               title="Track every milestone"
               body="Live pipeline status from order to close — no chasing title for updates."
+            />
+            <ReasonCard
+              icon={ICONS.scale}
+              title="Legal snags don't slip your close date"
+              body="A lien that won't release, an estate or vesting problem, a missing signer — when a file needs legal work, our in-house and partner attorneys clear it so your clear-to-close holds."
             />
           </div>
         </div>
