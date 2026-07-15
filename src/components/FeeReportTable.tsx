@@ -5,6 +5,7 @@ import {
   FeeLineItem,
   FeeReport,
   computeTotals,
+  conservativeLineSavings,
   formatCurrency,
   formatRange,
   groupByCategory,
@@ -140,10 +141,9 @@ function FeeRow({ item, state }: { item: FeeLineItem; state: string }) {
       ? 'Set by county'
       : null
 
-  const savingsHigh =
-    !item.isFixed && item.typicalRange
-      ? Math.max(0, item.typicalRange.high - item.ourCost)
-      : 0
+  // Same conservative definition computeTotals sums — badges must add up to
+  // the headline "Save at closing" figure.
+  const lineSavings = conservativeLineSavings(item)
 
   return (
     <div className="relative pl-9">
@@ -171,9 +171,9 @@ function FeeRow({ item, state }: { item: FeeLineItem; state: string }) {
           <div className="text-[17px] font-black text-dark-900 tabular-nums leading-none tracking-tight">
             {formatCurrency(item.ourCost)}
           </div>
-          {savingsHigh > 0 && (
+          {lineSavings > 0 && (
             <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-600 mt-1">
-              save {formatCurrency(savingsHigh)}
+              save {formatCurrency(lineSavings)}
             </div>
           )}
         </div>

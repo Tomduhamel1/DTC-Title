@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { z } from 'zod'
 import { prisma } from '@/lib/db'
 import { fetchElendFeeEstimate } from '@/lib/elendCalc'
+import { computeTotals } from '@/lib/feeReport'
 import {
   computeInputHash,
   defaultExpiresAt,
@@ -102,6 +103,10 @@ export async function POST(req: Request) {
     const message = err instanceof Error ? err.message : 'unknown error'
     return NextResponse.json({ ok: false, error: `fee estimate failed: ${message}` }, { status: 502 })
   }
+
+  // Freeze savings totals at issuance — the quote keeps displaying the
+  // numbers it was created with even if formulas/constants change later.
+  report.frozenTotals = computeTotals(report)
 
   const normalized = normalizeFeeQuoteInput({
     transactionType: data.transactionType,

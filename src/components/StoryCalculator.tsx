@@ -247,7 +247,7 @@ export default function StoryCalculator() {
             </div>
 
             <div className="hidden md:flex items-center space-x-8">
-              <Link href="/pricing" className="text-dark-800 hover:text-primary-600 font-medium transition-colors">
+              <Link href="/quote" className="text-dark-800 hover:text-primary-600 font-medium transition-colors">
                 Calculate Savings
               </Link>
               <Link href="/quote" className="text-dark-800 hover:text-primary-600 font-medium transition-colors">
@@ -743,7 +743,7 @@ export default function StoryCalculator() {
               <h3 className="font-semibold mb-4">Quick Links</h3>
               <ul className="space-y-2 text-gray-400">
                 <li>
-                  <Link href="/pricing" className="hover:text-white transition-colors">
+                  <Link href="/quote" className="hover:text-white transition-colors">
                     Calculate Savings
                   </Link>
                 </li>

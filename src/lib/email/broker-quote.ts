@@ -50,7 +50,8 @@ export async function sendBrokerQuoteEmail(d: BrokerQuoteEmailData): Promise<str
   try {
     if (d.feeReport) {
       const totals = computeTotals(d.feeReport)
-      const avg = Math.round((totals.estimatedSavingsLow + totals.estimatedSavingsHigh) / 2)
+      // Same "Save at closing" figure shown on the quote pages.
+      const avg = totals.estimatedSavings
       if (avg > 0) {
         savingsBlockHtml = `
   <div style="background:#ecfdf5;border:1px solid #a7f3d0;border-radius:12px;padding:18px 20px;margin:20px 0;">

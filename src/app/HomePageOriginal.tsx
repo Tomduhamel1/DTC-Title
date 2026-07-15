@@ -4,7 +4,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Suspense, useState } from 'react'
 import ShareWithTeamSheet from '@/components/lender-request/ShareWithTeamSheet'
-import InlineCalculator from '@/components/InlineCalculator'
 import TrustBadges from '@/components/TrustBadges'
 import UnderwriterLogos from '@/components/UnderwriterLogos'
 import SavingsExamples from '@/components/SavingsExamples'
@@ -39,7 +38,7 @@ export default function HomePageOriginal({ hideSavingsCards = false, useAlternat
 
             {/* Center: Main Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              <Link href="/pricing" className="text-dark-800 hover:text-primary-600 font-medium transition-colors">
+              <Link href="/quote" className="text-dark-800 hover:text-primary-600 font-medium transition-colors">
                 For Mortgage Brokers
               </Link>
               <Link href="/for-realtors" className="text-dark-800 hover:text-primary-600 font-medium transition-colors">
@@ -340,7 +339,7 @@ export default function HomePageOriginal({ hideSavingsCards = false, useAlternat
           </div>
 
           <div className="text-center mt-12">
-            <Link href="/pricing" className="inline-block bg-primary-600 text-white px-10 py-4 rounded-xl font-bold text-xl hover:bg-primary-700 transition-colors shadow-lg">
+            <Link href="/quote" className="inline-block bg-primary-600 text-white px-10 py-4 rounded-xl font-bold text-xl hover:bg-primary-700 transition-colors shadow-lg">
               Calculate Your Exact Savings →
             </Link>
           </div>
@@ -364,7 +363,7 @@ export default function HomePageOriginal({ hideSavingsCards = false, useAlternat
               <h3 className="font-semibold mb-4">Quick Links</h3>
               <ul className="space-y-2 text-gray-400">
                 <li>
-                  <Link href="/pricing" className="hover:text-white transition-colors">
+                  <Link href="/quote" className="hover:text-white transition-colors">
                     Calculate Savings
                   </Link>
                 </li>

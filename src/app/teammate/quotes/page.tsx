@@ -180,7 +180,9 @@ function savingsFromOutputJson(o: unknown): { low: number; high: number } | null
   if (!o || typeof o !== 'object') return null
   try {
     const totals = computeTotals(o as FeeReport)
-    return { low: totals.estimatedSavingsLow, high: totals.estimatedSavingsHigh }
+    // Single conservative figure (formatRange collapses low===high) — same
+    // "Save at closing" number shown on the quote detail and public view.
+    return { low: totals.estimatedSavings, high: totals.estimatedSavings }
   } catch {
     return null
   }

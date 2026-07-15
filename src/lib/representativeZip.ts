@@ -8,7 +8,7 @@
 // told as much in the result UI. If the broker enters a real ZIP, that takes
 // precedence; this map is only the "state-only" fallback.
 
-const REPRESENTATIVE_ZIP_BY_STATE: Record<string, string> = {
+export const REPRESENTATIVE_ZIP_BY_STATE: Record<string, string> = {
   AL: '35203', AK: '99501', AZ: '85003', AR: '72201', CA: '90012',
   CO: '80202', CT: '06103', DE: '19801', FL: '33130', GA: '30303',
   HI: '96813', ID: '83702', IL: '60601', IN: '46204', IA: '50309',

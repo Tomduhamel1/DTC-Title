@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { estimateSavings } from '@/lib/regionRates'
+import { estimateSavings } from '@/lib/stateSavings'
 import { useSavings } from '@/contexts/SavingsContext'
 import RotatingSavingsPill from '@/components/RotatingSavingsPill'
 

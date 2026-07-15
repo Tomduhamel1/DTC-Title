@@ -154,8 +154,8 @@ export default async function AdminClosingDetailPage({ params }: { params: Promi
               <Stat label="They paid" value={formatCurrency(totals.ourTotal)} />
               <Stat label="Typical low" value={formatCurrency(totals.marketLow)} />
               <Stat label="Typical high" value={formatCurrency(totals.marketHigh)} />
-              <Stat label="Closing savings (avg)" value={formatCurrency(Math.round((totals.estimatedSavingsLow + totals.estimatedSavingsHigh) / 2))} accent="emerald" />
-              <Stat label="Lifetime savings (avg)" value={formatCurrency(Math.round((totals.lifetimeSavingsLow + totals.lifetimeSavingsHigh) / 2))} accent="emerald" />
+              <Stat label="Closing savings" value={formatCurrency(totals.estimatedSavings)} accent="emerald" />
+              <Stat label="Lifetime savings" value={formatCurrency(totals.lifetimeSavings)} accent="emerald" />
               <Stat label="Line items" value={String(snapshot.lineItems.length)} />
               <Stat label="Generated at" value={new Date(snapshot.generatedAt).toLocaleString()} />
             </div>

@@ -23,12 +23,10 @@ export async function sendClosingCompletedEmail(d: ClosingCompletedEmailData): P
     : ''
 
   const totals = d.feeReport ? computeTotals(d.feeReport) : null
-  const closingSavingsAvg = totals
-    ? Math.round((totals.estimatedSavingsLow + totals.estimatedSavingsHigh) / 2)
-    : 0
-  const lifetimeSavingsAvg = totals
-    ? Math.round((totals.lifetimeSavingsLow + totals.lifetimeSavingsHigh) / 2)
-    : 0
+  // Same "Save at closing" / "Save over the loan" figures shown on the quote
+  // pages — the email and the site must never disagree.
+  const closingSavingsAvg = totals ? totals.estimatedSavings : 0
+  const lifetimeSavingsAvg = totals ? totals.lifetimeSavings : 0
 
   const savingsBlock = totals
     ? `<div style="background:linear-gradient(135deg,#ecfdf5,#fff);border:2px solid #a7f3d0;border-radius:14px;padding:22px;margin:24px 0;text-align:center;">

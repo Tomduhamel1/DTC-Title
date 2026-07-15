@@ -36,11 +36,13 @@ export interface FeeLineItem {
   savingsSource?: SavingsSource
 }
 
-// Location precision of this report. Drives result-page UX:
-//   'state'    — fast estimate from state-keyed multipliers only (no line items)
-//   'county'   — state + county supplied, but no ZIP yet (still no line items
-//                today; the upstream fee API only consumes ZIP)
-//   'detailed' — ZIP-driven, full per-fee breakdown from the upstream calc
+// Location precision of this report. Drives result-page UX only — at every
+// precision the fees come from the real upstream calc:
+//   'state'    — broker entered state only; priced on a representative ZIP
+//                (disclosed via representativeZip*); shown as summary cards,
+//                not line items
+//   'county'   — state + county supplied, but no ZIP yet (same treatment)
+//   'detailed' — the actual property ZIP; full per-fee breakdown
 // Optional so legacy reports without the field continue to work as detailed.
 export type FeeReportPrecision = 'state' | 'county' | 'detailed'
 
@@ -55,13 +57,6 @@ export interface FeeReport {
   lineItems: FeeLineItem[]
   isSample?: boolean
   precision?: FeeReportPrecision
-  // When precision is 'state' or 'county' the report has no line items, so
-  // computeTotals reads these pre-computed numbers directly. Populated by the
-  // state-level synth path in /quote/working.
-  precomputedSavings?: {
-    saveAtClosing: number
-    saveOverLoan: number
-  }
   // When the calc was driven by a representative ZIP (state-only entry on the
   // broker estimate), these fields surface the substitution so the result
   // page can disclose it. They describe the pricing input only — they must
@@ -69,6 +64,11 @@ export interface FeeReport {
   // sessionStorage.brokerEstimateContext.propertyZip.
   representativeZipUsed?: boolean
   representativeZip?: string
+  // Totals frozen at issuance. Stamped by the quote-persisting routes so an
+  // already-issued quote keeps displaying the numbers it was sent with, even
+  // if the savings constants/formulas change later. computeTotals returns
+  // this verbatim when present.
+  frozenTotals?: FeeReportTotals
 }
 
 export interface FeeReportTotals {
@@ -146,6 +146,17 @@ export const CATEGORY_LABELS: Record<FeeCategory, string> = {
   other: 'Other',
 }
 
+/**
+ * The one place per-line savings is defined: max(0, typicalRange.low − ourCost),
+ * i.e. compared against the LOW end of typical local pricing. Used by both
+ * computeTotals and the per-line "save $X" badges so the visible line badges
+ * always sum exactly to the headline "Save at closing" number.
+ */
+export function conservativeLineSavings(item: FeeLineItem): number {
+  if (item.isFixed || !item.typicalRange) return 0
+  return Math.max(0, item.typicalRange.low - item.ourCost)
+}
+
 // When a line has no explicit savingsSource we fall back to category +
 // isFixed to classify it. Keeps older quote data working.
 function inferSavingsSource(item: FeeLineItem): SavingsSource {
@@ -159,33 +170,13 @@ function inferSavingsSource(item: FeeLineItem): SavingsSource {
 }
 
 export function computeTotals(report: FeeReport): FeeReportTotals {
-  // State- or county-level reports have no line items; the savings figures
-  // were computed up front from the state-keyed model (regionRates) and
-  // stored on the report. Short-circuit and surface those directly.
-  if (
-    (report.precision === 'state' || report.precision === 'county') &&
-    report.precomputedSavings
-  ) {
-    const { saveAtClosing, saveOverLoan } = report.precomputedSavings
-    return {
-      ourTotal: 0,
-      marketLow: 0,
-      marketHigh: 0,
-      estimatedSavings: saveAtClosing,
-      lifetimeSavings: saveOverLoan,
-      breakdown: {
-        title_related: 0,
-        settlement_fee: 0,
-        other_controllable: 0,
-        pass_through_total: 0,
-      },
-      estimatedSavingsLow: saveAtClosing,
-      estimatedSavingsHigh: saveAtClosing,
-      lifetimeSavingsLow: saveOverLoan,
-      lifetimeSavingsHigh: saveOverLoan,
-    }
-  }
+  // Issued quotes carry totals frozen at creation — display those verbatim so
+  // later formula/constant changes never retroactively alter a sent quote.
+  if (report.frozenTotals) return report.frozenTotals
 
+  // State/county-precision reports carry real line items too (priced on a
+  // representative ZIP, disclosed on the report) — totals are computed the
+  // same way at every precision; only the display granularity differs.
   let ourTotal = 0
   let marketLow = 0
   let marketHigh = 0
@@ -214,7 +205,7 @@ export function computeTotals(report: FeeReport): FeeReportTotals {
 
     marketLow += item.typicalRange.low
     marketHigh += item.typicalRange.high
-    const lineSavings = Math.max(0, item.typicalRange.low - item.ourCost)
+    const lineSavings = conservativeLineSavings(item)
 
     switch (source) {
       case 'title_related':

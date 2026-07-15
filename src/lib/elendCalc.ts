@@ -1,13 +1,15 @@
-// Client for the elend public fee calculator API. Used server-side from
-// /api/quote-engine and mapped into our FeeReport shape.
+// Client for the public fee calculator API (internal; "elend" is legacy
+// naming). Used server-side and mapped into our FeeReport shape.
 //
-// NOTE: the URL contains the AWS API Gateway "test" stage. This is what the
-// upstream app uses today; confirm with the API owner before assuming it's
-// stable for production traffic.
+// The endpoint is overridable via FEE_CALC_API_URL. The default still points
+// at the AWS API Gateway "test" stage — what the upstream app uses today.
+// Set FEE_CALC_API_URL to the production stage once the API owner confirms
+// it; do not hardcode a new stage here.
 
 import type { FeeCategory, FeeLineItem, FeeReport, FeeSource } from './feeReport'
 
 const ENDPOINT =
+  process.env.FEE_CALC_API_URL ||
   'https://40c5js0bsd.execute-api.us-east-1.amazonaws.com/test/fee-calculator/elend-public-calc'
 
 // The upstream calculator is slow — real calls observed at 11–18s. Without a
@@ -76,14 +78,19 @@ function buildBody(req: ElendRequest): ElendApiBody {
   }
 }
 
+// Normalize upstream fee labels. Deliberately does NOT name an underwriter:
+// the upstream response doesn't tell us which underwriter will issue the
+// policy, and asserting one ("First American") on a quote we can't guarantee
+// is a correctness/compliance problem. Underwriter branding belongs on the
+// issued policy, not the estimate.
 function cleanDescription(raw: string): string {
   let d = raw.replace(/^Title - /i, '')
   if (/lender's title insurance/i.test(d)) {
-    d = d.replace(/lender's title insurance/i, "Lender's Title Insurance (First American)")
+    d = "Lender's Title Insurance"
   } else if (/owner's title insurance/i.test(d)) {
-    d = d.replace(/owner's title insurance/i, "Owner's Title Insurance (First American)")
+    d = "Owner's Title Insurance"
   } else if (/closing protection letter/i.test(d)) {
-    d = 'Closing Protection Letter (First American)'
+    d = 'Closing Protection Letter'
   }
   return d
 }
