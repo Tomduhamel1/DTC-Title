@@ -14,6 +14,16 @@ import TeamTrustSection from '@/components/TeamTrustSection'
 import PeaceOfMindSection from '@/components/PeaceOfMindSection'
 import ReadyToSaveSection from '@/components/ReadyToSaveSection'
 import { SavingsProvider } from '@/contexts/SavingsContext'
+import { formatCurrency } from '@/lib/feeReport'
+import { estimateCostBasis } from '@/lib/stateSavings'
+
+// Example-card numbers derive from the shared savings model so this variant
+// page can't contradict the live homepage or the quote flow. Filed-rate
+// states only — in promulgated states (TX/FL/NM) premiums are identical
+// across providers and a big-savings example would be false.
+const EX_GA = estimateCostBasis(500000, 'purchase', 'GA')
+const EX_CA = estimateCostBasis(750000, 'purchase', 'CA')
+const EX_WA_REFI = estimateCostBasis(600000, 'refinance', 'WA')
 
 interface HomePageOriginalProps {
   hideSavingsCards?: boolean
@@ -119,20 +129,20 @@ export default function HomePageOriginal({ hideSavingsCards = false, useAlternat
               {!hideSavingsCards && (
                 <div className="grid grid-cols-2 gap-4 mb-8">
                   <div className="bg-white rounded-xl shadow-lg p-4 text-center border-2 border-emerald-200">
-                    <div className="text-xs font-semibold text-gray-500 mb-2">TEXAS • $500K HOME</div>
+                    <div className="text-xs font-semibold text-gray-500 mb-2">GEORGIA • $500K HOME</div>
                     <div className="text-sm text-gray-500 mb-1">Others charge</div>
-                    <div className="text-lg font-bold text-gray-400 line-through mb-1">$1,600</div>
+                    <div className="text-lg font-bold text-gray-400 line-through mb-1">{formatCurrency(EX_GA.typicalTotal)}</div>
                     <div className="text-xs font-bold text-emerald-700 mb-1">YOU SAVE</div>
-                    <div className="text-5xl font-black text-emerald-600 mb-2">-$800</div>
-                    <div className="text-xs text-gray-600">Pay only <span className="font-bold text-gray-800">$800</span></div>
+                    <div className="text-5xl font-black text-emerald-600 mb-2">-{formatCurrency(EX_GA.saveAtClosing)}</div>
+                    <div className="text-xs text-gray-600">Pay only <span className="font-bold text-gray-800">{formatCurrency(EX_GA.ourTotal)}</span></div>
                   </div>
                   <div className="bg-white rounded-xl shadow-lg p-4 text-center border-2 border-emerald-200">
                     <div className="text-xs font-semibold text-gray-500 mb-2">CALIFORNIA • $750K</div>
                     <div className="text-sm text-gray-500 mb-1">Others charge</div>
-                    <div className="text-lg font-bold text-gray-400 line-through mb-1">$2,400</div>
+                    <div className="text-lg font-bold text-gray-400 line-through mb-1">{formatCurrency(EX_CA.typicalTotal)}</div>
                     <div className="text-xs font-bold text-emerald-700 mb-1">YOU SAVE</div>
-                    <div className="text-5xl font-black text-emerald-600 mb-2">-$950</div>
-                    <div className="text-xs text-gray-600">Pay only <span className="font-bold text-gray-800">$1,450</span></div>
+                    <div className="text-5xl font-black text-emerald-600 mb-2">-{formatCurrency(EX_CA.saveAtClosing)}</div>
+                    <div className="text-xs text-gray-600">Pay only <span className="font-bold text-gray-800">{formatCurrency(EX_CA.ourTotal)}</span></div>
                   </div>
                 </div>
               )}
@@ -250,15 +260,15 @@ export default function HomePageOriginal({ hideSavingsCards = false, useAlternat
 
           {/* Price Cards Grid */}
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Texas Example */}
+            {/* Georgia Example */}
             <div className="bg-gradient-to-br from-primary-50 to-white border-2 border-primary-200 rounded-2xl p-8 text-center hover:shadow-xl transition-shadow">
-              <div className="text-sm font-semibold text-primary-600 mb-2">TEXAS</div>
+              <div className="text-sm font-semibold text-primary-600 mb-2">GEORGIA</div>
               <div className="text-lg text-gray-600 mb-4">$500K Home Purchase</div>
 
               <div className="space-y-4 mb-6">
                 <div>
                   <div className="text-sm text-gray-500 mb-1">Traditional Title Company</div>
-                  <div className="text-3xl font-bold text-gray-400 line-through">$1,600</div>
+                  <div className="text-3xl font-bold text-gray-400 line-through">{formatCurrency(EX_GA.typicalTotal)}</div>
                 </div>
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center">
@@ -270,12 +280,12 @@ export default function HomePageOriginal({ hideSavingsCards = false, useAlternat
                 </div>
                 <div>
                   <div className="text-sm text-primary-600 font-semibold mb-1">BetterClose</div>
-                  <div className="text-5xl font-black text-primary-600">$800</div>
+                  <div className="text-5xl font-black text-primary-600">{formatCurrency(EX_GA.ourTotal)}</div>
                 </div>
               </div>
 
               <div className="inline-block bg-emerald-100 text-emerald-700 px-4 py-2 rounded-lg font-bold text-lg">
-                Save -$800
+                Save -{formatCurrency(EX_GA.saveAtClosing)}
               </div>
             </div>
 
@@ -287,7 +297,7 @@ export default function HomePageOriginal({ hideSavingsCards = false, useAlternat
               <div className="space-y-4 mb-6">
                 <div>
                   <div className="text-sm text-gray-500 mb-1">Traditional Title Company</div>
-                  <div className="text-3xl font-bold text-gray-400 line-through">$2,400</div>
+                  <div className="text-3xl font-bold text-gray-400 line-through">{formatCurrency(EX_CA.typicalTotal)}</div>
                 </div>
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center">
@@ -299,24 +309,24 @@ export default function HomePageOriginal({ hideSavingsCards = false, useAlternat
                 </div>
                 <div>
                   <div className="text-sm text-accent-600 font-semibold mb-1">BetterClose</div>
-                  <div className="text-5xl font-black text-accent-600">$1,450</div>
+                  <div className="text-5xl font-black text-accent-600">{formatCurrency(EX_CA.ourTotal)}</div>
                 </div>
               </div>
 
               <div className="inline-block bg-emerald-100 text-emerald-700 px-4 py-2 rounded-lg font-bold text-lg">
-                Save -$950
+                Save -{formatCurrency(EX_CA.saveAtClosing)}
               </div>
             </div>
 
-            {/* Florida Example */}
+            {/* Washington Refi Example */}
             <div className="bg-gradient-to-br from-primary-50 to-white border-2 border-primary-200 rounded-2xl p-8 text-center hover:shadow-xl transition-shadow">
-              <div className="text-sm font-semibold text-primary-600 mb-2">FLORIDA</div>
+              <div className="text-sm font-semibold text-primary-600 mb-2">WASHINGTON</div>
               <div className="text-lg text-gray-600 mb-4">$600K Refinance</div>
 
               <div className="space-y-4 mb-6">
                 <div>
                   <div className="text-sm text-gray-500 mb-1">Traditional Title Company</div>
-                  <div className="text-3xl font-bold text-gray-400 line-through">$1,900</div>
+                  <div className="text-3xl font-bold text-gray-400 line-through">{formatCurrency(EX_WA_REFI.typicalTotal)}</div>
                 </div>
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center">
@@ -328,12 +338,12 @@ export default function HomePageOriginal({ hideSavingsCards = false, useAlternat
                 </div>
                 <div>
                   <div className="text-sm text-primary-600 font-semibold mb-1">BetterClose</div>
-                  <div className="text-5xl font-black text-primary-600">$1,100</div>
+                  <div className="text-5xl font-black text-primary-600">{formatCurrency(EX_WA_REFI.ourTotal)}</div>
                 </div>
               </div>
 
               <div className="inline-block bg-emerald-100 text-emerald-700 px-4 py-2 rounded-lg font-bold text-lg">
-                Save -$800
+                Save -{formatCurrency(EX_WA_REFI.saveAtClosing)}
               </div>
             </div>
           </div>

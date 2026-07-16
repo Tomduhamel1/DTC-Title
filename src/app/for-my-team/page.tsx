@@ -6,6 +6,7 @@ import {
   buildOrderMailto,
   getLenderRequestContext,
 } from '@/lib/teammate/lender-request-context'
+import { estimateSavings } from '@/lib/stateSavings'
 
 // /for-my-team is the page a borrower-invited professional lands on. The
 // borrower's invite is role-agnostic — they invited "their closing team",
@@ -97,12 +98,14 @@ Thanks,`,
 
   // Savings number rendered in the Section 4 borrower-quote-preview mockup.
   // Prefer the persisted LenderRequest.savingsEstimate when the borrower
-  // shared from /quote/results; fall back to a representative example
-  // ($2,400 — the same number /for-brokers uses) so a refId-less visitor
-  // still sees a realistic preview. Labeled "Estimated" on the page so the
-  // example case is clearly bounded.
+  // shared from /quote/results; fall back to the shared model's national
+  // $500k-purchase anchor (same number /for-brokers and the hero use) so a
+  // refId-less visitor still sees a realistic preview. Labeled "Estimated"
+  // on the page so the example case is clearly bounded.
   const previewSavings =
-    ctx?.savingsEstimate && ctx.savingsEstimate > 0 ? ctx.savingsEstimate : 2400
+    ctx?.savingsEstimate && ctx.savingsEstimate > 0
+      ? ctx.savingsEstimate
+      : estimateSavings(500000, 'purchase', null).saveAtClosing
   const previewSavingsIsBorrowerSpecific = Boolean(
     ctx?.savingsEstimate && ctx.savingsEstimate > 0,
   )

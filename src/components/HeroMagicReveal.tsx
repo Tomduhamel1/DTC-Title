@@ -68,8 +68,8 @@ export default function HeroMagicReveal() {
           </h1>
           <p className="text-lg text-gray-700 mb-6 leading-relaxed">
             BetterClose handles your title and settlement at a fair price.
-            Same A-rated underwriters every other title company uses — just up
-            to <strong>50% less</strong>.
+            Same A-rated underwriters every other title company uses —{' '}
+            <strong>just lower fees</strong>, itemized below.
           </p>
           <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-600">
             <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>50 states</span></span>

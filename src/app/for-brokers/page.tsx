@@ -2,7 +2,15 @@ import Link from 'next/link'
 import NavigationCredible from '@/components/NavigationCredible'
 import FooterComprehensive from '@/components/FooterComprehensive'
 import UnderwriterLogos from '@/components/UnderwriterLogos'
-import BrokerSavingsPill from '@/components/brokers/BrokerSavingsPill'
+import RotatingSavingsPill from '@/components/RotatingSavingsPill'
+import { formatCurrency } from '@/lib/feeReport'
+import { estimateCostBasis, estimateSavings } from '@/lib/stateSavings'
+
+// Example-card numbers derive from the shared savings model (national
+// anchor, $500k purchase) — identical to the realtor page and the homepage
+// hero, so no surface can drift from another.
+const EXAMPLE_SAVINGS = estimateSavings(500000, 'purchase', null)
+const EXAMPLE_BASIS = estimateCostBasis(500000, 'purchase', null)
 
 export const metadata = {
   title: 'BetterClose · For Mortgage Brokers & Loan Officers',
@@ -197,9 +205,7 @@ export default function BrokersPage() {
                 only large green element in the hero is the primary button; this
                 card uses light surfaces with green number accents. The two
                 savings figures (at closing / over the loan) carry the emphasis.
-                All figures derive from the same $180 closing savings
-                ($1,632 − $1,452) financed at 6.5%/30y: monthly = $1.14,
-                total = $410. */}
+                Figures come from the shared savings model (EXAMPLE_* above). */}
             <div className="bg-white rounded-2xl shadow-2xl p-7 border border-gray-200">
               <div className="text-center text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-5">
                 Example borrower savings
@@ -208,13 +214,13 @@ export default function BrokersPage() {
               {/* Two equal savings cards — the primary emphasis */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="rounded-xl border border-emerald-100 bg-emerald-50/70 p-4 text-center">
-                  <div className="text-3xl font-black text-emerald-700 leading-none">$180</div>
+                  <div className="text-3xl font-black text-emerald-700 leading-none">{formatCurrency(EXAMPLE_SAVINGS.saveAtClosing)}</div>
                   <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-800/80 mt-1.5">
                     Save at closing
                   </div>
                 </div>
                 <div className="rounded-xl border border-emerald-100 bg-emerald-50/70 p-4 text-center">
-                  <div className="text-3xl font-black text-emerald-700 leading-none">$410</div>
+                  <div className="text-3xl font-black text-emerald-700 leading-none">{formatCurrency(EXAMPLE_SAVINGS.saveOverLoan)}</div>
                   <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-800/80 mt-1.5">
                     Save over the loan
                   </div>
@@ -225,11 +231,11 @@ export default function BrokersPage() {
               <div className="mt-4 pt-4 border-t border-gray-100 space-y-1.5">
                 <div className="flex items-baseline justify-between">
                   <span className="text-xs text-gray-600">BetterClose estimate</span>
-                  <span className="text-sm font-bold text-dark-900">$1,452</span>
+                  <span className="text-sm font-bold text-dark-900">{formatCurrency(EXAMPLE_BASIS.ourTotal)}</span>
                 </div>
                 <div className="flex items-baseline justify-between">
                   <span className="text-xs text-gray-400">Comparable option</span>
-                  <span className="text-sm font-semibold text-gray-400 line-through decoration-gray-300">$1,632</span>
+                  <span className="text-sm font-semibold text-gray-400 line-through decoration-gray-300">{formatCurrency(EXAMPLE_BASIS.typicalTotal)}</span>
                 </div>
               </div>
 
@@ -239,8 +245,8 @@ export default function BrokersPage() {
             </div>
 
             {/* "This buys" — rotating payoff pill directly under the card.
-                Anchors kept honest against the $410 over-the-loan figure. */}
-            <BrokerSavingsPill />
+                Anchors scale with the actual over-the-loan figure. */}
+            <RotatingSavingsPill savings={EXAMPLE_SAVINGS.saveOverLoan} tail="back in your borrower's pocket" />
             </div>
           </div>
         </div>
@@ -674,7 +680,7 @@ function DashboardMockup() {
               borrower="Sarah Chen"
               status="Quote viewed"
               statusTone="violet"
-              detail="$2,400 estimated savings"
+              detail={`${formatCurrency(EXAMPLE_SAVINGS.saveAtClosing)} estimated savings`}
               cta="Convert"
               progress={null}
             />

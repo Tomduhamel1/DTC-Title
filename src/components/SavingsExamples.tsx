@@ -1,42 +1,28 @@
+import { estimateSavings } from '@/lib/stateSavings'
+
+// Savings derive from the shared per-state model at each example's home
+// value, so the cards can never contradict the hero or the quote flow.
+// Austin (TX) and Miami (FL) were dropped: those states have promulgated
+// premiums (identical at every provider), so a headline savings example
+// there would be misleading.
+const EXAMPLE_INPUTS = [
+  { location: 'San Francisco, CA', state: 'CA', transactionType: 'Purchase', homeValue: 850000 },
+  { location: 'Denver, CO', state: 'CO', transactionType: 'Purchase', homeValue: 575000 },
+  { location: 'Atlanta, GA', state: 'GA', transactionType: 'Purchase', homeValue: 650000 },
+  { location: 'Charlotte, NC', state: 'NC', transactionType: 'Purchase', homeValue: 425000 },
+  { location: 'Seattle, WA', state: 'WA', transactionType: 'Refinance', homeValue: 725000 },
+  { location: 'Phoenix, AZ', state: 'AZ', transactionType: 'Purchase', homeValue: 480000 },
+] as const
+
 export default function SavingsExamples() {
-  const examples = [
-    {
-      location: 'San Francisco, CA',
-      transactionType: 'Purchase',
-      homeValue: 850000,
-      savings: 1420,
-    },
-    {
-      location: 'Austin, TX',
-      transactionType: 'Refinance',
-      homeValue: 425000,
-      savings: 890,
-    },
-    {
-      location: 'Miami, FL',
-      transactionType: 'Purchase',
-      homeValue: 650000,
-      savings: 1180,
-    },
-    {
-      location: 'Denver, CO',
-      transactionType: 'Purchase',
-      homeValue: 575000,
-      savings: 1050,
-    },
-    {
-      location: 'Seattle, WA',
-      transactionType: 'Refinance',
-      homeValue: 725000,
-      savings: 1280,
-    },
-    {
-      location: 'Phoenix, AZ',
-      transactionType: 'Purchase',
-      homeValue: 480000,
-      savings: 940,
-    },
-  ]
+  const examples = EXAMPLE_INPUTS.map((e) => ({
+    ...e,
+    savings: estimateSavings(
+      e.homeValue,
+      e.transactionType === 'Refinance' ? 'refinance' : 'purchase',
+      e.state,
+    ).saveAtClosing,
+  }))
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -52,7 +38,7 @@ export default function SavingsExamples() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Recent Closing Cost Savings
+            Representative Savings Examples
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Representative examples of typical savings on title insurance and settlement services.
@@ -68,7 +54,7 @@ export default function SavingsExamples() {
                   <div className="text-sm text-gray-600">{example.transactionType}</div>
                 </div>
                 <div className="bg-primary-50 text-primary-700 px-2 py-1 rounded text-xs font-medium">
-                  New
+                  Example
                 </div>
               </div>
 

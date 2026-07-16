@@ -4,6 +4,15 @@ import FooterComprehensive from '@/components/FooterComprehensive'
 import UnderwriterLogos from '@/components/UnderwriterLogos'
 import DashboardTrustSection from '@/components/DashboardTrustSection'
 import RotatingSavingsPill from '@/components/RotatingSavingsPill'
+import { formatCurrency } from '@/lib/feeReport'
+import { estimateCostBasis, estimateSavings } from '@/lib/stateSavings'
+
+// Example-card numbers derive from the shared savings model (national
+// anchor, $500k purchase) so this page can never drift from the hero or the
+// quote flow. Recompute happens at render; regenerating the anchor table
+// updates this copy automatically.
+const EXAMPLE_SAVINGS = estimateSavings(500000, 'purchase', null)
+const EXAMPLE_BASIS = estimateCostBasis(500000, 'purchase', null)
 
 export const metadata = {
   title: 'BetterClose · For Real Estate Agents',
@@ -117,10 +126,8 @@ export default function RealtorsPage() {
             {/* Right cell: example savings card + rotating "that's enough for"
                 pill, wrapped in ONE div so the pill forms part of the same grid
                 column rather than becoming a stray third grid item.
-                Numbers are STATIC LITERALS, consistent with the homepage/broker
-                model and the same $500k-purchase example: $520 at closing →
-                $1,180 over the loan (that $520 financed at 6.5% over 30 years);
-                comparable option = $1,452 + $520 = $1,972. */}
+                Numbers come from the shared savings model (EXAMPLE_* above) —
+                the same national $500k-purchase anchor the homepage hero shows. */}
             <div>
             <div className="bg-white rounded-2xl shadow-2xl p-7 border border-gray-200">
               <div className="flex items-center justify-center gap-2 mb-5">
@@ -134,13 +141,13 @@ export default function RealtorsPage() {
 
               <div className="grid grid-cols-2 gap-3">
                 <div className="rounded-xl border border-emerald-100 bg-emerald-50/70 p-4 text-center">
-                  <div className="text-3xl font-black text-emerald-700 leading-none">$520</div>
+                  <div className="text-3xl font-black text-emerald-700 leading-none">{formatCurrency(EXAMPLE_SAVINGS.saveAtClosing)}</div>
                   <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-800/80 mt-1.5">
                     Save at closing
                   </div>
                 </div>
                 <div className="rounded-xl border border-emerald-100 bg-emerald-50/70 p-4 text-center">
-                  <div className="text-3xl font-black text-emerald-700 leading-none">$1,180</div>
+                  <div className="text-3xl font-black text-emerald-700 leading-none">{formatCurrency(EXAMPLE_SAVINGS.saveOverLoan)}</div>
                   <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-800/80 mt-1.5">
                     Save over the loan
                   </div>
@@ -150,11 +157,11 @@ export default function RealtorsPage() {
               <div className="mt-4 pt-4 border-t border-gray-100 space-y-1.5">
                 <div className="flex items-baseline justify-between">
                   <span className="text-xs text-gray-600">BetterClose estimate</span>
-                  <span className="text-sm font-bold text-dark-900">$1,452</span>
+                  <span className="text-sm font-bold text-dark-900">{formatCurrency(EXAMPLE_BASIS.ourTotal)}</span>
                 </div>
                 <div className="flex items-baseline justify-between">
                   <span className="text-xs text-gray-400">Comparable option</span>
-                  <span className="text-sm font-semibold text-gray-400 line-through decoration-gray-300">$1,972</span>
+                  <span className="text-sm font-semibold text-gray-400 line-through decoration-gray-300">{formatCurrency(EXAMPLE_BASIS.typicalTotal)}</span>
                 </div>
               </div>
 
@@ -166,7 +173,7 @@ export default function RealtorsPage() {
 
             {/* Rotating "that's enough for" pill, anchored to the over-the-loan
                 figure so the items scale with the number shown. */}
-            <RotatingSavingsPill savings={1180} tail="back in your buyer's pocket" className="mt-4" />
+            <RotatingSavingsPill savings={EXAMPLE_SAVINGS.saveOverLoan} tail="back in your buyer's pocket" className="mt-4" />
             </div>
           </div>
         </div>

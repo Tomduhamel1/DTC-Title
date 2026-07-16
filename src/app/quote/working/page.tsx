@@ -26,7 +26,7 @@ export default function QuoteWorkingPage() {
     if (!inputsRaw) {
       if (!sessionStorage.getItem('feeReport')) {
         const sample = getMockFeeReport({
-          state: 'TX',
+          state: 'Georgia',
           homeValue: 500000,
           transactionType: 'purchase',
         })

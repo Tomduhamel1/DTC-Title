@@ -7,6 +7,12 @@
 // it; do not hardcode a new stage here.
 
 import type { FeeCategory, FeeLineItem, FeeReport, FeeSource } from './feeReport'
+import {
+  OTHER_FEE_RANGE,
+  PREMIUM_RANGE_FILED,
+  SERVICE_FEE_RANGE,
+  premiumsAreUniform,
+} from './marketBaseline'
 
 const ENDPOINT =
   process.env.FEE_CALC_API_URL ||
@@ -121,38 +127,41 @@ function inferFeeSource(rawDescription: string, category: FeeCategory): FeeSourc
   return undefined
 }
 
-// Local heuristic for the comparison column ("typical [state]" range).
-// Items the county/state set get isFixed=true (no comparison). Everything
-// else gets a rough multiplier off our cost so users see a savings story.
-//
-// Refi multipliers run slightly higher than purchase: refi closings are
-// smaller dollar values, so percentage-based price gouging by traditional
-// title companies looks more dramatic in ratio terms even though absolute
-// savings are smaller.
+// Comparison column ("typical [state]" range) for a fee line, based on the
+// state's premium-rate regime (src/lib/marketBaseline.ts):
+//  - recording/taxes: always isFixed (set by government, same everywhere).
+//  - title premiums & CPL in promulgated/bureau-uniform states: isFixed —
+//    every provider charges the identical state/bureau rate, so claiming
+//    savings on them would be false. Marked feeSource 'state' by the caller
+//    so the UI says "Set by <state>".
+//  - everything else: conservative interim multipliers (see marketBaseline
+//    for sourcing status); the LOW end drives every savings claim.
 function withTypicalRange(
   label: string,
   ourCost: number,
   category: FeeCategory,
-  transactionType: 'purchase' | 'refinance',
+  stateCode: string | undefined,
 ): Pick<FeeLineItem, 'isFixed' | 'typicalRange'> {
   if (category === 'recording' || category === 'taxes') {
     return { isFixed: true }
   }
-  const isRefi = transactionType === 'refinance'
-  if (/lender's title insurance/i.test(label)) {
-    const lo = isRefi ? 1.6 : 1.45
-    const hi = isRefi ? 2.8 : 2.4
-    return { isFixed: false, typicalRange: { low: Math.round(ourCost * lo), high: Math.round(ourCost * hi) } }
+  const isPremiumLine =
+    /title insurance/i.test(label) || /closing protection letter/i.test(label)
+  if (isPremiumLine && premiumsAreUniform(stateCode)) {
+    return { isFixed: true }
   }
-  if (/owner's title insurance/i.test(label)) {
-    return { isFixed: false, typicalRange: { low: Math.round(ourCost * 1.45), high: Math.round(ourCost * 2.5) } }
+  const range = isPremiumLine
+    ? PREMIUM_RANGE_FILED
+    : /settlement/i.test(label)
+      ? SERVICE_FEE_RANGE
+      : OTHER_FEE_RANGE
+  return {
+    isFixed: false,
+    typicalRange: {
+      low: Math.round(ourCost * range.low),
+      high: Math.round(ourCost * range.high),
+    },
   }
-  if (/settlement/i.test(label)) {
-    const lo = isRefi ? 1.5 : 1.4
-    const hi = isRefi ? 3.0 : 2.7
-    return { isFixed: false, typicalRange: { low: Math.round(ourCost * lo), high: Math.round(ourCost * hi) } }
-  }
-  return { isFixed: false, typicalRange: { low: Math.round(ourCost * 1.2), high: Math.round(ourCost * 1.8) } }
 }
 
 export async function fetchElendFeeEstimate(req: ElendRequest): Promise<FeeReport> {
@@ -213,8 +222,14 @@ export async function fetchElendFeeEstimate(req: ElendRequest): Promise<FeeRepor
     const rawForCategorize = row.FeeDescription || rawName
     const label = cleanDescription(rawName)
     const category = categorize(rawForCategorize)
-    const variability = withTypicalRange(label, buyer, category, req.transactionType)
-    const feeSource = inferFeeSource(rawForCategorize, category)
+    const variability = withTypicalRange(label, buyer, category, data.stateCode)
+    // Uniform-premium states (promulgated/bureau rates): surface the premium
+    // as state-set so the UI explains why there's no comparison on that line.
+    const uniformPremium =
+      variability.isFixed &&
+      category === 'title-settlement' &&
+      premiumsAreUniform(data.stateCode)
+    const feeSource = uniformPremium ? 'state' : inferFeeSource(rawForCategorize, category)
 
     lineItems.push({
       id: `elend-${i}`,

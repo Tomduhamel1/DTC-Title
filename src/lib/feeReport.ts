@@ -243,9 +243,13 @@ export function computeTotals(report: FeeReport): FeeReportTotals {
 }
 
 // Sample report shown on the homepage as a teaser. Clearly labeled as sample.
+// Uses a filed-rate state (Georgia) — in promulgated/uniform-rate states like
+// Texas, premiums are identical across providers and no premium comparison
+// may be shown (src/lib/marketBaseline.ts). Ranges follow the interim
+// comparison multipliers in marketBaseline.
 export function getSampleFeeReport(): FeeReport {
   return {
-    state: 'Texas',
+    state: 'Georgia',
     homeValue: 500000,
     loanAmount: 400000,
     transactionType: 'purchase',
@@ -258,7 +262,7 @@ export function getSampleFeeReport(): FeeReport {
         category: 'title-settlement',
         ourCost: 760,
         isFixed: false,
-        typicalRange: { low: 1100, high: 1800 },
+        typicalRange: { low: 950, high: 1444 },
         feeSource: 'underwriter',
         savingsSource: 'title_related',
         description: 'A-rated underwriter coverage',
@@ -269,7 +273,7 @@ export function getSampleFeeReport(): FeeReport {
         category: 'title-settlement',
         ourCost: 350,
         isFixed: false,
-        typicalRange: { low: 500, high: 950 },
+        typicalRange: { low: 455, high: 700 },
         feeSource: 'service',
         savingsSource: 'settlement_fee',
       },
@@ -279,7 +283,7 @@ export function getSampleFeeReport(): FeeReport {
         category: 'title-settlement',
         ourCost: 150,
         isFixed: false,
-        typicalRange: { low: 150, high: 300 },
+        typicalRange: { low: 195, high: 300 },
         feeSource: 'service',
         savingsSource: 'settlement_fee',
       },
@@ -306,7 +310,10 @@ export function getSampleFeeReport(): FeeReport {
 }
 
 // Mock generator used in dev/preview before the API is wired in.
-// Scales numbers off home value so different inputs produce different outputs.
+// Scales numbers off home value so different inputs produce different
+// outputs. Comparison ranges track the interim multipliers in
+// marketBaseline (premium ×1.25–1.9, service ×1.3–2.0); callers should pass
+// a filed-rate state (see getSampleFeeReport).
 export function getMockFeeReport(input: {
   state: string
   homeValue: number
@@ -316,8 +323,8 @@ export function getMockFeeReport(input: {
   const loan = input.loanAmount ?? Math.round(input.homeValue * 0.8)
   // Title insurance scales loosely with loan size.
   const lenderTitleOurs = Math.round(loan * 0.0019)
-  const lenderTitleMarketLow = Math.round(loan * 0.0028)
-  const lenderTitleMarketHigh = Math.round(loan * 0.0045)
+  const lenderTitleMarketLow = Math.round(lenderTitleOurs * 1.25)
+  const lenderTitleMarketHigh = Math.round(lenderTitleOurs * 1.9)
 
   const items: FeeLineItem[] = [
     {
@@ -337,7 +344,7 @@ export function getMockFeeReport(input: {
       category: 'title-settlement',
       ourCost: 350,
       isFixed: false,
-      typicalRange: { low: 500, high: 950 },
+      typicalRange: { low: 455, high: 700 },
       feeSource: 'service',
       savingsSource: 'settlement_fee',
     },
@@ -347,7 +354,7 @@ export function getMockFeeReport(input: {
       category: 'title-settlement',
       ourCost: 150,
       isFixed: false,
-      typicalRange: { low: 150, high: 300 },
+      typicalRange: { low: 195, high: 300 },
       feeSource: 'service',
       savingsSource: 'settlement_fee',
     },
@@ -357,7 +364,7 @@ export function getMockFeeReport(input: {
       category: 'title-settlement',
       ourCost: 25,
       isFixed: false,
-      typicalRange: { low: 25, high: 75 },
+      typicalRange: { low: 33, high: 50 },
       feeSource: 'service',
       savingsSource: 'settlement_fee',
     },
@@ -407,8 +414,8 @@ export function getMockFeeReport(input: {
       ourCost: Math.round(input.homeValue * 0.0024),
       isFixed: false,
       typicalRange: {
-        low: Math.round(input.homeValue * 0.0035),
-        high: Math.round(input.homeValue * 0.006),
+        low: Math.round(input.homeValue * 0.0024 * 1.25),
+        high: Math.round(input.homeValue * 0.0024 * 1.9),
       },
       feeSource: 'underwriter',
       savingsSource: 'title_related',
