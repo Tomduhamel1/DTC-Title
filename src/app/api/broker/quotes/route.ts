@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { prisma } from '@/lib/db'
 import { requireBrokerMember } from '@/lib/auth/session'
 import { fetchElendFeeEstimate } from '@/lib/elendCalc'
+import { computeTotals } from '@/lib/feeReport'
 import {
   computeInputHash,
   defaultExpiresAt,
@@ -103,6 +104,10 @@ export async function POST(req: Request) {
     const message = err instanceof Error ? err.message : 'unknown error'
     return NextResponse.json({ error: `fee estimate failed: ${message}` }, { status: 502 })
   }
+
+  // Freeze savings totals at issuance — the quote keeps displaying the
+  // numbers it was created with even if formulas/constants change later.
+  report.frozenTotals = computeTotals(report)
 
   // ── Persist ──────────────────────────────────────────────────────────────
   const normalized = normalizeFeeQuoteInput({

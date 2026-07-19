@@ -73,9 +73,9 @@ export default async function TeammateQuoteDetailPage({
 
   const report = quote.outputJson as unknown as FeeReport | null
   const totals = report ? computeTotals(report) : null
-  const savingsAvg = totals
-    ? Math.round((totals.estimatedSavingsLow + totals.estimatedSavingsHigh) / 2)
-    : null
+  // Same figure the embedded FeeReportTable shows as "Save at closing" —
+  // the banner and the table must never disagree.
+  const savingsAvg = totals ? totals.estimatedSavings : null
 
   const fullAddress =
     [quote.propertyAddress, quote.propertyCity, quote.propertyState, quote.propertyZip]

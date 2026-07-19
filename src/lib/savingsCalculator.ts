@@ -1,4 +1,18 @@
-// Savings calculation logic for AI Calculator
+// Savings calculation logic for the AI/Story calculator surfaces.
+//
+// Base savings come from the shared per-state model (src/lib/stateSavings.ts,
+// generated from the production quote engine) so these calculators, the
+// homepage hero, and the /quote flow all tell one story. The bonus credits
+// (remote signing, docs ready, title complexity) are product incentives
+// layered on top — keep their dollar values in sync with what we actually
+// offer.
+
+import {
+  LIFETIME_RATE_PCT,
+  LIFETIME_TERM_YEARS,
+  lifetimeFinancedAmount,
+} from './feeReport'
+import { estimateCostBasis } from './stateSavings'
 
 export interface SavingsFactors {
   remoteSigning: boolean | null
@@ -21,32 +35,10 @@ export interface SavingsBreakdown {
   lifetimeSavings: number
 }
 
-// State-based title insurance rates (average per $100k home value)
-const STATE_RATES: Record<string, number> = {
-  'Texas': 320,
-  'California': 320,
-  'Florida': 575,
-  'New York': 400,
-  'Pennsylvania': 350,
-  'Illinois': 300,
-  'Ohio': 280,
-  'Georgia': 290,
-  'North Carolina': 270,
-  'Michigan': 260,
-  'Default': 300
-}
-
-// Calculate base title insurance cost for state and home value
-function calculateBaseTitleCost(state: string, homeValue: number): number {
-  const ratePerHundredK = STATE_RATES[state] || STATE_RATES['Default']
-  return (homeValue / 100000) * ratePerHundredK
-}
-
-// Calculate average closing costs (title insurance + other fees)
-function calculateAverageClosingCost(state: string, homeValue: number, transactionType: 'purchase' | 'refinance'): number {
-  const titleInsurance = calculateBaseTitleCost(state, homeValue)
-
-  // Add other typical closing costs
+// Illustrative non-title closing costs used ONLY for the "typical closing
+// cost" context number in the chat calculators (lender, appraisal, credit,
+// flood, search, recording, survey). Not part of the savings claim itself.
+function otherClosingCosts(transactionType: 'purchase' | 'refinance'): number {
   const lenderFees = transactionType === 'purchase' ? 1500 : 1200
   const appraisalFee = 500
   const creditReportFee = 50
@@ -54,9 +46,15 @@ function calculateAverageClosingCost(state: string, homeValue: number, transacti
   const titleSearchFee = 300
   const recordingFees = 150
   const surveyFee = transactionType === 'purchase' ? 400 : 0
+  return lenderFees + appraisalFee + creditReportFee + floodCertFee + titleSearchFee + recordingFees + surveyFee
+}
 
-  return titleInsurance + lenderFees + appraisalFee + creditReportFee +
-         floodCertFee + titleSearchFee + recordingFees + surveyFee
+// Monthly payment if `amount` were financed at the shared long-term
+// assumptions (6.5% over 30 years — same constants as feeReport).
+function monthlyIfFinanced(amount: number): number {
+  const monthlyRate = LIFETIME_RATE_PCT / 100 / 12
+  const n = LIFETIME_TERM_YEARS * 12
+  return (amount * monthlyRate * Math.pow(1 + monthlyRate, n)) / (Math.pow(1 + monthlyRate, n) - 1)
 }
 
 export function calculateSavings(
@@ -65,9 +63,10 @@ export function calculateSavings(
   state: string,
   factors: SavingsFactors
 ): SavingsBreakdown {
-  // Base savings: 35% off title insurance
-  const baseTitleCost = calculateBaseTitleCost(state, homeValue)
-  const baseSavings = Math.round(baseTitleCost * 0.35)
+  // Base savings: the shared per-state model — the same "save at closing"
+  // anchor the homepage hero shows, scaled to this home value.
+  const basis = estimateCostBasis(homeValue, transactionType, state)
+  const baseSavings = basis.saveAtClosing
 
   // Remote signing bonus
   const remoteSavings = factors.remoteSigning === true ? 150 : 0
@@ -84,37 +83,34 @@ export function calculateSavings(
   }
 
   // Total savings
-  const totalSavings = baseSavings + remoteSavings + docsSavings + titleSavings
+  const totalSavings = Math.max(0, baseSavings + remoteSavings + docsSavings + titleSavings)
 
-  // Calculate closing costs
-  const averageClosingCost = calculateAverageClosingCost(state, homeValue, transactionType)
+  // Closing-cost context numbers. "Average" = illustrative non-title costs
+  // plus the engine-derived typical market total for title/settlement/
+  // recording; "estimated" swaps in the BetterClose total minus the bonuses.
+  const averageClosingCost = otherClosingCosts(transactionType) + basis.typicalTotal
   const estimatedClosingCost = averageClosingCost - totalSavings
 
-  // Monthly payment impact (amortized over 30 years)
-  // Assumes closing costs would be financed at ~6.5% interest
-  const monthlyRate = 0.065 / 12
-  const numPayments = 360 // 30 years
+  // Monthly payment impact at the shared financing assumptions.
+  const averageMonthlyImpact = monthlyIfFinanced(averageClosingCost)
+  const estimatedMonthlyImpact = monthlyIfFinanced(estimatedClosingCost)
 
-  const averageMonthlyImpact = (averageClosingCost * monthlyRate * Math.pow(1 + monthlyRate, numPayments)) /
-                                (Math.pow(1 + monthlyRate, numPayments) - 1)
-
-  const estimatedMonthlyImpact = (estimatedClosingCost * monthlyRate * Math.pow(1 + monthlyRate, numPayments)) /
-                                  (Math.pow(1 + monthlyRate, numPayments) - 1)
-
-  // Calculate lifetime savings (total paid over 30 years)
-  const lifetimeSavings = (averageMonthlyImpact - estimatedMonthlyImpact) * numPayments
+  // Lifetime savings: total 30-year cost of financing the savings amount —
+  // identical definition to the quote flow's "Save over the loan"
+  // (feeReport.lifetimeFinancedAmount).
+  const lifetimeSavings = lifetimeFinancedAmount(totalSavings)
 
   return {
     baseSavings,
     remoteSavings,
     docsSavings,
     titleSavings,
-    totalSavings: Math.max(0, totalSavings), // Never show negative savings
+    totalSavings,
     estimatedClosingCost: Math.round(estimatedClosingCost),
     averageClosingCost: Math.round(averageClosingCost),
     estimatedMonthlyImpact: Math.round(estimatedMonthlyImpact),
     averageMonthlyImpact: Math.round(averageMonthlyImpact),
-    lifetimeSavings: Math.round(lifetimeSavings)
+    lifetimeSavings,
   }
 }
 

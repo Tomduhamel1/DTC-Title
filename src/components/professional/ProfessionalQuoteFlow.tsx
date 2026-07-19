@@ -366,9 +366,9 @@ function ResultPanel({
     }
   }, [report])
 
-  const avgSavings = totals
-    ? Math.round((totals.estimatedSavingsLow + totals.estimatedSavingsHigh) / 2)
-    : null
+  // Same figure the embedded FeeReportTable shows as "Save at closing" —
+  // the banner and the table must never disagree.
+  const avgSavings = totals ? totals.estimatedSavings : null
 
   return (
     <div className="space-y-5">

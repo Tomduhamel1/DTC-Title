@@ -8,6 +8,12 @@ const Body = z.object({
   zip: z.string().regex(/^\d{5}$/, 'ZIP must be 5 digits'),
   homeValue: z.number().nonnegative().optional(),
   loanAmount: z.number().positive().optional(),
+  // Sent by the broker estimate form. precision 'state'/'county' means `zip`
+  // is a representative substitution for `stateCode`, not the property ZIP —
+  // the report is stamped so the results page can disclose that and render
+  // the summary view instead of a line-item table.
+  precision: z.enum(['state', 'county', 'detailed']).optional(),
+  stateCode: z.string().length(2).optional(),
 })
 
 export async function POST(req: Request) {
@@ -62,6 +68,16 @@ export async function POST(req: Request) {
       homeValue,
       loanAmount,
     })
+    if (data.precision === 'state' || data.precision === 'county') {
+      report.precision = data.precision
+      report.representativeZipUsed = true
+      report.representativeZip = data.zip
+      // The upstream echoes the state for the representative ZIP; prefer the
+      // broker's explicit state code if the upstream left it blank.
+      if (!report.state && data.stateCode) report.state = data.stateCode
+    } else {
+      report.precision = 'detailed'
+    }
     return NextResponse.json({ ok: true, report })
   } catch (err) {
     const message = err instanceof Error ? err.message : 'unknown error'

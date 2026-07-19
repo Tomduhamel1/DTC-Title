@@ -4,6 +4,14 @@ import NavigationCredible from '@/components/NavigationCredible'
 import FooterComprehensive from '@/components/FooterComprehensive'
 import UnderwriterLogos from '@/components/UnderwriterLogos'
 import Link from 'next/link'
+import { formatCurrency } from '@/lib/feeReport'
+import { estimateSavings } from '@/lib/stateSavings'
+
+// Engine-derived national-average savings at the $500k purchase anchor —
+// same number the hero and quote flow produce, so this page can't drift.
+const TYPICAL_SAVE = formatCurrency(
+  estimateSavings(500000, 'purchase', null).saveAtClosing,
+)
 
 export default function AboutPage() {
   return (
@@ -41,7 +49,7 @@ export default function AboutPage() {
               The result is BetterClose: a technology-first title insurance company that delivers the same protection as big-name companies, backed by the same A-rated underwriters, but at prices that are actually fair.
             </p>
             <p className="text-lg text-gray-700 leading-relaxed">
-              Our AI-powered platform automates underwriting and processing, eliminating administrative overhead. We pass those savings directly to you - averaging <strong className="text-primary-600">$2,400 per transaction</strong>.
+              Our AI-powered platform automates underwriting and processing, eliminating administrative overhead. We pass those savings directly to you - typically <strong className="text-primary-600">{TYPICAL_SAVE} at closing</strong> on a $500,000 purchase.
             </p>
           </div>
         </div>

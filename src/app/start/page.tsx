@@ -179,8 +179,9 @@ export default function StartPage() {
         throw new Error(data.error || 'Failed to submit application')
       }
 
-      // Success - redirect to pricing
-      router.push('/pricing')
+      // Success — hand off to the real estimate flow (/pricing was retired;
+      // it ran on a placeholder fee engine).
+      router.push('/quote')
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred')
     } finally {

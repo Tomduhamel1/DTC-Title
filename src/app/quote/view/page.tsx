@@ -115,9 +115,9 @@ export default async function PublicQuoteViewPage({ searchParams }: PageProps) {
         }
       })()
     : null
-  const savingsAvg = totals
-    ? Math.round((totals.estimatedSavingsLow + totals.estimatedSavingsHigh) / 2)
-    : null
+  // Same figure the embedded FeeReportTable shows as "Save at closing" —
+  // the banner and the table must never disagree.
+  const savingsAvg = totals ? totals.estimatedSavings : null
 
   const fullAddress =
     [quote.propertyAddress, quote.propertyCity, quote.propertyState, quote.propertyZip]

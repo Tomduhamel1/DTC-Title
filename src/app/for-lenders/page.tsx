@@ -4,6 +4,13 @@ import NavigationCredible from '@/components/NavigationCredible'
 import FooterComprehensive from '@/components/FooterComprehensive'
 import PortalWaitlist from '@/components/professional/PortalWaitlist'
 import Link from 'next/link'
+import { estimateCostBasis } from '@/lib/stateSavings'
+
+// Sample API-response numbers derive from the shared savings model (GA,
+// $500k purchase) so the example stays consistent with every other surface.
+// GA is a filed-rate state — promulgated states (e.g. TX) would show no
+// premium savings, which makes a poor illustrative example.
+const SAMPLE_BASIS = estimateCostBasis(500000, 'purchase', 'GA')
 
 export default function LendersPage() {
   return (
@@ -108,7 +115,7 @@ export default function LendersPage() {
 
 {
   "homeValue": 500000,
-  "state": "TX",
+  "state": "GA",
   "transactionType": "purchase"
 }`}
                 </pre>
@@ -123,10 +130,9 @@ export default function LendersPage() {
               <div className="bg-gray-950 rounded-b-lg p-6 font-mono text-sm overflow-x-auto">
                 <pre className="text-blue-400">
 {`{
-  "ourPrice": 800,
-  "avgPrice": 3200,
-  "savings": 2400,
-  "underwriter": "AmTrust Title"
+  "ourPrice": ${SAMPLE_BASIS.ourTotal},
+  "typicalLow": ${SAMPLE_BASIS.typicalTotal},
+  "savings": ${SAMPLE_BASIS.saveAtClosing}
 }`}
                 </pre>
               </div>

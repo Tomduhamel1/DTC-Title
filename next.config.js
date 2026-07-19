@@ -54,6 +54,24 @@ const nextConfig = {
         destination: '/for-my-team/:path*',
         permanent: true,
       },
+      // /pricing ran on a placeholder-constant fee engine (retired in the
+      // pricing-audit cleanup). The real estimate flow is /quote.
+      {
+        source: '/pricing',
+        destination: '/quote',
+        permanent: true,
+      },
+      {
+        source: '/pricing/:path*',
+        destination: '/quote',
+        permanent: true,
+      },
+      // Old TrueFee-branded refi-quote print page, removed in the same cleanup.
+      {
+        source: '/quote/:quoteId/print',
+        destination: '/quote',
+        permanent: true,
+      },
     ]
   },
 }
