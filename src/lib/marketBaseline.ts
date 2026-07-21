@@ -12,7 +12,9 @@
 //                   effectively identical across providers.
 //                   States: PA (TIRBOP — note its rate is ALL-INCLUSIVE of
 //                   search/exam/settlement services), NY (TIRSA), NJ, OH
-//                   (OTIRB), DE (DTIRB).
+//                   (OTIRB), DE (DTIRB), NC (NCTIRB — uniform rates approved
+//                   by NC DOI, new schedule effective 2025-10-01; surfaced by
+//                   the nightly market-fee research, verified July 2026).
 //   filed         — every other state: insurers file their own rates, which
 //                   genuinely differ between providers; comparison is fair.
 //
@@ -37,6 +39,7 @@ const PREMIUM_REGIME: Record<string, PremiumRateRegime> = {
   NJ: 'rating-bureau',
   OH: 'rating-bureau',
   DE: 'rating-bureau',
+  NC: 'rating-bureau',
 }
 
 export function premiumRegimeFor(stateCode: string | undefined | null): PremiumRateRegime {
