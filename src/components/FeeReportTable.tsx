@@ -231,9 +231,10 @@ function FeeRow({
           </div>
           {setBy ? (
             <div className="text-[11px] text-gray-400 mt-1">{setBy}</div>
-          ) : comparedInPackage ? (
+          ) : comparedInPackage && item.typicalRange ? (
             <div className="text-[11px] text-gray-400 mt-1">
-              Compared in the services package below
+              Typical {formatRange(item.typicalRange.low, item.typicalRange.high)} ·
+              compared as a package below
             </div>
           ) : item.typicalRange ? (
             <div className="text-[11px] text-gray-400 mt-1">
