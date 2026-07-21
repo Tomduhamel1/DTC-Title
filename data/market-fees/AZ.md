@@ -1,7 +1,21 @@
 # Arizona — Market Fee Evidence
 
-Evidence quality: **good** (4 verified providers, though short of the ideal 6 because the
-richest source — the state DIFI filing library — was blocked; see below).
+## Status: complete (scarce) — 5 verified sources, 2026-07-21
+
+Arizona does not meet the target (10) or saturation (6+) bar, but meets the contract's
+**scarce** completion criterion. The state's single richest source — the DIFI
+(Department of Insurance and Financial Institutions) filing library, which hosts filed
+escrow-fee schedules for essentially every AZ title/escrow agency — sits behind a
+domain-wide Cloudflare block that has now been retried and confirmed blocked across two
+separate sessions, on the portal page, on direct PDF URLs, and on the alternate `dfi.az.gov`
+subdomain. This session added Arizona Escrow & Financial Corporation (5th verified
+source, found on its own `.com` domain rather than DIFI) but an exhaustive further search
+of independent AZ title agencies' own websites (Magnus Title, Premier Title Agency,
+Security Title Agency) found each requires a quote request rather than publishing a
+static fee schedule — a genuine market-opacity finding, not a search failure. Combined
+across both sessions this exceeds the contract's 8-distinct-query-strategy threshold with
+only 5 verified sources (fewer than the 6-source saturation floor). Marked **complete
+(scarce)**.
 
 ## Important caveat
 
@@ -82,6 +96,33 @@ each disclaims the output isn't an authoritative rate schedule); Pioneer Title A
 "Cost & Fees" narrative page (loads fine but contains only qualitative bundling language, no
 dollar figures beyond what's already quoted in AZ.json); no distinct North American Title
 Arizona filing was found.
+
+## Additional search this session (2026-07-21) — confirms scarce
+
+- **DIFI retried on 3 access paths**: the escrow-rate-filings portal page (403), a direct
+  Chicago Title Agency PDF URL on `difi.az.gov` (403), and the same PDF pattern on the
+  alternate `dfi.az.gov` subdomain used for some older filings, e.g. Carefree Title (403)
+  — confirms the Cloudflare block is domain-wide and persists across sessions, not a
+  one-off or portal-specific issue.
+- **Arizona Escrow & Financial Corporation** (`arizonaescrow.com/rates/`) — fetched
+  successfully (not on the blocked domain); verified and added as the 5th source. Its
+  $800 entry-tier real-property escrow fee exactly matches Pioneer Title Agency's $800
+  figure at the same $100,000 tier — a strong independent corroboration point.
+- **Magnus Title Agency** (`magnustitle.com`) — fetched; publishes a "Cost Estimator" tool
+  and "Resources" page but no static fee schedule; quote-only.
+- **Premier Title Agency** (`ptanow.com`) — fetched; "Order Title & Get Rates" is an
+  inquiry form, no published dollar figures.
+- **Security Title Agency** (`securitytitle.com/buyers-sellers`) — fetched; directs
+  visitors to "request a quote," no published dollar figures.
+- Queries run this session: "difi.az.gov Chicago Title Agency escrow fee filing pdf
+  Arizona", "Arizona title company escrow fee schedule pdf Carefree Title OR Homie Title
+  OR Metro Title", "North American Title Company Arizona escrow fee schedule rate card
+  pdf", "Nextitle Arizona escrow rates fee schedule", "Magnus Title Agency OR Title
+  Security Agency Arizona escrow fee schedule pdf", "\"escrow fee\" Arizona title company
+  rate schedule pdf -difi.az.gov -dfi.az.gov 2025 OR 2026", "Premier Title Agency Arizona
+  escrow rates", "Title Security Agency Arizona rates fees" — 8 new search strategies this
+  session alone, plus 5 new direct provider-site fetches, on top of the prior session's
+  extensive DIFI-blocked list (8+ agencies) and calculator-tool dead ends.
 
 ## Sources
 

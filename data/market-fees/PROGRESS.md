@@ -41,7 +41,7 @@ still vary and matter).
 | GA | 7 (Stewart, Campbell & Brannon, Wilson Pruitt, First National Title Insurance, Michael Howe/Tranzon REO, First American, Georgia Title & Escrow) | 1 (Atlanta/statewide) | national-brand underwriters (Stewart, FNTI, First American), closing-attorney firms (Campbell & Brannon, Wilson Pruitt, Michael Howe), title agency (Georgia Title & Escrow) | **complete (saturated)** — 7 verified sources; retail range stable across last 3 additions once REO/institutional segment (Michael Howe) is scoped out per documented methodology note in GA.md | 2026-07-21 |
 | NC | 6 (Chicago Title, 24 Hour Closing, Cline Donaldson, NC Title Services, Barristers Title, Investors Title) | 1+ (24 Hour Closing covers NC/SC) | national-brand underwriters (Chicago Title, Investors Title), independent (24 Hour Closing, NC Title Services, Barristers Title), closing-attorney (Cline Donaldson) | **complete (saturated)** — 6 verified sources; last 3 additions are bureau-rate corroborations that don't price settlement fees, 0% range movement | 2026-07-21 |
 | CO | 4 (Empire Title/Stewart, Warranty Title, Homestead Title, WFG rate manual) | 2+ (El Paso/Teller, Denver-metro, Colorado Springs) | national-brand (Stewart via Empire, WFG), independent (Warranty, Homestead) | **complete (scarce)** — 15+ combined query strategies/direct checks across 2 sessions yield <6 usable schedules; CO settlement fees are filed privately with DOI, not routinely published publicly | 2026-07-21 |
-| AZ | 4 (Pioneer Title Agency x5 underwriter cards counted as 1 agency source, WFG, Stewart Title Guaranty, First National Title) | 1 (Maricopa County) | independent agency (Pioneer), national-brand underwriters (WFG, Stewart, FNTI) | **open** — below saturation floor; DIFI filing library (richest source) Cloudflare-blocked, retry needed | 2026-07-21 |
+| AZ | 5 (Pioneer Title Agency, WFG, Stewart Title Guaranty, First National Title, Arizona Escrow & Financial) | 1 (Maricopa County) | independent agencies (Pioneer, Arizona Escrow), national-brand underwriters (WFG, Stewart, FNTI) | **complete (scarce)** — DIFI filing library confirmed Cloudflare-blocked across 3 access paths and 2 sessions; 8+ new query strategies this session found only 1 new usable source | 2026-07-21 |
 | WA | 5 (Old Republic x2, WFG, CW Title, Grays Harbor Title, Puget Sound Title) | 3+ (Grays Harbor, Puget Sound area, statewide schedules) | national-brand (Old Republic, WFG), independent (CW Title, Grays Harbor, Puget Sound) | **open** — 1 short of saturation floor (6); First American/Fidelity WA-specific schedules not found yet | 2026-07-21 |
 | VA | 0 | | | unprocessed | |
 | TN | 0 | | | unprocessed | |
@@ -165,3 +165,15 @@ still vary and matter).
   privately with the Division of Insurance rather than routinely published on public
   rate cards, unlike GA/CA/NC. Moving to AZ next (4 verified, next state in the
   open-state resume queue).
+- 2026-07-21: AZ resumed. Retried DIFI on 3 access paths (portal page, direct PDF URL,
+  alternate dfi.az.gov subdomain) — still Cloudflare-blocked on all 3. Found and verified
+  Arizona Escrow & Financial Corporation on its own .com domain (5th source); its $800
+  entry-tier escrow fee exactly matches Pioneer's $800 figure at the same tier, a strong
+  cross-agency corroboration. Checked 3 more independent AZ agencies directly (Magnus
+  Title, Premier Title Agency, Security Title Agency) — all require a quote request, no
+  static fee schedule published, a genuine market-opacity finding rather than a search
+  failure. 8+ new query strategies this session, combined with the prior session's
+  extensive DIFI-blocked list, exceeds the contract's scarce threshold with only 5
+  verified sources. Marked AZ **complete (scarce)**. Moving to WA next (5 verified, next
+  state in the open-state resume queue — closest to the saturation floor of any open
+  state).

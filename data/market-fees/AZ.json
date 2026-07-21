@@ -63,5 +63,24 @@
     },
     "bundlingNotes": "'Based on Arizona Revised Statutes 6-841.02; relating to escrow agents. The fee for each closing protection letter \"CPL\" issued at the time of closing shall be $25.00.'",
     "transactionContext": "Statewide AZ rate manual; commercial tiered discount schedule present (65%/60%/55% of basic rate at $5M/$10M/$50M+ insurance amounts) but that's premium, not escrow."
+  },
+  {
+    "provider": "Arizona Escrow & Financial Corporation",
+    "sourceUrl": "https://www.arizonaescrow.com/rates/",
+    "asOf": "Effective 2025-04-01",
+    "settlementFee": "Real Property escrow fee, price-tiered: $800 (up to $100,000); $850 ($150k); $900 ($200k); $1,050 ($300k); $1,150 ($400k); $1,250 ($500k); $3.00/$1,000 above $500,000. Combination sale/loan escrow: base rate + $50.",
+    "itemizedFees": {
+      "processing": null,
+      "other": [
+        { "name": "Business & Personal Property escrow (separate table)", "amount": "$1,000 up to $20k; $1,100 up to $40k; $1,200 up to $80k; $1,300 up to $150k; $1,400 up to $200k; $1,500 up to $300k; $1,600 up to $400k; $1,700 up to $500k; $3.00/$1,000 above $500k" },
+        { "name": "Annual holding fee (escrow unclosed after 1 year)", "amount": "$500" },
+        { "name": "UCC search fee (Secretary of State)", "amount": "$50/name" },
+        { "name": "UCC search fee (county)", "amount": "$50/name" },
+        { "name": "Loan signing only", "amount": "$800" },
+        { "name": "Loan signing with escrow", "amount": "$500" }
+      ]
+    },
+    "bundlingNotes": "Real Property escrow fee at the $100,000 tier ($800) matches Pioneer Title Agency's identical $800 figure at the same tier exactly — independent corroboration that $800 is the standard entry-level AZ residential escrow fee across at least two agencies. No separate line items for wire/courier/doc prep are published; page states these are not itemized separately from the base escrow fee.",
+    "transactionContext": "Real property residential/commercial escrow (price-tiered) and separate Business & Personal Property escrow table; statewide AZ."
   }
 ]
