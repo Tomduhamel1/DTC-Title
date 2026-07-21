@@ -1,0 +1,84 @@
+[
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "http://go.stewart.com/rs/067-YWO-436/images/Tennessee%20Rate%20Manual%20FINAL.pdf",
+    "asOf": "2022-02-04 (Last Updated)",
+    "settlementFee": "NOT SEPARATELY DISCLOSED as a distinct line — Montgomery/Rutherford/Sumner/Williamson (Schedule A), Hamilton (B), Knox (C), and Davidson (G) counties use an \"All-Inclusive Charge\": \"The foregoing charges include the cost for the title search or abstract, title examination and title insurance.\" Shelby County (Schedule D) uses a \"Modified All-Inclusive Charge\" that includes title examination and title insurance but excludes abstracts (billed separately per Schedule D-1).",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Included in the All-Inclusive Charge for Montgomery/Rutherford/Sumner/Williamson, Hamilton, Knox, and Davidson counties. Shelby County (separate, itemized): Residential 1-4 title search $200; Residential Refinance flat $200; Commercial $300 + $5/recorded instrument; Court search $50; Extra chain of title $75; Foreclosure search $85. Davidson County (Schedule G-1, separate): Residential 1-4 $125; Commercial $300 + $5/instrument.",
+      "cpl": "$50 per letter; additional $50 for a second mortgage/HELOC by a different lender",
+      "binder": "Construction/land development loan binder: 1/2 of loan policy charge or $150, whichever is greater",
+      "other": [
+        "Owner's/Loan original charge (Montgomery/Rutherford/Sumner/Williamson, Davidson, Hamilton, Knox counties): minimum $200, tiered $6.50/$1,000 up to $100k scaling down to $1.35/$1,000 above $10M",
+        "Shelby County original charge: minimum $220, $4.40/$1,000 up to $100k, $3.30/$1,000 to $1M, $1.10/$1,000 above",
+        "All-other-counties (Schedule E) original charge: minimum $165, $4.50/$1,000 up to $50k scaling to $1.35/$1,000 above $10M",
+        "Reissue rate: 70% of original charge; Refinance rate: 75% of original issue charge",
+        "Simultaneous issue loan policy: flat $50 (Schedules A/B/C/E/G) when issued with owner's policy",
+        "ALTA Residential Limited Coverage Junior Loan Policy: $100 (Schedules A-C, E, G) / Shelby $100; JR1/JR2 endorsements $50 each",
+        "Secondary Market Short Form Residential Loan Policy: $350 (up to $250k) scaling to $750 ($1M-$1.5M)",
+        "Centralized Processing Loan and Refinance Rate (CPLR): $350 (up to $250k) scaling to $2,150 ($4M-$5M)",
+        "Modification Guarantee: $150 (+$25/continuation or down-date)"
+      ]
+    },
+    "bundlingNotes": "Tennessee's \"All-Inclusive Rate\" structure (Dept. of Commerce & Insurance Rule 0780-1-12) is unique among states surveyed: in 4 of TN's largest counties (Montgomery, Rutherford, Sumner, Williamson, plus Hamilton, Knox, and Davidson), the FILED PREMIUM ITSELF legally includes title search/abstract and examination — the opposite of the GA/VA/CA pattern where premiums explicitly exclude search/exam/settlement services. Shelby County uses a middle-ground \"Modified All-Inclusive\" that folds in exam but not abstracts. Only the remaining ~87 rural counties (Schedule E) use a traditional \"risk rate\" that excludes search/exam/closing entirely.",
+    "transactionContext": "Statewide TN, county-schedule-specific (8 named counties get bespoke schedules; ~87 remaining counties share Schedule E); covers purchase, refinance, and construction/simultaneous-issue transactions."
+  },
+  {
+    "provider": "First National Title Insurance Company (FNTI)",
+    "sourceUrl": "http://documentpub.fnti.com/Documents/Tennessee/Rate%20Manual/FNTI%20Tennessee%20Rate%20Manual%20_Clean_Eff.%2005.27.2024.pdf",
+    "asOf": "2024-05-27",
+    "settlementFee": "NOT SEPARATELY DISCLOSED — same All-Inclusive structure as Stewart: Montgomery/Rutherford/Sumner/Williamson (Ch.1), Hamilton/Knox (Ch.2), and Davidson (Ch.3, abstract fees excepted) counties have \"All-Inclusive Rates... includes the abstracting, search and examination\" per Dept. of Commerce and Insurance Rule 0780-1-12-.01(2). Shelby County (Ch.4) same pattern, abstract fees excepted. All-other-counties (Ch.5) use a pure \"risk rate\" explicitly excluding \"fees or charges for abstracts of title, title searches, attorney's fees, escrow or closing-related services charged locally by abstracters, attorneys, and title companies.\"",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Davidson County (separate, Ch. 3.14): Residential search (incl. 1 update) $125; update $50; commercial $300; court records $50; chain of title $75; builder/developer lot search $50. Shelby County (Ch. 4.14): identical structure but Residential search $200.",
+      "cpl": "$50.00 per letter, flat, regardless of number of CPLs per transaction; additional $50 for a second mortgage/HELOC by a different lender",
+      "binder": "ALTA Residential Limited Coverage Junior Loan Policy: $125 flat (up to $250k liability); JR1/JR2 endorsements $25 each",
+      "other": [
+        "Basic Rate for Owner's/Loan (Ch.1-3, Montgomery/Rutherford/Sumner/Williamson/Hamilton/Knox/Davidson): minimum $210, $6.83/$1,000 up to $100k scaling to $1.10/$1,000 above $15M",
+        "Shelby County Basic Rate: minimum $231, $4.62/$1,000 up to $100k, $3.47/$1,000 to $1M, $1.16/$1,000 above",
+        "All-other-counties Basic Rate: minimum $175, $4.75/$1,000 up to $50k scaling to $1.10/$1,000 above $15M",
+        "Homeowner's Policy: 110% of Basic Rate; Reissue: 70% of applicable rate within 5 years",
+        "Expedited Refinance Rate (centralized processing): $300 (up to $250k) to $860 ($1.25M-$1.5M); Qualified Bundled Refinance: $355-$1,000",
+        "Simultaneous owner's/loan: loan policy flat $200",
+        "Master Home Equity Loan Policy: $45 (up to $250k) / $75 ($250k-$500k)",
+        "CPL fee tiers separately published by liability amount: $550 ($0-$100k) up to $1,450 ($900k-$1M) — appears to be a distinct bulk/aggregate CPL schedule alongside the flat $50/letter rate"
+      ]
+    },
+    "bundlingNotes": "Independently corroborates Stewart's finding that TN's largest-metro counties (Montgomery, Rutherford, Sumner, Williamson, Hamilton, Knox, Davidson, Shelby) file All-Inclusive premiums bundling search/exam into the title charge, while the ~87 remaining counties use a pure risk-rate model excluding all service charges — FNTI's Chapter 5 boilerplate is the most explicit statement found in any state of which services a risk-rate premium excludes (\"abstracts of title, title searches, attorney's fees, escrow or closing-related services charged locally\").",
+    "transactionContext": "Statewide TN, identical 5-chapter county-grouping structure to Stewart's manual (confirming both underwriters file under the same TN regulatory county-tier scheme); full county-code appendix included (95 counties)."
+  },
+  {
+    "provider": "Greater Nashville Title",
+    "sourceUrl": "https://greaternashvilletitle.com/",
+    "asOf": "2026-07-21 (retrieval date; no effective date published)",
+    "settlementFee": "$499 (quoted as \"We will waive your Closing fee ($499) if we cause a delay in your closing\")",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": []
+    },
+    "bundlingNotes": "Only a single closing-fee figure was published on the homepage (as a delay-guarantee marketing claim); no itemized breakdown or full rate schedule found. A thin but genuine, directly quoted data point distinct from the two underwriter manuals.",
+    "transactionContext": "Nashville-area residential closings; single flat closing fee figure, transaction type not specified."
+  }
+]

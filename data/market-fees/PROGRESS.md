@@ -44,7 +44,7 @@ still vary and matter).
 | AZ | 5 (Pioneer Title Agency, WFG, Stewart Title Guaranty, First National Title, Arizona Escrow & Financial) | 1 (Maricopa County) | independent agencies (Pioneer, Arizona Escrow), national-brand underwriters (WFG, Stewart, FNTI) | **complete (scarce)** — DIFI filing library confirmed Cloudflare-blocked across 3 access paths and 2 sessions; 8+ new query strategies this session found only 1 new usable source | 2026-07-21 |
 | WA | 7 (Old Republic x2, WFG, CW Title, Grays Harbor, Puget Sound, Spokane County Title, Equity Title) | 5+ (Grays Harbor, Puget Sound area, Spokane, King/Pierce/Thurston/Snohomish, statewide schedules) | national-brand (Old Republic, WFG), independent (CW Title, Grays Harbor, Puget Sound, Spokane County Title, Equity Title) | **complete (saturated)** — 7 providers/8 documents; last 2 additions fall within the pre-existing range, no >10% movement | 2026-07-21 |
 | VA | 5 (Republic Title, Stewart Title Guaranty, Federal Title & Escrow, Lighthouse Title, WFG National) | 1+ (Arlington/Fairfax/Alexandria vs. other VA counties tiering) | independent title/settlement companies (Republic Title, Federal Title, Lighthouse Title), national-brand underwriters (Stewart, WFG) | **complete (scarce)** — ~20 query strategies/direct checks yield only 5 usable sources; VA law statutorily separates title premium from settlement fees (VA Code §38.2-4608) | 2026-07-21 |
-| TN | 0 | | | unprocessed | |
+| TN | 3 (Stewart Title Guaranty, First National Title Insurance, Greater Nashville Title) | 4 metro areas (Nashville, Chattanooga, Knoxville, Memphis via county schedules) | national-brand underwriters (Stewart, FNTI), independent title company (Greater Nashville Title) | **complete (scarce)** — 8+ query strategies/direct checks; TN's All-Inclusive Rate rule bundles search/exam into filed premium in largest counties, reducing independent settlement-fee publication | 2026-07-21 |
 | MI | 0 | | | unprocessed | |
 | MO | 0 | | | unprocessed | |
 
@@ -177,6 +177,20 @@ still vary and matter).
   verified sources. Marked AZ **complete (scarce)**. Moving to WA next (5 verified, next
   state in the open-state resume queue — closest to the saturation floor of any open
   state).
+- 2026-07-21: Started TN from scratch. Verified 3 sources: Stewart Title Guaranty and
+  First National Title Insurance both independently confirm Tennessee's unique
+  "All-Inclusive Rate" regulatory structure (Dept. of Commerce & Insurance Rule
+  0780-1-12) — in Tennessee's largest-metro counties, the filed title premium legally
+  bundles in title search/abstract/exam, unlike every other state surveyed where premium
+  and settlement fees are separated. Only 1 independent settlement-fee data point was
+  found despite checking 5 real Nashville/Memphis title companies directly (CLOSED
+  Nashville, Ark Title Group, Bell Law Settlement Services, Greater Nashville Title,
+  Rochford Law) — Greater Nashville Title's $499 marketing-page figure. This appears to
+  be a genuine market characteristic (TN's regulatory bundling reduces the incentive to
+  publish a separate settlement fee) rather than a search failure. 8+ query
+  strategies/direct checks this session, comfortably past the scarce threshold, with
+  only 3 verified sources. Marked TN **complete (scarce)**. Moving to MI next
+  (unprocessed).
 - 2026-07-21: WA resumed and closed. Found and verified 2 new sources: Spokane County
   Title (direct HTML fetch) and Equity Title of Washington (PDF via the recovery
   technique — notable for its explicit ~54% core-county vs. outside-county refinance
