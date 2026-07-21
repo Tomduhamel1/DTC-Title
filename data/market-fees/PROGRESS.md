@@ -59,7 +59,7 @@ still vary and matter).
 | DC | 0 | unprocessed | |
 | HI | 0 | unprocessed | |
 | ID | 0 | unprocessed | |
-| IL | 0 | unprocessed | |
+| IL | 11 (Old Republic, Greater Illinois Title, First American, TitleStar ×3 regional cards, WFG National, Chicago Title, Fidelity National, Proper Title, Truly Title) | 3 (Chicago metro; Central IL incl. Peoria/Champaign; Southern/Metro-East IL incl. St. Clair/Madison) | national-brand underwriters (Old Republic, First American, Chicago Title, Fidelity National, WFG), independent title/escrow companies (Greater Illinois Title, TitleStar, Proper Title, Truly Title) | **complete (target met)** — 11 verified sources on first session, exceeding the 10-source hard-stop target | 2026-07-21 |
 | IN | 0 | unprocessed | |
 | IA | 0 | unprocessed | |
 | KS | 0 | unprocessed | |
@@ -257,3 +257,26 @@ still vary and matter).
   6 scarce. All 41 tier-2 states and all 8 tier-3 (promulgated) states remain
   unprocessed; per the priority order, tier-2 large filed-rate states come next,
   followed by TX/FL/NM/PA/NY/NJ/OH/DE last.
+- 2026-07-21: Started IL from scratch (first tier-2 state, largest unprocessed state by
+  population). Verified 11 sources on the first pass, exceeding the contract's 10-source
+  target-met threshold: Old Republic (2024 Chicago-metro rate card), Greater Illinois
+  Title/GIT (2021, agent of 4 underwriters), First American (2026 Chicago-metro),
+  TitleStar's 3 regional fee sheets (Cook & Collar 2026, Central IL 2021, Southern IL
+  2021 - all same independent company, giving a direct within-company urban/rural
+  comparison), WFG National (2015 statewide premium-only manual), Chicago Title (2026,
+  paired with The Land Trust Company's closing-fee schedule on the same card), Fidelity
+  National (2026, numerically identical closing fees to Chicago Title), Proper Title
+  (2026, richest itemized fee list found - 23+ line items), and Truly Title (2026).
+  Notable finding: TitleStar's Central/Southern Illinois cards show a flat $500 closing
+  fee (vs. $1,950-$2,150 on the same company's Cook & Collar card) - the largest
+  within-company urban/rural differential found in any state surveyed to date. Also
+  notable: 4 of the 8 Chicago-metro 2026-vintage sources (Chicago Title, Fidelity
+  National, Truly Title, and closely First American/TitleStar) publish numerically
+  identical or near-identical closing-fee tiers, suggesting a shared Chicago-market
+  pricing benchmark. Since target-met is a hard stop per the contract, this session did
+  not exhaustively search beyond what was needed to reach 10 sources - a wasserlaw.net
+  rate-card directory listing 14 additional Chicago-area providers was found but not
+  fetched, logged in IL.md as available for future census-style deepening if ever
+  desired (not required by the contract). Marked IL **complete (target met)**. Moving to
+  the next unprocessed tier-2 state (large filed-rate states prioritized: MD, WI, MN,
+  LA, SC, KY, OR, CT, OK, etc.).
