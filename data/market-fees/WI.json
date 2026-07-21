@@ -1,0 +1,96 @@
+[
+  {
+    "provider": "Advocus National Title Insurance Company (underwriter Rates and Rules Filing, formerly filed under the Attorneys' Title Guaranty Fund/ATG name)",
+    "sourceUrl": "https://www.atgf.com/sites/default/files/formsadv/4000/4044-WI.pdf",
+    "asOf": "2026-04-06",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Search Fee: 'at the discretion of the title agent, a search fee may be charged for search services rendered. The fee is not part of the premium to be split with Advocus' (no dollar amount specified in this filing)",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Original Policy Rate: $575 fixed up to $15,000; +$3.50/$1,000 to $300,000; +$2.50/$1,000 to $500,000; +$1.10/$1,000 to $2,000,000; +$0.95/$1,000 to $10,000,000; +$0.70/$1,000 to $50,000,000",
+        "Reissue Rate: 85% of Original Policy Rate, minimum $575",
+        "Residential Loan Policy Rate (expedited search, no easement/restriction search): $525 first $400,000, +$1/thousand above; Full Search: $700 first $400,000, +$1/thousand above; note both include $100 of search/exam fees",
+        "Residential Construction Loan Policy Rate: $800 first $400,000, +$1/thousand above; Residential New Construction Refinance Rate: $400 up to construction loan amount",
+        "Centralized Refinance Rate: $360 (up to $250,000) to $1,300 (up to $3,000,000), +$4/$10,000 above $3,000,000; includes $100 search/exam",
+        "Simultaneous Issue Rate for Loan Policy: $525 (Residential), $825 (Non-Residential)",
+        "ALTA Residential Limited Coverage Junior Loan Policy Rate: $300 for first $100,000, +$1/$1,000 thereafter",
+        "Take-Off Policy (condo/subdivision unit sale under a Master Policy): $250 residential / $450 non-residential",
+        "Additional parcel/chain of title search: up to $300 (residential) / $600 (non-residential) per additional parcel",
+        "Downward deviations from these rates are not permitted"
+      ]
+    },
+    "bundlingNotes": "This is a title-premium-only filed rate manual; it does not price settlement, closing, escrow, attorney, or notary fees at all, and explicitly notes that any search fee an agent chooses to charge is separate from and not split with the underwriter's premium. Wisconsin closings are commonly handled by Attorneys' Title Guaranty Fund (ATG)-affiliated attorneys or independent title/escrow agents whose own settlement charges are not part of this filing.",
+    "transactionContext": "Statewide Wisconsin; residential and non-residential purchase/refinance title insurance premium rates; no settlement/closing fee published in this document by design."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company (underwriter Schedule of Charges)",
+    "sourceUrl": "https://go.stewart.com/rs/067-YWO-436/images/Wisconsin%20Rate%20Manual_Final_eff%2012012025.pdf?version=0",
+    "asOf": "2025-12-01",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Definition of 'Charge' explicitly states it 'does not include any settlement fee, trustee fee, attorney fee, surveying fee, inspection fee, document fee, closing fee, escrow fee or any other fee associated with escrow' -- the most complete disclaimer list found in any Wisconsin source",
+        "Basic Schedule of Charges (Owner's/Loan Policies): $575 fixed up to $15,000; +$3.50/$1,000 to $300,000; +$2.50/$1,000 to $500,000; +$1.00/$1,000 to $2,000,000; full calculated table in Appendix A (e.g. $300,000 liability = $1,573; $500,000 = $2,023; $1,000,000 = $2,573)",
+        "ALTA Homeowner's Policy: 115% of Basic Schedule of Charges",
+        "Reissue and Abstract Surrender Credit: 85% of applicable rate, minimum $575",
+        "Refinance Charges for Residential Loan Policies: Expedited search $500 (first $400,000) +$1/thousand; Full search $700 (first $400,000) +$1/thousand",
+        "Residential Purchase Money Mortgage Charge: $500 (only when Stewart doesn't issue simultaneous Owner's Policy)",
+        "Simultaneous Issue Charge for Loan Policies: $500 Residential / $800 Non-Residential",
+        "Foreclosure Commitment charge: $650 residential / $1,000 non-residential for $15,000 of liability (includes 2 update endorsements)",
+        "Charge for Refinance of Residential Construction Loan: $400",
+        "ALTA Residential Limited Coverage Junior Loan Policy: $150 fixed up to $100,000, +$1.00/thousand to $200,000; JR1 Endorsement $25"
+      ]
+    },
+    "bundlingNotes": "The definitions table draws the sharpest premium/settlement-fee line found in any state surveyed to date -- a single sentence explicitly excludes settlement fee, trustee fee, attorney fee, surveying fee, inspection fee, document fee, closing fee, and escrow fee from the underwriter's 'Charge' definition, all in one place.",
+    "transactionContext": "Statewide Wisconsin; residential and commercial purchase/refinance title insurance premium rates; no settlement/service fee published in this document by design."
+  },
+  {
+    "provider": "First American Title Insurance Company (Wisconsin Title Policy Rate Schedule, republished by an independent Wisconsin agency, Southwest Title)",
+    "sourceUrl": "https://southwest-title.com/wp-content/uploads/2019/11/SW-Title-Insurance.pdf",
+    "asOf": "2024-07-10",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Policy Rate: $525 up to $15,000; +$3.50/$1,000 to $300,000; +$2.50/$1,000 to $500,000; +$1/$1,000 to $2,000,000; full calculated table to $1,000,000 ($2,523) and up to $5,000,000 ($6,073)",
+        "Reissue rate with qualifying prior: 85%, minimum $525",
+        "Simultaneous Loan Policy: $500 Residential / $750 Commercial",
+        "Residential Refinance: Expedited Loan Rate $500 up to $400,000 (+$1/$1,000 above); Full Search Loan Rate $675 up to $400,000 (+$1/$1,000 above) -- loan policy fee includes ALTA 8.1, 9-06, and 22-06 endorsements",
+        "Residential Construction Loan: $775 up to $400,000 (+$1/$1,000 above); Construction End Loan with Same Lender: $300 plus $1/$1,000 over the original Loan Policy",
+        "Take-Off (Master) Owner's Policies: $250 Residential / $450 Commercial",
+        "Residential Gap endorsement: $175",
+        "Document states explicitly: 'This is not a complete Schedule of Fees. To see a complete Schedule of Fees, please contact your local First American Title office'"
+      ]
+    },
+    "bundlingNotes": "Title-premium-only rate schedule; hosted on an independent Wisconsin title agency's own website (Southwest Title) rather than firstam.com directly, but the branding and content are First American's -- Southwest Title itself does not publish its own separate settlement/closing fee schedule anywhere on its site.",
+    "transactionContext": "Statewide Wisconsin (qualifying transactions closed on or after July 10, 2024); residential and commercial purchase/refinance title insurance premium rates; no settlement/closing fee published."
+  }
+]

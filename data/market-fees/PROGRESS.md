@@ -83,7 +83,7 @@ still vary and matter).
 | UT | 0 | unprocessed | |
 | VT | 0 | unprocessed | |
 | WV | 0 | unprocessed | |
-| WI | 0 | unprocessed | |
+| WI | 3 (Advocus/ATG, Stewart, First American) | statewide (no metro/county breakout published) | national-brand underwriters only (Advocus, Stewart, First American); no independent title/escrow or attorney settlement-fee schedule found despite exhaustive search | **complete (scarce)** — 10 query strategies/direct checks yield only 3 premium-only rate manuals; zero settlement/closing fee dollar figures found anywhere, matching the AZ/CO/MI/MO/VA market-opacity pattern | 2026-07-21 |
 | WY | 0 | unprocessed | |
 
 ## Priority tier 3 (promulgated / rating-bureau — premiums uniform, service fees still researched)
@@ -300,3 +300,18 @@ still vary and matter).
   settlement services) despite an extensive search, MD meets the contract's scarce
   criterion. Marked MD **complete (scarce)**. Moving to the next unprocessed tier-2
   state (WI, MN, LA, SC, KY, OR, CT, OK, etc.).
+- 2026-07-21: Started WI from scratch. Verified 3 sources across 10 query strategies:
+  Advocus National Title Insurance Company (successor to the Attorneys' Title Guaranty
+  Fund, 2026 rate filing), Stewart Title Guaranty (2025, the most explicit single-sentence
+  settlement-fee disclaimer found in any state to date), and First American (2024,
+  republished on an independent Wisconsin agency's own site, Southwest Title, which does
+  not publish its own separate settlement-fee schedule). All three are title-premium-only
+  filed rate manuals; zero settlement/closing/escrow fee dollar figures were found from
+  any provider type despite checking Knight Barry Title (interactive calculator only),
+  Secure Title Company (general cost estimate only), the Wisconsin Land Title Association
+  directory, and Madison/Milwaukee/Green Bay attorney searches (only general
+  market-range blog commentary, no attributable firm-published figures). This matches
+  the AZ/CO/MI/MO/VA market-opacity pattern seen elsewhere. With only 3 verified sources
+  despite the extensive search, WI meets the contract's scarce criterion. Marked WI
+  **complete (scarce)**. Moving to the next unprocessed tier-2 state (MN, LA, SC, KY,
+  OR, CT, OK, etc.).
