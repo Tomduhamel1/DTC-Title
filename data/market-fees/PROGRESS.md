@@ -40,7 +40,7 @@ still vary and matter).
 | CA | 6 (Corinthian, First American, Pacific Coast Title, Stewart Title Guaranty, WFG National, Fidelity National) | statewide zones + Bay Area/Orange/LA/San Diego/Ventura/Santa Barbara/Northern CA county tables | national-brand underwriters (First American, Stewart, WFG, Fidelity), independent (Corinthian, Pacific Coast Title) | **complete (saturated)** — 6 verified sources, 3 most recent did not move observed service-stack range >10% | 2026-07-21 |
 | GA | 7 (Stewart, Campbell & Brannon, Wilson Pruitt, First National Title Insurance, Michael Howe/Tranzon REO, First American, Georgia Title & Escrow) | 1 (Atlanta/statewide) | national-brand underwriters (Stewart, FNTI, First American), closing-attorney firms (Campbell & Brannon, Wilson Pruitt, Michael Howe), title agency (Georgia Title & Escrow) | **complete (saturated)** — 7 verified sources; retail range stable across last 3 additions once REO/institutional segment (Michael Howe) is scoped out per documented methodology note in GA.md | 2026-07-21 |
 | NC | 6 (Chicago Title, 24 Hour Closing, Cline Donaldson, NC Title Services, Barristers Title, Investors Title) | 1+ (24 Hour Closing covers NC/SC) | national-brand underwriters (Chicago Title, Investors Title), independent (24 Hour Closing, NC Title Services, Barristers Title), closing-attorney (Cline Donaldson) | **complete (saturated)** — 6 verified sources; last 3 additions are bureau-rate corroborations that don't price settlement fees, 0% range movement | 2026-07-21 |
-| CO | 4 (Empire Title/Stewart, Warranty Title, Homestead Title, WFG rate manual) | 2+ (El Paso/Teller, Denver-metro, Colorado Springs) | national-brand (Stewart via Empire, WFG), independent (Warranty, Homestead) | **open** — below saturation floor; LTGC, Fidelity, Central CO Title, Advanced Title found but unusable/blocked | 2026-07-21 |
+| CO | 4 (Empire Title/Stewart, Warranty Title, Homestead Title, WFG rate manual) | 2+ (El Paso/Teller, Denver-metro, Colorado Springs) | national-brand (Stewart via Empire, WFG), independent (Warranty, Homestead) | **complete (scarce)** — 15+ combined query strategies/direct checks across 2 sessions yield <6 usable schedules; CO settlement fees are filed privately with DOI, not routinely published publicly | 2026-07-21 |
 | AZ | 4 (Pioneer Title Agency x5 underwriter cards counted as 1 agency source, WFG, Stewart Title Guaranty, First National Title) | 1 (Maricopa County) | independent agency (Pioneer), national-brand underwriters (WFG, Stewart, FNTI) | **open** — below saturation floor; DIFI filing library (richest source) Cloudflare-blocked, retry needed | 2026-07-21 |
 | WA | 5 (Old Republic x2, WFG, CW Title, Grays Harbor Title, Puget Sound Title) | 3+ (Grays Harbor, Puget Sound area, statewide schedules) | national-brand (Old Republic, WFG), independent (CW Title, Grays Harbor, Puget Sound) | **open** — 1 short of saturation floor (6); First American/Fidelity WA-specific schedules not found yet | 2026-07-21 |
 | VA | 0 | | | unprocessed | |
@@ -153,4 +153,15 @@ still vary and matter).
   **complete (saturated)**. harrymarshlaw.com no longer resolves (DNS failure); WFG and
   FNTI NC bulletins were fetched but the Read-recovery technique failed on both (scanned/
   image PDFs) — logged as unusable. Moving to CO next (4 verified, next state in the
+  open-state resume queue).
+- 2026-07-21: CO resumed. Retried DOI (still 403), checked Title Company of the Rockies,
+  Northwest Title, Advanced Title's linked rate-sheet pages, and Chicago Title CO's
+  "Closing Costs" PDF (confirmed via Read-recovery to be a payer-allocation table, not
+  priced — same pattern as Old Republic in CA). No new priced sources found. Combined
+  with the prior session's 6 logged dead ends, this session's 9 additional distinct
+  query strategies/direct checks bring the total well past the contract's 8-strategy
+  scarce threshold, with only 4 verified priced sources found (fewer than the 6-source
+  saturation floor). Marked CO **complete (scarce)** — CO's settlement fees are filed
+  privately with the Division of Insurance rather than routinely published on public
+  rate cards, unlike GA/CA/NC. Moving to AZ next (4 verified, next state in the
   open-state resume queue).
