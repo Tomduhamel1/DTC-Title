@@ -46,7 +46,7 @@ still vary and matter).
 | VA | 5 (Republic Title, Stewart Title Guaranty, Federal Title & Escrow, Lighthouse Title, WFG National) | 1+ (Arlington/Fairfax/Alexandria vs. other VA counties tiering) | independent title/settlement companies (Republic Title, Federal Title, Lighthouse Title), national-brand underwriters (Stewart, WFG) | **complete (scarce)** — ~20 query strategies/direct checks yield only 5 usable sources; VA law statutorily separates title premium from settlement fees (VA Code §38.2-4608) | 2026-07-21 |
 | TN | 3 (Stewart Title Guaranty, First National Title Insurance, Greater Nashville Title) | 4 metro areas (Nashville, Chattanooga, Knoxville, Memphis via county schedules) | national-brand underwriters (Stewart, FNTI), independent title company (Greater Nashville Title) | **complete (scarce)** — 8+ query strategies/direct checks; TN's All-Inclusive Rate rule bundles search/exam into filed premium in largest counties, reducing independent settlement-fee publication | 2026-07-21 |
 | MI | 6 (Stewart Title Guaranty x2 vintages, First National Title Insurance, First American Title x2 vintages, WFG National) | statewide (no metro/county breakout published) | national-brand underwriters only (Stewart, FNTI, First American via independent agent, WFG); no independent title/escrow settlement-fee schedule found despite exhaustive search | **complete (scarce)** — 6 premium-only rate manuals verified (meets filed-rate good-source definition) but 15+ query strategies plus direct provider-site checks (prioritytitle.biz, sterling-title.com, oldrepublictitle.com/michigan) found zero published settlement/service-fee dollar figures; MI market-opacity pattern matches AZ/CO. Notable finding: Stewart's premium bundling model flipped from "all-inclusive" (2024, search/exam bundled into premium) to "risk rate only" (2025, search/exam excluded) between filings | 2026-07-21 |
-| MO | 0 | | | unprocessed | |
+| MO | 2 (First National Title Insurance, WFG National) | statewide (no metro/county breakout published) | national-brand underwriters only (FNTI, WFG); Stewart and First American MO-specific rate manuals not publicly indexed; no independent title/escrow settlement-fee schedule found despite exhaustive search | **complete (scarce)** — only 2 premium-only rate manuals verified despite 16+ query strategies and direct checks of Stewart, First American, Virtual Underwriter, and 4 independent MO title agencies (Monarch, Continental, Preferred Title, Equity Title [confirmed CA-only]); zero settlement-fee dollar figures found anywhere. Only settlement-adjacent data point: statutory Closing Protection Letter fee ($25/party per RSMo 381.022), identical across both verified underwriters | 2026-07-21 |
 
 ## Priority tier 2 (remaining filed-rate states)
 
@@ -238,3 +238,22 @@ still vary and matter).
   one year, with the Owner's Policy minimum rising $375->$450 (+20%) across the same
   filings. Moving to MO next (unprocessed, last state in the original resume queue
   before tier 2 begins).
+- 2026-07-21: Started MO from scratch (last unprocessed tier-1 state). Verified 2
+  title-insurance-premium rate manuals — First National Title Insurance (effective
+  2021-09-01) and WFG National (effective 2025-07-01) — both filed-rate good sources
+  under 381.181 RSMo / 20 CSR 500-7.100. 16+ distinct query strategies plus direct
+  checks of Stewart's and First American's Missouri agent pages, Virtual Underwriter's
+  MO portal, and 4 independent MO title/escrow companies (Monarch Title, Continental
+  Title, Preferred Title of Missouri, and Equity Title — the last confirmed to be a
+  California-only company despite its generic name) found no Stewart or First American
+  MO-specific rate manual PDF publicly indexed, and zero settlement/escrow/closing
+  service-fee dollar figures anywhere. The only settlement-adjacent figure found is the
+  statutory Closing Protection Letter fee (RSMo 381.022.5/.6), priced identically at
+  $25.00/party by both verified underwriters — a clean cross-underwriter corroboration
+  but not a market-set settlement fee. With only 2 verified sources despite the most
+  extensive search of any state surveyed so far, MO meets the contract's scarce
+  criterion. Marked MO **complete (scarce)**. This closes out every state in the
+  original tier-1 resume queue (CA, GA, NC, CO, AZ, WA, VA, TN, MI, MO) — 4 saturated,
+  6 scarce. All 41 tier-2 states and all 8 tier-3 (promulgated) states remain
+  unprocessed; per the priority order, tier-2 large filed-rate states come next,
+  followed by TX/FL/NM/PA/NY/NJ/OH/DE last.

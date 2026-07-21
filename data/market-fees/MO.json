@@ -1,0 +1,45 @@
+[
+  {
+    "provider": "First National Title Insurance Company (FNTI)",
+    "sourceUrl": "https://documentpub.fnti.com/Documents/Missouri/Rate%20Manual/FNTI%20MO%20Rate%20Manual%20Effective%202021-09-01.pdf",
+    "asOf": "Effective 2021-09-01",
+    "settlementFee": {
+      "note": "Title insurance premium/risk-rate schedule, filed per 381.181 RS Mo. Not a settlement/service fee schedule.",
+      "ownersLeaseholdPolicy_perThousand": "Up to $50,000->$1.40/thousand; $50,001-$100,000 add $1.20/thousand; $100,001-$500,000 add $0.80/thousand; $500,001-$1,000,000 add $0.75/thousand; $1,000,001-$5,000,000 add $0.60/thousand; $5,000,001-$10,000,000 add $0.40/thousand; over $10,000,000 add $0.35/thousand. Minimum premium $4.00.",
+      "loanPolicy_perThousand": "Up to $50,000->$1.00/thousand; $50,001-$100,000 add $0.80/thousand; $100,001-$500,000 add $0.70/thousand; $500,001-$1,000,000 add $0.60/thousand; $1,000,001-$5,000,000 add $0.50/thousand; $5,000,001-$10,000,000 add $0.40/thousand; over $10,000,000 add $0.35/thousand. Minimum premium $4.00.",
+      "altaHomeownersPolicy_perThousand": "Up to $50,000->$1.61/thousand; $50,001-$100,000 add $1.38/thousand; $100,001-$500,000 add $0.92/thousand; $500,001-$5,000,000 add $0.92/thousand; $5,000,001+ add $0.46/thousand. Minimum premium $5.00.",
+      "centralizedRefinanceRate": "$1-$100,000->$90; $100,001-$200,000->$160; $200,001-$250,000->$195; $250,001-$500,000->$370; $500,001-$1,000,000->$670; $1,000,001-$1,500,000->$920."
+    },
+    "itemizedFees": {
+      "other": [
+        { "name": "Closing Protection Letter (buyer/lender, per RSMo 381.022.5)", "amount": "$25 per real estate transaction" },
+        { "name": "Closing Protection Letter (seller, per RSMo 381.022.6)", "amount": "$25 per real estate transaction" },
+        { "name": "Limited Coverage Junior Loan Policy (up to $100,000)", "amount": "$110 (tiered up to $275 at $300,000)" },
+        { "name": "Chain of Title Guarantee", "amount": "$50" }
+      ]
+    },
+    "bundlingNotes": "General Rule F: 'The rates set forth herein do not include any charge made for title search, title examination, closing, or escrow services performed by the Insurer, or any of its approved attorneys or agents. Charges made for such services are in addition to the rates and charges set forth herein.' [Note: same manual's Applicability clause elsewhere states rates apply to 'land located in Missouri' with MO county codes and MO-specific form numbers -- this is the correct-state FNTI filing, unlike the MI manual's Alabama text artifact.] The Closing Protection Letter fee ($25/side, statutorily mandated) is the only true settlement-adjacent dollar figure in the manual.",
+    "transactionContext": "Owner's, Leasehold, Homeowner's, and Loan policy premium schedules for all Missouri counties; also centralized refinance rate table and closing protection letter fees mandated by Missouri statute."
+  },
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/missouri/rate-manuals/Missouri%20Title%20Rate%20Manual%20Effective%20July%201,%202025.pdf",
+    "asOf": "Effective 2025-07-01",
+    "settlementFee": {
+      "note": "Title insurance premium/risk-rate schedule (Uniform Premium/Risk Rate Report filed per 381.181 RSMo & 20 CSR 500-7.100). Not a settlement/service fee schedule.",
+      "ownersLeaseholdPolicy_perThousand": "Up to $50,000->$1.40/thousand; $50,001-$100,000 add $1.20/thousand; $100,001-$500,000 add $0.80/thousand; $500,001-$10,000,000 add $0.70/thousand; $10,000,001-$15,000,000 add $0.60/thousand; over $15,000,000 add $0.50/thousand. Minimum premium $10.00 (raised from $4.00 in the prior format).",
+      "loanPolicy_perThousand": "Up to $50,000->$1.00/thousand; $50,001-$100,000 add $0.80/thousand; $100,001-$500,000 add $0.70/thousand; $500,001-$10,000,000 add $0.60/thousand; $10,000,001-$15,000,000 add $0.50/thousand; over $15,000,000 add $0.40/thousand. Minimum premium $10.00.",
+      "expandedCoverageHomeownersPolicy": "115% of the Owner's/Leasehold premium at the same liability tier.",
+      "lendersSpecialRate_financeLoanOnly": "$0-$250,000->$100; $250,001-$500,000->$200; $500,001-$750,000->$300; $750,001-$1,000,000->$400; $1,000,001-$1,250,000->$500; $1,250,001-$1,500,000->$600."
+    },
+    "itemizedFees": {
+      "other": [
+        { "name": "Closing Protection Letter (Seller, Buyer, and/or Lender)", "amount": "$25.00" },
+        { "name": "ALTA Residential Limited Coverage Junior Loan Policy (flat, up to $250,000 liability)", "amount": "$110.00" },
+        { "name": "Mortgage Protection Guarantee / Mortgage Modification Policy", "amount": "$125-$350 tiered by liability" }
+      ]
+    },
+    "bundlingNotes": "Section 1 Introduction: 'The rates shown do not include charges for title search, surveys, escrow, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant.' Explicit and unambiguous exclusion. The $25.00 Closing Protection Letter fee exactly matches FNTI's $25/side CPL fee (both citing the same RSMo 381.022 statutory basis) -- a clean cross-underwriter corroboration on the one line item both manuals actually price.",
+    "transactionContext": "Owner's, Leasehold, Expanded/Homeowner's, and Loan policy premium schedules for all Missouri counties, plus Lender's Special (finance-loan-only) rate tiers and Closing Protection Letter fee. No purchase/refinance settlement-service-fee breakdown."
+  }
+]
