@@ -1,0 +1,95 @@
+[
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "http://go.stewart.com/rs/067-YWO-436/images/Michigan%20Residential%20Rate%20Manual%20eff%2002-26-2024_FINAL.pdf?version=0",
+    "asOf": "Last updated 2024-01-09; effective 2024-02-26",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule.",
+      "ownersPolicy_liabilityTiered": "Up to $20,000->$375.00; over $20,000 to $100,000 add $6.40/thousand; over $100,000 to $200,000 add $4.00/thousand; over $200,000 to $300,000 add $3.75/thousand; over $300,000 to $1,000,000 add $3.00/thousand; over $1,000,000 add $2.50/thousand.",
+      "loanPolicy_liabilityTiered": "Up to $20,000->$295.00; over $20,000 to $100,000 add $3.85/thousand; over $100,000 to $200,000 add $2.50/thousand; over $200,000 to $300,000 add $2.20/thousand; over $300,000 to $1,000,000 add $1.80/thousand; over $1,000,000 add $1.40/thousand."
+    },
+    "itemizedFees": {
+      "other": [
+        { "name": "Work Fee (unusual complexity / more than one chain of title)", "amount": "$300/hour" }
+      ]
+    },
+    "bundlingNotes": "This 2024 vintage is titled 'ALL-INCLUSIVE RESIDENTIAL SCHEDULE OF CHARGES FOR TITLE INSURANCE' and states: 'The charges are \"all-inclusive\", in that same include all ordinary charges including, but not limited to, ordinary charges for the title search, tax search, title examination, commitment, and policy.' No separate settlement/escrow/closing service fee is itemized; the premium itself bundles search/exam. Superseded 11 months later by the 2025 vintage below, which drops the all-inclusive language entirely -- a notable regulatory/product shift.",
+    "transactionContext": "Owner's and Loan policy premium schedules for residential (1-4 family) property, any Michigan county. No purchase/refinance service-fee breakdown; this is a title-premium-only rate manual."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "http://go.stewart.com/rs/067-YWO-436/images/Michigan%20Residential%20Rate%20Manual%20eff%2002-26-2024_FINAL.pdf?version=0 (superseding 2025 vintage, same distribution URL structure, verified via search result title 'SCHEDULE OF CHARGES FOR TITLE INSURANCE IN THE STATE OF MICHIGAN')",
+    "asOf": "Last updated 2025-01-06; effective 2025-02-17",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule.",
+      "ownersPolicy_liabilityTiered": "Up to $20,000->$450.00; over $20,000 to $100,000 add $6.42/thousand; over $100,000 to $200,000 add $4.55/thousand; over $200,000 to $300,000 add $3.75/thousand; over $300,000 to $1,000,000 add $3.21/thousand; over $1,000,000 add $2.68/thousand.",
+      "loanPolicy_liabilityTiered": "Up to $20,000->$375.00; over $20,000 to $100,000 add $3.75/thousand; over $100,000 to $200,000 add $2.68/thousand; over $200,000 to $300,000 add $2.41/thousand; over $300,000 to $1,000,000 add $1.88/thousand; over $1,000,000 add $1.50/thousand."
+    },
+    "itemizedFees": {
+      "other": [
+        { "name": "Work Fee (unusual complexity / more than one chain of title)", "amount": "$300/hour" }
+      ]
+    },
+    "bundlingNotes": "This 2025 vintage drops the 'all-inclusive' title and language entirely, replacing it with: 'The charges are risk rates for title insurance only and do not include any fees or costs for title searches, title examinations or any other fees for services that might be charged by the Company or agents.' Same underwriter, same $ structure format, but the bundling model flipped between the 2024 and 2025 filings -- Owner's Policy base rate also rose from $375 to $450 over the same period (+20%), consistent with unbundling search/exam costs out of the premium and into separately-charged (but unpublished) service fees.",
+    "transactionContext": "Owner's and Loan policy premium schedules for residential (1-4 family) property, any Michigan county. No purchase/refinance service-fee breakdown; this is a title-premium-only rate manual."
+  },
+  {
+    "provider": "First National Title Insurance Company (FNTI)",
+    "sourceUrl": "http://documentpub.fnti.com/Documents/Michigan/Rate%20Manual%20and%20Rate%20Charts/FNTI%20Michigan%20Rate%20Manual%20Effective%20March%2028,%202023.pdf",
+    "asOf": "Effective 2023-03-28",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule.",
+      "ownersPolicy_liabilityTiered": "Up to $20,000->$375.00 (minimum); $20,001-$100,000 add $6.40/thousand; $100,001-$200,000 add $4.00/thousand; $200,001-$300,000 add $3.75/thousand; $300,001-$1,000,000 add $3.00/thousand; above $1,000,001 add $2.50/thousand.",
+      "loanPolicy_liabilityTiered": "Up to $20,000->$295.00; $20,001-$100,000 add $3.85/thousand; $100,001-$200,000 add $2.50/thousand; $200,001-$300,000 add $2.20/thousand; $300,001-$1,000,000 add $1.80/thousand; $1,000,001 and above add $1.40/thousand.",
+      "lendersBulkRate_refinanceOnly_liabilityTiered": "4 tiers (min. 100-200 / 200-300 / 300-500 / 500+ orders); e.g. Bulk Rate 4 (500+ orders): up to $250,000->$275.00; $250,001-$500,000->$350.00; $500,001-$750,000->$400.00; $750,001-$1,000,000->$450.00; scaling to $4,000,001-$5,000,000->$2,200.00."
+    },
+    "itemizedFees": {},
+    "bundlingNotes": "General Rule F states explicitly: 'The rates set forth herein do not include any charge made for title search, title examination, closing, or escrow services performed by the Insurer, or any of its approved attorneys or agents. Charges made for such services are in addition to the rates and charges set forth herein.' Confirms MI premium/settlement-fee separation, but FNTI's manual itself prices premium only -- no settlement/escrow dollar figures given. Note: the manual's own Applicability clause (Section A) contains a copy/paste artifact stating rates are 'specifically for land located in Alabama,' despite the document being titled and filed for Michigan throughout (MI county-code table, MI-specific endorsement codes MI213-MI245) -- an apparent template error in FNTI's own filing, not a wrong-state document.",
+    "transactionContext": "Owner's and Loan policy premium schedules for residential (1-4 family) property, all Michigan counties, plus refinance-only Lender's Bulk Rate tiers for qualifying high-volume lenders. No purchase/refinance settlement-service-fee breakdown."
+  },
+  {
+    "provider": "First American Title Insurance Company",
+    "sourceUrl": "https://www.titlera.com/wp-content/uploads/2021/04/First-Am-MI-Basic-Rate-Sheet-4-1-2020.pdf",
+    "asOf": "Effective 2020-04-01",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule.",
+      "basicOwnersPolicy": "$1,000-20,000->$375; $20,001-100,000 add $5.50/thousand; $100,001-200,000 add $3.75/thousand; $200,001-300,000 add $3.25/thousand; $300,001-1,000,000 add $2.75/thousand; $1,000,001+ add $2.25/thousand.",
+      "basicLoanPolicy": "$1,000-20,000->$295; $20,001-100,000 add $3.25/thousand; $100,001-200,000 add $2.25/thousand; $200,001-300,000 add $2.00/thousand; $300,001-1,000,000 add $1.60/thousand; $1,000,001+ add $1.25/thousand.",
+      "ownerTransferRate_24moResale": "Reduced rate table provided for title transferred within prior 24 months (e.g. $100,000 liability -> $571 owner transfer vs $815 basic owner rate)."
+    },
+    "itemizedFees": {},
+    "bundlingNotes": "Explicit disclaimer: 'This is not a complete Schedule of Fees. To see a complete Schedule of Fees, please contact your local First American Title office.' Confirms settlement/closing service fees exist but are deliberately not published in this rate card -- consistent with the pattern seen across all Michigan sources.",
+    "transactionContext": "Basic (Without Eagle Protection) ALTA Owner's and Loan Policy premium rates, residential 1-4 family, statewide, without breakout by metro/county."
+  },
+  {
+    "provider": "First American Title Insurance Company (via independent policy-issuing agent)",
+    "sourceUrl": "https://www.sterling-title.com/wp-content/uploads/2023/01/First-American-Title-Michigan-Eagle-Rate-Sheets-1-1-23.pdf",
+    "asOf": "Effective 2023-01-01",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule.",
+      "eagleOwnersPolicy": "$1,000-20,000->$450; $20,001-100,000 add $6.25/thousand; $100,001-200,000 add $5.00/thousand; $200,001-300,000 add $4.25/thousand; $300,001-1,000,000 add $3.25/thousand; $1,000,001+ add $2.65/thousand.",
+      "eagleLoanPolicy": "$1,000-20,000->$360; $20,001-100,000 add $3.10/thousand; $100,001-200,000 add $2.80/thousand; $200,001-300,000 add $2.40/thousand; $300,001-1,000,000 add $2.00/thousand; $1,000,001+ add $1.55/thousand."
+    },
+    "itemizedFees": {},
+    "bundlingNotes": "Eagle Policy (expanded coverage / ALTA Homeowner's equivalent) premium schedule distributed by Sterling Title Agency, an independent First American policy-issuing agent based in Sterling Heights, MI. Same disclaimer as the Basic rate sheet: 'This is not a complete Schedule of Fees... please contact your independent First American Title policy-issuing agent for further information.' Sterling Title's own document-library page hosts only underwriter (Stewart, First American, Westcor) premium rate cards -- it does not publish its own settlement/escrow fee schedule despite being an independent agency, matching the market-opacity pattern already documented in AZ.",
+    "transactionContext": "Eagle (expanded coverage) ALTA Owner's and Loan Policy premium rates, residential 1-4 family, statewide, distributed via an independent Macomb/Oakland/St. Clair county agency rather than directly by First American."
+  },
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/michigan/rates/WFG%20Michigan%20Residential%20Title%20Rate%20Manual%20effective%20%204-1-2025.pdf",
+    "asOf": "Effective 2025-04-01",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule.",
+      "basicOwnersPolicy": "Up to $20,000->$450 (minimum); $20,001-100,000 add $6.42/thousand; $100,001-200,000 add $4.55/thousand; $200,001-300,000 add $3.75/thousand; $300,001-1,000,000 add $3.21/thousand; above $1,000,001 add $2.68/thousand.",
+      "expandedCoverageHomeownersPolicy": "Up to $20,000->$500 (minimum); $20,001-100,000 add $6.70/thousand; $100,001-200,000 add $5.35/thousand; $200,001-300,000 add $4.55/thousand; $300,001-1,000,000 add $3.48/thousand; above $1,000,001 add $2.84/thousand.",
+      "standardLoanPolicy": "Up to $20,000->$375 (minimum); $20,001-100,000 add $3.75/thousand; $100,001-200,000 add $2.68/thousand; $200,001-300,000 add $2.41/thousand; $300,001-1,000,000 add $1.88/thousand; above $1,000,001 add $1.50/thousand."
+    },
+    "itemizedFees": {
+      "other": [
+        { "name": "Additional work charge for multi-parcel single policy", "amount": "$300/hour" }
+      ]
+    },
+    "bundlingNotes": "Explicit statement in Section 1 (Introduction): 'The charges shown herein as applicable to title insurance products, also known as the \"title premiums\", are risk rates for title insurance only for all counties in the State of Michigan, and do not include charges for a title search, tax search, title examination, or any other fees that might be charged by the Company or its agents.' Identical rate figures to Stewart's 2025 vintage (both $450 owner's minimum, same per-thousand tiers), suggesting a shared/coordinated MI rate filing baseline between WFG and Stewart -- a useful cross-underwriter corroboration data point even though neither prices settlement fees.",
+    "transactionContext": "Owner's, Homeowner's (expanded), and Loan Policy premium schedules for residential (1-4 family) property, all Michigan counties. No purchase/refinance settlement-service-fee breakdown."
+  }
+]

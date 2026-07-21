@@ -45,7 +45,7 @@ still vary and matter).
 | WA | 7 (Old Republic x2, WFG, CW Title, Grays Harbor, Puget Sound, Spokane County Title, Equity Title) | 5+ (Grays Harbor, Puget Sound area, Spokane, King/Pierce/Thurston/Snohomish, statewide schedules) | national-brand (Old Republic, WFG), independent (CW Title, Grays Harbor, Puget Sound, Spokane County Title, Equity Title) | **complete (saturated)** — 7 providers/8 documents; last 2 additions fall within the pre-existing range, no >10% movement | 2026-07-21 |
 | VA | 5 (Republic Title, Stewart Title Guaranty, Federal Title & Escrow, Lighthouse Title, WFG National) | 1+ (Arlington/Fairfax/Alexandria vs. other VA counties tiering) | independent title/settlement companies (Republic Title, Federal Title, Lighthouse Title), national-brand underwriters (Stewart, WFG) | **complete (scarce)** — ~20 query strategies/direct checks yield only 5 usable sources; VA law statutorily separates title premium from settlement fees (VA Code §38.2-4608) | 2026-07-21 |
 | TN | 3 (Stewart Title Guaranty, First National Title Insurance, Greater Nashville Title) | 4 metro areas (Nashville, Chattanooga, Knoxville, Memphis via county schedules) | national-brand underwriters (Stewart, FNTI), independent title company (Greater Nashville Title) | **complete (scarce)** — 8+ query strategies/direct checks; TN's All-Inclusive Rate rule bundles search/exam into filed premium in largest counties, reducing independent settlement-fee publication | 2026-07-21 |
-| MI | 0 | | | unprocessed | |
+| MI | 6 (Stewart Title Guaranty x2 vintages, First National Title Insurance, First American Title x2 vintages, WFG National) | statewide (no metro/county breakout published) | national-brand underwriters only (Stewart, FNTI, First American via independent agent, WFG); no independent title/escrow settlement-fee schedule found despite exhaustive search | **complete (scarce)** — 6 premium-only rate manuals verified (meets filed-rate good-source definition) but 15+ query strategies plus direct provider-site checks (prioritytitle.biz, sterling-title.com, oldrepublictitle.com/michigan) found zero published settlement/service-fee dollar figures; MI market-opacity pattern matches AZ/CO. Notable finding: Stewart's premium bundling model flipped from "all-inclusive" (2024, search/exam bundled into premium) to "risk rate only" (2025, search/exam excluded) between filings | 2026-07-21 |
 | MO | 0 | | | unprocessed | |
 
 ## Priority tier 2 (remaining filed-rate states)
@@ -217,3 +217,24 @@ still vary and matter).
   a genuine market-opacity finding. With only 5 verified sources despite the extensive
   search, VA meets the contract's scarce criterion. Marked VA **complete (scarce)**.
   Moving to TN next (unprocessed).
+- 2026-07-21: Started MI from scratch (next unprocessed tier-1 state after VA/TN/WA
+  closed). Verified 6 title-insurance-premium rate manuals — Stewart Title Guaranty
+  (2024-02-26 "all-inclusive" vintage and 2025-02-17 "risk rate only" vintage, both via
+  PDF-recovery technique), First National Title Insurance (2023-03-28, whose own
+  Applicability clause has an apparent copy/paste error referencing "Alabama" despite
+  being an MI-filed manual with MI county codes), First American Title (2020 Basic and
+  2023 Eagle vintages, the latter distributed by independent agent Sterling Title), and
+  WFG National (2025-04-01). All 4 underwriters qualify as good sources under the
+  filed-rate premium-schedule clause, clearing the 6-source floor. However, despite 15+
+  distinct query strategies and direct checks of 3 independent MI title agency sites
+  (prioritytitle.biz, sterling-title.com's own document library, Old Republic's MI state
+  office page), zero settlement/escrow/closing service-fee dollar figures were found
+  anywhere — every source that addresses the point states search/exam/closing costs are
+  separate from the premium and left unpublished. This mirrors the AZ/CO market-opacity
+  pattern, so MI's settlement-fee track is marked **complete (scarce)** notwithstanding
+  strong premium-side coverage. Notable finding for the site's marketBaseline
+  documentation: Stewart's MI premium filing switched from bundling search/exam into
+  the premium (2024, "all-inclusive") to excluding them (2025, "risk rate only") within
+  one year, with the Owner's Policy minimum rising $375->$450 (+20%) across the same
+  filings. Moving to MO next (unprocessed, last state in the original resume queue
+  before tier 2 begins).
