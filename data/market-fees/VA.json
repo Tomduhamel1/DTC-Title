@@ -1,0 +1,141 @@
+[
+  {
+    "provider": "Republic Title, Inc (Virginia closing/title company)",
+    "sourceUrl": "https://www.republictitleinc.com/fees",
+    "asOf": "2026-07-21 (retrieval date; no effective date published)",
+    "settlementFee": "Purchase: Seller $850.00; Buyer $595.00 (plus title insurance premiums). Refinance: Guaranteed Settlement Fee $595.00 (plus title insurance premiums).",
+    "itemizedFees": {
+      "docPrep": "$195.00 (Deed Preparation, seller side, purchase); $195.00 (refinance)",
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Trust Review (seller, purchase): $250.00",
+        "Power of Attorney (either side, purchase): $125.00",
+        "Survey (buyer, purchase): $350.00-$600.00 depending on jurisdiction",
+        "Pest/Termite Inspection (buyer, purchase): $40.00-$100.00",
+        "Power of Attorney (refinance): $125.00",
+        "Subordination Agreement (refinance): $125.00"
+      ]
+    },
+    "bundlingNotes": "Settlement fee is a single flat line item per side, separate from title insurance premiums, deed prep, trust review, and POA — no all-inclusive bundled figure published.",
+    "transactionContext": "Residential purchase (buyer and seller fees shown separately) and refinance; statewide VA, no county/metro breakdown published."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company (underwriter rate manual)",
+    "sourceUrl": "https://www.virtualunderwriter.com/-/media/files/virtualunderwriter/imported/pdfs/virginia-rate-manual_final-eff-7-01-2025-corrected.pdf",
+    "asOf": "2025-07-01 (replaces rates published effective 2023-09-01)",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "$50.00 per Closing Protection Letter (CPL) issued; $100.00 per CPL for transactions over $10 million; no charge for CPLs on cancelled transactions",
+      "binder": null,
+      "other": [
+        "Standard Owner's Premium: minimum $300; $4.31/$1,000 up to $250k; +$4.08/$1,000 to $500k; +$3.75/$1,000 to $1M; +$2.49/$1,000 to $2.5M",
+        "Standard Loan Premium: minimum $300; $3.20/$1,000 up to $250k; +$2.98/$1,000 to $500k; +$2.54/$1,000 to $1M",
+        "Enhanced Homeowner's (Owner's) Premium: minimum $350; $5.17/$1,000 up to $250k; +$4.90/$1,000 to $500k; +$4.50/$1,000 to $1M",
+        "Enhanced Residential Loan Premium: minimum $350; $3.84/$1,000 up to $250k; +$3.58/$1,000 to $500k; +$3.05/$1,000 to $1M",
+        "Residential refinance loan charge: 70% of the applicable Standard/Enhanced Loan Policy charge",
+        "Simultaneous Issue Rate: $200.00 per loan policy up to the face amount of the owner's policy",
+        "ALTA Residential Limited Coverage Junior Loan Policy: $150.00 (plus $75.00 per endorsement)",
+        "Centralized Processing Loan and Refinance Rate (CPLR): $275 (up to $125k) scaling to $2,150 ($4M-$5M)"
+      ]
+    },
+    "bundlingNotes": "'Scheduled charges do NOT include any costs incidental to title insurance (e.g., title search and/or examination fees, commitment and/or final policy preparation, recordation, etc.) and any of these fees are NOT to be charged with title insurance premiums.' Direct underwriter confirmation that VA separates title premium (this manual) from settlement/closing service fees (billed separately by the settlement agent) — consistent with VA Code §38.2-4608's mandated separation.",
+    "transactionContext": "Statewide VA; residential and commercial purchase/refinance premium rates; standard and enhanced (homeowner's) policy tiers."
+  },
+  {
+    "provider": "Federal Title & Escrow Company",
+    "sourceUrl": "https://www.federaltitle.com/homebuying/fees/",
+    "asOf": "2026-07-21 (retrieval date; no effective date published)",
+    "settlementFee": "All-inclusive settlement fee: $1,275 (Arlington, Fairfax, City of Alexandria); $1,475 (other VA counties). Same tiering applies in DC ($1,275) and Maryland ($1,275 Montgomery County / $1,475 other counties).",
+    "itemizedFees": {
+      "docPrep": "included in the all-inclusive settlement fee (buyer side, VA/MD); $125 for Power of Attorney (VA/MD) / $150 (DC); $300 simultaneous 2nd trust document prep",
+      "processing": null,
+      "courier": "included in the all-inclusive settlement fee",
+      "wire": null,
+      "edoc": null,
+      "eRecording": "included in the all-inclusive settlement fee (\"Recording Service\")",
+      "notarySigning": "$200 buyer remote/mobile notary closing (add-on)",
+      "searchExam": "included in the all-inclusive settlement fee (Title Exam); Title Search-Review $275 line item noted separately",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Electronic Storage + Access: included in all-inclusive fee",
+        "Tax Certificate: included in all-inclusive fee",
+        "Expedited Closing: $350 (add-on)"
+      ]
+    },
+    "bundlingNotes": "One flat all-inclusive settlement fee covering title exam, storage/access, courier, tax certificate, recording, and notary — the most fully bundled single-number VA settlement fee found, with a clear ~16% jurisdiction-tier premium for Arlington/Fairfax/Alexandria vs. all other VA counties ($1,275 vs $1,475 — note the higher figure applies to the less-dense 'other counties', the reverse of the usual urban-premium pattern seen in other states).",
+    "transactionContext": "Residential home-buying (purchase); jurisdiction-tiered (Arlington/Fairfax/Alexandria vs. other VA counties); DC/MD figures shown for comparison on the same page."
+  },
+  {
+    "provider": "Lighthouse Title (Virginia offices: Fairfax, Arlington, McLean, Woodbridge)",
+    "sourceUrl": "https://www.federaltitle.com/wp-content/uploads/2011/02/Seller.Lighthouse-Title.VA_.pdf",
+    "asOf": "Revised 2010-02-03 (older document; retrieved and read this session, dated by document revision date)",
+    "settlementFee": "Residential resale with mortgage — Purchaser Title Services (includes settlement fee, courier, title exam, title binder): $575.00; Seller Title Services (includes settlement fee, wire/UPS, release management): $410. Short sale/foreclosure/REO/assumption/FSBO purchases: Purchaser $600.00; Seller $460.",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": "included in bundled Title Services fee; standalone Courier/Wire/FedEx $75 (construction refi, commercial)",
+      "wire": "included in bundled Seller Title Services fee (\"Wire/UPS\")",
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "included in bundled Purchaser Title Services fee (\"Title Examination Fee\"); standalone $175 (construction/commercial, subdivided property; acreage billed hourly)",
+      "cpl": null,
+      "binder": "included in bundled Purchaser Title Services fee (\"Title Binder Fee\"); standalone $100-$200 (construction/commercial)",
+      "other": [
+        "Residential refinance Settlement and Title Services (up to 2 payoffs): $775.00; +$100.00 each additional payoff",
+        "Deed (Attorney), purchase: $125",
+        "reQuire Release Tracking: $35",
+        "Construction refinance: Settlement Fee $500 + Title Exam $175 + FedEx Payoff $25 + Title Binder $100 + Courier/Wire/FedEx $75 + Release Fee $115 + Mechanics Lien Agent Fee $100 + Bringdowns/Endorsements(6) $450",
+        "Commercial sale (purchaser): Settlement Fee min $500 + Title Exam $175 + Courier $75 + Title Binder $200"
+      ]
+    },
+    "bundlingNotes": "Bundles settlement fee, courier, title exam, and title binder into single per-side 'Title Services' line items for standard residential resale — buyer $575 / seller $410, a lower combined figure than Federal Title's newer $1,275-$1,475 all-inclusive fee, though this document is from 2010 and pre-dates over a decade of fee inflation, so the two are not directly comparable without adjusting for date.",
+    "transactionContext": "Residential resale with mortgage, short sale/foreclosure/REO/FSBO purchases, residential refinance, construction refinance, and commercial sale/refinance — the most transaction-type-granular VA source found, covering Fairfax/Arlington/McLean/Woodbridge offices (Northern Virginia)."
+  },
+  {
+    "provider": "WFG National Title Insurance Company (underwriter rate manual)",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/virginia/rate-manuals/WFG%20Virginia%20Title%20Rates%20and%20Rules%20effective%209-1-2023.pdf",
+    "asOf": "2023-09-01",
+    "settlementFee": "NOT INCLUDED — manual explicitly states rates 'do not include charges for title search, surveys, escrow, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant.'",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "$35.00 per Closing Protection Letter issued, whether to lender, seller, and/or buyer/borrower; fee remitted entirely to WFG",
+      "binder": null,
+      "other": [
+        "Standard Owner's Premium: minimum $250; $4.00/$1,000 up to $250k; +$3.90/$1,000 to $500k; +$3.58/$1,000 to $1M",
+        "Homeowner's Policy Premium: minimum $300; $4.85/$1,000 up to $250k; +$4.70/$1,000 to $500k; +$4.35/$1,000 to $1M",
+        "Standard Loan Premium: minimum $250; $3.00/$1,000 up to $250k; +$2.80/$1,000 to $500k; +$2.40/$1,000 to $1M",
+        "Refinance loan premium: minimum $250; $2.10/$1,000 up to $250k; +$1.96/$1,000 to $500k; +$1.68/$1,000 to $1M",
+        "Simultaneous issue: Owner's rate + $250/standard loan policy or +$275/expanded coverage loan policy",
+        "Lender's Special Rates (high-volume refinance programs): $275-$3,600 tiered by liability and order-volume category",
+        "ALTA Residential Limited Coverage Junior Loan Policy: flat $110 up to $250k liability"
+      ]
+    },
+    "bundlingNotes": "Title-premium-only rate manual; explicitly excludes settlement/closing/escrow services from its rates, matching the Stewart Guaranty and VA Code §38.2-4608 pattern. Notably lower CPL fee ($35) than Stewart's ($50), a useful cross-underwriter CPL comparison point for VA.",
+    "transactionContext": "Statewide VA; residential and commercial purchase/refinance premium rates; separate Lender's Special Rate program for high-volume centralized-processing refinance lenders."
+  }
+]

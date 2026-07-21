@@ -43,7 +43,7 @@ still vary and matter).
 | CO | 4 (Empire Title/Stewart, Warranty Title, Homestead Title, WFG rate manual) | 2+ (El Paso/Teller, Denver-metro, Colorado Springs) | national-brand (Stewart via Empire, WFG), independent (Warranty, Homestead) | **complete (scarce)** — 15+ combined query strategies/direct checks across 2 sessions yield <6 usable schedules; CO settlement fees are filed privately with DOI, not routinely published publicly | 2026-07-21 |
 | AZ | 5 (Pioneer Title Agency, WFG, Stewart Title Guaranty, First National Title, Arizona Escrow & Financial) | 1 (Maricopa County) | independent agencies (Pioneer, Arizona Escrow), national-brand underwriters (WFG, Stewart, FNTI) | **complete (scarce)** — DIFI filing library confirmed Cloudflare-blocked across 3 access paths and 2 sessions; 8+ new query strategies this session found only 1 new usable source | 2026-07-21 |
 | WA | 7 (Old Republic x2, WFG, CW Title, Grays Harbor, Puget Sound, Spokane County Title, Equity Title) | 5+ (Grays Harbor, Puget Sound area, Spokane, King/Pierce/Thurston/Snohomish, statewide schedules) | national-brand (Old Republic, WFG), independent (CW Title, Grays Harbor, Puget Sound, Spokane County Title, Equity Title) | **complete (saturated)** — 7 providers/8 documents; last 2 additions fall within the pre-existing range, no >10% movement | 2026-07-21 |
-| VA | 0 | | | unprocessed | |
+| VA | 5 (Republic Title, Stewart Title Guaranty, Federal Title & Escrow, Lighthouse Title, WFG National) | 1+ (Arlington/Fairfax/Alexandria vs. other VA counties tiering) | independent title/settlement companies (Republic Title, Federal Title, Lighthouse Title), national-brand underwriters (Stewart, WFG) | **complete (scarce)** — ~20 query strategies/direct checks yield only 5 usable sources; VA law statutorily separates title premium from settlement fees (VA Code §38.2-4608) | 2026-07-21 |
 | TN | 0 | | | unprocessed | |
 | MI | 0 | | | unprocessed | |
 | MO | 0 | | | unprocessed | |
@@ -188,3 +188,18 @@ still vary and matter).
   closes out every open state from the original resume queue (CA, GA, NC, CO, AZ, WA) —
   4 saturated, 2 scarce. Moving to the remaining unprocessed tier-1 states: VA, TN, MI,
   MO.
+- 2026-07-21: Started VA from scratch (first unprocessed tier-1 state). Found and
+  verified 5 sources: Republic Title (buyer/seller purchase and refinance settlement
+  fees), Stewart Title Guaranty and WFG National (both title-premium-only manuals,
+  explicitly citing VA Code §38.2-4608's mandated premium/settlement-fee separation —
+  the most explicit statutory citation for this pattern found in any state so far),
+  Federal Title & Escrow (a fully bundled all-inclusive settlement fee, notably *higher*
+  in "other counties" than in Arlington/Fairfax/Alexandria — the reverse of the usual
+  urban-premium pattern), and Lighthouse Title (a detailed but dated 2010 rate schedule,
+  the most transaction-type-granular VA source found). ~20 query strategies/direct
+  checks across the session found several more real VA title/settlement companies
+  (Quill, Cardinal Title Group, Weichert Title Agency, Mid-Atlantic Title, Old
+  Republic's VA escrow department) that publish no static fee schedule — quote-only,
+  a genuine market-opacity finding. With only 5 verified sources despite the extensive
+  search, VA meets the contract's scarce criterion. Marked VA **complete (scarce)**.
+  Moving to TN next (unprocessed).
