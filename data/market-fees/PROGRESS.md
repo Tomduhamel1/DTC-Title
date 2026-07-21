@@ -16,9 +16,9 @@ states), then remaining filed-rate states, then TX/FL/NM/PA/NY/NJ/OH/DE last
 
 | State | Status | Quality | Last run |
 |---|---|---|---|
-| CA | unprocessed | | |
-| GA | unprocessed | | |
-| NC | unprocessed | | |
+| CA | done | thin (2 verified sources; several more found but blocked by WAF/403) | 2026-07-21 |
+| GA | done | none (thin evidence — blocker) | 2026-07-21 |
+| NC | done | none (thin evidence — blocker) | 2026-07-21 |
 | CO | unprocessed | | |
 | AZ | unprocessed | | |
 | WA | unprocessed | | |
@@ -81,3 +81,23 @@ states), then remaining filed-rate states, then TX/FL/NM/PA/NY/NJ/OH/DE last
 ## Run log
 
 - 2026-07-21: Initialized tracker (50 states + DC). First run begins with CA, GA, NC.
+- 2026-07-21: GA research blocked — this session's outbound egress proxy returned HTTP 403
+  on every `WebFetch` attempt (confirmed session-wide via control domains en.wikipedia.org
+  and www.google.com, not site-specific). No fee data could be verified, so GA.json is `[]`
+  and GA.md documents the candidate sources found via WebSearch but not independently
+  confirmed. CA and NC runs in progress under the same session; likely to hit the same
+  blocker. Needs a human to check the environment's network egress policy before re-running.
+- 2026-07-21: CA research hit the same session-wide WebFetch 403 issue (confirmed against
+  example.com, example.org, en.wikipedia.org, sec.gov, cnn.com — all failed identically to
+  the vendor domains, so it is not a per-site block). Found a partial workaround: WebFetch
+  *does* succeed against raw Amazon S3 object URLs (`s3-us-west-1.amazonaws.com`,
+  `<bucket>.s3.amazonaws.com`) even when the same document's normal vendor-domain URL (CDN /
+  WordPress / Cloudflare-fronted) 403s. Several title companies host their public rate-book
+  PDFs on S3 buckets (e.g. Corinthian Title's `ctc-site` bucket, First American's
+  `first-american-bucket`), and searching for `site:<bucket>.s3.amazonaws.com` or
+  `"s3.amazonaws.com" OR "s3-us-west"` alongside the provider name surfaces fetchable mirrors
+  of the same public documents. Using this, CA landed 2 fully verified sources (Corinthian
+  Title, First American Title) — see CA.md for detail and for other providers found but not
+  verifiable (Pacific Coast Title, Stewart, WFG, Fidelity National Title, Old Republic,
+  California Best Title/NATIC all had real-looking schedules that 403'd on every domain
+  tried). Worth a retry on GA/NC with the same S3-mirror-search technique.

@@ -1,0 +1,60 @@
+[
+  {
+    "provider": "Corinthian Title Company (underwritten by North American Title Insurance Company)",
+    "sourceUrl": "https://s3-us-west-1.amazonaws.com/ctc-site/brochures/Residential+Rate+Schedule+-+North+American.pdf",
+    "asOf": "effective February 15, 2021 (revised); retrieved 2026-07-21",
+    "settlementFee": "Not disclosed in this published partial schedule. The document states: 'The escrow fee charged on transactions is determined by the location of the Corinthian Title Company office performing the escrow services. The complete Schedule of Escrow and Service Fees is available for inspection at your local Corinthian Title Company office.' Only title insurance premiums and a flat refinance-policy rate table are published here.",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Document states additional (unpriced) charges apply for: recording, process service fee, sub-escrow fees, wire transfer fees, and overnight delivery charges (exact dollar amounts not published)",
+        "Title insurance premium (Basic/CLTA Standard or ALTA Residential rate) at $500,000 sale price: $1,480.00",
+        "Title insurance premium (Homeowner's Policy) at $500,000 sale price: $1,628.00",
+        "ALTA Loan Policy issued concurrently with Owner's Policy at $500,000: $752.00",
+        "Title insurance premium (Basic rate) at $1,000,000 sale price: $2,280.00",
+        "Refinance rate (Standard/Extended policy, new loan, non-purchase): liability up to $250,000 = $385; up to $500,000 = $600; up to $750,000 = $925; up to $1,000,000 = $1,350; up to $1,500,000 = $1,760; up to $2,000,000 = $2,250; up to $3,000,000 = $2,800; up to $4,000,000 = $3,400; up to $5,000,000 = $4,100; each additional $1,000,000 above $5,000,000 adds $600"
+      ]
+    },
+    "bundlingNotes": "Quoted from the document: 'This partial schedule of fees has been prepared and published in compliance with the Insurance Code of the State of California... The rates, fees and charges set forth in this Schedule are on file with the California Department of Insurance and are minimum charges only. Additional rates, fees and charge[s] may be added when unusual risks are assumed or unusual services are performed in accordance with California Insurance Code Section 12401.8.' On the refinance table: 'Standard endorsements are included in the rates set forth above (excludes 110.9/8.1 endorsement). Additional fees may be charged for services such as recording, process service fee, sub-escrow fees, wire transfer fees and overnight delivery charges.' On escrow: 'Additional charges are made for special services, processing fees, associated services rendered in connection with the issuance of any policy, endorsement and/or services performed.' Title insurance premiums are itemized/published in full; the escrow/settlement fee itself is explicitly NOT itemized in this public document and is described as office-location-dependent.",
+    "transactionContext": "Residential sale and refinance transactions in 28 California counties (Alameda, Contra Costa, El Dorado, Fresno, Kern, Kings, Los Angeles, Marin, Merced, Napa, Orange, Placer, Riverside, Sacramento, San Bernardino, San Diego, San Francisco, San Joaquin, San Luis Obispo, San Mateo, Santa Barbara, Santa Clara, Solano, Sonoma, Stanislaus, Tulare, Ventura, Yolo). Title premium table runs from $60,000 up to $10,000,000 policy liability in $10,000 increments."
+  },
+  {
+    "provider": "First American Title Insurance Company",
+    "sourceUrl": "https://first-american-bucket.s3.amazonaws.com/local-firstam-com/live/assets/documents/ca/-shared/ca-rates/10288-ca-residential-rates-region-3.pdf",
+    "asOf": "Title Insurance Rates Effective March 1, 2026; Escrow Fees Effective April 30, 2026; retrieved 2026-07-21",
+    "settlementFee": "Residential Sale Escrow Fee, all-cash transaction, tiered by transaction amount (NOT including New Loan Services Escrow Fee): up to $250,000 = $1,100; up to $350,000 = $1,200; up to $450,000 = $1,350; up to $550,000 = $1,460; up to $650,000 = $1,575; up to $750,000 = $1,680; up to $850,000 = $1,800; up to $950,000 = $1,910; up to $1,050,000 = $2,000; up to $1,150,000 = $2,050; up to $1,250,000 = $2,100; up to $1,350,000 = $2,150; up to $1,450,000 = $2,210; up to $2,000,000 = $2,390; above $2,000,000 = $2,500. If financed, add the separate 'New Loan Services Escrow Fee': $430 for one loan plus $200 for each additional loan. Short Sale or For Sale By Owner transactions add $500 to the applicable fee.",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "New Loan Services Escrow Fee: $430 for one loan, +$200 for each additional loan (published, exact)",
+        "Short Sale / For Sale By Owner (FSBO) surcharge: +$500 to applicable escrow fee (published, exact)",
+        "EAGLE Owner's Policy premium at $500,000 policy amount: $1,746",
+        "Standard Owner's Policy premium at $500,000: $1,587",
+        "Extended Loan Policy issued concurrently at $500,000: $1,014",
+        "EAGLE Owner's Policy premium at $1,000,000: $2,723",
+        "Standard Owner's Policy premium at $1,000,000: $2,475",
+        "Extended Loan Policy issued concurrently at $1,000,000: $1,509"
+      ]
+    },
+    "bundlingNotes": "Quoted from the document: 'The charges shown in this Guide for escrow services apply to Basic Escrow Services for a residential resale transaction as described in the complete California Schedule of Escrow Fees. Depending on the specific services provided, additional Charges may be made.' Also: 'Pricing herein does not include governmental fees, including recording fees, mortgage registration tax or conservation fee, or fees for other services excluded from the definition of Basic Escrow Services in the California Schedule of Escrow Fees.' And: 'This Guide is not a complete summary or statement of First American's rates and fees. The complete Schedule of Title Insurance Rates and Fees is on file with the California Department of Insurance.' No itemized doc prep/courier/wire/notary/e-recording line items are broken out in this consumer-facing guide — they are implicitly bundled into 'Basic Escrow Services' or fall under the 'additional Charges may be made' catch-all; the only itemized add-ons explicitly priced are the New Loan Services fee and the Short Sale/FSBO surcharge.",
+    "transactionContext": "Residential resale purchase transactions (all-cash escrow fee table, with a separate published add-on for financed/new-loan transactions) in Alameda, Contra Costa, Marin, Santa Clara, San Francisco, and San Mateo counties (First American's 'Region 3'). Title premium table runs from $100,000 to $5,000,000 policy amount in $10,000 increments; company directs larger transactions to a representative."
+  }
+]
