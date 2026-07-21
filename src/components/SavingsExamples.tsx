@@ -9,7 +9,7 @@ const EXAMPLE_INPUTS = [
   { location: 'San Francisco, CA', state: 'CA', transactionType: 'Purchase', homeValue: 850000 },
   { location: 'Denver, CO', state: 'CO', transactionType: 'Purchase', homeValue: 575000 },
   { location: 'Atlanta, GA', state: 'GA', transactionType: 'Purchase', homeValue: 650000 },
-  { location: 'Charlotte, NC', state: 'NC', transactionType: 'Purchase', homeValue: 425000 },
+  { location: 'Nashville, TN', state: 'TN', transactionType: 'Purchase', homeValue: 425000 },
   { location: 'Seattle, WA', state: 'WA', transactionType: 'Refinance', homeValue: 725000 },
   { location: 'Phoenix, AZ', state: 'AZ', transactionType: 'Purchase', homeValue: 480000 },
 ] as const
