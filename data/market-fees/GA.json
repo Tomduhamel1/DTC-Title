@@ -54,5 +54,149 @@
     },
     "bundlingNotes": "Closing fee, title examination, document prep, and CPL are all SEPARATE line items — a financed purchase totals $825 + $295 + $150 + ~$50 ≈ $1,320 in attorney/service charges before title premium, recording, or optional add-ons like mail-away ($350). Title insurance quoted separately.",
     "transactionContext": "Residential purchase (financed and cash) and refinance; Atlanta-area firm."
+  },
+  {
+    "provider": "Wilson Pruitt LLC (Georgia closing attorney firm)",
+    "sourceUrl": "https://wilsonpruittlaw.com/fee-sheet/",
+    "asOf": "2026-07-21 (retrieval date; no effective date published)",
+    "settlementFee": "$775 financed purchase; $775 cash purchase; $575 refinance",
+    "itemizedFees": {
+      "docPrep": "$150+ (deed preparation)",
+      "processing": null,
+      "courier": null,
+      "wire": "$30 per wire",
+      "edoc": null,
+      "eRecording": "$25 per document (recording fee)",
+      "notarySigning": null,
+      "searchExam": "$250 (purchase); refinance $150 if updating existing exam, $250 for a full new search",
+      "cpl": "$75 insured closing protection letter",
+      "binder": null,
+      "other": [
+        "Title binder fee: $100",
+        "Power of Attorney preparation + recording: $100",
+        "1031 exchange / REO / IRA transaction coordination: $100",
+        "Escrow agreement (holdback): $250–$500",
+        "Mail-away to borrower: $350; to seller: $300",
+        "Subordination agreement handling: $150",
+        "Second mortgage/HELOC closing: $250",
+        "Early/accommodation signing: $350",
+        "Intangible tax: $1.50 per $500 of loan amount",
+        "Transfer tax: $1.00 per $1,000 of sale price"
+      ]
+    },
+    "bundlingNotes": "Attorney fee, title exam, and binder fee are itemized as separate line items rather than bundled into one settlement charge; a financed purchase totals $775 + $250 + $100 + $75 CPL ≈ $1,200 in core attorney/service charges before optional add-ons (mail-away, escrow, early signing) or title premium/recording/transfer taxes.",
+    "transactionContext": "Residential purchase (financed and cash) and refinance; Georgia closing-attorney firm."
+  },
+  {
+    "provider": "First National Title Insurance Company (FNTI) — underwriter rate manual",
+    "sourceUrl": "https://documentpub.fnti.com/Documents/Georgia/Rate%20Manual/FNTI%20GA%20Rate%20Manual%20Effective%202022-02-02.pdf",
+    "asOf": "2022-02-02",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "$50 each per letter",
+      "binder": null,
+      "other": [
+        "Standard Owner's Policy: $4.25/$1,000 up to $100k; $3.70/$1,000 next tier; $3.10/$1,000 above that; minimum premium $300",
+        "Homeowner's Policy: $5.10/$1,000, $4.30/$1,000, $3.60/$1,000 tiers",
+        "Standard Loan Policy: $3.10/$1,000, $2.55/$1,000, $2.25/$1,000 tiers",
+        "Expanded Loan Policy: $3.72/$1,000, $3.06/$1,000, $2.70/$1,000 tiers",
+        "Junior Loan Policy (specialty): flat $110 up to $250,000 coverage",
+        "Mortgage Protection Guarantee: $125",
+        "Mortgage Modification Policy: $125"
+      ]
+    },
+    "bundlingNotes": "General Rule G (Risk Rate) states explicitly: rates \"do not include any charge made for title search, title examination, closing, or escrow services performed by the Insurer, or any of its approved attorneys or agents. Charges made for such services are in addition to the rates and charges set forth herein.\" Direct underwriter confirmation of Georgia's attorney-close pattern — premium and settlement/service charges are billed on entirely separate schedules by different parties.",
+    "transactionContext": "Statewide (all counties of Georgia); residential purchase and refinance premium rates; no settlement/service fee schedule published in this document by design."
+  },
+  {
+    "provider": "The Law Office of Michael Howe, LLC (Tranzon Integrity Partners REO Fee Sheet)",
+    "sourceUrl": "https://www.tranzon.com/otherdocs/ga_closing_fee_schedule.pdf",
+    "asOf": "2026-07-21 (retrieval date; no effective date printed on document)",
+    "settlementFee": "REO/institutional transactions: $450 attorney fee (firm as sole closing agent) or $300 attorney/settlement coordination fee (buyer uses own attorney) — residential",
+    "itemizedFees": {
+      "docPrep": "$100 (seller document preparation, residential)",
+      "processing": null,
+      "courier": "$50 (sole closing agent) / $25 (buyer's own attorney) — residential",
+      "wire": "$25 (wire transfer of seller proceeds)",
+      "edoc": null,
+      "eRecording": "$56 estimate ($10 first page + $2 each additional page per document)",
+      "notarySigning": null,
+      "searchExam": "$95 title/tax update (residential); initial seller title exam $130 + tax/title report $65 = $195 (REO seller-side)",
+      "cpl": null,
+      "binder": "$50 title commitment (required if buyer financing; optional cash)",
+      "other": [
+        "Transfer tax (sale only): 10 cents per $100 of sale price",
+        "Intangible tax: $1.50 per $500 of loan amount",
+        "Extra deed (plus recording): $50 (+$12 recording)",
+        "Power of Attorney (plus recording): $65 (+$16 recording)",
+        "Lender's title insurance: $2.00/thousand of loan amount plus $50",
+        "Owner's title insurance: $3.60/thousand of sale price plus $60 (Enhanced Policy Book Rate; +$100 simultaneous issue fee)",
+        "Commercial REO: seller title exam $500-$850, attorney fee $550-$950+, title commitment $75, minimum premium $750"
+      ]
+    },
+    "bundlingNotes": "This is an REO (bank-owned real estate)/institutional fee sheet, not a standard retail consumer closing schedule — attorney and ancillary fees are materially lower than this firm's likely retail rates because REO investor-sellers negotiate bulk/volume pricing. Two fee structures are published: full-service (firm as sole closing agent, higher fee) vs. coordination-only (buyer brings their own attorney, lower fee). Treated as a distinct institutional market segment, not merged into the standard retail purchase/refinance service-stack range.",
+    "transactionContext": "REO (bank-owned) residential and commercial transactions in Georgia; buyer-side closing fees for Tranzon Integrity Partners auction properties."
+  },
+  {
+    "provider": "First American Title Insurance Company (Georgia Condensed Schedule)",
+    "sourceUrl": "https://www.oneclosingsource.com/wp-content/uploads/2017/03/2018-Rates-Georgia-Condensed-Title-Rate-Manual-Agent-Version-Effect-6-1-18.pdf",
+    "asOf": "2018-06-01",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "$50 for each closing protection letter issued (Section B.2)",
+      "binder": null,
+      "other": [
+        "Residential Owner's Policy: $4.20/$1,000 up to $100k; +$3.65/$1,000 to $500k; +$3.10/$1,000 to $1M; +$3/$1,000 above $1M; minimum $200",
+        "EAGLE Owner's Policy: $5.05/$1,000 up to $100k; +$4.25/$1,000 to $500k; +$3.60/$1,000 above $500k; minimum $200",
+        "Residential Loan Policy: $3.10/$1,000 up to $100k; +$2.50/$1,000 to $500k; +$2.25/$1,000 above $500k; minimum $200",
+        "Concurrent Owner's + Loan Policy: loan policy charge is a FLAT $150 when liability does not exceed the Owner's Policy",
+        "Commercial Owner's/Loan Policy: $2/$1,000 up to $3M, tiered down to $0.40/$1,000 above $50M; minimum $500",
+        "ALTA Residential Limited Coverage Junior Loan Policy: $150 (up to $150k) / $250 ($150k-$300k), unavailable above $300k loan"
+      ]
+    },
+    "bundlingNotes": "Title-premium-only rate manual (\"Rates and Charges contained in this Schedule are applicable only to the products and services provided for herein\") — no escrow, closing, or settlement service fee is published, matching the pattern of every other Georgia underwriter rate manual found (Stewart, FNTI): premiums are filed/published, but attorney/settlement fees are billed separately by the closing attorney and are not part of the underwriter's document.",
+    "transactionContext": "Statewide (all counties of Georgia); residential and commercial purchase/refinance premium rates; published (not filed) schedule, superseding prior filings, per document's own General Information section."
+  },
+  {
+    "provider": "Georgia Title & Escrow Company (recording fee reference page)",
+    "sourceUrl": "https://georgiatitle.com/Real-Estate-Taxes/GA-Recording-Fees/index.html",
+    "asOf": "2026-07-21 (retrieval date; statutory fees stated effective January 1, 2020)",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": "$25 flat per instrument (deeds, security deeds/mortgages, liens, UCC filings, assignments, lien cancellations); $10 for mortgage cancellation noted on original; plats/condo floor plans $10 first page + $10/additional page",
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Fulton County surcharge: $2 per instrument added to statutory recording fees",
+        "Cross-reference fee: $2 per reference",
+        "Writ of Fieri Facias (FiFa): $5.50; FiFa cancellation $5.00",
+        "Georgia Transfer Tax, Intangible Recording Tax, and $10 Residential Mortgage Fee noted as separate line items from recording fees on settlement statements"
+      ]
+    },
+    "bundlingNotes": "A title agency's own published reference table of Georgia's statutory recording fees (not the company's own settlement/closing fee schedule) — useful as an independently-confirmed baseline for the recording-fee component that appears across every Georgia settlement statement, but does not itself price attorney/closing/title-exam services.",
+    "transactionContext": "Statewide Georgia statutory recording fees, all transaction types; published for consumer/agent reference by a Georgia title agency."
   }
 ]

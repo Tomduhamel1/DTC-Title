@@ -38,7 +38,7 @@ still vary and matter).
 | State | Verified sources | Metros | Provider types | Status | Last run |
 |---|---|---|---|---|---|
 | CA | 6 (Corinthian, First American, Pacific Coast Title, Stewart Title Guaranty, WFG National, Fidelity National) | statewide zones + Bay Area/Orange/LA/San Diego/Ventura/Santa Barbara/Northern CA county tables | national-brand underwriters (First American, Stewart, WFG, Fidelity), independent (Corinthian, Pacific Coast Title) | **complete (saturated)** — 6 verified sources, 3 most recent did not move observed service-stack range >10% | 2026-07-21 |
-| GA | 2 (Stewart rate manual, Campbell & Brannon) | 1 (Atlanta) | national-brand underwriter (Stewart), closing-attorney firm (Campbell & Brannon) | **open** — below saturation floor; candidates logged (FNTI manual, Wilson Pruitt, others) not yet verified | 2026-07-21 |
+| GA | 7 (Stewart, Campbell & Brannon, Wilson Pruitt, First National Title Insurance, Michael Howe/Tranzon REO, First American, Georgia Title & Escrow) | 1 (Atlanta/statewide) | national-brand underwriters (Stewart, FNTI, First American), closing-attorney firms (Campbell & Brannon, Wilson Pruitt, Michael Howe), title agency (Georgia Title & Escrow) | **complete (saturated)** — 7 verified sources; retail range stable across last 3 additions once REO/institutional segment (Michael Howe) is scoped out per documented methodology note in GA.md | 2026-07-21 |
 | NC | 3 (Chicago Title/NCTIRB, 24 Hour Closing, Cline Donaldson) | 1+ (24 Hour Closing covers NC/SC) | national-brand underwriter (Chicago Title), independent (24 Hour Closing), closing-attorney (Cline Donaldson) | **open** — below saturation floor; candidates logged (Investors Title, WFG, FNTI, Barristers Title, NC Title Services) not yet verified | 2026-07-21 |
 | CO | 4 (Empire Title/Stewart, Warranty Title, Homestead Title, WFG rate manual) | 2+ (El Paso/Teller, Denver-metro, Colorado Springs) | national-brand (Stewart via Empire, WFG), independent (Warranty, Homestead) | **open** — below saturation floor; LTGC, Fidelity, Central CO Title, Advanced Title found but unusable/blocked | 2026-07-21 |
 | AZ | 4 (Pioneer Title Agency x5 underwriter cards counted as 1 agency source, WFG, Stewart Title Guaranty, First National Title) | 1 (Maricopa County) | independent agency (Pioneer), national-brand underwriters (WFG, Stewart, FNTI) | **open** — below saturation floor; DIFI filing library (richest source) Cloudflare-blocked, retry needed | 2026-07-21 |
@@ -129,3 +129,17 @@ still vary and matter).
   at all). Marked CA **complete (saturated)**. Also confirmed on retry: Old Republic's "Guide to
   Closing Costs" is a customary-payer-allocation table, not a priced schedule — correctly
   excluded both times. Moving to GA next (2 verified, next-lowest state in tier 1).
+- 2026-07-21: GA resumed and closed. Verified 5 new sources on top of the 2 already on record:
+  Wilson Pruitt (closing-attorney fee sheet, direct HTML fetch), First National Title Insurance
+  (GA rate manual via PDF-recovery technique — its General Rule G explicitly confirms GA's
+  attorney-close premium/settlement-fee separation), Michael Howe/Tranzon (an REO/institutional
+  fee sheet with notably lower attorney fees than the two standard retail firms — recorded as
+  evidence but methodologically excluded from the retail service-stack range calculation, same
+  approach CA used to exclude non-priced sources), First American's condensed GA schedule
+  (title-premium-only), and Georgia Title & Escrow's statutory recording-fee reference page. GA
+  now has 7 verified sources; the standard-retail range (Campbell & Brannon vs. Wilson Pruitt) is
+  narrow and stable ($475-$825 core fee, ~$1,200-$1,320 full stack) across the last 3 additions
+  once the REO outlier is scoped out — see GA.md's explicit methodology note. Marked GA
+  **complete (saturated)**. One WFG GA rate manual bulletin was found but unreadable (scanned/
+  image PDF, Read-recovery failed) and another WFG URL 404'd — both logged as unusable. Moving
+  to NC next (3 verified, next state in the open-state resume queue).
