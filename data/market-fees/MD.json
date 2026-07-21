@@ -1,0 +1,135 @@
+[
+  {
+    "provider": "Stewart Title Guaranty Company (underwriter Schedule of Charges)",
+    "sourceUrl": "https://go.stewart.com/rs/067-YWO-436/images/Maryland%20Manual%20Final%20eff%2011-24-2025.pdf?version=0",
+    "asOf": "2025-11-24",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "$50 per transaction regardless of number of CPLs issued; additional $50 for a second mortgage/HELOC by a different lender",
+      "binder": null,
+      "other": [
+        "Owner's/Leasehold Owner's Policy: $5.41/$1,000 up to $250,000; +$4.62/$1,000 to $500,000; +$3.94/$1,000 to $1,000,000; +$3.10/$1,000 to $5,000,000; +$1.75/$1,000 to $15,000,000; +$1.63/$1,000 above; minimum $350",
+        "ALTA Homeowner's Policy: $6.49/$1,000 up to $250,000; +$5.54/$1,000 to $500,000; +$4.73/$1,000 to $1,000,000; minimum $350",
+        "Mortgagee's Policy: $3.52/$1,000 up to $250,000; +$3.20/$1,000 to $500,000; +$2.84/$1,000 to $1,000,000; minimum $350",
+        "Reissue charge: 60% of original schedule of charges",
+        "Residential Refinance Charge for Mortgagee's Policies: 60% of the Original Charge for Mortgagee's Policies",
+        "Simultaneous issue: mortgagee's policy of equal/lesser amount issued with owner's policy on same land = flat $350 ($360 for Enhanced Coverage Residential Loan Policy)",
+        "Corrective endorsement charge: $75; endorsement/new policy on assignment: $125 (or $275 for new policy with same effective date)",
+        "ALTA Residential Limited Coverage Mortgage Modification Policy: $125 (up to $1,000,000); $250 ($1,000,001-$1,500,000); $350 ($1,500,001-$2,000,000)",
+        "Most standard ALTA endorsements (4, 4.1, 5, 5.1, 6, 6.2, 8.1, 9, 14, 14.1-14.3, 22) issued at no charge on residential transactions"
+      ]
+    },
+    "bundlingNotes": "General Provisions state explicitly: 'charges herein quoted are for title insurance charges only... and do not include charges for searches, abstracts, attorney's fees, escrow, or closing service performed and charged for by local attorneys, abstractors, and title companies.' Filed rate manual (Maryland is an insurer-filed state, not promulgated/bureau-rate).",
+    "transactionContext": "Statewide Maryland; residential and commercial purchase/refinance title insurance premium rates; no settlement/service fee published in this document by design."
+  },
+  {
+    "provider": "WFG National Title Insurance Company (underwriter Manual of Title Insurance Rates and Rules)",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/maryland/rates/Maryland%20Rate%20Title%20Manual%20-%20effective%20March%201,%202022.pdf",
+    "asOf": "2022-03-01",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "$30.00 per CPL issued, remitted entirely to the Company; no premium due if the underlying transaction is cancelled",
+      "binder": null,
+      "other": [
+        "Owner's/Leasehold Owner's Policy (Standard Coverage): $5.15/$1,000 up to $250,000; +$4.40/$1,000 to $500,000; +$3.75/$1,000 to $1,000,000; minimum $300 (Enhanced Coverage minimum $360)",
+        "Acquisition Loan Policy (Standard Coverage): $3.36/$1,000 up to $250,000; +$3.05/$1,000 to $500,000; minimum $300; Finance (refinance) Loan Policy Standard: $2.05/$1,000 up to $250,000, minimum $275",
+        "Simultaneous issue owner's + loan policy: each loan policy charged flat $200.00 ($240.00 for Enhanced Loan policy)",
+        "ALTA Residential Limited Coverage Junior Loan Policy: flat $110.00 up to $250,000 liability",
+        "Master Home Equity/HE2 certificate: $45 (up to $250,000); $75 ($250,000-$500,000); $250 ($500,000-$750,000); $300 ($750,000-$1,000,000)",
+        "Mortgage Protection Guarantee / Residential Limited Coverage Mortgage Modification Policy: $125 (up to $1,000,000); $250 ($1,000,001-$1,500,000); $350 ($1,500,001-$2,000,000)",
+        "Lender's Special Rate categories (high-volume electronic lenders only): as low as $275 (over 500 orders/month, $0-$250,000 liability) up to $2,200 (same tier, $4,000,001-$5,000,000)",
+        "Virtually all standard ALTA endorsements (zoning excepted, at $0.25/$1,000) issued at no charge"
+      ]
+    },
+    "bundlingNotes": "Introduction states explicitly: 'Title insurance premiums do not include charges or fees for title search, abstracts, attorney's fees, surveys, escrow, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant' — the clearest and most complete disclaimer of settlement-fee content found in this state's dataset.",
+    "transactionContext": "Statewide Maryland; residential and commercial purchase/refinance title insurance premium rates; no settlement/service fee published in this document by design."
+  },
+  {
+    "provider": "Ardent Title (independent title/settlement company, Cecil County)",
+    "sourceUrl": "https://www.ardenttitle.com/services/standard-fee-schedule/",
+    "asOf": "2026-07-21 (retrieval date; page notes April 1, 2017 as the effective date for title insurance rates specifically)",
+    "settlementFee": "Closing Fee $395.00 (includes document preparation and Consummation Fee); Refinance Closing $350.00; Simultaneous 2nd Mortgage Closing $150.00",
+    "itemizedFees": {
+      "docPrep": "Included in the $395.00 closing fee (not itemized separately)",
+      "processing": "Review/Processing/Procurement for lien/payoff satisfactions $75.00",
+      "courier": "Electronic Delivery/Courier/Express Mail Fee/Postage $25.00",
+      "wire": "Wire Fee/Bank Surcharge $25.00 (for each incoming and each outgoing wire per file)",
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": "Notary $10.00 ($15.00 for combo loans)",
+      "searchExam": "Title Examination and Abstract Fee $225.00",
+      "cpl": "Title Insurance Binder/Closing Protection Letter $50.00 ($25.00 additional for a second binder)",
+      "binder": "$50.00 (combined with CPL, see above)",
+      "other": [
+        "Cecil County recording fee: $60.00 per instrument",
+        "Recordation stamps: $8.20 per thousand of the higher of purchase price/loan amount",
+        "State transfer tax: 0.5% of sales price; County transfer tax: 0.5% of sales price",
+        "Title insurance itself is not a flat fee on this schedule — page states it 'is based on a percentage of the purchase price and loan amount and regulated by the Maryland Insurance Administration' (this refers to rate filing, not a promulgated/bureau rate)",
+        "Estimated basic purchase total (excluding title insurance premium): approximately $750.00"
+      ]
+    },
+    "bundlingNotes": "Independent (non-underwriter) title company; closing/settlement fee explicitly bundles document preparation and consummation into one $395 charge, while examination, notary, wire, courier, and binder/CPL are itemized as separate line items — a hybrid bundling pattern.",
+    "transactionContext": "Residential purchase and refinance; Cecil County, Maryland (northeastern MD, Delaware/PA border area)."
+  },
+  {
+    "provider": "TPF Legal (Maryland residential real estate closing attorney firm)",
+    "sourceUrl": "https://tpf.legal/residential-real-estate-closing-attorney/",
+    "asOf": "2026-07-21 (retrieval date; no effective date published)",
+    "settlementFee": "$750 flat rate for residential real estate closing attorney service",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": []
+    },
+    "bundlingNotes": "Page publishes only a single all-in flat rate for the closing attorney's service and does not itemize document prep, title exam, wire, recording, or other line items separately — the flat rate appears to be positioned as a complete closing-attorney fee, distinct from title insurance premium and third-party charges (recording, transfer tax) which are billed separately per standard Maryland practice.",
+    "transactionContext": "Residential real estate closing attorney representation; Maryland (firm scope not further geographically limited on the page)."
+  },
+  {
+    "provider": "CAL Settlements, LLC (attorney-run settlement company, Burtonsville/Montgomery County)",
+    "sourceUrl": "https://calsettlements.com/wp-content/uploads/sites/335/2023/06/CAL-Fee-Sheet-MD.pdf",
+    "asOf": "2026-07-21 (retrieval date; no effective date printed on document)",
+    "settlementFee": "Buyer's Settlement Fee $395.00 (attorney fee, notary fees, doc prep); Seller's Settlement Fee $250.00",
+    "itemizedFees": {
+      "docPrep": "Included in the $395.00 buyer's settlement fee; Seller's Deed Prep fee is separate at $75.00",
+      "processing": "Release Prep/tracking for existing mortgage $150.00 per loan (if applicable, seller-side)",
+      "courier": "Courier/overnight/copy $95.00",
+      "wire": "Wire fee $20.00",
+      "edoc": null,
+      "eRecording": "E-recording to Simplifile $25.00",
+      "notarySigning": "Included in the $395.00 buyer's settlement fee (not separately itemized)",
+      "searchExam": "Abstract/Title Search estimate $185.00-$325.00; Title Exam Fee $100.00; Judgment Report to Property Insight $16 per name",
+      "cpl": "CPL fee (for lender) to First American $45.00",
+      "binder": "Title binder fee (lender) $125.00",
+      "other": [
+        "Survey fee (not required): estimate $250.00",
+        "Title insurance priced at First American's filed rates, not a flat fee on this sheet; a 40% reissue-rate discount applies if the firm has the prior owner's policy from an earlier closing"
+      ]
+    },
+    "bundlingNotes": "Buyer-side settlement fee explicitly bundles attorney fee, notary fees, and document preparation into one $395 charge; every other service (binder, title search, courier, wire, e-recording, judgment report, CPL, title exam, survey) is itemized separately. Seller's side is a much smaller separate $250 settlement fee plus deed prep and release-tracking — a clear buyer/seller fee split distinct from a single shared settlement charge.",
+    "transactionContext": "Residential purchase; Burtonsville, Montgomery County, Maryland (DC-suburb submarket); bilingual settlement firm run by a licensed attorney."
+  }
+]

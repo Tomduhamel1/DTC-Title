@@ -66,7 +66,7 @@ still vary and matter).
 | KY | 0 | unprocessed | |
 | LA | 0 | unprocessed | |
 | ME | 0 | unprocessed | |
-| MD | 0 | unprocessed | |
+| MD | 5 (Stewart, WFG National, Ardent Title, TPF Legal, CAL Settlements) | 3 (Cecil County; Montgomery County/DC suburbs; unspecified-metro closing attorney) | national-brand underwriters (Stewart, WFG), independent title/settlement companies (Ardent Title), closing-attorney firms (TPF Legal, CAL Settlements) | **complete (scarce)** — 10+ query strategies/direct checks yield only 5 usable sources; national-brand direct offices (First American, Old Republic, Chicago Title, Fidelity) route to interactive calculators only, no static settlement-fee schedules found | 2026-07-21 |
 | MA | 0 | unprocessed | |
 | MN | 0 | unprocessed | |
 | MS | 0 | unprocessed | |
@@ -280,3 +280,23 @@ still vary and matter).
   desired (not required by the contract). Marked IL **complete (target met)**. Moving to
   the next unprocessed tier-2 state (large filed-rate states prioritized: MD, WI, MN,
   LA, SC, KY, OR, CT, OK, etc.).
+- 2026-07-21: Started MD from scratch (next large tier-2 state). Verified 5 sources
+  across 10+ query strategies: Stewart Title Guaranty (2025 premium-only manual, the
+  most standard filed-rate disclaimer), WFG National (2022 premium-only manual, the most
+  explicit settlement-fee-exclusion language found in any state to date), Ardent Title
+  (Cecil County independent settlement company, $395 closing fee bundling doc prep +
+  consummation), TPF Legal (closing attorney, $750 flat rate, unitemized), and CAL
+  Settlements LLC (Montgomery County attorney-run settlement firm, $395 buyer fee /
+  $250 seller fee, richly itemized). Notable finding: two unrelated independent
+  providers in different counties (Ardent, CAL Settlements) both charge exactly $395
+  for a bundled attorney/notary/doc-prep settlement fee. None of the large national
+  underwriters' direct offices (First American, Old Republic, Chicago Title, Fidelity
+  National) were found to publish a static MD settlement-fee schedule -- all route to
+  interactive rate calculators or contact-for-quote pages; Old Republic's hosted rate
+  chart PDF (via masondixonrealestatesettlementco.com) returned empty content on
+  repeated fetch attempts, logged as unresolved for a future session. A first American
+  "Schedule of Fees" PDF found via search turned out to be a 2013 Hawaii document, not
+  Maryland -- excluded as wrong-jurisdiction. With only 5 verified sources (3 pricing
+  settlement services) despite an extensive search, MD meets the contract's scarce
+  criterion. Marked MD **complete (scarce)**. Moving to the next unprocessed tier-2
+  state (WI, MN, LA, SC, KY, OR, CT, OK, etc.).
