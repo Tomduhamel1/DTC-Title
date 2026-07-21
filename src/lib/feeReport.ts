@@ -71,6 +71,22 @@ export interface FeeReport {
   frozenTotals?: FeeReportTotals
 }
 
+// All service charges (settlement, notary, wire, doc/processing/courier if
+// any) compared AS A PACKAGE rather than line-by-line. Providers itemize
+// services differently — one bundles everything into a settlement fee,
+// another splits it across doc-prep/processing/courier/e-doc lines — so
+// line-to-line comparison silently assumes the market shares our line
+// structure. The bucket comparison is robust to that itemization game and
+// strictly more conservative (offsetting is allowed inside the bucket).
+export interface ServiceStackTotals {
+  ourTotal: number
+  typicalLow: number
+  typicalHigh: number
+  // max(0, typicalLow − ourTotal), floored at the bucket level.
+  savings: number
+  comparableCount: number
+}
+
 export interface FeeReportTotals {
   ourTotal: number
   // marketLow/marketHigh describe the local typical range (kept so the report
@@ -79,8 +95,12 @@ export interface FeeReportTotals {
   marketLow: number
   marketHigh: number
   // The canonical claimed savings figures — single conservative numbers, not
-  // a range. estimatedSavings = sum over lines of max(0, line.marketLow - line.ourCost).
+  // a range. estimatedSavings = per-line premium savings (title_related) +
+  // the service-stack bucket savings.
   estimatedSavings: number
+  // Optional so totals frozen before this field existed still type-check;
+  // the table falls back to per-line service badges when absent.
+  serviceStack?: ServiceStackTotals
   // "Save over the loan": at-closing savings + interest avoided over 30 yrs
   // at LIFETIME_RATE_PCT. principal + interest = total paid avoided.
   lifetimeSavings: number
@@ -159,6 +179,8 @@ export function conservativeLineSavings(item: FeeLineItem): number {
 
 // When a line has no explicit savingsSource we fall back to category +
 // isFixed to classify it. Keeps older quote data working.
+// Exported (as savingsSourceOf) so the report table can tell premium lines
+// (compared per-line) from service lines (compared as a package).
 function inferSavingsSource(item: FeeLineItem): SavingsSource {
   if (item.savingsSource) return item.savingsSource
   if (item.isFixed) return 'pass_through'
@@ -167,6 +189,10 @@ function inferSavingsSource(item: FeeLineItem): SavingsSource {
   if (item.feeSource === 'underwriter') return 'title_related'
   if (item.category === 'title-settlement') return 'settlement_fee'
   return 'other_controllable'
+}
+
+export function savingsSourceOf(item: FeeLineItem): SavingsSource {
+  return inferSavingsSource(item)
 }
 
 export function computeTotals(report: FeeReport): FeeReportTotals {
@@ -191,6 +217,14 @@ export function computeTotals(report: FeeReport): FeeReportTotals {
     pass_through_total: 0,
   }
 
+  const serviceStack: ServiceStackTotals = {
+    ourTotal: 0,
+    typicalLow: 0,
+    typicalHigh: 0,
+    savings: 0,
+    comparableCount: 0,
+  }
+
   for (const item of report.lineItems) {
     ourTotal += item.ourCost
     const source = inferSavingsSource(item)
@@ -205,26 +239,28 @@ export function computeTotals(report: FeeReport): FeeReportTotals {
 
     marketLow += item.typicalRange.low
     marketHigh += item.typicalRange.high
-    const lineSavings = conservativeLineSavings(item)
 
-    switch (source) {
-      case 'title_related':
-        breakdown.title_related += lineSavings
-        break
-      case 'settlement_fee':
-        breakdown.settlement_fee += lineSavings
-        break
-      case 'other_controllable':
-        breakdown.other_controllable += lineSavings
-        break
-      case 'pass_through':
-        breakdown.pass_through_total += item.ourCost
-        break
+    if (source === 'title_related') {
+      // Premiums are a like-for-like product — compared per line.
+      breakdown.title_related += conservativeLineSavings(item)
+    } else if (source === 'pass_through') {
+      breakdown.pass_through_total += item.ourCost
+    } else {
+      // Service charges are compared as one package (see ServiceStackTotals).
+      serviceStack.ourTotal += item.ourCost
+      serviceStack.typicalLow += item.typicalRange.low
+      serviceStack.typicalHigh += item.typicalRange.high
+      serviceStack.comparableCount += 1
     }
   }
 
-  const estimatedSavings =
-    breakdown.title_related + breakdown.settlement_fee + breakdown.other_controllable
+  // Bucket-level flooring: offsetting inside the stack is allowed, so this is
+  // ≤ the sum of per-line floors — never less conservative.
+  serviceStack.savings = Math.max(0, serviceStack.typicalLow - serviceStack.ourTotal)
+  breakdown.settlement_fee = serviceStack.savings
+  breakdown.other_controllable = 0
+
+  const estimatedSavings = breakdown.title_related + serviceStack.savings
   const lifetimeSavings = lifetimeFinancedAmount(estimatedSavings)
 
   return {
@@ -232,6 +268,7 @@ export function computeTotals(report: FeeReport): FeeReportTotals {
     marketLow,
     marketHigh,
     estimatedSavings,
+    serviceStack,
     lifetimeSavings,
     breakdown,
     // Back-compat: identical low/high so legacy range UIs collapse to one number.

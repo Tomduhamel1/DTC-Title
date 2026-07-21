@@ -9,6 +9,7 @@ import {
   formatCurrency,
   formatRange,
   groupByCategory,
+  savingsSourceOf,
 } from '@/lib/feeReport'
 
 interface FeeReportTableProps {
@@ -27,6 +28,17 @@ export default function FeeReportTable({
   const totals = computeTotals(report)
   const grouped = groupByCategory(report.lineItems)
   const isPreview = variant === 'preview'
+
+  // Service charges are compared as one package (see ServiceStackTotals in
+  // feeReport) — per-line comparison invites the itemization shell game.
+  // Totals frozen before serviceStack existed fall back to per-line badges.
+  const svc = totals.serviceStack
+  const packageMode = !!svc && svc.comparableCount > 0
+  const isPackagedLine = (item: FeeLineItem) => {
+    if (!packageMode || item.isFixed || !item.typicalRange) return false
+    const source = savingsSourceOf(item)
+    return source === 'settlement_fee' || source === 'other_controllable'
+  }
 
   return (
     <div
@@ -70,13 +82,55 @@ export default function FeeReportTable({
               </div>
               <div className="space-y-5">
                 {items.map((item) => (
-                  <FeeRow key={item.id} item={item} state={report.state} />
+                  <FeeRow
+                    key={item.id}
+                    item={item}
+                    state={report.state}
+                    comparedInPackage={isPackagedLine(item)}
+                  />
                 ))}
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      {/* Service-package comparison — all our service charges vs the typical
+          all-in cost of the same services. Other providers often split these
+          across several separate line items, so a line-by-line comparison
+          would understate (or game) the difference. */}
+      {packageMode && svc && (
+        <div className="mx-7 mb-7 rounded-2xl border border-emerald-200 bg-emerald-50/50 px-5 py-4">
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex-1 min-w-0">
+              <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-700">
+                Title services, compared as a package
+              </div>
+              <div className="text-[11px] text-gray-500 mt-1 leading-snug">
+                Every service charge we bill is itemized above — nothing extra
+                at the table. Other providers often spread the same work across
+                separate document-prep, processing, courier, and e-doc fees.
+              </div>
+            </div>
+            <div className="text-right whitespace-nowrap">
+              <div className="text-[17px] font-black text-dark-900 tabular-nums leading-none tracking-tight">
+                {formatCurrency(svc.ourTotal)}
+              </div>
+              <div className="text-[11px] text-gray-400 mt-1">
+                Typical{' '}
+                <span className="line-through">
+                  {formatRange(svc.typicalLow, svc.typicalHigh)}
+                </span>
+              </div>
+              {svc.savings > 0 && (
+                <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-600 mt-1">
+                  save {formatCurrency(svc.savings)}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Summary */}
       <div className="bg-gray-50 border-t border-gray-100 px-7 py-6">
@@ -129,16 +183,27 @@ export default function FeeReportTable({
       <div className="px-7 py-3 text-[11px] text-gray-400 italic text-center border-t border-gray-100">
         Estimate. Recording fees — and, in states with promulgated or uniform
         rates, title insurance premiums — are set by the state and the same
-        regardless of provider; we never count those toward savings.
-        &ldquo;Typical&rdquo; ranges reflect our estimate of local market
-        pricing for comparable services, and savings are measured against the
-        low end of that range.
+        regardless of provider; we never count those toward savings. Service
+        charges are compared as a complete package, since providers itemize
+        the same work differently. &ldquo;Typical&rdquo; ranges reflect our
+        estimate of local market pricing, and savings are measured against
+        the low end of that range.
       </div>
     </div>
   )
 }
 
-function FeeRow({ item, state }: { item: FeeLineItem; state: string }) {
+function FeeRow({
+  item,
+  state,
+  comparedInPackage = false,
+}: {
+  item: FeeLineItem
+  state: string
+  // Service lines carry no per-line comparison — the package band below the
+  // timeline holds it (bucket savings + premium badges sum to the headline).
+  comparedInPackage?: boolean
+}) {
   const setBy =
     item.feeSource === 'state'
       ? `Set by ${state}`
@@ -146,9 +211,9 @@ function FeeRow({ item, state }: { item: FeeLineItem; state: string }) {
       ? 'Set by county'
       : null
 
-  // Same conservative definition computeTotals sums — badges must add up to
-  // the headline "Save at closing" figure.
-  const lineSavings = conservativeLineSavings(item)
+  // Same conservative definition computeTotals sums — premium badges plus the
+  // service-package badge must add up to the headline "Save at closing".
+  const lineSavings = comparedInPackage ? 0 : conservativeLineSavings(item)
 
   return (
     <div className="relative pl-9">
@@ -166,6 +231,10 @@ function FeeRow({ item, state }: { item: FeeLineItem; state: string }) {
           </div>
           {setBy ? (
             <div className="text-[11px] text-gray-400 mt-1">{setBy}</div>
+          ) : comparedInPackage ? (
+            <div className="text-[11px] text-gray-400 mt-1">
+              Compared in the services package below
+            </div>
           ) : item.typicalRange ? (
             <div className="text-[11px] text-gray-400 mt-1">
               Typical {formatRange(item.typicalRange.low, item.typicalRange.high)}
