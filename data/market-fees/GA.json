@@ -1,1 +1,58 @@
-[]
+[
+  {
+    "provider": "Stewart Title Guaranty Company (underwriter rate manual)",
+    "sourceUrl": "https://www.virtualunderwriter.com/-/media/files/virtualunderwriter/imported/pdfs/georgia-rate-manual_final_-eff-7-08-2024-2.pdf",
+    "asOf": "2024-07-08",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "$50 per letter issued (each party receiving benefit); +$50 for second mortgage/HELOC by a different lender",
+      "binder": null,
+      "other": [
+        "Owner's policy (residential): $5.65/$1,000 to $100k; +$4.95/$1,000 over $100k to $500k; +$4.05/$1,000 over $500k; minimum $200",
+        "Loan policy (residential): $4.00/$1,000 to $100k; +$3.30/$1,000 over $100k to $500k; +$2.95/$1,000 over $500k; minimum $200",
+        "Simultaneous issue: loan policy is a FLAT $200.00 when issued with an owner's policy (loan coverage not in excess of owner's coverage)",
+        "ALTA Enhanced owner's: $6.80/$5.65/$4.60 per $1,000 tiers, minimum $200"
+      ]
+    },
+    "bundlingNotes": "\"The rates quoted in this manual are for the total title insurance charges, and do not include charges for other services provided by attorneys, lenders, surveyors, abstractors or other vendors of real estate services.\" Georgia is an attorney-close state; settlement services are billed separately by the closing attorney. Manual states charges \"have been published and are those that must be charged to the consumer\" per the Georgia Insurance Commissioner (filed rates).",
+    "transactionContext": "Residential purchase/refinance; filed rates for Stewart specifically (Georgia is a filed-rate state; other underwriters file their own schedules)."
+  },
+  {
+    "provider": "Campbell & Brannon (Georgia closing attorney firm)",
+    "sourceUrl": "https://www.campbellandbrannon.com/our-fees/",
+    "asOf": "2026-07-21 (retrieval date; no effective date published)",
+    "settlementFee": "$825 purchase (financed); $775 cash purchase; $475 refinance ($425 returning customer)",
+    "itemizedFees": {
+      "docPrep": "$150 (purchase only)",
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "$295 title examination (purchase/cash); $75 (refinance)",
+      "cpl": "$45–$50 insured closing protection letter",
+      "binder": null,
+      "other": [
+        "Mail Away Package (borrower): $350; (seller): $200",
+        "Power of Attorney + recording: $125",
+        "Second mortgage closing: $350",
+        "Escrow agreement & administration: $250–$500",
+        "REO coordination: $350",
+        "Separate closing time fee: $150",
+        "FinCEN reporting: $295",
+        "Seller payoff handling: $45; seller post-closing per loan: $45"
+      ]
+    },
+    "bundlingNotes": "Closing fee, title examination, document prep, and CPL are all SEPARATE line items — a financed purchase totals $825 + $295 + $150 + ~$50 ≈ $1,320 in attorney/service charges before title premium, recording, or optional add-ons like mail-away ($350). Title insurance quoted separately.",
+    "transactionContext": "Residential purchase (financed and cash) and refinance; Atlanta-area firm."
+  }
+]

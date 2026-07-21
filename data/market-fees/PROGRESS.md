@@ -17,8 +17,8 @@ states), then remaining filed-rate states, then TX/FL/NM/PA/NY/NJ/OH/DE last
 | State | Status | Quality | Last run |
 |---|---|---|---|
 | CA | done | thin (2 verified sources; several more found but blocked by WAF/403) | 2026-07-21 |
-| GA | done | none (thin evidence — blocker) | 2026-07-21 |
-| NC | done | none (thin evidence — blocker) | 2026-07-21 |
+| GA | done | thin (2 verified: Stewart rate manual, Campbell & Brannon) | 2026-07-21 |
+| NC | done | good (3 verified: NCTIRB/Chicago schedule, 24HourClose, Cline Donaldson) | 2026-07-21 |
 | CO | unprocessed | | |
 | AZ | unprocessed | | |
 | WA | unprocessed | | |

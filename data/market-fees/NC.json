@@ -1,1 +1,82 @@
-[]
+[
+  {
+    "provider": "Chicago Title Insurance Company (NCTIRB member — uniform bureau rates)",
+    "sourceUrl": "https://www.northcarolina.ctic.com/getattachment/News-Events/Chicago-Title-Rates-Effective-10-1-2025.pdf?lang=en-US",
+    "asOf": "2025-10-01",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Regular rate (loan and/or owner's): $2.78/$1,000 up to $100k; +$2.17/$1,000 $100,001–$500k; +$1.41/$1,000 $500,001–$2M; +$1.08 to $7M; +$0.75 above",
+        "Minimum premium: $56.00",
+        "Simultaneous issue: single premium on the higher coverage + $28.50 Simultaneous Issue Premium per loan policy issued",
+        "ALTA Homeowner's / Expanded Coverage loan policy: applicable rate + 20% of regular rates"
+      ]
+    },
+    "bundlingNotes": "\"North Carolina title insurance rates apply to ANY title insurance policy issued that insures property situated in North Carolina... Such filed rates are comprehensive and encompass all the premiums for title insurance that are currently authorized.\" Member of the North Carolina Title Insurance Rating Bureau — rates are bureau-uniform across insurers (premiums NOT shoppable in NC).",
+    "transactionContext": "All NC policies; bureau schedule effective 2025-10-01."
+  },
+  {
+    "provider": "24 Hour Closing (NC/SC title & closing company)",
+    "sourceUrl": "https://24hourclose.com/fee-schedule/",
+    "asOf": "2025 (schedule year as published; retrieved 2026-07-21)",
+    "settlementFee": "$650 closing fee (financed purchase/refinance); $550 (cash purchase); +$250 per additional $100,000 above $500,000 purchase price",
+    "itemizedFees": {
+      "docPrep": "$400 loan document prep; $350 seller document prep; $300 land trust document prep",
+      "processing": "$150 admin fees",
+      "courier": null,
+      "wire": "$25 seller proceeds (wire/fedex)",
+      "edoc": null,
+      "eRecording": "stated as included",
+      "notarySigning": null,
+      "searchExam": "$375 title search and final title fee; +$150 outer-county search",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Mail away: $200",
+        "Second loan with separate closing statement: $450",
+        "REO/relocation property: $300",
+        "Unrepresented buyer/seller: $300",
+        "Mobile home: $675",
+        "Curative work: $500 (1–8 hrs) / $1,000 (8–16 hrs)",
+        "Recording: deed $26, deed of trust $64"
+      ]
+    },
+    "bundlingNotes": "Base buyer service stack on a financed purchase = $650 closing + $375 search/final title + $150 admin = $1,175, BEFORE the $250-per-$100k escalator above $500k (a $700k purchase adds $500) and before add-ons like mail-away. Multiple separately billed service lines.",
+    "transactionContext": "NC/SC residential purchase (financed and cash) and refinance; 2025 schedule."
+  },
+  {
+    "provider": "Cline Donaldson PLLC (NC closing attorney)",
+    "sourceUrl": "https://www.clinelawgroupnc.com/news/buyer-closing-costs",
+    "asOf": "2026-07-21 (retrieval date)",
+    "settlementFee": "NOT PUBLISHED — \"Reach out to us about our standard fee\"",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": "$50 overnight fees, each",
+      "wire": null,
+      "edoc": null,
+      "eRecording": "e-recording vendor fee typically $10 financed / $5 cash (up to $150 in some counties)",
+      "notarySigning": "$300 mobile notary",
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Power of attorney preparation: $150",
+        "Recording: deed $26, deed of trust $64",
+        "Premium examples consistent with NCTIRB bureau rates: $500k financed → lender's policy $1,182.50 + simultaneous owner's $78.50"
+      ]
+    },
+    "bundlingNotes": "Attorney/settlement fee deliberately NOT published — must contact the firm. Useful as evidence of market opacity: consumers cannot comparison-shop this firm's settlement fee from public information.",
+    "transactionContext": "NC residential buyer closings."
+  }
+]

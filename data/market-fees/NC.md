@@ -1,5 +1,23 @@
 # North Carolina Market Fees — Research Status
 
+## UPDATE 2026-07-21 — verified from the local (unblocked) session
+
+The egress blocker below applied only to the cloud environment. Three sources were
+fetched and verified locally; NC.json is now populated:
+
+1. **Chicago Title NC rates (NCTIRB member), eff. 2025-10-01**: bureau-uniform premiums
+   $2.78/$2.17/$1.41 per $1,000 tiered, min $56, simultaneous issue +$28.50 per loan
+   policy. Confirms NC is a rating-bureau state — the site's marketBaseline was updated
+   accordingly (PR #43) and NC premium lines no longer claim savings.
+2. **24 Hour Closing (NC/SC, 2025 schedule)**: financed-purchase service stack
+   $650 closing + $375 search/final title + $150 admin = **$1,175**, plus a
+   **$250-per-$100k escalator above $500k**, plus add-ons (loan doc prep $400, mail-away $200).
+3. **Cline Donaldson PLLC**: settlement fee NOT published ("reach out") — market-opacity
+   data point; e-recording ~$10, overnight $50 each, mobile notary $300.
+
+Status upgraded: good (3 verified sources).
+
+
 ## Thin evidence
 
 **No providers could be verified. `NC.json` is an empty array `[]` per the evidence rules.**

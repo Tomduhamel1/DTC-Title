@@ -1,5 +1,22 @@
 # Georgia (GA) Title / Closing / Settlement Fee Research
 
+## UPDATE 2026-07-21 — verified from the local (unblocked) session
+
+The egress blocker below applied only to the cloud environment. Two of the logged
+candidates were fetched and verified locally; GA.json is now populated:
+
+1. **Stewart Title Guaranty GA rate manual** (eff. 2024-07-08, filed rates): owner's
+   $5.65/$4.95/$4.05 per $1,000 tiered (min $200); loan $4.00/$3.30/$2.95 (min $200);
+   **simultaneous-issue loan policy = flat $200**; CPL $50/party. Manual states rates
+   exclude attorney/settlement services (GA = attorney-close state).
+2. **Campbell & Brannon (Atlanta closing attorneys)**: purchase closing fee $825 +
+   title exam $295 + doc prep $150 + CPL ~$50 ≈ **$1,320 service stack** on a financed
+   purchase, before optional add-ons (mail-away $350, second mortgage $350, etc.).
+
+Status upgraded: thin (2 verified sources). Remaining candidates (FNTI manual,
+Wilson Pruitt, etc.) still listed below for future verification.
+
+
 ## Thin evidence
 
 **Result: No usable, verified published fee schedules were collected for Georgia. `GA.json` is an empty array `[]`.**
