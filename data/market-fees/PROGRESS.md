@@ -19,9 +19,9 @@ states), then remaining filed-rate states, then TX/FL/NM/PA/NY/NJ/OH/DE last
 | CA | done | thin (2 verified sources; several more found but blocked by WAF/403) | 2026-07-21 |
 | GA | done | thin (2 verified: Stewart rate manual, Campbell & Brannon) | 2026-07-21 |
 | NC | done | good (3 verified: NCTIRB/Chicago schedule, 24HourClose, Cline Donaldson) | 2026-07-21 |
-| CO | unprocessed | | |
-| AZ | unprocessed | | |
-| WA | unprocessed | | |
+| CO | done | good (4 verified: Empire Title/Stewart, Warranty Title, Homestead Title, WFG rate manual) | 2026-07-21 |
+| AZ | done | good (4 verified: Pioneer Title Agency x5 underwriter cards, WFG, Stewart Title Guaranty, First National Title; DIFI's own filing library was Cloudflare-blocked) | 2026-07-21 |
+| WA | done | good (5 verified: Old Republic x2, WFG, CW Title, Grays Harbor Title, Puget Sound Title) | 2026-07-21 |
 | VA | unprocessed | | |
 | TN | unprocessed | | |
 | MI | unprocessed | | |
@@ -101,3 +101,14 @@ states), then remaining filed-rate states, then TX/FL/NM/PA/NY/NJ/OH/DE last
   verifiable (Pacific Coast Title, Stewart, WFG, Fidelity National Title, Old Republic,
   California Best Title/NATIC all had real-looking schedules that 403'd on every domain
   tried). Worth a retry on GA/NC with the same S3-mirror-search technique.
+- 2026-07-21: Ran CO, AZ, WA (next in priority order after CA/GA/NC). This session's egress
+  was not blocked the way the earlier CA/GA/NC run's was (that run's notes above describe a
+  session-wide 403 on WebFetch, later worked around via S3 mirrors) — direct fetches of
+  vendor PDFs/images succeeded broadly this time, aside from a couple of state-specific
+  Cloudflare-protected domains (Colorado DOI, Arizona DIFI) which still 403'd. All three
+  states landed "good" evidence quality (4, 4, and 5 verified providers respectively). Full
+  detail, itemization patterns, and blocked-source notes are in CO.md/AZ.md/WA.md. Note: this
+  run started from a fresh session that initially assumed no prior work existed and began
+  redundant research on CA/GA/NC before discovering this branch's existing history (PR #42)
+  mid-run; the in-flight CA/GA/NC redo was stopped before any output was produced or written,
+  so no data was overwritten or duplicated.

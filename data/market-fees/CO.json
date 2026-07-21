@@ -1,0 +1,91 @@
+[
+  {
+    "provider": "Empire Title of Colorado Springs (a Division of Stewart Title Company)",
+    "sourceUrl": "https://www.etcos.com/wp-content/uploads/2024/03/333901-24-STC-CO-Empire-Title-El-Paso-Teller-Rate-FLY.pdf",
+    "asOf": "Escrow/closing charges effective 2024-02-20 (title premium rates effective 2023-02-13; PDF revised March 2024)",
+    "settlementFee": {
+      "bundledRealEstateClosingFee": { "realtorDirected": "$360", "forSaleByOwner": "$550" },
+      "bundledLoanClosingFee": { "1stMtgConcurrentWithSale": "$380", "2ndMtgConcurrentWithSale": "$250", "1stMtgRefinance": "$450" },
+      "commercial": { "realEstateClosing": "$500", "loanClosing": "$500" }
+    },
+    "itemizedFees": {
+      "wire": "$25 (1 wire included in bundled fees)",
+      "courier": "included (1) in bundled closing fees, not separately priced outside the bundle",
+      "docPrep": "Mail Out Preparation $30",
+      "other": [
+        { "name": "Tax Certificate", "amount": "$35" },
+        { "name": "Cashier's Check", "amount": "$25" }
+      ]
+    },
+    "bundlingNotes": "Bundled Real Estate Closing Fee 'Includes our fee for closing, presentation, wire fee (1), courier fee (1), mail fees, cashier's check (1), disbursement, except tax certificate and recording fees.' Bundled Loan Closing Fee adds 'loan document retrieval' to the same list, also excluding tax certificate and recording fees. Loan title insurance premiums are separately bundled with endorsements (e.g., Loan Policy Issued with Sale $531 up to $100,000, scaling to $1,406 for $1.5M-$2M; Refinance Loan Policy $525 up to $100,000 scaling to $1,375 for $1M-$2M) and explicitly 'Includes applicable endorsements.'",
+    "transactionContext": "Purchase and refinance covered separately; price-tiered for loan policy premiums (by loan amount), flat-fee (not price-tiered) for the closing/settlement fee itself; county-specific (El Paso and Teller Counties)."
+  },
+  {
+    "provider": "Warranty Title (Colorado Springs, CO)",
+    "sourceUrl": "https://www.warrantytitle.net/closing-rates.html",
+    "asOf": "Effective 2025-05-05",
+    "settlementFee": {
+      "residentialSalesClosing": {
+        "premiumCounties (Adams, Arapahoe, Boulder, Broomfield, Denver, Douglas, El Paso, Elbert, Jefferson, Larimer, Teller, Weld)": { "resale_RealtorBroker": "$285", "forSaleByOwner": "$350", "builderDeveloper": "$205" },
+        "otherCounties": { "resale_RealtorBroker": "$200", "forSaleByOwner": "$325", "builderDeveloper": "$180" }
+      },
+      "lenderLoanClosing_residential": {
+        "conventional/FHA/VA/3rdParty": { "premium": "$285", "other": "$200" },
+        "presentationOnly": { "premium": "$175", "other": "$150" },
+        "disbursementOnly": { "premium": "$175", "other": "$150" },
+        "juniorLoan": { "premium": "$250/$200 (concurrent w/ 1st mtg = lower)", "other": "$200/$120" }
+      },
+      "bundledLoanPackage_premiumCountiesOnly": "$390.00 — includes loan closing fee, courier, wire, tax certificate, e-recording, e-doc and e-storage fees",
+      "commercial": "$375-$400 across transaction types"
+    },
+    "itemizedFees": {
+      "wire": "$25",
+      "courier": "$30",
+      "edoc": "$25",
+      "eRecording": "$43/document (recording) plus E-filing $8/document",
+      "other": [
+        { "name": "E-storage", "amount": "$15" },
+        { "name": "Miscellaneous services", "amount": "$50/hour" },
+        { "name": "Short sale resolution", "amount": "$600" }
+      ]
+    },
+    "bundlingNotes": "Standalone closing fee is unbundled/itemized by default; a separate 'Bundled Loan Closing Fee' product ($390, premium counties only) explicitly packages courier, wire, tax certificate, e-recording, e-doc and e-storage into one line.",
+    "transactionContext": "Purchase (resale/FSBO/builder) and refinance/loan closings covered; two-tier geographic pricing (premium metro counties vs. all other counties) rather than price-of-home tiering."
+  },
+  {
+    "provider": "Homestead Title & Escrow",
+    "sourceUrl": "https://homesteadtc.com/rates/basic-rates/",
+    "asOf": "Effective 2025-03-01",
+    "settlementFee": {
+      "realEstateClosingFee": "$420",
+      "loanClosingFee": "$475"
+    },
+    "itemizedFees": {
+      "eRecording": "$20/document",
+      "other": [
+        { "name": "Consumer Protection Fee", "amount": "$20" },
+        { "name": "Release Tracking Fee", "amount": "$60/payoff" },
+        { "name": "Tax Certificate (buyer)", "amount": "$40" }
+      ]
+    },
+    "bundlingNotes": "Closing fees are listed as standalone, separately itemized line items (not bundled into one all-in figure); page separately notes 'Owners Extended Coverage: Included with Eagle Policy' for the title insurance product. Coverage area: Adams, Arapahoe, Broomfield, Denver, Douglas, Elbert, Gilpin, Jefferson, Clear Creek counties.",
+    "transactionContext": "Purchase (Real Estate Closing Fee) and refinance/loan (Loan Closing Fee) priced as flat separate fees; not tiered by sale price. Title insurance premium itself is tiered by policy amount (Basic Rate table) and reissue rates tiered by time since prior policy (55%/60%/75% of Basic Rate by year band)."
+  },
+  {
+    "provider": "WFG National Title Insurance Company (underwriter) — Colorado Title Insurance Rate Manual",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/colorado/rates/WFG%20Colorado%20Title%20Rate%20Manual%20effective%201-15-2026%20.pdf",
+    "asOf": "Effective 2026-01-15 (filed rate manual)",
+    "settlementFee": "NOT APPLICABLE / NOT INCLUDED — the manual explicitly states (Section A.c): title insurance premiums do NOT include 'any charges for escrow, settlement or closing services, including but not limited to escrow service fees, handling of escrows, settlements or closings, mechanic's lien review, disbursement fees, delivery fees, copies fees, attorney's fees, document preparation fees, or any other special services.' Those are billed by the settlement agent separately.",
+    "itemizedFees": {
+      "cpl": "$25 per protected party (Closing Protection Letter, Section J) — 'deemed to be earned upon closing... If the transaction is cancelled and does not close, the CPL fee is waived.'",
+      "other": [
+        { "name": "TBD Commitment (6-month hold, no concurrent transaction)", "amount": "$350" },
+        { "name": "Additional chain of title search", "amount": "$100 each" },
+        { "name": "Policy correction/replacement endorsement", "amount": "$150" },
+        { "name": "Lost policy replacement", "amount": "$50" }
+      ]
+    },
+    "bundlingNotes": "Title-insurance premium manual only, zoned by county (Zone 1: Adams/Arapahoe/Broomfield/Denver/Douglas/Elbert/Jefferson; Zone 2: Boulder/Larimer/Weld; Zone 3: El Paso/Pueblo/Teller; Zone 4: all others). Owner's policy minimum premiums: Zone 1 $900, Zone 2 $700, Zone 3 $600, Zone 4 $900 (for $0-$5,000 coverage tier), scaling up per the Basic Rate Table (e.g., $1M policy = $2,990 Zone 1 / $2,640 Zone 2 / $2,572 Zone 3 / $2,990 Zone 4). Confirms CO is a filed-rate (not promulgated) state and that closing/settlement fees are filed and charged separately from the underwriter's premium by the settlement agent.",
+    "transactionContext": "Premiums are purchase/owner's-policy and loan-policy, price(liability)-tiered by $5,000 increments up to $1M then larger increments; also lists 'Bundled Simultaneous Purchase Loan Rate' and 'Bundled Residential Refinance Loan Rate' tables which bundle the loan policy premium (not settlement fees) with specified endorsements at no extra charge."
+  }
+]

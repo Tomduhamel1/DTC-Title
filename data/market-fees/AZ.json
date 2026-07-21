@@ -1,0 +1,67 @@
+[
+  {
+    "provider": "Pioneer Title Agency (AZ escrow agency; escrow fee schedule filed identically across the underwriters it represents — First American, Old Republic, Stewart, First National, and Title Resources Guaranty)",
+    "sourceUrl": "https://pioneertitleagency.com/wp-content/uploads/2026/05/First-American-Maricopa.pdf",
+    "otherSourceUrls": [
+      "https://pioneertitleagency.com/wp-content/uploads/2026/05/Old-Republic-Maricopa.pdf",
+      "https://pioneertitleagency.com/wp-content/uploads/2026/05/Stewart-Maricopa.pdf",
+      "https://pioneertitleagency.com/wp-content/uploads/2026/05/First-National-Maricopa.pdf",
+      "https://pioneertitleagency.com/wp-content/uploads/2026/05/Title-Resources-Maricopa.pdf",
+      "https://www.pioneertitleagency.com/title-and-escrow/rate-schedule/"
+    ],
+    "asOf": "PDF metadata CreationDate 2026-04-28/29, filename tag '4.20.26 Rate Card' (Maricopa/Pima/Pinal 'Zone 1'); title-insurance-premium portion tagged effective 2024-04-01. Retrieved 2026-07-21.",
+    "settlementFee": "Tiered 'Escrow Service' fee by transaction/insurance amount (Maricopa County), identical across all 5 underwriter-branded rate cards fetched: $100,000 -> $800.00; $200,000 -> $952.00; $300,000 -> $1,102.00; $400,000 -> $1,222.00; $500,000 -> $1,342.00; $1,000,000 -> $1,942.00. Table continues in $10,000/$20,000 increments up to $4,190,000, then 'add per $10,000 or fraction: $8.00' (varies slightly by underwriter card).",
+    "itemizedFees": {
+      "courier": "$30.00 per package (standalone rate)",
+      "other": [
+        { "name": "Combined sale + loan escrow additional charge", "amount": "$300.00 — 'includes electronic document, domestic wire and courier fees'" },
+        { "name": "Seller All Inclusive Rate", "amount": "$300.00 — 'includes unlimited reconveyance and tracking, domestic wire and courier fees'" },
+        { "name": "Reconveyance and Tracking", "amount": "$100.00 per release" },
+        { "name": "Owner's + Standard Lender's Policy combination surcharge", "amount": "Owner's rate + $100.00" },
+        { "name": "Extended Lender's Policy combination surcharge", "amount": "additional 65% (First American/WFG-style cards) or 60% (Stewart card) of the Owner's rate" }
+      ]
+    },
+    "bundlingNotes": "'When combining a sale and a loan escrow, there will be an additional charge of $300.00 which includes electronic document, domestic wire and courier fees.' Also: 'Seller All Inclusive Rate of $300.00 includes unlimited reconveyance and tracking, domestic wire and courier fees.' Also: 'The scheduled rates do not include the costs of surveys or special inspections' and 'The Company reserves the right to charge additional fees in unusual circumstances.'",
+    "transactionContext": "Price-tiered by amount of insurance/property value; separate columns for Owner's Policy, Extended Owner's Policy, Standard Loan Policy, Extended Loan Policy, Combo, and 'Escrow Service.' Applies to Maricopa (and per-county variants for Pima/Pinal etc.) purchase and refinance escrows; the $300 'combining sale + loan' surcharge specifically targets concurrent-financing purchase transactions."
+  },
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/arizona/rates/Arizona%20Title%20Rate%20Manual%20%20effective%203-1-23.pdf",
+    "asOf": "Effective 2023-03-01",
+    "settlementFee": "NOT DISCLOSED — this is a title-insurance PREMIUM rate manual only; per its own text, escrow/settlement fees are filed separately by agencies, not by the underwriter.",
+    "itemizedFees": {
+      "cpl": "$25.00 for the lender; $25.00 for seller(s); $25.00 for buyer(s)/borrower(s) — three separate $25 Closing Protection Letter charges, one per party category."
+    },
+    "bundlingNotes": "'Unless otherwise stated, the rates contained herein shall include both the charge for gross premium for title insurance and the charge for search of title and examination thereof... and do not include any additional service(s) unless otherwise noted or provided for in this schedule of fees and charges.'",
+    "transactionContext": "Owner's/Loan policy premiums tiered by amount of insurance; distinguishes Purchase Transaction vs. Acquisition/Finance Loan in its definitions section; Lender's Special Rates available only for finance (refi) loans, not purchases."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company (statewide underwriter rate manual, distinct from the Stewart-branded Pioneer agency card above)",
+    "sourceUrl": "https://www.virtualunderwriter.com/-/media/files/virtualunderwriter/imported/pdfs/stgc-arizona-rate-manual-final_eff-09-11-2023.pdf",
+    "asOf": "Effective 2023-09-11",
+    "settlementFee": "NOT DISCLOSED in this manual (title-insurance premium manual; escrow fee filed separately by the agency). Manual references an inspection-fee carve-out '...unless an escrow fee is not otherwise charged... only applicable for title only transactions where there is no escrow service provided,' confirming escrow fees live in a separate agency filing.",
+    "itemizedFees": {
+      "cpl": "$20 per Insured Closing Letter (Closing Protection Letter) issued, with a maximum of $40 per transaction",
+      "other": [
+        { "name": "Additional Chain or Parcel Charge", "amount": "$100.00 per parcel/chain over one" },
+        { "name": "Duplicate Policy/Correction Charge", "amount": "$50.00 per duplicate/corrected form" },
+        { "name": "Inspection Fee", "amount": "$150.00 or actual cost, whichever is greater" },
+        { "name": "Special Services", "amount": "$125.00 per hour, billed in one-hour increments" },
+        { "name": "Multiple Loan Policies surcharge", "amount": "$100.00 for additional policy over one" }
+      ]
+    },
+    "bundlingNotes": "'Insured Closing Letter (Closing Protection Letter) Charge: $20 per letter issued with a maximum of $40 per transaction.'",
+    "transactionContext": "Statewide AZ underwriter rate manual; covers both purchase and refinance policy issuance."
+  },
+  {
+    "provider": "First National Title Insurance Company (FNTI)",
+    "sourceUrl": "https://documentpub.fnti.com/Documents/Arizona/Rate%20Manual/Effective%208-1-2023/FNTI%20AZ%20Rate%20Manual%20Effective%20August%201,%202023.pdf",
+    "asOf": "Effective 2023-08-01",
+    "settlementFee": "NOT DISCLOSED — title-insurance premium manual only (37 pages), filed under Title 20 ARS; no escrow/settlement fee table present.",
+    "itemizedFees": {
+      "cpl": "$25.00 per Closing Protection Letter issued at time of closing"
+    },
+    "bundlingNotes": "'Based on Arizona Revised Statutes 6-841.02; relating to escrow agents. The fee for each closing protection letter \"CPL\" issued at the time of closing shall be $25.00.'",
+    "transactionContext": "Statewide AZ rate manual; commercial tiered discount schedule present (65%/60%/55% of basic rate at $5M/$10M/$50M+ insurance amounts) but that's premium, not escrow."
+  }
+]
