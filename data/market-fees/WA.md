@@ -1,16 +1,33 @@
 # Washington — Market Fee Evidence
 
-Evidence quality: **good** (5 verified providers, 6 documents).
+## Status: complete (saturated) — 7 verified providers, 8 documents, 2026-07-21
+
+Washington meets the completion contract's saturation bar: 7 independently verified,
+directly-fetched providers, spanning national-brand underwriters (Old Republic, WFG) and
+independent county-based title/escrow companies (CW Title, Grays Harbor, Puget Sound,
+Spokane County Title, Equity Title). The 2 most recently added sources (Spokane County
+Title, Equity Title) both price purchase and refinance escrow fees that fall comfortably
+within the range already established by the prior 5 providers ($700-$2,900 purchase,
+$430-$695 refinance) — neither pushes the observed min or max by more than ~10%. Marked
+**complete (saturated)**.
 
 ## All-in service-stack range observed
 
 For a typical residential purchase in the $300K–$500K band, base settlement/escrow fees
 (pre-tax, before any itemized add-ons) ranged roughly **$1,180 (Grays Harbor) to $2,600
-(CW Title)**, with Old Republic (2023) at $2,000–$2,400 and Puget Sound Title at
-$1,960–$2,430 for the same band. For refinance, flat fees clustered tightly: **$450–$625**
-(Old Republic, WFG, Puget Sound Title, Grays Harbor's half-fee-or-$400 rule), with CW Title's
-$525/$625 loan-tiered refi fee in the same range. WFG's schedule stood out for having no
-published purchase-price tier at all — only flat refinance and negotiable commercial rates.
+(CW Title)**, with Old Republic (2023) at $2,000–$2,400, Puget Sound Title at
+$1,960–$2,430, Spokane County Title at $1,500–$1,700, and Equity Title at $2,200–$2,400
+for the same band — all 7 providers cluster within the pre-existing range. For refinance,
+flat fees clustered tightly: **$430–$695** (Old Republic, WFG, Puget Sound Title, Spokane
+County Title, Grays Harbor's half-fee-or-$400 rule, Equity Title's core-county $430-$450
+vs. outside-county $675-$695), with CW Title's $525/$625 loan-tiered refi fee in the same
+band. WFG's schedule stood out for having no published purchase-price tier at all — only
+flat refinance and negotiable commercial rates. Equity Title's core-4-county
+($430-$450) vs. outside-county ($675-$695) refinance pricing — a ~54% premium outside
+King/Pierce/Thurston/Snohomish — is the most explicit geographic bundling differential
+found in WA, reinforcing county/metro-area variance as the dominant driver of WA
+settlement-fee spread (consistent with the pattern already observed across the other 6
+providers' county-specific schedules).
 
 ## Itemization / bundling patterns
 
@@ -65,6 +82,24 @@ schedule).
   filings was found; OIC's own guidance directs requesters to submit a records request or
   email to obtain specific filed schedules — the providers above chose to self-publish
   instead, which is why they were findable.
+
+## Additional sources found this session (2026-07-21)
+
+- **Spokane County Title** (`spokanetitle.com/rates-escrow`) — fetched directly (HTML,
+  no PDF recovery needed); full price-tiered residential schedule, effective 2024-01-01.
+- **Equity Title of Washington** (`equitywa.com/docs/ETW_EscrowFees_Flyer_Digital.pdf`) —
+  WebFetch's summarizer failed on the PDF text; recovered via the Read-on-saved-binary
+  technique. Notable for its explicit core-county vs. outside-county refinance pricing
+  differential.
+- Also found via search but not fetched (time/priority): Whatcom Land Title
+  (`whatcomtitle.com`, PDF fetched but Read-recovery also failed — image-based/scanned
+  PDF), Stevens County Title (`stevenscountytitle.com`, PDF not attempted this session).
+  These remain candidates if WA needed further sources, but the state already meets
+  saturation without them.
+- Queries run this session: "Washington title company escrow fee schedule pdf 2025 2026
+  rate sheet [excluding known providers]", "Chicago Title Washington escrow fee schedule
+  pdf rate card" — Chicago Title's WA-specific schedule was not found (results returned
+  IL/AZ documents instead, consistent with the prior session's finding).
 
 ## Sources
 

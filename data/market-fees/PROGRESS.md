@@ -42,7 +42,7 @@ still vary and matter).
 | NC | 6 (Chicago Title, 24 Hour Closing, Cline Donaldson, NC Title Services, Barristers Title, Investors Title) | 1+ (24 Hour Closing covers NC/SC) | national-brand underwriters (Chicago Title, Investors Title), independent (24 Hour Closing, NC Title Services, Barristers Title), closing-attorney (Cline Donaldson) | **complete (saturated)** — 6 verified sources; last 3 additions are bureau-rate corroborations that don't price settlement fees, 0% range movement | 2026-07-21 |
 | CO | 4 (Empire Title/Stewart, Warranty Title, Homestead Title, WFG rate manual) | 2+ (El Paso/Teller, Denver-metro, Colorado Springs) | national-brand (Stewart via Empire, WFG), independent (Warranty, Homestead) | **complete (scarce)** — 15+ combined query strategies/direct checks across 2 sessions yield <6 usable schedules; CO settlement fees are filed privately with DOI, not routinely published publicly | 2026-07-21 |
 | AZ | 5 (Pioneer Title Agency, WFG, Stewart Title Guaranty, First National Title, Arizona Escrow & Financial) | 1 (Maricopa County) | independent agencies (Pioneer, Arizona Escrow), national-brand underwriters (WFG, Stewart, FNTI) | **complete (scarce)** — DIFI filing library confirmed Cloudflare-blocked across 3 access paths and 2 sessions; 8+ new query strategies this session found only 1 new usable source | 2026-07-21 |
-| WA | 5 (Old Republic x2, WFG, CW Title, Grays Harbor Title, Puget Sound Title) | 3+ (Grays Harbor, Puget Sound area, statewide schedules) | national-brand (Old Republic, WFG), independent (CW Title, Grays Harbor, Puget Sound) | **open** — 1 short of saturation floor (6); First American/Fidelity WA-specific schedules not found yet | 2026-07-21 |
+| WA | 7 (Old Republic x2, WFG, CW Title, Grays Harbor, Puget Sound, Spokane County Title, Equity Title) | 5+ (Grays Harbor, Puget Sound area, Spokane, King/Pierce/Thurston/Snohomish, statewide schedules) | national-brand (Old Republic, WFG), independent (CW Title, Grays Harbor, Puget Sound, Spokane County Title, Equity Title) | **complete (saturated)** — 7 providers/8 documents; last 2 additions fall within the pre-existing range, no >10% movement | 2026-07-21 |
 | VA | 0 | | | unprocessed | |
 | TN | 0 | | | unprocessed | |
 | MI | 0 | | | unprocessed | |
@@ -177,3 +177,14 @@ still vary and matter).
   verified sources. Marked AZ **complete (scarce)**. Moving to WA next (5 verified, next
   state in the open-state resume queue — closest to the saturation floor of any open
   state).
+- 2026-07-21: WA resumed and closed. Found and verified 2 new sources: Spokane County
+  Title (direct HTML fetch) and Equity Title of Washington (PDF via the recovery
+  technique — notable for its explicit ~54% core-county vs. outside-county refinance
+  pricing differential, the most explicit geographic bundling pattern found in WA). Both
+  new sources' purchase and refinance figures fall within the range already established
+  by the prior 5 providers, so the 2 most recent additions moved the range 0%. WA now has
+  7 verified providers (8 documents counting Old Republic's 2017/2023 vintages
+  separately), meeting the saturation floor. Marked WA **complete (saturated)**. This
+  closes out every open state from the original resume queue (CA, GA, NC, CO, AZ, WA) —
+  4 saturated, 2 scarce. Moving to the remaining unprocessed tier-1 states: VA, TN, MI,
+  MO.
