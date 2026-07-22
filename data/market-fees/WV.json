@@ -1,0 +1,78 @@
+[
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://www.stewart.com/-/media/files/stewartdotcom/pdfs/states/west-virginia/west_virginia_full_manual_eff_08_25_2023_final.pdf",
+    "asOf": "Effective 2023-08-25 (last updated 2023-06-14)",
+    "settlementFee": {
+      "note": "Title insurance premium (Schedule of Charges) only, NOT a settlement/escrow fee schedule. The manual's own 'Charge' definition explicitly excludes settlement fee, trustee fee, attorney fee, surveying fee, inspection fee, document fee, closing fee, escrow fee, or any other fee associated with escrow -- those are billed separately by local attorneys/abstract companies and are not published by Stewart.",
+      "residentialOwnersPolicyTable_sample": "$0-$100,000 of liability: $3.90/thousand; over $100,000-$500,000 add $3.40/thousand; over $500,000-$5,000,000 add $3.00/thousand; over $5,000,000-$10,000,000 add $2.00/thousand; over $10,000,000-$20,000,000 add $1.75/thousand; over $20,000,000 add $1.00/thousand. Minimum $200 (fixed).",
+      "altaHomeownersPolicy": "$0-$100,000: $4.68/thousand; over $100,000-$500,000 add $4.08/thousand; over $500,000-$5,000,000 add $3.60/thousand. Minimum $200 (fixed).",
+      "residentialLoanPolicyTable_sample": "$0-$100,000: $2.90/thousand; over $100,000-$500,000 add $2.40/thousand; over $500,000-$5,000,000 add $2.00/thousand. Minimum $200 (fixed).",
+      "refinanceLoanPolicy": "$0-$100,000: $2.25/thousand; over $100,000-$500,000 add $1.50/thousand; over $500,000-$5,000,000 add $1.15/thousand. Minimum $200.",
+      "reissueRateOwners": "70% of original owner's/leasehold charge, up to the amount of the prior policy (policy must be within 10 years). Minimum $200.",
+      "simultaneousIssue": "Owner's + Loan under $1M liability: Owner's at 100% of Basic Schedule, Loan policy flat $100. At $1M+ liability: Owner's at 100%, Loan policy flat $500.",
+      "cpl": "Lender or purchaser CPL $50; seller CPL $75 (each party receiving benefit is charged separately); additional $50 for a second mortgage/HELOC by a non-primary lender."
+    },
+    "itemizedFees": {
+      "cpl": "$50 lender/purchaser, $75 seller (see settlementFee.cpl)",
+      "other": [
+        { "name": "Article 9 Comprehensive Plus Policy (UCC/personal-property collateral)", "amount": "$500 fixed up to $100,000 liability, then tiered $3.85-$0.50/thousand above that" },
+        { "name": "Secondary Market Short Form Residential Loan Policy (1-4 family)", "amount": "$350 up to $250,000; $450 to $500,000; $550 to $750,000; $650 to $1,000,000; $750 to $1,500,000" },
+        { "name": "Modification Guarantee", "amount": "$150 (each continuation/down date $25)" },
+        { "name": "Centralized Processing Loan and Refinance Rate (CPLR, multi-state agents only)", "amount": "$350 up to $250,000 rising to $2,150 at $4,000,000-$5,000,000" },
+        { "name": "Limited Coverage STG Home Equity Loan Policy (HELP)", "amount": "$45 up to $100,000; $65 to $250,000; $125 to $500,000" },
+        { "name": "Foreclosure Insurance Policy (ALTA Limited Pre-Foreclosure)", "amount": "40% of Original Mortgagee Loan Policy charge, minimum $85" },
+        { "name": "Extra-hazardous risk charge (decedent's-estate transfer within 1 year of death)", "amount": "$2.00/thousand of sales price, minimum $250" }
+      ]
+    },
+    "bundlingNotes": "General Provisions define 'Charge' to explicitly exclude settlement fee, trustee fee, attorney fee, surveying fee, inspection fee, document fee, closing fee, escrow fee, or any other fee associated with escrow -- these are billed by 'local attorneys, surveyors, abstractors, or abstract companies' and are not part of this filed manual. No settlement/service-fee dollar figures appear anywhere in the 17-page document apart from the CPL fee.",
+    "transactionContext": "Owner's (Standard, ALTA Homeowner's), Loan (Standard, Expanded Coverage, Refinance, Junior/Home Equity), and full ALTA endorsement schedule, statewide (all counties charged identically -- no metro/county tiering, unlike some neighboring states)."
+  },
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/west-virginia/rate-manuals/West%20Virginia%20Rate%20Manual%20Effective%20March%201,%202022.pdf",
+    "asOf": "Effective 2022-03-01",
+    "settlementFee": {
+      "note": "Title insurance premium (Manual of Title Insurance Premiums) only, NOT a settlement/escrow fee schedule. The manual's Introduction states rates shown are 'the total title insurance fees charged the applicant including both the risk portion and the service or work portion, but do not include charges for title search, surveys, closing services, settlement services, recording fees, other charges.'",
+      "nonCommercialOwnersPolicyTable_sample": "Up to $100,000: $4.00/thousand; $100,001-$500,000 add $3.00/thousand; $500,001-$1,000,000 add $2.25/thousand; $1,000,001-$5,000,000 add $2.00/thousand. Minimum $150.",
+      "homeownerPolicyTable_sample": "Up to $100,000: $4.80/thousand; $100,001-$500,000 add $4.50/thousand. Minimum $150.",
+      "nonCommercialLoanPolicyTable_sample": "Up to $100,000: $3.00/thousand; $100,001-$500,000 add $2.25/thousand; $500,001-$1,000,000 add $1.75/thousand. Minimum $150.",
+      "simultaneousIssueOwnersLoan": "Owner's policy at applicable rate plus flat $150 per loan policy issued.",
+      "reissueRefinance": "70% of original owner's or loan rate up to the amount of the existing policy (policy must be within 10 years).",
+      "lendersSpecialRates": "Volume-tiered lender programs (100/200/300/500 minimum orders) with materially lower premiums, e.g. Rate 4 (500+ orders): $275 up to $250,000 liability rising to $2,200 at $4,000,000-$5,000,000 -- available only to qualifying high-volume lenders with centralized electronic processing."
+    },
+    "itemizedFees": {
+      "other": [
+        { "name": "HE2 Home Equity 2nd Generation Policy certificate", "amount": "$45 up to $250,000; $75 to $500,000; $250 to $750,000; $300 to $1,000,000" },
+        { "name": "ALTA Residential Limited Coverage Junior Loan Policy", "amount": "flat $110 up to $250,000 liability" },
+        { "name": "Mortgage Priority Guarantee / Residential Limited Coverage Mortgage Modification Policy", "amount": "$125 (up to $250,000 unpaid principal balance)" }
+      ]
+    },
+    "bundlingNotes": "Introduction paragraph is the most explicit settlement-fee-exclusion language of the 3 WV underwriter manuals found this session, naming 6 distinct excluded categories (title search, surveys, closing services, settlement services, recording fees, other charges/monies advanced). No CPL fee schedule was located in the sections of this manual retrieved (unlike Stewart and FNTI, both of which publish an explicit CPL fee).",
+    "transactionContext": "Owner's, Homeowner's (Expanded/ALTA), Loan, and Expanded Coverage Loan policies for non-commercial and commercial property, statewide, plus a separate Lender's Special Rate volume-discount schedule for qualifying high-volume centralized lenders."
+  },
+  {
+    "provider": "First National Title Insurance Company (FNTI)",
+    "sourceUrl": "https://documentpub.fnti.com/Documents/West%20Virginia/Rate%20Manual/FNTI%20WV%20Rate%20Manual%20Effective%202022-09-20.pdf",
+    "asOf": "Effective 2022-09-20",
+    "settlementFee": {
+      "note": "Title insurance premium (Rates and Rules Manual) only, NOT a settlement/escrow fee schedule. General Rule F ('Risk Rate') explicitly states: 'The rates set forth herein do not include any charge made for title search, title examination, closing, or escrow services performed by the Insurer, or any of its approved attorneys or agents. Charges made for such services are in addition to the rates and charges set forth herein.'",
+      "ownersPolicyTable_sample": "Up to $125,000: $4.00/thousand; $125,001-$500,000 add $3.20/thousand; $500,001-$1,000,000 add $2.10/thousand; $1,000,001-$5,000,000 add $2.00/thousand. Minimum $200.",
+      "loanPolicyTable_sample": "Up to $125,000: $3.00/thousand; $125,001-$500,000 add $2.20/thousand; $500,001-$1,000,000 add $1.70/thousand. Minimum $200.",
+      "simultaneousIssue": "Owner's + Loan Policy on identical land: applicable Owner's rate plus flat $150 for the Loan Policy.",
+      "reissueRate": "70% of original rate within 5 years of prior policy issuance (up to the face amount of the previous policy).",
+      "refinanceRate": "70% of Basic Loan Rate if previous loan policy is 5 years old or less; 100% of Basic Loan Rate if over 5 years old. Minimum $200.",
+      "cpl": "Lender CPL $50.00; Purchaser CPL $25.00; Seller CPL $25.00.",
+      "centralizedLoanRate": "Multi-state/centralized-processing refinance program: $360 up to $250,000 liability rising to $1,300 at $2,000,001-$3,000,000."
+    },
+    "itemizedFees": {
+      "cpl": "$50 lender, $25 purchaser, $25 seller",
+      "other": [
+        { "name": "ALTA Residential Limited Coverage Junior Loan Policy", "amount": "$150 up to $150,000; $250 to $250,000; add $1/thousand above $250,000" },
+        { "name": "Master Home Equity / HE2 Home Equity 2nd Generation certificate", "amount": "$125 up to $250,000; $200 to $500,000; $300 to $750,000; $400 to $1,000,000" }
+      ]
+    },
+    "bundlingNotes": "General Rule F is the clearest single-sentence 'Risk Rate' exclusion of settlement/search/exam/closing/escrow charges found among the 3 WV manuals reviewed this session, and (together with Stewart) is one of only two WV underwriters to publish a standalone CPL fee -- notably lower on the purchaser/seller side ($25/$25) than Stewart's ($50/$75).",
+    "transactionContext": "Owner's and Loan (including Refinance, Junior, Home Equity) policies for all 55 West Virginia counties (full county code table published), statewide uniform rates -- no metro/county tiering."
+  }
+]

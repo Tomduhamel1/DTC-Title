@@ -82,7 +82,7 @@ still vary and matter).
 | SD | 5 (Stewart, WFG National, Pennington Title/Rapid City, Titles of Dakota/Aberdeen + 16 rural counties, Black Hills Title/northern Black Hills) | 3 (Sioux Falls/Yankton metro via Stewart's metro tier only, Rapid City/Pennington County via Pennington Title, Aberdeen + rural north-central/south-central SD via Titles of Dakota; northern Black Hills via Black Hills Title) | national-brand underwriters (Stewart, WFG), independent title/abstract companies (Pennington Title, Titles of Dakota, Black Hills Title) | **complete (scarce)** — 27+ query strategies/~30 direct provider-site checks yield only 5 usable sources despite SD's insurer-filed premium regime; notably higher evidence quality than most scarce states since 3 of 5 are genuine independent-company schedules (2 with real settlement/closing fees, not premium-only), and Titles of Dakota uniquely publishes closing fee + search/exam fee + its own filed premium table together | 2026-07-22 |
 | UT | 5 (Stewart Title Guaranty, WFG National, First National Title Insurance, Sutherland Title, Provo Abstract) | 2 of 4 targeted metros with published pricing (Salt Lake City/Wasatch Front via Sutherland Title, Provo/Utah County via Provo Abstract; Ogden/Weber and St. George/Washington found no static independent pricing despite dedicated search) | national-brand underwriters (Stewart, WFG, FNTI), independent title/escrow companies (Sutherland Title, Provo Abstract) | **complete (scarce)** — 28 query strategies/direct checks of all major national-brand offices plus ~12 independent UT companies yield only 5 usable sources; confirmed former escrow-fee filing rule R592-15 was repealed 2023-08-21 (HB 410), and confirmed the "Utah Title & Escrow Association" hypothesized in the task brief does not exist as a fee-schedule publisher (the real body, Utah Land and Title Association, publishes only recording-practice standards, no rates). Notable finding: Stewart/WFG/FNTI premiums converge within <1.3% of each other at $200k liability ($1,121/$1,135/$1,135), an unusually tight cross-underwriter spread versus other states surveyed | 2026-07-22 |
 | VT | 6 (FNTI, WFG National, Stewart Title Guaranty, Peet Law Group, Green Mountain Title, Vermont Title Search/Property Title of Vermont) | statewide (no metro/county breakout published by any provider; task-brief target metros Burlington/Chittenden, Montpelier, Rutland, Brattleboro each individually searched, none surfaced separate metro pricing) | national-brand underwriters (FNTI, WFG, Stewart), closing-attorney firm (Peet Law Group), independent title-search/abstract vendors (Green Mountain Title, Vermont Title Search) -- confirmed attorney-closing state (like MA/CT) with title-search vendors selling into the attorney pipeline rather than a retail settlement-agent layer | **complete (scarce)** — 32 query strategies/direct checks of every major underwriter, CATIC/VATC, and a dozen+ named attorney/title firms yield 6 sources, but the 3 non-premium sources are 3 structurally incompatible fee models (bundled attorney all-in, hourly search rate, itemized search-product list) so no comparable all-in service-stack range exists to test saturation, matching the IN precedent | 2026-07-22 |
-| WV | 0 | unprocessed | |
+| WV | 3 (Stewart Title Guaranty, WFG National, First National Title Insurance) | statewide (no metro/county breakout published; task-brief target metros Charleston/Kanawha, Morgantown/Monongalia, Huntington/Cabell, Eastern Panhandle/Berkeley-Jefferson each individually searched, none surfaced separate metro pricing) | national-brand underwriters only (Stewart, WFG, FNTI); WV is an attorney-closing state which appears to route settlement pricing through private/unpublished attorney and independent-title-company arrangements | **complete (scarce)** — 21 query strategies/direct checks of all 5 major national-brand offices plus 6 named WV independents/closing-attorney firms yield only 3 usable premium-only rate manuals; zero settlement/closing/escrow fee dollar figures found anywhere except differing CPL fee structures (Stewart $50/$50/$75 lender/purchaser/seller vs. FNTI $50/$25/$25; WFG publishes no CPL) | 2026-07-22 |
 | WI | 3 (Advocus/ATG, Stewart, First American) | statewide (no metro/county breakout published) | national-brand underwriters only (Advocus, Stewart, First American); no independent title/escrow or attorney settlement-fee schedule found despite exhaustive search | **complete (scarce)** — 10 query strategies/direct checks yield only 3 premium-only rate manuals; zero settlement/closing fee dollar figures found anywhere, matching the AZ/CO/MI/MO/VA market-opacity pattern | 2026-07-21 |
 | WY | 0 | unprocessed | |
 
@@ -893,3 +893,25 @@ still vary and matter).
   models (bundled all-in vs. hourly vs. itemized-flat), no comparable all-in
   service-stack range exists to test for saturation despite reaching 6 total sources
   -- mirrors the Indiana precedent. Marked VT **complete (scarce market)**.
+- 2026-07-22: Started WV from scratch. Confirmed WV Code Sec. 33-12-6b / Title 114
+  Series 77 requires non-commercial title premium schedules to be filed with and
+  approved by the Insurance Commissioner (60-day waiting period, commercial/
+  non-commercial differentiated) -- but this filing mandate covers premiums only, with
+  no West Virginia equivalent to Alaska's/Idaho's/former-Utah's separate
+  escrow-fee-filing statute. Verified 3 premium-only rate manuals: Stewart Title
+  Guaranty (2023-08-25), WFG National (2022-03-01), and First National Title Insurance
+  Company (2022-09-20), all fetched and PDF-recovered. Confirmed WV is an
+  attorney-closing state; 21 query strategies plus direct checks of all 5 major
+  national-brand offices (First American, Fidelity/Chicago Title, Old Republic, Stewart,
+  WFG -- all routing to interactive calculators only) and 6 named WV independent
+  title/closing-attorney firms (BesTitle across 3 metro offices, Eastern Title, The West
+  Virginia Title Company, First Title & Escrow [403], Bailey & Slotnick [403], Ratified
+  Title Group [403]) found zero settlement/closing/escrow fee dollar figures anywhere
+  except differing CPL fee structures (Stewart $50/$50/$75 lender/purchaser/seller vs.
+  FNTI $50/$25/$25; WFG publishes no CPL section). The WV OIC's own title-insurance
+  summary PDF 503'd on two attempts; choicefinance.net (a promising search-snippet hit
+  with specific-looking figures) failed DNS resolution on two attempts, matching the
+  identical dead-domain finding already logged in the DC session. With only 3 verified
+  sources despite the extensive search, WV meets the contract's scarce criterion.
+  Marked WV **complete (scarce)**. Moving to the next unprocessed tier-2 state (WY,
+  next alphabetically).
