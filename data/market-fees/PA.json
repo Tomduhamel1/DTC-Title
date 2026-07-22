@@ -1,0 +1,95 @@
+[
+  {
+    "provider": "Title Insurance Rating Bureau of Pennsylvania (TIRBOP) — Manual of the Title Insurance Rating Bureau of Pennsylvania (REGULATORY/RATING-BUREAU-UNIFORM, not provider-set)",
+    "sourceUrl": "https://patitleratingbureau.org/wp-content/uploads/2024/07/TIRBOP-Manual-FINAL-APPROVED-08-01-2024-4857-2336-2733-v2.pdf (current 08/01/24 manual, fetched and machine-read this session via PDF text extraction after WebFetch's native PDF parsing failed on garbled binary); cross-checked against the prior 04/01/23 vintage at https://patitleratingbureau.org/wp-content/uploads/2023/04/TIRBOP-Manual-FINAL-APPROVED-04-01-2023.pdf (identical Sale/Non-Sale/Approved-Attorney rate tables -- only endorsement-form additions changed between vintages, confirming the rate has been unchanged since at least 04/01/23) and against https://patitleratingbureau.org/pennsylvania-is-an-all-inclusive-rate-state/ and https://patitleratingbureau.org/other-allowable-charges/",
+    "asOf": "Approved by the Pennsylvania Insurance Department, amended through 08/01/24; members list as of 08/01/24 includes 22 title insurers (Chicago Title, Commonwealth Land Title, Fidelity National, First American, Old Republic National, Stewart Title Guaranty, WFG National, Westcor, Doma, Alliant National, and others), all bound to the identical rate table",
+    "settlementFee": {
+      "note": "PENNSYLVANIA IS A RATING-BUREAU-UNIFORM, ALL-INCLUSIVE-RATE STATE: TIRBOP's Manual, filed with and approved by the PA Insurance Department under The Insurance Company Law of 1921 (40 P.S. section 910-41), sets a single 'Charge' that under the COMPANY OR AGENT PROCEDURE legally BUNDLES the title insurance premium together with title search, examination, escrow, and settlement/closing services into ONE all-inclusive rate (Section 1.6: 'Charge(s) ... includes premium, examination and settlement or closing fee and every other Charge'). This is the regulatory backbone -- not a provider-set price -- and is the same byte-for-byte across every TIRBOP member/agent in the state. HOWEVER, TIRBOP's Manual also creates the exact structural carve-out the task brief anticipated: under the ALTERNATIVE 'APPROVED ATTORNEY PROCEDURE' (Section 5.1.B), the Approved Attorney -- not the Insurer/Agent -- personally certifies title and conducts settlement, and Section 5.1.C states in so many words: 'The charge for the search, examination of title and the settlement by the Approved Attorney is NOT governed by this Manual.' That attorney-side settlement charge is therefore entirely unregulated and left to the individual attorney/market, exactly matching this survey's target. TIRBOP additionally lists, in Section 2.1(a)-(e), five specific categories explicitly EXCLUDED from even the all-inclusive Company/Agent rate and therefore separately, unregulated-ly chargeable by ANY provider type: (a) document preparation other than the commitment/closing statement/policy, (b) government recording charges, (c) overnight delivery, (d) bank wire transfer, and (e) receipt/printing of electronically-transmitted documents other than the commitment/closing statement/policy -- i.e., doc prep, courier/overnight, and wire fees are NOT part of the regulated rate anywhere in Pennsylvania, confirming the brief's framing that these service-fee categories vary by provider even though the core premium does not.",
+      "saleRateTable_representativeTiers": "Company/Agent Procedure, Sale Rate (owner's policies): $0-$30,000 = $569.00 flat; add $7.41/thousand from $30,001-$45,000; $6.27/thousand from $45,001-$100,000 (so $100,000 total = $1,025.00); $5.70/thousand from $100,001-$500,000 (so $200,000 = $1,595.00; $500,000 = $2,850.00 -- reconstructed from the per-tier formula); $4.56/thousand from $500,001-$1,000,000 (so $1,000,000 = $5,130.00); further tiers to $30,000,000+.",
+      "nonSaleRateTable_representativeTiers": "Company/Agent Procedure, Non-Sale Rate (loan policies): $0-$30,000 = $512.00 flat; add $5.98/thousand from $30,001-$45,000; $5.41/thousand from $45,001-$100,000 (so $100,000 = $899.25); $4.84/thousand from $100,001-$500,000 (so $200,000 = $1,383.25); $4.27/thousand from $500,001-$1,000,000; further tiers to $30,000,000+.",
+      "approvedAttorneyRateTable_representativeTiers": "Approved Attorney Procedure (Section 5.51): $0-$30,000 = $142.00 flat; add $3.70/thousand from $30,001-$100,000 (so $100,000 = $401.00 -- Manual's own worked example shows $200,000 = $714.00); add $3.13/thousand from $100,001-$500,000; add $2.85/thousand from $500,001-$1,000,000; further tiers to $7,000,000+. NOTE: the Approved Attorney Rate is dramatically lower than the Company/Agent Sale Rate at every tier (e.g., $200,000: $714.00 Approved Attorney vs. $1,595.00 Company/Agent Sale Rate) precisely BECAUSE it excludes the settlement/search/exam work the Approved Attorney performs and bills separately, unregulated, per Section 5.1.C -- the rate differential is the clearest quantitative proof in this survey of how much of the 'all-inclusive' Company/Agent charge is actually attributable to settlement services.",
+      "closingProtectionLetter": "$125.00 per transaction, regardless of number of letters issued (Section 3.5), remitted entirely to the Insurer (not the Agent or Approved Attorney)",
+      "escrowServiceCharge": "$25.00 minimum for the first 6 months funds are held, plus $25.00 for each additional year (Section 3.2)",
+      "cancellationCharge": "$100.00 minimum (Company/Agent Procedure, Section 3.1)",
+      "recordOwnerAndLienCertificate": "$350.00 per chain of title (1-4 family residential, $2,500 liability) or $750.00 per chain of title (non-residential, $5,000 liability) (Section 3.6)",
+      "approvedAttorneyCommitmentCharge": "$25.00 minimum, creditable toward the title insurance rate (Section 3.3)"
+    },
+    "itemizedFees": {
+      "docPrep": "NOT included in the all-inclusive Company/Agent rate (Section 2.1(a) -- document preparation other than the commitment, closing statement, and policy is excluded and separately, unregulated-ly chargeable)",
+      "processing": null,
+      "courier": "NOT included in the all-inclusive rate (Section 2.1(c) -- overnight delivery requested by an interested party is excluded)",
+      "wire": "NOT included in the all-inclusive rate (Section 2.1(d) -- bank wire transfer requested by an interested party is excluded)",
+      "edoc": "NOT included in the all-inclusive rate for documents other than the commitment/closing statement/policy (Section 2.1(e))",
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Included in the Sale/Non-Sale Rate under the Company or Agent Procedure only (Section 3.4); under the Approved Attorney Procedure, search/examination/settlement charges are billed separately and unregulated (Section 5.1.C)",
+      "cpl": "$125.00 flat per transaction (Section 3.5, see settlementFee above)",
+      "binder": null,
+      "other": [
+        { "name": "ALTA Short Form Residential Loan Policy surcharge", "amount": "$200.00 in addition to the otherwise applicable Charge" },
+        { "name": "Homeowner's Policy of Title Insurance surcharge", "amount": "additional 10% of the Sale Rate (e.g., $200,000 Company/Agent: $1,595.00 + $159.50 = $1,754.50; Approved Attorney: $714.00 + $159.50 = $873.50)" },
+        { "name": "Expanded Coverage Residential Loan Policy flat endorsement fee", "amount": "$400.00 flat, plus additional 10% of Non-Sale Rate" },
+        { "name": "Sheriff's Distribution Policy (judicial sale, non-tax)", "amount": "$142.00 up to $2,000, tiered per-thousand thereafter" },
+        { "name": "Sheriff's Distribution Policy (tax sale, entire fund)", "amount": "$227.00 flat" },
+        { "name": "Additional/difficult-title-matter work charge", "amount": "Insurer-set, must bear 'reasonable relationship' to services performed; filed quarterly with the Department" }
+      ]
+    },
+    "bundlingNotes": "PA's TIRBOP structure is the single clearest illustration in this survey of the task brief's core distinction: the Company/Agent Procedure's 'all-inclusive' Sale/Non-Sale Rate is rating-bureau-uniform and covers premium + search + exam + escrow + settlement as ONE regulated Charge (confirmed identical across the 04/01/23 and 08/01/24 manual vintages, and independently cross-verified against a 2019-vintage Old Republic Title/Carbon Search and Settlement Services Inc. republication of the same Sale/Non-Sale table at https://cdn.hibuwebsites.com/f29812e7658842deae54ba229abe69a8/files/uploaded/Carbon-Search-And-Settlement-Services-Inc-Title-Insurance-Rates.pdf -- byte-for-byte identical base rates back to at least August 2019, meaning the TIRBOP rate table has been stable for 5+ years). But TIRBOP itself creates two distinct escape hatches from that bundling: (1) the Approved Attorney Procedure, where the attorney's own search/exam/settlement charge is expressly NOT governed by the Manual at all (Section 5.1.C) -- and PA's real-world mix of title-agent-run and attorney-run closings (the 'table funding'/attorney-involvement-varies pattern flagged in the task brief) means a meaningful share of PA closings are priced this way; and (2) Section 2.1(a)-(e)'s carve-outs for doc prep, recording, overnight delivery, wire transfer, and e-doc printing, which apply to EVERY provider type regardless of procedure and are the primary channel through which PA providers actually compete on price even under the Company/Agent Procedure.",
+    "transactionContext": "Applies uniformly to Owner's and Loan policy premiums statewide, all counties, all provider types that are TIRBOP members/agents. No purchase-vs-refinance rate distinction (rate depends only on liability/loan amount, and on which of the two Procedures -- Company/Agent vs. Approved Attorney -- is used for a given transaction)."
+  },
+  {
+    "provider": "Associates Land Transfer Company, LLC (d/b/a ALT Title) (independent, North Wales, PA -- Montgomery County/Philadelphia metro, serving statewide PA)",
+    "sourceUrl": "https://alttitle.com/pa-title-deed-services/ (Deed Preparation Fee) and https://alttitle.com/pa-settlement-private-sale-conveyancing-fsbo/ (FSBO/private-sale seller title-clearing fee schedule with itemized competitor comparison)",
+    "asOf": "Retrieved 2026-07-22; no explicit effective date stated on either page (described as current pricing)",
+    "settlementFee": {
+      "sellerTitleClearingSettlementFee_FSBOprivateSale": "$375.00 total, itemized as 'Order mortgage payoff, tax & municipal certifications' -- explicitly bundling deed preparation, courier/wire, and in-person notary at no additional charge (all marked 'Included')",
+      "buyerAdditionalProcessingFees": "$0.00 (page states 'Additional fees to process your transaction: $0' when the buyer selects ALT for title insurance and settlement)",
+      "competitorComparison_selfReported": "ALT's own page states an 'Average Real Estate Broker/In-House Title' competitor charges $620-$920 total for the same seller-side services, itemized as: mortgage payoff/tax/municipal certifications $395-$595, deed preparation $150 (separately charged, vs. included at ALT), courier and wire fees $50-$100 (separately charged, vs. included at ALT), notary fees (in-person) $25-$75 (separately charged, vs. included at ALT) -- this competitor-side figure is ALT's own self-reported market comparison, not independently verified against a named competitor's own site this session, so it is weighted as softer evidence than ALT's own $375/$250 prices"
+    },
+    "itemizedFees": {
+      "docPrep": "Deed Preparation Fee: $250.00 (per alttitle.com/pa-title-deed-services/, stated as 'Deed Preparation Fee $250'); bundled/included at no extra charge within the $375 FSBO seller settlement package on the other page",
+      "processing": "$0 additional buyer-side processing fees (explicitly stated)",
+      "courier": "Included in the $375 seller settlement fee (no separate charge); competitor comparison cites $50-$100 for courier+wire combined",
+      "wire": "Included in the $375 seller settlement fee (no separate charge); competitor comparison cites $50-$100 for courier+wire combined",
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": "Included in the $375 seller settlement fee (no separate charge); competitor comparison cites $25-$75 for in-person notary",
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        { "name": "Recording Fee", "amount": "varies by municipality (no flat figure stated)" },
+        { "name": "Transfer Tax", "amount": "subject to PA Department of Revenue guidelines (no flat figure stated)" }
+      ]
+    },
+    "bundlingNotes": "ALT explicitly positions itself as the no-junk-fee, all-inclusive-pricing outlier in the PA independent-title market, bundling deed prep, courier, wire, and in-person notary into a single $375 seller-side settlement fee for FSBO/private-sale transactions where the buyer is separately using ALT for title insurance -- directly analogous to the no-junk-fee positioning seen from Valero Title (TX) and FTIC (FL) in prior sessions of this survey. This is a genuine, provider-published, dollar-denominated PA settlement-fee schedule -- a notably rarer find in PA than in TX/FL given TIRBOP's all-inclusive-rate structure, which appears to suppress most PA providers' incentive to publish a standalone settlement-fee number (see PA.md search log for the many calculator-only/no-figures pages found instead).",
+    "transactionContext": "FSBO ('for sale by owner')/private-sale conveyancing specifically (seller side); separately, a standalone $250 deed preparation fee applies to deed-only services. Statewide PA reach from a North Wales, Montgomery County (Philadelphia metro) office."
+  },
+  {
+    "provider": "Pride Abstract & Settlement Services, LLC (independent, Coopersburg/Quakertown/Bethlehem/Whitehall, PA + Stroudsburg, PA -- Lehigh Valley/Poconos metro, also serving NJ)",
+    "sourceUrl": "https://prideabstract.com/the-most-overlooked-real-estate-closing-fees/",
+    "asOf": "Retrieved 2026-07-22; no explicit effective date stated on the page (described as current/typical pricing)",
+    "settlementFee": {
+      "settlementEscrowFee_range": "$1,000-$2,500 (provider's own stated range for 'Settlement/Escrow Fee,' not a single flat quoted figure -- weighted as softer evidence than a flat number, but this is the provider's own published range, quoted exactly, not an estimate created by this survey)"
+    },
+    "itemizedFees": {
+      "docPrep": "Grouped under a broader 'Document Processing/Admin Fees' category with no precise standalone figure stated",
+      "processing": "Same as docPrep -- no precise standalone figure",
+      "courier": "$25-$75 or more ('Courier/Overnight Mail Fees')",
+      "wire": "$15-$50 per transfer ('Wire Transfer Fees')",
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "$150-$500 ('Title Search/Admin Fee')",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        { "name": "Recording Fees", "amount": "$50-$300" },
+        { "name": "Title Insurance (each policy)", "amount": "0.5%-1% of sale price (this is the provider's own stated shorthand for the TIRBOP-set, rating-bureau-uniform premium -- not a provider-set figure, included here only because Pride Abstract's own page states it this way)" },
+        { "name": "Attorney Fees (when applicable)", "amount": "$150-$400 per hour" }
+      ]
+    },
+    "bundlingNotes": "Pride Abstract's own consumer-education blog post is the only other PA source located this session with dollar-denominated settlement-fee content, but it publishes RANGES rather than a single flat quoted fee for its own services -- softer evidence than ALT Title's exact $375/$250 figures, though still the provider's own exact published language (quoted verbatim, not extrapolated by this survey). The range's low end ($1,000) and high end ($2,500) for the core settlement/escrow fee are far above ALT Title's $375 FSBO figure, though the two are not a clean apples-to-apples comparison (Pride Abstract's range appears to describe a full-service buyer/seller-side closing generally, not the same FSBO-specific service ALT prices at $375).",
+    "transactionContext": "General/typical PA (and NJ) residential closing, not broken out by purchase vs. refinance or by buyer vs. seller side. Lehigh Valley (Coopersburg, Quakertown, Bethlehem, Whitehall) and Poconos (Stroudsburg) offices."
+  }
+]
