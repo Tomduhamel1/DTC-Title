@@ -98,9 +98,17 @@ export const PREMIUM_RANGE_FILED: ComparisonRange = { low: 1.25, high: 1.9 }
 // the quote page will show that honestly (savings clamp to $0; flagged for
 // internal pricing review). IL reflects its Chicago-metro-dominated
 // published market; IA's band reflects partial (abstract-state) stacks.
+// Evidence hierarchy for a state's band, strongest first:
+//   'published'  — static filed/published fee schedules (rate cards, manuals)
+//   'calculator' — itemized quotes harvested from providers' own public
+//                  quote calculators at the standard scenario ($500k
+//                  purchase / $400k loan / major county), dated at retrieval.
+//                  Never collected through lead-gated forms — no fabricated
+//                  contact info, ever; gated calculators are logged, not used.
+//   'inferred'   — pooled median band from evidenced states (see above).
 export interface ServiceBand extends ComparisonRange {
-  basis: 'published' | 'inferred'
-  // Number of distinct published providers behind a 'published' band.
+  basis: 'published' | 'calculator' | 'inferred'
+  // Number of distinct providers behind a 'published'/'calculator' band.
   providers?: number
 }
 
