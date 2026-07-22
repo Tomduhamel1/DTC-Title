@@ -1,0 +1,44 @@
+[
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://www.virtualunderwriter.com/-/media/files/virtualunderwriter/imported/pdfs/kentucky-rate-manual_final-eff-12-2-2024.pdf",
+    "asOf": "Last updated 2024-11-01; effective 2024-12-02",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule.",
+      "ownersOrLeaseholdPolicy_liabilityTiered": "$0-$100,000 = $5.00/thousand; $100,001-$500,000 add $3.60/thousand; $500,001-$10,000,000 add $3.10/thousand; over $10,000,000 add $2.50/thousand. Minimum $200.00 (Section B.2).",
+      "loanPolicy_liabilityTiered": "$0-$100,000 = $4.00/thousand; $100,001-$500,000 add $3.05/thousand; $500,001-$1,000,000 add $2.70/thousand; $1,000,001-$15,000,000 add $2.35/thousand; over $15,000,000 add $1.95/thousand. Minimum $200.00 (Section B.4).",
+      "refinanceLoanPolicy": "70% of the Original Loan Policy rate (Section B.7).",
+      "simultaneousIssueLoanPolicy": "Flat $200 per loan policy issued concurrently with an owner's policy, provided loan liability does not exceed owner's policy liability (Section B.12a)."
+    },
+    "itemizedFees": {
+      "cpl": {
+        "lender": "$50.00",
+        "buyerBorrower": "$25.00",
+        "seller": "$25.00",
+        "additionalSecondMortgageOrHelocByOtherLender": "$50.00 per letter"
+      },
+      "other": []
+    },
+    "bundlingNotes": "Definitions section states explicitly: 'The charge does not include the abstracting or searching fee, examination fee, settlement fees, closing fees, or escrow fees.' General Provisions further state charges 'do not include charges for searches, examinations, abstracts, attorneys' fees, escrow or closing services, inspections or other services charged by local attorneys, title agents, surveyors, abstractors, or abstract companies.' Confirms KY premium/settlement-fee separation, but the manual itself prices premium (and CPL) only.",
+    "transactionContext": "Statewide (no metro/county breakout published). Owner's, Homeowner's (Expanded Coverage), and Loan policy premium schedules (original, refinance at 70%, simultaneous issue), Closing Protection Letters, several special/limited-coverage products (Secondary Market Short Form, Home Equity, Article 9 Comprehensive Plus, Modification Guarantee, Centralized Processing Loan and Refinance Rate), and a full ALTA endorsement price list. No purchase/refinance settlement-service-fee breakdown anywhere in the 18-page document."
+  },
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/kentucky/rates/Kentucky%20Title%20Rate%20Manual%20effective%20August%201,%202023docx.pdf",
+    "asOf": "Effective 2023-08-01",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule.",
+      "standardOwnersLeaseholdPolicy_liabilityTiered": "Up to $100,000 = $4.50/thousand; $100,001-$500,000 add $3.25/thousand; $500,001-$10,000,000 add $2.75/thousand; over $10,000,000 add $2.25/thousand. Minimum $200.00 (Section 3.1).",
+      "expandedOwnersLeaseholdPolicy_liabilityTiered": "Up to $100,000 = $5.25/thousand; $100,001-$500,000 add $3.75/thousand; $500,001-$2,500,000 add $3.25/thousand. Minimum $200.00 (Section 3.2).",
+      "standardAcquisitionLoanPolicy_liabilityTiered": "Up to $100,000 = $3.55/thousand; $100,001-$500,000 add $2.75/thousand; $500,001-$1,000,000 add $2.40/thousand; $1,000,001-$15,000,000 add $2.10/thousand; over $15,000,000 add $1.75/thousand. Minimum $200.00 (Section 3.3).",
+      "financeLoanRefinance": "70% of the Acquisition Loan policy rate for the corresponding coverage type (Section 5.2).",
+      "simultaneousIssueLoanPolicy": "Flat $100.00 per loan policy issued concurrently with an owner's policy, provided loan liability does not exceed owner's policy liability (Section 6.1)."
+    },
+    "itemizedFees": {
+      "cpl": { "lender": "$50.00", "lessee": "$50.00", "seller": "$50.00", "buyerBorrower": "$50.00" },
+      "other": []
+    },
+    "bundlingNotes": "Section 1 Introduction states explicitly: 'The rates shown are the all-inclusive title insurance fees and charges and includes both the risk portion and the service or work portion, but does not include charges for title search, surveys, escrow, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant.' A companion WFG informational bulletin (KY 2020-01, Oct. 14, 2020) confirms Kentucky's municipal premium tax (varying by county/municipality per the KY Dept. of Revenue's annual tax schedule) applies to the title premium, to endorsements, AND to Closing Protection Letters -- but the bulletin itself prices no settlement/escrow fees, only pointing to the premium-tax schedule. WFG's CPL is a flat $50 per party regardless of role, unlike Stewart's tiered $50/$25/$25 lender/buyer/seller structure -- a genuine cross-underwriter difference in this ancillary charge.",
+    "transactionContext": "Statewide (no metro/county breakout published; 'State' is defined simply as 'the State of Kentucky'). Owner's/Leasehold (Standard and Expanded), Acquisition and Finance(refinance) Loan policies (Standard and Expanded), simultaneous-issue rates, Lender's Special Rates (volume-based, for qualifying high-volume lenders), Master Home Equity/HE2 certificates, specialty limited-coverage policies (Junior Loan, Mortgage Protection Guarantee, Mortgage Modification), a full ALTA endorsement price list, and Closing Protection Letters. No purchase/refinance settlement-service-fee breakdown anywhere in the 26-page document."
+  }
+]
