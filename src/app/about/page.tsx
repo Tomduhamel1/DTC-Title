@@ -48,6 +48,9 @@ export default function AboutPage() {
             <p className="text-lg text-gray-700 leading-relaxed mb-6">
               The result is BetterClose: a technology-first title insurance company that delivers the same protection as big-name companies, backed by the same A-rated underwriters, but at prices that are actually fair.
             </p>
+            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+              Technology handles the routine. People handle the hard parts. When a file needs legal work to close - an estate, a lien, a defect in the chain of title - it's resolved by our in-house and affiliated attorneys in many states, and by the local real estate attorneys we partner with in the rest. Nobody has to go find a lawyer to keep their closing on track.
+            </p>
             <p className="text-lg text-gray-700 leading-relaxed">
               Our AI-powered platform automates underwriting and processing, eliminating administrative overhead. We pass those savings directly to you - typically <strong className="text-primary-600">{TYPICAL_SAVE} at closing</strong> on a $500,000 purchase.
             </p>
