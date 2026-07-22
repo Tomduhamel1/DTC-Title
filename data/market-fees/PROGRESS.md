@@ -57,7 +57,7 @@ still vary and matter).
 | AR | 3 (Stewart Title Guaranty [2026 vintage], WFG National, Southwest Title Insurance/FNTI) | statewide (no metro breakout published) | national-brand underwriters only; AR is confirmed unregulated/unfiled for title premiums (per WFG's own manual), yet settlement fees remain entirely unpublished despite no filing requirement | **complete (scarce)** — 8 query strategies/5 direct provider-site checks yield only 3 usable premium-only rate cards; zero settlement/closing fee dollar figures found anywhere except Stewart's $25/party CPL fee | 2026-07-22 |
 | CT | 5 (WFG National, Stewart Title Guaranty, Connecticut Title & Escrow LLC, Law Office of Yona Gregory, Connecticut Real Estate Closing Lawyers) | statewide (no metro/county breakout published; "all 8 CT counties" served uniformly per one source) | national-brand underwriters (WFG, Stewart), closing-attorney firms (Connecticut Title & Escrow, Yona Gregory, CT Real Estate Closing Lawyers) — CT is an attorney-closing state | **complete (scarce)** — 14 query strategies/10 direct provider-site checks yield only 5 usable sources; CATIC (CT's dominant domestic underwriter) blocked by 403 on both its rate-schedule PDF and state-resources page, a notable coverage gap flagged for future retry | 2026-07-22 |
 | DC | 4 (Stewart Title Guaranty, WFG National, Federal Title & Escrow Company, Avenue Title Group) | none (DC has no metro/county subdivisions; Federal Title's refinance figure spans DC/MD/VA suburbs) | national-brand underwriters (Stewart, WFG), independent title/settlement companies (Federal Title & Escrow, Avenue Title Group) — DC is an attorney/title-agent-closing jurisdiction | **complete (scarce)** — 9 query strategies/8 direct provider-site checks yield only 4 usable sources; largest buyer/seller fee asymmetry found in survey ($1,275 buyer vs $550 seller at Federal Title) | 2026-07-22 |
-| HI | 0 | unprocessed | |
+| HI | 3 providers / 4 documents (Title Guaranty of Hawaii [escrow fee + title premium schedules], First American Title, Old Republic Title & Escrow) | statewide (no separate island/metro tiers published, though providers have Oahu/Maui/Big Island/Kauai branches) | national-brand-affiliated agent (Title Guaranty, writing for Chicago/Commonwealth/Fidelity/First American), national-brand direct branches (First American), national-brand underwriter (Old Republic) | **complete (scarce)** — 8 query strategies/6 direct provider-site checks yield 3 providers; notably higher evidence quality than most scarce states since Title Guaranty and First American both publish genuine dollar-denominated escrow/settlement fee schedules (not premium-only) | 2026-07-22 |
 | ID | 0 | unprocessed | |
 | IL | 11 (Old Republic, Greater Illinois Title, First American, TitleStar ×3 regional cards, WFG National, Chicago Title, Fidelity National, Proper Title, Truly Title) | 3 (Chicago metro; Central IL incl. Peoria/Champaign; Southern/Metro-East IL incl. St. Clair/Madison) | national-brand underwriters (Old Republic, First American, Chicago Title, Fidelity National, WFG), independent title/escrow companies (Greater Illinois Title, TitleStar, Proper Title, Truly Title) | **complete (target met)** — 11 verified sources on first session, exceeding the 10-source hard-stop target | 2026-07-21 |
 | IN | 0 | unprocessed | |
@@ -423,3 +423,19 @@ still vary and matter).
   the IL survey). With only 4 verified sources despite the extensive search, DC meets
   the contract's scarce criterion. Marked DC **complete (scarce)**. Moving to the next
   unprocessed tier-2 state (HI, next alphabetically).
+- 2026-07-22: Started HI from scratch. Verified 4 documents from 3 providers across 8
+  query strategies/6 direct provider-site checks: Title Guaranty of Hawaii's escrow fee
+  schedule (effective January 2026, genuinely priced by sales-price tier, not a
+  premium-only exclusion-language manual) and companion title premium schedule
+  (effective February 2022, with an explicit 60% seller/40% buyer premium split
+  published directly on the rate card -- the most explicit customary-split disclosure
+  found in any state to date); First American Title Hawaii (2013, the only source in
+  this entire survey found to publish title premium AND escrow fee side-by-side in a
+  single synchronized 50+-row price-tier table); and Old Republic Title & Escrow of
+  Hawaii (2020, but transaction-type-narrow -- a timeshare-interval resale document, not
+  standard purchase/sale, so excluded from the comparable range calculation). HI's
+  evidence quality notably exceeds most other scarce states in this survey since 2 of
+  the 3 providers publish genuine escrow/settlement dollar figures rather than
+  premium-only manuals. With only 3 providers despite the extensive search, HI meets
+  the contract's scarce criterion. Marked HI **complete (scarce)**. Moving to the next
+  unprocessed tier-2 state (ID, next alphabetically).
