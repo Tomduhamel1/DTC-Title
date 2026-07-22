@@ -91,7 +91,7 @@ still vary and matter).
 | State | Verified sources | Metros | Provider types | Status | Last run |
 |---|---|---|---|---|---|
 | TX | 6 (TDI/Basic Manual regulatory bundle [premium table + CPL statute + TTIGA guaranty fee], First Texas Title/Abilene, Patten Title Company/Houston-statewide, Texas National Title/Austin, Valero Title/San Antonio, Great American Title Co./statewide) | 4 (Houston, Austin, San Antonio, plus Abilene as a smaller-metro data point; no DFW-specific settlement-fee schedule found despite extensive search — see TX.md) | regulator (TDI), independent title/escrow companies only (First Texas Title, Patten Title, Texas National Title, Valero Title, Great American Title); every national-brand underwriter checked (First American, Fidelity National, Old Republic, Stewart, Chicago Title, WFG) published premium-only rate cards or routed to interactive calculators with no static settlement-fee schedule | **complete (saturated)** — 6 good sources (18+ query strategies, 30+ direct provider-site checks); TX premiums are TDI-promulgated and byte-for-byte identical across providers (confirmed via 3 independently-sourced documents), and the CPL/ICL is promulgated at $0 by statute (Tex. Ins. Code §2702.001(c)); the real market signal is the unregulated settlement/escrow fee, observed range $300-$795 (core, purchase-side) to $100-$795 (incl. one promotional refi-only outlier) | 2026-07-22 |
-| FL | 0 | unprocessed | |
+| FL | 9 (OIR/FAC 69O-186.003 promulgated premium schedule [regulatory], Full Service Title & Escrow/Miami-Dade-Broward, Leading Edge Title of Central Florida/Orlando, Title Company of Florida/Jacksonville, Atlantic Title Firm/statewide, Palm Beach Title & Escrow/Palm Beach-Broward, Florida's Title Insurance Company (FTIC)/Broward, Express Title Services Group/Miami-Dade, The Closing Company/Miami-Dade) | 5 (Miami-Dade, Broward, Palm Beach, Orlando/Central FL, Jacksonville; no Tampa Bay-specific settlement-fee schedule found despite the most extensive per-metro search of any state surveyed to date — see FL.md) | regulator (OIR), independent title/escrow companies only (all 8 provider sources); every national-brand underwriter checked (First American, Fidelity National/Chicago Title, Old Republic, Stewart, WFG) published premium-only pages or routed to interactive calculators with no static settlement-fee schedule | **complete (saturated)** — 9 good sources (30+ query strategies, 45+ direct provider-site checks); FL premiums are OIR-promulgated (Fla. Stat. §627.782/§627.7825, FAC 69O-186.003) and identical across providers (confirmed via 5 independent provider restatements matching the regulatory table); Florida uniquely requires ancillary fees (notary/postage/copies/doc prep/storage) to be bundled into one non-itemized "closing services fee" line by DFS rule, unlike itemization-heavy TX; the real market signal is the unregulated settlement/closing fee, observed range $250 (Jacksonville promotional floor) to $1,250 (Miami-Dade buyer-side, from a genuine sample Closing Disclosure) — roughly a 5x spread | 2026-07-22 |
 | NM | 0 | unprocessed | |
 | PA | 0 | unprocessed | |
 | NY | 0 | unprocessed | |
@@ -951,3 +951,20 @@ still vary and matter).
   static fallback -- the inverse of the provider mix seen in most other states, where
   national brands publish and independents are harder to find). Marked TX **complete
   (saturated)** with 6 total good sources.
+- 2026-07-22: Surveyed FL (second Priority tier 3 / promulgated-rate state). Confirmed FL title
+  premiums are fixed by the Office of Insurance Regulation (Fla. Stat. §627.782/§627.7825, FAC
+  69O-186.003: $5.75/thousand up to $100,000, $5.00/thousand $100,000-$1M) and identical across
+  providers -- cross-verified against 5 independent provider restatements of the same table, zero
+  discrepancies. Found FL's DFS rule uniquely requires ancillary fees (notary/postage/copies/doc
+  prep/storage) to be bundled into one non-itemized "closing services fee" line, a structural
+  difference from itemization-heavy TX. Found 8 provider-published settlement-fee sources (Full
+  Service Title & Escrow/Miami-Dade-Broward, Leading Edge Title of Central Florida/Orlando, Title
+  Company of Florida/Jacksonville, Atlantic Title Firm/statewide, Palm Beach Title & Escrow/Palm
+  Beach-Broward, Florida's Title Insurance Company (FTIC)/Broward, plus two Miami-Dade providers
+  found via genuine sample Closing Disclosure/HUD-1 documents -- Express Title Services Group and
+  The Closing Company) covering Miami-Dade, Broward, Palm Beach, Orlando, and Jacksonville;
+  observed settlement-fee range $250 (Jacksonville promotional floor) to $1,250 (Miami-Dade
+  buyer-side). No Tampa Bay-specific settlement-fee schedule found despite the most extensive
+  per-metro search of any state surveyed to date (12+ Tampa-focused query strategies, 15+ direct
+  site checks) -- every Tampa-area independent checked routed to a calculator/quote tool only.
+  Marked FL **complete (saturated)** with 9 total good sources (1 regulatory + 8 provider).
