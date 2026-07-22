@@ -1,0 +1,65 @@
+[
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://www.virtualunderwriter.com/-/media/files/virtualunderwriter/imported/pdfs/new-hampshire-manual-101216-eff-020917-002.pdf",
+    "asOf": "Last Updated October 12, 2016; Effective February 9, 2017",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Original Owner's/Leasehold Policy: $100 minimum, per-thousand tiers $3.00 (up to $200K), $2.00 (to $1M), $1.50 (to $5M)",
+        "ALTA Homeowner's Policy: $100 minimum, per-thousand tiers $3.30/$2.20/$1.65",
+        "Original Loan Policy: $100 minimum, per-thousand tiers $2.00 (up to $500K), $1.75 (above)",
+        "Refinance charge: 60% of original loan policy charge (5-year institutional-mortgage window)",
+        "Residential Mortgage Survey Affidavit: $50",
+        "Foreclosure Insurance Policy: same as Loan policy rates, $100 minimum",
+        "ALTA Residential Limited Coverage Junior Loan Policy: $2.00/$1,000, $65 minimum",
+        "Simultaneous issue: leasehold owner's 30% of owner's charge; second owner's policy +30%; loan policy issued with owner's policy flat $50",
+        "Simultaneous issue for residential construction (builder loan + ultimate owner's policy): original owner's charge + $50",
+        "ALTA Residential Limited Coverage Mortgage Modification Policy: $150 flat",
+        "Extensive ALTA endorsement fee schedule, mostly $25-$100 or 10-20% of original charge"
+      ]
+    },
+    "bundlingNotes": "General Provisions explicitly state: 'The charges set forth herein do not include any fee made for title search, title examination, settlement, closing, or escrow services performed by approved attorneys, agents, or offices.' The Definitions section reinforces: 'The charge does not include the abstracting or searching fee, examination fee, settlement fees, closing fees, or escrow fees.' Zero settlement/service-fee dollar figures anywhere in the document.",
+    "transactionContext": "Owner's policy (purchase), loan policy (purchase, refinance, construction), simultaneous issue, leasehold -- premium calculation only."
+  },
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/new-hampshire/rates/WFG%20New%20Hamsphire%20Title%20Insurance%20Rate%20Manual%20-%20effective%203-1-23.pdf",
+    "asOf": "Effective March 1, 2023",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "$25.00 per issuance, not subject to any fee-splitting agreement",
+      "binder": null,
+      "other": [
+        "Basic Rate Table: Owner's/Leasehold $2.75/$1,000 up to $500K then $2.25/$1,000; Acquisition Loan $2.00 then $1.75/$1,000; Finance Loan $1.65 then $1.35/$1,000; $75 minimum",
+        "Expanded Coverage (Homeowner's/ALTA Expanded Loan): 110% of the applicable Basic Rate",
+        "Simultaneous issuance of owner's + loan policy(ies): flat $75 per loan policy (if liability does not exceed owner's policy)",
+        "Survey exception deletion: $100 (owner's policy) / $50 (loan policy)",
+        "Lender's Special Rates (volume-based, 100/200/300/500-order minimum tiers): $275-$3,600 by liability tier",
+        "HE2 Home Equity 2nd Generation certificates: $45-$300 per transaction by liability tier",
+        "ALTA Residential Limited Coverage Junior Loan Policy: $110 flat up to $250,000",
+        "Mortgage Protection Guarantee / Mortgage Modification Policy: $125-$350 by liability tier, capped at $2M"
+      ]
+    },
+    "bundlingNotes": "Introduction states explicitly: 'The rates shown are the all-inclusive title insurance fees and charges and includes both the risk portion and the service or work portion, but does not include charges for title search, surveys, escrow, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant.' Zero settlement/closing/escrow dollar figures anywhere in the document.",
+    "transactionContext": "Owner's policy (purchase), loan policy (purchase, refinance, home equity), simultaneous issue, lender volume programs -- premium calculation only."
+  }
+]

@@ -73,7 +73,7 @@ still vary and matter).
 | MT | 6 (Stewart Title Guaranty, First National Title Insurance, WFG National, First Montana Title, Old Republic/Pioneer Title Co, Montana Title & Escrow) | statewide (premium manuals); Big Sky/Bozeman/Livingston offices for Montana Title & Escrow | national-brand underwriters (Stewart, FNTI, WFG, Old Republic), independent title/escrow companies (First Montana Title, Montana Title & Escrow) | **complete (saturated)** — 6 verified sources; last 3 additions (First Montana Title, Old Republic, Montana Title & Escrow) kept the observed $800-$1,600 escrow/settlement range stable | 2026-07-22 |
 | NE | 4 (First National Title Insurance, Stewart Title Guaranty, WFG National, First American via Builders Title) | statewide (2-tier county structure for FNTI/Stewart: Omaha/Lincoln-metro counties vs. all others; no metro breakout for settlement fees, none published) | national-brand underwriters only (FNTI, Stewart, WFG, First American via independent agent); no independent title/escrow settlement-fee schedule found despite exhaustive search | **complete (scarce)** — 24 combined query strategies/direct checks yield only 4 premium-only rate manuals; zero settlement/closing/escrow fee dollar figures found anywhere except an identical $25 CPL fee across all 4 underwriters | 2026-07-22 |
 | NV | 2 providers / 3 documents (First American [escrow schedule + title rate manual, both regulator-published], Stewart Title Guaranty) | 2 county-area systems (First American Area A: Clark/Lincoln/Nye vs. Area B: all others; Stewart 3-zone: Elko/White Pine/Eureka/Lander, Clark/Lincoln/Nye, Washoe+rural) | national-brand underwriters only (First American, Stewart); WFG/Old Republic/Chicago Title/Fidelity all route to interactive calculators, no static NV rate manual found | **complete (scarce)** — 19 query strategies/direct checks yield only 2 providers, but First American's regulator-published Escrow Rate Manual is a genuine dollar-denominated settlement-fee source (rare, high-quality find) | 2026-07-22 |
-| NH | 0 | unprocessed | |
+| NH | 2 (Stewart Title Guaranty, WFG National) | statewide (no metro/county breakout published) | national-brand underwriters only (Stewart, WFG); CATIC (New England's dominant bar-related insurer) 403-blocked on both hosting paths; an independent NH title company's oft-cited $199 flat fee could not be independently verified (site stuck in an unresolvable redirect loop) | **complete (scarce)** — 24 combined query strategies/direct checks yield only 2 usable premium-only rate manuals; zero independently-verifiable settlement/closing/escrow fee dollar figures found anywhere | 2026-07-22 |
 | ND | 0 | unprocessed | |
 | OK | 0 | unprocessed | |
 | OR | 0 | unprocessed | |
@@ -706,3 +706,24 @@ still vary and matter).
   notably higher-quality find than the typical scarce-state premium-only pattern. Marked
   NV **complete (scarce)**. Moving to the next unprocessed tier-2 state (NH, next
   alphabetically).
+- 2026-07-22: Started NH from scratch. Confirmed NH is a filed-but-unregulated-rate state
+  (RSA 416-A). Verified 2 premium-only rate manuals: Stewart Title Guaranty (effective
+  2017-02-09, whose Definitions section explicitly excludes abstracting/searching/
+  examination/settlement/closing/escrow fees from its "Charge") and WFG National
+  (effective 2023-03-01, near-identical exclusion language, $25 CPL fee). Notable finding:
+  CATIC (Connecticut Attorneys Title Insurance Company, New England's dominant bar-
+  related insurer) was 403-blocked on both known hosting paths across 2 attempts, a
+  significant coverage gap for this region. An independent NH title company's oft-repeated
+  $199 flat closing-fee claim (Best Rates Title Company of NH, cited across 8+ page
+  titles in search results) could NOT be independently verified -- its website
+  (nhtitlecompany.com) is stuck in an unresolvable session-ID redirect loop across every
+  URL variant tried (https/http, www/no-www, with/without query string, 5+ attempts) --
+  excluded per the evidence rule requiring exact quotes from pages fetched this session,
+  not search-snippet claims. Also caught and discarded a wrong-jurisdiction find: two
+  "First American Rate Sheet" PDFs found via search turned out to be Hawaii-branch
+  documents (effective 2026-01-15), not New Hampshire. 24 combined query strategies/
+  direct checks (Lighthouse Title, Simple Title, Compass Title -- all interactive-
+  calculator-only; Old Republic NH -- no static manual found; nh.gov PDF -- 403) found
+  no further usable sources. With only 2 verified sources despite the extensive search, NH
+  meets the contract's scarce criterion. Marked NH **complete (scarce)**. Moving to the
+  next unprocessed tier-2 state (ND, next alphabetically).
