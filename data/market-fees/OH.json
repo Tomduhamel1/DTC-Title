@@ -1,0 +1,74 @@
+[
+  {
+    "provider": "Ohio Title Insurance Rating Bureau (OTIRB) — Schedule of Rates for Title Insurance in the State of Ohio (REGULATORY/RATING-BUREAU-UNIFORM, not provider-set)",
+    "sourceUrl": "https://go.stewart.com/rs/067-YWO-436/images/OTIRB%20Rates%20for%20Title%20Insurance%20%20Effective%201-1-26.pdf?version=0 (courtesy-hosted reprint of the OTIRB Manual, fetched and machine-read this session via PDF text extraction after WebFetch's native PDF parsing failed on the raw binary; OTIRB is licensed by the Ohio Department of Insurance under Ohio Revised Code Sections 3935.04 and 3953.28, per the Manual's own text)",
+    "asOf": "(01/01/2026) Reprint -- 'EFFECTIVE AS TO ORDERS RECEIVED ON OR AFTER (JANUARY 1, 2026)'; SERFF Tr. Num DEMT-134549810; current vintage as of retrieval 2026-07-22 (a prior 06/01/2023 vintage was also indexed by the same host but superseded)",
+    "settlementFee": {
+      "note": "CENTRAL STRUCTURAL FINDING: Ohio's rating-bureau-uniform premium is set by OTIRB, whose 26 current members (per the Manual's own roster) include ALL FIVE national underwriters named in the task brief -- Chicago Title, Fidelity National Title, First American Title, Old Republic National Title, Stewart Title Guaranty -- plus WFG National Title. Unlike NJ's NJLTIRB, OTIRB does NOT regulate the settlement/closing fee itself: General Provision GP-4 states in so many words, 'The rates set forth herein do not include any charge made for title search, title examination, closing, or escrow services performed by the Insurer, or any of its approved attorneys or agents. Charges made for such services are in addition to the rates and charges set forth herein.' This is the exact unregulated territory the task brief targeted -- settlement/closing/escrow/search/exam fees are left entirely to the market in Ohio, for every provider type, with no carve-out procedure comparable to PA's Approved Attorney track or NJ's Article 6.",
+      "ownerPolicyOriginalRate_PR1": "$5.80/thousand up to $250,000 of liability; +$4.10/thousand $250,001-$500,000; +$3.20/thousand $500,001-$1,000,000; +$3.10/thousand $1,000,001-$5,000,000; +$2.90/thousand $5,000,001-$10,000,000; +$2.60/thousand above that. Minimum Premium $225.00 (Homeowner's Policy variant: PR-1 rate +15%, minimum $250)",
+      "loanPolicyOriginalRate_PR8": "$4.00/thousand up to $250,000; +$3.10/thousand $250,001-$500,000; +$2.90/thousand $500,001-$1,000,000; +$2.50/thousand $1,000,001-$5,000,000; further tiers to $2.20/thousand above $10,000,000. Minimum Premium $150.00",
+      "simultaneousIssueOwnerAndLoan_PR6": "Combined rate = applicable Owner's Rate + $150 per Standard Loan Policy ($175 for Expanded Coverage Residential Loan Policy)",
+      "commitmentRate_PR11": "$50-$100 per transaction, in addition to the policy rate; 20% cancellation charge (max $250) if no policy issues",
+      "closingProtectionCoverage_CP1": "Rating-bureau-set (Section 6, Form CP-24): $40 lender, $55 seller(s), $20 buyer(s)/borrower(s), $20 each additional applicant; $40 minimum; remitted entirely to the Insurer (not the Agent)"
+    },
+    "itemizedFees": {
+      "docPrep": "NOT regulated by the Manual (GP-4 excludes 'closing' services generally, which providers interpret to include doc prep); no OTIRB-set figure",
+      "processing": null,
+      "courier": "NOT regulated by the Manual (GP-4 excludes escrow/closing services from the rate); no OTIRB-set figure",
+      "wire": "NOT regulated by the Manual; no OTIRB-set figure",
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Examination charge is explicitly excluded from the rate by GP-4 ('title search, title examination... performed by the Insurer, or any of its approved attorneys or agents. Charges made for such services are in addition to the rates')",
+      "cpl": "$40 (lender) / $55 (seller) / $20 (buyer-borrower) / $20 (each additional applicant); $40 minimum -- see settlementFee.closingProtectionCoverage_CP1 above (Section 6, CP-1)",
+      "binder": "Title Guaranty (Record Products) rate: $3.50/thousand up to $100,000, +$3.00/thousand $100,001-$250,000, +$2.50/thousand above; $105 minimum (Section 4, RP-1) -- this is OTIRB's own 'Title Guaranty' record-product line, a substitute-for-insurance product used in the state's Torrens-adjacent judicial-report system, not identical to a 'binder' in the conventional sense but the closest Manual-rated analog",
+      "other": [
+        { "name": "Preliminary Judicial Report (non-foreclosure)", "amount": "$3.00/thousand of fair market value, $75 minimum (Section 4, RP-2)" },
+        { "name": "Preliminary Judicial Report (foreclosure)", "amount": "$3.00/thousand of unpaid principal balance, $75 minimum" },
+        { "name": "Supplemental/Final Judicial Report", "amount": "$50.00 flat (Section 4, RP-2.1)" },
+        { "name": "Title Guaranty Commitment", "amount": "$50.00 (Section 4, RP-3)" }
+      ]
+    },
+    "bundlingNotes": "OTIRB's GP-4 is the most direct 'no carve-out needed' unregulated-settlement-fee statement found in this survey: rather than creating a special attorney-only track (PA) or promulgating the settlement fee itself (NJ), Ohio's rating bureau simply states up front that search/examination/closing/escrow are never part of the regulated rate for ANY provider type -- Company, Agent, or approved attorney alike. This means the entire settlement/service-fee stack the task brief asked about is, structurally, 100% unregulated in Ohio; the OTIRB Manual is cited here purely for the premium reference and the one closing-adjacent item it does price (the CPL, Section 6).",
+    "transactionContext": "Applies uniformly statewide, all 88 counties, to all 26 OTIRB member insurers/agents' Owner's and Loan policy premiums alike; no purchase-vs-refinance distinction in the base rate (separate Refinance/Reissue rate rules apply based on prior-policy timing, not transaction type per se)."
+  },
+  {
+    "provider": "Landmark Title Agency South, Inc. (independent title & settlement agency; Dayton, OH [Montgomery County/Miami Valley], serving Southwest Ohio -- Butler, Clark, Clermont, Clinton, Champaign, Darke, Fairfield, Greene, Hamilton, Highland, Logan, Madison, Miami, Montgomery, Preble, Shelby, and Warren Counties per its own published conveyance-fee table)",
+    "sourceUrl": "https://landmarktitlesouth.com/rates-and-estimates",
+    "asOf": "Retrieved 2026-07-22 (page's own 'Recent Posts' sidebar references a 'July 2026 Property Tax Update,' indicating the page is actively maintained as of this session's retrieval date; no separate effective date stated for the fee table itself, which is captioned 'Rates and fees are subject to change without notice')",
+    "settlementFee": {
+      "purchase_closingFee": "$200.00 (buyer side; page's 'Purchase Fees' column)",
+      "refinance_closingFee": "$150.00",
+      "secondMortgagePiggyback_closingFee": "$125.00",
+      "seller_closingDisbursementFee": "$90.00 (page's 'Seller's Fees' column, separate line from the buyer-side Closing Fee above)",
+      "note": "This is the richest itemized, dollar-denominated, currently-published Ohio settlement-fee schedule located this session -- a genuine independent title/escrow agency publishing purchase, refinance, and second-mortgage closing-fee tiers side by side, plus a full ancillary-fee stack, directly on its own public 'Rates and Estimates' page. The page explicitly states title insurance premiums/endorsements are OTIRB-regulated while 'Settlement and service fees listed above are standard charges and may vary depending on transaction complexity' -- an accurate provider-side restatement of the OTIRB GP-4 unregulated-settlement-fee finding above."
+    },
+    "itemizedFees": {
+      "docPrep": "Deed Preparation (seller): $100.00",
+      "processing": "Print/Delivery Handling Fee: $50.00 (purchase and refinance); Recording Service Fee: $25.00",
+      "courier": "Expedite/Overnight/Courier Fee for Payoff (seller): $25.00",
+      "wire": "$40.00 per outgoing wire (seller-side line and separately listed under 'Miscellaneous Fees' as 'Wire Fee (per outgoing wire)')",
+      "edoc": null,
+      "eRecording": "Recording Service Fee: $25.00 (in addition to statutory Recording Fees: $34.00 first two pages, $8.00 each additional page)",
+      "notarySigning": "RON (Remote Online Notary -- PROOF) Notary Session (Seller): $100.00; Additional Session (Seller): $75.00; E-Signature Request (Buyer): No fee. Also: Out of Office Seller Signing: $40.00",
+      "searchExam": "Title Exam: $230.00 (purchase) / $180.00 (refinance) / $250.00 (with Attorney's Opinion); 24-Month Chain of Title: $35.00",
+      "cpl": "Lender Closing Protection Coverage: $40.00 (purchase and refinance) -- matches the OTIRB CP-1 $40 lender rate exactly, confirming compliance with the regulated CPL figure",
+      "binder": "Title Insurance Binder: $90.00 (purchase); Title Commitment Binder: $90.00 (refinance)",
+      "other": [
+        { "name": "CertifID ID Verification (Buyer)", "amount": "$15.00" },
+        { "name": "CertifID ID Verification (Seller)", "amount": "$15.00" },
+        { "name": "Power of Attorney Preparation", "amount": "$90.00" },
+        { "name": "Land Contract Preparation", "amount": "$300.00" },
+        { "name": "Endorsement -- EPL / ARM / Balloon", "amount": "$75.00 each" },
+        { "name": "Endorsement -- Comprehensive", "amount": "$1.00/thousand, $150 typical" },
+        { "name": "Endorsement -- Survey / Condo / PUD", "amount": "$50.00 each" },
+        { "name": "Endorsement -- Mechanic's Lien Deletion", "amount": "$150.00" },
+        { "name": "Construction Draw (incl. title update)", "amount": "$75.00" },
+        { "name": "Title Insured Draw with Endorsements (per draw)", "amount": "$100.00" },
+        { "name": "Title Update Only", "amount": "$75.00" }
+      ]
+    },
+    "bundlingNotes": "Landmark itemizes closing/settlement charges far more granularly than any other Ohio source located this session, cleanly separating buyer-side Closing Fee ($200 purchase / $150 refinance) from seller-side Closing/Disbursement Fee ($90) and Deed Prep ($100) -- a genuine buyer/seller fee-split data point matching the market's general practice pattern. Its $40 Lender CPL figure independently corroborates the OTIRB-regulated $40 lender rate byte-for-byte, the clearest example in this survey of a provider correctly passing through the one Ohio closing-adjacent charge that IS rate-regulated, while pricing everything else (Title Exam, Closing Fee, wire, courier, notary, doc prep) independently as the OTIRB Manual's GP-4 permits.",
+    "transactionContext": "Residential purchase, refinance, and second-mortgage/piggyback transactions; primary office in Dayton (Montgomery County/Miami Valley) with an explicitly published multi-county Southwest Ohio service area reaching into the Cincinnati/Hamilton County metro (one of the task brief's three target metros) via its own conveyance-fee table."
+  }
+]
