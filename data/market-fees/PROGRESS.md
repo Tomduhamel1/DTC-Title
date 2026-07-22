@@ -77,7 +77,7 @@ still vary and matter).
 | ND | 2 (Stewart Title Guaranty, WFG National) | statewide (no metro/county breakout published) | national-brand underwriters only (Stewart, WFG); no independent title/escrow settlement-fee schedule or additional underwriter rate manual (First American, Old Republic) found despite exhaustive search | **complete (scarce)** — 15 combined query strategies/direct checks yield only 2 usable premium-only rate manuals; zero settlement/closing/escrow fee dollar figures found anywhere. Notable: Stewart's ND manual contains an erroneously-appended Indiana-specific "Schedule A" section (copy-paste template error), excluded as not ND-specific | 2026-07-22 |
 | OK | 7 documents / 4 providers (American Eagle Title Group x3 vintages, Old Republic x2 vintages, First National Title Insurance, WFG National) | 2 (Tulsa, Oklahoma City/Canadian/Cleveland Counties) | independent settlement/abstract company (AETG), national-brand underwriters (Old Republic, FNTI, WFG) | **complete (saturated)** — 7 documents across 5 years of vintages; 2 of 4 providers (AETG, Old Republic) publish genuine itemized settlement-fee schedules, not premium-only; WFG's 2000-vintage figures excluded from range-stability calc as likely outdated (documented methodology note) | 2026-07-22 |
 | OR | 3 documents / 2 providers (OTIRO bureau manual x2 vintages 2017/2025 -- identical premium schedule 8 years apart; Cascade Title contract-collections fee schedule, non-standard product) | statewide (no metro/county breakout published in OTIRO's Basic Insurance Rate) | rating bureau (OTIRO), independent title/escrow company (Cascade Title, Lane County) | **complete (scarce)** — 15+ query strategies/direct provider-site checks find only 2 providers; OR's OAR 836-080-0365 requires escrow rates to be filed with DFR but confirmed non-public (private email submission, no directory), matching CO's filed-privately pattern | 2026-07-22 |
-| RI | 0 | unprocessed | |
+| RI | 1 document / 1 provider (WFG National, effective 2023-03-01, premium + $25 CPL fee) | statewide (no metro breakout published) | national-brand underwriter only (WFG); attorney-closing-custom state (not statutorily mandated) which appears to route settlement pricing through private/unpublished attorney arrangements | **complete (scarce)** — 12+ query strategies/direct provider-site checks (5 closing-attorney firms, 2 independent title companies, all 5 national-brand underwriters) yield only 1 usable premium rate manual; RI's own statutes confirm escrow/settlement/closing fees are legally defined (§27-2.6-3) but not filing-mandated, unlike premiums (§27-2.6-16) | 2026-07-22 |
 | SC | 0 | unprocessed | |
 | SD | 0 | unprocessed | |
 | UT | 0 | unprocessed | |
@@ -795,3 +795,28 @@ still vary and matter).
   settlement-fee sources. With only 2 providers verified despite the extensive search, OR
   meets the contract's scarce criterion. Marked OR **complete (scarce)**. Moving to the next
   unprocessed tier-2 state (RI, next alphabetically).
+- 2026-07-22: Started RI from scratch. Confirmed Rhode Island is a genuine insurer-filed,
+  prior-approval premium-rate state (R.I. Gen. Laws §27-2.6-16), with a separate statutory
+  definition of "escrow, settlement, or closing fee" (§27-2.6-3) that is NOT filing-mandated
+  (unlike Oregon's OAR 836-080-0365 or Idaho's IDAPA 18.05.01.022) -- confirming RI's
+  settlement fees are unregulated/unfiled like most states. Verified 1 source: WFG National's
+  RI Rate Manual (effective 2023-03-01), with a distinctive General Rules provision stating
+  its rates are "all-inclusive ... includes both the risk portion and the service or work
+  portion" while still excluding title search/escrow/closing/settlement -- a partial-bundle
+  structure worth noting for marketBaseline, though WFG-specific rather than a statewide
+  regulatory mandate like Tennessee's All-Inclusive Rate rule. Also verified a $25 flat CPL
+  fee covering all parties in one charge (unlike most states' per-party CPL splits). 12+
+  query strategies/direct provider-site checks of 5 closing-attorney firms (Bilodeau Capalbo,
+  Slepkow Law, Palumbo Law, Zangari, Johnston Law/Tomassi Law found but not all fetched),
+  2 independent title companies (Providence Title, Armour Title), and all 5 national-brand
+  underwriters (Stewart/First American/Old Republic/Fidelity/Chicago Title all route to
+  interactive calculators only) found no further usable sources. One near-miss: Bilodeau
+  Capalbo's "Seller Representation Flat Fee $400" page was fetched but its visible text
+  contains no dollar figure at all (the "$400" exists only in the URL slug) -- excluded as
+  unverifiable per evidence rules, matching the NH $199-claim precedent. RI's public SERFF
+  Filing Access portal (filingaccess.serff.com/sfa/home/RI) returned HTTP 403 on direct fetch
+  -- an interactive search interface rather than a static document listing like Kansas/Idaho's
+  repositories, so it could not expand coverage this session. With only 1 verified source
+  despite the extensive search, RI meets the contract's scarce criterion. Marked RI
+  **complete (scarce)**. Moving to the next unprocessed tier-2 state (SC, next
+  alphabetically).

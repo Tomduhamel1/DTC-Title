@@ -1,0 +1,30 @@
+[
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/rhode-island/rates/WFG%20Rhode%20Island%20Title%20Insurance%20Rate%20Manual%20effective%203-1-23.pdf",
+    "asOf": "Effective March 1, 2023",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "$25.00 per issuance, flat, covering all parties (buyer/borrower and lender) -- not subject to any fee-division agreement",
+      "binder": null,
+      "other": [
+        "Basic Rate Table: Owner's & Leasehold Owner's Policies $3.50/$1,000 up to $2,000,000 liability, $3.00/$1,000 above $2,000,000",
+        "Acquisition Loan Policies: $2.50/$1,000 up to $2,000,000, $2.00/$1,000 above",
+        "Finance (refinance) Loan Policies: $1.50/$1,000 up to $2,000,000, $1.20/$1,000 above",
+        "Minimum Rate: $100.00 unless otherwise stated",
+        "Expanded Coverage Owner's Policy (ALTA Homeowner's Policy): 110% of standard Owner's rate, $125.00 minimum",
+        "Concurrent leasehold-interest policy charge: $100.00"
+      ]
+    },
+    "bundlingNotes": "Rate Manual General Rules state: 'The rates shown are the all-inclusive title insurance fees and charges and includes both the risk portion and the service or work portion, but does not include charges for title search, surveys, escrow, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant.' This is a distinctive middle-ground structure -- unlike most states' pure risk-only premium, WFG's Rhode Island rate explicitly bundles some 'service or work portion' into the premium (similar in spirit to Tennessee's All-Inclusive Rate rule), while still excluding title search, escrow, and closing/settlement services as separate unregulated charges.",
+    "transactionContext": "Owner's, Leasehold Owner's, Acquisition Loan, and Finance/Refinance Loan policies (purchase and refinance), statewide -- no county/metro rate differentiation."
+  }
+]
