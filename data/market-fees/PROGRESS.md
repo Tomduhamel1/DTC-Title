@@ -53,7 +53,7 @@ still vary and matter).
 | State | Verified sources | Status | Last run |
 |---|---|---|---|
 | AL | 2 (WFG National, Stewart Title Guaranty) | statewide (State charge vs. Birmingham Metro [Jefferson/Shelby/Blount] carve-out published by both underwriters) | national-brand underwriters only (WFG, Stewart); attorney-closing state (AL requires licensed attorney to close) which appears to route settlement pricing through private/unpublished attorney fee arrangements | **complete (scarce)** — 10 query strategies/11 direct provider-site checks (incl. 2 closing-attorney firms) yield only 2 usable premium-only rate manuals; zero settlement/closing-fee dollar figures found anywhere except identical CPL fees ($25/$25/$50) on both underwriters. One candidate (Jackson & Scott, Montgomery) had promising search-snippet figures but its page 403'd on direct fetch and could not be independently verified | 2026-07-22 |
-| AK | 0 | unprocessed | |
+| AK | 2 (Alyeska Title Guaranty Agency [genuine escrow fee schedule], Stewart Title Guaranty [premium manual]) | statewide (no metro breakout published) | independent agency (Alyeska) + national-brand underwriter (Stewart); AK statute AS 21.66.460 requires filing of escrow/settlement/closing charges separately from AS 21.66.370 premium rates, which produced one genuine dollar-denominated escrow schedule -- a rarer find than most "scarce" states | **complete (scarce)** — 14 query strategies/~10 direct provider-site checks yield only 2 usable sources despite AK's unusually favorable statutory disclosure regime; most independent AK title agencies (Western AK Land Title, Integrated Title, Kachemak Bay) are quote-only with no static published schedule | 2026-07-22 |
 | AR | 0 | unprocessed | |
 | CT | 0 | unprocessed | |
 | DC | 0 | unprocessed | |
@@ -358,3 +358,21 @@ still vary and matter).
   With only 2 verified sources despite exceeding the 8-strategy scarce threshold, AL
   meets the contract's scarce criterion. Marked AL **complete (scarce)**. Moving to the
   next unprocessed tier-2 state (AK, next alphabetically).
+- 2026-07-22: Started AK from scratch. Discovered Alaska has an unusual two-statute
+  regulatory structure: AS 21.66.370 governs title insurance premium rates (like most
+  states) but AS 21.66.460 separately *requires* title companies to file escrow,
+  settlement, and closing charge schedules with the Division of Insurance. This produced
+  a genuine, dollar-denominated escrow fee schedule from Alyeska Title Guaranty Agency
+  (effective 2025-10-01, formula-based: $400 base + $1.60/thousand up to $1M, $0.80/
+  thousand thereafter, plus a flat $375 refinance fee) -- a notably better find than the
+  premium-only manuals typical of other "scarce" states. Also verified Stewart Title
+  Guaranty's Alaska premium manual (2017 vintage, the most current locatable via
+  working URL; newer 2025/2026 Stewart AK filings were referenced in Virtual
+  Underwriter's bulletin index but the PDFs themselves could not be located). Despite
+  AK's favorable statutory disclosure regime, 14 query strategies and ~10 direct
+  provider-site checks (Western Alaska Land Title, Integrated Title Agency, Kachemak
+  Bay Title, First American AK, Chicago Title Library, Old Republic AK, Fidelity Title AK,
+  Alaska Escrow & Title) found no further usable sources -- most independent AK
+  agencies are quote-only. With only 2 verified sources, AK meets the contract's scarce
+  criterion. Marked AK **complete (scarce)**. Moving to the next unprocessed tier-2
+  state (AR, next alphabetically).

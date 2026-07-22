@@ -1,0 +1,41 @@
+[
+  {
+    "provider": "Alyeska Title Guaranty Agency, Inc. (independent, Anchorage & Wasilla)",
+    "sourceUrl": "https://alyeskatitle.com/downloads/rates-escrow.pdf",
+    "asOf": "Effective 2025-10-01",
+    "settlementFee": {
+      "note": "Genuine escrow/settlement fee schedule (not premium-only) -- rare among states surveyed. Alaska statute AS 21.66.460 requires title companies to file escrow/settlement/closing charge schedules with the Division of Insurance separately from title insurance premium rates, which appears to drive public availability of a document like this one.",
+      "escrowFeeFormula": "Base rate of $400.00 plus $1.60 per thousand of insurance liability up to $1,000,000.00, and $0.80 per thousand thereafter. Rounded up to the nearest dollar.",
+      "escrowFeeTable_sample": "At $50,000 insurance liability -> $480 escrow; $100,000 -> $560; $200,000 -> $720; $300,000 -> $880; $500,000 -> $1,200; $1,000,000 -> $2,000; $2,000,000 -> $2,800; $5,000,000 -> $5,200; $10,000,000 -> $9,200. Full $28,000-$10,000,000 tier table recorded in the source PDF.",
+      "residentialRefinanceFee": "$375.00 flat"
+    },
+    "itemizedFees": {
+      "other": []
+    },
+    "bundlingNotes": "Escrow rates shown are stated minimums, 'subject to change dependent upon the complexity of the transaction,' and apply only when the transaction is closed in conjunction with title insurance issued by or ordered through Alyeska. This is a pure escrow/closing fee schedule (not a title premium schedule) -- the only such static, dollar-denominated settlement-fee document found this session for Alaska, and one of the more granular escrow tables found across all states surveyed to date (rate increments as fine as $1,000 of liability from $28,000 to $126,000).",
+    "transactionContext": "Escrow fee for purchase transactions (tiered to insurance/liability amount) and a flat $375 fee for residential refinance transactions. Statewide (Anchorage & Wasilla branches), no further metro breakout."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://www.stewart.com/-/media/files/stewartdotcom/pdfs/states/alaska/alaska_manual_final_022017.pdf",
+    "asOf": "Last updated 2017-02-20",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/escrow fee schedule. Filed pursuant to AS 21.66.370 (the title-insurance-rate statute, distinct from AS 21.66.460 governing escrow/settlement/closing charges).",
+      "basicInsuranceRateTable_sample": "$1,000-$28,000 of insurance = flat $250.00 minimum; $50,000 -> $382.00; $100,000 -> $582.00. Above $100,000: $100,001-$500,000 add $3.00/thousand; $500,001-$750,000 add $2.50/thousand; $750,001-$2,000,000 add $2.00/thousand; $2,000,001-$5,000,000 add $1.25/thousand; over $5,000,000 add $1.20/thousand.",
+      "ownersStandardCoverage": "100% of Basic Insurance Rate, minimum $250",
+      "ownersExtendedCoverage": "135% of Basic Insurance Rate, minimum $250",
+      "homeownersPolicy": "110% of Basic Insurance Rate, minimum $250",
+      "loanStandardCoverage": "80% of Basic Insurance Rate, minimum $250",
+      "loanExtendedCoverage": "110% of Basic Insurance Rate, minimum $250",
+      "cancellationCharge": "$250 (fully creditable to a subsequent order on the same property within 12 months)"
+    },
+    "itemizedFees": {
+      "other": [
+        { "name": "Additional chain of title / separate parcel charge", "amount": "$200 per separate parcel" },
+        { "name": "Guarantee (100% of Basic Title Insurance rate)", "amount": "minimum $250" }
+      ]
+    },
+    "bundlingNotes": "No settlement/escrow/closing charges appear anywhere in this 17-page manual -- it covers only title insurance premiums, reissue/concurrent-policy rates, and a full ALTA/CLTA endorsement price list. This is an older vintage (2017) than ideal; a newer Alaska Stewart filing was referenced in Virtual Underwriter bulletins (AK2025001 'New Alaska Rate Manual', AK2026001 effective April 2026) but the actual PDF for either could not be located or fetched this session -- only this 2017 filing was reachable via a working URL.",
+    "transactionContext": "Owner's (Standard, Extended, Homeowner's) and Loan (Standard, Extended) policy premium schedules, statewide, plus full ALTA/CLTA endorsement charges. No settlement/escrow/closing-service fee breakdown -- confirms the AK market convention (also seen in Alyeska's separate escrow schedule) of pricing title premium and escrow/settlement as two entirely separate filed documents."
+  }
+]
