@@ -147,6 +147,30 @@ export default function DashboardTrustSection() {
                   </div>
                 </div>
               </div>
+
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-9 h-9 bg-emerald-100 rounded-full flex items-center justify-center mt-0.5">
+                  <svg
+                    className="w-5 h-5 text-emerald-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2.5}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="font-bold text-dark-900 text-lg leading-tight">
+                    Attorneys when it matters
+                  </div>
+                  <div className="text-gray-600 mt-0.5">
+                    Most closings never need one. When a file does — an old lien, an estate
+                    question, a title defect — attorneys on our team step in and resolve it. Your
+                    closing keeps moving.
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 

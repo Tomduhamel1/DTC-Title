@@ -198,7 +198,7 @@ Thanks,`,
               <ReasonCard
                 emoji="🛡️"
                 title="Same A-rated underwriters"
-                body="The title insurance is identical to what you place with any other settlement company."
+                body="The title insurance is identical to what you place with any other settlement company — and when a file needs legal work to close, our in-house and partner attorneys handle it."
               />
               <ReasonCard
                 emoji="📊"

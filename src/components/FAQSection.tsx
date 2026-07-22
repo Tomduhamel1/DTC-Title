@@ -20,7 +20,11 @@ export default function FAQSection() {
     },
     {
       question: "What if there's a problem with the title?",
-      answer: "You're protected by industry-leading underwriters with billions of dollars in claims-paying ability. Title insurance covers you for any defects, liens, or ownership issues that existed before you bought the property. If a covered claim arises, your underwriter handles it completely - the same as they would with any other title company."
+      answer: "You're covered on both sides of closing. If our title search turns up a problem before you close, attorneys on our team work to clear it so your closing stays on track. After closing, you're protected by industry-leading underwriters with billions of dollars in claims-paying ability - if a covered claim arises, your underwriter handles it completely, the same as they would with any other title company."
+    },
+    {
+      question: "What if a legal issue comes up before closing?",
+      answer: "We handle it. A judgment lien, a probate or estate question, a missing signer, a divorce decree on the title - when a file needs legal work to close, attorneys take care of it as part of our title and settlement work. In many states they're our own in-house and affiliated attorneys; in the rest, local real estate attorneys we partner with. You don't have to go find a lawyer, and your closing keeps moving - and if you'd like your own attorney involved, we're happy to work with them."
     },
     {
       question: "How long does the closing process take?",
@@ -87,7 +91,7 @@ export default function FAQSection() {
               {/* Answer Panel */}
               <div
                 className={`px-6 bg-gray-50 transition-all duration-300 ease-in-out ${
-                  openIndex === index ? 'py-5 max-h-96' : 'max-h-0 py-0 overflow-hidden'
+                  openIndex === index ? 'py-5 max-h-[32rem]' : 'max-h-0 py-0 overflow-hidden'
                 }`}
               >
                 <p className="text-gray-700 leading-relaxed">
