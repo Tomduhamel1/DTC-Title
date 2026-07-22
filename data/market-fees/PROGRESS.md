@@ -75,7 +75,7 @@ still vary and matter).
 | NV | 2 providers / 3 documents (First American [escrow schedule + title rate manual, both regulator-published], Stewart Title Guaranty) | 2 county-area systems (First American Area A: Clark/Lincoln/Nye vs. Area B: all others; Stewart 3-zone: Elko/White Pine/Eureka/Lander, Clark/Lincoln/Nye, Washoe+rural) | national-brand underwriters only (First American, Stewart); WFG/Old Republic/Chicago Title/Fidelity all route to interactive calculators, no static NV rate manual found | **complete (scarce)** — 19 query strategies/direct checks yield only 2 providers, but First American's regulator-published Escrow Rate Manual is a genuine dollar-denominated settlement-fee source (rare, high-quality find) | 2026-07-22 |
 | NH | 2 (Stewart Title Guaranty, WFG National) | statewide (no metro/county breakout published) | national-brand underwriters only (Stewart, WFG); CATIC (New England's dominant bar-related insurer) 403-blocked on both hosting paths; an independent NH title company's oft-cited $199 flat fee could not be independently verified (site stuck in an unresolvable redirect loop) | **complete (scarce)** — 24 combined query strategies/direct checks yield only 2 usable premium-only rate manuals; zero independently-verifiable settlement/closing/escrow fee dollar figures found anywhere | 2026-07-22 |
 | ND | 2 (Stewart Title Guaranty, WFG National) | statewide (no metro/county breakout published) | national-brand underwriters only (Stewart, WFG); no independent title/escrow settlement-fee schedule or additional underwriter rate manual (First American, Old Republic) found despite exhaustive search | **complete (scarce)** — 15 combined query strategies/direct checks yield only 2 usable premium-only rate manuals; zero settlement/closing/escrow fee dollar figures found anywhere. Notable: Stewart's ND manual contains an erroneously-appended Indiana-specific "Schedule A" section (copy-paste template error), excluded as not ND-specific | 2026-07-22 |
-| OK | 0 | unprocessed | |
+| OK | 7 documents / 4 providers (American Eagle Title Group x3 vintages, Old Republic x2 vintages, First National Title Insurance, WFG National) | 2 (Tulsa, Oklahoma City/Canadian/Cleveland Counties) | independent settlement/abstract company (AETG), national-brand underwriters (Old Republic, FNTI, WFG) | **complete (saturated)** — 7 documents across 5 years of vintages; 2 of 4 providers (AETG, Old Republic) publish genuine itemized settlement-fee schedules, not premium-only; WFG's 2000-vintage figures excluded from range-stability calc as likely outdated (documented methodology note) | 2026-07-22 |
 | OR | 0 | unprocessed | |
 | RI | 0 | unprocessed | |
 | SC | 0 | unprocessed | |
@@ -746,3 +746,25 @@ still vary and matter).
   verified sources despite the exhaustive search, ND meets the contract's scarce
   criterion. Marked ND **complete (scarce)**. Moving to the next unprocessed tier-2
   state (OK, next alphabetically).
+- 2026-07-22: Started OK from scratch. Confirmed OK is a "Use and File" rate state
+  (36 O.S. §987, no prior-approval authority) -- unregulated in practice like AR.
+  Verified 7 documents across 4 providers: American Eagle Title Group (3 vintages --
+  2019, 2023, 2024 -- an independent settlement/abstract company serving both Tulsa
+  and Oklahoma City with genuine itemized closing/title-exam/final-search/title-services
+  fees), Old Republic Title (2 vintages -- 2019, 2024 -- each pairing a genuine itemized
+  settlement-fee schedule for the Oklahoma City/Canadian/Cleveland Counties metro with a
+  companion premium schedule, the 2019 vintage notably including a fully worked
+  buyer/seller fee-allocation example, the most explicit such illustration found in this
+  survey), First National Title Insurance Company (2020, premium-only), and WFG National
+  Title (a 2000-effective-date manual, unusually including genuine dollar-denominated
+  abstract/exam/simultaneous-issue fees directly in its premium chart, though flagged and
+  excluded from the range-stability calculation given its 25-year-old vintage). This is a
+  notably transparent state: 2 of 4 providers publish genuine non-premium settlement-fee
+  schedules rather than routing to interactive calculators, unlike most "unregulated fee"
+  states surveyed. Stewart routes OK pricing through an interactive calculator only (no
+  static manual found). 11 combined query strategies/direct checks found no additional
+  independent OKC-area provider's published schedule. With 7 documents spanning 2 metro
+  areas and 2 provider types, and the 3 most recent additions falling within (or, for
+  WFG, excluded from) the already-established range, OK meets the contract's saturation
+  criterion. Marked OK **complete (saturated)**. Moving to the next unprocessed tier-2
+  state (OR, next alphabetically).
