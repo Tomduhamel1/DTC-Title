@@ -80,7 +80,7 @@ still vary and matter).
 | RI | 1 document / 1 provider (WFG National, effective 2023-03-01, premium + $25 CPL fee) | statewide (no metro breakout published) | national-brand underwriter only (WFG); attorney-closing-custom state (not statutorily mandated) which appears to route settlement pricing through private/unpublished attorney arrangements | **complete (scarce)** — 12+ query strategies/direct provider-site checks (5 closing-attorney firms, 2 independent title companies, all 5 national-brand underwriters) yield only 1 usable premium rate manual; RI's own statutes confirm escrow/settlement/closing fees are legally defined (§27-2.6-3) but not filing-mandated, unlike premiums (§27-2.6-16) | 2026-07-22 |
 | SC | 4 documents / 4 providers (Stewart 2022, WFG 2011 -- identical rate tables; Mogil Law Firm full settlement schedule 2025, Ingram Law Firm ancillary fees) | 2 (Hilton Head/Beaufort-Jasper via Mogil, Cheraw/Chesterfield via Ingram) | national-brand underwriters (Stewart, WFG), closing-attorney firms (Mogil, Ingram) | **complete (scarce)** — 13 query strategies/direct checks of 8+ named firms yield only 4 usable sources; SC's underwriter manuals confirm a genuine but underwriter-unquantified 'commitment work/preparation charge' retained by the closing agent | 2026-07-22 |
 | SD | 5 (Stewart, WFG National, Pennington Title/Rapid City, Titles of Dakota/Aberdeen + 16 rural counties, Black Hills Title/northern Black Hills) | 3 (Sioux Falls/Yankton metro via Stewart's metro tier only, Rapid City/Pennington County via Pennington Title, Aberdeen + rural north-central/south-central SD via Titles of Dakota; northern Black Hills via Black Hills Title) | national-brand underwriters (Stewart, WFG), independent title/abstract companies (Pennington Title, Titles of Dakota, Black Hills Title) | **complete (scarce)** — 27+ query strategies/~30 direct provider-site checks yield only 5 usable sources despite SD's insurer-filed premium regime; notably higher evidence quality than most scarce states since 3 of 5 are genuine independent-company schedules (2 with real settlement/closing fees, not premium-only), and Titles of Dakota uniquely publishes closing fee + search/exam fee + its own filed premium table together | 2026-07-22 |
-| UT | 0 | unprocessed | |
+| UT | 5 (Stewart Title Guaranty, WFG National, First National Title Insurance, Sutherland Title, Provo Abstract) | 2 of 4 targeted metros with published pricing (Salt Lake City/Wasatch Front via Sutherland Title, Provo/Utah County via Provo Abstract; Ogden/Weber and St. George/Washington found no static independent pricing despite dedicated search) | national-brand underwriters (Stewart, WFG, FNTI), independent title/escrow companies (Sutherland Title, Provo Abstract) | **complete (scarce)** — 28 query strategies/direct checks of all major national-brand offices plus ~12 independent UT companies yield only 5 usable sources; confirmed former escrow-fee filing rule R592-15 was repealed 2023-08-21 (HB 410), and confirmed the "Utah Title & Escrow Association" hypothesized in the task brief does not exist as a fee-schedule publisher (the real body, Utah Land and Title Association, publishes only recording-practice standards, no rates). Notable finding: Stewart/WFG/FNTI premiums converge within <1.3% of each other at $200k liability ($1,121/$1,135/$1,135), an unusually tight cross-underwriter spread versus other states surveyed | 2026-07-22 |
 | VT | 0 | unprocessed | |
 | WV | 0 | unprocessed | |
 | WI | 3 (Advocus/ATG, Stewart, First American) | statewide (no metro/county breakout published) | national-brand underwriters only (Advocus, Stewart, First American); no independent title/escrow or attorney settlement-fee schedule found despite exhaustive search | **complete (scarce)** — 10 query strategies/direct checks yield only 3 premium-only rate manuals; zero settlement/closing fee dollar figures found anywhere, matching the AZ/CO/MI/MO/VA market-opacity pattern | 2026-07-21 |
@@ -852,3 +852,29 @@ still vary and matter).
   no further usable sources. With only 5 providers verified despite the extensive search, SD
   meets the contract's scarce criterion. Marked SD **complete (scarce)**. Moving to the next
   unprocessed tier-2 state (UT, next alphabetically).
+- 2026-07-22: Started UT from scratch. Confirmed a notable regulatory history: former Rule
+  R592-15 required title insurers/agencies to file escrow/settlement charge schedules with the
+  Utah Insurance Department (matching AK's AS 21.66.460 and ID's IDAPA 18.05.01.022 pattern),
+  but R592-15 was repealed effective 2023-08-21 after HB 410 (2023 General Session) removed that
+  filing mandate from Utah Code 31A-19a-209 -- so Utah's favorable-disclosure window has closed.
+  Also independently verified (per the task brief's request) that the "Utah Title & Escrow
+  Association fee schedule" hypothesis does not hold: the real professional body is the Utah
+  Land and Title Association (ULTA, utahlandtitle.com), confirmed live, but its public Forms
+  page hosts only recording/processing best-practice standards, no fee schedule. Verified 5
+  sources: Stewart Title Guaranty (2023-04-10), WFG National (2024-10-01), and First National
+  Title Insurance Company/FNTI (2022-06-06) -- all three premium-only manuals, converging within
+  <1.3% of each other at $200,000 owner's-policy liability ($1,121/$1,135/$1,135), an unusually
+  tight cross-underwriter spread versus other states surveyed, with WFG's and FNTI's Basic Rate
+  tables structurally identical tier-for-tier. Plus 2 independent companies with genuine (if
+  partial) settlement-fee dollar figures: Sutherland Title (Salt Lake City/Draper, closing fee
+  $50-$175 plus itemized doc prep/courier/wire/trustee-tracking add-ons) and Provo Abstract
+  (Provo/Utah County, e-closing fee $20 cash/$75 loan plus a $60 standard-endorsement bundle and
+  $5/document e-recording pass-through, though its core closing fee itself is calculator-only).
+  28 query strategies plus direct checks of all 5 national-brand underwriters/direct offices and
+  roughly a dozen independent UT title companies (Metro National Title, Metro Title, GT Title
+  Services [6 statewide offices], Cottonwood Title, Southern Utah Title Company, Eagle Gate
+  Title, National Title Agency of Utah, plus several name-only dead ends) found no further
+  usable sources -- nearly every independent Utah company routes to an interactive rate
+  calculator rather than a static published schedule. With only 5 verified sources despite the
+  extensive search, UT meets the contract's scarce criterion. Marked UT **complete (scarce)**.
+  Moving to the next unprocessed tier-2 state (VT, next alphabetically).
