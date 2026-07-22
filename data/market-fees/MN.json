@@ -1,0 +1,117 @@
+[
+  {
+    "provider": "Stewart Title Guaranty Company (underwriter Schedule of Charges)",
+    "sourceUrl": "https://www.virtualunderwriter.com/-/media/files/virtualunderwriter/imported/pdfs/minnesota-rate-manual_final-eff-7-30-2025.pdf",
+    "asOf": "2025-07-30",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Original Charge for Owner's/Leasehold Policies: $0-$150,000 @ $3.60/thousand; over $150,000-$300,000 add $2.95/thousand; over $300,000-$1,000,000 add $2.35/thousand; over $1,000,000 negotiable (not to exceed $2.50/thousand); minimum $200.00",
+        "ALTA Homeowner's Policy: 110% of Owner's Policy charge, minimum $220",
+        "Original Charge for Loan Policies: $0-$150,000 @ $3.10/thousand; over $150,000-$300,000 add $2.60/thousand; over $300,000-$500,000 add $2.35/thousand; over $500,000-$1,000,000 add $2.10/thousand; over $1,000,000 negotiable (not to exceed $2.25/thousand); minimum $200.00",
+        "ALTA Expanded Coverage Residential Loan Policy: 110% of Loan Policy charge, minimum $220",
+        "Refinance Charge for Loan Policies: $0-$250,000 @ $2.10/thousand; over $250,000-$500,000 add $1.30/thousand; over $500,000-$1,000,000 add $1.10/thousand; over $1,000,000 negotiable (not to exceed $2.25/thousand); minimum $200.00",
+        "Charge for Subordinate Commercial Mortgage Policies: same per-thousand schedule as Refinance Charge above",
+        "Contract for Deed Policy - Seller: 30% of Buyer's Policy charge (not to exceed Buyer's Policy amount); Contract for Deed Policy - Buyer: full Original Owner's Policy charge",
+        "ALTA Residential Limited Coverage Junior Loan Policy / Short Form: $125.00 up to $100,000, +$1.00/thousand thereafter",
+        "ALTA Residential Limited Coverage Mortgage Modification Policy: $125 up to $1,000,000; $250 up to $1,500,000; $350 up to $2,000,000; +$100 per $500,000 thereafter up to $20,000,000",
+        "ALTA Limited Pre-Foreclosure Policy: $2.00/thousand, minimum $100.00",
+        "Simultaneous Issuance of Owner's and Mortgage Loan Policies: Loan Policy flat charge of $150 per policy (up to Owner's Policy liability amount)",
+        "Simultaneous Issuance of Owner's and Leasehold Owner's Policies: Leasehold Policy charged at 30% of Owner's Policy charge, up to $1,000,000 Owner's Policy"
+      ]
+    },
+    "bundlingNotes": "General Provisions states verbatim: 'This manual contains the title insurance charges related to the face amount of liability assumed for each title insurance policy. It does not include other miscellaneous charges, which may be made by local attorneys, abstractors, settlement agents, or other title insurance companies and agencies.' No settlement/closing/escrow fee dollar amounts are published in this document by design.",
+    "transactionContext": "Statewide Minnesota; Owner's, Leasehold, Loan (purchase-money and refinance), Contract for Deed, and specialty policy premium rates; no settlement/closing fee published."
+  },
+  {
+    "provider": "WFG National Title Insurance Company (Manual of Title Insurance Premiums)",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/minnesota/rate-manuals/WFG%20Minnesota%20Rate%20Manual%20Effective%2010-15-2025.pdf",
+    "asOf": "2025-10-15",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Basic Rate Table (per $1,000 of liability): Owner's & Leasehold Owner's Policies $3.50 up to $250,000, $2.75 next $250,001-$500,000, $2.25 next $500,001-$1,000,000, $1.75 over $1,000,000 (max); minimum $200",
+        "Acquisition Loan Policies: $3.00/$2.50/$2.00/$1.50 (max) per thousand across the same liability tiers; minimum $200",
+        "Finance (Refinance) Loan Policies: $2.00/$1.75/$1.25/$1.00 (max) per thousand across the same liability tiers; minimum $200",
+        "Expanded Coverage (Homeowner's) Owner's/Loan Policy: 110% of Basic Rate",
+        "Simultaneous Issue - Owner's and Loan Policies: Loan Policy(ies) flat fee of $150.00 each (up to Owner's Policy liability); Owner's & Leasehold: leasehold policy at 60% of applicable rate, minimum $150",
+        "Lender's Special Rates (high-volume lenders, refinance only, one-to-four family residential): e.g. over-500-orders/month tier ranges from $275 ($0-$250,000 liability) to $2,200 ($4,000,001-$5,000,000 liability)",
+        "HE2 Home Equity 2nd Generation certificate charge: $45 (up to $250,000) to $300 (over $750,000 up to $1,000,000) per transaction",
+        "ALTA Residential Limited Coverage Junior Loan Policy: $112.50 up to $75,000; $150.00 $75,001-$100,000; $1.00/thousand $100,001-$1,000,000",
+        "Multiple-parcel/multiple-chain-of-title additional work charge: $200.00 per hour or per parcel"
+      ]
+    },
+    "bundlingNotes": "Section 1 Introduction states verbatim: 'The rates shown are the total title insurance fees charged the applicant including both the risk portion and the service or work portion, but do not include charges for title search, surveys, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant.'",
+    "transactionContext": "Statewide Minnesota; Owner's, Acquisition Loan, and Finance (refinance) Loan policy premium rates, Lender's Special Rates for high-volume refinance lenders, and endorsement pricing; no settlement/closing fee published."
+  },
+  {
+    "provider": "CloseAtTitle (independent title/escrow company, Minnesota & Wisconsin)",
+    "sourceUrl": "https://closeattitle.com/title-fees/",
+    "asOf": "2026-07-22",
+    "settlementFee": "Closing Fee: $395.00 (buyer/purchase); $425.00 (seller/sale); $395.00 (refinance)",
+    "itemizedFees": {
+      "docPrep": "$225.00 (buyer purchase and seller sale)",
+      "processing": null,
+      "courier": "Courier/Wire fee payoff: $75.00 per occurrence (buyer purchase, seller sale, and refinance)",
+      "wire": "Courier/Wire fee payoff: $75.00 per occurrence (buyer purchase, seller sale, and refinance) -- listed as a single combined line item",
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Title Services/Exam Fee: $695.00 (buyer purchase); $595.00 (seller sale)",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "County recording fees and Transfer Taxes are stated as additional, not included in any of the above figures",
+        "Page notes 'Additional fees may apply for additional closing services rendered'"
+      ]
+    },
+    "bundlingNotes": "Fees are published separately by transaction role (buyer purchase / seller sale / refinance) rather than as one bundled figure. Page states rates apply to 'the Minnesota Metropolitan area' with the caveat 'Fees may vary depending upon area,' implying different (unpublished) pricing outside the Twin Cities metro.",
+    "transactionContext": "Minnesota Metropolitan (Twin Cities) area; separate published schedules for buyer purchase, seller sale, and refinance transactions."
+  },
+  {
+    "provider": "Title Services, Inc. (Rochester, MN; subsidiary of the Dunlap Seeger law firm -- closing-attorney-affiliated title company)",
+    "sourceUrl": "https://www.titleservicesrochester.com/fee-calculator/",
+    "asOf": "2026-07-22",
+    "settlementFee": "Closing Fee: $275",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": "Express Delivery Fee: $40",
+      "wire": null,
+      "edoc": null,
+      "eRecording": "Recording Service Fee: $200",
+      "notarySigning": null,
+      "searchExam": "Title Evidence Fee: $200; Title Examination Fee: $235",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Plat Drawing Fee: $110",
+        "Government recording fees: $46 per document",
+        "Mortgage Registry Tax: mortgage amount x .0023",
+        "Conservation Fee: $5"
+      ]
+    },
+    "bundlingNotes": "Page explicitly labels the figures as 'representative of a typical transaction' and advises contacting the firm for transaction-specific questions -- treated as a published (if illustrative) fee schedule rather than a blind interactive calculator, since dollar amounts are displayed on the page itself without requiring form input.",
+    "transactionContext": "Rochester, MN metro area (Olmsted County); residential closing, title evidence/examination, and recording fees; company is a subsidiary of a local law firm (Dunlap Seeger), giving attorney-affiliated provider-type coverage."
+  }
+]

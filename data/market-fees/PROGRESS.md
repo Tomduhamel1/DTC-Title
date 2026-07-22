@@ -68,7 +68,7 @@ still vary and matter).
 | ME | 0 | unprocessed | |
 | MD | 5 (Stewart, WFG National, Ardent Title, TPF Legal, CAL Settlements) | 3 (Cecil County; Montgomery County/DC suburbs; unspecified-metro closing attorney) | national-brand underwriters (Stewart, WFG), independent title/settlement companies (Ardent Title), closing-attorney firms (TPF Legal, CAL Settlements) | **complete (scarce)** — 10+ query strategies/direct checks yield only 5 usable sources; national-brand direct offices (First American, Old Republic, Chicago Title, Fidelity) route to interactive calculators only, no static settlement-fee schedules found | 2026-07-21 |
 | MA | 0 | unprocessed | |
-| MN | 0 | unprocessed | |
+| MN | 4 (Stewart, WFG National, CloseAtTitle, Title Services Inc/Rochester) | 2 (Minnesota Metropolitan/Twin Cities via CloseAtTitle; Rochester/Olmsted County via Title Services Inc) | national-brand underwriters (Stewart, WFG), independent title/escrow company (CloseAtTitle), closing-attorney-affiliated title company (Title Services Inc, subsidiary of Dunlap Seeger law firm) | **complete (scarce)** — 30+ query strategies/direct checks yield only 4 usable sources; no national-brand direct office (First American, Old Republic, Fidelity National) publishes a static MN settlement-fee schedule, all route to interactive calculators | 2026-07-22 |
 | MS | 0 | unprocessed | |
 | MT | 0 | unprocessed | |
 | NE | 0 | unprocessed | |
@@ -315,3 +315,26 @@ still vary and matter).
   despite the extensive search, WI meets the contract's scarce criterion. Marked WI
   **complete (scarce)**. Moving to the next unprocessed tier-2 state (MN, LA, SC, KY,
   OR, CT, OK, etc.).
+- 2026-07-22: Started MN from scratch (next large tier-2 state). Verified 4 sources across
+  30+ query strategies/direct checks: Stewart Title Guaranty Company (2025-07-30 rate
+  manual, PDF-recovery technique) and WFG National Title Insurance Company (2025-10-15
+  rate manual, PDF-recovery technique) are both premium-only filed rate manuals with
+  explicit settlement-fee-exclusion language (WFG's is the most complete found: rates
+  exclude "title search, surveys, closing services, settlement services, recording fees,
+  other charges"). CloseAtTitle (independent, Twin Cities/Minnesota Metropolitan area)
+  publishes a static fee page with separate buyer-purchase/seller-sale/refinance figures
+  ($395-$425 closing fee, $595-$695 title exam, $225 doc prep, $75 courier/wire). Title
+  Services, Inc. (Rochester, a Dunlap Seeger law firm subsidiary -- attorney-affiliated
+  provider type) publishes a static fee-calculator page ($275 closing fee plus itemized
+  title evidence/exam/recording/plat figures). Observed service-stack range ~$1,060
+  (Rochester) to ~$1,390 (Twin Cities metro), a ~30% urban/smaller-metro differential
+  consistent with patterns in other states -- but with only 2 settlement-fee-priced
+  sources this cannot be tested for saturation. No national-brand direct office (First
+  American, Old Republic, Fidelity National) was found publishing a static MN
+  settlement-fee schedule -- all route to interactive calculators. One wrong-jurisdiction
+  find excluded: a "Minnesota Title Agency" fee sheet hosted at minnesotatitle.com turned
+  out to be a 2007 document for a Livonia, Michigan company (name is coincidental),
+  matching the MD/Hawaii wrong-jurisdiction pattern from an earlier session. With only 4
+  verified sources despite an exhaustive 30+-strategy search, MN meets the contract's
+  scarce criterion. Marked MN **complete (scarce)**. Moving to the next unprocessed
+  tier-2 state (LA, SC, KY, OR, CT, OK, etc.).
