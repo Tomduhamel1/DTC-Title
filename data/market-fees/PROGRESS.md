@@ -88,9 +88,9 @@ still vary and matter).
 
 ## Priority tier 3 (promulgated / rating-bureau — premiums uniform, service fees still researched)
 
-| State | Verified sources | Status | Last run |
-|---|---|---|---|
-| TX | 0 | unprocessed | |
+| State | Verified sources | Metros | Provider types | Status | Last run |
+|---|---|---|---|---|---|
+| TX | 6 (TDI/Basic Manual regulatory bundle [premium table + CPL statute + TTIGA guaranty fee], First Texas Title/Abilene, Patten Title Company/Houston-statewide, Texas National Title/Austin, Valero Title/San Antonio, Great American Title Co./statewide) | 4 (Houston, Austin, San Antonio, plus Abilene as a smaller-metro data point; no DFW-specific settlement-fee schedule found despite extensive search — see TX.md) | regulator (TDI), independent title/escrow companies only (First Texas Title, Patten Title, Texas National Title, Valero Title, Great American Title); every national-brand underwriter checked (First American, Fidelity National, Old Republic, Stewart, Chicago Title, WFG) published premium-only rate cards or routed to interactive calculators with no static settlement-fee schedule | **complete (saturated)** — 6 good sources (18+ query strategies, 30+ direct provider-site checks); TX premiums are TDI-promulgated and byte-for-byte identical across providers (confirmed via 3 independently-sourced documents), and the CPL/ICL is promulgated at $0 by statute (Tex. Ins. Code §2702.001(c)); the real market signal is the unregulated settlement/escrow fee, observed range $300-$795 (core, purchase-side) to $100-$795 (incl. one promotional refi-only outlier) | 2026-07-22 |
 | FL | 0 | unprocessed | |
 | NM | 0 | unprocessed | |
 | PA | 0 | unprocessed | |
@@ -935,3 +935,19 @@ still vary and matter).
   completes Priority tier 2** -- every remaining filed-rate state (AL, AK, AR, CT, DC, HI, ID, IL, IN,
   IA, KS, KY, LA, ME, MD, MA, MN, MS, MT, NE, NV, NH, ND, OK, OR, RI, SC, SD, UT, VT, WV, WI,
   WY) has now been surveyed at least once.
+- 2026-07-22: Surveyed TX (first Priority tier 3 / promulgated-rate state). Confirmed TX title
+  premiums are fixed by TDI (Commissioner's Order No. 2025-9697, effective 2026-03-01, a 6.2%
+  reduction) and identical across every provider -- cross-verified against TDI's own order plus
+  two independent providers' March-2026 rate cards, all numerically identical. Confirmed the
+  Insured Closing Letter (TX's CPL equivalent) is promulgated at $0 by statute (Tex. Ins. Code
+  §2702.001(c)), corroborated by two providers' own site text. Found 5 provider-published,
+  dollar-denominated settlement/escrow-fee schedules (First Texas Title/Abilene, Patten Title/
+  Houston-statewide, Texas National Title/Austin, Valero Title/San Antonio, Great American Title/
+  statewide -- the last recovered via a Wayback Machine capture after its live URL 404'd) covering
+  Houston, Austin, San Antonio, and a smaller-metro data point; observed core purchase-side
+  escrow-fee range $300-$795 across providers, with one refi-only promotional outlier at $100.
+  No DFW-specific settlement-fee schedule found despite extensive search (national-brand
+  underwriters in TX consistently route settlement pricing to interactive calculators with no
+  static fallback -- the inverse of the provider mix seen in most other states, where
+  national brands publish and independents are harder to find). Marked TX **complete
+  (saturated)** with 6 total good sources.
