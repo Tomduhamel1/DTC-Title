@@ -54,7 +54,7 @@ still vary and matter).
 |---|---|---|---|
 | AL | 2 (WFG National, Stewart Title Guaranty) | statewide (State charge vs. Birmingham Metro [Jefferson/Shelby/Blount] carve-out published by both underwriters) | national-brand underwriters only (WFG, Stewart); attorney-closing state (AL requires licensed attorney to close) which appears to route settlement pricing through private/unpublished attorney fee arrangements | **complete (scarce)** — 10 query strategies/11 direct provider-site checks (incl. 2 closing-attorney firms) yield only 2 usable premium-only rate manuals; zero settlement/closing-fee dollar figures found anywhere except identical CPL fees ($25/$25/$50) on both underwriters. One candidate (Jackson & Scott, Montgomery) had promising search-snippet figures but its page 403'd on direct fetch and could not be independently verified | 2026-07-22 |
 | AK | 2 (Alyeska Title Guaranty Agency [genuine escrow fee schedule], Stewart Title Guaranty [premium manual]) | statewide (no metro breakout published) | independent agency (Alyeska) + national-brand underwriter (Stewart); AK statute AS 21.66.460 requires filing of escrow/settlement/closing charges separately from AS 21.66.370 premium rates, which produced one genuine dollar-denominated escrow schedule -- a rarer find than most "scarce" states | **complete (scarce)** — 14 query strategies/~10 direct provider-site checks yield only 2 usable sources despite AK's unusually favorable statutory disclosure regime; most independent AK title agencies (Western AK Land Title, Integrated Title, Kachemak Bay) are quote-only with no static published schedule | 2026-07-22 |
-| AR | 0 | unprocessed | |
+| AR | 3 (Stewart Title Guaranty [2026 vintage], WFG National, Southwest Title Insurance/FNTI) | statewide (no metro breakout published) | national-brand underwriters only; AR is confirmed unregulated/unfiled for title premiums (per WFG's own manual), yet settlement fees remain entirely unpublished despite no filing requirement | **complete (scarce)** — 8 query strategies/5 direct provider-site checks yield only 3 usable premium-only rate cards; zero settlement/closing fee dollar figures found anywhere except Stewart's $25/party CPL fee | 2026-07-22 |
 | CT | 0 | unprocessed | |
 | DC | 0 | unprocessed | |
 | HI | 0 | unprocessed | |
@@ -376,3 +376,18 @@ still vary and matter).
   agencies are quote-only. With only 2 verified sources, AK meets the contract's scarce
   criterion. Marked AK **complete (scarce)**. Moving to the next unprocessed tier-2
   state (AR, next alphabetically).
+- 2026-07-22: Started AR from scratch. Verified 3 premium-only rate sources: Stewart
+  Title Guaranty (effective 2026-03-16 -- the most current-vintage manual found across
+  the entire survey to date), WFG National Title (2017), and Southwest Title Insurance
+  Company/FNTI (2020 marketing rate-chart flyer). WFG's manual contains an unusually
+  direct confirmation, unique among states surveyed: "The state of Arkansas is an
+  unregulated state, and the title insurance premiums herein are not filed rates." All
+  three converge in a similar $299-$365 range for a $100,000 Owner's Policy despite
+  being unfiled/uncoordinated. Despite AR having no rate-filing requirement at all
+  (unlike AK's AS 21.66.460), settlement/closing/escrow fees remain entirely
+  unpublished -- 8 query strategies plus 5 direct provider-site checks (First Title &
+  Escrow [403 blocked], Eastern Title, Old Republic AR, and searches targeting Chicago
+  Title/First American AR and independent abstract companies in 5 metros) found zero
+  settlement-fee figures beyond Stewart's $25/party CPL fee. With only 3 verified
+  sources, AR meets the contract's scarce criterion. Marked AR **complete (scarce)**.
+  Moving to the next unprocessed tier-2 state (CT, next alphabetically).

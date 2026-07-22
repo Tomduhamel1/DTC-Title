@@ -1,0 +1,52 @@
+[
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://go.stewart.com/rs/067-YWO-436/images/Arkansas%20manual%20Final%20eff%203-16-26.pdf?version=0",
+    "asOf": "Last updated 2014-05-22; effective 2026-03-16",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule. Explicitly excludes settlement fees.",
+      "ownersLeaseholdPolicy_liabilityTiered": "Up to $20,000 = $75 fixed; over $20,000-$50,000 add $4.00/thousand; over $50,000-$100,000 add $3.40/thousand; over $100,000-$500,000 add $2.25/thousand; over $500,000-$10,000,000 add $2.00/thousand; over $10,000,000-$15,000,000 add $1.75/thousand; over $15,000,000 add $1.40/thousand.",
+      "homeownersPolicy": "120% of Owner's Policy charge, minimum $90.",
+      "loanPolicy_liabilityTiered": "Up to $20,000 = $75 fixed; over $20,000-$50,000 add $2.80/thousand; over $50,000-$100,000 add $2.25/thousand; over $100,000-$500,000 add $2.00/thousand; over $500,000-$10,000,000 add $1.75/thousand; over $10,000,000-$15,000,000 add $1.40/thousand; over $15,000,000 add $1.15/thousand.",
+      "reissueCredit": "40% (owner's/homeowner's), 30% (loan/refinance)"
+    },
+    "itemizedFees": {
+      "cpl": { "perLetter": "$25.00 per party receiving the benefit, plus $25 more for a second mortgage/HELOC by a different lender" },
+      "other": []
+    },
+    "bundlingNotes": "Definitions section states explicitly: 'A charge does not include the abstracting, searching and examination fee... [nor] any settlement fee, trustee fee, attorney fee, surveying fee, inspection fee, document fee, closing fee, escrow fee or any other fee associated with escrow.' Most current-vintage rate manual found in this entire survey to date (effective just months from now, 2026-03-16), reflecting Stewart's active AR filing cadence.",
+    "transactionContext": "Owner's, Homeowner's, and Loan policy premium schedules, statewide, plus reissue/refinance credits, simultaneous-issue rates, Closing Protection Letter charges, and full residential/commercial endorsement price lists. No purchase/refinance settlement-service-fee breakdown."
+  },
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/arkansas/rate-manuals/WFG%20Arkansas%20Rates%20as%20of%207-25-17%20HE2.pdf",
+    "asOf": "Effective 2017-07-25",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule. Explicitly states AR premiums are unregulated/unfiled.",
+      "ownersPolicy_liabilityTiered": "Up to $50,000 = $3.50/thousand (min $50); over $50,000-$100,000 add $3.00/thousand; over $100,000-$5,000,000 add $2.00/thousand; over $5,000,000-$10,000,000 add $1.75/thousand.",
+      "homeownersPolicy": "150% of Owner's Policy premium.",
+      "loanPolicy_liabilityTiered": "Up to $50,000 = $2.50/thousand (min $50); over $50,000-$100,000 add $2.00/thousand; over $100,000-$500,000 add $1.75/thousand; over $500,000-$10,000,000 add $1.50/thousand.",
+      "reissueRate": "60% of original charge (owner's and loan, prior policy within 10 years)",
+      "simultaneousIssueLoanPolicy": "$25.00 flat"
+    },
+    "itemizedFees": {
+      "other": [
+        { "name": "Master Home Equity / HE2 certificate fee", "amount": "$45-$300 tiered by loan amount up to $1,000,000" }
+      ]
+    },
+    "bundlingNotes": "Opens with an explicit statement unique among states surveyed: 'Search and examination fees, as well as closing and escrow fees, are separate from title insurance premiums in the state of Arkansas. The state of Arkansas is an unregulated state, and the title insurance premiums herein are not filed rates.' Confirms AR has no rate-filing requirement at all (unlike AL/AK), yet WFG still publishes a customary rate card -- settlement fees remain entirely unpublished.",
+    "transactionContext": "Owner's (Standard, Homeowner's), Loan, reissue, and simultaneous-issue premium schedules, statewide. No settlement/escrow-service-fee breakdown."
+  },
+  {
+    "provider": "Southwest Title Insurance Company (SWTIC, a First National Title Insurance Company / FNTI affiliate)",
+    "sourceUrl": "https://fnti.com/file/title-rates-chart-arkansas/",
+    "asOf": "Effective 2020-03-01",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule.",
+      "ratesTable_sample": "At $100,000 policy amount: Basic Rate $365, Homeowner $457, Standard Loan $272, Expanded Loan $340. At $500,000: Basic Rate $1,265, Homeowner $1,582, Standard Loan $1,072, Expanded Loan $1,340. At $1,000,000: Basic Rate $2,265, Homeowner $2,832, Standard Loan $1,947, Expanded Loan $2,434. Full $50,000-$1,000,000 table in $5,000 increments recorded in the source PDF/marketing flyer."
+    },
+    "itemizedFees": {},
+    "bundlingNotes": "Published as a printable marketing rate-chart flyer (not a formal regulatory filing document, consistent with WFG's confirmation that AR premiums are unfiled/unregulated). No settlement, escrow, or closing service fee figures appear anywhere on the flyer -- premium only, matching the pattern of the other two AR sources.",
+    "transactionContext": "Owner's (Basic Rate and Homeowner) and Loan (Standard and Expanded) policy premium schedules in $5,000 increments from $50,000 to $1,000,000 of policy liability, statewide. No purchase/refinance settlement-service-fee breakdown."
+  }
+]
