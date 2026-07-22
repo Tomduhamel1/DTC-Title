@@ -1,0 +1,63 @@
+[
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://www.virtualunderwriter.com/-/media/files/virtualunderwriter/imported/pdfs/north-dakota-manual-final_eff-7-31-24.pdf",
+    "asOf": "Last Updated April 23, 2024; Effective July 31, 2024",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Owner's Policy: $4.00/$1,000 up to $100,000, tiered down to $1.50/$1,000 above; $175 minimum",
+        "Loan Policy: $3.00/$1,000 up to $100,000, tiered down similarly; $175 minimum",
+        "Commercial Rate (aggregate liability above $1,000,000): negotiable, $0.35-$2.00/$1,000",
+        "Simultaneous Issue rules for loan + owner's policies",
+        "Reissue Rate for owner's policies issued upon acquisition of title in satisfaction of debt: 75% of Basic Rate",
+        "Subdivider/Multiple Parcels rate",
+        "Refinance Rate: 75% of loan premium, $175 minimum",
+        "Reissue Rate for owner's/leasehold policies: 75% of premium, $175 minimum",
+        "Extensive ALTA/CLTA/STG endorsement fee schedule"
+      ]
+    },
+    "bundlingNotes": "Premium-only rate manual; no settlement/closing/escrow dollar figures anywhere in the Basic Schedule of Charges. NOTABLE DATA-INTEGRITY ANOMALY: this manual has an appended 'SCHEDULE A - Special Products Available for Stewart Title Guaranty Company Issuance in Indiana' section (a Centralized Processing Loan and Refinance Rate table and an STG HELP home equity policy table, both explicitly labeled for Indiana). This is an apparent copy-paste/mislabeling error carried over from Stewart's Indiana manual template -- it is NOT North Dakota-specific and has been excluded from this evidence file. It mirrors a similar copy-paste error found in an FNTI Michigan manual (which contained an appended 'Alabama' schedule) in an earlier survey session.",
+    "transactionContext": "Owner's policy (purchase), loan policy (purchase, refinance), simultaneous issue, reissue upon acquisition in satisfaction of debt, subdivision/multiple parcels, commercial -- premium calculation only, statewide (no county/metro differentiation)."
+  },
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/north-dakota/rates/WFG%20North%20Dakota%20Title%20Rate%20Manual%20effective%20April%201,%202022.pdf",
+    "asOf": "Effective April 1, 2022",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Basic Rate Table, Loan Policies: Standard $2.50/$1,000 up to $50,000, tiered down to $1.25/$1,000 above; $100 minimum. Expanded Coverage $2.75/$1,000 tiered to $1.38/$1,000; $110 minimum",
+        "Refinance Rates: 75% of loan policy premium",
+        "Reissue Rates: 75% of premium, 10-year lookback window",
+        "Owner's/Leasehold rates: Standard $3.50/$1,000 tiered to $1.50/$1,000, $100 minimum; Homeowner's Policy $3.85/$1,000 tiered to $1.65/$1,000, $110 minimum",
+        "Simultaneous Issuance: $100 flat (standard loan policy) / $125 flat (expanded), when issued with an owner's policy",
+        "Lender Special Rates (2 volume tiers)",
+        "Specialty Lender Policies: MMP/MPG $125-$350, Junior Loan $110 flat",
+        "Extensive endorsement fee table"
+      ]
+    },
+    "bundlingNotes": "Premium-only rate manual. Standard WFG exclusion language: rate 'does not include charges for title search, surveys, escrow, closing services, settlement services, recording fees, other charges.' No CPL fee priced in this manual (unlike most other states' WFG manuals, which typically price a $25 CPL) -- ND is one of the few states surveyed where WFG's manual omits CPL pricing entirely.",
+    "transactionContext": "Owner's policy (purchase), loan policy (purchase, refinance, home equity/junior loan), simultaneous issue, lender volume programs -- premium calculation only, statewide (no county/metro differentiation)."
+  }
+]

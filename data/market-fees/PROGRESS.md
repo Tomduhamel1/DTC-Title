@@ -74,7 +74,7 @@ still vary and matter).
 | NE | 4 (First National Title Insurance, Stewart Title Guaranty, WFG National, First American via Builders Title) | statewide (2-tier county structure for FNTI/Stewart: Omaha/Lincoln-metro counties vs. all others; no metro breakout for settlement fees, none published) | national-brand underwriters only (FNTI, Stewart, WFG, First American via independent agent); no independent title/escrow settlement-fee schedule found despite exhaustive search | **complete (scarce)** — 24 combined query strategies/direct checks yield only 4 premium-only rate manuals; zero settlement/closing/escrow fee dollar figures found anywhere except an identical $25 CPL fee across all 4 underwriters | 2026-07-22 |
 | NV | 2 providers / 3 documents (First American [escrow schedule + title rate manual, both regulator-published], Stewart Title Guaranty) | 2 county-area systems (First American Area A: Clark/Lincoln/Nye vs. Area B: all others; Stewart 3-zone: Elko/White Pine/Eureka/Lander, Clark/Lincoln/Nye, Washoe+rural) | national-brand underwriters only (First American, Stewart); WFG/Old Republic/Chicago Title/Fidelity all route to interactive calculators, no static NV rate manual found | **complete (scarce)** — 19 query strategies/direct checks yield only 2 providers, but First American's regulator-published Escrow Rate Manual is a genuine dollar-denominated settlement-fee source (rare, high-quality find) | 2026-07-22 |
 | NH | 2 (Stewart Title Guaranty, WFG National) | statewide (no metro/county breakout published) | national-brand underwriters only (Stewart, WFG); CATIC (New England's dominant bar-related insurer) 403-blocked on both hosting paths; an independent NH title company's oft-cited $199 flat fee could not be independently verified (site stuck in an unresolvable redirect loop) | **complete (scarce)** — 24 combined query strategies/direct checks yield only 2 usable premium-only rate manuals; zero independently-verifiable settlement/closing/escrow fee dollar figures found anywhere | 2026-07-22 |
-| ND | 0 | unprocessed | |
+| ND | 2 (Stewart Title Guaranty, WFG National) | statewide (no metro/county breakout published) | national-brand underwriters only (Stewart, WFG); no independent title/escrow settlement-fee schedule or additional underwriter rate manual (First American, Old Republic) found despite exhaustive search | **complete (scarce)** — 15 combined query strategies/direct checks yield only 2 usable premium-only rate manuals; zero settlement/closing/escrow fee dollar figures found anywhere. Notable: Stewart's ND manual contains an erroneously-appended Indiana-specific "Schedule A" section (copy-paste template error), excluded as not ND-specific | 2026-07-22 |
 | OK | 0 | unprocessed | |
 | OR | 0 | unprocessed | |
 | RI | 0 | unprocessed | |
@@ -727,3 +727,22 @@ still vary and matter).
   no further usable sources. With only 2 verified sources despite the extensive search, NH
   meets the contract's scarce criterion. Marked NH **complete (scarce)**. Moving to the
   next unprocessed tier-2 state (ND, next alphabetically).
+- 2026-07-22: Started ND from scratch. Confirmed ND is a filed-but-unregulated-rate state
+  (NDCC 26.1-25-04); the ND Insurance Department's "Policy, Form and Rate Filing" page
+  makes no specific mention of title insurance and hosts no public directory of filed
+  rate manuals (unlike NV/KS/ID's regulator-published repositories). Verified 2
+  premium-only rate manuals via PDF-recovery: Stewart Title Guaranty (last updated
+  2024-04-23, effective 2024-07-31) and WFG National (effective 2022-04-01, notable for
+  omitting CPL pricing entirely -- rare among WFG's state manuals). Notable finding:
+  Stewart's ND manual contains an erroneously-appended "Schedule A - Special Products
+  Available for Stewart Title Guaranty Company Issuance in Indiana" section -- an
+  apparent copy-paste/template error carried over from Stewart's Indiana manual,
+  mirroring the FNTI Michigan "Alabama" copy-paste error found in an earlier session;
+  excluded as not ND-specific. 15 combined query strategies/direct checks (Old Republic
+  ND -- no static manual indexed on Virtual Underwriter; First American ND -- only
+  agency landing pages/interactive calculators; Secure Title Company -- illustrative
+  ranges only; independent Fargo/Bismarck/Grand Forks/Williston/Minot title companies --
+  no published schedules found for any) found no further usable sources. With only 2
+  verified sources despite the exhaustive search, ND meets the contract's scarce
+  criterion. Marked ND **complete (scarce)**. Moving to the next unprocessed tier-2
+  state (OK, next alphabetically).
