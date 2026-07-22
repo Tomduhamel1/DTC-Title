@@ -62,7 +62,7 @@ still vary and matter).
 | IL | 11 (Old Republic, Greater Illinois Title, First American, TitleStar ×3 regional cards, WFG National, Chicago Title, Fidelity National, Proper Title, Truly Title) | 3 (Chicago metro; Central IL incl. Peoria/Champaign; Southern/Metro-East IL incl. St. Clair/Madison) | national-brand underwriters (Old Republic, First American, Chicago Title, Fidelity National, WFG), independent title/escrow companies (Greater Illinois Title, TitleStar, Proper Title, Truly Title) | **complete (target met)** — 11 verified sources on first session, exceeding the 10-source hard-stop target | 2026-07-21 |
 | IN | 6 documents (5 premium-only: Stewart, WFG, Fidelity, FNTI, IDOI Rate Comparison Tool ~19 insurers; 1 settlement-fee: Regional Land Title/Bloomington) | 1 (Bloomington/Monroe County, settlement-fee only; premium manuals are statewide) | national-brand underwriters (Stewart, Fidelity, WFG, FNTI), regulator (IDOI), independent (Regional Land Title) | **complete (scarce)** — 6 total documents but only 1 priced settlement-fee source despite 31 query strategies/10+ direct checks; no service-stack range exists to test saturation, matching the MI/MO/WI/AZ/CO/VA/AL/AR premium-only-market-opacity pattern | 2026-07-22 |
 | IA | 6 (Iowa Title Guaranty residential + commercial [state guaranty program], Abstract & Title Guaranty Co./Clinton-Maquoketa, Hastings & Gartin Law Group/Des Moines, Abstract Associates of Iowa/Fort Dodge, Abstract & Title Services of Story County/Ames) | 2+ (Des Moines/Polk, Ames/Story, plus Clinton/Jackson and Fort Dodge/Webster counties; Cedar Rapids/Davenport/Iowa City/Sioux City searched but no published pricing found) | state guaranty program (ITG), independent abstract/title companies, closing-attorney firm — Iowa has no private title insurer market at all | **complete (saturated)** — 6 verified sources, mostly genuine settlement/service-fee data (not premium-only, unlike most other states); last 3 additions' component prices fell within the range already on file | 2026-07-22 |
-| KS | 0 | unprocessed | |
+| KS | 19 (First American x2, Superior Title & Escrow of KC, Ideal Title, Priority Title & Escrow, ServiceLink, Title Clearing & Escrow, Closeline, Realeo Title, Elite Title, Total Title/Westcor, Royal Abstract National, Old Republic, Stewart, Chicago Title, Pegasus National Title, Kansas Secured Title, Secured Title of KC, Guaranteed Title/Oldcastle) | 4+ (KC metro/Johnson-Wyandotte, Wichita/Sedgwick-Butler, Topeka/Shawnee, Lawrence/Douglas, plus rural western counties) | national-brand underwriters (First American, Old Republic, Stewart, Chicago Title), regional underwriter (Westcor), 10+ independents, FNF-affiliated centralized provider (ServiceLink) | **complete (target met)** — 19 verified sources on first pass via KDOI's public rate-filing repository (K.S.A. 40-1111 requires settlement/escrow fees to be filed publicly, not just premiums), exceeding the 10-source hard stop | 2026-07-22 |
 | KY | 0 | unprocessed | |
 | LA | 0 | unprocessed | |
 | ME | 0 | unprocessed | |
@@ -499,3 +499,19 @@ still vary and matter).
   search gap. With 6 verified sources and stable component pricing across the last 3
   additions, IA meets the contract's saturation criterion. Marked IA **complete
   (saturated)**. Moving to the next unprocessed tier-2 state (KS, next alphabetically).
+- 2026-07-22: Started KS from scratch. Discovered Kansas is a goldmine: K.S.A. 40-1111
+  requires every title agency to file BOTH title insurance premium rates AND settlement/
+  escrow charges with KDOI, which publishes all filed-rate PDFs publicly (400+ agencies) at
+  insurance.ks.gov/documents/company/prop-cas/titlerates/ under the Kansas Open Records Act.
+  Unlike nearly every other state surveyed, this makes the normally-unregulated settlement-
+  fee side directly filed and searchable. Verified 19 good sources on the first pass
+  (First American x2, Old Republic, Stewart, Chicago Title, Westcor/Total Title, and 13
+  independents/regional providers spanning KC metro, Wichita, Topeka, Lawrence, and rural
+  counties), exceeding the 10-source target-met hard stop -- did not exhaustively mine
+  further (a 51-page National Title filing and the WFG agent's unreadable scanned PDF were
+  found but not pursued once the target was cleared). Notable finding: because settlement
+  fees are individually filed rather than estimated, a genuine, wide, directly-evidenced
+  provider range is visible for comparable KC-metro purchase transactions ($350-$1,300+,
+  a ~2.5-3.7x spread) -- the clearest confirmation in this survey that settlement fees are
+  market-set even where premiums are filed and uniform-per-underwriter. Marked KS **complete
+  (target met)**. Moving to the next unprocessed tier-2 state (KY, next alphabetically).
