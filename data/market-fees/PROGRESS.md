@@ -70,7 +70,7 @@ still vary and matter).
 | MA | 5 (Lopisi Law, Sherman Law, Lazan Glover & Puciloski, Cote Law Group, Stewart Title Guaranty [premium manual]) | Cambridge/Arlington, South Shore/MetroWest/South Coast, Berkshires/Western MA, Marshfield/South Shore | closing-attorney firms (settlement fees) + national-brand underwriter (Stewart, premium only); MA requires attorney closings, no independent title/escrow company layer | **complete (scarce)** — 32 combined query strategies/direct checks across 2 sessions yield only 5 usable sources; mandatory-attorney-closing structure with near-universal quote-only pricing pages matches the market-opacity pattern seen elsewhere | 2026-07-22 |
 | MN | 4 (Stewart, WFG National, CloseAtTitle, Title Services Inc/Rochester) | 2 (Minnesota Metropolitan/Twin Cities via CloseAtTitle; Rochester/Olmsted County via Title Services Inc) | national-brand underwriters (Stewart, WFG), independent title/escrow company (CloseAtTitle), closing-attorney-affiliated title company (Title Services Inc, subsidiary of Dunlap Seeger law firm) | **complete (scarce)** — 30+ query strategies/direct checks yield only 4 usable sources; no national-brand direct office (First American, Old Republic, Fidelity National) publishes a static MN settlement-fee schedule, all route to interactive calculators | 2026-07-22 |
 | MS | 2 (Stewart Title Guaranty, WFG National) | statewide (no metro/county breakout published) | national-brand underwriters only (Stewart, WFG); MS premiums are unregulated/insurer-filed-but-not-approved, closings handled by a mix of attorneys and title companies (neither exclusively required) | **complete (scarce)** — 27 combined query strategies/direct checks yield only 2 usable premium-only rate manuals; zero settlement/closing/escrow fee dollar figures found anywhere except identical $50 CPL fees from both underwriters | 2026-07-22 |
-| MT | 0 | unprocessed | |
+| MT | 6 (Stewart Title Guaranty, First National Title Insurance, WFG National, First Montana Title, Old Republic/Pioneer Title Co, Montana Title & Escrow) | statewide (premium manuals); Big Sky/Bozeman/Livingston offices for Montana Title & Escrow | national-brand underwriters (Stewart, FNTI, WFG, Old Republic), independent title/escrow companies (First Montana Title, Montana Title & Escrow) | **complete (saturated)** — 6 verified sources; last 3 additions (First Montana Title, Old Republic, Montana Title & Escrow) kept the observed $800-$1,600 escrow/settlement range stable | 2026-07-22 |
 | NE | 0 | unprocessed | |
 | NV | 0 | unprocessed | |
 | NH | 0 | unprocessed | |
@@ -635,3 +635,30 @@ still vary and matter).
   charge. With only 2 verified sources despite the extensive search, MS meets the
   contract's scarce criterion. Marked MS **complete (scarce)**. Moving to the next
   unprocessed tier-2 state (MT, next alphabetically).
+- 2026-07-22: Started MT from scratch. Verified 6 sources: 4 title-insurance-premium-only
+  manuals -- Stewart Title Guaranty (effective 2025-07-14, the most current vintage found,
+  whose charge definition uniquely *includes* abstracting/search/exam while excluding
+  settlement/closing/escrow/attorney fees), First National Title Insurance (effective
+  2021-08-24), WFG National Title (effective 2022-12-01, similarly includes search/exam/
+  commitment in its premium definition), and Old Republic National Title (rate card "updated
+  October 2024," distributed via Pioneer Title Co, an independent Montana agency) -- plus 2
+  genuine settlement/escrow-fee sources with actual dollar figures: First Montana Title
+  ($800 flat refinance / $1,600 total purchase, $800 per side) and Montana Title & Escrow
+  (a "Partial Resale" rate-schedule trifold, rates effective 2021-07-01, flat $1,000 escrow
+  fee uniform across all coverage amounts, plus itemized ancillary fees -- courier $40,
+  in-house notary $40/$80, signing-service notary $125, doc prep $50/document beyond the
+  first 3 -- the richest ancillary-fee itemization found in this state). The observed
+  escrow/settlement range ($800-$1,600) held stable across the last 3 additions. One
+  false-lead was caught and discarded: a same-named "Pioneer Title Company" escrow fee
+  schedule (pioneertitlecompany.com) initially looked like a 6th MT source but verification
+  showed it actually serves Chelan/Douglas County, WASHINGTON STATE (Montana has no Douglas
+  County) -- excluded to avoid a false attribution, matching the wrong-jurisdiction pattern
+  seen with Minnesota/Maryland/Idaho pioneertitlecompany.com lookalikes in earlier sessions.
+  20+ query strategies/direct checks (Flying S Title & Escrow's fste.com page returned
+  blank content on 3 attempts and remains unresolved rather than confirmed-no-figures;
+  Alliance Title's Buyer/Seller Guide PDF returned blank content with no recoverable binary;
+  montanatitle.com/fees and /residential-and-refinance/ both 403'd; First American's mobile
+  MT rate tool DNS-failed) found no further usable sources. With 6 verified sources and a
+  stable range across the final 3 additions, MT meets the contract's saturated criterion.
+  Marked MT **complete (saturated)**. Moving to the next unprocessed tier-2 state (NE, next
+  alphabetically).

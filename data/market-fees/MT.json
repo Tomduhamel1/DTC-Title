@@ -1,0 +1,145 @@
+[
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://www.virtualunderwriter.com/-/media/files/virtualunderwriter/imported/pdfs/montana-rate-manual-final-eff-07142025.pdf",
+    "asOf": "Effective July 14, 2025",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Included within the title insurance charge by definition (charge covers abstracting/searching/examination), not separately priced",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Owner's/Loan policy premium rate tables, full schedule $1,000 to multi-million dollar coverage amounts",
+        "Simultaneous issue tables for Owner's + Loan policies",
+        "Cancellation charge: $300 residential, $500 commercial",
+        "Extensive ALTA/CLTA/Stewart-specific endorsement fee schedules"
+      ]
+    },
+    "bundlingNotes": "Defines its 'charge' to explicitly INCLUDE abstracting/searching/examination fees, but explicitly EXCLUDE settlement, trustee, attorney, surveying, inspection, document, closing, and escrow fees. This is a title-insurance-premium schedule only; zero settlement/service-fee dollar figures anywhere in the document.",
+    "transactionContext": "Owner's policy (purchase), loan policy (purchase and refinance), simultaneous issue -- premium calculation only."
+  },
+  {
+    "provider": "First National Title Insurance Company (FNTI)",
+    "sourceUrl": "http://documentpub.fnti.com/Documents/Montana/Rate%20Manual/FNTI%20MT%20Rate%20Manual%20Effective%202021-08-24.pdf",
+    "asOf": "Effective August 24, 2021",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Owner's/Loan policy premium rate schedule",
+        "Master Residential Equity Loan Policy (Section 2.10) with its own reduced rate"
+      ]
+    },
+    "bundlingNotes": "Section 2.10 (Master Residential Equity Loan Policy) explicitly states the charge does not include title searches, title examinations, legal fees, property reports, credit reports, or recording fees. Filed with the Montana State Auditor / Commissioner of Securities and Insurance. Zero settlement/service-fee dollar figures anywhere in the document.",
+    "transactionContext": "Owner's policy (purchase), loan policy (purchase, refinance, equity loan) -- premium calculation only."
+  },
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/montana/rate-manuals/WFG%20Montana%20Manual%20of%20Title%20Insurance%20Premiiums%20effective%2012-1-22.pdf",
+    "asOf": "Effective December 1, 2022",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Included within the title insurance premium by definition (premium covers title search, title examination, commitment), not separately priced",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Owner's/Loan policy premium rate schedule"
+      ]
+    },
+    "bundlingNotes": "Explicitly states the premium 'includes all ordinary charges for a title search, title examination, commitment and title insurance policy, but does not include charges for surveys, escrow, closing services, settlement services, recording fees, other charges.' Zero settlement/service-fee dollar figures anywhere in the document.",
+    "transactionContext": "Owner's policy (purchase), loan policy (purchase and refinance) -- premium calculation only."
+  },
+  {
+    "provider": "First Montana Title",
+    "sourceUrl": "https://www.firstmontanatitle.com/escrow-services/",
+    "asOf": "retrieved 2026-07-22",
+    "settlementFee": "Refinance escrow/closing fee: $800. Purchase escrow/closing fee: $1,600 total ($800 per side, buyer and seller each pay $800).",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": []
+    },
+    "bundlingNotes": "Page quotes a single flat escrow/closing fee figure per transaction type; no further itemization of ancillary charges (courier, wire, doc prep, notary) published on this page.",
+    "transactionContext": "Purchase (per-side flat fee) and refinance (flat fee)."
+  },
+  {
+    "provider": "Old Republic National Title Insurance Company (distributed via Pioneer Title Co, an independent Montana title agency)",
+    "sourceUrl": "https://www.pioneertitleco.com/wp-content/uploads/2026/01/PTC-Old-Republic-Full-Standard-Rates.pdf",
+    "asOf": "Updated October 2024",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "38-page rate table, columns 'Rate' and 'ALTA Lenders Extended', spanning $10,000 to $10,000,000 of coverage in $1,000 increments"
+      ]
+    },
+    "bundlingNotes": "Premium-only rate card; no settlement/escrow/closing service dollar figures anywhere in the document. Distributed by Pioneer Title Co (pioneertitleco.com), a Montana-based independent title agency -- not to be confused with the unrelated Pioneer Title Company (pioneertitlecompany.com), which serves Chelan/Douglas County, Washington State.",
+    "transactionContext": "Owner's/Lender premium schedule -- premium calculation only, purchase and refinance not differentiated."
+  },
+  {
+    "provider": "Montana Title & Escrow (MTE)",
+    "sourceUrl": "https://www.montanatitle.com/wp-content/uploads/2022/03/Rate-Schedule-Trifold-MTE.pdf",
+    "asOf": "Rates effective July 1, 2021 (\"Partial Resale Rate Schedule\", form J-083021)",
+    "settlementFee": "Escrow fee (partial resale/reissue transaction): flat $1,000, uniform across all coverage amounts from $1 to $1,000,000 (per-quote for transactions above $1,000,000).",
+    "itemizedFees": {
+      "docPrep": "$50 per document, only if more than 3 documents are prepared through escrow (first 3 included in the base escrow fee)",
+      "processing": null,
+      "courier": "$40 estimate (overnight courier/mail)",
+      "wire": "included in base escrow fee",
+      "edoc": "included in base escrow fee (electronic document download)",
+      "eRecording": null,
+      "notarySigning": "In-house: seller $40 maximum, buyer $80 maximum. Signing service: $125 estimate.",
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Owner's/Lender premium rate table for Westcor Land Title Insurance Company, full schedule $1 to $1,000,000 coverage",
+        "Additional loan fee: +$150 for a second loan, +$100 for each loan above two",
+        "$15 per check charge for payoff of unsecured loans/credit cards",
+        "Standard title endorsement fees ($0-$150 depending on endorsement)"
+      ]
+    },
+    "bundlingNotes": "This is underwriter Westcor's 'Partial Resale' (reissue) rate product specifically -- a discounted product for properties with a recent prior policy, not necessarily representative of MTE's full/standard resale or refinance escrow fee. Base $1,000 escrow fee explicitly includes wire transfers, local messenger service, up to 3 documents, electronic document download, and check issuance (except debt payoff/loan tie-in). Genuine, itemized settlement-fee dollar figures from an independent Montana title/escrow company's own published rate card -- the richest ancillary-fee itemization found for this state.",
+    "transactionContext": "Resale (reissue/'partial resale' discount product); Big Sky, Bozeman, and Livingston offices."
+  }
+]
