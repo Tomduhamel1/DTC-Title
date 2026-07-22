@@ -1,0 +1,217 @@
+<meta charset="utf-8">
+<title>BetterClose — For Real Estate Agents</title>
+<style>
+  :root {
+    --blue: #0693e3;
+    --blue-deep: #0369a1;
+    --ink: #0f172a;
+    --slate: #475569;
+    --slate-soft: #94a3b8;
+    --emerald: #059669;
+    --emerald-deep: #047857;
+    --line: #dbeafe;
+    --paper: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: Inter, -apple-system, "SF Pro Text", "Segoe UI", Roboto, system-ui, sans-serif;
+    background: #e8eef4;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  @media (prefers-color-scheme: dark) { body { background: #1a2332; } }
+  :root[data-theme="dark"] body { background: #1a2332; }
+  :root[data-theme="light"] body { background: #e8eef4; }
+
+  .sheet {
+    width: 8.5in;
+    height: 11in;
+    margin: 0.5in auto;
+    background: var(--paper);
+    box-shadow: 0 4px 24px rgba(15, 23, 42, 0.18);
+    padding: 0.55in 0.7in 0.45in;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+  @page { size: letter; margin: 0; }
+  @media print {
+    body { background: none; }
+    .sheet { margin: 0; box-shadow: none; }
+  }
+
+  /* ---- masthead ---- */
+  .masthead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.14in;
+    border-bottom: 1px solid var(--line);
+  }
+  .logo { display: flex; align-items: center; gap: 9px; }
+  .logo svg { display: block; }
+  .logo-word { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; color: var(--blue); }
+  .audience {
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+
+  /* ---- hero ---- */
+  .hero h1 {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+    line-height: 1.15;
+    text-wrap: balance;
+    max-width: 6.6in;
+  }
+  .hero h1 em { font-style: normal; color: var(--emerald-deep); }
+  .hero .sub {
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--slate);
+    max-width: 6in;
+  }
+
+  .save {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 0.28in;
+  }
+  .save .amt {
+    font-size: 44px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    color: var(--emerald-deep);
+    font-variant-numeric: tabular-nums;
+  }
+  .save .desc {
+    font-size: 11px;
+    color: var(--slate);
+    max-width: 4.4in;
+  }
+
+  /* ---- sections ---- */
+  .lab {
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--blue-deep);
+    margin-bottom: 12px;
+  }
+
+  .trio { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.34in; }
+  .trio .t { border-top: 2px solid var(--line); padding-top: 10px; }
+  .trio b { display: block; font-size: 12.5px; font-weight: 700; margin-bottom: 4px; }
+  .trio p { font-size: 10.5px; color: var(--slate); line-height: 1.55; }
+
+  .strip { display: flex; align-items: center; margin-top: 0.26in; }
+  .m { display: flex; align-items: center; gap: 6px; font-size: 9.5px; white-space: nowrap; }
+  .m .dot {
+    flex: none; width: 11px; height: 11px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 7px; color: #fff; font-weight: 700;
+  }
+  .m.done .dot { background: var(--emerald); }
+  .m.now .dot { background: var(--blue); box-shadow: 0 0 0 3px #dbeafe; }
+  .m.next .dot { background: #fff; border: 1.5px solid var(--slate-soft); }
+  .m.done { color: var(--ink); }
+  .m.now { color: var(--blue-deep); font-weight: 700; }
+  .m.next { color: var(--slate-soft); }
+  .sep { flex: 1; height: 1px; background: var(--line); margin: 0 10px; }
+  .stripcap { margin-top: 9px; font-size: 9.5px; color: var(--slate-soft); }
+
+  .why .lead { font-size: 14px; font-weight: 800; letter-spacing: -0.2px; margin-bottom: 6px; }
+  .why p { font-size: 11.5px; color: var(--slate); max-width: 6.5in; }
+
+  .start p { font-size: 11.5px; color: var(--slate); max-width: 6.5in; }
+  .start p b { color: var(--ink); }
+
+  /* ---- footer ---- */
+  .foot { border-top: 1px solid var(--line); padding-top: 12px; display: flex; flex-direction: column; gap: 7px; }
+  .trustline { font-size: 10px; font-weight: 600; color: var(--ink); }
+  .trustline span { color: var(--slate-soft); font-weight: 400; margin: 0 4px; }
+  .uwline { font-size: 9px; color: var(--slate); }
+  .contactline { font-size: 9.5px; color: var(--slate); }
+  .contactline b { color: var(--blue-deep); }
+  .fine { font-size: 7.8px; color: var(--slate-soft); line-height: 1.5; margin-top: 2px; }
+</style>
+
+<div class="sheet">
+  <div class="masthead">
+    <div class="logo">
+      <svg width="32" height="32" viewBox="0 0 40 40" aria-hidden="true">
+        <path d="M20 4 L36 17 L33 17 L33 35 L7 35 L7 17 L4 17 Z" fill="#0693e3"/>
+        <path d="M13.5 24 L18 28.5 L27 19" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo-word">BetterClose</span>
+    </div>
+    <div class="audience">For Real Estate Agents</div>
+  </div>
+
+  <div class="hero">
+    <h1>Your buyer saves thousands. <em>The closing gets done right.</em></h1>
+    <p class="sub">BetterClose handles title and settlement for less, with the same A-rated underwriters every other title company uses. Every fee itemized up front — no surprises at the table.</p>
+    <div class="save">
+      <div class="amt">$602</div>
+      <div class="desc">Typical savings at closing on a $500k purchase — national example.* Less cash your buyer has to bring to the table.</div>
+    </div>
+  </div>
+
+  <div>
+    <div class="lab">Who closes your file</div>
+    <div class="trio">
+      <div class="t">
+        <b>One dedicated officer</b>
+        <p>One closing officer owns your file from title order to funding. Not a queue — the same person, start to finish.</p>
+      </div>
+      <div class="t">
+        <b>Reachable in hours</b>
+        <p>Direct phone and email, with replies in under two hours during business hours. No bots, no offshore call centers.</p>
+      </div>
+      <div class="t">
+        <b>Nothing hidden</b>
+        <p>Live status shows every milestone and who it's waiting on. You never call just to ask where things stand.</p>
+      </div>
+    </div>
+    <div class="strip">
+      <div class="m done"><span class="dot">✓</span>Title ordered</div>
+      <div class="sep"></div>
+      <div class="m done"><span class="dot">✓</span>Search complete</div>
+      <div class="sep"></div>
+      <div class="m now"><span class="dot"></span>Clearing to close</div>
+      <div class="sep"></div>
+      <div class="m next"><span class="dot"></span>Docs &amp; signing</div>
+      <div class="sep"></div>
+      <div class="m next"><span class="dot"></span>Funded &amp; recorded</div>
+    </div>
+    <div class="stripcap">Live on every file — for you and your buyer.</div>
+  </div>
+
+  <div class="why">
+    <div class="lab">Why it costs less</div>
+    <div class="lead">We automated the paperwork — not the people.</div>
+    <p>Software handles the search, document prep, and processing that traditional title companies bill as separate fees — so that layer of the bill is gone, not discounted. A licensed closing officer still reviews and closes every file. Lower fees are the price, not a promotion.</p>
+  </div>
+
+  <div class="start">
+    <div class="lab">Getting started</div>
+    <p>Get an itemized estimate in minutes at <b>betterclose.co/quote</b> — no commitment. When the deal is ready, send the order to <b>orders@betterclose.co</b>; we confirm within one business day.</p>
+  </div>
+
+  <div class="foot">
+    <div class="trustline">30,000+ closings <span>·</span> A-rated underwriters only <span>·</span> 50-state coverage</div>
+    <div class="uwline">Underwriters include First American, AmTrust Title, Westcor, and CATIC — A.M. Best rated A or higher.</div>
+    <div class="contactline"><b>partners@betterclose.co</b> &nbsp;·&nbsp; 1-800-316-9508 &nbsp;·&nbsp; betterclose.co/for-realtors</div>
+    <div class="fine">
+      *Example purchase only — not a quote or guarantee. Actual savings depend on your buyer's loan, property, and location. "Typical" market ranges reflect our estimate of local pricing; savings are measured against the low end of that range. Recording fees — and, in states with promulgated or uniform rates, title insurance premiums — are set by the state and the same regardless of provider; we never count those toward savings. Directly licensed in 34 states; closings in the remaining states are completed via licensed workshare partners with the same BetterClose pricing and digital experience. BetterClose is a division of First National Title &amp; Escrow.
+    </div>
+  </div>
+</div>
