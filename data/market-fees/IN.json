@@ -1,0 +1,122 @@
+[
+  {
+    "provider": "Stewart Title Guaranty Company (national-brand underwriter)",
+    "sourceUrl": "https://www.virtualunderwriter.com/-/media/files/virtualunderwriter/imported/pdfs/indiana-rate-manual_final_-eff-07072025-updated.pdf",
+    "asOf": "Last updated 2025-05-13; effective 2025-07-07",
+    "settlementFee": {
+      "note": "Title insurance PREMIUM schedule only. Document states the rate is 'composed only of the risk charge' -- explicitly excludes search/exam/doc-prep/recording.",
+      "ownersPolicyFormula": "$200 flat up to $50,000; then $3.90/1000 ($50k-$100k); $2.50/1000 ($100k-$350k); $2.25/1000 ($350k-$600k); $1.90/1000 ($600k-$1M); $1.75/1000 (>$1M).",
+      "lendersPolicyFormula": "$75 flat up to $50,000; then $1.55/1000 ($50k-$100k); $0.80/1000 (>$100k).",
+      "simultaneousIssueLoanPolicy": "$120 flat",
+      "reissueCredit": "20% (minimum $150)",
+      "cplFee": "$25.00 per party",
+      "tieff": "$5.00 per policy (statutory pass-through, Indiana Code 27-7-3.6)",
+      "commercialOwnersPolicy": "$525 flat up to $285,000, then tiered $2.15/1000 down to $0.50/1000 at higher liability"
+    },
+    "itemizedFees": {
+      "cpl": "$25.00 per party",
+      "other": [
+        { "name": "TIEFF (Title Insurance Enforcement Fund Fee)", "amount": "$5.00 per policy, statutory" }
+      ]
+    },
+    "bundlingNotes": "Premium-only; excludes search, exam, doc prep, and recording by explicit statement.",
+    "transactionContext": "Owner's, Lender's, and Commercial title insurance premium, statewide (all IN counties), by liability amount."
+  },
+  {
+    "provider": "WFG National Title Insurance Company (national-brand underwriter)",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/indiana/bulletins/WFG%20Indiana%20Rates%20070113(2).pdf",
+    "asOf": "Effective 2013-07-01 -- stale; a bulletin (IN 2022-01) confirms a newer filing effective 2022-05-01, but only the bulletin memo was retrievable, not the full updated manual, so these figures should be treated as superseded",
+    "settlementFee": {
+      "note": "Title insurance PREMIUM schedule only.",
+      "ownersPolicyFormula": "$3.50/1000 up to $100,000; $2.00/1000 ($100k-$1M); minimum premium $50.",
+      "homeownersPolicyFormula": "$3.85/1000 up to $100,000.",
+      "loanPolicyFormula": "$2.50/1000 up to $100,000; minimum $50.",
+      "simultaneousIssueLoanPolicy": "$50 flat",
+      "lenderSpecialRefinanceRate_sample": "Volume tier 100-200 orders/month, $0-$100,000 liability = $350 premium"
+    },
+    "itemizedFees": { "other": [] },
+    "bundlingNotes": "Premium-only. 2013 vintage is the oldest verifiable WFG Indiana document located; a 2022-05-01 update was referenced in a bulletin but its full manual PDF could not be independently fetched this session.",
+    "transactionContext": "Owner's, Homeowner's, and Loan title insurance premium, statewide, by liability amount."
+  },
+  {
+    "provider": "Fidelity National Title Insurance Company (national-brand underwriter)",
+    "sourceUrl": "https://momentumclosings.com/wp-content/uploads/2024/12/Fidelity-Indiana-Manual-12-11-2024.pdf",
+    "asOf": "Effective 2024-12-11",
+    "settlementFee": {
+      "note": "Title insurance PREMIUM schedule only. Verbatim exclusion: 'The risk premium charged does not include...Escrow/Closing/Title fees (including...search of title, examination of title, work charges, escrow service fees, handling of escrows, settlements or closings, mechanic's lien review, disbursement fees, and cancellation fees); Overnight delivery and/or fax service fees;...Attorney's Fees or Document Preparation Fees.'",
+      "ownersPolicyTable_sample": "<=$50,000 -> $216; $95,001-$100,000 -> $388; $195,001-$200,000 -> $647; $295,001-$300,000 -> $877; $495,001-$500,000 -> $1,337; up to $1,000,000 -> $2,487; over $1M add $2.00/1000.",
+      "homeownersPolicy": "Owner's premium + 10%",
+      "reissueRate": "80% of Owner's premium",
+      "loanPolicySimultaneous_sample": "<=$100,000 -> $120; $100k-$150k -> $195; $150k-$200k -> $230; $200k-$250k -> $300; up to $500,000 -> $475."
+    },
+    "itemizedFees": { "other": [] },
+    "bundlingNotes": "Premium-only; explicit, detailed exclusion list for escrow/closing/settlement charges, attorney fees, document prep, and courier/fax fees -- the most explicit exclusion language found among Indiana underwriter manuals.",
+    "transactionContext": "Owner's, Homeowner's, and Loan title insurance premium, statewide (all IN counties), by liability amount."
+  },
+  {
+    "provider": "First National Title Insurance Company (FNTI, national-brand underwriter)",
+    "sourceUrl": "http://documentpub.fnti.com/Documents/Indiana/Rate%20Manual/FNTI%20Indiana%20Rate%20Manual%20Effective%20March%207,%202023.pdf",
+    "asOf": "Effective 2023-03-07",
+    "settlementFee": {
+      "note": "Title insurance PREMIUM schedule only.",
+      "ownersPolicyTable_sample": "<=$50,000 -> $187.50; $95k-$100k -> $337.50; $195k-$200k -> $562.50; $295k-$300k -> $762.50; up to $500,000 -> $1,162.50 (bracket-extrapolated); up to $1,000,000 -> $2,162.50; over $1M add $2.00/1000.",
+      "reissueRate_sample": "20% credit, e.g. $270 at $100,000 liability",
+      "simultaneousIssueLoanPolicy": "$100 flat",
+      "loanPolicyNoReissue_range": "$155-$975 across brackets",
+      "centralizedRefinanceRateI_sample": "$1-$250,000 -> $360; $2M-$3M -> $1,300",
+      "centralizedRefinanceRateII_sample": "$1-$250,000 -> $320; $1.25M-$1.5M -> $750",
+      "cplFee": "$35.00/lender, $25.00/seller, $25.00/borrower, $25.00/buyer"
+    },
+    "itemizedFees": {
+      "cpl": "$35.00/lender, $25.00/seller, $25.00/borrower, $25.00/buyer",
+      "other": []
+    },
+    "bundlingNotes": "Premium-only.",
+    "transactionContext": "Owner's and Loan title insurance premium plus dedicated refinance-rate schedules, statewide, by liability amount."
+  },
+  {
+    "provider": "Indiana Department of Insurance — Title Insurance Rate Comparison Tool (regulator-published spreadsheet)",
+    "sourceUrl": "https://www.in.gov/idoi/files/Title-Insurance-Rating-Tool.xlsx",
+    "asOf": "Retrieved 2026-07-22; per-insurer effective dates vary 2013-2026 as tabulated in the file",
+    "settlementFee": {
+      "note": "Title insurance PREMIUM comparison only (regulator-aggregated). IDOI-maintained spreadsheet tabulating filed Owner's/Lender's premium rates at $50k/$100k/$150k/$200k/$250k/$350k/$500k liability tiers for approximately 19 IDOI-licensed title insurers, plus reissue-discount %, builder/new-home discount %, simultaneous lender-policy charge, CPL fee, and SERFF filing ID per insurer.",
+      "sampleRows_ownersLenders_at100k_500k": {
+        "Chicago Title / Fidelity / Commonwealth / National Title of NY (FNF brands, shared filing, eff. 2024-12-11)": "Owner's $388/$1,337; Lender's $155/$475; reissue 20%; CPL $25",
+        "First American (eff. 2026-01-13)": "Owner's $390/$1,330; Lender's $150/$525; reissue 25%; CPL $25",
+        "Old Republic (eff. 2025-04-11)": "Owner's $390/$1,340; Lender's $155/$475; reissue 20%; CPL $25",
+        "Stewart Guaranty (eff. 2025-07-07)": "Owner's $395/$1,358; Lender's $153/$473; reissue 20%; CPL $25",
+        "WFG (eff. 2025-04-01)": "Owner's $388/$1,337; Lender's $155/$475; reissue 20%; CPL $25",
+        "Rocket Title (formerly Amrock, eff. 2024-11-12)": "Owner's $300/$1,100; Lender's $125/$485; reissue 20%; CPL $25",
+        "Doma (eff. 2024-11-01)": "Owner's $345/$1,162; Lender's $138/$465; reissue 20%; CPL $25"
+      }
+    },
+    "itemizedFees": { "other": [] },
+    "bundlingNotes": "Regulator-compiled premium comparison across ~19 insurers, confirming close convergence of current Owner's Policy premiums ($300-$395 at $100k) across most underwriters, with Rocket Title notably lower. Full 19-company table exists in the source file; not fully transcribed here.",
+    "transactionContext": "Owner's and Lender's title insurance premium, statewide, at standard liability tiers, per-insurer."
+  },
+  {
+    "provider": "Regional Land Title — Bloomington office (independent title/settlement company)",
+    "sourceUrl": "https://regionallandtitle.com/locations/bloomington/fees/",
+    "asOf": "Retrieval date 2026-07-22 (no effective date stated on the page)",
+    "settlementFee": {
+      "purchase": { "closingFee": 200.00, "deedDocPrepPerDoc": 100.00, "titleSearchWithPrior": 250.00, "titleSearchWithoutPrior": 300.00, "buyersProcessingFee": 200.00, "sellerDocPrep": 125.00 },
+      "refinance": { "closingFee": 200.00, "buyersProcessingFee": 100.00, "titleSearchWithPrior": 225.00, "titleSearchWithoutPrior": 275.00 },
+      "cashSale": { "closingFee": 200.00, "deedPrep": 100.00, "vendorAndSalesDisclosurePrep": 125.00, "titleSearch": 250.00, "buyerProcessing": 100.00 }
+    },
+    "itemizedFees": {
+      "wire": "$30.00 per extra wire",
+      "courier": "$20.00 per extra overnight",
+      "eRecording": "$5.00 per document",
+      "recording": "$25.00/deed, $55.00/mortgage",
+      "cpl": "not separately itemized on this page",
+      "other": [
+        { "name": "Title Update", "amount": "$50.00 per update" },
+        { "name": "Witness Closing Fee", "amount": "$125.00" },
+        { "name": "Current Owner Search", "amount": "$65.00 + copies" },
+        { "name": "TIEFF (Title Insurance Enforcement Fund Fee)", "amount": "$5.00 per policy -- independently corroborates Stewart's statutory figure" }
+      ]
+    },
+    "bundlingNotes": "The only genuine settlement/service-fee (non-premium) schedule found for Indiana this session, despite ~25+ query variants and 10+ direct company-site checks. Closing fee, doc prep, title search, and processing are itemized separately by transaction type (purchase/refinance/cash sale).",
+    "transactionContext": "Purchase, refinance, and cash-sale settlement fee schedules, Bloomington / Monroe County office."
+  }
+]

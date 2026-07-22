@@ -60,7 +60,7 @@ still vary and matter).
 | HI | 3 providers / 4 documents (Title Guaranty of Hawaii [escrow fee + title premium schedules], First American Title, Old Republic Title & Escrow) | statewide (no separate island/metro tiers published, though providers have Oahu/Maui/Big Island/Kauai branches) | national-brand-affiliated agent (Title Guaranty, writing for Chicago/Commonwealth/Fidelity/First American), national-brand direct branches (First American), national-brand underwriter (Old Republic) | **complete (scarce)** — 8 query strategies/6 direct provider-site checks yield 3 providers; notably higher evidence quality than most scarce states since Title Guaranty and First American both publish genuine dollar-denominated escrow/settlement fee schedules (not premium-only) | 2026-07-22 |
 | ID | 8 documents (2 Idaho DOI regulator-published escrow-rate filings covering ~15 distinct licensed title/escrow agents, First American x2 channels, Stewart x2 vintages, Old Republic, WFG) | 5 (Ada/Boise, Kootenai/Coeur d'Alene, Bonneville/Idaho Falls, Twin Falls, Bannock/Pocatello) | regulator compilation (DOI), national-brand underwriters (First American, Stewart, Old Republic, WFG); independent agents' pricing captured only via the DOI filing, not their own sites | **complete (saturated)** — 8 verified documents; DOI's mandatory-filing regime makes its 2 escrow-rate documents a near-census of Idaho's licensed agents rather than a sample, so the observed range is already comprehensive and unlikely to move with further search | 2026-07-22 |
 | IL | 11 (Old Republic, Greater Illinois Title, First American, TitleStar ×3 regional cards, WFG National, Chicago Title, Fidelity National, Proper Title, Truly Title) | 3 (Chicago metro; Central IL incl. Peoria/Champaign; Southern/Metro-East IL incl. St. Clair/Madison) | national-brand underwriters (Old Republic, First American, Chicago Title, Fidelity National, WFG), independent title/escrow companies (Greater Illinois Title, TitleStar, Proper Title, Truly Title) | **complete (target met)** — 11 verified sources on first session, exceeding the 10-source hard-stop target | 2026-07-21 |
-| IN | 0 | unprocessed | |
+| IN | 6 documents (5 premium-only: Stewart, WFG, Fidelity, FNTI, IDOI Rate Comparison Tool ~19 insurers; 1 settlement-fee: Regional Land Title/Bloomington) | 1 (Bloomington/Monroe County, settlement-fee only; premium manuals are statewide) | national-brand underwriters (Stewart, Fidelity, WFG, FNTI), regulator (IDOI), independent (Regional Land Title) | **complete (scarce)** — 6 total documents but only 1 priced settlement-fee source despite 31 query strategies/10+ direct checks; no service-stack range exists to test saturation, matching the MI/MO/WI/AZ/CO/VA/AL/AR premium-only-market-opacity pattern | 2026-07-22 |
 | IA | 0 | unprocessed | |
 | KS | 0 | unprocessed | |
 | KY | 0 | unprocessed | |
@@ -465,3 +465,20 @@ still vary and matter).
   (which explicitly exclude escrow/settlement charges) rather than move the settlement-fee
   range. Marked ID **complete (saturated)**. Moving to the next unprocessed tier-2 state
   (IN, next alphabetically).
+- 2026-07-22: Started IN from scratch. Verified 6 documents: 4 underwriter premium manuals
+  (Stewart 2025-07-07, Fidelity 2024-12-11, FNTI 2023-03-07, WFG 2013-07-01/stale) plus the
+  Indiana Department of Insurance's Title Insurance Rate Comparison Tool -- a regulator-
+  maintained spreadsheet aggregating filed Owner's/Lender's premium rates for ~19 licensed
+  insurers side by side (an unusually rich single-file resource, confirming current Owner's
+  Policy premiums at $100k cluster $300-$395 across underwriters). On the settlement-fee
+  side, only 1 genuine non-premium schedule was found despite 31 query strategies and 10+
+  direct provider-site checks: Regional Land Title's Bloomington/Monroe County office fee
+  page. TIEFF ($5/policy, Indiana Code 27-7-3.6) corroborated independently by both Stewart's
+  manual and Regional Land Title's page. No confirmed active Indiana Title Insurance Rating
+  Bureau found despite enabling statute (27-1-22-28) -- underwriters appear to file
+  independently. Because a saturation check requires a real multi-source settlement-fee
+  range to test for stability, and only 1 such priced source exists, IN cannot be marked
+  saturated despite 6 total documents; per the same reasoning applied to MI/MO/WI/AZ/CO/VA/
+  AL/AR, marked IN **complete (scarce)** on the settlement-fee track notwithstanding strong
+  premium-side coverage. Moving to the next unprocessed tier-2 state (IA, next
+  alphabetically).
