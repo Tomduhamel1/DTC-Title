@@ -1,0 +1,97 @@
+[
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://go.stewart.com/rs/067-YWO-436/images/DC%20Rate%20Manual_FULL%20FINAL%20eff%2002-26-2024.pdf?version=0",
+    "asOf": "Last updated 2023-11-17; effective 2024-02-26",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule.",
+      "ownersLeaseholdPolicy_liabilityTiered": "Up to $250,000 = $5.70/thousand; $250,001-$500,000 add $5.10/thousand; $500,001-$1,000,000 add $4.50/thousand; $1,000,001-$5,000,000 add $3.90/thousand; $5,000,001-$15,000,000 add $1.10/thousand; over $15,000,000 add $0.95/thousand. Minimum charge $300.00.",
+      "reissueOwnersLeaseholdPolicy": "Up to $250,000 = $3.42/thousand (tiered lower through higher brackets); minimum $300.00",
+      "mortgageePolicy_liabilityTiered": "Up to $250,000 = $4.50/thousand; $250,001-$500,000 add $3.90/thousand; $500,001-$1,000,000 add $3.30/thousand; $1,000,001-$5,000,000 add $2.75/thousand; $5,000,001-$15,000,000 add $0.85/thousand; over $15,000,000 add $0.75/thousand. Minimum charge $300.00.",
+      "refinanceMortgageePolicy": "Up to $50,000 = $2.70/thousand (tiered lower through higher brackets); minimum $300.00",
+      "altaHomeownersPolicy": "Up to $250,000 = $6.84/thousand (120% of owner's rate structure)"
+    },
+    "itemizedFees": {
+      "cpl": { "perLetter": "$50.00 for each ALTA Closing Protection Letter (single transaction), remitted in full to Stewart" },
+      "other": [
+        { "name": "Corrective endorsement", "amount": "$50.00" },
+        { "name": "Secondary Market Short Form Residential Loan Policy (1-4 family)", "amount": "$350 (up to $100k) to $1,500 (over $1.25M-$1.5M), tiered" },
+        { "name": "Modification Guarantee", "amount": "$150.00 flat, $25.00 per continuation/down-date" },
+        { "name": "STG Home Equity Loan Policy (HELP)", "amount": "$45 (up to $100,000) / $65 (over $100,000-$250,000) / $125 (over $250,000-$500,000)" },
+        { "name": "Simultaneous-issue mortgagee policy", "amount": "$100.00 flat (amount not in excess of owner's policy)" }
+      ]
+    },
+    "bundlingNotes": "General Provisions and Definitions state explicitly: 'do not include charges for searches, examinations, abstracts, attorney's fees, escrow, or closing service performed and charged for by local attorneys, abstractors, and title companies' -- naming local attorneys directly, consistent with DC being an attorney-closing jurisdiction. The most granular, richly itemized premium-only manual found in this survey to date (14 pages, includes Article 9 Comprehensive Plus, CPLR, and HELP special products with full fee tables).",
+    "transactionContext": "Owner's, Leasehold, and Mortgagee policy premium schedules, statewide (DC has no metro/county subdivisions), plus reissue, refinance, simultaneous-issue, assignment/extension/substitution-mortgage, and CPL charges. No purchase/refinance settlement-service-fee breakdown."
+  },
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/district-of-columbia/bulletins/WFG%20DC%20Rates%20(10-01-2014).pdf",
+    "asOf": "Effective 2014-10-01 (endorsement schedule internally dated 2010-12-28)",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule.",
+      "ownersLeaseholdPolicy_standardCoverage": "Up to $250,000 = $5.50/thousand; $250,001-$500,000 add $5.00/thousand; $500,001-$1,000,000 add $4.50/thousand; $1,000,001-$5,000,000 add $3.50/thousand; $5,000,001-$15,000,000 add $2.50/thousand; over $15,000,000 add $1.75/thousand. Minimum $210.00 (Enhanced Coverage minimum $252.00, rates ~20% higher).",
+      "mortgageePolicy_standardCoverage": "Up to $250,000 = $4.20/thousand; $250,001-$500,000 add $3.65/thousand; $500,001-$1,000,000 add $3.10/thousand; $1,000,001-$5,000,000 add $2.55/thousand; $5,000,001-$15,000,000 add $2.00/thousand; over $15,000,000 add $1.45/thousand. Minimum $210.00.",
+      "reissueRate": "60% of original owner's/leasehold rate; mortgagee reissue $2.50/thousand up to $500,000 tiered lower thereafter",
+      "lendersSpecialCentralizedRefinanceRates": "Volume-tiered flat premiums for 100+ or 200+ monthly-order lenders, e.g. $350 (up to $200,000 liability) ranging to $3,000-$3,600 (over $1.5M)"
+    },
+    "itemizedFees": {
+      "cpl": { "perLetter": "$50.00 per Closing Protection Letter" },
+      "other": [
+        { "name": "Mortgage assignment endorsement (no update requested)", "amount": "$50.00" },
+        { "name": "Simultaneous-issue mortgagee policy", "amount": "$100.00 flat" },
+        { "name": "Non-Imputation endorsements (ALTA 15/15.1/15.2)", "amount": "10% of premium, minimum $300.00" },
+        { "name": "Zoning endorsements (ALTA 3/3.1)", "amount": "$0.50-$0.75/thousand, minimum $300.00" }
+      ]
+    },
+    "bundlingNotes": "General Provisions state the same exclusion language as Stewart's: charges 'do not include charges for searches, abstracts, attorney's fees, escrow or closing service performed and charged for by local attorneys, abstractors and title companies.' Independently confirms the identical $50.00 CPL fee found in Stewart's 2024 manual, a direct cross-underwriter corroboration despite a decade's gap between the two manuals' effective dates.",
+    "transactionContext": "Owner's, Leasehold, and Mortgagee policy premium schedules (Standard and Enhanced Coverage), statewide, plus reissue, simultaneous-issue, assignment, extension, substitution-mortgage, volume-lender special rates, and full endorsement fee table. No purchase/refinance settlement-service-fee breakdown."
+  },
+  {
+    "provider": "Federal Title & Escrow Company",
+    "sourceUrl": "https://www.federaltitle.com/homebuying/fees/",
+    "asOf": "Retrieved 2026-07-22",
+    "settlementFee": {
+      "buyerPurchase": "$1,275.00 all-inclusive settlement fee (DC), constant regardless of purchase price",
+      "sellerSale": "$550.00 all-inclusive settlement fee (DC), constant regardless of purchase price",
+      "refinance": "$975.00 all-inclusive settlement fee (DC/Montgomery County MD/Prince George's County MD/Arlington VA/Fairfax VA/Alexandria VA), constant regardless of loan amount"
+    },
+    "itemizedFees": {
+      "docPrep": { "powerOfAttorney": "$150.00", "simultaneous2ndTrust": "$300.00 (purchase/refinance)", "deedPreparationSale": "$250.00", "deedTransferPreparationRefinance": "$350.00", "titleAmendmentNoSale": "$500.00" },
+      "notarySigning": { "buyerRemoteMobile": "$200.00", "borrowerRemoteMobileRefinance": "$200.00" },
+      "other": [
+        { "name": "Expedited closing (within 10 business days), buyer", "amount": "$350.00" },
+        { "name": "Mortgage payoff/release procurement, seller", "amount": "$185.00 per lien" },
+        { "name": "Title clearing services, seller", "amount": "$200.00 per hour" },
+        { "name": "FIRPTA withholding, seller", "amount": "$750.00" },
+        { "name": "MD non-resident withholding, seller", "amount": "$125.00" },
+        { "name": "Per-payoff fee beyond first mortgage, refinance", "amount": "$75.00 each" }
+      ]
+    },
+    "bundlingNotes": "Buyer's $1,275 settlement fee is stated to include title exam, electronic storage/access, courier costs, and tax certificate. Seller's $550 fee includes notary fees, courier/wire costs, and e-document storage/delivery. Refinance's $975 fee includes 'Title Examination/Abstractor,' notary fees, and 'Settlement/Closing fee.' All three fees are explicitly flat/fixed regardless of transaction value, with title insurance premiums and transfer/recordation taxes billed separately. Notably the buyer fee ($1,275) is more than double the seller fee ($550) for the same company -- the largest buyer/seller settlement-fee asymmetry found in this survey to date, reflecting DC's heavier buyer-side title-exam and policy-issuance workload versus the seller's comparatively light payoff-coordination role.",
+    "transactionContext": "Residential purchase (buyer), sale (seller), and refinance (borrower) settlement fees for Washington DC (refinance figure also covers parts of MD/VA suburbs); independent title/escrow company, richest itemized DC-area source found."
+  },
+  {
+    "provider": "Avenue Title Group",
+    "sourceUrl": "https://avenuesettlements.com/settlement-resources/settlement-fees/",
+    "asOf": "Retrieved 2026-07-22",
+    "settlementFee": {
+      "buyerOrSeller": "$550.00-$650.00 each (buyer and seller each pay their own settlement fee)"
+    },
+    "itemizedFees": {
+      "searchExam": { "abstractTitleSearch": "$150.00-$300.00" },
+      "wire": { "wireFee": "$35.00" },
+      "eRecording": { "recordingService": "$20.00-$25.00" },
+      "other": [
+        { "name": "Title clearance", "amount": "$110.00-$210.00 per hour" },
+        { "name": "Insured Closing Letter (CPL)", "amount": "$30.00-$50.00" },
+        { "name": "Document archiving", "amount": "$50.00" },
+        { "name": "Payoff release tracking", "amount": "$35.00 per payoff" },
+        { "name": "Tax certificate", "amount": "$15.00 per parcel" },
+        { "name": "Location plat/survey", "amount": "$225.00-$450.00" }
+      ]
+    },
+    "bundlingNotes": "Multi-jurisdiction fee page explicitly covering DC, Maryland, Virginia, Pennsylvania, and Florida with a shared national-style fee schedule plus jurisdiction-specific recording-fee tables (DC deed recording $31.50, deed of trust $156.50, transfer tax 1.1%/1.45% each party by price tier). Presented as ranges rather than fixed flat fees, unlike Federal Title's fixed-dollar model -- reflecting a different pricing philosophy (per-transaction complexity-based ranges vs. flat-regardless-of-price).",
+    "transactionContext": "Buyer and seller settlement fees, DC/MD/VA/PA/FL multi-jurisdiction independent title/settlement company; no separate purchase-vs-refinance breakdown published."
+  }
+]

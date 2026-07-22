@@ -56,7 +56,7 @@ still vary and matter).
 | AK | 2 (Alyeska Title Guaranty Agency [genuine escrow fee schedule], Stewart Title Guaranty [premium manual]) | statewide (no metro breakout published) | independent agency (Alyeska) + national-brand underwriter (Stewart); AK statute AS 21.66.460 requires filing of escrow/settlement/closing charges separately from AS 21.66.370 premium rates, which produced one genuine dollar-denominated escrow schedule -- a rarer find than most "scarce" states | **complete (scarce)** — 14 query strategies/~10 direct provider-site checks yield only 2 usable sources despite AK's unusually favorable statutory disclosure regime; most independent AK title agencies (Western AK Land Title, Integrated Title, Kachemak Bay) are quote-only with no static published schedule | 2026-07-22 |
 | AR | 3 (Stewart Title Guaranty [2026 vintage], WFG National, Southwest Title Insurance/FNTI) | statewide (no metro breakout published) | national-brand underwriters only; AR is confirmed unregulated/unfiled for title premiums (per WFG's own manual), yet settlement fees remain entirely unpublished despite no filing requirement | **complete (scarce)** — 8 query strategies/5 direct provider-site checks yield only 3 usable premium-only rate cards; zero settlement/closing fee dollar figures found anywhere except Stewart's $25/party CPL fee | 2026-07-22 |
 | CT | 5 (WFG National, Stewart Title Guaranty, Connecticut Title & Escrow LLC, Law Office of Yona Gregory, Connecticut Real Estate Closing Lawyers) | statewide (no metro/county breakout published; "all 8 CT counties" served uniformly per one source) | national-brand underwriters (WFG, Stewart), closing-attorney firms (Connecticut Title & Escrow, Yona Gregory, CT Real Estate Closing Lawyers) — CT is an attorney-closing state | **complete (scarce)** — 14 query strategies/10 direct provider-site checks yield only 5 usable sources; CATIC (CT's dominant domestic underwriter) blocked by 403 on both its rate-schedule PDF and state-resources page, a notable coverage gap flagged for future retry | 2026-07-22 |
-| DC | 0 | unprocessed | |
+| DC | 4 (Stewart Title Guaranty, WFG National, Federal Title & Escrow Company, Avenue Title Group) | none (DC has no metro/county subdivisions; Federal Title's refinance figure spans DC/MD/VA suburbs) | national-brand underwriters (Stewart, WFG), independent title/settlement companies (Federal Title & Escrow, Avenue Title Group) — DC is an attorney/title-agent-closing jurisdiction | **complete (scarce)** — 9 query strategies/8 direct provider-site checks yield only 4 usable sources; largest buyer/seller fee asymmetry found in survey ($1,275 buyer vs $550 seller at Federal Title) | 2026-07-22 |
 | HI | 0 | unprocessed | |
 | ID | 0 | unprocessed | |
 | IL | 11 (Old Republic, Greater Illinois Title, First American, TitleStar ×3 regional cards, WFG National, Chicago Title, Fidelity National, Proper Title, Truly Title) | 3 (Chicago metro; Central IL incl. Peoria/Champaign; Southern/Metro-East IL incl. St. Clair/Madison) | national-brand underwriters (Old Republic, First American, Chicago Title, Fidelity National, WFG), independent title/escrow companies (Greater Illinois Title, TitleStar, Proper Title, Truly Title) | **complete (target met)** — 11 verified sources on first session, exceeding the 10-source hard-stop target | 2026-07-21 |
@@ -408,3 +408,18 @@ still vary and matter).
   retry. With only 5 verified sources despite the extensive search, CT meets the
   contract's scarce criterion. Marked CT **complete (scarce)**. Moving to the next
   unprocessed tier-2 state (DC, next alphabetically).
+- 2026-07-22: Started DC from scratch. Verified 4 sources across 9 query strategies/8
+  direct provider-site checks: Stewart Title Guaranty (2024-02-26) and WFG National
+  Title (2014-10-01), both premium-only filed rate manuals that independently confirm
+  an identical $50.00 CPL fee a full decade apart. Also verified 2 independent
+  title/settlement companies with itemized settlement-fee schedules: Federal Title &
+  Escrow Company (buyer $1,275 / seller $550 / refinance $975, all flat-regardless-of-
+  price -- the largest buyer/seller fee asymmetry found in this survey to date) and
+  Avenue Title Group (buyer/seller each $550-$650, ranged pricing, DC/MD/VA/PA/FL
+  multi-jurisdiction page). A promising flatlawfees.com attorney tier schedule
+  ($950/$1,500/$2,000+) could not be verified (503 unavailable); choicefinance.net was
+  unreachable (DNS failure) on two attempts. A "Greater Illinois Title" fee PDF surfaced
+  in search but was excluded as wrong-jurisdiction (Chicago-area, already on file from
+  the IL survey). With only 4 verified sources despite the extensive search, DC meets
+  the contract's scarce criterion. Marked DC **complete (scarce)**. Moving to the next
+  unprocessed tier-2 state (HI, next alphabetically).
