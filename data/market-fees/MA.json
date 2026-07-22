@@ -1,0 +1,131 @@
+[
+  {
+    "provider": "Law Office of Joseph A. Lopisi (Lopisi Law)",
+    "sourceUrl": "https://lopisilaw.com/practice-areas/buyer-seller-representation/",
+    "asOf": "retrieved 2026-07-22",
+    "settlementFee": "Buyer representation only (not lender): $750-$950 flat fee. Buyer representation with lender representation: $450 (buyer) + $500-$700 (lender). Seller representation: $750-$950 flat fee.",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "approximately $200 (title examination, when lender representation is also engaged)",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Plot plan (Mortgage Inspection Plan): $150"
+      ]
+    },
+    "bundlingNotes": "Buyer-only flat fee ($750-$950) covers offer review, seller-document review, loan-document review, closing coordination, and homestead declaration preparation, but does NOT include title exam or lender-side work. When the same firm also represents the lender, pricing splits into a $450 buyer-representation component plus a separate $500-$700 lender-representation component that adds title examination (~$200) and plot plan ($150). Seller flat fee ($750-$950) covers Offer stage through a 'mail away' closing plus deed preparation.",
+    "transactionContext": "Purchase transactions (buyer representation and seller representation quoted separately); does not address refinance pricing."
+  },
+  {
+    "provider": "Sherman Law",
+    "sourceUrl": "https://timshermanlaw.com/sell-my-house/massachusetts-seller-closing-costs/",
+    "asOf": "retrieved 2026-07-22",
+    "settlementFee": "Real estate attorney fee (seller side): $1,200-$1,800, depending on complexity.",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": "included within an itemized ~$350 bucket of miscellaneous transaction costs (mortgage discharge, wire transfers, courier, and document delivery fees combined, not broken out individually)",
+      "wire": "included within the same ~$350 bucket, see courier note",
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Septic (Title V) inspection: approximately $800 for inspector and Certificate of Compliance (not a title/settlement charge, but a common seller-side closing cost)",
+        "Smoke & carbon monoxide detector certificate: $50-$100"
+      ]
+    },
+    "bundlingNotes": "Attorney fee is quoted as a standalone range; the firm separately buckets ~$350 of miscellaneous transaction costs (mortgage discharge, wire, courier, document delivery) without itemizing each individually.",
+    "transactionContext": "Seller-side closing costs for a purchase transaction."
+  },
+  {
+    "provider": "Sherman Law",
+    "sourceUrl": "https://timshermanlaw.com/buying-a-house/closing-costs/",
+    "asOf": "retrieved 2026-07-22",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "approximately $300 (title exam)",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Mortgage Inspection Plan (plot plan): $145",
+        "Municipal Lien Certificate (MLC): $50",
+        "Registry of Deeds recording fee: $365"
+      ]
+    },
+    "bundlingNotes": "This buyer-side closing-costs page itemizes title exam, plot plan, MLC, and recording as separate line items but does not disclose the firm's own attorney-representation dollar figure on this page (see the firm's seller-costs page and third-party summaries for the $1,200-$1,800 attorney fee range attributed to this firm).",
+    "transactionContext": "Buyer-side closing costs for a purchase transaction."
+  },
+  {
+    "provider": "Lazan Glover & Puciloski, LLP (Berkshires Real Estate Law)",
+    "sourceUrl": "https://lazanlaw.com/what-are-common-closing-costs-in-massachusetts/",
+    "asOf": "retrieved 2026-07-22",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "$300-$400 (title exam/abstracting)",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Recording fees: Deed $155, Mortgage $205, Municipal Lien Certificate $80, Declaration of Homestead $35",
+        "Certificates and Affidavits: $105",
+        "Plot plan: $350-$500",
+        "Municipal Lien Certificate (obtaining, separate from recording): $25-$50 per certificate",
+        "Title insurance premium: $4.00 per $1,000 of purchase price",
+        "Transfer tax (seller, Massachusetts excise stamps): $4.56 per $1,000 of sale price"
+      ]
+    },
+    "bundlingNotes": "The firm's own legal fee is explicitly described as variable (based on purchase price, mortgage status, special considerations) with no fixed dollar figure published; all other line items above (recording, plot plan, MLC, title insurance rate, transfer tax) are quoted as fixed or narrow-range dollar figures on the firm's own page.",
+    "transactionContext": "General purchase-transaction closing cost breakdown; Berkshires/Western Massachusetts market."
+  },
+  {
+    "provider": "Cote Law Group, PLLC",
+    "sourceUrl": "https://www.cote-law.com/first-time-home-buyer-guide-closing-costs-massachusetts/",
+    "asOf": "retrieved 2026-07-22",
+    "settlementFee": "Attorney fee for buyers: $600-$1,500+ (example figure used: $1,200).",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "$150-$300 depending on complexity",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Deed recording: $155",
+        "Mortgage recording: $205",
+        "Municipal Lien Certificate: $80",
+        "Declaration of Homestead: $35",
+        "Plot plan: $350-$500",
+        "Title insurance premium: approximately $4.00 per $1,000 of purchase price",
+        "Appraisal fee (lender-side, not title/settlement): $600-$1,500"
+      ]
+    },
+    "bundlingNotes": "Attorney fee, title exam, and title insurance rate are quoted as distinct line items on the firm's own first-time-buyer guide; overall closing costs framed as 2%-5% of purchase price. Marshfield, MA firm (South Shore market).",
+    "transactionContext": "Buyer-side purchase transaction, first-time-homebuyer-oriented guide."
+  }
+]

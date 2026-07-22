@@ -67,7 +67,7 @@ still vary and matter).
 | LA | 1 (LATISSO rating bureau manual, all member insurers) | statewide (no parish breakout in base rate tables) | rating bureau (LATISSO) -- discovered mid-session to be rating-bureau-uniform like NCTIRB/OTIRB rather than plain insurer-filed; civil-law notary closing system appears to correlate with zero published settlement-fee schedules anywhere | **complete (scarce)** — ~12 query strategies/10 direct provider-site checks yield only 1 usable source (though a rich, near-universal one); zero settlement/closing-fee dollar figures found anywhere except LATISSO's flat $25 Closing Protection Coverage rate | 2026-07-22 |
 | ME | 2 (WFG National, Stewart Title Guaranty) | statewide (no metro/county breakout published) | national-brand underwriters only (WFG, Stewart); zero settlement/closing/escrow fee dollar figures found anywhere despite exhaustive search, matching the AZ/CO/MI/MO/VA/AL/AR/KY/WI market-opacity pattern | **complete (scarce)** — 17 query strategies/10 direct provider-site checks yield only 2 usable premium-only rate manuals (3 documents); both underwriters explicitly state their filed rates exclude settlement/closing/escrow fees; only non-premium dollar figures found are WFG's $25 CPL fee and $100/$25 survey-exception-deletion fees | 2026-07-22 |
 | MD | 5 (Stewart, WFG National, Ardent Title, TPF Legal, CAL Settlements) | 3 (Cecil County; Montgomery County/DC suburbs; unspecified-metro closing attorney) | national-brand underwriters (Stewart, WFG), independent title/settlement companies (Ardent Title), closing-attorney firms (TPF Legal, CAL Settlements) | **complete (scarce)** — 10+ query strategies/direct checks yield only 5 usable sources; national-brand direct offices (First American, Old Republic, Chicago Title, Fidelity) route to interactive calculators only, no static settlement-fee schedules found | 2026-07-21 |
-| MA | 0 | unprocessed | |
+| MA | 4 (Lopisi Law, Sherman Law, Lazan Glover & Puciloski, Cote Law Group) | Cambridge/Arlington, South Shore/MetroWest/South Coast, Berkshires/Western MA, Marshfield/South Shore | closing-attorney firms only (MA requires attorney closings; no independent title/escrow company layer) | **open** — 4 verified sources, below the 6-source saturation floor; 14 query strategies/12 direct checks logged this session, several unverified candidate firms (Friar Law, Moody & Knoth, Pulgini & Norton) and the primary Stewart 2025 MA rate manual PDF still to pursue next session | 2026-07-22 |
 | MN | 4 (Stewart, WFG National, CloseAtTitle, Title Services Inc/Rochester) | 2 (Minnesota Metropolitan/Twin Cities via CloseAtTitle; Rochester/Olmsted County via Title Services Inc) | national-brand underwriters (Stewart, WFG), independent title/escrow company (CloseAtTitle), closing-attorney-affiliated title company (Title Services Inc, subsidiary of Dunlap Seeger law firm) | **complete (scarce)** — 30+ query strategies/direct checks yield only 4 usable sources; no national-brand direct office (First American, Old Republic, Fidelity National) publishes a static MN settlement-fee schedule, all route to interactive calculators | 2026-07-22 |
 | MS | 0 | unprocessed | |
 | MT | 0 | unprocessed | |
@@ -575,3 +575,25 @@ still vary and matter).
   market-opacity pattern. With only 2 verified providers despite the extensive search, ME
   meets the contract's scarce criterion. Marked ME **complete (scarce)**. Moving to the
   next unprocessed tier-2 state (MA, next alphabetically).
+- 2026-07-22: Started MA from scratch. Discovered MA has a distinctive market structure:
+  attorney-mandatory closings with NO separate independent title/escrow company layer,
+  and title insurance premiums are confirmed NOT filed with the state (per a Fidelity
+  National Title citation surfaced via search). This means closing-attorney firms'
+  own websites are the primary published-fee source, unlike most states surveyed.
+  Verified 4 closing-attorney-firm sources across 4 different MA regions (Lopisi Law/
+  Cambridge, Sherman Law/South Shore, Lazan Glover & Puciloski/Berkshires, Cote Law
+  Group/Marshfield), all independently publishing flat attorney fees plus itemized title
+  exam, plot plan, Municipal Lien Certificate, and recording-fee figures -- with strong
+  cross-firm corroboration on recording fees (deed $155, mortgage $205, MLC $80,
+  homestead $35 matching almost exactly between Lazan and Cote). One promising lead
+  (cypresstitleco.com's "Stewart-Rates.pdf") was fetched and Read-recovered but turned
+  out to be California's rate manual mislabeled on that site -- discarded. A law firm
+  blog post quotes specific figures from Stewart's actual new 2025-09-15 MA rate manual
+  (CPL $35, simultaneous-issue $175, premium rates) but this is a secondary
+  characterization, not the primary Stewart document, so it was logged as an unverified
+  candidate rather than counted as a source. 14 query strategies plus 12 direct
+  provider-site checks this session; MA remains **open** with 4 verified sources
+  (below the 6-source saturation floor, and not yet exhaustively searched to the
+  scarce threshold either -- several unverified candidate firms remain). Session ending;
+  MA stays open for the next session to resume (verify candidate firms first, then
+  continue searching if still under 6).
