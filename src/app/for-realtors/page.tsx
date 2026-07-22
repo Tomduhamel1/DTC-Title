@@ -159,6 +159,10 @@ export default function RealtorsPage() {
                 </div>
               </div>
 
+              {/* Rotating payoff pill directly under the savings figures —
+                  same placement as the homepage hero. */}
+              <RotatingSavingsPill savings={EXAMPLE_SAVINGS.saveOverLoan} tail="back in your buyer's pocket" className="mt-4" />
+
               <div className="mt-4 pt-4 border-t border-gray-100 space-y-1.5">
                 <div className="flex items-baseline justify-between">
                   <span className="text-xs text-gray-600">BetterClose estimate</span>
@@ -176,9 +180,6 @@ export default function RealtorsPage() {
               </p>
             </div>
 
-            {/* Rotating "that's enough for" pill, anchored to the over-the-loan
-                figure so the items scale with the number shown. */}
-            <RotatingSavingsPill savings={EXAMPLE_SAVINGS.saveOverLoan} tail="back in your buyer's pocket" className="mt-4" />
             </div>
           </div>
         </div>

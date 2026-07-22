@@ -232,6 +232,10 @@ export default function BrokersPage() {
                 </div>
               </div>
 
+              {/* Rotating payoff pill directly under the savings figures —
+                  same placement as the homepage hero. */}
+              <RotatingSavingsPill savings={EXAMPLE_SAVINGS.saveOverLoan} tail="back in your borrower's pocket" className="mt-4" />
+
               {/* Smaller comparison row */}
               <div className="mt-4 pt-4 border-t border-gray-100 space-y-1.5">
                 <div className="flex items-baseline justify-between">
@@ -249,9 +253,6 @@ export default function BrokersPage() {
               </p>
             </div>
 
-            {/* "This buys" — rotating payoff pill directly under the card.
-                Anchors scale with the actual over-the-loan figure. */}
-            <RotatingSavingsPill savings={EXAMPLE_SAVINGS.saveOverLoan} tail="back in your borrower's pocket" />
             </div>
           </div>
         </div>

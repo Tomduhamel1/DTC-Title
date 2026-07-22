@@ -165,11 +165,7 @@ export default function FooterComprehensive() {
             © 2025 BetterClose, a division of First National Title & Escrow. All rights reserved.
           </div>
           <div className="flex items-center gap-4 text-xs text-gray-500">
-            <span>Member of ALTA</span>
-            <span>•</span>
             <span>BBB Accredited</span>
-            <span>•</span>
-            <span>SOC 2 Compliant</span>
           </div>
         </div>
       </div>

@@ -44,10 +44,6 @@ export default function CompanyCredentialsSection() {
       logo: "🅱️" // Replace with actual BBB logo
     },
     {
-      name: "ALTA Member",
-      logo: "🏛️" // Replace with actual ALTA logo
-    },
-    {
       name: "SSL Secured",
       logo: "🔒"
     }
@@ -85,7 +81,7 @@ export default function CompanyCredentialsSection() {
         {/* Regulatory Info */}
         <div className="mt-8 text-center">
           <p className="text-xs text-gray-500">
-            Licensed and regulated in all 50 states. Member of American Land Title Association (ALTA).
+            Directly licensed in 34 states, with licensed workshare partners covering the remaining 16.
           </p>
         </div>
       </div>

@@ -15,7 +15,7 @@ const PILLARS = [
 
 const STATS = [
   { value: '30,000+', label: 'Closings completed' },
-  { value: '$5M', label: 'Bonded & insured' },
+  { value: '100%', label: 'Fees published up front' },
   { value: 'A-rated', label: 'Underwriters only' },
   { value: '50 states', label: 'Licensed nationally' },
 ] as const

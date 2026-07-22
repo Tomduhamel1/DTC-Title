@@ -1,0 +1,102 @@
+// State-aware SAMPLE fee report for marketing previews (homepage "See every
+// fee, line by line"). Separate module because it needs both feeReport and
+// marketBaseline (feeReport itself cannot import marketBaseline — cycle via
+// stateSavings).
+//
+// The line items and our-cost dollars are ILLUSTRATIVE (labeled "Sample
+// report" in the UI); what IS state-accurate is the comparison logic:
+//  - premium lines follow the state's rate regime — state-set (no
+//    comparison) in promulgated/bureau states, interim filed-state
+//    multipliers elsewhere;
+//  - service lines use the state's evidence-derived service band
+//    (published / calculator / inferred — same bands as real quotes).
+// So a CA visitor sees a CA-shaped sample and a TX visitor correctly sees
+// premiums marked "Set by TX" instead of a fabricated premium saving.
+
+import type { FeeLineItem, FeeReport } from './feeReport'
+import {
+  PREMIUM_RANGE_FILED,
+  premiumsAreUniform,
+  serviceBandFor,
+} from './marketBaseline'
+import { resolveStateCode } from './stateSavings'
+
+const round = Math.round
+
+export function buildSampleFeeReport(state?: string | null): FeeReport {
+  const code = resolveStateCode(state) ?? 'GA'
+  const uniform = premiumsAreUniform(code)
+  const band = serviceBandFor(code)
+
+  const premium = (id: string, label: string, ourCost: number): FeeLineItem =>
+    uniform
+      ? {
+          id,
+          label,
+          category: 'title-settlement',
+          ourCost,
+          isFixed: true,
+          feeSource: 'state',
+          savingsSource: 'pass_through',
+        }
+      : {
+          id,
+          label,
+          category: 'title-settlement',
+          ourCost,
+          isFixed: false,
+          typicalRange: {
+            low: round(ourCost * PREMIUM_RANGE_FILED.low),
+            high: round(ourCost * PREMIUM_RANGE_FILED.high),
+          },
+          feeSource: 'underwriter',
+          savingsSource: 'title_related',
+          description: 'A-rated underwriter coverage',
+        }
+
+  const service = (id: string, label: string, ourCost: number): FeeLineItem => ({
+    id,
+    label,
+    category: 'title-settlement',
+    ourCost,
+    isFixed: false,
+    typicalRange: {
+      low: round(ourCost * band.low),
+      high: round(ourCost * band.high),
+    },
+    feeSource: 'service',
+    savingsSource: 'settlement_fee',
+  })
+
+  return {
+    state: code,
+    homeValue: 500000,
+    loanAmount: 400000,
+    transactionType: 'purchase',
+    generatedAt: new Date().toISOString(),
+    isSample: true,
+    lineItems: [
+      premium('lenders-title', "Lender's Title Insurance", 760),
+      service('settlement-fee', 'Settlement Fee', 350),
+      service('notary-fee', 'Notary Fee', 150),
+      {
+        id: 'mortgage-recording',
+        label: 'Mortgage Recording Fee',
+        category: 'recording',
+        ourCost: 101,
+        isFixed: true,
+        feeSource: 'county',
+        savingsSource: 'pass_through',
+      },
+      {
+        id: 'satisfaction-recording',
+        label: 'Satisfaction (Release) Recording Fee',
+        category: 'recording',
+        ourCost: 22,
+        isFixed: true,
+        feeSource: 'county',
+        savingsSource: 'pass_through',
+      },
+    ],
+  }
+}

@@ -1,13 +1,29 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import FeeReportTable from './FeeReportTable'
 import ShareWithTeamSheet from './lender-request/ShareWithTeamSheet'
-import { getSampleFeeReport } from '@/lib/feeReport'
+import { buildSampleFeeReport } from '@/lib/sampleReport'
 
 export default function FeeReportPreviewSection() {
-  const sample = getSampleFeeReport()
+  // Localize the sample to the visitor's state (same geo endpoint the hero
+  // uses) so a CA visitor sees a CA-shaped sample, not a Georgia one.
+  // Falls back to GA when geolocation is unavailable.
+  const [geoState, setGeoState] = useState<string | null>(null)
+  useEffect(() => {
+    let cancelled = false
+    fetch('/api/geo')
+      .then((r) => r.json())
+      .then((data) => {
+        if (!cancelled && data.state) setGeoState(data.state)
+      })
+      .catch(() => {})
+    return () => {
+      cancelled = true
+    }
+  }, [])
+  const sample = useMemo(() => buildSampleFeeReport(geoState), [geoState])
   const [shareOpen, setShareOpen] = useState(false)
 
   return (
@@ -54,7 +70,7 @@ export default function FeeReportPreviewSection() {
               <div className="absolute -top-3 left-6 z-10">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-dark-900 text-white text-xs font-bold uppercase tracking-wider shadow-md">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                  Sample report
+                  Sample report{geoState ? ` · ${sample.state}` : ''}
                 </span>
               </div>
               <FeeReportTable report={sample} variant="preview" />
