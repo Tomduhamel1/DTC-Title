@@ -74,6 +74,10 @@ in AL.json.
   closing-attorney firm) — search-engine snippet showed Title Search Fee $200.00 and Closing Fee
   $350 (cash)/$450 (loan), but direct WebFetch returned HTTP 403 Forbidden on two attempts;
   excluded per evidence rules (must be independently fetched and verified this session).
+  - **Retried 2026-07-22** (blocked-source retry pass): re-fetched via WebFetch and again via a
+    direct curl request with a full browser User-Agent string — both still returned HTTP 403
+    Forbidden. Still blocked (WAF/bot-protection, not a transient failure); the search-snippet
+    figures above remain unverified and excluded.
 - **alabamaclosingandtitle.com/services** and **/cost-calculator** (Huntsville) — fetched; no
   published figures, calculator-only.
 - **boundarytitle.com/huntsville-al/** — fetched; no published figures, quote-only.

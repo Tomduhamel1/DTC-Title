@@ -12,10 +12,22 @@
     },
     "itemizedFees": {
       "other": [
-        { "name": "Closing Protection Letter (buyer/lender, per RSMo 381.022.5)", "amount": "$25 per real estate transaction" },
-        { "name": "Closing Protection Letter (seller, per RSMo 381.022.6)", "amount": "$25 per real estate transaction" },
-        { "name": "Limited Coverage Junior Loan Policy (up to $100,000)", "amount": "$110 (tiered up to $275 at $300,000)" },
-        { "name": "Chain of Title Guarantee", "amount": "$50" }
+        {
+          "name": "Closing Protection Letter (buyer/lender, per RSMo 381.022.5)",
+          "amount": "$25 per real estate transaction"
+        },
+        {
+          "name": "Closing Protection Letter (seller, per RSMo 381.022.6)",
+          "amount": "$25 per real estate transaction"
+        },
+        {
+          "name": "Limited Coverage Junior Loan Policy (up to $100,000)",
+          "amount": "$110 (tiered up to $275 at $300,000)"
+        },
+        {
+          "name": "Chain of Title Guarantee",
+          "amount": "$50"
+        }
       ]
     },
     "bundlingNotes": "General Rule F: 'The rates set forth herein do not include any charge made for title search, title examination, closing, or escrow services performed by the Insurer, or any of its approved attorneys or agents. Charges made for such services are in addition to the rates and charges set forth herein.' [Note: same manual's Applicability clause elsewhere states rates apply to 'land located in Missouri' with MO county codes and MO-specific form numbers -- this is the correct-state FNTI filing, unlike the MI manual's Alabama text artifact.] The Closing Protection Letter fee ($25/side, statutorily mandated) is the only true settlement-adjacent dollar figure in the manual.",
@@ -34,12 +46,45 @@
     },
     "itemizedFees": {
       "other": [
-        { "name": "Closing Protection Letter (Seller, Buyer, and/or Lender)", "amount": "$25.00" },
-        { "name": "ALTA Residential Limited Coverage Junior Loan Policy (flat, up to $250,000 liability)", "amount": "$110.00" },
-        { "name": "Mortgage Protection Guarantee / Mortgage Modification Policy", "amount": "$125-$350 tiered by liability" }
+        {
+          "name": "Closing Protection Letter (Seller, Buyer, and/or Lender)",
+          "amount": "$25.00"
+        },
+        {
+          "name": "ALTA Residential Limited Coverage Junior Loan Policy (flat, up to $250,000 liability)",
+          "amount": "$110.00"
+        },
+        {
+          "name": "Mortgage Protection Guarantee / Mortgage Modification Policy",
+          "amount": "$125-$350 tiered by liability"
+        }
       ]
     },
     "bundlingNotes": "Section 1 Introduction: 'The rates shown do not include charges for title search, surveys, escrow, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant.' Explicit and unambiguous exclusion. The $25.00 Closing Protection Letter fee exactly matches FNTI's $25/side CPL fee (both citing the same RSMo 381.022 statutory basis) -- a clean cross-underwriter corroboration on the one line item both manuals actually price.",
     "transactionContext": "Owner's, Leasehold, Expanded/Homeowner's, and Loan policy premium schedules for all Missouri counties, plus Lender's Special (finance-loan-only) rate tiers and Closing Protection Letter fee. No purchase/refinance settlement-service-fee breakdown."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company — Estimated Rate/Fee Calculator (ortconline.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
+    "calculatorUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
+    "retrievalDate": "2026-07-22",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, residential resale, Sale transaction type, Loan Estimate calculation. Property location: Kansas City, MO 64106 (Jackson County). City/zip used: Kansas City, MO 64106 (Jackson County, MO's most populous county).",
+    "methodology": "Harvested via direct HTTP GET/POST against the calculator's ASP.NET WebForms postback mechanism (__VIEWSTATE/__EVENTVALIDATION), replicating the same sequential form submissions the browser's JS performs (state select -> county/city select -> Sales Price/Loan Amount -> Submit); no browser/JS execution was used or required. The 'Your Name', 'Your Company', and 'This estimate is being prepared for' fields were left blank throughout -- confirmed optional (no required-symbol asterisk in the form) -- no fabricated personal information was entered at any step.",
+    "settlementFee": {
+      "note": "Not a single line item in this tool's output; the closest analog is the 'Settlement Agent Fee' shown in Section C, split buyer/seller (buyer's share shown here). Settlement Agent Fee total (both parties): Title - Settlement Agent Fee (Total: $1,094.00)."
+    },
+    "itemizedFees": {
+      "processing": "$547.00 (Settlement Agent Fee, Total: $1,094.00)",
+      "other": [
+        {
+          "name": "Title - Lender's Title Policy (Total: $3.00) [buyer's lender's title policy premium]",
+          "amount": "$3.00"
+        }
+      ]
+    },
+    "sectionTotals": "C: Services You Can Shop For: $550.00; H: Other: $294.50",
+    "bundlingNotes": "The city-only dropdown resolved to a specific zip code (64106, downtown Kansas City) to disambiguate Jackson County from the multi-county KC metro; MO's other zips for 'Kansas City' were not tested. The near-zero $3.00 Lender's Title Policy figure is a striking data point -- Old Republic's own MO premium appears to be quoted as a nominal/reissue-eligible rate for this scenario, consistent with this state's file noting Missouri settlement/premium pricing is filed privately rather than published; this is the first MO-specific Old Republic premium figure obtained in this survey (the two rate manuals already on file are First National Title Insurance and WFG National, not Old Republic). Owner's Title Policy* (Total: $294.50, fully buyer-charged here) calculated from full Homeowner's Policy rate of $294.50, plus concurrent lender's-issue charge of $3, less full lender's policy premium of $3.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k purchase scenario; City/zip used: Kansas City, MO 64106 (Jackson County, MO's most populous county)."
   }
 ]

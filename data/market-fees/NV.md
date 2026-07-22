@@ -1,6 +1,22 @@
 # Nevada (NV) — Market Fee Evidence
 
-## Status: COMPLETE (scarce market) — 2 providers verified (3 documents)
+## Status: COMPLETE (scarce market) — 2 published providers verified (3 documents) + 1 calculator-basis provider (not yet at the 3-provider calculator threshold), 2026-07-22
+
+## Calculator harvest (2026-07-22)
+Old Republic Title's public **Estimated Rate/Fee Calculator**
+(https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx) was
+driven directly via HTTP GET/POST (ASP.NET WebForms postback replication, no browser/JS execution)
+for the standard $500,000 purchase/$400,000 loan scenario, **Las Vegas (Clark County)**. Result:
+Closing Protection Letter Fee $25, Concurrent Loan Charge $275, E-Recording Service Fee $50, Lender's
+Title Policy $1,694, Settlement Agent Fee $720 (of $1,440 total, buyer half), Recording Fees $110.
+Owner's Title Policy shown "(seller paid)", Total $1,377 (full Homeowner's Policy rate $2,139 + $932
+concurrent-issue charge − $1,694 lender's premium). Section totals: C (shop-for) $2,764.00, E (gov't
+fees) $110.00. This is Old Republic's own restatement of the same Clark/Lincoln/Nye "Area A" filed-rate
+zone already verified via First American's regulator-published Escrow Rate Manual — a genuine
+cross-underwriter corroboration for the Las Vegas market. Full entry recorded in NV.json with
+`"basis": "calculator"`. No personal information was entered (Name/Company fields are optional and
+were left blank). This is 1 calculator provider; the task's 3-provider threshold was not reached this
+session (see CALCULATORS.md).
 
 2 providers verified across 3 documents: First American Title Insurance Company
 (both a genuine, dollar-denominated **escrow fee schedule** and a companion

@@ -1,6 +1,22 @@
 # Arizona — Market Fee Evidence
 
-## Status: complete (scarce) — 5 verified sources, 2026-07-21
+## Status: complete (scarce) — 5 verified published sources + 1 calculator-basis provider (not yet at the 3-provider calculator threshold), 2026-07-22
+
+## Calculator harvest (2026-07-22)
+Old Republic Title's public **Estimated Rate/Fee Calculator**
+(https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx) was
+driven directly via HTTP GET/POST (ASP.NET WebForms postback replication, no browser/JS execution)
+for the standard $500,000 purchase/$400,000 loan scenario, **Phoenix (Maricopa County)**. Result:
+Closing Protection Letter Fee $25, Concurrent Loan Charge $200 (of $400 total), Lender's Title Policy
+$2,187, Settlement Agent Fee $677.50 (of $1,355 total, buyer half). Owner's Title Policy (Section H)
+totaled $0.00 buyer-side — consistent with AZ's seller-pays-owner's-policy custom already documented
+in this file. Section C (shop-for) total: $3,089.50. This buyer-side Settlement Agent Fee figure
+($677.50) is notably lower than Pioneer Title Agency's/Arizona Escrow & Financial's already-verified
+Maricopa escrow-fee tiers (~$1,342 at the $500k tier), a genuine cross-provider spread data point.
+Full entry recorded in AZ.json with `"basis": "calculator"`. No personal information was entered
+(Name/Company fields are optional and were left blank). This is 1 calculator provider; the task's
+3-provider threshold was not reached this session (see CALCULATORS.md for FNF/First American
+JS-only findings).
 
 Arizona does not meet the target (10) or saturation (6+) bar, but meets the contract's
 **scarce** completion criterion. The state's single richest source — the DIFI
@@ -108,6 +124,13 @@ Arizona filing was found.
   successfully (not on the blocked domain); verified and added as the 5th source. Its
   $800 entry-tier real-property escrow fee exactly matches Pioneer Title Agency's $800
   figure at the same $100,000 tier — a strong independent corroboration point.
+
+## Blocked-source retry (2026-07-22)
+Retried DIFI's escrow-rate-filings portal page (`difi.az.gov/title-insurance-rate-filings`) via
+WebFetch — still HTTP 403 Forbidden, same Cloudflare block confirmed across 3+ sessions now. No
+change. (See also the calculator-basis harvest added this session in the "Calculator harvest"
+section above, which independently adds a 6th Maricopa County data point via Old Republic's
+public calculator, unaffected by the DIFI block.)
 - **Magnus Title Agency** (`magnustitle.com`) — fetched; publishes a "Cost Estimator" tool
   and "Resources" page but no static fee schedule; quote-only.
 - **Premier Title Agency** (`ptanow.com`) — fetched; "Order Title & Get Rates" is an

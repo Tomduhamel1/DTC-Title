@@ -1,6 +1,23 @@
 # Missouri — Market Fee Evidence
 
-## Status: complete (scarce market) — 2 verified premium sources, 0 published settlement/service-fee schedules, 2026-07-21
+## Status: complete (scarce market) — 2 verified premium sources, 0 published settlement/service-fee schedules + 1 calculator-basis provider (not yet at the 3-provider calculator threshold), 2026-07-22
+
+## Calculator harvest (2026-07-22)
+Old Republic Title's public **Estimated Rate/Fee Calculator**
+(https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx) was
+driven directly via HTTP GET/POST (ASP.NET WebForms postback replication, no browser/JS execution)
+for the standard $500,000 purchase/$400,000 loan scenario, **Kansas City, MO 64106 (Jackson County)**
+— the city-only dropdown required resolving to a specific zip to disambiguate Jackson County from
+the multi-county KC metro; other "Kansas City" zips were not tested. Result: Lender's Title Policy
+$3.00 (of $3.00 total — a striking near-zero premium figure for this scenario), Settlement Agent Fee
+$547 (of $1,094 total, buyer half), Owner's Title Policy $294.50 (fully buyer-charged). Section
+totals: C (shop-for) $550.00, H (other) $294.50. This is the first Old Republic-specific MO premium
+figure obtained in this survey (the two rate manuals already on file are First National Title
+Insurance and WFG National) and is consistent with this state's file noting MO settlement/premium
+pricing is filed privately rather than published. Full entry recorded in MO.json with `"basis":
+"calculator"`. No personal information was entered (Name/Company fields are optional and were left
+blank). This is 1 calculator provider; the task's 3-provider threshold was not reached this session
+(see CALCULATORS.md).
 
 Missouri is a filed-rate (insurer-filed) state for title insurance premiums (381.181 RSMo; 20 CSR
 500-7.100 requires a "Uniform Premium (Risk Rate) Report" filed with the department). This

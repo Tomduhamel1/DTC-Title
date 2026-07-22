@@ -23,10 +23,22 @@
       "cpl": "$40 (lender) / $55 (seller) / $20 (buyer-borrower) / $20 (each additional applicant); $40 minimum -- see settlementFee.closingProtectionCoverage_CP1 above (Section 6, CP-1)",
       "binder": "Title Guaranty (Record Products) rate: $3.50/thousand up to $100,000, +$3.00/thousand $100,001-$250,000, +$2.50/thousand above; $105 minimum (Section 4, RP-1) -- this is OTIRB's own 'Title Guaranty' record-product line, a substitute-for-insurance product used in the state's Torrens-adjacent judicial-report system, not identical to a 'binder' in the conventional sense but the closest Manual-rated analog",
       "other": [
-        { "name": "Preliminary Judicial Report (non-foreclosure)", "amount": "$3.00/thousand of fair market value, $75 minimum (Section 4, RP-2)" },
-        { "name": "Preliminary Judicial Report (foreclosure)", "amount": "$3.00/thousand of unpaid principal balance, $75 minimum" },
-        { "name": "Supplemental/Final Judicial Report", "amount": "$50.00 flat (Section 4, RP-2.1)" },
-        { "name": "Title Guaranty Commitment", "amount": "$50.00 (Section 4, RP-3)" }
+        {
+          "name": "Preliminary Judicial Report (non-foreclosure)",
+          "amount": "$3.00/thousand of fair market value, $75 minimum (Section 4, RP-2)"
+        },
+        {
+          "name": "Preliminary Judicial Report (foreclosure)",
+          "amount": "$3.00/thousand of unpaid principal balance, $75 minimum"
+        },
+        {
+          "name": "Supplemental/Final Judicial Report",
+          "amount": "$50.00 flat (Section 4, RP-2.1)"
+        },
+        {
+          "name": "Title Guaranty Commitment",
+          "amount": "$50.00 (Section 4, RP-3)"
+        }
       ]
     },
     "bundlingNotes": "OTIRB's GP-4 is the most direct 'no carve-out needed' unregulated-settlement-fee statement found in this survey: rather than creating a special attorney-only track (PA) or promulgating the settlement fee itself (NJ), Ohio's rating bureau simply states up front that search/examination/closing/escrow are never part of the regulated rate for ANY provider type -- Company, Agent, or approved attorney alike. This means the entire settlement/service-fee stack the task brief asked about is, structurally, 100% unregulated in Ohio; the OTIRB Manual is cited here purely for the premium reference and the one closing-adjacent item it does price (the CPL, Section 6).",
@@ -55,20 +67,94 @@
       "cpl": "Lender Closing Protection Coverage: $40.00 (purchase and refinance) -- matches the OTIRB CP-1 $40 lender rate exactly, confirming compliance with the regulated CPL figure",
       "binder": "Title Insurance Binder: $90.00 (purchase); Title Commitment Binder: $90.00 (refinance)",
       "other": [
-        { "name": "CertifID ID Verification (Buyer)", "amount": "$15.00" },
-        { "name": "CertifID ID Verification (Seller)", "amount": "$15.00" },
-        { "name": "Power of Attorney Preparation", "amount": "$90.00" },
-        { "name": "Land Contract Preparation", "amount": "$300.00" },
-        { "name": "Endorsement -- EPL / ARM / Balloon", "amount": "$75.00 each" },
-        { "name": "Endorsement -- Comprehensive", "amount": "$1.00/thousand, $150 typical" },
-        { "name": "Endorsement -- Survey / Condo / PUD", "amount": "$50.00 each" },
-        { "name": "Endorsement -- Mechanic's Lien Deletion", "amount": "$150.00" },
-        { "name": "Construction Draw (incl. title update)", "amount": "$75.00" },
-        { "name": "Title Insured Draw with Endorsements (per draw)", "amount": "$100.00" },
-        { "name": "Title Update Only", "amount": "$75.00" }
+        {
+          "name": "CertifID ID Verification (Buyer)",
+          "amount": "$15.00"
+        },
+        {
+          "name": "CertifID ID Verification (Seller)",
+          "amount": "$15.00"
+        },
+        {
+          "name": "Power of Attorney Preparation",
+          "amount": "$90.00"
+        },
+        {
+          "name": "Land Contract Preparation",
+          "amount": "$300.00"
+        },
+        {
+          "name": "Endorsement -- EPL / ARM / Balloon",
+          "amount": "$75.00 each"
+        },
+        {
+          "name": "Endorsement -- Comprehensive",
+          "amount": "$1.00/thousand, $150 typical"
+        },
+        {
+          "name": "Endorsement -- Survey / Condo / PUD",
+          "amount": "$50.00 each"
+        },
+        {
+          "name": "Endorsement -- Mechanic's Lien Deletion",
+          "amount": "$150.00"
+        },
+        {
+          "name": "Construction Draw (incl. title update)",
+          "amount": "$75.00"
+        },
+        {
+          "name": "Title Insured Draw with Endorsements (per draw)",
+          "amount": "$100.00"
+        },
+        {
+          "name": "Title Update Only",
+          "amount": "$75.00"
+        }
       ]
     },
     "bundlingNotes": "Landmark itemizes closing/settlement charges far more granularly than any other Ohio source located this session, cleanly separating buyer-side Closing Fee ($200 purchase / $150 refinance) from seller-side Closing/Disbursement Fee ($90) and Deed Prep ($100) -- a genuine buyer/seller fee-split data point matching the market's general practice pattern. Its $40 Lender CPL figure independently corroborates the OTIRB-regulated $40 lender rate byte-for-byte, the clearest example in this survey of a provider correctly passing through the one Ohio closing-adjacent charge that IS rate-regulated, while pricing everything else (Title Exam, Closing Fee, wire, courier, notary, doc prep) independently as the OTIRB Manual's GP-4 permits.",
     "transactionContext": "Residential purchase, refinance, and second-mortgage/piggyback transactions; primary office in Dayton (Montgomery County/Miami Valley) with an explicitly published multi-county Southwest Ohio service area reaching into the Cincinnati/Hamilton County metro (one of the task brief's three target metros) via its own conveyance-fee table."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company — Estimated Rate/Fee Calculator (ortconline.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
+    "calculatorUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
+    "retrievalDate": "2026-07-22",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, residential resale, Sale transaction type, Loan Estimate calculation. Property location: Cuyahoga County, OH (Cleveland). County used: Cuyahoga (most populous county in this calculator's OH service footprint; Franklin/Columbus not served).",
+    "methodology": "Harvested via direct HTTP GET/POST against the calculator's ASP.NET WebForms postback mechanism (__VIEWSTATE/__EVENTVALIDATION), replicating the same sequential form submissions the browser's JS performs (state select -> county/city select -> Sales Price/Loan Amount -> Submit); no browser/JS execution was used or required. The 'Your Name', 'Your Company', and 'This estimate is being prepared for' fields were left blank throughout -- confirmed optional (no required-symbol asterisk in the form) -- no fabricated personal information was entered at any step.",
+    "settlementFee": {
+      "note": "Not a single line item in this tool's output; the closest analog is the 'Settlement Agent Fee' shown in Section C, split buyer/seller (buyer's share shown here). Settlement Agent Fee total (both parties): Title - Settlement Agent Fee (Total: $380.00)."
+    },
+    "itemizedFees": {
+      "cpl": "$40.00 (Closing Protection Letter Fee); $20.00 (Closing Protection Coverage)",
+      "processing": "$380.00 (Settlement Agent Fee, Total: $380.00)",
+      "binder": "$100.00 (Commitment Fee)",
+      "docPrep": "$100.00 (Document Processing Fee)",
+      "searchExam": "$50.00 (Special Tax Search)",
+      "notarySigning": "$75.00 (Notary/Signing Fee (Total: $75.00))",
+      "other": [
+        {
+          "name": "Title - Lender's Title Policy (Total: $1,300.00) [buyer's lender's title policy premium]",
+          "amount": "$1,300.00"
+        },
+        {
+          "name": "Title - Location Survey (Total: $175.00)",
+          "amount": "$175.00"
+        },
+        {
+          "name": "Recording Fees (Total: $252.00)",
+          "amount": "$252.00"
+        },
+        {
+          "name": "Title - Owner's Title Policy (Total: $1,012.50)",
+          "amount": "$506.25"
+        }
+      ]
+    },
+    "sectionTotals": "C: Services You Can Shop For: $2,240.00; E: Taxes and Other Government Fees: $252.00; H: Other: $506.25",
+    "bundlingNotes": "Old Republic's OH agency footprint in this calculator covers only 15 northern-Ohio counties (Ashland, Cuyahoga, Erie, Geauga, Huron, Lake, Lorain, Lucas, Medina, Ottawa, Portage, Stark, Summit, Wayne, Wood) -- Franklin County (Columbus, OH's most populous county) is NOT served by this tool, so Cuyahoga (Cleveland, the largest available county in this tool's footprint and OH's 2nd-most-populous county overall) was used as the highest-volume available proxy. Identical dollar figures were independently returned for Lorain County, confirming Old Republic prices this OH agency territory on a flat statewide (not county-tiered) basis. Owner's Title Policy note: full ALTA Owner's rate $2,187.50, plus concurrent-issue lender's charge of $125, less the full lender's policy premium of $1,300, netting the $506.25/$1,012.50 figures shown.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k purchase scenario; County used: Cuyahoga (most populous county in this calculator's OH service footprint; Franklin/Columbus not served)."
   }
 ]

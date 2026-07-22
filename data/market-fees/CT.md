@@ -76,6 +76,8 @@ fee). Full liability-tiered schedules for both are recorded verbatim in CT.json.
   than CT's dominant domestic one. Flagged for a future session to retry (CATICulator at
   caticulator.com, a calculator tool rather than a static schedule, was noted as an alternative but
   not attempted this session).
+  - **Retried 2026-07-22** (blocked-source retry pass): catic.com/rates re-fetched via WebFetch —
+    still HTTP 403 Forbidden. Still blocked; no change from prior sessions.
 - **firsttitleservices.com/connecticut-title-closing/** (First Title & Escrow) — HTTP 403 Forbidden.
 - **agency.firstam.com/ct** (First American Title CT Agency Services) — fetched successfully;
   describes AgentNet/AgentAdvantage services only, no settlement-fee dollar figures published.

@@ -14,11 +14,26 @@
     "itemizedFees": {
       "courier": "$30.00 per package (standalone rate)",
       "other": [
-        { "name": "Combined sale + loan escrow additional charge", "amount": "$300.00 — 'includes electronic document, domestic wire and courier fees'" },
-        { "name": "Seller All Inclusive Rate", "amount": "$300.00 — 'includes unlimited reconveyance and tracking, domestic wire and courier fees'" },
-        { "name": "Reconveyance and Tracking", "amount": "$100.00 per release" },
-        { "name": "Owner's + Standard Lender's Policy combination surcharge", "amount": "Owner's rate + $100.00" },
-        { "name": "Extended Lender's Policy combination surcharge", "amount": "additional 65% (First American/WFG-style cards) or 60% (Stewart card) of the Owner's rate" }
+        {
+          "name": "Combined sale + loan escrow additional charge",
+          "amount": "$300.00 — 'includes electronic document, domestic wire and courier fees'"
+        },
+        {
+          "name": "Seller All Inclusive Rate",
+          "amount": "$300.00 — 'includes unlimited reconveyance and tracking, domestic wire and courier fees'"
+        },
+        {
+          "name": "Reconveyance and Tracking",
+          "amount": "$100.00 per release"
+        },
+        {
+          "name": "Owner's + Standard Lender's Policy combination surcharge",
+          "amount": "Owner's rate + $100.00"
+        },
+        {
+          "name": "Extended Lender's Policy combination surcharge",
+          "amount": "additional 65% (First American/WFG-style cards) or 60% (Stewart card) of the Owner's rate"
+        }
       ]
     },
     "bundlingNotes": "'When combining a sale and a loan escrow, there will be an additional charge of $300.00 which includes electronic document, domestic wire and courier fees.' Also: 'Seller All Inclusive Rate of $300.00 includes unlimited reconveyance and tracking, domestic wire and courier fees.' Also: 'The scheduled rates do not include the costs of surveys or special inspections' and 'The Company reserves the right to charge additional fees in unusual circumstances.'",
@@ -43,11 +58,26 @@
     "itemizedFees": {
       "cpl": "$20 per Insured Closing Letter (Closing Protection Letter) issued, with a maximum of $40 per transaction",
       "other": [
-        { "name": "Additional Chain or Parcel Charge", "amount": "$100.00 per parcel/chain over one" },
-        { "name": "Duplicate Policy/Correction Charge", "amount": "$50.00 per duplicate/corrected form" },
-        { "name": "Inspection Fee", "amount": "$150.00 or actual cost, whichever is greater" },
-        { "name": "Special Services", "amount": "$125.00 per hour, billed in one-hour increments" },
-        { "name": "Multiple Loan Policies surcharge", "amount": "$100.00 for additional policy over one" }
+        {
+          "name": "Additional Chain or Parcel Charge",
+          "amount": "$100.00 per parcel/chain over one"
+        },
+        {
+          "name": "Duplicate Policy/Correction Charge",
+          "amount": "$50.00 per duplicate/corrected form"
+        },
+        {
+          "name": "Inspection Fee",
+          "amount": "$150.00 or actual cost, whichever is greater"
+        },
+        {
+          "name": "Special Services",
+          "amount": "$125.00 per hour, billed in one-hour increments"
+        },
+        {
+          "name": "Multiple Loan Policies surcharge",
+          "amount": "$100.00 for additional policy over one"
+        }
       ]
     },
     "bundlingNotes": "'Insured Closing Letter (Closing Protection Letter) Charge: $20 per letter issued with a maximum of $40 per transaction.'",
@@ -72,15 +102,62 @@
     "itemizedFees": {
       "processing": null,
       "other": [
-        { "name": "Business & Personal Property escrow (separate table)", "amount": "$1,000 up to $20k; $1,100 up to $40k; $1,200 up to $80k; $1,300 up to $150k; $1,400 up to $200k; $1,500 up to $300k; $1,600 up to $400k; $1,700 up to $500k; $3.00/$1,000 above $500k" },
-        { "name": "Annual holding fee (escrow unclosed after 1 year)", "amount": "$500" },
-        { "name": "UCC search fee (Secretary of State)", "amount": "$50/name" },
-        { "name": "UCC search fee (county)", "amount": "$50/name" },
-        { "name": "Loan signing only", "amount": "$800" },
-        { "name": "Loan signing with escrow", "amount": "$500" }
+        {
+          "name": "Business & Personal Property escrow (separate table)",
+          "amount": "$1,000 up to $20k; $1,100 up to $40k; $1,200 up to $80k; $1,300 up to $150k; $1,400 up to $200k; $1,500 up to $300k; $1,600 up to $400k; $1,700 up to $500k; $3.00/$1,000 above $500k"
+        },
+        {
+          "name": "Annual holding fee (escrow unclosed after 1 year)",
+          "amount": "$500"
+        },
+        {
+          "name": "UCC search fee (Secretary of State)",
+          "amount": "$50/name"
+        },
+        {
+          "name": "UCC search fee (county)",
+          "amount": "$50/name"
+        },
+        {
+          "name": "Loan signing only",
+          "amount": "$800"
+        },
+        {
+          "name": "Loan signing with escrow",
+          "amount": "$500"
+        }
       ]
     },
     "bundlingNotes": "Real Property escrow fee at the $100,000 tier ($800) matches Pioneer Title Agency's identical $800 figure at the same tier exactly — independent corroboration that $800 is the standard entry-level AZ residential escrow fee across at least two agencies. No separate line items for wire/courier/doc prep are published; page states these are not itemized separately from the base escrow fee.",
     "transactionContext": "Real property residential/commercial escrow (price-tiered) and separate Business & Personal Property escrow table; statewide AZ."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company — Estimated Rate/Fee Calculator (ortconline.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
+    "calculatorUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
+    "retrievalDate": "2026-07-22",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, residential resale, Sale transaction type, Loan Estimate calculation. Property location: Phoenix, AZ (Maricopa County). City used: Phoenix (Maricopa County, AZ's most populous county).",
+    "methodology": "Harvested via direct HTTP GET/POST against the calculator's ASP.NET WebForms postback mechanism (__VIEWSTATE/__EVENTVALIDATION), replicating the same sequential form submissions the browser's JS performs (state select -> county/city select -> Sales Price/Loan Amount -> Submit); no browser/JS execution was used or required. The 'Your Name', 'Your Company', and 'This estimate is being prepared for' fields were left blank throughout -- confirmed optional (no required-symbol asterisk in the form) -- no fabricated personal information was entered at any step.",
+    "settlementFee": {
+      "note": "Not a single line item in this tool's output; the closest analog is the 'Settlement Agent Fee' shown in Section C, split buyer/seller (buyer's share shown here). Settlement Agent Fee total (both parties): Title - Settlement Agent Fee (Total: $1,355.00)."
+    },
+    "itemizedFees": {
+      "cpl": "$25.00 (Closing Protection Letter Fee)",
+      "processing": "$677.50 (Settlement Agent Fee, Total: $1,355.00)",
+      "other": [
+        {
+          "name": "Title - Concurrent Loan Charge (Total: $400.00) [additional charge for simultaneous lender's policy issue]",
+          "amount": "$200.00"
+        },
+        {
+          "name": "Title - Lender's Title Policy (Total: $2,187.00) [buyer's lender's title policy premium]",
+          "amount": "$2,187.00"
+        }
+      ]
+    },
+    "sectionTotals": "C: Services You Can Shop For: $3,089.50; H: Other: $0.00",
+    "bundlingNotes": "Section H (Owner's Title Policy) totaled $0.00 for the buyer -- consistent with Arizona's customary seller-pays-owner's-policy practice already noted elsewhere in this state's file; the buyer-side Lender's Title Policy premium ($2,187.00) and its own $200 concurrent-issue surcharge line are shown instead. This cross-checks against Pioneer Title Agency's and Arizona Escrow & Financial's already-verified Maricopa escrow fee tiers ($1,342 at the $500k Real-Property tier for AEFC) -- Old Republic's $677.50 buyer-side Settlement Agent Fee (half of a $1,355 total) is lower than those two independents' full-fee figures, a genuine cross-provider spread data point for Maricopa County.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k purchase scenario; City used: Phoenix (Maricopa County, AZ's most populous county)."
   }
 ]

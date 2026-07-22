@@ -1,6 +1,21 @@
 # New Mexico (NM) — Market Fee Evidence
 
-## Status: complete (scarce market) — 6 verified sources (1 regulatory premium table + 2 provider premium-card cross-verifications + 1 genuine real-estate settlement-fee schedule + 2 loan-servicing-escrow schedules of a different market segment), 2026-07-22
+## Status: complete (scarce market) — 6 verified published sources + 1 calculator-basis provider (not yet at the 3-provider calculator threshold), 2026-07-22
+
+## Calculator harvest (2026-07-22)
+Old Republic Title's public **Estimated Rate/Fee Calculator**
+(https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx) was
+driven directly via HTTP GET/POST (ASP.NET WebForms postback replication, no browser/JS execution)
+for the standard $500,000 purchase/$400,000 loan scenario, **Albuquerque (Bernalillo County)**.
+Result: Courier Fee $30, Recording Fees E-File $60.74, Lender's Title Policy $100 (of $1,770 total).
+Owner's Title Policy shown "(seller paid)", Total $717.00 (full ALTA Owner's Policy rate $2,387 + $100
+concurrent-issue charge − $1,770 lender's premium). Section C (shop-for) total: $190.74. The $2,387
+full owner's-rate figure is a genuine additional NM OSI-promulgated-rate data point on top of the
+single settlement-fee source (Centric Title & Escrow) already on file — an independent (calculator)
+channel corroborating the regulator-set premium schedule. Full entry recorded in NM.json with
+`"basis": "calculator"`. No personal information was entered (Name/Company fields are optional and
+were left blank). This is 1 calculator provider; the task's 3-provider threshold was not reached this
+session (see CALCULATORS.md).
 
 New Mexico is a **promulgated-rate state**: title insurance PREMIUMS are set by the New Mexico
 Title Insurance Law and promulgated by the Office of Superintendent of Insurance (OSI), uniform

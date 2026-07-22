@@ -1,6 +1,21 @@
 # Utah — Market Fee Evidence
 
-## Status: complete (scarce market) — 5 verified sources (3 premium-only rate manuals + 2 genuine independent settlement-fee pages), 2026-07-22
+## Status: complete (scarce market) — 5 verified published sources + 1 calculator-basis provider (not yet at the 3-provider calculator threshold), 2026-07-22
+
+## Calculator harvest (2026-07-22)
+Old Republic Title's public **Estimated Rate/Fee Calculator**
+(https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx) was
+driven directly via HTTP GET/POST (ASP.NET WebForms postback replication, no browser/JS execution)
+for the standard $500,000 purchase/$400,000 loan scenario, **Salt Lake City (Salt Lake County)**.
+Result: Closing Protection Letter Fee $25, Electronic Recording Fee $10, Lender's Title Policy
+$1,218, Settlement Agent Fee $395. Owner's Title Policy line was struck through with a footnote
+marker whose note text wasn't rendered in the fetched fragment (consistent with a seller-pays
+convention, buyer total $0). Section totals: C (shop-for) $1,648.00, E (gov't fees) $80.00. The
+$395 Settlement Agent Fee is within 0.5% of Sutherland Title's already-verified Salt Lake City
+figure — a close cross-provider corroboration. Full entry recorded in UT.json with `"basis":
+"calculator"`. No personal information was entered (Name/Company fields are optional and were left
+blank). This is 1 calculator provider; the task's 3-provider threshold was not reached this session
+(see CALCULATORS.md).
 
 Utah is a filed-rate (insurer-filed, not state-promulgated) title insurance market under Utah
 Admin. Code Rule R590-225, and until recently had a structure resembling Alaska's and Idaho's:

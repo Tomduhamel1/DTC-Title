@@ -5,6 +5,36 @@ Research agent collects published title/settlement fee schedules per state into
 **completion contract** (see below) — states are never marked complete because
 a session ended; they're complete only when the contract says so.
 
+## Calculator harvest tracker (NEW — started 2026-07-22)
+
+Separate from the published-schedule survey above, this tracker records progress on harvesting
+providers' own **public quote calculators** (see CALCULATORS.md for the full per-state catalog of
+working/gated/jsOnly calculators). Standard scenario: $500,000 purchase price, $400,000 loan, the
+state's most-populous county (or largest county/city available in a given calculator's own service
+footprint, noted per state), residential resale. A state flips to **calculator-quoted (n providers)**
+once 3+ distinct provider calculators are successfully harvested for it; until then it's listed as
+"N calculator-basis provider(s) — below 3-provider threshold."
+
+| State | Calculator-basis providers | Status | Last run |
+|---|---|---|---|
+| OH | 1 (Old Republic — Cuyahoga County, largest county in this tool's OH footprint; Franklin/Columbus not served) | below 3-provider threshold | 2026-07-22 |
+| AZ | 1 (Old Republic — Phoenix/Maricopa County) | below 3-provider threshold | 2026-07-22 |
+| NV | 1 (Old Republic — Las Vegas/Clark County) | below 3-provider threshold | 2026-07-22 |
+| NM | 1 (Old Republic — Albuquerque/Bernalillo County) | below 3-provider threshold | 2026-07-22 |
+| UT | 1 (Old Republic — Salt Lake City/Salt Lake County) | below 3-provider threshold | 2026-07-22 |
+| MO | 1 (Old Republic — Kansas City 64106/Jackson County) | below 3-provider threshold | 2026-07-22 |
+
+FNF's ratecalculator.fnf.com/rates.fntg.com and First American's FACC calculator
+(agency.facc.firstam.com) were both investigated and confirmed **jsOnly** (ASP.NET postback/AJAX
+SPA with no stateless discoverable endpoint returning a final quote without replicating a long
+multi-step authenticated session) — logged in CALCULATORS.md for a future browser-driven session.
+Stewart's rate calculator (stewartratecalculator.com) exposes a genuine discoverable JSON REST API
+at `/api/SRC/*` (confirmed working: `transactiontypes`, `propertysearch` endpoints return live JSON
+via plain GET) but its final `quote` endpoint requires a large serialized client-side state object
+(`quoteRequestRoot`) built up across the wizard flow that was not fully reverse-engineered this
+session — flagged in CALCULATORS.md as a promising API-based target for a follow-up session rather
+than jsOnly.
+
 ## The completion contract
 
 A **good source**: published by the provider itself or a regulator/rating
@@ -1084,3 +1114,35 @@ still vary and matter).
   the scarcest states in the full survey -- DE is marked **complete (scarce market)**. This
   completes the full 51-state market-fee evidence survey: every state row in this tracker now
   shows a status other than "unprocessed".
+- 2026-07-22: NEW MISSION started -- calculator harvest. Investigated the four named calculator
+  families (FNF/ratecalculator.fnf.com + rates.fntg.com, First American's FACC at
+  agency.facc.firstam.com, Old Republic's ortconline.com Rate/Fee Calculator, Stewart's
+  stewartratecalculator.com). FNF and FACC are both confirmed **jsOnly**: ASP.NET WebForms/AJAX
+  single-page apps with no stateless discoverable endpoint that returns a final quote without
+  replicating a long authenticated multi-step session (FACC's `Calculator/Next` JSON endpoint
+  redirects into a further "Questions" page rather than returning the itemized quote itself).
+  Stewart's calculator exposes a genuine discoverable JSON REST API at `/api/SRC/*`
+  (`transactiontypes?statecode=X&networkid=&propertytype=residential` and `propertysearch?value=`
+  both confirmed working via plain GET, the latter returning county/FIPS data) but its final
+  `quote` endpoint POSTs a large serialized `quoteRequestRoot` object built up through client-side
+  wizard state that was not fully reverse-engineered this session -- flagged as a promising
+  follow-up target, not jsOnly. Old Republic's calculator is a classic ASP.NET WebForms postback
+  form (`__VIEWSTATE`/`__EVENTVALIDATION`) that was successfully driven end-to-end via direct
+  HTTP GET/POST (no browser/JS execution needed) after discovering that including a nonexistent
+  `ReoList` form field (not present in the DOM for every state) caused a server-side HTTP 500 --
+  omitting it fixed the flow. This tool's own state coverage (AZ, CA, HI, MO, NM, NV, OH, OK, OR,
+  TX, UT, WA) happens to overlap heavily with this survey's "complete (scarce)" list, so it was
+  harvested for the standard $500k/$400k scenario across 6 scarce/scarce-market states this
+  session: **OH** (Cuyahoga County -- Franklin/Columbus not in this tool's OH footprint), **AZ**
+  (Phoenix), **NV** (Las Vegas), **NM** (Albuquerque), **UT** (Salt Lake City), and **MO** (Kansas
+  City 64106/Jackson County, resolved via zip since the city alone was county-ambiguous). All 6
+  harvests succeeded with real itemized dollar figures (see each state's .json `"basis":
+  "calculator"` entry and .md "Calculator harvest" section, and the new Calculator harvest tracker
+  table above) with zero fabricated personal information entered (Name/Company/Party-name fields
+  confirmed optional and left blank throughout). Each state has only 1 calculator provider so far --
+  below the 3-provider threshold needed to flip status to "calculator-quoted." CALCULATORS.md
+  created to catalog all findings (working/gated/jsOnly) for future sessions, including
+  browser-driven follow-up on the jsOnly FNF/FACC queue and the Stewart API. Next priority for
+  calculator harvest: higher-volume scarce states not covered by Old Republic's tool (PA, MI, NJ,
+  VA, MD, WI, MN, CO, SC, AL, LA, KY, CT, WV, MS, WY, and the rest of tier 2/3) need their own
+  provider-specific calculators found and evaluated -- session ended here on time/scope grounds.

@@ -1,6 +1,26 @@
 # Ohio (OH) — Market Fee Evidence
 
-## Status: complete (scarce market) — 2 verified sources (1 rating-bureau regulatory manual + 1 provider-published settlement-fee schedule), 2026-07-22
+## Status: complete (scarce market) — 2 verified published sources + 1 calculator-basis provider (not yet at the 3-provider calculator threshold), 2026-07-22
+
+## Calculator harvest (2026-07-22)
+Old Republic Title's public **Estimated Rate/Fee Calculator**
+(https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx) was
+driven directly via HTTP GET/POST (ASP.NET WebForms `__VIEWSTATE`/`__EVENTVALIDATION` postback
+replication — no browser/JS execution) for the standard $500,000 purchase/$400,000 loan scenario.
+This tool's OH agency footprint covers only 15 northern-Ohio counties (Ashland, Cuyahoga, Erie,
+Geauga, Huron, Lake, Lorain, Lucas, Medina, Ottawa, Portage, Stark, Summit, Wayne, Wood) — Franklin
+County (Columbus) is not served, so **Cuyahoga County (Cleveland)**, the largest available and OH's
+2nd-most-populous county, was used. Result: Closing Protection Letter $40, Lender's Title Policy
+$1,300 (of a $2,187.50 full ALTA Owner's rate basis), Settlement Agent Fee $380, Commitment Fee $100,
+Document Processing Fee $100, Location Survey $175, Special Tax Search $50, Closing Protection
+Coverage $20, Notary/Signing Fee $75, Recording Fees $252, Owner's Title Policy (net) $506.25.
+Section totals: C (shop-for) $2,240.00, E (gov't fees) $252.00, H (other) $506.25. Identical figures
+were independently returned for Lorain County, confirming Old Republic prices this OH territory
+statewide rather than county-tiered. Full entry recorded in OH.json with `"basis": "calculator"`. No
+personal information (name/company) was entered — those fields are optional in this form and were
+left blank. This is 1 calculator provider; the task's 3-provider "calculator-quoted" threshold was not
+reached this session (FNF's ratecalculator.fnf.com and First American's FACC calculator were both
+confirmed JS/session-driven with no discoverable stateless endpoint — see CALCULATORS.md).
 
 ## OTIRB premium note (regulatory backbone)
 Ohio title insurance premiums are set uniformly for all member insurers/agents by the **Ohio Title

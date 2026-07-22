@@ -94,5 +94,39 @@
     },
     "bundlingNotes": "Premium-only rate manual; no escrow, closing, or settlement service dollar figures anywhere in the document. Explicit 3-zone county structure with a modest premium differential (Zone 3 rural/Washoe counties price ~9-19% higher than Zone 1/2 at the entry tier despite Washoe being a major metro county -- the inverse of the usual urban-premium pattern seen in most other states).",
     "transactionContext": "Owner's policy (purchase), loan policy (purchase, refinance), simultaneous issue, reissue, subdivision/development, commercial leasehold, planned major projects -- premium calculation only."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company — Estimated Rate/Fee Calculator (ortconline.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
+    "calculatorUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
+    "retrievalDate": "2026-07-22",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, residential resale, Sale transaction type, Loan Estimate calculation. Property location: Las Vegas, NV (Clark County). City used: Las Vegas (Clark County, NV's most populous county).",
+    "methodology": "Harvested via direct HTTP GET/POST against the calculator's ASP.NET WebForms postback mechanism (__VIEWSTATE/__EVENTVALIDATION), replicating the same sequential form submissions the browser's JS performs (state select -> county/city select -> Sales Price/Loan Amount -> Submit); no browser/JS execution was used or required. The 'Your Name', 'Your Company', and 'This estimate is being prepared for' fields were left blank throughout -- confirmed optional (no required-symbol asterisk in the form) -- no fabricated personal information was entered at any step.",
+    "settlementFee": {
+      "note": "Not a single line item in this tool's output; the closest analog is the 'Settlement Agent Fee' shown in Section C, split buyer/seller (buyer's share shown here). Settlement Agent Fee total (both parties): Title - Settlement Agent Fee (Total: $1,440.00)."
+    },
+    "itemizedFees": {
+      "cpl": "$25.00 (Closing Protection Letter Fee)",
+      "eRecording": "$50.00 (E-Recording Service Fee (Total: $50.00))",
+      "processing": "$720.00 (Settlement Agent Fee, Total: $1,440.00)",
+      "other": [
+        {
+          "name": "Title - Concurrent Loan Charge (Total: $275.00) [additional charge for simultaneous lender's policy issue]",
+          "amount": "$275.00"
+        },
+        {
+          "name": "Title - Lender's Title Policy (Total: $1,694.00) [buyer's lender's title policy premium]",
+          "amount": "$1,694.00"
+        },
+        {
+          "name": "Recording Fees (Total: $110.00)",
+          "amount": "$110.00"
+        }
+      ]
+    },
+    "sectionTotals": "C: Services You Can Shop For: $2,764.00; E: Taxes and Other Government Fees: $110.00; H: Other: $0.00",
+    "bundlingNotes": "Owner's Title Policy shown as '(seller paid)', $0 buyer obligation -- Total: $1,377.00, calculated from the full Homeowner's Policy rate of $2,139 plus a $932 concurrent lender's-issue charge, less the $1,694 full lender's policy premium. This is Old Republic's own online restatement of the same Clark/Lincoln/Nye 'Area A' filed-rate zone already verified in this file via First American's regulator-published Escrow Rate Manual -- a genuine cross-underwriter corroboration point for the Las Vegas market.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k purchase scenario; City used: Las Vegas (Clark County, NV's most populous county)."
   }
 ]

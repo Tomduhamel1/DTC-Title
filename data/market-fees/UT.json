@@ -20,13 +20,34 @@
     "itemizedFees": {
       "cpl": "$25 each for lender, purchaser, and borrower; $50 for seller. Additional $25 for a second mortgage/HELOC by a non-primary lender.",
       "other": [
-        { "name": "Trustee's Sale Guarantee", "amount": "80% of Basic Schedule of Charges, $300 minimum" },
-        { "name": "Litigation Guarantee", "amount": "100% of Basic Schedule of Charges, $230 minimum" },
-        { "name": "ALTA Residential Limited Coverage Mortgage Modification Policy", "amount": "$150 flat" },
-        { "name": "ALTA Junior Loan Policy", "amount": "$110 up to $100,000; $160 to $130,000; $190 to $160,000; $220 to $200,000; $275 to $300,000" },
-        { "name": "Additional chain of title", "amount": "$150 (or $75 if the land was previously insured)" },
-        { "name": "Environmental Recorded Document Guarantee", "amount": "$500 per $10,000 coverage plus $60/hour/person for search work" },
-        { "name": "Datedown endorsement after 6 months", "amount": "$75" }
+        {
+          "name": "Trustee's Sale Guarantee",
+          "amount": "80% of Basic Schedule of Charges, $300 minimum"
+        },
+        {
+          "name": "Litigation Guarantee",
+          "amount": "100% of Basic Schedule of Charges, $230 minimum"
+        },
+        {
+          "name": "ALTA Residential Limited Coverage Mortgage Modification Policy",
+          "amount": "$150 flat"
+        },
+        {
+          "name": "ALTA Junior Loan Policy",
+          "amount": "$110 up to $100,000; $160 to $130,000; $190 to $160,000; $220 to $200,000; $275 to $300,000"
+        },
+        {
+          "name": "Additional chain of title",
+          "amount": "$150 (or $75 if the land was previously insured)"
+        },
+        {
+          "name": "Environmental Recorded Document Guarantee",
+          "amount": "$500 per $10,000 coverage plus $60/hour/person for search work"
+        },
+        {
+          "name": "Datedown endorsement after 6 months",
+          "amount": "$75"
+        }
       ]
     },
     "bundlingNotes": "No escrow, closing, settlement, trustee, inspection, or document-prep fees appear anywhere in this 27-page manual -- it is exclusively a title-premium and endorsement price list. This is the most explicit and complete definitional exclusion of settlement-adjacent fees found among the three Utah underwriter manuals reviewed this session, naming 6 specific excluded fee types in a single sentence.",
@@ -54,12 +75,30 @@
     "itemizedFees": {
       "cpl": "$25 per party protected, pursuant to Utah Insurance Code 31A-4-117. Agents retain no portion of the CPL fee.",
       "other": [
-        { "name": "Trustee's Sale Guarantee", "amount": "80% of Basic Rate, $300 minimum" },
-        { "name": "Litigation Guarantee", "amount": "100% of Basic Rate, $300 minimum" },
-        { "name": "Additional parcel work charge (multi-parcel/non-contiguous)", "amount": "$250 per parcel" },
-        { "name": "Mortgage Protection Guarantee / Mortgage Modification Policy", "amount": "$125 up to $1,000,000; $250 to $1,500,000; $350 to $2,000,000" },
-        { "name": "ALTA Residential Limited Coverage Junior Loan Policy", "amount": "$110 flat up to $250,000" },
-        { "name": "Master Home Equity / HE2 certificate fee", "amount": "$45 up to $250,000; $75 to $500,000; $250 to $750,000; $300 to $1,000,000" }
+        {
+          "name": "Trustee's Sale Guarantee",
+          "amount": "80% of Basic Rate, $300 minimum"
+        },
+        {
+          "name": "Litigation Guarantee",
+          "amount": "100% of Basic Rate, $300 minimum"
+        },
+        {
+          "name": "Additional parcel work charge (multi-parcel/non-contiguous)",
+          "amount": "$250 per parcel"
+        },
+        {
+          "name": "Mortgage Protection Guarantee / Mortgage Modification Policy",
+          "amount": "$125 up to $1,000,000; $250 to $1,500,000; $350 to $2,000,000"
+        },
+        {
+          "name": "ALTA Residential Limited Coverage Junior Loan Policy",
+          "amount": "$110 flat up to $250,000"
+        },
+        {
+          "name": "Master Home Equity / HE2 certificate fee",
+          "amount": "$45 up to $250,000; $75 to $500,000; $250 to $750,000; $300 to $1,000,000"
+        }
       ]
     },
     "bundlingNotes": "Explicitly and directly excludes escrow, closing, settlement, and notary fees in its opening Introduction -- the most itemized single-sentence exclusion list found among the three Utah manuals. Notably, WFG's Basic Rate Table is structurally identical (same $/thousand figures at the same liability tiers through $250,000) to First National Title Insurance Company's separately-filed Utah Basic Rates, suggesting a shared base-rate benchmark across at least two of the three Utah underwriters reviewed.",
@@ -87,12 +126,30 @@
     "itemizedFees": {
       "cpl": "$25 flat, per Utah Insurance Code 31A-4-117",
       "other": [
-        { "name": "Trustee's Sale Guarantee", "amount": "80% of Basic Rate" },
-        { "name": "Litigation Guarantee", "amount": "90% of Basic Insurance Rate, plus $25/additional parcel" },
-        { "name": "Additional chain of title/parcel charge", "amount": "Referenced in Ch. 2.7 (fee not separately scheduled as a flat dollar figure)" },
-        { "name": "Standard bundled endorsements (resale, up to 5)", "amount": "$75 flat" },
-        { "name": "Commercial bundled endorsements (6+)", "amount": "$500 flat" },
-        { "name": "Condemnation Report", "amount": "$200 per parcel; continuation reports $50" }
+        {
+          "name": "Trustee's Sale Guarantee",
+          "amount": "80% of Basic Rate"
+        },
+        {
+          "name": "Litigation Guarantee",
+          "amount": "90% of Basic Insurance Rate, plus $25/additional parcel"
+        },
+        {
+          "name": "Additional chain of title/parcel charge",
+          "amount": "Referenced in Ch. 2.7 (fee not separately scheduled as a flat dollar figure)"
+        },
+        {
+          "name": "Standard bundled endorsements (resale, up to 5)",
+          "amount": "$75 flat"
+        },
+        {
+          "name": "Commercial bundled endorsements (6+)",
+          "amount": "$500 flat"
+        },
+        {
+          "name": "Condemnation Report",
+          "amount": "$200 per parcel; continuation reports $50"
+        }
       ]
     },
     "bundlingNotes": "Purely a title-premium and endorsement manual -- no settlement, escrow, closing, doc-prep, courier, wire, or notary fee anywhere across all 10 chapters (Owner's, Lender's, Leasehold, Builder/Subdivision, Guarantees, Water Policy, Reissue, Miscellaneous Charges, Reporting Codes, Endorsements). FNTI's Basic Rate table structure and per-increment dollar figures are functionally identical to WFG's Utah manual at every liability tier checked, a notable cross-underwriter convergence not seen to this degree in most other states surveyed.",
@@ -119,9 +176,18 @@
       "cpl": null,
       "binder": null,
       "other": [
-        { "name": "Trustee/reconveyance tracking", "amount": "$75.00 per Deed of Trust" },
-        { "name": "Standard Utah loan-policy endorsements", "amount": "$55.00" },
-        { "name": "Recording fees", "amount": "Vary by document (specific figures not published on this page)" }
+        {
+          "name": "Trustee/reconveyance tracking",
+          "amount": "$75.00 per Deed of Trust"
+        },
+        {
+          "name": "Standard Utah loan-policy endorsements",
+          "amount": "$55.00"
+        },
+        {
+          "name": "Recording fees",
+          "amount": "Vary by document (specific figures not published on this page)"
+        }
       ]
     },
     "bundlingNotes": "The only Utah source found this session with a genuinely itemized, provider-published settlement/escrow fee page (as opposed to an interactive rate calculator). Closing fee, doc-prep, courier, wire, and trustee-tracking are each billed as separate line items rather than bundled into one flat number. No effective date is printed on the page, and title/loan insurance premium amounts are not disclosed here (referred elsewhere to sales price/insurance amount, implying a separate filed-rate lookup).",
@@ -148,11 +214,43 @@
       "cpl": null,
       "binder": null,
       "other": [
-        { "name": "Standard 3 endorsements issued with a normal home loan (ALTA 8.1, 9/CLTA 100, 22/CLTA 116)", "amount": "$60.00 total" },
-        { "name": "Title Insurance Fee, Settlement/Closing Fee, Escrow Fees, Reconveyance Fee, Wire Transfer Fees, Utah County Recording Fees", "amount": "Referenced by name on the page but not assigned static dollar figures -- directed to an interactive rate calculator instead" }
+        {
+          "name": "Standard 3 endorsements issued with a normal home loan (ALTA 8.1, 9/CLTA 100, 22/CLTA 116)",
+          "amount": "$60.00 total"
+        },
+        {
+          "name": "Title Insurance Fee, Settlement/Closing Fee, Escrow Fees, Reconveyance Fee, Wire Transfer Fees, Utah County Recording Fees",
+          "amount": "Referenced by name on the page but not assigned static dollar figures -- directed to an interactive rate calculator instead"
+        }
       ]
     },
     "bundlingNotes": "Thinner than Sutherland Title's page -- most fee categories are named but not priced in static text, with the core settlement fee itself routed to a rate calculator (not fetchable as a static document). The e-closing fee ($20 cash / $75 loan), standard-endorsement bundle ($60), and e-recording pass-through ($5/document) are the only genuinely static dollar figures found. Included as a good source under the evidence rules because these are real, provider-published dollar amounts for settlement-adjacent services, even though the headline closing/settlement fee is calculator-only.",
     "transactionContext": "Provo/Utah County (also Salt Lake and Juab Counties). Distinguishes cash vs. loan transactions for the e-closing fee; no separate purchase-vs-refinance breakout published in static text."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company — Estimated Rate/Fee Calculator (ortconline.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
+    "calculatorUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
+    "retrievalDate": "2026-07-22",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, residential resale, Sale transaction type, Loan Estimate calculation. Property location: Salt Lake City, UT (Salt Lake County). City used: Salt Lake City (Salt Lake County, UT's most populous county).",
+    "methodology": "Harvested via direct HTTP GET/POST against the calculator's ASP.NET WebForms postback mechanism (__VIEWSTATE/__EVENTVALIDATION), replicating the same sequential form submissions the browser's JS performs (state select -> county/city select -> Sales Price/Loan Amount -> Submit); no browser/JS execution was used or required. The 'Your Name', 'Your Company', and 'This estimate is being prepared for' fields were left blank throughout -- confirmed optional (no required-symbol asterisk in the form) -- no fabricated personal information was entered at any step.",
+    "settlementFee": {
+      "note": "Not a single line item in this tool's output; the closest analog is the 'Settlement Agent Fee' shown in Section C, split buyer/seller (buyer's share shown here). Settlement Agent Fee total (both parties): Title - Settlement Agent Fee (Total: $395.00)."
+    },
+    "itemizedFees": {
+      "cpl": "$25.00 (Closing Protection Letter Fee)",
+      "eRecording": "$10.00 (Electronic Recording Fee)",
+      "processing": "$395.00 (Settlement Agent Fee, Total: $395.00)",
+      "other": [
+        {
+          "name": "Title - Lender's Title Policy (Total: $1,218.00) [buyer's lender's title policy premium]",
+          "amount": "$1,218.00"
+        }
+      ]
+    },
+    "sectionTotals": "C: Services You Can Shop For: $1,648.00; E: Taxes and Other Government Fees: $80.00; H: Other: $0.00",
+    "bundlingNotes": "Owner's Title Policy line was struck through with a '(See ** below)' footnote marker whose corresponding note text was not rendered in the fetched HTML fragment (likely UT's customary seller-pays convention, consistent with the buyer-side $0 total); the $395.00 Settlement Agent Fee is within 0.5% of Sutherland Title's Salt Lake City figure already on file for this state, a close cross-provider corroboration.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k purchase scenario; City used: Salt Lake City (Salt Lake County, UT's most populous county)."
   }
 ]
