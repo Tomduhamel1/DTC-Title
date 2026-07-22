@@ -46,7 +46,7 @@ export default function ComingSoonPage() {
         <div className="flex justify-center gap-6 mt-10 text-xs text-gray-500">
           <span>30,000+ closings</span>
           <span>·</span>
-          <span>Bonded $5M</span>
+          <span>Every fee published</span>
           <span>·</span>
           <span>50 states</span>
         </div>

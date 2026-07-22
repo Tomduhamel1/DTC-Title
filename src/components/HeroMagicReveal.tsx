@@ -73,7 +73,7 @@ export default function HeroMagicReveal() {
           </p>
           <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-600">
             <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>50 states</span></span>
-            <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>Bonded $5M</span></span>
+            <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>Every fee published</span></span>
             <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>30,000+ closings</span></span>
             <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>A-rated underwriters</span></span>
           </div>
