@@ -65,7 +65,7 @@ still vary and matter).
 | KS | 19 (First American x2, Superior Title & Escrow of KC, Ideal Title, Priority Title & Escrow, ServiceLink, Title Clearing & Escrow, Closeline, Realeo Title, Elite Title, Total Title/Westcor, Royal Abstract National, Old Republic, Stewart, Chicago Title, Pegasus National Title, Kansas Secured Title, Secured Title of KC, Guaranteed Title/Oldcastle) | 4+ (KC metro/Johnson-Wyandotte, Wichita/Sedgwick-Butler, Topeka/Shawnee, Lawrence/Douglas, plus rural western counties) | national-brand underwriters (First American, Old Republic, Stewart, Chicago Title), regional underwriter (Westcor), 10+ independents, FNF-affiliated centralized provider (ServiceLink) | **complete (target met)** — 19 verified sources on first pass via KDOI's public rate-filing repository (K.S.A. 40-1111 requires settlement/escrow fees to be filed publicly, not just premiums), exceeding the 10-source hard stop | 2026-07-22 |
 | KY | 2 (Stewart Title Guaranty, WFG National) | statewide (no metro/county breakout published) | national-brand underwriters only (Stewart, WFG); First American's KY manual was located but blocked by an anti-bot CAPTCHA on its only found host; attorney-for-title/docs state (KBA Opinion U-58) which appears to route settlement pricing through private/unpublished attorney arrangements | **complete (scarce)** — 16 query strategies/13 direct provider-site checks yield only 2 usable premium-only rate manuals; zero settlement/closing-fee dollar figures found anywhere except differing CPL fee structures (Stewart $50/$25/$25 lender/buyer/seller vs. WFG flat $50 to any party) | 2026-07-22 |
 | LA | 1 (LATISSO rating bureau manual, all member insurers) | statewide (no parish breakout in base rate tables) | rating bureau (LATISSO) -- discovered mid-session to be rating-bureau-uniform like NCTIRB/OTIRB rather than plain insurer-filed; civil-law notary closing system appears to correlate with zero published settlement-fee schedules anywhere | **complete (scarce)** — ~12 query strategies/10 direct provider-site checks yield only 1 usable source (though a rich, near-universal one); zero settlement/closing-fee dollar figures found anywhere except LATISSO's flat $25 Closing Protection Coverage rate | 2026-07-22 |
-| ME | 0 | unprocessed | |
+| ME | 2 (WFG National, Stewart Title Guaranty) | statewide (no metro/county breakout published) | national-brand underwriters only (WFG, Stewart); zero settlement/closing/escrow fee dollar figures found anywhere despite exhaustive search, matching the AZ/CO/MI/MO/VA/AL/AR/KY/WI market-opacity pattern | **complete (scarce)** — 17 query strategies/10 direct provider-site checks yield only 2 usable premium-only rate manuals (3 documents); both underwriters explicitly state their filed rates exclude settlement/closing/escrow fees; only non-premium dollar figures found are WFG's $25 CPL fee and $100/$25 survey-exception-deletion fees | 2026-07-22 |
 | MD | 5 (Stewart, WFG National, Ardent Title, TPF Legal, CAL Settlements) | 3 (Cecil County; Montgomery County/DC suburbs; unspecified-metro closing attorney) | national-brand underwriters (Stewart, WFG), independent title/settlement companies (Ardent Title), closing-attorney firms (TPF Legal, CAL Settlements) | **complete (scarce)** — 10+ query strategies/direct checks yield only 5 usable sources; national-brand direct offices (First American, Old Republic, Chicago Title, Fidelity) route to interactive calculators only, no static settlement-fee schedules found | 2026-07-21 |
 | MA | 0 | unprocessed | |
 | MN | 4 (Stewart, WFG National, CloseAtTitle, Title Services Inc/Rochester) | 2 (Minnesota Metropolitan/Twin Cities via CloseAtTitle; Rochester/Olmsted County via Title Services Inc) | national-brand underwriters (Stewart, WFG), independent title/escrow company (CloseAtTitle), closing-attorney-affiliated title company (Title Services Inc, subsidiary of Dunlap Seeger law firm) | **complete (scarce)** — 30+ query strategies/direct checks yield only 4 usable sources; no national-brand direct office (First American, Old Republic, Fidelity National) publishes a static MN settlement-fee schedule, all route to interactive calculators | 2026-07-22 |
@@ -556,3 +556,22 @@ still vary and matter).
   figures anywhere. With only 1 verified source despite the extensive search, LA meets the
   contract's scarce criterion. Marked LA **complete (scarce)**. Moving to the next
   unprocessed tier-2 state (ME, next alphabetically).
+- 2026-07-22: Started ME from scratch. Verified 2 providers (3 documents): WFG National
+  (Maine Manual of Title Insurance Premiums, effective 3/1/2022, recovered via the
+  Read-tool binary-PDF technique) and Stewart Title Guaranty (full Schedule of Charges and
+  Forms + a companion condensed rate card, both scanned-image PDFs recovered the same way).
+  Both underwriters' manuals explicitly and affirmatively state their filed premium rates
+  exclude title search, settlement, closing, and escrow charges -- a stronger and more
+  explicit disclaimer than most other insurer-filed states surveyed. The only non-premium
+  dollar figures found anywhere in the Maine market are WFG's $25 Closing Protection Letter
+  fee and $100/$25 survey-exception-deletion fees; no settlement/closing/escrow service fee
+  was found from any source. 17 query strategies plus 10 direct provider-site checks
+  (Two Lights Settlement Services [routes to First American's interactive calculator],
+  Atlantic Coast Title, Coastal Title Company, Cumberland Title Services/Central Maine
+  Title, Caislean Title/T&B Title of Ellsworth, Preferred Title & Closing, Liberty Title
+  and Escrow, Gateway Title of Maine, and more) found zero independent title company or
+  closing-attorney firm publishing a static settlement-fee schedule -- all route to quote
+  requests or interactive calculators instead, matching the AZ/CO/MI/MO/VA/AL/AR/KY/WI
+  market-opacity pattern. With only 2 verified providers despite the extensive search, ME
+  meets the contract's scarce criterion. Marked ME **complete (scarce)**. Moving to the
+  next unprocessed tier-2 state (MA, next alphabetically).

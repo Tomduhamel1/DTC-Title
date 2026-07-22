@@ -1,0 +1,79 @@
+[
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/maine/rates/Maine%20Title%20Rates%20-%20effective%20March%201,%202022.pdf",
+    "asOf": "2022-03-01 (retrieved 2026-07-22)",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "$25.00 per issuance (\"The fee for the issuance of such coverage shall be $25.00 per issuance and shall not be subject to any agreement requiring a division of fees or premiums collected on behalf of the title insurer.\")",
+      "binder": null,
+      "other": [
+        "Survey exception deletion (owner's policy): \"the rate is $100.00 and a survey affidavit is required.\"",
+        "Survey exception deletion (loan policy): \"the rate is $25.00 and a survey affidavit is required.\"",
+        "Simultaneous-issue loan policy flat fee: \"each loan policy(ies) will be charged at a flat fee of $50.00 per loan policy issued\""
+      ]
+    },
+    "bundlingNotes": "Manual states explicitly: \"The rates shown are the total title insurance fees charged the applicant including both the risk portion and the service or work portion, but do not include charges for title search, surveys, escrow, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant.\" This is a premium-only rate card; no settlement/service fee dollar amounts are published anywhere in the document.",
+    "transactionContext": "Premium rate manual (owner's/loan policy premiums, endorsement charges, CPL); does not distinguish purchase vs. refinance for settlement pricing because no settlement pricing is included."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://www.stewart.com/-/media/files/stewartdotcom/pdfs/states/maine/state_of_maine.pdf",
+    "asOf": "document undated internally; a companion rate-card PDF on the same Stewart Maine page is marked \"revised September 4, 2012\" (retrieved 2026-07-22)",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Commitment to insure fee: \"$25, in addition to the basic charges\"; cancellation charge \"20% of the applicable charges, with a maximum of $250\"",
+        "Residential Mortgage Survey Affidavit: \"$50\"",
+        "Construction loan commitment: \"The first $5,000 -- $7.50; For each additional $1,000 or fraction thereof -- $1.00\""
+      ]
+    },
+    "bundlingNotes": "General Provisions state explicitly: \"The charges set forth herein do not include any fee made for title search, title examination, settlement, closing, or escrow services performed by approved attorneys, agents, or offices.\" Definitions section reiterates: \"The charge does not include the abstracting or searching fee, examination fee, settlement fees, closing fees, or escrow fees.\" Premium-only document -- no settlement/service dollar figures published.",
+    "transactionContext": "Premium rate manual (owner's/mortgagee's policy original and reissue charges, refinance-loan charge table, endorsement charges); refinance premium is discounted to 80% of original charge within 5 years of the original loan, 100% after 5 years -- this is a title-premium refinance discount, not a settlement-fee schedule."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://www.stewart.com/-/media/files/stewartdotcom/pdfs/states/maine/me_rate_cardcurrent.pdf",
+    "asOf": "undated (filename indicates \"current\"; retrieved 2026-07-22)",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Owner's/leasehold policy: up to $750,000 -- $3.00/$1,000, minimum $100",
+        "ALTA Homeowner's Policy: up to $750,000 -- $3.30/$1,000, minimum $110",
+        "Loan policy: up to $750,000 -- $1.75/$1,000, minimum $100",
+        "ALTA Expanded Coverage Residential Loan Policy: up to $750,000 -- $1.925/$1,000, minimum $110",
+        "Endorsement schedule: ALTA 8.2 (Commercial Environmental Protection Lien) $50; ALTA 20 (First Loss) $25 residential/$100 commercial; ALTA 24 (Doing Business) $50; ALTA 26 (Subdivision) $50; ALTA 27 (Usury) $100; simultaneous-issue endorsement $50; survey affidavit $50"
+      ]
+    },
+    "bundlingNotes": "One-page condensed rate card, same underwriter and same premium-only scope as the companion Schedule of Charges document above -- title-insurance premium and endorsement pricing only, no settlement/closing/escrow fee figures.",
+    "transactionContext": "Condensed premium/endorsement rate card; refinance charge table matches the full Schedule of Charges document (80% of original charge within 5 years, 100% after 5 years)."
+  }
+]
