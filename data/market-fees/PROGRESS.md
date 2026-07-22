@@ -76,7 +76,7 @@ still vary and matter).
 | NH | 2 (Stewart Title Guaranty, WFG National) | statewide (no metro/county breakout published) | national-brand underwriters only (Stewart, WFG); CATIC (New England's dominant bar-related insurer) 403-blocked on both hosting paths; an independent NH title company's oft-cited $199 flat fee could not be independently verified (site stuck in an unresolvable redirect loop) | **complete (scarce)** — 24 combined query strategies/direct checks yield only 2 usable premium-only rate manuals; zero independently-verifiable settlement/closing/escrow fee dollar figures found anywhere | 2026-07-22 |
 | ND | 2 (Stewart Title Guaranty, WFG National) | statewide (no metro/county breakout published) | national-brand underwriters only (Stewart, WFG); no independent title/escrow settlement-fee schedule or additional underwriter rate manual (First American, Old Republic) found despite exhaustive search | **complete (scarce)** — 15 combined query strategies/direct checks yield only 2 usable premium-only rate manuals; zero settlement/closing/escrow fee dollar figures found anywhere. Notable: Stewart's ND manual contains an erroneously-appended Indiana-specific "Schedule A" section (copy-paste template error), excluded as not ND-specific | 2026-07-22 |
 | OK | 7 documents / 4 providers (American Eagle Title Group x3 vintages, Old Republic x2 vintages, First National Title Insurance, WFG National) | 2 (Tulsa, Oklahoma City/Canadian/Cleveland Counties) | independent settlement/abstract company (AETG), national-brand underwriters (Old Republic, FNTI, WFG) | **complete (saturated)** — 7 documents across 5 years of vintages; 2 of 4 providers (AETG, Old Republic) publish genuine itemized settlement-fee schedules, not premium-only; WFG's 2000-vintage figures excluded from range-stability calc as likely outdated (documented methodology note) | 2026-07-22 |
-| OR | 0 | unprocessed | |
+| OR | 3 documents / 2 providers (OTIRO bureau manual x2 vintages 2017/2025 -- identical premium schedule 8 years apart; Cascade Title contract-collections fee schedule, non-standard product) | statewide (no metro/county breakout published in OTIRO's Basic Insurance Rate) | rating bureau (OTIRO), independent title/escrow company (Cascade Title, Lane County) | **complete (scarce)** — 15+ query strategies/direct provider-site checks find only 2 providers; OR's OAR 836-080-0365 requires escrow rates to be filed with DFR but confirmed non-public (private email submission, no directory), matching CO's filed-privately pattern | 2026-07-22 |
 | RI | 0 | unprocessed | |
 | SC | 0 | unprocessed | |
 | SD | 0 | unprocessed | |
@@ -768,3 +768,30 @@ still vary and matter).
   WFG, excluded from) the already-established range, OK meets the contract's saturation
   criterion. Marked OK **complete (saturated)**. Moving to the next unprocessed tier-2
   state (OR, next alphabetically).
+- 2026-07-22: Started OR from scratch. Discovered Oregon is a fourth rating-bureau-uniform
+  state uncovered by this survey (alongside NC/OH/LA) -- the Oregon Title Insurance Rating
+  Organization (OTIRO, ORS Chapter 737) sets a single statewide title premium schedule that
+  all major underwriters (Stewart, WFG, First American per their own bulletins) adopt as-is.
+  Verified the current OTIRO manual (effective 2025-09-01, 396 pages, PDF-recovery technique)
+  and a 2017-06-15 archived vintage from virtualunderwriter.com (323 pages) -- notably, the
+  Basic Insurance Rate Schedule dollar figures are IDENTICAL across both vintages, meaning
+  Oregon's bureau-set premium hasn't changed in at least 8 years, a striking outlier compared
+  to nearly every other state surveyed. Also discovered OAR 836-080-0365 requires title
+  companies to file escrow/settlement rates with DFR, but direct verification of DFR's own
+  "Escrow rate filings" page confirmed submissions go to a private email address with NO
+  public directory -- unlike Idaho/Kansas's public filing repositories, this matches
+  Colorado's filed-privately-not-published pattern and appears to explain why so few Oregon
+  providers publish static settlement-fee schedules. Verified one genuine dollar-denominated
+  independent-provider source, Cascade Title (Lane County), but its published schedule prices
+  land-sale-contract loan servicing, not standard purchase/refinance closing fees -- recorded
+  as evidence but excluded from any range calculation. 15+ query strategies/direct
+  provider-site checks (AmeriTitle's PDFs Cloudflare-blocked; LTIC/Old Republic documents
+  found but payer-allocation-only or interactive-calculator promos with zero dollar figures;
+  Pacific Title Company and Guardian Northwest Title both confirmed wrong-jurisdiction
+  Washington companies despite Oregon-adjacent search hits; Prestige Title/Escrow confirmed
+  wrong-jurisdiction Virginia/Texas; firsttitleservices.com 403-blocked matching an earlier
+  Kentucky-session block of the same firm; all 4 national-brand direct offices route
+  exclusively to interactive calculators) found no further usable Oregon-specific
+  settlement-fee sources. With only 2 providers verified despite the extensive search, OR
+  meets the contract's scarce criterion. Marked OR **complete (scarce)**. Moving to the next
+  unprocessed tier-2 state (RI, next alphabetically).

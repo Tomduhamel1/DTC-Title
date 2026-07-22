@@ -1,0 +1,84 @@
+[
+  {
+    "provider": "Oregon Title Insurance Rating Organization (OTIRO)",
+    "sourceUrl": "https://oregonlandtitle.com/files/otiroratemanual.pdf",
+    "asOf": "Effective September 1, 2025",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Schedule One, Basic Insurance Rate (Owner's/Loan policy premium): $200 up to $25,000 insured; $200 + $4.00/$1,000 above $25,000 to $50,000; $300 + $3.00/$1,000 above $50,000 to $100,000; $450 + $2.50/$1,000 above $100,000 to $300,000; $950 + $2.00/$1,000 above $300,000 to $500,000; $1,350 + $1.50/$1,000 above $500,000 to $10,000,000; $15,600 + $1.25/$1,000 above $10,000,000 to $25,000,000; $34,350 + $1.00/$1,000 above $25,000,000 to $40,000,000; $49,350 + $0.75/$1,000 above $40,000,000",
+        "Schedule Two, Timeshare rates: $100 (up to $5,000) to $175 ($15,000-$25,000), then same as Basic Insurance Rate above $25,000",
+        "Simultaneous-issue Loan Policy endorsement charges vary by form, e.g. ALTA 45-06 Pari Passu Mortgage endorsement $250, ALTA 32.2-06 $1.00/$1,000 of loan amount minimum $250"
+      ]
+    },
+    "bundlingNotes": "OTIRO is a rate-making bureau under ORS Chapter 737 -- every title insurer authorized in Oregon must file with the Oregon Division of Financial Regulation whether it uses OTIRO rates as-is, OTIRO with deviations, or an independent manual (per DFR form 440-3605). In practice all major underwriters (Stewart, WFG, First American, per their own bulletins) adopt OTIRO's rates unchanged, making this bureau manual a near-complete substitute for a per-underwriter rate survey -- the same bureau-uniform pattern as NCTIRB (NC), OTIRB (OH), and LATISSO (LA). The manual's General Provisions and Commitment conditions (Section 7, 'IF THIS COMMITMENT IS ISSUED BY AN ISSUING AGENT') explicitly state: 'The issuing agent is not the Company's agent for closing, settlement, escrow, or any other purpose' -- confirming escrow/closing/settlement services are entirely outside OTIRO's premium-rate scope and are priced separately by each title/escrow office.",
+    "transactionContext": "Owner's and Loan policy premium (purchase and loan/refinance), statewide -- no county/metro rate differentiation in the Basic Insurance Rate Schedule itself."
+  },
+  {
+    "provider": "Oregon Title Insurance Rating Organization (OTIRO)",
+    "sourceUrl": "https://www.virtualunderwriter.com/-/media/files/virtualunderwriter/imported/pdfs/otiro-rate-manual-w-sch-20170615.pdf",
+    "asOf": "Effective June 15, 2017",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Schedule One, Basic Insurance Rate (Owner's/Loan policy premium): identical dollar figures and tier breakpoints to the 2025-09-01 vintage -- $200 up to $25,000 insured; $200 + $4.00/$1,000 to $50,000; $300 + $3.00/$1,000 to $100,000; $450 + $2.50/$1,000 to $300,000; $950 + $2.00/$1,000 to $500,000; $1,350 + $1.50/$1,000 to $10,000,000; $15,600/$34,350/$49,350 base plus $1.25/$1.00/$0.75 per $1,000 above $10M/$25M/$40M respectively",
+        "ALTA Endorsement Form 45-06 (Pari Passu Mortgage) charge: $250 (identical to 2025 vintage)"
+      ]
+    },
+    "bundlingNotes": "Earlier vintage of the same OTIRO bureau manual (Schedule of Changes log confirms the original manual dates to February 1, 2006, with incremental section/endorsement updates through 2017). Notable finding: the core Basic Insurance Rate Schedule (Schedule One) dollar figures are IDENTICAL between this 2017 vintage and the current 2025-09-01 vintage -- Oregon's bureau-set title premium has not changed in at least 8 years, a striking contrast to nearly every other state surveyed (e.g. MI's Stewart owner's-policy minimum rose 20% in one year, ID's Stewart premium rose ~4% in 5 years).",
+    "transactionContext": "Owner's and Loan policy premium (purchase and loan/refinance), statewide."
+  },
+  {
+    "provider": "Cascade Title / Cascade Escrow (Lane County)",
+    "sourceUrl": "https://cascadetitle.com/contract-collections/fee-schedule/",
+    "asOf": "Retrieved 2026-07-22 (no effective date printed on page)",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Contract Collection Set Up Fee: $35.00 + $2.00 per thousand, $250.00 minimum",
+        "Assignment/Assumption Fee: $150.00",
+        "Modification Fee: $150.00",
+        "Monthly Disbursement Fees: $15.00 up to 2 disbursements / $3.00 for 3rd+",
+        "Quarterly Disbursement Fees: $30.00 up to 2 disbursements / $3.50 for 3rd+",
+        "Semi-Annual Disbursement Fees: $40.00 up to 2 disbursements / $3.50 for 3rd+",
+        "Annual Disbursement Fees: $80.00 up to 2 disbursements / $7.50 for 3rd+",
+        "Monthly Receipt Fee: $2.00 per receipt",
+        "Annual Reserve Fee: $95.00 (tax or insurance reserve) / $125.00 (tax and insurance reserve)",
+        "Returned Check Fee: $35.00 per check",
+        "Lot Release Fee: $125.00"
+      ]
+    },
+    "bundlingNotes": "IMPORTANT SCOPE CAVEAT: this is a genuine, dollar-denominated published fee schedule from an actual independent Oregon title/escrow company (Cascade Title, Lane County/Eugene), but it prices 'Contract Collections' -- ongoing loan-servicing/collection-agent duties for privately seller-financed land sale contracts -- NOT a standard purchase or refinance settlement/closing fee. Cascade Title's standard purchase/refinance escrow fee is not published on its site (only an interactive 'Estimated Closing Statements' calculator is offered). Recorded here as evidence of the company and its published pricing model, but excluded from any settlement-fee-stack range calculation as a non-comparable product line.",
+    "transactionContext": "Seller-financed land sale contract collection/servicing (not purchase or refinance closing), Lane County, Oregon."
+  }
+]
