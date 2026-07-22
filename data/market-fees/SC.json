@@ -1,0 +1,110 @@
+[
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://go.stewart.com/rs/067-YWO-436/images/South%20Carolina%20Manual%20FINAL_051322.pdf",
+    "asOf": "Effective May 13, 2022",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "$25 per Closing Protection Letter, payable in full to the Underwriter at closing; a second mortgage/second CPL on the same transaction may carry an additional charge",
+      "binder": null,
+      "other": [
+        "Owner's/Leasehold Policy Basic Schedule of Charges: $3.60/$1,000 up to $50,000 liability; +$3.00/$1,000 to $100,000; +$2.10/$1,000 to $500,000; +$1.80/$1,000 to $5,000,000; +$1.20/$1,000 above $5,000,000. Minimum charge $100.00",
+        "Loan Policy Basic Schedule of Charges: identical tiers/rates to Owner's Policy above ($3.60/$3.00/$2.10/$1.80/$1.20 per $1,000), $100.00 minimum",
+        "ALTA Homeowner's Policy: Basic Schedule plus 20%",
+        "ALTA Expanded Coverage Residential Loan Policy: 120% of Basic Schedule",
+        "Foreclosure Insurance Policy: 40% of Basic Loan Policy charge, $100 minimum, with a 50% premium credit toward a subsequent Owner's Policy",
+        "Timeshare minimum charge: $75",
+        "Reinsurance/agent retention floor: gross premium (risk rate) net of reinsurance retained by the agent shall be no less than $0.35 per $1,000 of retained liability"
+      ]
+    },
+    "bundlingNotes": "General Rules define 'Charge' as the rate for a title insurance policy or endorsement and explicitly state it 'does not include any settlement fee, trustee fee, attorney fee, surveying fee, inspection fee, document fee, closing fee, escrow fee or any other fee associated with escrow' -- also separately noting these are 'charges for ... title searches, abstracts, attorney's fees, escrow, or closing service performed and charged for by local attorneys, abstractors, and title companies.' Also notes: 'When a commitment ... is required for the closing of any transaction, a work/preparation charge may be collected in addition to the applicable premium. The charge will be retained by the agent/agency/entity ... and so disclosed at or prior to closing' -- confirming a genuine but unquantified ancillary commitment-preparation fee exists alongside the premium.",
+    "transactionContext": "Owner's, Leasehold, Loan, and Homeowner's policies (purchase and loan/refinance), statewide -- no county/metro rate differentiation in the Basic Schedule of Charges."
+  },
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/south-carolina/rates/WFG%20South%20Carolina%20Rates%20(4-22-11).pdf",
+    "asOf": "Effective April 22, 2011",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Standard Policy: $3.60/$1,000 up to $50,000; +$3.00/$1,000 to $100,000; +$2.10/$1,000 to $500,000; +$1.80/$1,000 to $5,000,000; +$1.20/$1,000 above $5,000,000 -- rate-for-rate identical to Stewart's 2022 SC manual across every tier",
+        "Expanded Coverage Policies: $4.32/$1,000 up to $50,000; +$3.60/$1,000 to $100,000; +$2.52/$1,000 to $500,000; +$2.16/$1,000 to $5,000,000; +$1.44/$1,000 above $5,000,000",
+        "Minimum Gross Premium: $100.00 for any policy type; $75 minimum for timeshares",
+        "Reissue rate: 50% of policy rate for a prior Owner's Policy 10 years old or under, 100% if over 10 years"
+      ]
+    },
+    "bundlingNotes": "Same 'commitment work/preparation charge collected in addition to premium, retained by the agent, disclosed at or prior to closing' language as Stewart's manual, confirming this is a standard South Carolina market convention rather than an underwriter-specific practice. Notable finding: WFG's per-thousand Standard Policy rate table is identical, tier-for-tier and dollar-for-dollar, to Stewart's 2022 manual despite an 11-year gap between the two documents' effective dates (2011 vs 2022) and South Carolina having no rating bureau -- suggesting either long-term rate stability or informal cross-underwriter benchmarking in this market.",
+    "transactionContext": "Owner's/Leasehold and Loan policies (purchase and loan/refinance), statewide."
+  },
+  {
+    "provider": "Mogil Law Firm",
+    "sourceUrl": "https://www.mogillaw.com/real-estate",
+    "asOf": "Effective April 1, 2025",
+    "settlementFee": "Purchase Single Family Home: $1,000 with lender / $850 without lender. Purchase Condominium: $900 with lender / $850 without lender. Purchase Lot: $800 with lender / $650 without lender. Refinance Residential: $600-$900. Sale of Single Family Home/Condo: $850 (non-short-sale). Sale of Lot: $700.",
+    "itemizedFees": {
+      "docPrep": "$25 fee to print a loan package received by email (administrative/toner cost, up to 100 pages)",
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "CL 100 (wood infestation/termite) report, customarily paid by Seller: $125-$325",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Short sale additional fee: up to $1,500 to cover extra time/costs",
+        "Non-closing (failed transaction) attorney fee: $450.00 flat, plus any additional agreed-upon charges, plus all out-of-pocket/third-party costs",
+        "Out-of-pocket expenses: $75-$150 typical",
+        "Deed stamps (Seller-paid): $3.70 per thousand of sale price",
+        "Hilton Head Island Transfer Tax (Buyer-paid by custom): 0.25% (.0025) of purchase price, if property is within Town of Hilton Head Island limits",
+        "Appraisal (lender-financed transactions): $250-$500",
+        "Lender underwriting/processing fee: $250-$500 each; credit report $50-$100"
+      ]
+    },
+    "bundlingNotes": "Genuine, fully itemized closing-attorney settlement-fee schedule, explicitly dated ('Effective April 1, 2025'). The firm states: 'The above fees are exclusive of title search, title insurance, and out of pocket expenses' -- confirming the settlement fee is a distinct line item from title insurance premium and from the CL 100/appraisal/lender fees. Michael W. Mogil is disclosed as an authorized agent for First American Title Insurance Company, making this a First-American-affiliated independent closing-attorney office rather than a pure national-brand direct office.",
+    "transactionContext": "Purchase (single family, condominium, lot), refinance, and sale-side representation, Beaufort and Jasper Counties (Hilton Head Island / Bluffton area), South Carolina."
+  },
+  {
+    "provider": "Ingram Law Firm",
+    "sourceUrl": "https://www.cherawlaw.com/real-estate",
+    "asOf": "Retrieved 2026-07-22 (no effective date printed on page)",
+    "settlementFee": "Combined 'one total fee for title search and closing' -- amount available only by direct phone quote, not published as a dollar figure on the page.",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": "Additional charge for courier/express mail of mortgage/lien payoffs, based on the provider's actual charges (amount not fixed)",
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "$35.00 fee for issuing a closing protection or insured closing letter, if required by lender",
+      "binder": "$100.00 fee for issuing a title commitment, if required by lender",
+      "other": [
+        "Document printing fee: $20.00 additional, for printing a closing package of more than 20 pages",
+        "Next-day return of original signed closing documents: additional express-mail charge based on provider's rates"
+      ]
+    },
+    "bundlingNotes": "The firm explicitly contrasts its own single combined 'title search and closing' fee against the market practice elsewhere of itemizing separate 'closing fee,' 'attorney fee,' 'attorney review fee,' 'abstract fee,' 'title search fee,' 'notary fee,' 'funding fee,' 'closing coordination fee,' 'document preparation fee,' 'document review fee,' and 'settlement fee' line items -- a useful confirmation, in the provider's own words, of how fragmented South Carolina closing-fee itemization can be elsewhere in the market. The firm's own base combined fee is quote-only and not published, so only its three ancillary lender-triggered fees ($100 commitment, $35 CPL, $20 printing) are counted as verified dollar figures here. Firm explicitly states its fee 'does not include title insurance premiums or fees,' confirming the same premium/settlement-fee separation seen in Stewart's and WFG's manuals.",
+    "transactionContext": "Purchase (loan and cash), refinance, HELOC, and bond-for-title closings, Cheraw / Chesterfield County, South Carolina."
+  }
+]

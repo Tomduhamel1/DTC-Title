@@ -78,7 +78,7 @@ still vary and matter).
 | OK | 7 documents / 4 providers (American Eagle Title Group x3 vintages, Old Republic x2 vintages, First National Title Insurance, WFG National) | 2 (Tulsa, Oklahoma City/Canadian/Cleveland Counties) | independent settlement/abstract company (AETG), national-brand underwriters (Old Republic, FNTI, WFG) | **complete (saturated)** — 7 documents across 5 years of vintages; 2 of 4 providers (AETG, Old Republic) publish genuine itemized settlement-fee schedules, not premium-only; WFG's 2000-vintage figures excluded from range-stability calc as likely outdated (documented methodology note) | 2026-07-22 |
 | OR | 3 documents / 2 providers (OTIRO bureau manual x2 vintages 2017/2025 -- identical premium schedule 8 years apart; Cascade Title contract-collections fee schedule, non-standard product) | statewide (no metro/county breakout published in OTIRO's Basic Insurance Rate) | rating bureau (OTIRO), independent title/escrow company (Cascade Title, Lane County) | **complete (scarce)** — 15+ query strategies/direct provider-site checks find only 2 providers; OR's OAR 836-080-0365 requires escrow rates to be filed with DFR but confirmed non-public (private email submission, no directory), matching CO's filed-privately pattern | 2026-07-22 |
 | RI | 1 document / 1 provider (WFG National, effective 2023-03-01, premium + $25 CPL fee) | statewide (no metro breakout published) | national-brand underwriter only (WFG); attorney-closing-custom state (not statutorily mandated) which appears to route settlement pricing through private/unpublished attorney arrangements | **complete (scarce)** — 12+ query strategies/direct provider-site checks (5 closing-attorney firms, 2 independent title companies, all 5 national-brand underwriters) yield only 1 usable premium rate manual; RI's own statutes confirm escrow/settlement/closing fees are legally defined (§27-2.6-3) but not filing-mandated, unlike premiums (§27-2.6-16) | 2026-07-22 |
-| SC | 0 | unprocessed | |
+| SC | 4 documents / 4 providers (Stewart 2022, WFG 2011 -- identical rate tables; Mogil Law Firm full settlement schedule 2025, Ingram Law Firm ancillary fees) | 2 (Hilton Head/Beaufort-Jasper via Mogil, Cheraw/Chesterfield via Ingram) | national-brand underwriters (Stewart, WFG), closing-attorney firms (Mogil, Ingram) | **complete (scarce)** — 13 query strategies/direct checks of 8+ named firms yield only 4 usable sources; SC's underwriter manuals confirm a genuine but underwriter-unquantified 'commitment work/preparation charge' retained by the closing agent | 2026-07-22 |
 | SD | 0 | unprocessed | |
 | UT | 0 | unprocessed | |
 | VT | 0 | unprocessed | |
@@ -820,3 +820,21 @@ still vary and matter).
   despite the extensive search, RI meets the contract's scarce criterion. Marked RI
   **complete (scarce)**. Moving to the next unprocessed tier-2 state (SC, next
   alphabetically).
+- 2026-07-22: Started SC from scratch. Verified 4 sources: Stewart Title Guaranty (SC
+  Schedule of Charges, effective 2022-05-13) and WFG National (SC Schedule of Rates,
+  effective 2011-04-22) -- both premium-only manuals whose per-thousand rate tables are
+  dollar-for-dollar identical across every liability tier despite the 11-year gap between
+  effective dates and SC having no rating bureau; both also acknowledge (without quantifying)
+  a "commitment work/preparation charge" retained by the local closing agent, confirming the
+  settlement-fee layer is real but priced locally. Also verified 2 closing-attorney firms in
+  different SC regions: Mogil Law Firm (Hilton Head Island/Beaufort-Jasper Counties) publishes
+  a full, dated (effective 2025-04-01) itemized settlement-fee schedule by transaction type
+  ($650-$1,000), the richest attorney-firm find in this survey since GA; Ingram Law Firm
+  (Cheraw/Chesterfield County) discloses 3 ancillary lender-triggered fees ($100 commitment,
+  $35 CPL, $20 printing) but keeps its base combined fee quote-only. 13 query strategies/direct
+  checks of 8+ named firms (Armour Title, Closeline Settlements, De Bruin Law, Hopkins Firm,
+  Buxton & Collie, Classic Charleston Properties [403], choicefinance.net [DNS failure,
+  matching an earlier DC-session finding], First American's SC agency page) found no further
+  usable sources. With only 4 providers verified despite the extensive search, SC meets the
+  contract's scarce criterion. Marked SC **complete (scarce)**. Moving to the next unprocessed
+  tier-2 state (SD, next alphabetically).
