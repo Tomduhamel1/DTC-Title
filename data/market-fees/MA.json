@@ -127,5 +127,33 @@
     },
     "bundlingNotes": "Attorney fee, title exam, and title insurance rate are quoted as distinct line items on the firm's own first-time-buyer guide; overall closing costs framed as 2%-5% of purchase price. Marshfield, MA firm (South Shore market).",
     "transactionContext": "Buyer-side purchase transaction, first-time-homebuyer-oriented guide."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://public.stewart.com/vu/rate-book-massachusetts.pdf",
+    "asOf": "vintage circa 2021 (document copyright \"© 2021 Stewart\"; superseded by a newer 2025-09-15 Stewart MA rate manual per a secondary law-firm citation, but that later document could not itself be located/verified this session -- see MA.md)",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Simultaneous Owner's and Loan Policy issue fee: $175.00 flat",
+        "Standard Owner's Policy: $146.00 minimum ($1,000-$39,000), then $3.65/thousand up to $1M, $2.50/thousand $1M-$2M",
+        "Standard Loan Policy: $100.00 minimum, then $2.50/thousand up to $2M",
+        "Enhanced Owner's Policy: $160.00 minimum, then $4.00/thousand up to $1M, $2.75/thousand $1M-$2M",
+        "Enhanced Loan Policy: $110.00 minimum, then $2.75/thousand up to $2M",
+        "Refinance rate: 40% credit off the regular loan policy premium"
+      ]
+    },
+    "bundlingNotes": "This is a title insurance PREMIUM rate schedule only -- it contains no settlement, closing, escrow, or attorney fee dollar figures anywhere in the document; consistent with the market-structure finding that MA premiums are unfiled/insurer-set and separate from attorney settlement fees. Full rate tables provided for coverage amounts $1,000 to $2,000,000 in $1,000 increments (Standard and Enhanced, Loan/Purchase/Owner's/Simultaneous columns).",
+    "transactionContext": "Purchase (owner's policy), refinance (loan policy refinance rate), and simultaneous issue -- premium calculation only, not settlement services."
   }
 ]

@@ -67,7 +67,7 @@ still vary and matter).
 | LA | 1 (LATISSO rating bureau manual, all member insurers) | statewide (no parish breakout in base rate tables) | rating bureau (LATISSO) -- discovered mid-session to be rating-bureau-uniform like NCTIRB/OTIRB rather than plain insurer-filed; civil-law notary closing system appears to correlate with zero published settlement-fee schedules anywhere | **complete (scarce)** — ~12 query strategies/10 direct provider-site checks yield only 1 usable source (though a rich, near-universal one); zero settlement/closing-fee dollar figures found anywhere except LATISSO's flat $25 Closing Protection Coverage rate | 2026-07-22 |
 | ME | 2 (WFG National, Stewart Title Guaranty) | statewide (no metro/county breakout published) | national-brand underwriters only (WFG, Stewart); zero settlement/closing/escrow fee dollar figures found anywhere despite exhaustive search, matching the AZ/CO/MI/MO/VA/AL/AR/KY/WI market-opacity pattern | **complete (scarce)** — 17 query strategies/10 direct provider-site checks yield only 2 usable premium-only rate manuals (3 documents); both underwriters explicitly state their filed rates exclude settlement/closing/escrow fees; only non-premium dollar figures found are WFG's $25 CPL fee and $100/$25 survey-exception-deletion fees | 2026-07-22 |
 | MD | 5 (Stewart, WFG National, Ardent Title, TPF Legal, CAL Settlements) | 3 (Cecil County; Montgomery County/DC suburbs; unspecified-metro closing attorney) | national-brand underwriters (Stewart, WFG), independent title/settlement companies (Ardent Title), closing-attorney firms (TPF Legal, CAL Settlements) | **complete (scarce)** — 10+ query strategies/direct checks yield only 5 usable sources; national-brand direct offices (First American, Old Republic, Chicago Title, Fidelity) route to interactive calculators only, no static settlement-fee schedules found | 2026-07-21 |
-| MA | 4 (Lopisi Law, Sherman Law, Lazan Glover & Puciloski, Cote Law Group) | Cambridge/Arlington, South Shore/MetroWest/South Coast, Berkshires/Western MA, Marshfield/South Shore | closing-attorney firms only (MA requires attorney closings; no independent title/escrow company layer) | **open** — 4 verified sources, below the 6-source saturation floor; 14 query strategies/12 direct checks logged this session, several unverified candidate firms (Friar Law, Moody & Knoth, Pulgini & Norton) and the primary Stewart 2025 MA rate manual PDF still to pursue next session | 2026-07-22 |
+| MA | 5 (Lopisi Law, Sherman Law, Lazan Glover & Puciloski, Cote Law Group, Stewart Title Guaranty [premium manual]) | Cambridge/Arlington, South Shore/MetroWest/South Coast, Berkshires/Western MA, Marshfield/South Shore | closing-attorney firms (settlement fees) + national-brand underwriter (Stewart, premium only); MA requires attorney closings, no independent title/escrow company layer | **complete (scarce)** — 32 combined query strategies/direct checks across 2 sessions yield only 5 usable sources; mandatory-attorney-closing structure with near-universal quote-only pricing pages matches the market-opacity pattern seen elsewhere | 2026-07-22 |
 | MN | 4 (Stewart, WFG National, CloseAtTitle, Title Services Inc/Rochester) | 2 (Minnesota Metropolitan/Twin Cities via CloseAtTitle; Rochester/Olmsted County via Title Services Inc) | national-brand underwriters (Stewart, WFG), independent title/escrow company (CloseAtTitle), closing-attorney-affiliated title company (Title Services Inc, subsidiary of Dunlap Seeger law firm) | **complete (scarce)** — 30+ query strategies/direct checks yield only 4 usable sources; no national-brand direct office (First American, Old Republic, Fidelity National) publishes a static MN settlement-fee schedule, all route to interactive calculators | 2026-07-22 |
 | MS | 0 | unprocessed | |
 | MT | 0 | unprocessed | |
@@ -597,3 +597,21 @@ still vary and matter).
   scarce threshold either -- several unverified candidate firms remain). Session ending;
   MA stays open for the next session to resume (verify candidate firms first, then
   continue searching if still under 6).
+- 2026-07-22: MA resumed. Verified Friar Law, Moody & Knoth (403-blocked), and Pulgini &
+  Norton directly -- none publish settlement/attorney-fee dollar figures (quote-only).
+  Located and verified a 5th source: Stewart Title Guaranty's Massachusetts premium rate
+  manual (`public.stewart.com/vu/rate-book-massachusetts.pdf`, 2021 vintage, recovered via
+  the PDF binary-read technique) -- full Standard/Enhanced Owner's/Loan/Simultaneous rate
+  tables from $1,000 to $2,000,000 in $1,000 increments, plus a $175 simultaneous-issue
+  fee and a 40% refinance credit, but zero settlement/closing/escrow dollar figures
+  (premium-only, as expected). This is evidently NOT the same manual as the 2025-09-15
+  vintage referenced secondhand by a Sherman Law blog post in the prior session -- the
+  actual 2025 Stewart MA PDF still could not be located despite retrying the
+  virtualunderwriter.com media-path pattern that worked in other states. 18 additional
+  query strategies/direct checks this session (32 combined with session 1) checked
+  Vetstein Law Group, Dubin & Reardon (Cape Cod), Reeves Lavallee, Krasnow Keller & Boris,
+  and multiple Worcester/Springfield/Framingham/Cape Cod/North Shore search angles --
+  zero additional settlement-fee dollar figures found anywhere. With only 5 verified
+  sources despite an exhaustive search well past the 8-strategy threshold, MA meets the
+  contract's scarce criterion. Marked MA **complete (scarce)**. This closes out the
+  open-state queue; moving to the next unprocessed tier-2 state (MS, next alphabetically).
