@@ -1,0 +1,154 @@
+[
+  {
+    "provider": "New Jersey Land Title Insurance Rating Bureau (NJLTIRB) — Manual of Rates and Charges (REGULATORY/RATING-BUREAU-UNIFORM, not provider-set)",
+    "sourceUrl": "https://cdn.ymaws.com/njlta.site-ym.com/resource/resmgr/docs/rate_manual_-_11-01-2023.pdf (fetched and machine-read this session via PDF text extraction after WebFetch's native PDF parsing failed on the raw binary; hosted as a courtesy copy by the New Jersey Land Title Association at https://njlta.org/page/RateManual, which 403-blocked direct WebFetch access but was independently confirmed via search-engine snippet to list this same November 1, 2023 vintage as current)",
+    "asOf": "Approved by the NJ Commissioner of Banking and Insurance; applies to all applications/orders for title insurance received on or after November 1, 2023 -- current vintage as of retrieval 2026-07-22, no newer revision located",
+    "settlementFee": {
+      "note": "CENTRAL STRUCTURAL FINDING: unlike NY (TIRSA, premium only) and unlike PA's attorney-procedure carve-out, NEW JERSEY'S RATING BUREAU DIRECTLY REGULATES THE SETTLEMENT/CLOSING FEE ITSELF, not just the title insurance premium. NJLTIRB's Manual Article 6 ('Settlement Charges') sets a promulgated flat settlement fee: $300.00 for a settlement WITH disbursements (in-office, business hours, <=60 min), or $150.00 for a settlement WITHOUT disbursements (same conditions) -- these are the SAME uniform figures every NJLTIRB member Insurer/Title Insurance Agent is legally required to charge, confirmed independently republished byte-for-byte by two of this survey's own provider sources (World Wide Land Transfer's NJ page and Federated National Land LLC's fee schedule, both stating $300/$150). Surcharges are also promulgated: +$25 if outside the office (total $325/$175), +$50 if outside 9am-5pm business hours (total $350/$200), +$100/hour (with disbursements) or +$50/hour (without) for settlements exceeding 60 minutes. HOWEVER, several closing-adjacent service categories are explicitly left UNREGULATED and cost-based/market-set under Section 7.6: wire transfer fees, statutory notary fees, Transaction Management Platform fees, and lender/third-party closing-compliance fees -- 'the Insurer or Title Insurance Agent may charge the cost for such services' rather than a Manual-fixed number. This is the exact unregulated territory the task brief targeted, and this survey found real provider-to-provider variation there (e.g., wire fee $15 vs $25 across two verified NJ providers -- see provider entries below), even though the headline settlement fee itself is fixed by law.",
+      "standardUnderwritingPremiumRate_representativeTiers": "Article 4.2, Standard Underwriting Rate (owner's/leasehold/mortgage insurance): $0-$100,000 = $5.25/thousand; add $4.25/thousand from $100,001-$500,000; add $2.75/thousand from $500,001-$2,000,000; add $2.00/thousand over $2,000,000. Minimum Underwriting Charge in any transaction: $200.00 (Section 4.1). Example: $200,000 liability = $100,000 x $5.25 + $100,000 x $4.25/1000 -> $525 + $425 = $950.00 (illustrative calculation by this survey from the filed per-thousand rate, not a Manual-stated worked example).",
+      "refinanceRecastSubstitutionRate_representativeTiers": "Article 4.6.1: $0-$100,000 = $2.75/thousand; add $2.50/thousand $100,001-$500,000; add $2.25/thousand $500,001-$2,000,000; add $1.75/thousand over $2,000,000 -- applied to the face amount of the mortgage(s) being refinanced on the same land/same borrower; excess liability above the refinanced amount uses the Standard Underwriting Rate.",
+      "examinationCharge": "$100.00 for a single chain of title (Article 5.1); $100.00 for each additional chain of title (Article 5.4); separate examination charge per county if Land lies in two or more counties (Article 5.5)",
+      "settlementWithDisbursements": "$300.00 flat (in office, business hours, <=60 min, Article 6.1); +$25.00 if outside office (Article 6.2.1, total $325); +$50.00 if outside 9am-5pm business hours (Article 6.2.2, total $350); +$100.00/hour beyond the first 60 minutes (Article 6.2.3)",
+      "settlementWithoutDisbursements": "$150.00 flat (in office, business hours, <=60 min, Article 6.3); +$25.00 if outside office (Article 6.4.1, total $175); +$50.00 if outside business hours (Article 6.4.2, total $200); +$50.00/hour beyond the first 60 minutes (Article 6.4.3)",
+      "closingProtectionLetter": "$75.00 special risk charge, retained entirely by the Insurer (Article 6.6)"
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": "$5.00 service charge per instrument recorded, in addition to applicable recording fees (Article 7.1(a)); $75.00 per mortgage satisfied/partially released (Article 7.1(b)); $35.00 per subordination/warrant-to-satisfy-judgment/judgment-release document (Article 7.1(c))",
+      "courier": "Overnight/special delivery: Insurer/Agent may charge the actual cost of the service to the requesting party (Article 7.5 -- NOT a fixed Manual rate, market/cost-based)",
+      "wire": "NOT fixed by the Manual -- Section 7.6 lists wire transfer fees among the items the Insurer/Agent 'may charge the cost for,' i.e., market-set, not rate-regulated (contrast with the fixed settlement fee above)",
+      "edoc": "$25.00 per set for downloading/receiving/printing one set of electronically transmitted closing/settlement documents; additional sets $25.00 flat each, total capped at $50.00 (Article 7.2.2)",
+      "eRecording": null,
+      "notarySigning": "NOT fixed by the Manual -- Section 7.6 lists 'statutory notary fees' among the cost-based, market-set items",
+      "searchExam": "Examination Charge $100.00 single chain (Article 5.1); pass-through charges (billed at actual cost) for NJ Superior/US District/US Bankruptcy Court searches, municipal tax/assessment/utility searches, corporate status/franchise tax reports, UCC searches, county clerk/register searches, surrogate's court searches, tidelands searches, and related photocopy charges (Article 5.3)",
+      "cpl": "$75.00 flat (Article 6.6, see settlementFee above)",
+      "binder": null,
+      "other": [
+        { "name": "Photocopying (non-search documents)", "amount": "$0.50/page pages 1-10; $0.25/page pages 11-20; $0.10/page beyond page 20 (Article 7.2.1)" },
+        { "name": "Preparation of Legal Description from survey", "amount": "$50.00 (Article 7.3)" },
+        { "name": "Duplicate Policy", "amount": "$25.00 per policy (Article 7.4)" },
+        { "name": "Pro Forma Policy", "amount": "$250.00 per policy, inclusive of revisions; no charge for 1-4 family residential (Article 7.7)" },
+        { "name": "Filing of Notice of Settlement", "amount": "$25.00 (recording-misc schedule)" },
+        { "name": "Recording of Judgments in NJ Superior Court", "amount": "$35.00" },
+        { "name": "Mortgage Foreclosure Insurance Underwriting Charge", "amount": "$500.00 minimum, plus pass-through search charges (Article 4.7)" }
+      ]
+    },
+    "bundlingNotes": "NJLTIRB is the only rating bureau found in this survey to date (contrast PA/TIRBOP and NY/TIRSA) that promulgates the SETTLEMENT/CLOSING FEE ITSELF as a fixed, rate-regulated number ($300 with disbursements / $150 without, plus fixed add-on surcharges for after-hours, off-site, and overtime), operating under N.J.S.A. 17:46B-46 as a licensed rating organization pursuant to the Title Insurance Act of 1974 (N.J.S.A. 17:46B-1 et seq.). This means the base settlement fee is NOT a genuine market signal in NJ -- it is legally identical across every NJLTIRB member/agent statewide, confirmed by two independently-published provider fee schedules in this survey restating the identical $300/$150/$325/$350/$150/$175/$200 figures verbatim. The real unregulated market territory in NJ is narrower than in most other states: Section 7.6 carves out only wire transfer fees, statutory notary fees, and third-party/lender platform-compliance fees as cost-based rather than fixed -- and this survey found genuine provider-to-provider variation exactly there (wire fee $15 vs $25 across two verified sources).",
+    "transactionContext": "Applies uniformly statewide, all counties, all NJLTIRB member insurers/agents, to both the title insurance premium (Articles 4-5) and the settlement/closing service fee (Article 6) alike -- the settlement-fee regulation is transaction-type-agnostic (does not vary by purchase vs. refinance) but does vary by disbursement type (with vs. without disbursements) and by time/location of settlement."
+  },
+  {
+    "provider": "Coastal Title Agency, Inc. (independent title/settlement agency, Freehold, NJ [Monmouth County] with a satellite office in Jersey City, NJ [Hudson County/NYC-metro])",
+    "sourceUrl": "https://www.coastaltitleagency.com/rates-fees",
+    "asOf": "Retrieved 2026-07-22; page's Premium Rate Chart references a 2013 vintage for the title premium table, but the settlement/ancillary fee figures on the same page are presented as the agency's current published rates (no separate date given for those lines)",
+    "settlementFee": {
+      "settlement": "$525.00 (published as part of a combined 'searches, endorsements and settlement fees' estimate line, not broken out further into a separately-stated with/without-disbursements split as the NJLTIRB Manual requires -- this figure is notably HIGHER than NJLTIRB's regulated $300 (with disbursements)/$150 (without) base settlement charge, suggesting Coastal's $525 line bundles the regulated settlement charge together with additional services/surcharges rather than being a stand-alone base fee, though the page does not itemize the bundle's components)",
+      "searchesEndorsements": "$400.00"
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": "Federal Express: $25.00 per package",
+      "wire": "$15.00 per wire transfer",
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": "$25.00 per mortgage package",
+      "searchExam": "Bundled into the $400.00 'Searches/Endorsements' line",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        { "name": "Copies (per closing package)", "amount": "$25.00" },
+        { "name": "Record Mortgage", "amount": "$185.00-$300.00 (varies by county page count)" },
+        { "name": "Cancellation of Existing Mortgage(s)", "amount": "$75.00 each" }
+      ]
+    },
+    "bundlingNotes": "The clearest genuine title-agency-published dollar figure for the NJLTIRB-unregulated wire-transfer-fee category found this session ($15.00) -- directly comparable to, and lower than, Federated National Land LLC's $25.00 wire fee below, a real cross-provider variation in exactly the one settlement-adjacent category the Manual leaves to the market (Section 7.6). Coastal's $525 settlement figure, if a true stand-alone base fee rather than a bundle, would itself be a notable (~75%) deviation above the regulated $300 base rate -- flagged as an open question in NJ.md rather than resolved, since the page's presentation does not make the bundle's contents explicit.",
+    "transactionContext": "General residential closing; Monmouth County (Freehold, Central/Shore NJ) primary office with a Jersey City (Hudson County, NYC-adjacent) satellite office extending coverage into the Northern NJ/NYC-suburbs metro."
+  },
+  {
+    "provider": "Federated National Land, LLC (FNL) (independent title/settlement services agency; NY/NJ-certified MWBE firm, New York City-based [212 area code], serving New Jersey)",
+    "sourceUrl": "https://federatednl.com/wp-content/uploads/2021/02/List-of-Fees-NJ-5.14.20.pdf",
+    "asOf": "Fee schedule states 'Updated May 15, 2020' on its face; retrieved and independently machine-read this session 2026-07-22 (no more recent vintage located for this specific provider document, though its base settlement-fee figures match the still-current 11/01/2023 NJLTIRB Manual, confirming continuity)",
+    "settlementFee": {
+      "withDisbursement_inOfficeBusinessHours": "$300.00 (first 60 minutes) -- matches NJLTIRB's regulated base rate exactly",
+      "withDisbursement_outsideOfficeOrHours": "$325.00 (outside office) / $350.00 (outside regular business hours) -- matches NJLTIRB surcharges exactly",
+      "withoutDisbursement_inOffice": "$150.00 (first 60 minutes) -- matches NJLTIRB's regulated base rate exactly",
+      "withoutDisbursement_outsideOfficeOrHours": "$175.00 (outside office) / $200.00 (outside regular business hours) -- matches NJLTIRB surcharges exactly",
+      "settlementGreaterThanNormalLength": "$50.00 per additional hour over 60 minutes (published rate on this schedule; NJLTIRB Manual specifies $100/hour with disbursements vs $50/hour without disbursements -- this schedule states a single $50/hour figure without the with/without-disbursements distinction, a minor discrepancy from the Manual's more granular text)"
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": "Service charge $5.00 per recorded instrument (in addition to recording fees); Mortgage Satisfaction $75.00; Filing of Notice of Settlement $25.00; Recording of Judgments (NJ Superior Court) $35.00; Filing of Warrants of Satisfaction $55.00",
+      "courier": "Overnight Delivery: $45.00 per file",
+      "wire": "$25.00 per wire in/out",
+      "edoc": "$25.00 per set (not to exceed $50.00) for printing/copying electronically transmitted documents",
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Title Search & Examination (single chain) $100.00; Extra Chain of Title $100.00; Property in Two or More Counties (per county) $100.00; County Continuations $50.00; Last Owner Search (County + Upper Court) $150.00",
+      "cpl": "$75.00 per file",
+      "binder": null,
+      "other": [
+        { "name": "Escrow Service (per file)", "amount": "$50.00" },
+        { "name": "Corporate Status Report", "amount": "$30.00" },
+        { "name": "Franchise Tax Search", "amount": "$40.00" },
+        { "name": "UCC Search (no copies / with copies)", "amount": "$40.00 / $55.00" },
+        { "name": "Flood Hazard Search (basic / 15-20 yr life-of-loan)", "amount": "$10.00 / $20.00-$25.00" },
+        { "name": "Preparation of Legal Description", "amount": "$50.00" },
+        { "name": "Duplicate/Simultaneously Issued Policies", "amount": "$25.00 each" },
+        { "name": "Pro Forma Policy (commercial)", "amount": "$250.00" },
+        { "name": "Statewide Lien Search (Upper Court/US District/US Bankruptcy, per name)", "amount": "$12.00" },
+        { "name": "Patriot Name Search (per name)", "amount": "$2.00 (ordered with Upper Court search) / $3.00 (ordered alone)" },
+        { "name": "Tax and Assessment Search", "amount": "$40.00" },
+        { "name": "Wetland Search", "amount": "$75.00" }
+      ]
+    },
+    "bundlingNotes": "The richest itemized NJ fee schedule located this session -- essentially a provider-side restatement of the entire NJLTIRB Manual (Articles 5-7) in a single one-page reference, useful precisely because it confirms real-world compliance with the promulgated settlement-fee figures while also supplying a concrete, dated ($25.00) figure for the one Manual-unregulated category (wire transfer) that Coastal Title Agency prices differently ($15.00) -- a genuine, if narrow, cross-provider settlement-adjacent-fee data point.",
+    "transactionContext": "General NJ residential/commercial closings; firm is NYC-based (New York/New Jersey dual-licensed MWBE), implying primary relevance to Northern NJ/NYC-suburban transactions though the schedule itself is not county-restricted on its face."
+  },
+  {
+    "provider": "Law Offices of Michael Makarov, LLC (closing attorney firm; NJ residential real estate, serving 15 counties: Bergen, Burlington, Essex, Hudson, Hunterdon, Mercer, Middlesex, Monmouth, Morris, Ocean, Passaic, Somerset, Sussex, Union, Warren)",
+    "sourceUrl": "https://njlegalservices.com/nj-closing-attorney",
+    "asOf": "Retrieved 2026-07-22; no explicit effective date stated on the page (current published pricing)",
+    "settlementFee": {
+      "flatLegalFee_buyerOrSeller": "$2,000.00 flat legal fee, for residential properties under $1,000,000 purchase price; payable $1,000 at engagement + $1,000 at closing (only if the transaction closes)",
+      "note": "This is an ATTORNEY'S legal representation fee, explicitly stated to EXCLUDE 'charges by the title company for title searches, title insurance and settlement fees, survey and homeowners insurance' -- i.e., it is additive to, not inclusive of, the NJLTIRB-regulated title/settlement fee charged separately by whichever title company/agent handles the closing. Short sale, foreclosure, condo, co-op, multi-family, and estate transactions may cost additional."
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": []
+    },
+    "bundlingNotes": "Illustrates New Jersey's customary (not statutorily mandated, per the task brief) practice of both buyer and seller retaining independent attorneys in the Northern NJ counties especially -- the attorney's flat legal fee is a distinct, additive line item stacked on top of (not replacing) the NJLTIRB-regulated title/settlement charge paid to the title company/agent. At $2,000, this attorney fee alone is roughly 6.7x NJLTIRB's regulated $300 base settlement charge, underscoring that the attorney layer, where used, is the larger of the two closing-cost components in dollar terms.",
+    "transactionContext": "Residential purchase/sale under $1,000,000, standard (non-short-sale/non-foreclosure/non-multi-family) transactions; covers Northern NJ (Bergen, Essex, Hudson, Passaic, Morris, Sussex, Union, Warren), and reaches into Central NJ (Mercer, Middlesex, Monmouth, Hunterdon, Somerset) and part of South Jersey (Burlington, Ocean) -- but does not list Camden, Atlantic, Cape May, Cumberland, Gloucester, or Salem counties."
+  },
+  {
+    "provider": "Levin Law Group / Y. Levin Law (closing attorney firm; statewide New Jersey, all 21 counties)",
+    "sourceUrl": "https://ylevinlaw.com/campaign/new-jersey-real-estate-attorney.html",
+    "asOf": "Retrieved 2026-07-22; no explicit effective date stated on the page (current published pricing)",
+    "settlementFee": {
+      "flatLegalFee": "$995.00 flat fee for legal representation of a standard residential closing (up to 3-family properties: single-family, condo, co-op, townhouse, new construction, multi-family up to 3 units); excludes third-party costs (title insurance, transfer taxes, recording fees)"
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": []
+    },
+    "bundlingNotes": "The only source located this session with an explicit statewide NJ county list reaching all three task-brief target metros in a single published flat fee, including the Southern NJ counties (Atlantic, Camden, Cape May, Cumberland, Gloucester, Salem) that no title-company-specific settlement-fee schedule was found to cover despite an extensive dedicated search (Cape Atlantic Title, SJS Title/South Jersey Settlement Agency, Homestead Title Agency, National Integrity Title all checked directly, none publishing dollar figures). At $995, this attorney flat fee sits about midway between Coastal Title's $525 settlement-fee line and Michael Makarov's $2,000 attorney fee -- illustrating a roughly 4x spread across the attorney-fee data points alone ($995-$2,000), on top of which the NJLTIRB-regulated $300/$150 title-company settlement charge is additionally due.",
+    "transactionContext": "Standard residential closing (up to 3-family), statewide NJ, all 21 counties listed by name including Atlantic, Bergen, Burlington, Camden, Cape May, Cumberland, Essex, Gloucester, Hudson, Hunterdon, Mercer, Middlesex, Monmouth, Morris, Ocean, Passaic, Salem, Somerset, Sussex, Union, Warren."
+  }
+]
