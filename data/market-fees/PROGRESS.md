@@ -55,7 +55,7 @@ still vary and matter).
 | AL | 2 (WFG National, Stewart Title Guaranty) | statewide (State charge vs. Birmingham Metro [Jefferson/Shelby/Blount] carve-out published by both underwriters) | national-brand underwriters only (WFG, Stewart); attorney-closing state (AL requires licensed attorney to close) which appears to route settlement pricing through private/unpublished attorney fee arrangements | **complete (scarce)** — 10 query strategies/11 direct provider-site checks (incl. 2 closing-attorney firms) yield only 2 usable premium-only rate manuals; zero settlement/closing-fee dollar figures found anywhere except identical CPL fees ($25/$25/$50) on both underwriters. One candidate (Jackson & Scott, Montgomery) had promising search-snippet figures but its page 403'd on direct fetch and could not be independently verified | 2026-07-22 |
 | AK | 2 (Alyeska Title Guaranty Agency [genuine escrow fee schedule], Stewart Title Guaranty [premium manual]) | statewide (no metro breakout published) | independent agency (Alyeska) + national-brand underwriter (Stewart); AK statute AS 21.66.460 requires filing of escrow/settlement/closing charges separately from AS 21.66.370 premium rates, which produced one genuine dollar-denominated escrow schedule -- a rarer find than most "scarce" states | **complete (scarce)** — 14 query strategies/~10 direct provider-site checks yield only 2 usable sources despite AK's unusually favorable statutory disclosure regime; most independent AK title agencies (Western AK Land Title, Integrated Title, Kachemak Bay) are quote-only with no static published schedule | 2026-07-22 |
 | AR | 3 (Stewart Title Guaranty [2026 vintage], WFG National, Southwest Title Insurance/FNTI) | statewide (no metro breakout published) | national-brand underwriters only; AR is confirmed unregulated/unfiled for title premiums (per WFG's own manual), yet settlement fees remain entirely unpublished despite no filing requirement | **complete (scarce)** — 8 query strategies/5 direct provider-site checks yield only 3 usable premium-only rate cards; zero settlement/closing fee dollar figures found anywhere except Stewart's $25/party CPL fee | 2026-07-22 |
-| CT | 0 | unprocessed | |
+| CT | 5 (WFG National, Stewart Title Guaranty, Connecticut Title & Escrow LLC, Law Office of Yona Gregory, Connecticut Real Estate Closing Lawyers) | statewide (no metro/county breakout published; "all 8 CT counties" served uniformly per one source) | national-brand underwriters (WFG, Stewart), closing-attorney firms (Connecticut Title & Escrow, Yona Gregory, CT Real Estate Closing Lawyers) — CT is an attorney-closing state | **complete (scarce)** — 14 query strategies/10 direct provider-site checks yield only 5 usable sources; CATIC (CT's dominant domestic underwriter) blocked by 403 on both its rate-schedule PDF and state-resources page, a notable coverage gap flagged for future retry | 2026-07-22 |
 | DC | 0 | unprocessed | |
 | HI | 0 | unprocessed | |
 | ID | 0 | unprocessed | |
@@ -391,3 +391,20 @@ still vary and matter).
   settlement-fee figures beyond Stewart's $25/party CPL fee. With only 3 verified
   sources, AR meets the contract's scarce criterion. Marked AR **complete (scarce)**.
   Moving to the next unprocessed tier-2 state (CT, next alphabetically).
+- 2026-07-22: Started CT from scratch. Verified 5 sources across 14 query strategies/10
+  direct provider-site checks: WFG National Title (2021-02-01) and Stewart Title
+  Guaranty (2020-03-01), both premium-only filed rate manuals -- Stewart's is notably
+  explicit that excluded charges are billed by "local attorneys, surveyors, abstractors,
+  or abstract companies," directly acknowledging CT's attorney-closing structure. Also
+  verified 3 closing-attorney firms with published flat-fee settlement pricing:
+  Connecticut Title & Escrow LLC ($1,250 purchase/$1,150 refinance/$1,975 sale, bundled
+  attorney fee explicitly excluding the separate title insurance premium -- the inverse
+  pairing of what the underwriter manuals show), Law Office of Yona Gregory ($750 flat,
+  attorney-representation-only, narrower scope than Connecticut Title & Escrow's bundled
+  figure), and Connecticut Real Estate Closing Lawyers ($850-$1,800 unitemized
+  residential range). Notable gap: CATIC (Connecticut Attorneys Title Insurance
+  Company), likely CT's largest domestic underwriter by volume, 403-blocked on both its
+  rate-schedule PDF and state-resources page -- flagged in CT.md for a future session
+  retry. With only 5 verified sources despite the extensive search, CT meets the
+  contract's scarce criterion. Marked CT **complete (scarce)**. Moving to the next
+  unprocessed tier-2 state (DC, next alphabetically).

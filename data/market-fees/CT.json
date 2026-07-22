@@ -1,0 +1,93 @@
+[
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/connecticut/rates/Connecticut%20Title%20Rate%20Manual%20-%20eff%202-01-2021.pdf",
+    "asOf": "Effective 2021-02-01",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule. Filed with the CT Insurance Department.",
+      "ownersPolicy_liabilityTiered": "$20,000 or less = $109 fixed; $20,001-$100,000 add $4.36/thousand; $100,001-$200,000 add $4.09/thousand; $200,001-$500,000 add $3.54/thousand; $500,001-$5,000,000 add $3.00/thousand; $5,000,001-$10,000,000 add $2.45/thousand; over $10,000,000 add $1.96/thousand.",
+      "loanPolicy_liabilityTiered": "$20,000 or less = $109 fixed; $20,001-$100,000 add $4.09/thousand; $100,001-$200,000 add $3.82/thousand; $200,001-$500,000 add $3.27/thousand; $500,001-$5,000,000 add $2.73/thousand; $5,000,001-$10,000,000 add $2.18/thousand; over $10,000,000 add $1.64/thousand.",
+      "nonAcquisitionRefinanceLoanRate": "60% of Loan Policy Rate for improved 1-4 family residential, non-purchase-money loans",
+      "expandedCoverageResidentialLoanOrHomeownersPolicy": "110% of applicable owner's/loan rate",
+      "homeEquityHE2Certificate": "$45 (up to $250,000) / $75 (over $250,000-$500,000) / $250 (over $500,000-$750,000) / $300 (over $750,000-$1,000,000) per transaction"
+    },
+    "itemizedFees": {
+      "cpl": { "perLetter": "$25.00 per closing protection letter, pursuant to C.G.S.A. Sec. 38a-404" },
+      "other": [
+        { "name": "Mortgage Protection Guaranty / Residential Limited Coverage Mortgage Modification Policy", "amount": "$125.00" },
+        { "name": "Junior Loan Policy (JR1/JR2)", "amount": "$2.00/thousand, minimum $65.00" }
+      ]
+    },
+    "bundlingNotes": "Section I.A states explicitly: 'Fees and charges in connection with the searching, examination, certification and closing of title are not included in the rates herein, and WFG National Title Insurance Company may make additional charges for these and other services.' No dollar figures given for those additional charges.",
+    "transactionContext": "Owner's and Loan policy premium schedules, statewide, plus simultaneous-issue, refinance/non-acquisition, bulk, mortgage-modification, home-equity, and CPL charges. No purchase/refinance settlement-service-fee breakdown."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://www.virtualunderwriter.com/-/media/files/virtualunderwriter/imported/pdfs/connecticut-rate-manual-01-09-20-eff-03-01-20.pdf",
+    "asOf": "Last updated 2020-01-09; effective 2020-03-01",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule. Described as 'recommended charges' rather than mandatory filed rates.",
+      "ownersLeaseholdPolicy_liabilityTiered": "$20,000 or less = $109 fixed; $20,001-$100,000 add $4.36/thousand; $100,001-$200,000 add $4.09/thousand; $200,001-$500,000 add $3.54/thousand; $500,001-$5,000,000 add $3.00/thousand; $5,000,001-$10,000,000 add $2.45/thousand; $10,000,001-$15,000,000 add $1.96/thousand; over $15,000,000 add $1.91/thousand (negotiable).",
+      "mortgageePolicy_liabilityTiered": "$20,000 or less = $109 fixed; $20,001-$100,000 add $4.09/thousand; $100,001-$200,000 add $3.82/thousand; $200,001-$500,000 add $3.27/thousand; $500,001-$5,000,000 add $2.73/thousand; $5,000,001-$10,000,000 add $2.18/thousand; over $10,000,000 add $1.64/thousand.",
+      "simplifiedNonAcquisitionLoanCharge_ALTALoan": "$20,000 or less = $65 fixed; $20,001-$100,000 add $2.29/thousand; $100,001-$200,000 add $2.13/thousand; $200,001-$500,000 add $1.80/thousand; $500,001-$5,000,000 add $1.47/thousand; $5,000,001-$10,000,000 add $1.18/thousand; over $10,000,000 add $0.98/thousand.",
+      "refinanceMortgageOnly": "60% of original issue charge up to face amount of refinanced mortgage, minimum $109.00",
+      "homeownersPolicy": "110% of owner's policy basic charge"
+    },
+    "itemizedFees": {
+      "other": [
+        { "name": "Home Equity Policy (limited coverage, up to $100,000)", "amount": "$2.00/thousand of liability" },
+        { "name": "ALTA Residential Limited Coverage Junior Loan Policy", "amount": "$2.25/thousand, minimum $100.00" },
+        { "name": "ALTA Residential Limited Coverage Mortgage Modification Policy", "amount": "$150.00 flat" },
+        { "name": "Foreclosure Insurance Policy (ALTA Limited Pre-Foreclosure)", "amount": "50% of Basic Mortgagee Policy charge, minimum $50.00" },
+        { "name": "Stewart Master Residential Loan Policy (equity loans)", "amount": "$25 (up to $25,000) / $65 (over $25,000-$250,000) / $125 (over $250,000-$500,000)" }
+      ]
+    },
+    "bundlingNotes": "Definitions section states explicitly: 'This charge does not include all of the abstracting or searching fee, examination fee, settlement fees, closing fees, or escrow fees.' General Provisions further specify charges 'do not include charges for searches, examinations, abstracts, attorneys' fees, escrow or closing services, inspections or other services charged by local attorneys, surveyors, abstractors, or abstract companies' -- an unusually explicit list naming local attorneys directly, consistent with CT being an attorney-closing state.",
+    "transactionContext": "Owner's, Leasehold, and Mortgagee policy premium schedules, statewide, plus simultaneous-issue, refinance, non-acquisition, home-equity, junior-loan, mortgage-modification, and foreclosure-policy charges. No purchase/refinance settlement-service-fee breakdown."
+  },
+  {
+    "provider": "Connecticut Title & Escrow, LLC",
+    "sourceUrl": "https://ctclosing.com/pricing/",
+    "asOf": "Attorney Fee Schedule as of 2026-01-01",
+    "settlementFee": {
+      "purchase": "$1,250.00 FLAT",
+      "refinance": "$1,150.00 FLAT",
+      "sale": "$1,975.00 FLAT (properties up to $1,000,000; higher values require custom quote)"
+    },
+    "itemizedFees": {
+      "docPrep": { "note": "Bundled into the flat attorney fee, not separately itemized" },
+      "courier": { "note": "Bundled into the flat attorney fee, not separately itemized" },
+      "searchExam": { "note": "Bundled into the flat attorney fee, not separately itemized" },
+      "other": []
+    },
+    "bundlingNotes": "Firm states its flat fee is 'comprehensive for all legal work and costs incurred by the firm for your closing, including title search, title review, document preparation, courier fees, and phone/facsimile fees.' Title insurance premium is billed as 'a separate charge as required by the State of Connecticut' -- i.e. the flat fee is the settlement/attorney fee and explicitly excludes the title insurance premium, the reverse pairing of what WFG/Stewart's premium-only manuals show.",
+    "transactionContext": "Residential purchase, refinance, and sale (seller-side) closings, statewide (no metro/county breakout published). Attorney-closing firm acting as title agent."
+  },
+  {
+    "provider": "Law Office of Yona Gregory",
+    "sourceUrl": "https://www.yonalaw.com/closings",
+    "asOf": "Retrieved 2026-07-22",
+    "settlementFee": {
+      "attorneyFeeOnly": "$750.00 FLAT (statewide), representation for one party only (buyer or seller, not both)"
+    },
+    "itemizedFees": {
+      "other": []
+    },
+    "bundlingNotes": "Firm states explicitly: 'Our statewide flat fee closing price of $750 is limited to the attorney fee and does not include title search, title insurance, recording fees, courier costs, and other charges that may be associated with your loan/purchase.' This is a narrower quote than Connecticut Title & Escrow's bundled figure -- covers only the attorney's own representation fee, with search/exam/recording/courier priced and billed separately (amounts not published).",
+    "transactionContext": "Residential purchase and refinance closings (CT requires attorney representation for refinancing), statewide flat rate, single-party representation only."
+  },
+  {
+    "provider": "Connecticut Real Estate Closing Lawyers",
+    "sourceUrl": "https://www.connecticutrealestateclosinglawyers.com/",
+    "asOf": "Retrieved 2026-07-22",
+    "settlementFee": {
+      "residentialClosing": "$850.00-$1,800.00 range depending on transaction complexity (not itemized by tier)",
+      "commercialClosing": "Quoted individually, no published figures"
+    },
+    "itemizedFees": {
+      "other": []
+    },
+    "bundlingNotes": "Site advertises 'zero hidden costs' and 'transparent flat-fee pricing' but does not break out title search, document prep, recording, notary, courier, or wire fees within the quoted range. Serves all 8 Connecticut counties with no stated metro/county pricing variation.",
+    "transactionContext": "Residential purchase, sale, and refinance closings, statewide (all 8 CT counties), no itemized fee breakdown."
+  }
+]
