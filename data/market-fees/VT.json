@@ -1,0 +1,160 @@
+[
+  {
+    "provider": "First National Title Insurance Company (FNTI)",
+    "sourceUrl": "https://documentpub.fnti.com/Documents/Vermont/Rate%20Manual/FNTI%20VT%20Rate%20Manual%20Effective%202024.09.17.pdf",
+    "asOf": "Effective 2024-09-17",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/escrow fee schedule. Explicit exclusion language in General Rules section F ('Risk Rate'): 'The rates set forth herein do not include any charge made for title search, title examination, closing, or escrow services performed by the Insurer, or any of its approved attorneys or agents. Charges made for such services are in addition to the rates and charges set forth herein.'",
+      "originalLoanPolicyRate": "First $50,000 of liability = $250.00 flat; over $50,001 up to $1,000,000 add $3.00/thousand; over $1,000,000 call for pricing. Minimum $250.00.",
+      "expandedCoverageResidentialLoanPolicy": "110% of Original Loan Policy rate. Minimum $250.00.",
+      "originalOwnersPolicyRate": "First $50,000 of liability = $260.00 flat; over $50,000 up to $1,000,000 add $3.25/thousand; over $1,000,000 call for pricing. Minimum $250.00.",
+      "homeownersPolicyRate": "110% of Original Owner's Policy rate. Minimum $260.00.",
+      "refinanceLoanPolicyRate": "60% of the Original Loan Policy rate for the amount of insurance; difference above the unpaid principal balance charged at full rate. Minimum $200.00.",
+      "simultaneousOwnersAndLoanPolicy": "Loan policy rate is $100.00 flat when issued simultaneously with an owner's policy of equal or greater liability.",
+      "altaResidentialLimitedCoverageJuniorLoanPolicy": "First $100,000 of liability = $150.00; over $100,001 up to $300,000 add $1.00/thousand. Maximum policy amount $300,000.",
+      "altaResidentialLimitedCoverageMortgageModificationPolicy": "$0-$1,000,000 = $125; $1,000,001-$1,500,000 = $250; $1,500,001-$2,000,000 = $350; each additional $500,000 above $2,000,000 up to $20,000,000 adds $100."
+    },
+    "itemizedFees": {
+      "cpl": "$25.00 per transaction regardless of number of CPLs issued for a single transaction; entire amount remitted to Company, not subject to commission/split. Additional $50.00 charged for a second mortgage or HELOC by a lender other than the primary lender.",
+      "other": [
+        { "name": "ALTA Form 26 Subdivision endorsement", "amount": "$125 (Residential); Commercial negotiable" }
+      ]
+    },
+    "bundlingNotes": "Purely a title-insurance premium manual (Chapters 1-2: Schedule of Rates, Endorsements). Zero settlement, closing, escrow, doc prep, courier, wire, notary/signing, or search/exam dollar figures anywhere in the 11-page document. Confirms VT's attorney-closing convention of pricing title premium and closing/escrow services as entirely separate, unfiled arrangements.",
+    "transactionContext": "Owner's (Standard, Homeowner's) and Loan (Standard, Expanded Coverage, Refinance) policy premium schedules, statewide (for use in all counties of Vermont). No metro/county breakout."
+  },
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/vermont/rates/WFG%20Vermont%20Rate%20Manual%20effective%20May%201,%202022.pdf",
+    "asOf": "Effective 2022-05-01",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/escrow fee schedule. Explicit exclusion in Section 1 Introduction: 'The rates shown are the total title insurance fees charged the applicant including both the risk portion and the service or work portion, but do not include charges for title search, surveys, escrow, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant.'",
+      "standardCoverageRateTable": "Owner's & Leasehold Owner's: up to $50,000 = $245.00 minimum, add $3.25/thousand over $50,000 up to $1,000,000 (negotiable above). Acquisition Loan: up to $50,000 = $170.00 minimum, add $2.50/thousand over $50,000. Finance Loan: up to $50,000 = $102.00 minimum, add $1.50/thousand over $50,000.",
+      "enhancedExpandedCoverageRate": "ALTA Homeowner's Policy = 110% of standard owner's premium; ALTA Expanded Coverage Residential Loan Policy = 110% of applicable mortgagee premium.",
+      "simultaneousIssueOwnersAndLoan": "Each loan policy charged a flat $50.00 when issued simultaneously with an owner's policy of equal/greater liability.",
+      "surveyExceptionDeletion": "$100.00 (owner's policy); $50.00 (loan policy).",
+      "juniorLoanPolicy": "Flat $110.00 for up to $250,000 in liability coverage (ALTA Residential Limited Coverage Junior Loan / Short Form).",
+      "mortgageProtectionGuarantee": "$125.00 flat, unpaid principal balance not to exceed $250,000 liability.",
+      "residentialLimitedCoverageMortgageModificationPolicy": "$0-$1,000,000 = $125; $1,000,001-$1,500,000 = $250; $1,500,001-$2,000,000 = $350."
+    },
+    "itemizedFees": {
+      "cpl": "$25.00 per issuance, single fee covers all protected parties (buyer/borrower and lender); not subject to any fee/premium division agreement. Issued only where WFG's issuing agent is also responsible for disbursement of settlement funds. Cites Vermont Statutes Annotated (V.S.A.) Title 8 and Vermont Insurance Division Bulletin 108."
+    },
+    "bundlingNotes": "Purely a title-insurance premium manual (26 pages: rate tables, simultaneous issue, lender's special rates, endorsements, CPL). Zero settlement, closing, escrow, doc prep, courier, wire, or notary dollar figures anywhere except the CPL fee. Lender's Special Rate tiers (1: min 100 orders, 2: min 300 orders) show volume-discounted premium tables but are lender-program-specific, not general market pricing.",
+    "transactionContext": "Owner's, Leasehold, Acquisition Loan, and Finance Loan policy premium schedules, statewide (State = Vermont per definitions). No metro/county breakout."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://www.stewart.com/-/media/files/stewartdotcom/pdfs/states/vermont/vt_rates.pdf",
+    "asOf": "Effective 2013-08-01 (companion Vermont Endorsement Schedule dated 12/5/2013); both documents remain the current live links on stewart.com/en/state-pages/vermont-agents/rates as of retrieval 2026-07-22",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/escrow fee schedule. Explicit exclusion in General Provisions: 'The charges set forth herein do not include any fee made for title search, abstract fees, title examination, settlement, closing, or escrow services performed by approved attorneys, agents, or offices.' Definitions section reiterates: 'The charge does not include the abstracting or searching fee, examination fee, settlement fees, closing fees, or escrow fees.'",
+      "ownersLeaseholdPolicyRate": "$1,000 to $50,000 = $260.00 flat; $50,001 to $1,000,000 add $3.25/thousand. Minimum premium $260.00.",
+      "loanLeaseholdPolicyRate": "$1,000 to $50,000 = $175.00 flat; $50,001 to $1,000,000 add $2.50/thousand. Minimum premium $175.00.",
+      "refinanceChargeForLoanPolicies": "60% of the charge for an original loan policy, applied to the full amount of the new loan, for 1-4 family residential refinance where the property is currently encumbered by a first mortgage. Discount offered on both Stewart policies and competitors'.",
+      "extendedCoverageSupplementalCharge": "$0.60 per thousand of existing liability, minimum fee $120.00, added to standard filed charges (requires express written underwriter authority).",
+      "simultaneousIssueOwnersAndLoan": "$25.00 flat for the loan policy when issued with the same effective date, equal-or-lesser amount, and the mortgagor is the security-instrument holder on the owner's policy.",
+      "fullLookupTable_representativeTiers": "At $100,000: Loan $300 / Owner's $423 / Loan&Owners $448. At $200,000: Loan $550 / Owner's $748 / Loan&Owners $773. At $300,000: Loan $800 / Owner's $1,073 / Loan&Owners $1,098. At $500,000: Loan $1,300 / Owner's $1,723 / Loan&Owners $1,748. At $1,000,000: Loan $2,550 / Owner's $3,348 / Loan&Owners $3,373. Full $1,000-$1,000,000 table in 1,000-dollar increments recorded in source PDF."
+    },
+    "itemizedFees": {
+      "other": [
+        { "name": "Assignment endorsement (ALTA 10)", "amount": "$25" },
+        { "name": "Assignment & Down Date endorsement (ALTA 10.1)", "amount": "$50" },
+        { "name": "Mortgage Modification endorsement (ALTA 11)", "amount": "$150 up to face of original loan policy, plus basic loan rate for coverage above" },
+        { "name": "Future Advance endorsements (ALTA 14/14.1/14.2/14.3)", "amount": "$50 each" },
+        { "name": "Environmental Protection Lien endorsements (ALTA 8.1/8.2)", "amount": "$50" },
+        { "name": "Contiguity endorsements (ALTA 19/19.1)", "amount": "$25" },
+        { "name": "Location endorsements (ALTA 22/22.1)", "amount": "$25" },
+        { "name": "Utility Access endorsement (ALTA 17.2)", "amount": "$100" },
+        { "name": "Usury endorsement (ALTA 27)", "amount": "$100" },
+        { "name": "Doing Business endorsement (ALTA 24)", "amount": "$50" },
+        { "name": "Same As Survey / Portion of Survey / Subdivision endorsements (ALTA 25/25.1/26)", "amount": "$50 each" },
+        { "name": "First Loss Multiple Parcel endorsement (ALTA 20)", "amount": "$25 residential / $100 commercial" },
+        { "name": "Policy Authentication (ALTA 39)", "amount": "$50" }
+      ]
+    },
+    "bundlingNotes": "Purely a title-insurance premium manual and companion 10-page endorsement schedule. Zero settlement, closing, escrow, doc prep, courier, wire, or notary dollar figures anywhere. Notably older vintage (2013) than FNTI's and WFG's manuals but confirmed still the current live-linked document on Stewart's own Vermont agents page as of this session -- no newer Stewart VT rate PDF was locatable.",
+    "transactionContext": "Owner's/Leasehold and Loan/Leasehold policy premium schedules, statewide (all policy-issuing attorneys, agents, and offices in the State of Vermont). No metro/county breakout; written authority required above $1,000,000 liability."
+  },
+  {
+    "provider": "Peet Law Group (closing-attorney firm; Williston & White River Junction, VT)",
+    "sourceUrl": "https://www.peetlaw.com/vermont-real-estate-legal-fees",
+    "asOf": "Retrieved 2026-07-22 (no explicit effective date published on page)",
+    "settlementFee": {
+      "note": "Genuine closing-attorney all-in fee schedule (not premium-only) -- confirms Vermont's attorney-closing structure, where the closing attorney's fee bundles contract review, title search, title examination, closing-document preparation/review, lender coordination, and conducting the closing into a single quoted range, unlike states with a separate title/escrow company layer.",
+      "buyerPurchaseTransactionFee": "$1,400.00-$1,750.00 for a standard residential purchase; includes contract review, full title search, title examination, preparation/review of closing documents, lender coordination, and conducting the closing.",
+      "sellerFee": "Approximately $1,000.00 for preparing the deed and required conveyance documents; additional fees may apply for closing attendance or power-of-attorney preparation.",
+      "refinanceFee": "$1,200.00-$1,500.00 combined fee for title search, title examination, lender coordination, and closing, varying with title complexity and lender requirements."
+    },
+    "itemizedFees": {
+      "other": []
+    },
+    "bundlingNotes": "This is an all-in bundled attorney closing fee (search + exam + doc prep + closing conduct all included in one quoted range) rather than an itemized line-item schedule -- Vermont's attorney-closing custom bundles these functions that other states' independent title/escrow companies itemize separately. No separate courier/wire/notary/CPL/recording figures published on this specific page (see firm's general 'Real Estate Closing Costs' and 'What Is the Cost of Title Insurance in Vermont' pages, both fetched this session -- neither contains additional dollar figures, both route title-insurance-premium questions to CATIC's rate calculator instead of quoting Peet Law's own numbers).",
+    "transactionContext": "Residential purchase (buyer and seller sides) and refinance transactions. Firm has offices in Williston, VT (Chittenden County -- Burlington metro) and White River Junction, VT (Windsor County); states it serves clients 'throughout the State of Vermont.'"
+  },
+  {
+    "provider": "Green Mountain Title (independent title abstract company, statewide)",
+    "sourceUrl": "https://www.greenmountaintitle.com/",
+    "asOf": "Retrieved 2026-07-22 (no explicit effective date published on page)",
+    "settlementFee": {
+      "note": "Genuine title-search/abstract fee schedule, hourly-rate model (not a flat all-in closing fee and not a title-insurance premium). This is a search/exam-only cost component that a closing attorney or title company would typically pass through or bundle into their own quoted fee.",
+      "standardRate": "$65.00 per hour, plus mileage and costs (e.g., copy fees, zoning-request fees).",
+      "rushServiceRate": "$100.00 per hour, plus mileage and costs.",
+      "standardTurnaround": "14 business days."
+    },
+    "itemizedFees": {
+      "searchExam": "$65.00/hour standard rate; $100.00/hour rush rate; plus mileage and pass-through costs (copy fees, zoning-request fees).",
+      "other": []
+    },
+    "bundlingNotes": "Pure hourly-rate title-examination pricing -- no flat per-transaction fee published. A typical residential search might run several hours (e.g., 2-5 hours at the standard rate = roughly $130-$325), but the company does not publish a flat-fee equivalent, so this cannot be directly summed into an 'all-in' figure without assuming a search-duration estimate.",
+    "transactionContext": "Title examinations performed statewide -- 'almost all Vermont towns' -- for attorneys, title companies, and other clients ordering search work; not a direct-to-consumer closing product."
+  },
+  {
+    "provider": "Vermont Title Search / Property Title of Vermont (independent title abstract company, statewide)",
+    "sourceUrl": "https://vmttitlesearch.com/title-search-products",
+    "asOf": "Retrieved 2026-07-22 (no explicit effective date published on page)",
+    "settlementFee": {
+      "note": "Genuine itemized title-search product-fee schedule (search/exam-only, not a title-insurance premium and not a bundled closing fee). The richest single itemized fee list found this session, covering ~25 distinct search products.",
+      "residentialEconomyCurrentOwnerSearch": "$175.00",
+      "residentialExpandedCurrentOwnerSearch": "$225.00",
+      "commercialExpandedCurrentOwnerSearch": "$275.00 (starting price)",
+      "residentialUpdateTitleSearch": "$75.00",
+      "commercialUpdateTitleSearch": "$100.00",
+      "residentialTwoOwnerSearch": "$279.00 (starting price)",
+      "commercialTwoOwnerSearch": "$375.00 (starting price)",
+      "residentialUpdateTwoOwnerSearch": "$125.00",
+      "commercialUpdateTwoOwnerSearch": "$150.00",
+      "thirtyYearFullSearchResidential": "$350.00",
+      "fortyYearFullSearchResidential": "$475.00 (starting price)",
+      "fortyYearFullSearchCommercial": "$525.00 (starting price)",
+      "fiftyYearChainOfTitleSearch": "$325.00 (starting price)",
+      "sixtyYearChainOfTitleSearch": "$350.00 (starting price)",
+      "nineteenFortyChainOfTitleSearch": "$425.00 (starting price)",
+      "judgmentAndLienSearch": "$225.00 (starting price)",
+      "hoaJudgmentAndLienSearch": "$225.00 (starting price)",
+      "statewideUccLienSearch": "$225.00 (starting price)",
+      "residentialPreliminaryTitleSearch": "$450.00 (starting price)",
+      "commercialPreliminaryTitleSearch": "$550.00 (starting price)",
+      "sbaTitleSearch": "$250.00 (starting price)",
+      "legalAndVestingSearch": "$175.00 (starting price)",
+      "foreclosureTitleSearch": "$225.00 (starting price)",
+      "customTitleSearch": "$95.00 (starting price)"
+    },
+    "itemizedFees": {
+      "searchExam": "See settlementFee block above for the full itemized product list, ranging $75-$675 (starting prices) depending on search depth/type.",
+      "other": [
+        { "name": "Deed Retrieval", "amount": "$75.00 (starting price)" },
+        { "name": "Document Retrieval", "amount": "$75.00 (starting price)" },
+        { "name": "Document copy fees (per company FAQ page)", "amount": "$1.00-$2.00 per page" },
+        { "name": "20 Year Easement Search", "amount": "$325.00 (starting price)" },
+        { "name": "30 Year Easement Search", "amount": "$525.00 (starting price)" },
+        { "name": "50 Year Easement Search", "amount": "$675.00 (starting price)" },
+        { "name": "20 Year Mineral Rights Search", "amount": "$250.00 (starting price)" },
+        { "name": "30 Year Mineral Rights Search", "amount": "$375.00 (starting price)" },
+        { "name": "50 Year Mineral Rights Search", "amount": "$625.00 (starting price)" }
+      ]
+    },
+    "bundlingNotes": "This is a search/exam-only itemized retail price list, not a title-insurance premium and not an all-in closing fee -- no settlement, closing-conduct, doc prep, courier, wire, notary, or recording figures appear anywhere on the site. Company FAQ page separately notes a generic 'title searches will cost as little as $150.00, but may also exceed $1,000.00 or more' and a guarantee refund cap of $225 or cost of search (whichever is lower).",
+    "transactionContext": "Direct-to-consumer and B2B (attorney/lender) title search and abstract products, statewide -- explicitly covers all 14 Vermont counties (Addison, Bennington, Caledonia, Chittenden, Essex, Franklin, Grand Isle, Lamoille, Orange, Orleans, Rutland, Washington, Windham, Windsor)."
+  }
+]
