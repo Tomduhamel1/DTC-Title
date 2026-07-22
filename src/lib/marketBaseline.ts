@@ -28,6 +28,8 @@
 // identical for purchase and refinance (the old refi ranges were inflated
 // for effect — see the audit).
 
+import { resolveStateCode } from './stateSavings'
+
 export type PremiumRateRegime = 'promulgated' | 'rating-bureau' | 'filed'
 
 const PREMIUM_REGIME: Record<string, PremiumRateRegime> = {
@@ -61,9 +63,69 @@ export interface ComparisonRange {
   high: number
 }
 
-// Interim comparison multipliers for fee lines we can fairly compare.
+// Interim comparison multipliers for PREMIUM lines in filed-rate states.
 // Applied to our cost; the LOW end drives every claimed savings number
-// (see feeReport.conservativeLineSavings).
+// (see feeReport.conservativeLineSavings). Premium-manual evidence exists in
+// data/market-fees (research branch) for a future per-state premium fold-in.
 export const PREMIUM_RANGE_FILED: ComparisonRange = { low: 1.25, high: 1.9 }
-export const SERVICE_FEE_RANGE: ComparisonRange = { low: 1.3, high: 2.0 }
-export const OTHER_FEE_RANGE: ComparisonRange = { low: 1.15, high: 1.6 }
+
+// ── Service-fee comparison bands (July 2026 market-fee survey) ────────────
+//
+// Derived from the 51-state survey of PUBLISHED competitor fee schedules
+// (data/market-fees on branch research/market-fees — 241 verified sources,
+// per-state search logs). Method:
+//   1. For each state with published service-fee evidence, every provider's
+//      all-in buyer-side service stack (settlement/closing/escrow + search/
+//      exam + admin/processing + doc prep + mandatory small fees) was
+//      normalized to a standard $400–500k financed purchase. Full-fee
+//      schedules that split between buyer and seller were HALVED
+//      (conservative). REO/institutional-only and premium-only sources
+//      excluded.
+//   2. "Typical" = the interquartile range of provider stacks (not min–max:
+//      the record-cheapest outlier is not what a broker recognizes as
+//      typical, and the max would inflate).
+//   3. Each state's band = typical range ÷ our own engine's service-stack
+//      total for the same scenario (measured July 2026).
+//   4. States whose competitors publish nothing ("scarce" in the survey)
+//      get the POOLED band: median of the published states' ratios, shaded
+//      down on the low end — {1.05, 1.4}. This is deliberately conservative:
+//      in published markets our service price sits near the typical LOW end,
+//      so scarce states claim little-to-no service savings rather than
+//      inflated ones.
+//
+// Notable and intentional: TX and OK bands are BELOW 1.0 — published
+// competitors there price escrow/service work under our current fees, and
+// the quote page will show that honestly (savings clamp to $0; flagged for
+// internal pricing review). IL reflects its Chicago-metro-dominated
+// published market; IA's band reflects partial (abstract-state) stacks.
+export interface ServiceBand extends ComparisonRange {
+  basis: 'published' | 'inferred'
+  // Number of distinct published providers behind a 'published' band.
+  providers?: number
+}
+
+export const INFERRED_SERVICE_BAND: ServiceBand = { low: 1.05, high: 1.4, basis: 'inferred' }
+
+const SERVICE_BANDS: Record<string, ServiceBand> = {
+  CA: { low: 1.31, high: 1.9, basis: 'published', providers: 3 },
+  GA: { low: 1.09, high: 1.2, basis: 'published', providers: 2 },
+  WA: { low: 1.23, high: 1.77, basis: 'published', providers: 6 },
+  ID: { low: 0.77, high: 0.89, basis: 'published', providers: 8 },
+  IA: { low: 0.36, high: 1.3, basis: 'published', providers: 4 },
+  IL: { low: 2.87, high: 3.37, basis: 'published', providers: 10 },
+  KS: { low: 0.68, high: 1.08, basis: 'published', providers: 12 },
+  MT: { low: 1.14, high: 1.43, basis: 'published', providers: 2 },
+  OK: { low: 0.27, high: 0.65, basis: 'published', providers: 2 },
+  TX: { low: 0.56, high: 0.73, basis: 'published', providers: 4 },
+  FL: { low: 0.96, high: 1.36, basis: 'published', providers: 5 },
+  NY: { low: 0.58, high: 1.36, basis: 'published', providers: 2 },
+  // NC has published evidence (buyer stack $1,175, one provider) but our own
+  // NC service denominator couldn't be measured (upstream 500s) — inferred
+  // band until the denominator lands and the ratio can be computed.
+}
+
+export function serviceBandFor(state: string | undefined | null): ServiceBand {
+  const code = resolveStateCode(state)
+  if (!code) return INFERRED_SERVICE_BAND
+  return SERVICE_BANDS[code] ?? INFERRED_SERVICE_BAND
+}

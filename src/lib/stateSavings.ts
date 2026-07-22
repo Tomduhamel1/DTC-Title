@@ -44,12 +44,14 @@ const NAME_TO_CODE: Record<string, string> = {
   'district of columbia': 'DC',
 }
 
-function resolveCode(state: string | null | undefined): string | undefined {
+export function resolveStateCode(state: string | null | undefined): string | undefined {
   if (!state) return undefined
   const trimmed = state.trim()
   if (/^[A-Za-z]{2}$/.test(trimmed)) return trimmed.toUpperCase()
   return NAME_TO_CODE[trimmed.toLowerCase()]
 }
+
+const resolveCode = resolveStateCode
 
 function anchorFor(state: string | null | undefined): StateAnchor {
   const code = resolveCode(state)

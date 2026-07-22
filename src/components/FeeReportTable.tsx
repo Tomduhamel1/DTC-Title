@@ -11,6 +11,7 @@ import {
   groupByCategory,
   savingsSourceOf,
 } from '@/lib/feeReport'
+import { serviceBandFor } from '@/lib/marketBaseline'
 
 interface FeeReportTableProps {
   report: FeeReport
@@ -110,6 +111,14 @@ export default function FeeReportTable({
                 Every service charge we bill is itemized above — nothing extra
                 at the table. Other providers often spread the same work across
                 separate document-prep, processing, courier, and e-doc fees.
+              </div>
+              <div className="text-[10px] text-gray-400 mt-1.5 leading-snug">
+                {(() => {
+                  const band = serviceBandFor(report.state)
+                  return band.basis === 'published'
+                    ? `Typical range from ${band.providers} published ${report.state} fee schedules (July 2026 survey).`
+                    : `Typical range inferred from published fee schedules in 12 surveyed states — providers in ${report.state} do not publish service fees.`
+                })()}
               </div>
             </div>
             <div className="text-right whitespace-nowrap">

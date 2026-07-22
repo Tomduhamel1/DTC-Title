@@ -47,7 +47,7 @@ export default function QuoteResultsPage() {
       } catch {}
     }
     setReport(
-      getMockFeeReport({ state: 'Georgia', homeValue: 500000, transactionType: 'purchase' })
+      getMockFeeReport({ state: 'GA', homeValue: 500000, transactionType: 'purchase' })
     )
     setIsFallback(true)
   }, [router])

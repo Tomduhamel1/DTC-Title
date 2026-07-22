@@ -8,10 +8,9 @@
 
 import type { FeeCategory, FeeLineItem, FeeReport, FeeSource } from './feeReport'
 import {
-  OTHER_FEE_RANGE,
   PREMIUM_RANGE_FILED,
-  SERVICE_FEE_RANGE,
   premiumsAreUniform,
+  serviceBandFor,
 } from './marketBaseline'
 
 const ENDPOINT =
@@ -150,11 +149,10 @@ function withTypicalRange(
   if (isPremiumLine && premiumsAreUniform(stateCode)) {
     return { isFixed: true }
   }
-  const range = isPremiumLine
-    ? PREMIUM_RANGE_FILED
-    : /settlement/i.test(label)
-      ? SERVICE_FEE_RANGE
-      : OTHER_FEE_RANGE
+  // Service lines all use the state's evidence-derived band (published or
+  // inferred — see marketBaseline). Applying the same band to every service
+  // line keeps the package-level sums equal to band × our service total.
+  const range = isPremiumLine ? PREMIUM_RANGE_FILED : serviceBandFor(stateCode)
   return {
     isFixed: false,
     typicalRange: {

@@ -282,11 +282,12 @@ export function computeTotals(report: FeeReport): FeeReportTotals {
 // Sample report shown on the homepage as a teaser. Clearly labeled as sample.
 // Uses a filed-rate state (Georgia) — in promulgated/uniform-rate states like
 // Texas, premiums are identical across providers and no premium comparison
-// may be shown (src/lib/marketBaseline.ts). Ranges follow the interim
-// comparison multipliers in marketBaseline.
+// may be shown (src/lib/marketBaseline.ts). Premium ranges follow the interim
+// PREMIUM_RANGE_FILED multipliers; service ranges follow GA's evidence-derived
+// band (1.09–1.2 — see SERVICE_BANDS in marketBaseline).
 export function getSampleFeeReport(): FeeReport {
   return {
-    state: 'Georgia',
+    state: 'GA',
     homeValue: 500000,
     loanAmount: 400000,
     transactionType: 'purchase',
@@ -310,7 +311,7 @@ export function getSampleFeeReport(): FeeReport {
         category: 'title-settlement',
         ourCost: 350,
         isFixed: false,
-        typicalRange: { low: 455, high: 700 },
+        typicalRange: { low: 382, high: 420 },
         feeSource: 'service',
         savingsSource: 'settlement_fee',
       },
@@ -320,7 +321,7 @@ export function getSampleFeeReport(): FeeReport {
         category: 'title-settlement',
         ourCost: 150,
         isFixed: false,
-        typicalRange: { low: 195, high: 300 },
+        typicalRange: { low: 164, high: 180 },
         feeSource: 'service',
         savingsSource: 'settlement_fee',
       },
@@ -348,9 +349,9 @@ export function getSampleFeeReport(): FeeReport {
 
 // Mock generator used in dev/preview before the API is wired in.
 // Scales numbers off home value so different inputs produce different
-// outputs. Comparison ranges track the interim multipliers in
-// marketBaseline (premium ×1.25–1.9, service ×1.3–2.0); callers should pass
-// a filed-rate state (see getSampleFeeReport).
+// outputs. Comparison ranges track marketBaseline: premium ×1.25–1.9
+// (interim filed-state multipliers) and GA's evidence-derived service band
+// (1.09–1.2); callers should pass 'GA' (see getSampleFeeReport).
 export function getMockFeeReport(input: {
   state: string
   homeValue: number
@@ -381,7 +382,7 @@ export function getMockFeeReport(input: {
       category: 'title-settlement',
       ourCost: 350,
       isFixed: false,
-      typicalRange: { low: 455, high: 700 },
+      typicalRange: { low: 382, high: 420 },
       feeSource: 'service',
       savingsSource: 'settlement_fee',
     },
@@ -391,7 +392,7 @@ export function getMockFeeReport(input: {
       category: 'title-settlement',
       ourCost: 150,
       isFixed: false,
-      typicalRange: { low: 195, high: 300 },
+      typicalRange: { low: 164, high: 180 },
       feeSource: 'service',
       savingsSource: 'settlement_fee',
     },
@@ -401,7 +402,7 @@ export function getMockFeeReport(input: {
       category: 'title-settlement',
       ourCost: 25,
       isFixed: false,
-      typicalRange: { low: 33, high: 50 },
+      typicalRange: { low: 27, high: 30 },
       feeSource: 'service',
       savingsSource: 'settlement_fee',
     },
