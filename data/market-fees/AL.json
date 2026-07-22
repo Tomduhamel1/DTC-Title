@@ -1,0 +1,42 @@
+[
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/alabama/rate-manuals/WFG%20Alabama%20Manual%20of%20Title%20Insurance%20Premiums%20-%20eff%20September%202,%202024.pdf",
+    "asOf": "Effective 2024-09-02",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule.",
+      "standardOwnersPolicy_liabilityTiered": "Up to $50,000 of liability, rate per $1,000 = $3.50; $50,001-$100,000 add $3.00/thousand; $100,001-$5,000,000 add $2.00/thousand; $5,000,001-$10,000,000 add $1.75/thousand; over $10,000,000 add $1.25/thousand. Minimum premium $125.00 (Section 3.1 Basic Rate Table).",
+      "standardRefinanceLoanPolicy_liabilityTiered": "Up to $50,000 = $2.10/thousand; $50,001-$100,000 add $1.80/thousand; $100,001-$5,000,000 add $1.20/thousand; $5,000,001-$10,000,000 add $1.05/thousand; over $10,000,000 add $0.75/thousand. Minimum premium $125.00.",
+      "simultaneousIssueLoanPolicy": "Flat $125.00 per loan policy issued concurrently with an owner's policy, provided loan liability does not exceed owner's policy liability (Section 6.1)."
+    },
+    "itemizedFees": {
+      "cpl": { "lender": "$25.00", "buyerBorrower": "$25.00", "seller": "$50.00" },
+      "other": []
+    },
+    "bundlingNotes": "Section 1 Introduction states explicitly: 'The rates shown are the all-inclusive title insurance fees and charges and includes both the risk portion and the service or work portion, but does not include charges for title search, surveys, escrow, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant.' Confirms AL premium/settlement-fee separation but the manual itself prices premium (and CPL) only -- no settlement/escrow dollar figures given anywhere in the 27-page document.",
+    "transactionContext": "Owner's (Standard and Expanded/Homeowner's) and Loan (Acquisition and Refinance, Standard and Expanded) policy premium schedules, statewide (no metro/county breakout -- WFG applies one rate table to all Alabama counties). Also includes Closing Protection Letter charges and a full ALTA endorsement price list. No purchase/refinance settlement-service-fee breakdown."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://www.virtualunderwriter.com/-/media/files/virtualunderwriter/imported/pdfs/alabama-manual-120314-effective-010915-2.pdf",
+    "asOf": "Last updated 2014-12-03; effective 2015-01-09",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule. Older vintage (2015) than the WFG source above, but still the most current Stewart Alabama manual found via search this session.",
+      "ownersPolicy_stateCharge_liabilityTiered": "Up to $100,000 = $3.50/thousand; over $100,000-$500,000 add $3.00/thousand; over $500,000-$5,000,000 add $2.00/thousand; over $5,000,000-$15,000,000 add $1.50/thousand; over $15,000,000 add $1.00/thousand. Minimum $125.00. (Applies to all AL counties except Jefferson, Shelby, Blount.)",
+      "ownersPolicy_birminghamMetro_liabilityTiered": "Up to $100,000 = $3.50/thousand; over $100,000-$5,000,000 add $2.00/thousand; over $5,000,000-$15,000,000 add $1.50/thousand; over $15,000,000 add $1.00/thousand. Minimum $125.00. (Jefferson, Shelby, Blount counties.)",
+      "loanPolicy_stateCharge_liabilityTiered": "Up to $100,000 = $2.50/thousand; over $100,000-$500,000 add $2.00/thousand; over $500,000-$5,000,000 add $1.50/thousand; over $5,000,000-$15,000,000 add $1.25/thousand; over $15,000,000 add $1.00/thousand. Minimum $125.00.",
+      "loanPolicy_birminghamMetro_liabilityTiered": "Up to $100,000 = $2.50/thousand; over $100,000-$500,000 add $1.75/thousand; over $500,000-$5,000,000 add $1.50/thousand; over $5,000,000-$15,000,000 add $1.25/thousand; over $15,000,000 add $1.00/thousand. Minimum $125.00.",
+      "simultaneousIssueLoanPolicy": "Flat $125.00 for loan policy liability not exceeding the owner's policy liability (Section B.4)."
+    },
+    "itemizedFees": {
+      "cpl": {
+        "purchaseMoneyWithThirdPartyLender": "$25 lender + $25 purchaser/borrower + $50 seller",
+        "cashOrSellerFinanced": "$25 purchaser + $50 seller",
+        "nonPurchaseMoneyMortgage": "$25 lender + $25 borrower"
+      },
+      "other": []
+    },
+    "bundlingNotes": "General Provisions state: 'The charges hereinafter set out are basic charges only and do not include all charges for searches, abstracts, attorney's fees, escrow or closing services, inspections or other services that may also be charged by agents, local attorneys, surveyors, abstractors, or abstract companies.' The 'Charge' definition further clarifies: 'This charge does not include abstracting or searching fee, examination fee, settlement fees, closing fees, or escrow fees.' Same premium/settlement separation pattern as WFG, and same geographic split (Birmingham-metro Jefferson/Shelby/Blount counties vs. rest-of-state), suggesting this county carve-out is a standing AL market convention rather than underwriter-specific.",
+    "transactionContext": "Owner's and Loan policy premium schedules (State charge vs. Birmingham Metro charge), reissue/refinance credits, simultaneous-issue rates, Closing Protection Letter charges, and full commercial endorsement price list. No purchase/refinance settlement-service-fee breakdown."
+  }
+]

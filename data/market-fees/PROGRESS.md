@@ -52,7 +52,7 @@ still vary and matter).
 
 | State | Verified sources | Status | Last run |
 |---|---|---|---|
-| AL | 0 | unprocessed | |
+| AL | 2 (WFG National, Stewart Title Guaranty) | statewide (State charge vs. Birmingham Metro [Jefferson/Shelby/Blount] carve-out published by both underwriters) | national-brand underwriters only (WFG, Stewart); attorney-closing state (AL requires licensed attorney to close) which appears to route settlement pricing through private/unpublished attorney fee arrangements | **complete (scarce)** — 10 query strategies/11 direct provider-site checks (incl. 2 closing-attorney firms) yield only 2 usable premium-only rate manuals; zero settlement/closing-fee dollar figures found anywhere except identical CPL fees ($25/$25/$50) on both underwriters. One candidate (Jackson & Scott, Montgomery) had promising search-snippet figures but its page 403'd on direct fetch and could not be independently verified | 2026-07-22 |
 | AK | 0 | unprocessed | |
 | AR | 0 | unprocessed | |
 | CT | 0 | unprocessed | |
@@ -338,3 +338,23 @@ still vary and matter).
   verified sources despite an exhaustive 30+-strategy search, MN meets the contract's
   scarce criterion. Marked MN **complete (scarce)**. Moving to the next unprocessed
   tier-2 state (LA, SC, KY, OR, CT, OK, etc.).
+- 2026-07-22: Started AL from scratch (first alphabetically in the unprocessed tier-2
+  list). Verified 2 sources across 10 query strategies/11 direct provider-site checks:
+  WFG National Title Insurance Company (2024-09-02 rate manual, PDF-recovery technique)
+  and Stewart Title Guaranty Company (2015-01-09 rate manual, PDF-recovery technique),
+  both premium-only filed rate manuals with explicit settlement-fee-exclusion language.
+  Both underwriters independently use the same Birmingham-metro (Jefferson/Shelby/Blount)
+  vs. statewide rate carve-out, and both price Closing Protection Letters identically
+  ($25 lender/$25 buyer/$50 seller) -- a notable cross-underwriter corroboration. AL is
+  an attorney-closing state, which appears (per unverified secondary sources) to route
+  settlement pricing through private attorney arrangements rather than published
+  schedules. Checked 9 independent title/closing companies and attorney firms directly
+  (South Oak, First Alabama Title, Alabama Land Services, alabamalandtitle.com,
+  University Title, Jackson & Scott, Alabama Closing & Title, Boundary Title, Cook and
+  Associates/Blackbelt Lawyers) -- zero published settlement-fee dollar figures found;
+  one promising candidate (Jackson & Scott, Montgomery) had search-snippet figures
+  ($200 title search, $350/$450 closing fee) but its page returned HTTP 403 on two direct
+  fetch attempts and could not be independently verified, so excluded per evidence rules.
+  With only 2 verified sources despite exceeding the 8-strategy scarce threshold, AL
+  meets the contract's scarce criterion. Marked AL **complete (scarce)**. Moving to the
+  next unprocessed tier-2 state (AK, next alphabetically).
