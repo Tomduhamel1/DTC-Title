@@ -58,7 +58,7 @@ still vary and matter).
 | CT | 5 (WFG National, Stewart Title Guaranty, Connecticut Title & Escrow LLC, Law Office of Yona Gregory, Connecticut Real Estate Closing Lawyers) | statewide (no metro/county breakout published; "all 8 CT counties" served uniformly per one source) | national-brand underwriters (WFG, Stewart), closing-attorney firms (Connecticut Title & Escrow, Yona Gregory, CT Real Estate Closing Lawyers) — CT is an attorney-closing state | **complete (scarce)** — 14 query strategies/10 direct provider-site checks yield only 5 usable sources; CATIC (CT's dominant domestic underwriter) blocked by 403 on both its rate-schedule PDF and state-resources page, a notable coverage gap flagged for future retry | 2026-07-22 |
 | DC | 4 (Stewart Title Guaranty, WFG National, Federal Title & Escrow Company, Avenue Title Group) | none (DC has no metro/county subdivisions; Federal Title's refinance figure spans DC/MD/VA suburbs) | national-brand underwriters (Stewart, WFG), independent title/settlement companies (Federal Title & Escrow, Avenue Title Group) — DC is an attorney/title-agent-closing jurisdiction | **complete (scarce)** — 9 query strategies/8 direct provider-site checks yield only 4 usable sources; largest buyer/seller fee asymmetry found in survey ($1,275 buyer vs $550 seller at Federal Title) | 2026-07-22 |
 | HI | 3 providers / 4 documents (Title Guaranty of Hawaii [escrow fee + title premium schedules], First American Title, Old Republic Title & Escrow) | statewide (no separate island/metro tiers published, though providers have Oahu/Maui/Big Island/Kauai branches) | national-brand-affiliated agent (Title Guaranty, writing for Chicago/Commonwealth/Fidelity/First American), national-brand direct branches (First American), national-brand underwriter (Old Republic) | **complete (scarce)** — 8 query strategies/6 direct provider-site checks yield 3 providers; notably higher evidence quality than most scarce states since Title Guaranty and First American both publish genuine dollar-denominated escrow/settlement fee schedules (not premium-only) | 2026-07-22 |
-| ID | 0 | unprocessed | |
+| ID | 8 documents (2 Idaho DOI regulator-published escrow-rate filings covering ~15 distinct licensed title/escrow agents, First American x2 channels, Stewart x2 vintages, Old Republic, WFG) | 5 (Ada/Boise, Kootenai/Coeur d'Alene, Bonneville/Idaho Falls, Twin Falls, Bannock/Pocatello) | regulator compilation (DOI), national-brand underwriters (First American, Stewart, Old Republic, WFG); independent agents' pricing captured only via the DOI filing, not their own sites | **complete (saturated)** — 8 verified documents; DOI's mandatory-filing regime makes its 2 escrow-rate documents a near-census of Idaho's licensed agents rather than a sample, so the observed range is already comprehensive and unlikely to move with further search | 2026-07-22 |
 | IL | 11 (Old Republic, Greater Illinois Title, First American, TitleStar ×3 regional cards, WFG National, Chicago Title, Fidelity National, Proper Title, Truly Title) | 3 (Chicago metro; Central IL incl. Peoria/Champaign; Southern/Metro-East IL incl. St. Clair/Madison) | national-brand underwriters (Old Republic, First American, Chicago Title, Fidelity National, WFG), independent title/escrow companies (Greater Illinois Title, TitleStar, Proper Title, Truly Title) | **complete (target met)** — 11 verified sources on first session, exceeding the 10-source hard-stop target | 2026-07-21 |
 | IN | 0 | unprocessed | |
 | IA | 0 | unprocessed | |
@@ -439,3 +439,29 @@ still vary and matter).
   premium-only manuals. With only 3 providers despite the extensive search, HI meets
   the contract's scarce criterion. Marked HI **complete (scarce)**. Moving to the next
   unprocessed tier-2 state (ID, next alphabetically).
+- 2026-07-22: Started ID from scratch. Discovered Idaho has an unusual regulatory structure
+  matching Alaska's pattern: IDAPA 18.05.01.022 requires every licensed Idaho title/escrow
+  agent to file its escrow (settlement/closing) rate structure with the Department of
+  Insurance annually, separately from the title insurance premium filed under Idaho Code
+  §41-2707. The DOI publishes the compiled result as two public statewide-by-county tables
+  (short-term/purchase and long-term/contract escrow rates), disclosing genuine, dated,
+  dollar-denominated escrow-fee formulas (Base + Rate/$1,000 + Minimum) for ~15 distinct
+  licensed agents across all 5 target metro counties (Ada/Boise, Kootenai/Coeur d'Alene,
+  Bonneville/Idaho Falls, Twin Falls, Bannock/Pocatello) in one regulator-verified document —
+  a materially richer settlement-fee find than the market-opacity pattern in most other
+  "scarce" states. Notable finding: at a $300,000 purchase price, nearly every Ada County
+  (Boise) provider converges to an identical $1,050 escrow fee despite different formula
+  shapes (base+per-thousand vs. bare per-thousand), while Boise-metro minimums ($150) run far
+  lower than Coeur d'Alene/Idaho Falls/Twin Falls/Pocatello minimums ($200-$500) -- the
+  inverse of the usual urban-premium pattern. Also verified 6 underwriter premium-rate
+  manuals (First American via 2 distribution channels, Stewart at 2 vintages showing a ~4%
+  premium increase 2021->2026, Old Republic, WFG's 2017 vintage) confirming persistent
+  inter-underwriter premium variation despite Idaho's filed-rate structure. 21 query
+  strategies plus direct provider-site checks found and excluded one notable domain-collision
+  risk (pioneertitlecompany.com is an unrelated Wenatchee, WA company, not Idaho's
+  pioneertitleco.com). With 8 verified documents and the DOI filing representing a
+  near-census of the state's licensed agents (mandatory filing, not a voluntary sample), ID
+  meets the contract's saturation criterion -- further search would add more premium manuals
+  (which explicitly exclude escrow/settlement charges) rather than move the settlement-fee
+  range. Marked ID **complete (saturated)**. Moving to the next unprocessed tier-2 state
+  (IN, next alphabetically).
