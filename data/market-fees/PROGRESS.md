@@ -69,7 +69,7 @@ still vary and matter).
 | MD | 5 (Stewart, WFG National, Ardent Title, TPF Legal, CAL Settlements) | 3 (Cecil County; Montgomery County/DC suburbs; unspecified-metro closing attorney) | national-brand underwriters (Stewart, WFG), independent title/settlement companies (Ardent Title), closing-attorney firms (TPF Legal, CAL Settlements) | **complete (scarce)** — 10+ query strategies/direct checks yield only 5 usable sources; national-brand direct offices (First American, Old Republic, Chicago Title, Fidelity) route to interactive calculators only, no static settlement-fee schedules found | 2026-07-21 |
 | MA | 5 (Lopisi Law, Sherman Law, Lazan Glover & Puciloski, Cote Law Group, Stewart Title Guaranty [premium manual]) | Cambridge/Arlington, South Shore/MetroWest/South Coast, Berkshires/Western MA, Marshfield/South Shore | closing-attorney firms (settlement fees) + national-brand underwriter (Stewart, premium only); MA requires attorney closings, no independent title/escrow company layer | **complete (scarce)** — 32 combined query strategies/direct checks across 2 sessions yield only 5 usable sources; mandatory-attorney-closing structure with near-universal quote-only pricing pages matches the market-opacity pattern seen elsewhere | 2026-07-22 |
 | MN | 4 (Stewart, WFG National, CloseAtTitle, Title Services Inc/Rochester) | 2 (Minnesota Metropolitan/Twin Cities via CloseAtTitle; Rochester/Olmsted County via Title Services Inc) | national-brand underwriters (Stewart, WFG), independent title/escrow company (CloseAtTitle), closing-attorney-affiliated title company (Title Services Inc, subsidiary of Dunlap Seeger law firm) | **complete (scarce)** — 30+ query strategies/direct checks yield only 4 usable sources; no national-brand direct office (First American, Old Republic, Fidelity National) publishes a static MN settlement-fee schedule, all route to interactive calculators | 2026-07-22 |
-| MS | 0 | unprocessed | |
+| MS | 2 (Stewart Title Guaranty, WFG National) | statewide (no metro/county breakout published) | national-brand underwriters only (Stewart, WFG); MS premiums are unregulated/insurer-filed-but-not-approved, closings handled by a mix of attorneys and title companies (neither exclusively required) | **complete (scarce)** — 27 combined query strategies/direct checks yield only 2 usable premium-only rate manuals; zero settlement/closing/escrow fee dollar figures found anywhere except identical $50 CPL fees from both underwriters | 2026-07-22 |
 | MT | 0 | unprocessed | |
 | NE | 0 | unprocessed | |
 | NV | 0 | unprocessed | |
@@ -615,3 +615,23 @@ still vary and matter).
   sources despite an exhaustive search well past the 8-strategy threshold, MA meets the
   contract's scarce criterion. Marked MA **complete (scarce)**. This closes out the
   open-state queue; moving to the next unprocessed tier-2 state (MS, next alphabetically).
+- 2026-07-22: Started MS from scratch. Confirmed MS title insurance premiums are
+  unregulated/insurer-filed-but-not-state-approved (each insurer files its own manual;
+  Fidelity National Title's own "Real Estate Laws & Customs" reference lists MS rates as
+  "Not filed"/"Negotiable"). Verified 2 premium-only rate manuals: Stewart Title Guaranty
+  (2018-10-01, via PDF-recovery technique) and WFG National Title (2023-12-04, via
+  PDF-recovery technique) -- both explicitly and affirmatively exclude settlement,
+  closing, escrow, and attorney fees from their definition of a "charge," and both price
+  an identical $50 CPL fee and near-identical Owner's/Loan premium rates ($4.00/$3.00 per
+  thousand, $150 minimums), a notable cross-underwriter corroboration despite the
+  unregulated market. A newer Stewart MS rate manual revision (bulletin MS2025001,
+  effective 2025-11-17) was located via Virtual Underwriter's bulletin index but its PDF
+  is access-restricted and could not be fetched. 27 combined query strategies/direct
+  checks (First American, Fidelity, Old Republic, Chicago Title, McGehee Loan Closings,
+  Barrett Law Group [403], Hornsby Watts [403], Magnolia Title [503], LTAMS
+  members-directory and recording-fees pages) found zero settlement/closing/escrow fee
+  dollar figures anywhere -- only genuine non-premium find was LTAMS's statutory
+  recording-fee schedule (deed $25-26, assignment $26-27), not a settlement/service
+  charge. With only 2 verified sources despite the extensive search, MS meets the
+  contract's scarce criterion. Marked MS **complete (scarce)**. Moving to the next
+  unprocessed tier-2 state (MT, next alphabetically).

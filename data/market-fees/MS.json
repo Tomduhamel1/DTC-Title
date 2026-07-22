@@ -1,0 +1,61 @@
+[
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://www.virtualunderwriter.com/-/media/files/virtualunderwriter/imported/pdfs/mississippi-manual-092418-eff-100118.pdf",
+    "asOf": "Last Updated September 24, 2018; Effective October 1, 2018",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "$50.00 per loan; additional $50.00 if a second mortgage/HELOC by a different lender",
+      "binder": null,
+      "other": [
+        "Original Owner's/Leasehold Policy: $4.00/thousand up to $1M, $2.00/thousand over $1M, $150 minimum",
+        "ALTA Homeowner's Policy: 120% of the Owner's Policy charge",
+        "Reissue Owner's/Leasehold: $2.40/thousand up to $1M, $1.20/thousand over $1M, $150 minimum",
+        "Original Loan Policy: $3.00/thousand up to $1M, $1.50/thousand over $1M, $150 minimum",
+        "Refinance Loan Policy: 60% of original charge if within 10 years, up to unpaid balance",
+        "Simultaneous issue (Owner's + Loan, loan not exceeding owner's amount): $75 flat for the loan policy",
+        "Assignment of Loans endorsement: $50 (or per-thousand schedule for new policy)",
+        "Extension of Mortgage Loan: 20% of original loan charge, $50 minimum"
+      ]
+    },
+    "bundlingNotes": "Explicitly states: 'The charges hereinafter set out are basic charges for title insurance only and do not include charges for searches, abstracts, attorney's fees, escrow or closing services, inspections or other services charged by local attorneys, title companies, surveyors, abstractors, or abstract companies.' Definitions section further clarifies a 'Charge' does not include 'any settlement fee, trustee fee, attorney fee, surveying fee, inspection fee, document fee, closing fee, escrow fee or any other fee associated with escrow.' Zero settlement/service-fee dollar figures anywhere in the document.",
+    "transactionContext": "Owner's policy (purchase), loan policy (purchase and refinance), simultaneous issue, reissue/substitution — premium calculation only."
+  },
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/mississippi/rate-manuals/Mississippi Title Rate Manual effective December 4, 2023.pdf",
+    "asOf": "Effective as of December 4, 2023",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "$50.00, remitted entirely to the Company (not shared with the agent)",
+      "binder": null,
+      "other": [
+        "Owner's & Leasehold Owner's Policy: $4.00/thousand up to $1M, $2.00/thousand over $1M, $150 minimum",
+        "Loan Policy: $3.00/thousand up to $1M, $1.50/thousand over $1M, $150 minimum",
+        "Expanded Coverage (Homeowner's/ALTA Expanded Loan): 110% of the Basic Rate",
+        "Residential construction loan rate: $1.00/thousand, $150 minimum",
+        "Simultaneous issue: Standard Coverage loan policy $100 flat, Expanded Coverage loan policy $125 flat (when loan liability does not exceed owner's liability)",
+        "Reissue/substitution rate (owner's or loan): 60% of the Basic Rate, up to prior policy amount, $150 minimum",
+        "Residential Limited Coverage Mortgage Modification Policy: $0.50/thousand, $125 minimum"
+      ]
+    },
+    "bundlingNotes": "Explicitly states: 'The rates shown are the all-inclusive title insurance fees and charges and include both the risk portion and the service or work portion, but do not include charges for title search, surveys, escrow, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant.' Zero settlement/service-fee dollar figures anywhere in the document (19-page manual with extensive endorsement fee schedule, all title-insurance-related).",
+    "transactionContext": "Owner's policy (purchase), loan policy (purchase, refinance/substitution, construction), simultaneous issue, reissue — premium calculation only."
+  }
+]
