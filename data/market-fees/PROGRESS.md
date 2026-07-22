@@ -71,7 +71,7 @@ still vary and matter).
 | MN | 4 (Stewart, WFG National, CloseAtTitle, Title Services Inc/Rochester) | 2 (Minnesota Metropolitan/Twin Cities via CloseAtTitle; Rochester/Olmsted County via Title Services Inc) | national-brand underwriters (Stewart, WFG), independent title/escrow company (CloseAtTitle), closing-attorney-affiliated title company (Title Services Inc, subsidiary of Dunlap Seeger law firm) | **complete (scarce)** — 30+ query strategies/direct checks yield only 4 usable sources; no national-brand direct office (First American, Old Republic, Fidelity National) publishes a static MN settlement-fee schedule, all route to interactive calculators | 2026-07-22 |
 | MS | 2 (Stewart Title Guaranty, WFG National) | statewide (no metro/county breakout published) | national-brand underwriters only (Stewart, WFG); MS premiums are unregulated/insurer-filed-but-not-approved, closings handled by a mix of attorneys and title companies (neither exclusively required) | **complete (scarce)** — 27 combined query strategies/direct checks yield only 2 usable premium-only rate manuals; zero settlement/closing/escrow fee dollar figures found anywhere except identical $50 CPL fees from both underwriters | 2026-07-22 |
 | MT | 6 (Stewart Title Guaranty, First National Title Insurance, WFG National, First Montana Title, Old Republic/Pioneer Title Co, Montana Title & Escrow) | statewide (premium manuals); Big Sky/Bozeman/Livingston offices for Montana Title & Escrow | national-brand underwriters (Stewart, FNTI, WFG, Old Republic), independent title/escrow companies (First Montana Title, Montana Title & Escrow) | **complete (saturated)** — 6 verified sources; last 3 additions (First Montana Title, Old Republic, Montana Title & Escrow) kept the observed $800-$1,600 escrow/settlement range stable | 2026-07-22 |
-| NE | 0 | unprocessed | |
+| NE | 4 (First National Title Insurance, Stewart Title Guaranty, WFG National, First American via Builders Title) | statewide (2-tier county structure for FNTI/Stewart: Omaha/Lincoln-metro counties vs. all others; no metro breakout for settlement fees, none published) | national-brand underwriters only (FNTI, Stewart, WFG, First American via independent agent); no independent title/escrow settlement-fee schedule found despite exhaustive search | **complete (scarce)** — 24 combined query strategies/direct checks yield only 4 premium-only rate manuals; zero settlement/closing/escrow fee dollar figures found anywhere except an identical $25 CPL fee across all 4 underwriters | 2026-07-22 |
 | NV | 0 | unprocessed | |
 | NH | 0 | unprocessed | |
 | ND | 0 | unprocessed | |
@@ -662,3 +662,23 @@ still vary and matter).
   stable range across the final 3 additions, MT meets the contract's saturated criterion.
   Marked MT **complete (saturated)**. Moving to the next unprocessed tier-2 state (NE, next
   alphabetically).
+- 2026-07-22: Started NE from scratch. Confirmed Nebraska is a genuine filed-rate state
+  (Neb. Rev. Stat. §44-1997, premiums filed with and approved by the Department of
+  Insurance) but escrow/settlement/closing charges are explicitly carved out of every
+  underwriter's rates and not separately filed or publicly disclosed (unlike Kansas'
+  K.S.A. 40-1111 or Idaho's IDAPA 18.05.01.022 -- confirmed directly via Neb. Rev. Stat.
+  §44-19,116, which governs escrow fiduciary-account handling but not rate publication).
+  Verified 4 premium-only rate manuals: First National Title Insurance (effective
+  2023-07-31), Stewart Title Guaranty (effective 2023-11-29), WFG National (effective
+  2023-05-01), and First American (a 2019-03-01 rate sheet distributed via Builders
+  Title, an independent Omaha agency that does not publish its own separate fee
+  schedule). All 4 underwriters price an identical $25 Closing Protection Letter fee --
+  the cleanest 4-way cross-underwriter corroboration of a non-premium fee found in this
+  state -- and FNTI/Stewart both use a matching 2-tier county structure (Omaha/Lincoln
+  metro counties vs. all others) that WFG/First American do not replicate. 24 combined
+  query strategies/direct checks (Eastern Title, First Title & Escrow [403], Consumer
+  Title & Escrow, Union Title, Nebraska Title Company/Auburn -- all route to phone
+  quotes or interactive calculators, zero static settlement-fee schedules found) found
+  no further usable sources. With only 4 verified sources despite the exhaustive search,
+  NE meets the contract's scarce criterion. Marked NE **complete (scarce)**. Moving to
+  the next unprocessed tier-2 state (NV, next alphabetically).
