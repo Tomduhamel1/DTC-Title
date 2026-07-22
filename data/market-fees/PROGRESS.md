@@ -64,7 +64,7 @@ still vary and matter).
 | IA | 6 (Iowa Title Guaranty residential + commercial [state guaranty program], Abstract & Title Guaranty Co./Clinton-Maquoketa, Hastings & Gartin Law Group/Des Moines, Abstract Associates of Iowa/Fort Dodge, Abstract & Title Services of Story County/Ames) | 2+ (Des Moines/Polk, Ames/Story, plus Clinton/Jackson and Fort Dodge/Webster counties; Cedar Rapids/Davenport/Iowa City/Sioux City searched but no published pricing found) | state guaranty program (ITG), independent abstract/title companies, closing-attorney firm — Iowa has no private title insurer market at all | **complete (saturated)** — 6 verified sources, mostly genuine settlement/service-fee data (not premium-only, unlike most other states); last 3 additions' component prices fell within the range already on file | 2026-07-22 |
 | KS | 19 (First American x2, Superior Title & Escrow of KC, Ideal Title, Priority Title & Escrow, ServiceLink, Title Clearing & Escrow, Closeline, Realeo Title, Elite Title, Total Title/Westcor, Royal Abstract National, Old Republic, Stewart, Chicago Title, Pegasus National Title, Kansas Secured Title, Secured Title of KC, Guaranteed Title/Oldcastle) | 4+ (KC metro/Johnson-Wyandotte, Wichita/Sedgwick-Butler, Topeka/Shawnee, Lawrence/Douglas, plus rural western counties) | national-brand underwriters (First American, Old Republic, Stewart, Chicago Title), regional underwriter (Westcor), 10+ independents, FNF-affiliated centralized provider (ServiceLink) | **complete (target met)** — 19 verified sources on first pass via KDOI's public rate-filing repository (K.S.A. 40-1111 requires settlement/escrow fees to be filed publicly, not just premiums), exceeding the 10-source hard stop | 2026-07-22 |
 | KY | 2 (Stewart Title Guaranty, WFG National) | statewide (no metro/county breakout published) | national-brand underwriters only (Stewart, WFG); First American's KY manual was located but blocked by an anti-bot CAPTCHA on its only found host; attorney-for-title/docs state (KBA Opinion U-58) which appears to route settlement pricing through private/unpublished attorney arrangements | **complete (scarce)** — 16 query strategies/13 direct provider-site checks yield only 2 usable premium-only rate manuals; zero settlement/closing-fee dollar figures found anywhere except differing CPL fee structures (Stewart $50/$25/$25 lender/buyer/seller vs. WFG flat $50 to any party) | 2026-07-22 |
-| LA | 0 | unprocessed | |
+| LA | 1 (LATISSO rating bureau manual, all member insurers) | statewide (no parish breakout in base rate tables) | rating bureau (LATISSO) -- discovered mid-session to be rating-bureau-uniform like NCTIRB/OTIRB rather than plain insurer-filed; civil-law notary closing system appears to correlate with zero published settlement-fee schedules anywhere | **complete (scarce)** — ~12 query strategies/10 direct provider-site checks yield only 1 usable source (though a rich, near-universal one); zero settlement/closing-fee dollar figures found anywhere except LATISSO's flat $25 Closing Protection Coverage rate | 2026-07-22 |
 | ME | 0 | unprocessed | |
 | MD | 5 (Stewart, WFG National, Ardent Title, TPF Legal, CAL Settlements) | 3 (Cecil County; Montgomery County/DC suburbs; unspecified-metro closing attorney) | national-brand underwriters (Stewart, WFG), independent title/settlement companies (Ardent Title), closing-attorney firms (TPF Legal, CAL Settlements) | **complete (scarce)** — 10+ query strategies/direct checks yield only 5 usable sources; national-brand direct offices (First American, Old Republic, Chicago Title, Fidelity) route to interactive calculators only, no static settlement-fee schedules found | 2026-07-21 |
 | MA | 0 | unprocessed | |
@@ -536,3 +536,23 @@ still vary and matter).
   more) found zero published settlement-fee schedules. With only 2 verified sources despite the
   extensive search, KY meets the contract's scarce criterion. Marked KY **complete (scarce)**.
   Moving to the next unprocessed tier-2 state (LA, next alphabetically).
+- 2026-07-22: Started LA from scratch. Discovered mid-session that Louisiana is actually a
+  rating-bureau-uniform state -- the Louisiana Title Statistical Services Organization, Inc.
+  (LATISSO), authorized under RS 22:1467/RS 22:1409.1, files title insurance rates with the
+  Department of Insurance on behalf of all member insurers (membership voluntary but
+  non-deniable to any properly-licensed insurer), functioning much like NCTIRB (NC) or OTIRB
+  (OH) even though LA wasn't originally grouped with this survey's tier-3 rating-bureau
+  states. Verified the current LATISSO manual (06/01/2026 Edition, recovered via the
+  Read-tool binary-PDF technique after two WebFetch markdown-conversion failures, one on a
+  404'd URL). The manual explicitly excludes title search, examination, closing, and escrow
+  charges from its rates (GP-3) but does price a genuine settlement-adjacent item: Closing
+  Protection Coverage at a flat $25/transaction regardless of party -- simpler than every
+  other state's CPL structure surveyed to date. Louisiana's civil-law notary closing system
+  (an attorney or licensed notary handles the act of sale) appears to correlate strongly with
+  a total absence of published settlement-fee schedules: ~12 query strategies plus 10 direct
+  provider-site checks (Steeg Law [CAPTCHA-blocked, the single most promising unverified
+  lead], Southern Title, Grand Title, Baton Rouge Title, Crescent Title, DSLD Title,
+  louisiana-notary.org [500 error], and more) found zero settlement/escrow/notary-fee dollar
+  figures anywhere. With only 1 verified source despite the extensive search, LA meets the
+  contract's scarce criterion. Marked LA **complete (scarce)**. Moving to the next
+  unprocessed tier-2 state (ME, next alphabetically).

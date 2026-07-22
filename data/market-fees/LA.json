@@ -1,0 +1,24 @@
+[
+  {
+    "provider": "Louisiana Title Statistical Services Organization, Inc. (LATISSO) — rating bureau manual, all member insurers",
+    "sourceUrl": "https://www.stewart.com/-/media/files/stewartdotcom/pdfs/states/louisiana/lamanuaofratesandforms.pdf",
+    "asOf": "(06/01/2026) Edition — effective to orders received on or after June 1, 2026; filed with the Louisiana Department of Insurance (LIRC# Form Filing DEMT-134801757, Rate/Rule Filing DEMT-134802798)",
+    "settlementFee": {
+      "note": "Title insurance premium (and Closing Protection Coverage) only, NOT an escrow/settlement-service fee schedule. GP-3 explicitly excludes title search, examination, closing, and escrow charges from the rate.",
+      "ownersOrLeaseholdOwnerPolicy_liabilityTiered": "Up to $12,000 = $100 flat; $12,001-$50,000 = $5.40/M; $50,001-$100,000 = $4.80/M; $100,001-$500,000 = $4.50/M; $500,001-$1,000,000 = $3.60/M; $1,000,001-$2,000,000 = $3.00/M; $2,000,001-$10,000,000 = $2.70/M; $10,000,001-$15,000,000 = $2.40/M; $15,000,001-$25,000,000 = $2.10/M; $25,000,001-$35,000,000 = $1.80/M; over $35,000,000 = $1.50/M (Rule PR-1).",
+      "homeownersPolicy": "110% of the Owner's Policy premium under PR-1, plus any endorsement premiums (Rule PR-1.1). One-to-four family residential or individual condominium unit only.",
+      "loanPolicy_liabilityTiered": "Up to $12,000 = $100 flat; $12,001-$50,000 = $4.20/M; $50,001-$100,000 = $3.60/M; $100,001-$500,000 = $3.30/M; $500,001-$1,000,000 = $2.70/M; $1,000,001-$2,000,000 = $2.40/M; $2,000,001-$15,000,000 = $2.10/M; $15,000,001-$25,000,000 = $1.80/M; $25,000,001-$35,000,000 = $1.50/M; over $35,000,000 = $1.20/M (Rule PR-2).",
+      "expandedCoverageResidentialLoanPolicy": "110% of the Loan Policy premium under PR-2, plus any endorsement premiums (Rule PR-2.1).",
+      "simultaneousIssueLoanPolicy": "Flat $100 per Loan Policy issued concurrently with an Owner's Policy (or $125 for an Expanded Loan Policy), provided the loan liability does not exceed the owner's policy liability; minimum premium $100 (Rule PR-4).",
+      "reissueCredit_ownersPolicy": "60% credit against the Original Rate up to the amount of insurance of an existing Owner's Policy issued within 10 prior years, minimum premium $100 (Rule PR-4.3).",
+      "substitutionCredit_loanPolicy": "60% credit against the Original Rate up to the unpaid principal balance of an existing loan policy, minimum premium $100 (Rule PR-4.2).",
+      "residentialLimitedCoverageMortgageModificationPolicy": "$0.50 per thousand of the unpaid mortgage balance, minimum premium $125 (Rule PR-5)."
+    },
+    "itemizedFees": {
+      "cpl": "$25 per transaction, flat, regardless of party (Section 3, 'Rate applicable to closing services insurance, on a per transaction basis is $25')",
+      "other": []
+    },
+    "bundlingNotes": "GP-3: 'The rates set forth herein do not include any charge made for title search, title examination, closing, or escrow services performed by the Insurer or any of its attorneys or agents. Similarly, corporate operating expenses and pre-tax profit provisions are excluded. Charges made for such services are in addition to the rates and charges set forth herein.' GP-4 further disclaims that the manual provides no indemnification against improper acts by a person performing escrow or settlement services. A municipal/local premium tax may also apply per parish (referenced in a companion WFG bulletin pattern seen in other states, not itself priced in this manual). LATISSO is Louisiana's private rating bureau under RS 22:1467/RS 22:1409.1 -- membership is voluntary but any properly licensed insurer cannot be denied membership, making this manual materially closer to a single-source-of-truth for the whole market's title premiums than a typical single-underwriter filing, analogous to NCTIRB (NC) or OTIRB (OH).",
+    "transactionContext": "Statewide (no parish/metro breakout in the base rate tables; only the separately-published municipal premium tax schedule varies by parish). Owner's, Leasehold Owner's, Homeowner's, and Loan policies (original, simultaneous issue, reissue/substitution credits, mechanics'/materialmen's lien protection), Closing Protection Coverage, and a full schedule of ALTA/LATISSO endorsement rates (109 distinct endorsements priced). No purchase/refinance settlement-service-fee breakdown anywhere in the manual."
+  }
+]
