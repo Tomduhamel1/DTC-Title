@@ -115,9 +115,11 @@ export default function FeeReportTable({
               <div className="text-[10px] text-gray-400 mt-1.5 leading-snug">
                 {(() => {
                   const band = serviceBandFor(report.state)
-                  return band.basis === 'published'
-                    ? `Typical range from ${band.providers} published ${report.state} fee schedules (July 2026 survey).`
-                    : `Typical range inferred from published fee schedules in 12 surveyed states — providers in ${report.state} do not publish service fees.`
+                  if (band.basis === 'published')
+                    return `Typical range from ${band.providers} published ${report.state} fee schedules (July 2026 survey).`
+                  if (band.basis === 'calculator')
+                    return `Typical range from ${band.providers} ${report.state} providers' own quote calculators (standard scenario, July 2026 survey).`
+                  return 'Typical range estimated from provider fee schedules in 12 surveyed states.'
                 })()}
               </div>
             </div>
