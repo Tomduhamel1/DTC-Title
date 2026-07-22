@@ -84,7 +84,7 @@ still vary and matter).
 | VT | 6 (FNTI, WFG National, Stewart Title Guaranty, Peet Law Group, Green Mountain Title, Vermont Title Search/Property Title of Vermont) | statewide (no metro/county breakout published by any provider; task-brief target metros Burlington/Chittenden, Montpelier, Rutland, Brattleboro each individually searched, none surfaced separate metro pricing) | national-brand underwriters (FNTI, WFG, Stewart), closing-attorney firm (Peet Law Group), independent title-search/abstract vendors (Green Mountain Title, Vermont Title Search) -- confirmed attorney-closing state (like MA/CT) with title-search vendors selling into the attorney pipeline rather than a retail settlement-agent layer | **complete (scarce)** — 32 query strategies/direct checks of every major underwriter, CATIC/VATC, and a dozen+ named attorney/title firms yield 6 sources, but the 3 non-premium sources are 3 structurally incompatible fee models (bundled attorney all-in, hourly search rate, itemized search-product list) so no comparable all-in service-stack range exists to test saturation, matching the IN precedent | 2026-07-22 |
 | WV | 3 (Stewart Title Guaranty, WFG National, First National Title Insurance) | statewide (no metro/county breakout published; task-brief target metros Charleston/Kanawha, Morgantown/Monongalia, Huntington/Cabell, Eastern Panhandle/Berkeley-Jefferson each individually searched, none surfaced separate metro pricing) | national-brand underwriters only (Stewart, WFG, FNTI); WV is an attorney-closing state which appears to route settlement pricing through private/unpublished attorney and independent-title-company arrangements | **complete (scarce)** — 21 query strategies/direct checks of all 5 major national-brand offices plus 6 named WV independents/closing-attorney firms yield only 3 usable premium-only rate manuals; zero settlement/closing/escrow fee dollar figures found anywhere except differing CPL fee structures (Stewart $50/$50/$75 lender/purchaser/seller vs. FNTI $50/$25/$25; WFG publishes no CPL) | 2026-07-22 |
 | WI | 3 (Advocus/ATG, Stewart, First American) | statewide (no metro/county breakout published) | national-brand underwriters only (Advocus, Stewart, First American); no independent title/escrow or attorney settlement-fee schedule found despite exhaustive search | **complete (scarce)** — 10 query strategies/direct checks yield only 3 premium-only rate manuals; zero settlement/closing fee dollar figures found anywhere, matching the AZ/CO/MI/MO/VA market-opacity pattern | 2026-07-21 |
-| WY | 0 | unprocessed | |
+| WY | 3 (Stewart Title Guaranty, Wyoming Title & Escrow/First American, Black Hills Title) | 2 regional (Jackson/Teton-Thayne/Lincoln County via Wyoming Title & Escrow; Newcastle/Weston County via Black Hills Title) plus statewide (Stewart) | national-brand underwriter (Stewart), independent title agent for a national-brand underwriter (Wyoming Title & Escrow for First American), independent title company (Black Hills Title) | **complete (scarce)** — 33+ query strategies/direct checks of all 5 major national-brand offices plus ~12 named WY independents yield only 3 usable premium-only rate schedules; zero settlement/closing/escrow fee dollar figures found anywhere despite WY being a title-company-closing (non-attorney) state | 2026-07-22 |
 
 ## Priority tier 3 (promulgated / rating-bureau — premiums uniform, service fees still researched)
 
@@ -915,3 +915,23 @@ still vary and matter).
   sources despite the extensive search, WV meets the contract's scarce criterion.
   Marked WV **complete (scarce)**. Moving to the next unprocessed tier-2 state (WY,
   next alphabetically).
+- 2026-07-22: Surveyed WY (final tier-2 state). Confirmed WY is filed-rate for title premiums via
+  the WY Division of Insurance's Rate & Form Filings process, but the linked NAIC SERFF search
+  portal 403'd on direct fetch, matching the pattern seen in other states' SERFF portals. Verified
+  3 premium-only rate documents: Stewart Title Guaranty (statewide, 2016 vintage; a newer
+  2025-08-25 filing was confirmed to exist via Virtual Underwriter bulletin WY2025002 but its PDF
+  was unreachable), Wyoming Title & Escrow/First American (Jackson & Thayne, Teton & Lincoln
+  Counties, 2022), and Black Hills Title (Newcastle, Weston County, effective 2025-08-25 -- the
+  same effective date as Stewart's unreachable filing). 33+ query strategies plus direct checks of
+  all 5 major national-brand offices (First American's local office pages confirmed to be
+  JS-rendered SPAs with no static content; WFG appears to have no WY rate manual at all; Old
+  Republic and Chicago Title/Fidelity National route to interactive calculators only) and roughly a
+  dozen named WY independents (Sovereign State Title, Wilcox Abstract & Title, Sheridan County
+  Title, American Title Agency, Eastern Title, TownSquare Title, Northern Title, Flying S Title &
+  Escrow/Title Financial Corporation) found zero settlement/closing/escrow/doc-prep fee dollar
+  figures anywhere -- a genuine market-opacity finding confirmed by Wyoming Title & Escrow's
+  own 20-page Homebuyer's/Home Seller's Handbooks, which name "Escrow Fees" as a real closing
+  line item but publish no dollar amount for it anywhere. Marked WY **complete (scarce)**. **This
+  completes Priority tier 2** -- every remaining filed-rate state (AL, AK, AR, CT, DC, HI, ID, IL, IN,
+  IA, KS, KY, LA, ME, MD, MA, MN, MS, MT, NE, NV, NH, ND, OK, OR, RI, SC, SD, UT, VT, WV, WI,
+  WY) has now been surveyed at least once.

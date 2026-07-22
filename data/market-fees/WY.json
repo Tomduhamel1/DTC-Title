@@ -1,0 +1,65 @@
+[
+  {
+    "provider": "Stewart Title Guaranty Company (statewide)",
+    "sourceUrl": "https://www.stewart.com/-/media/files/stewartdotcom/pdfs/states/wyoming/wyoming_manual_101316_eff_120816.pdf",
+    "asOf": "Last updated 2016-10-13, effective 2016-12-08 (a newer rate filing, effective 2025-08-25 per Virtual Underwriter bulletin WY2025002, was confirmed via bulletin text but the updated PDF itself was not reachable via a working public URL this session)",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/escrow/closing fee schedule. The manual's own Definitions section explicitly excludes 'settlement fees, trustee fees, attorney fees, surveying fees, inspection fees, document fees, closing fees, escrow fees or any other similar types of fees' from the defined 'Charge.' General Provisions likewise state charges 'do not include charges for surveys, escrow closing services, recording fees, or other moneys advanced on behalf of an applicant.'",
+      "basicScheduleOfCharges_sample": "Minimum charge $240 (covers up to $10,000 liability, i.e. per $5,000 liability bracket). Over $10,000 up to $30,000 add $25/$5,000; over $30,000-$50,000 add $20/$5,000; over $50,000-$70,000 add $17.50/$5,000; over $70,000-$100,000 add $15.00/$5,000; over $100,000-$500,000 add $12.50/$5,000. Above $500,000, rate shifts to per-$1,000 increments: $2.00 (to $1M), $1.95 (to $5M), $1.75 (to $10M), $1.50 (to $15M), $1.25 (to $25M), $0.90 thereafter.",
+      "ownersStandardCoverage": "100% of Basic Schedule of Charges",
+      "ownersExtendedCoverage": "Basic Schedule + 40% surcharge (with residential exceptions: no charge to delete standard exceptions on platted/surveyed residential property with no lienable work in prior 150 days; $1.50/thousand if lienable work occurred)",
+      "loanStandardCoverage": "50% of Basic Schedule (residential) / 100% (commercial)",
+      "loanExtendedCoverage": "50% of Basic Schedule (residential) / 100% (commercial), same as standard loan rate for residential",
+      "simultaneousLoanPolicy": "$100 flat when issued with an Owner's Standard policy; 50% of Basic Schedule if Extended",
+      "cancellationCharge": "20% of Basic Schedule before closing; 80% after closing",
+      "abstractRetirementCredit": "$100 credit for surrendering a complete prior abstract",
+      "huDResaleBinderCharge": "70% of Basic Schedule of Charges",
+      "modificationGuarantee": "$150.00, plus $25.00 per continuation/down-date"
+    },
+    "itemizedFees": {
+      "other": [
+        { "name": "Additional chain of title", "amount": "$100 per additional chain (or $50 if previously insured land)" },
+        { "name": "ALTA U.S. Policy datedown endorsement (2nd or after 6 months)", "amount": "$75.00" },
+        { "name": "Foreclosure Guarantee", "amount": "80% of basic charge, $120 minimum" },
+        { "name": "Litigation Guarantee", "amount": "100% of basic charge, $120 minimum" },
+        { "name": "Article 9 Comprehensive Plus Policy (UCC)", "amount": "$500 up to $100,000 of liability, then tiered per-thousand increments to $0.50/thousand over $50M" },
+        { "name": "WY Utilities Available Endorsement", "amount": "$500" }
+      ]
+    },
+    "bundlingNotes": "This is a pure title-premium rate manual; Wyoming's residential closings are handled by title companies (not attorneys), and this manual confirms the WY market convention -- matching most other 'scarce' states surveyed -- of pricing title premium and settlement/escrow/closing services as two entirely separate, unfiled/unpublished matters. A 2025-08-25 rate-filing update was confirmed to exist via Virtual Underwriter bulletin WY2025002 (Wyoming DOI approved a new Stewart rate submission), and its effective date exactly matches independent agent Black Hills Title's own WY rate-sheet vintage below -- but the actual updated Stewart PDF could not be located at a working public URL this session, so the 2016 vintage remains the only verifiable Stewart WY document.",
+    "transactionContext": "Owner's (Standard, Extended, Homeowner's) and Loan (Standard, Extended) policy premium schedules, statewide, no metro/county tiering. No settlement/escrow/closing-service fee breakdown."
+  },
+  {
+    "provider": "Wyoming Title & Escrow (WTE, a Mother Lode Holding Company subsidiary; authorized agent for First American Title; offices in Jackson [Teton County] & Thayne [Lincoln County])",
+    "sourceUrl": "https://www.wyomingtitle.com/wp-content/uploads/2022/05/Partial-Rate-Schedule-FirstAM-2022.pdf",
+    "asOf": "PDF created 2022-05-13 (Adobe InDesign metadata); no separate effective-date line printed on the document itself",
+    "settlementFee": {
+      "note": "Title insurance premium only (Standard Owner's and Extended Lender's policy), NOT a settlement/escrow/closing fee schedule -- explicitly labeled 'PARTIAL Rate Schedule,' and the document's own footer states 'This is not a complete Schedule of Fees ... does not include recording fees, mortgage registration tax or conservation fee.' No dollar figures for closing/escrow/doc-prep/wire/courier/notary services are published anywhere on the document.",
+      "standardOwnerPolicy_sample": "$100,000 -> $590; $200,000 -> $840; $300,000 -> $1,090; $400,000 -> $1,340; $500,000 -> $1,590; $1,000,000 -> $2,590. Full $5,000-tier table from $100,000 to $25,000,000 recorded in the source PDF.",
+      "extendedLenderPolicy_sample": "$100,000 -> $325; $200,000 -> $462; $300,000 -> $600; $400,000 -> $737; $500,000 -> $875; $1,000,000 -> $1,425.",
+      "aboveTwentyFiveMillion": "Call for quote"
+    },
+    "itemizedFees": {
+      "other": []
+    },
+    "bundlingNotes": "WTE separately publishes a Home Seller's Handbook and Homebuyer's Handbook (both fetched this session) that name 'Escrow Fees' and 'Title Insurance Premium' as distinct, separately-charged line items on a Wyoming closing statement -- confirming the same premium/settlement-fee split documented industry-wide -- but neither handbook contains a single dollar figure for any fee; both are purely descriptive glossaries and process-flow diagrams. WTE's own site states actual rate quotes require its login-gated 'WTE Companion' portal (companion.wyomingtitle.com), not published publicly. This Partial Rate Schedule PDF is the only static, dollar-denominated WTE/First American document located this session, and it is premium-only.",
+    "transactionContext": "Owner's Standard and Lender's Extended policy premiums (simultaneous-issue structure implied by the paired columns), serving Teton County (Jackson) and Lincoln County (Thayne/Star Valley) -- Wyoming's western/Jackson Hole resort market, a distinct regional pricing tier from the rest of the state."
+  },
+  {
+    "provider": "Black Hills Title, Inc. (independent; Newcastle office, Weston County -- northeastern Wyoming)",
+    "sourceUrl": "https://blackhillstitle.com/wp-content/uploads/2026/04/WY-Title-Insurance-Rates-effective-8_25_2025.pdf",
+    "asOf": "Effective 2025-08-25",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/escrow/closing fee schedule. Black Hills Title is the same independent title/abstract company (headquartered in Spearfish, SD) verified in the prior South Dakota survey session as publishing its own filed premium rates for the northern Black Hills counties; this session located its separate, dedicated Wyoming rate table for its Newcastle, WY (Weston County) office.",
+      "standardOwnersAgOrCommercialLendersPolicy_sample": "$100,000 -> $614; $200,000 -> $884; $300,000 -> $1,154; $400,000 -> $1,424; $500,000 -> $1,694; $1,000,000 -> $2,794.",
+      "standardLendersOrExtSimultaneousLendersPolicies_sample": "$100,000 -> $307; $200,000 -> $442; $300,000 -> $577; $400,000 -> $712; $500,000 -> $847; $1,000,000 -> $1,397.",
+      "standardSimultaneousLendersPolicy": "Flat $100 at every liability tier from $5,000 to $1,000,000",
+      "aboveOneMillion": "Call for quote"
+    },
+    "itemizedFees": {
+      "other": []
+    },
+    "bundlingNotes": "Structurally identical rate-table format to Black Hills Title's South Dakota rate sheet (same three-column Owner's/Extended-Lender/Simultaneous-Lender layout), confirming the company applies a consistent pricing methodology across its two-state (SD/WY) footprint, though the WY dollar figures are a distinct, separately filed table (not identical to the SD numbers). No settlement, escrow, closing, doc-prep, courier, wire, or notary fee figures are published anywhere on the document or the source webpage.",
+    "transactionContext": "Owner's/Ag/Commercial Lenders, Extended/Simultaneous Lenders, and flat Simultaneous Lenders policy premiums for Weston County (Newcastle), Wyoming -- the only verified WY provider found this session outside the Jackson Hole/Teton-Lincoln corridor, giving genuine east-west regional spread even though both sources are premium-only."
+  }
+]
