@@ -1,0 +1,98 @@
+[
+  {
+    "provider": "First American Title Insurance Company",
+    "sourceUrl": "https://docs.nv.gov/doi/title_rates/documents/EscrowRateManual000251.pdf",
+    "asOf": "Effective September 20, 2025",
+    "settlementFee": "Sale/purchase Basic Escrow Fee (Area A: Clark, Lincoln, Nye Counties): $760 up to $100,000, scaling to $1,510 + $6.25/$10,000 above $600,000. Area B (all other counties): $880 up to $100,000, scaling to $1,928 + $8/$10,000 above $1,000,000. Refinance/loan-only escrow: $375 (residential), $500 (commercial). Resale/refinance one-time-transaction fee (Basic Escrow Services): $400.",
+    "itemizedFees": {
+      "docPrep": "$50/document beyond the first included document; note/deed of trust packages $100-$400 depending on package",
+      "processing": null,
+      "courier": "$20 per overnight delivery beyond the included 2 deliveries (Basic Escrow Services)",
+      "wire": "$25 per wire beyond the included 2 wires (Basic Escrow Services)",
+      "edoc": "included in Basic Escrow Services (electronic document download and printing)",
+      "eRecording": null,
+      "notarySigning": "Included in Basic Escrow Services when signing occurs in-office during business hours; otherwise actual charge",
+      "searchExam": null,
+      "cpl": "$25 (Title Insurance Rate Schedule, Section B.5(c))",
+      "binder": "10% of Base Rate A additional, for a binder to insure resale",
+      "other": [
+        "Short Sale add-on: $650",
+        "REO transaction add-on: $350",
+        "Manufactured Home Escrow add-on: $650",
+        "Military discount: $50 less than standard fee",
+        "Senior citizen (65+) discount: $50 less than standard fee",
+        "First-time homebuyer discount (Area B only): 85% of the buyer's portion of the Basic Escrow Fee",
+        "Investment property discount: 75% of the investor's portion of the Basic Escrow Fee",
+        "New Home/Subdivision builder escrow fee schedule (Appendix B): $760 at $150,000 transaction value, scaling to $1,375 at $3,000,000+",
+        "Simultaneous concurrent resale loan escrow service: $60",
+        "Transfer escrow services (estate planning, no consideration): $225",
+        "Timeshare rental escrow: $100-$300+ tiered by transaction amount",
+        "FinCEN Real Estate Reporting Fee: $125"
+      ]
+    },
+    "bundlingNotes": "This is a genuine, dollar-denominated escrow/settlement fee schedule (not premium-only), filed with and published by the Nevada Division of Insurance. Basic Escrow Services bundles document prep for 1 deed, e-doc download/printing, 2 wire transfers, 2 overnight deliveries, preliminary report/commitment ordering, closing statement/instructions prep, and in-office notary/signing -- all other services (sub-escrow, interest-bearing account setup, additional documents, third-party services, recording/transfer-tax charges) are itemized separately in a Miscellaneous Services table. Explicitly for use by First American and any title agency that elects to adopt these fees.",
+    "transactionContext": "Purchase (sale escrow), refinance/loan-only (residential and commercial), simultaneous concurrent loan, new-home/subdivision builder sales, timeshare, and estate-planning transfers -- statewide with a 2-tier county area system (Area A: Clark/Lincoln/Nye; Area B: all other counties)."
+  },
+  {
+    "provider": "First American Title Insurance Company",
+    "sourceUrl": "https://docs.nv.gov/doi/title_rates/documents/TitleRateManual000251.pdf",
+    "asOf": "Effective May 10, 2026",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "$25 per party",
+      "binder": null,
+      "other": [
+        "Base Rate A: $536 up to $50,000, scaling per-$10,000 increments up to Section H (Major Projects) for amounts above $5,000,000",
+        "Base Rate B (New Home/Subdivision): $430 at $150,000 transaction value, scaling to $5,800 at $5,000,000",
+        "Owner's Policy: Standard 100% / Extended 140% / EAGLE (Homeowner's) 110% of Base Rate A",
+        "Loan Policy: Standard 80% / Extended 90% of Base Rate A, minimum $350-$390",
+        "Refinance rate: 45-55% of Base Rate A depending on coverage type, minimum $350",
+        "Short Term Rate (owner's policy reissued within 36 months): 80% of scheduled rate",
+        "Major Projects (aggregate $5M+): Owner's/Lessee's $0.50-$1.15 per $1,000 by tier; Lenders $0.50-$0.95 per $1,000 by tier",
+        "Trustee's Sale Guarantee: statewide REO rate table $318-$622 up to $100,000, plus per-$5,000 increments above",
+        "UCC EAGLE 9 insurance: $1.57/$1,000 minimum $500, scaling down to $0.35/$1,000 above $300,000,000",
+        "Extensive endorsement fee schedule (Appendix C), e.g. Street Assessments $100, Zoning 15-25%, Mechanic's Liens 10-20%"
+      ]
+    },
+    "bundlingNotes": "This is First American's companion title insurance premium schedule, also filed with and published by the Nevada Division of Insurance -- the only state found in this survey where the regulator publicly hosts BOTH a title premium manual and a genuine escrow fee schedule as separate documents from the same provider. Rate does not include escrow, settlement, or closing services (those are priced separately in the companion Escrow Rate Manual).",
+    "transactionContext": "Owner's policy (purchase, standard/extended/EAGLE), loan policy (purchase, refinance, multiple loans, centralized/bulk lender programs), major commercial projects, UCC insurance, REO/trustee's sale guarantees -- premium calculation only."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://www.virtualunderwriter.com/-/media/files/virtualunderwriter/imported/pdfs/nevada-stg-schedule-of-charges-final-eff-04282025.pdf",
+    "asOf": "Last Updated February 25, 2025; Effective April 28, 2025",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "$25 for lender, buyer/borrower, and seller each",
+      "binder": null,
+      "other": [
+        "3-zone county rate structure: Zone 1 (Elko/White Pine/Eureka/Lander) $536 minimum at $50,000; Zone 2 (Clark/Lincoln/Nye) $536 minimum at $50,000 but steeper marginal tiers; Zone 3 (Washoe/Humboldt/Pershing/Churchill/Mineral/Esmeralda/Douglas/Carson City/Lyon/Storey) $638 minimum at $50,000",
+        "Standard Owner's/Extended Loan, Extended Owner's, Standard Loan, Short Term Rate (3 yrs or less), and Simultaneous Loan w/Owner's columns fully tabulated $1 to $2,000,000 in each zone",
+        "Enhanced (Homeowner's/Expanded Loan) policies: applicable charge plus 10%",
+        "Refinance charge (residential): 55% of Basic Charge",
+        "Reissue of Owner's Insurance: 50% of Basic Charge (no transaction) or 35% (to include a loan, 24-month window)",
+        "Subdivision/Development rate: $200 minimum, scaling per-thousand tiers down to $1.00 above $20,000,000; 55-70% development discount for 10+ unit developments",
+        "Investor Rate (post-foreclosure resale): 70% of Basic Charge, multi-property investors only",
+        "Extensive endorsement fee schedule (ALTA + CLTA + Stewart-specific), most $25-$100 or 10-30% of basic charge"
+      ]
+    },
+    "bundlingNotes": "Premium-only rate manual; no escrow, closing, or settlement service dollar figures anywhere in the document. Explicit 3-zone county structure with a modest premium differential (Zone 3 rural/Washoe counties price ~9-19% higher than Zone 1/2 at the entry tier despite Washoe being a major metro county -- the inverse of the usual urban-premium pattern seen in most other states).",
+    "transactionContext": "Owner's policy (purchase), loan policy (purchase, refinance), simultaneous issue, reissue, subdivision/development, commercial leasehold, planned major projects -- premium calculation only."
+  }
+]

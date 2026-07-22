@@ -72,7 +72,7 @@ still vary and matter).
 | MS | 2 (Stewart Title Guaranty, WFG National) | statewide (no metro/county breakout published) | national-brand underwriters only (Stewart, WFG); MS premiums are unregulated/insurer-filed-but-not-approved, closings handled by a mix of attorneys and title companies (neither exclusively required) | **complete (scarce)** — 27 combined query strategies/direct checks yield only 2 usable premium-only rate manuals; zero settlement/closing/escrow fee dollar figures found anywhere except identical $50 CPL fees from both underwriters | 2026-07-22 |
 | MT | 6 (Stewart Title Guaranty, First National Title Insurance, WFG National, First Montana Title, Old Republic/Pioneer Title Co, Montana Title & Escrow) | statewide (premium manuals); Big Sky/Bozeman/Livingston offices for Montana Title & Escrow | national-brand underwriters (Stewart, FNTI, WFG, Old Republic), independent title/escrow companies (First Montana Title, Montana Title & Escrow) | **complete (saturated)** — 6 verified sources; last 3 additions (First Montana Title, Old Republic, Montana Title & Escrow) kept the observed $800-$1,600 escrow/settlement range stable | 2026-07-22 |
 | NE | 4 (First National Title Insurance, Stewart Title Guaranty, WFG National, First American via Builders Title) | statewide (2-tier county structure for FNTI/Stewart: Omaha/Lincoln-metro counties vs. all others; no metro breakout for settlement fees, none published) | national-brand underwriters only (FNTI, Stewart, WFG, First American via independent agent); no independent title/escrow settlement-fee schedule found despite exhaustive search | **complete (scarce)** — 24 combined query strategies/direct checks yield only 4 premium-only rate manuals; zero settlement/closing/escrow fee dollar figures found anywhere except an identical $25 CPL fee across all 4 underwriters | 2026-07-22 |
-| NV | 0 | unprocessed | |
+| NV | 2 providers / 3 documents (First American [escrow schedule + title rate manual, both regulator-published], Stewart Title Guaranty) | 2 county-area systems (First American Area A: Clark/Lincoln/Nye vs. Area B: all others; Stewart 3-zone: Elko/White Pine/Eureka/Lander, Clark/Lincoln/Nye, Washoe+rural) | national-brand underwriters only (First American, Stewart); WFG/Old Republic/Chicago Title/Fidelity all route to interactive calculators, no static NV rate manual found | **complete (scarce)** — 19 query strategies/direct checks yield only 2 providers, but First American's regulator-published Escrow Rate Manual is a genuine dollar-denominated settlement-fee source (rare, high-quality find) | 2026-07-22 |
 | NH | 0 | unprocessed | |
 | ND | 0 | unprocessed | |
 | OK | 0 | unprocessed | |
@@ -682,3 +682,27 @@ still vary and matter).
   no further usable sources. With only 4 verified sources despite the exhaustive search,
   NE meets the contract's scarce criterion. Marked NE **complete (scarce)**. Moving to
   the next unprocessed tier-2 state (NV, next alphabetically).
+- 2026-07-22: Started NV from scratch. Discovered Nevada's Division of Insurance publicly
+  hosts, at the same docs.nv.gov/doi/title_rates/documents/ path and document number
+  (000251), BOTH a title insurance premium manual AND a separate, genuine, dollar-
+  denominated Schedule of Escrow Fees from First American -- the first state in this
+  survey where a regulator publishes an actual settlement-fee schedule alongside the
+  premium schedule (matching the KS/ID pattern of publicly-filed escrow rates, though
+  narrower in scope -- only First American's filing was found, not a multi-agency
+  compilation). Verified First American's escrow schedule (effective 2025-09-20: Area A
+  [Clark/Lincoln/Nye] $760-$1,928 by transaction tier, Area B [all other counties]
+  $880-$1,928+, refinance $375 residential/$500 commercial, plus an unusually extensive
+  discount taxonomy -- military, senior citizen, first-time-buyer, investor, short-sale/
+  REO/manufactured-home add-ons) and companion Title Rate Manual (effective 2026-05-10),
+  plus Stewart Title Guaranty's premium-only manual (effective 2025-04-28, a distinctive
+  3-zone county structure where the rural Zone 3 prices ~9-19% higher than the Las Vegas/
+  Clark County zone -- the inverse of the usual urban-premium pattern). 19 query
+  strategies/direct checks (WFG's actual current NV rate manual not indexed, only a
+  superseded 2013 bulletin notice with no rate figures; Old Republic/Chicago Title/
+  Fidelity National all route to interactive calculators; Vanguard Research & Title
+  Services 403-blocked; Equity Title Company of Nevada interactive-calculator-only) found
+  no further usable sources. With only 2 providers verified, NV meets the contract's
+  scarce criterion on provider count, though First American's escrow schedule is a
+  notably higher-quality find than the typical scarce-state premium-only pattern. Marked
+  NV **complete (scarce)**. Moving to the next unprocessed tier-2 state (NH, next
+  alphabetically).
