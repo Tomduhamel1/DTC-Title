@@ -1,0 +1,62 @@
+[
+  {
+    "provider": "Delaware Title Insurance Rating Bureau (DTIRB) — Rating Manual (REGULATORY/RATING-BUREAU-UNIFORM, not provider-set)",
+    "sourceUrl": "https://www.virtualunderwriter.com/-/media/files/virtualunderwriter/imported/pdfs/dtirb-rate-manual-final-approved-04-01-2025.pdf (fetched and machine-read this session via PDF stream decompression + content-stream text-token extraction after WebFetch's native PDF parsing failed on the raw binary; a Stewart-hosted courtesy copy of the same document -- go.stewart.com/rs/067-YWO-436/images/DTIRB%20MANUAL%20-%20FINAL%20APPROVED%20(04-01-2023).pdf -- also surfaced but is the superseded 04/01/2023 vintage)",
+    "asOf": "Approved by the Delaware Insurance Department, effective as amended through 04/01/2025 -- current vintage as of retrieval 2026-07-22, no newer revision located",
+    "settlementFee": {
+      "note": "CENTRAL STRUCTURAL FINDING: DTIRB's Rating Manual is, like Ohio's OTIRB, a 'no carve-out needed' unregulated-settlement-fee state. Section 1.5 defines 'Rate(s)' as being 'for title insurance premiums related to coverage in policies and endorsements, and do not include charges for searches, abstracts, attorney's fees, escrow or closing services or other services charged by attorneys, abstractors, etc.' Section 2.1 restates this: 'The Rates herein quoted are for title insurance premium only and do not include charges for searches, abstracts, Commitments, attorney's fees, or settlement/closing fees. Nothing contained herein shall preclude either Insurer or Agent from imposing charges ancillary to the issuance of a title insurance policy.' This is the exact unregulated territory the task brief targeted -- settlement/closing/escrow/attorney fees are fully market-set in Delaware, for every provider type, with no promulgated settlement-fee number comparable to NJ's NJLTIRB Article 6. DTIRB's 16 current members (as of 04/01/2025) include all five national underwriters named in the task brief -- Chicago Title, Fidelity National Title, First American Title, Old Republic National Title, and Stewart Title Guaranty -- plus WFG National Title, Commonwealth Land Title, Conestoga Title, Doma Title, First National Title, Investors Title, AmTrust Title, Agents National Title, National Title Insurance of New York, The Security Title Guarantee Corporation of Baltimore, and Title Resources Guaranty.",
+      "ownerPolicyRate": "Minimum Rate $146.00. Per thousand of liability: up to $100,000 = $5.15; over $100,000 up to $1,000,000 add $4.40; over $1,000,000 up to $5,000,000 add $3.65; over $5,000,000 up to $10,000,000 add $2.50; over $10,000,000 up to $15,000,000 add $2.20; over $15,000,000 add $1.85 (Section 3.2)",
+      "loanPolicyRate": "Minimum Rate $146.00. Per thousand of liability: up to $100,000 = $3.65; over $100,000 up to $1,000,000 add $2.90; over $1,000,000 up to $5,000,000 add $2.50; over $5,000,000 up to $10,000,000 add $2.20; over $10,000,000 up to $15,000,000 add $1.85; over $15,000,000 add $1.45 (Section 3.6)",
+      "enhancedCoverageHomeownersPolicy": "Owner's Policy Rate + additional 20% (Section 3.9.A)",
+      "simultaneousIssueSurcharge": "$25.00 simultaneous-issue rate when a Homeowner's/Owner's Policy and an Expanded Coverage Loan Policy are issued simultaneously on the same property (Section 3.12)",
+      "closingProtectionLetter": "$125.00 per transaction, regardless of the number of letters issued for a single transaction (single-transaction CPL); remitted entirely to the Insurer, not the Agent or Approved Attorney (Section 6.1)"
+    },
+    "itemizedFees": {
+      "docPrep": "NOT regulated by the Manual -- Sections 1.5 and 2.1 explicitly exclude attorney's fees and settlement/closing charges from the Rate; no DTIRB-set figure",
+      "processing": null,
+      "courier": "NOT regulated by the Manual; no DTIRB-set figure",
+      "wire": "NOT regulated by the Manual; no DTIRB-set figure",
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Explicitly excluded from the Rate by Section 1.5 ('do not include charges for searches, abstracts, attorney's fees, escrow or closing services') -- title search/examination fees in Delaware are typically the closing attorney's or title agent's own charge, not DTIRB-rated",
+      "cpl": "$125.00 per transaction, single-transaction letter, remitted entirely to the Insurer (Section 6.1) -- see settlementFee.closingProtectionLetter above",
+      "binder": null,
+      "other": [
+        { "name": "Extension/Modification of Insured Mortgage (illustrative worked example)", "amount": "Loan Policy Rate applied on a percentage-of-prior-liability basis per Section 3.11 (e.g., $90,000 unpaid balance extended with $125,000 new liability computed to $273.25 in the Manual's own example)" }
+      ]
+    },
+    "bundlingNotes": "DTIRB's Sections 1.5 and 2.1 are the most direct 'premium-only' unregulated-settlement-fee language found in this survey outside of Ohio's GP-4 -- Delaware's rating bureau declares up front that searches, abstracts, attorney's fees, escrow, and closing/settlement charges are never part of the regulated premium for any provider type (Insurer or Agent). Because Delaware additionally requires a Delaware-licensed attorney to conduct every residential closing and disburse funds (an attorney-closing-state custom distinct from DTIRB regulation itself, confirmed via multiple independent sources -- see DE.md), the entire settlement/service-fee stack the task brief targeted is priced by whichever attorney or title/settlement agency handles the file, not by the Manual. The one closing-adjacent item DTIRB does price is the Closing Protection Letter at a flat $125.00/transaction (Section 6.1), remitted entirely to the Insurer.",
+    "transactionContext": "Applies uniformly statewide (New Castle, Kent, and Sussex Counties alike) to all DTIRB member insurers' and agents' Owner's and Loan policy premiums; no purchase-vs-refinance distinction in the base rate."
+  },
+  {
+    "provider": "Law Office of L. Echevarría (lem.associates) — Delaware closing/settlement attorney",
+    "sourceUrl": "https://lem.associates/faqs",
+    "asOf": "Retrieved 2026-07-22; no explicit effective date stated on the page (current published estimate range)",
+    "settlementFee": {
+      "attorneyAndSettlementBundle_estimateRange": "$1,400.00-$1,600.00, described on the firm's own FAQ page as covering 'title examination, attorney review, settlement coordination, administrative services, and transaction coordination' in one bundled estimate -- the firm explicitly states 'there is no one-size-fits-all formula' and directs prospective clients to its online estimate generator for a transaction-specific figure",
+      "initialConsultationFee": "$300.00, applied toward the total legal/settlement fee if the client proceeds to engagement"
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Bundled into the $1,400-$1,600 estimate range as 'title examination' -- not broken out as a separate line",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        { "name": "Deed and mortgage recording (state/county fee, pass-through, not the firm's own charge)", "amount": "$58.00-$109.00" },
+        { "name": "Home appraisal (third-party, referenced for context, not the firm's charge)", "amount": "$400.00-$800.00" },
+        { "name": "Survey (third-party, referenced for context)", "amount": "$625.00-$1,200.00" },
+        { "name": "Home inspection (third-party, referenced for context)", "amount": "$500.00-$1,000.00" },
+        { "name": "Credit report (third-party, referenced for context)", "amount": "approximately $30.00" }
+      ]
+    },
+    "bundlingNotes": "This is the single genuine provider-published, dollar-denominated Delaware settlement/attorney-fee figure located this session. It illustrates Delaware's attorney-closing custom directly: because DTIRB's own Manual excludes attorney's fees and settlement/closing charges from the regulated premium (see the DTIRB entry above), and Delaware law requires a licensed Delaware attorney to conduct the settlement and disburse funds, the closing-attorney's bundled fee IS the settlement-fee market signal in Delaware, rather than a separate title-company line item layered on top of an independent attorney fee (contrast NJ, where both a regulated title-company settlement charge and an additive, unregulated attorney fee exist side by side). The $1,400-$1,600 range bundles title exam, attorney review, settlement coordination, admin, and transaction coordination into one number rather than itemizing doc prep/wire/courier/notary separately, consistent with the market-opacity pattern (bundled rather than itemized pricing) observed at attorney-run firms in other states surveyed (e.g., NJ's Makarov and Y. Levin flat fees).",
+    "transactionContext": "Residential real estate closings; firm explicitly serves Kent County and Sussex County, Delaware (also offers virtual/remote handling of out-of-area files); no New Castle County-specific coverage stated on this page."
+  }
+]
