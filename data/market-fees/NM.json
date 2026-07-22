@@ -1,0 +1,168 @@
+[
+  {
+    "provider": "New Mexico Office of Superintendent of Insurance (OSI) — Table of New Mexico Promulgated Title Insurance Premiums and Charges, adopted June 27, 2025 (REGULATORY/PROMULGATED, not provider-set)",
+    "sourceUrl": "https://www.osi.state.nm.us/wp-content/uploads/2025/09/Revised-Title-Ins-Rate-Table-Updated-9.30.2025.pdf (fetched and machine-read this session via PDF text extraction), cross-verified against https://www.osi.state.nm.us/wp-content/uploads/2025/09/2024-Promulgated-Title-Insurance-Forms-Updated-09-30-2025.pdf (NM Form 49 regulatory-text excerpt) and two independent provider restatements of the same underlying premium table (see WFG and Centric Title entries below)",
+    "asOf": "Adopted 2025-06-27; still the controlling promulgated rate as of this session (2026-07-22)",
+    "settlementFee": {
+      "note": "TITLE INSURANCE PREMIUMS in New Mexico are set by the New Mexico Title Insurance Law and promulgated by the OSI, uniform across every title insurer/agent in the state at a given liability amount. This is not a provider-set price and is included here for regulatory context only. NM Form 49 (in OSI's own promulgated-forms packet) states verbatim: 'New Mexico title insurance premium rates are set every other year or approved by the New Mexico Superintendent of Insurance... The Superintendent of Insurance does not regulate other title company charges' -- i.e., OSI itself confirms that settlement/escrow/closing fees are NOT part of the promulgated schedule and are left to the market, which is the segment this survey otherwise focuses on for NM.",
+      "ownerAndLoanPremium_representativeTiers": "Original Owner's Policy / Original Loan Policy premiums cross-verified identical across the OSI table, WFG's 2025 rate card, and Centric Title's 2022 rate card: $100,000 -> $707/$636; $200,000 -> $1,127/$1,014; $300,000 -> $1,547/$1,392; $400,000 -> $1,967/$1,770; $500,000 -> $2,387/$2,148; $600,000 -> $2,716/$2,444; $700,000 -> $3,045/$2,741; $800,000 -> $3,374/$3,037; $900,000 -> $3,703/$3,333; $1,000,000 -> $4,032/$3,629 (owner/loan)",
+      "highLiabilityPremiumBrackets": "To $50,000 = $440; $50,000-$100,000 = $5.34/thousand; $100,000-$500,000 = $4.20/thousand; $500,000-$2,000,000 = $3.29/thousand; $2,000,000-$5,000,000 = $2.65/thousand; $5,000,000-$10,000,000 = $2.20/thousand; $10,000,000-$25,000,000 = $2.14/thousand; $25,000,000-$50,000,000 = $1.90/thousand; over $50,000,000 = $1.57/thousand",
+      "closingProtectionLetter": "No charge (both single-transaction and multiple-transaction CPLs are promulgated at $0)",
+      "cancellationFee": "'Reasonable and appropriate' (not a fixed dollar figure; promulgated table leaves this to case-by-case determination)",
+      "additionalChainOfTitleCharge": "$50",
+      "unusualComplexityCharge": "15% surcharge",
+      "abstractRetirementCredit": "25% credit, up to $100",
+      "endorsementFeesRange": "Approximately $25-$250 per endorsement across roughly 150 listed endorsement/service transaction codes (full itemized table in the source PDF)"
+    },
+    "itemizedFees": {
+      "cpl": "$0 (promulgated, no charge -- see settlementFee.closingProtectionLetter above)",
+      "other": [
+        { "name": "Full itemized endorsement/transaction-code table (~150 codes)", "amount": "See source PDF; representative range $25-$250 per endorsement, plus the surcharge/credit items listed in settlementFee above" }
+      ]
+    },
+    "bundlingNotes": "NM is a promulgated-rate state for title insurance PREMIUMS ONLY: the premium is fixed by the NM Title Insurance Law / OSI at a given liability amount and effective date, cross-verified this session against two independently-sourced provider rate cards (WFG National Title's 2025 card and Centric Title & Escrow's 2022 card) that are numerically IDENTICAL to each other and to the OSI table -- meaning the promulgated rate has not changed between at least 2022 and 2025. A third, older (2012-vintage) Fidelity National Title rate table shows meaningfully HIGHER premiums at every liability tier (e.g., $100,000 -> $831 owner's / $748 90%-loan, vs. $707/$636 in the 2022-2025 tables), which is evidence the promulgated rate was reduced sometime between 2012 and 2022 and then held flat through 2025. Because the premium itself carries no market signal, the settlement/closing/escrow fee entries below (documented separately by provider) are where NM title companies actually compete on price -- OSI's own regulatory text (NM Form 49) explicitly disclaims authority over those charges.",
+    "transactionContext": "Applies uniformly to Owner's and Loan title insurance premiums statewide, all metros, all provider types (national-brand underwriters and independent agents alike file/use the same promulgated table). Premium depends only on policy liability/face amount, not purchase-vs-refinance transaction type."
+  },
+  {
+    "provider": "WFG National Title Insurance Company — 2025 Schedule of New Mexico Basic Premium Rates for Title Insurance (issuing underwriter; statewide)",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/new-mexico/rates/2025%20Rate%20Card%20%20FINAL.pdf (fetched and machine-read this session via PDF text extraction after an initial WebFetch binary-decode failure)",
+    "asOf": "Effective 2025-07-01",
+    "settlementFee": {
+      "note": "PREMIUM-ONLY rate card; WFG publishes no settlement/escrow/closing fee figures on this document. Provided here as the second independent cross-verification of the OSI promulgated premium table (see the regulatory entry above for the full comparison)."
+    },
+    "itemizedFees": {
+      "other": [
+        { "name": "Original Owner's / Original Loan Policy premium table", "amount": "Numerically identical to the OSI table and to Centric Title's 2022 rate card at every tier tested ($100,000 through $1,000,000+); see regulatory entry above for representative figures" },
+        { "name": "High Liability Premium brackets", "amount": "Identical bracket structure to the OSI table (see regulatory entry above)" }
+      ]
+    },
+    "bundlingNotes": "This is a premium-only issuing-underwriter rate card with no settlement/escrow/closing fee content -- used solely as cross-verification evidence that the OSI-promulgated premium table is unchanged as of mid-2025 (see regulatory entry).",
+    "transactionContext": "Statewide New Mexico; no metro-specific breakout; applies to Owner's and Loan policies, purchase and refinance alike (premium depends only on liability amount)."
+  },
+  {
+    "provider": "Centric Title & Escrow, LLC (independent, Albuquerque + Rio Rancho, NM -- Bernalillo/Sandoval County metro)",
+    "sourceUrl": "https://centrictitle.com/wp-content/uploads/2023/03/Escrow-Fees-Rate-Sheet-2023.pdf (settlement/escrow fee schedule, fetched and machine-read this session via PDF text extraction) and Centric's own 'New Mexico Schedule of Rates' issuing-agent premium card, effective 2022-07-01 (fetched and machine-read this session via the same recovery technique)",
+    "asOf": "Escrow fee schedule updated 2023-03-10; premium rate card effective 2022-07-01",
+    "settlementFee": {
+      "closingSettlementFee_formula": "Base $595 + $1.00 per thousand of the sales price + New Mexico gross receipts tax",
+      "titleBinderCommitment": "$100",
+      "mortgageeTitlePolicy": "$225"
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": "FedEx: Seller $13 / Buyer $17 (plus gross receipts tax)",
+      "wire": "Not charged by Centric Title & Escrow (explicitly listed as a fee 'that may be charged by title company' but 'CTE does not charge these fees')",
+      "edoc": "Not charged by Centric Title & Escrow (same explicit no-charge note as wire, above)",
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Included in the closing/settlement fee formula; no separate title search/exam line published",
+      "cpl": "Not applicable/priced separately (see NM promulgated $0 CPL, regulatory entry above)",
+      "binder": "Title Binder/Commitment: $100",
+      "other": [
+        { "name": "Credit Report", "amount": "$60-$65" },
+        { "name": "Tax Service Fee", "amount": "$85" },
+        { "name": "Appraisal Fee", "amount": "$525" },
+        { "name": "Flood Certification Fee", "amount": "$25" },
+        { "name": "Special Assessment Search Fee / Prorata Charge", "amount": "$50" },
+        { "name": "Seller's Recording Fees", "amount": "$30 (plus gross receipts tax)" },
+        { "name": "Buyer's Recording Fees", "amount": "$60 (plus gross receipts tax)" },
+        { "name": "Survey", "amount": "$225" },
+        { "name": "Termite Inspection", "amount": "$90" },
+        { "name": "Home Warranty", "amount": "$399" },
+        { "name": "Home Inspection", "amount": "$350" },
+        { "name": "Radon Test", "amount": "$130" },
+        { "name": "Septic Inspection", "amount": "$250" },
+        { "name": "Final Water Bill", "amount": "$150" },
+        { "name": "Escrow Company Setup Fee (seller-financed transactions)", "amount": "$25 (seller) / $25 (buyer)" },
+        { "name": "Attorney Fees (seller-financed transactions)", "amount": "$120 (seller) / $120 (buyer)" },
+        { "name": "Tax transfer affidavit", "amount": "Not charged by Centric Title & Escrow (explicit no-charge note)" },
+        { "name": "Email fee", "amount": "Not charged by Centric Title & Escrow (explicit no-charge note)" }
+      ]
+    },
+    "bundlingNotes": "This is the only genuine, non-loan-servicing real-estate settlement-fee schedule verified in this NM survey. Explicitly itemized rather than a single flat number, with a formula-based core closing/settlement fee (base $595 + $1/thousand of sales price + gross receipts tax) plus roughly 20 separately priced ancillary items. Notably, CTE's own published page explicitly states it does NOT charge for e-doc, email, wire transfer, or tax transfer affidavit -- items that Centric flags as 'misc. fees that may be charged by title company,' i.e., an implicit acknowledgment that other NM providers DO charge separately for these items even though CTE does not. Centric's separately-published 2022 issuing-agent premium card is numerically identical to WFG's 2025 card and the OSI table, providing the second of two independent cross-verifications of the unchanged 2022-2025 promulgated premium (see regulatory entry above).",
+    "transactionContext": "Applies to purchase transactions (formula scales with sales price); separate seller-financed-transaction fees (escrow setup, attorney fees) published for owner-carry closings. Albuquerque (100 Sun Ave NE #440) and Rio Rancho (500 Unser Blvd #102) offices -- Bernalillo/Sandoval County metro."
+  },
+  {
+    "provider": "Fidelity National Title Group — Title Insurance Rate Tables for New Mexico (issuing underwriter; statewide; older vintage, hosted via Las Cruces Abstract and Title's document library)",
+    "sourceUrl": "https://lcat.net/wp-content/uploads/2017/03/NM_Title_Ins_Rates_2012.pdf (fetched and machine-read this session via PDF text extraction after an initial WebFetch binary-decode failure)",
+    "asOf": "Effective 2012-07-01 (older vintage; no newer Fidelity-specific NM rate PDF located this session -- see search log in NM.md)",
+    "settlementFee": {
+      "note": "PREMIUM-ONLY rate table; no settlement/escrow/closing fee figures published. Included as evidence that the NM promulgated premium was HIGHER in 2012 than in the 2022-2025 tables (see regulatory entry above), and as a Las Cruces / southern-NM metro data point since the document is hosted by a Las Cruces-based title company."
+    },
+    "itemizedFees": {
+      "other": [
+        { "name": "Owner's Policy / 90% Loan Policy premium (representative tiers)", "amount": "$100,000 -> $831/$748; $500,000 -> $2,807/$2,526 -- meaningfully higher than the 2022-2025 tables at the same tiers ($707/$636 and $2,387/$2,148 respectively)" },
+        { "name": "Rate-per-thousand above $500,000 liability", "amount": "$50k-$100k = $6.28/k; $100k-$500k = $4.94/k; $500k-$2M = $3.87/k; $2M-$5M = $3.12/k; $5M-$10M = $2.59/k; $10M-$25M = $2.47/k; $25M-$50M = $2.19/k; over $50M = $1.80/k" },
+        { "name": "Reissue discount schedule", "amount": "Prior policy 1 year or less = 75% of basic premium; 1-2 years = 80%; 2-3 years = 85%; 3+ years = 90%" },
+        { "name": "Refinance / second-mortgage rates", "amount": "Not published; document instructs 'please call your local Fidelity National Title Group representative'" },
+        { "name": "Developer/builder/subdivider rates", "amount": "Not published; document states 'special rates are available' by inquiry only" }
+      ]
+    },
+    "bundlingNotes": "This 2012-vintage Fidelity National table is numerically DIFFERENT from (higher than) the 2022 Centric and 2025 WFG tables at every tier checked, which cross-verifies (via a third, older, independent source) that the promulgated NM premium rate decreased at some point between 2012 and 2022 and then held flat through mid-2025. No settlement/escrow fee content of any kind is published on this document -- consistent with the general pattern across NM issuing-underwriter rate cards found in this survey (premium-only; settlement fees are left to the individual agent and not centrally published by underwriters).",
+    "transactionContext": "Statewide New Mexico; hosted by Las Cruces Abstract and Title (lcat.net), a southern-NM/Las Cruces-Doña Ana County provider, giving this document partial relevance as a Las Cruces metro data point even though it is premium-only and not LCAT's own settlement-fee schedule."
+  },
+  {
+    "provider": "New Mexico Escrow Solutions (licensed escrow company under NM RLD; statewide NM -- NOTE: this is a loan-servicing/mortgage-payment-collection escrow business, NOT a real-estate closing/settlement agent; see bundlingNotes)",
+    "sourceUrl": "https://www.nmescrow.com/fees",
+    "asOf": "Effective November 2020",
+    "settlementFee": {
+      "note": "This company's 'escrow fee' is a LOAN-SERVICING fee (collecting and disbursing seller-carry-back or contract-for-deed mortgage payments over the life of a note), not a real-estate purchase/refinance closing fee. Included for completeness/transparency but NOT counted toward NM's real-estate settlement-fee-stack range in NM.md.",
+      "escrowFeeTiered": "$0-$999.99 monthly payment = $20/month; $1,000-$19,999.99 = $22/month; $20,000+ = 0.1% of payment amount/month"
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": "Additional recurring monthly disbursements: $6 each; non-monthly disbursements: $15 each",
+      "courier": null,
+      "wire": "ACH: $3",
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        { "name": "Account modification", "amount": "$75" },
+        { "name": "Close out (payoff/default)", "amount": "$250" },
+        { "name": "Holding documents", "amount": "$18/month" },
+        { "name": "Monthly collection of insurance", "amount": "$6" },
+        { "name": "Monthly collection of taxes", "amount": "$4" },
+        { "name": "NSF charge", "amount": "$35" }
+      ]
+    },
+    "bundlingNotes": "STRUCTURAL FINDING: New Mexico's RLD (Regulation and Licensing Department) licenses 'escrow companies' as a distinct category from title companies, but explicitly EXEMPTS title companies performing real-estate closing/escrow services from that licensing requirement. As a result, the RLD-licensed 'escrow companies' operating in NM (this one and Sunwest Escrow, below) are actually loan-servicing/mortgage-collection businesses that administer ongoing payment streams on seller-financed notes or contracts for deed -- a fundamentally different service and market segment from a real-estate settlement/closing agent's one-time transaction fee. This is analogous in shape to Alaska's AS 21.66.370/460 statutory premium-vs-escrow split (see AK.md) but structurally different: in NM it is a licensing-category carve-out rather than two rate filings for the same type of transaction. This entry is retained in NM.json for completeness and transparency (it is a genuine, dollar-denominated, provider-published fee schedule) but is explicitly EXCLUDED from the real-estate settlement-fee-stack range reported in NM.md.",
+    "transactionContext": "Ongoing collection-escrow servicing for privately-held notes/contracts for deed, statewide New Mexico. NOT a purchase or refinance real-estate closing transaction."
+  },
+  {
+    "provider": "Sunwest Escrow (licensed escrow company under NM RLD; Albuquerque, NM -- NOTE: same loan-servicing/mortgage-payment-collection business type as New Mexico Escrow Solutions above, NOT a real-estate closing/settlement agent; see bundlingNotes)",
+    "sourceUrl": "https://www.sunwestescrow.com/ (fee schedule obtained this session; not linked from a single static /fees page but confirmed as the company's own published figures)",
+    "asOf": "Effective 2026-03-01",
+    "settlementFee": {
+      "note": "Same loan-servicing caveat as New Mexico Escrow Solutions above -- NOT counted toward NM's real-estate settlement-fee-stack range.",
+      "setupFee": "$200"
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": "Payment disbursement: $22 (or 0.1% of payment amount over $22,000); additional disbursements: $4 each",
+      "courier": "Overnight delivery: $50",
+      "wire": "Wire transfer: $25",
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        { "name": "Reissue check", "amount": "$25" },
+        { "name": "Research", "amount": "$50" },
+        { "name": "Assignment/assumption", "amount": "$35" },
+        { "name": "Partial release", "amount": "$35" },
+        { "name": "Close out", "amount": "$200" },
+        { "name": "Transfer of escrow", "amount": "$250" },
+        { "name": "Taxes & insurance escrow", "amount": "$4/month" }
+      ]
+    },
+    "bundlingNotes": "Same RLD-licensed loan-servicing/mortgage-collection business type as New Mexico Escrow Solutions (see that entry's bundlingNotes for the full structural explanation of NM's OSI-vs-RLD licensing split). Sunwest's fee schedule follows a nearly identical fee-category pattern (setup, disbursement, wire, overnight, reissue, close-out) to New Mexico Escrow Solutions, at broadly similar (slightly higher) dollar amounts, suggesting this fee structure is standard across NM's licensed loan-servicing-escrow segment. Retained for completeness/transparency but EXCLUDED from the real-estate settlement-fee-stack range in NM.md.",
+    "transactionContext": "Ongoing collection-escrow servicing for privately-held notes/contracts for deed, Albuquerque-based, statewide NM reach. NOT a purchase or refinance real-estate closing transaction."
+  }
+]
