@@ -61,7 +61,7 @@ still vary and matter).
 | ID | 8 documents (2 Idaho DOI regulator-published escrow-rate filings covering ~15 distinct licensed title/escrow agents, First American x2 channels, Stewart x2 vintages, Old Republic, WFG) | 5 (Ada/Boise, Kootenai/Coeur d'Alene, Bonneville/Idaho Falls, Twin Falls, Bannock/Pocatello) | regulator compilation (DOI), national-brand underwriters (First American, Stewart, Old Republic, WFG); independent agents' pricing captured only via the DOI filing, not their own sites | **complete (saturated)** — 8 verified documents; DOI's mandatory-filing regime makes its 2 escrow-rate documents a near-census of Idaho's licensed agents rather than a sample, so the observed range is already comprehensive and unlikely to move with further search | 2026-07-22 |
 | IL | 11 (Old Republic, Greater Illinois Title, First American, TitleStar ×3 regional cards, WFG National, Chicago Title, Fidelity National, Proper Title, Truly Title) | 3 (Chicago metro; Central IL incl. Peoria/Champaign; Southern/Metro-East IL incl. St. Clair/Madison) | national-brand underwriters (Old Republic, First American, Chicago Title, Fidelity National, WFG), independent title/escrow companies (Greater Illinois Title, TitleStar, Proper Title, Truly Title) | **complete (target met)** — 11 verified sources on first session, exceeding the 10-source hard-stop target | 2026-07-21 |
 | IN | 6 documents (5 premium-only: Stewart, WFG, Fidelity, FNTI, IDOI Rate Comparison Tool ~19 insurers; 1 settlement-fee: Regional Land Title/Bloomington) | 1 (Bloomington/Monroe County, settlement-fee only; premium manuals are statewide) | national-brand underwriters (Stewart, Fidelity, WFG, FNTI), regulator (IDOI), independent (Regional Land Title) | **complete (scarce)** — 6 total documents but only 1 priced settlement-fee source despite 31 query strategies/10+ direct checks; no service-stack range exists to test saturation, matching the MI/MO/WI/AZ/CO/VA/AL/AR premium-only-market-opacity pattern | 2026-07-22 |
-| IA | 0 | unprocessed | |
+| IA | 6 (Iowa Title Guaranty residential + commercial [state guaranty program], Abstract & Title Guaranty Co./Clinton-Maquoketa, Hastings & Gartin Law Group/Des Moines, Abstract Associates of Iowa/Fort Dodge, Abstract & Title Services of Story County/Ames) | 2+ (Des Moines/Polk, Ames/Story, plus Clinton/Jackson and Fort Dodge/Webster counties; Cedar Rapids/Davenport/Iowa City/Sioux City searched but no published pricing found) | state guaranty program (ITG), independent abstract/title companies, closing-attorney firm — Iowa has no private title insurer market at all | **complete (saturated)** — 6 verified sources, mostly genuine settlement/service-fee data (not premium-only, unlike most other states); last 3 additions' component prices fell within the range already on file | 2026-07-22 |
 | KS | 0 | unprocessed | |
 | KY | 0 | unprocessed | |
 | LA | 0 | unprocessed | |
@@ -482,3 +482,20 @@ still vary and matter).
   AL/AR, marked IN **complete (scarce)** on the settlement-fee track notwithstanding strong
   premium-side coverage. Moving to the next unprocessed tier-2 state (IA, next
   alphabetically).
+- 2026-07-22: Started IA from scratch. Confirmed (not assumed) that Iowa is the only U.S.
+  state with no private title insurance market for residential real estate -- no Stewart/
+  First American/Fidelity/Old Republic/WFG rate manuals exist for Iowa. Instead, Iowa Title
+  Guaranty (ITG, a state program under the Iowa Finance Authority) issues certificates at a
+  flat statewide rate ($175 up to $750,000 coverage), and title clearance runs through a
+  parallel abstract-and-attorney system (abstract company certifies title history, attorney
+  renders a title opinion, then ITG issues its certificate) -- producing genuine settlement/
+  service-fee data in 5 of 6 verified sources, a rarer and richer outcome than the
+  premium-only pattern seen in most other states. Verified ITG residential + commercial
+  pricing, plus 3 independent abstract/title companies (Clinton/Maquoketa, Fort Dodge, Ames)
+  and 1 closing-attorney firm (Des Moines) itemizing the full abstract+attorney+guaranty fee
+  stack. 49 query strategies/direct checks (well past the 8-strategy threshold) confirmed
+  Iowa's larger metros (Cedar Rapids, Davenport, Iowa City, Sioux City) have identifiable
+  providers but none publish static pricing online -- a structural market feature, not a
+  search gap. With 6 verified sources and stable component pricing across the last 3
+  additions, IA meets the contract's saturation criterion. Marked IA **complete
+  (saturated)**. Moving to the next unprocessed tier-2 state (KS, next alphabetically).
