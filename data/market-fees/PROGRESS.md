@@ -79,7 +79,7 @@ still vary and matter).
 | OR | 3 documents / 2 providers (OTIRO bureau manual x2 vintages 2017/2025 -- identical premium schedule 8 years apart; Cascade Title contract-collections fee schedule, non-standard product) | statewide (no metro/county breakout published in OTIRO's Basic Insurance Rate) | rating bureau (OTIRO), independent title/escrow company (Cascade Title, Lane County) | **complete (scarce)** — 15+ query strategies/direct provider-site checks find only 2 providers; OR's OAR 836-080-0365 requires escrow rates to be filed with DFR but confirmed non-public (private email submission, no directory), matching CO's filed-privately pattern | 2026-07-22 |
 | RI | 1 document / 1 provider (WFG National, effective 2023-03-01, premium + $25 CPL fee) | statewide (no metro breakout published) | national-brand underwriter only (WFG); attorney-closing-custom state (not statutorily mandated) which appears to route settlement pricing through private/unpublished attorney arrangements | **complete (scarce)** — 12+ query strategies/direct provider-site checks (5 closing-attorney firms, 2 independent title companies, all 5 national-brand underwriters) yield only 1 usable premium rate manual; RI's own statutes confirm escrow/settlement/closing fees are legally defined (§27-2.6-3) but not filing-mandated, unlike premiums (§27-2.6-16) | 2026-07-22 |
 | SC | 4 documents / 4 providers (Stewart 2022, WFG 2011 -- identical rate tables; Mogil Law Firm full settlement schedule 2025, Ingram Law Firm ancillary fees) | 2 (Hilton Head/Beaufort-Jasper via Mogil, Cheraw/Chesterfield via Ingram) | national-brand underwriters (Stewart, WFG), closing-attorney firms (Mogil, Ingram) | **complete (scarce)** — 13 query strategies/direct checks of 8+ named firms yield only 4 usable sources; SC's underwriter manuals confirm a genuine but underwriter-unquantified 'commitment work/preparation charge' retained by the closing agent | 2026-07-22 |
-| SD | 0 | unprocessed | |
+| SD | 5 (Stewart, WFG National, Pennington Title/Rapid City, Titles of Dakota/Aberdeen + 16 rural counties, Black Hills Title/northern Black Hills) | 3 (Sioux Falls/Yankton metro via Stewart's metro tier only, Rapid City/Pennington County via Pennington Title, Aberdeen + rural north-central/south-central SD via Titles of Dakota; northern Black Hills via Black Hills Title) | national-brand underwriters (Stewart, WFG), independent title/abstract companies (Pennington Title, Titles of Dakota, Black Hills Title) | **complete (scarce)** — 27+ query strategies/~30 direct provider-site checks yield only 5 usable sources despite SD's insurer-filed premium regime; notably higher evidence quality than most scarce states since 3 of 5 are genuine independent-company schedules (2 with real settlement/closing fees, not premium-only), and Titles of Dakota uniquely publishes closing fee + search/exam fee + its own filed premium table together | 2026-07-22 |
 | UT | 0 | unprocessed | |
 | VT | 0 | unprocessed | |
 | WV | 0 | unprocessed | |
@@ -838,3 +838,17 @@ still vary and matter).
   usable sources. With only 4 providers verified despite the extensive search, SC meets the
   contract's scarce criterion. Marked SC **complete (scarce)**. Moving to the next unprocessed
   tier-2 state (SD, next alphabetically).
+- 2026-07-22: Started SD from scratch. Verified 5 sources: Stewart Title Guaranty and WFG
+  National (both premium-only, statewide -- Stewart's manual is uniquely two-tier by county
+  group, Minnehaha/Lincoln/Yankton vs. all other counties) plus 3 independent title companies
+  with genuine dollar figures: Pennington Title (Rapid City, detailed itemized settlement-fee
+  schedule, $426-$639 by transaction type), Titles of Dakota (Aberdeen + 16 rural counties,
+  uniquely publishing closing fees + search/exam fees + its own filed premium table together),
+  and Black Hills Title (northern Black Hills counties, premium-only). 27+ query
+  strategies/~30 direct provider-site checks (SoDak Title, Brown County Title, Codington
+  County Title, Eastern Title, First American, Old Republic, Chicago Title/Fidelity National,
+  Grant County Title, Brule County Abstract, Southern Hills Title, Heartland Title, Land Title
+  Guaranty [dead domain], SD DOI SERFF portal [403 blocked, matching the RI precedent]) found
+  no further usable sources. With only 5 providers verified despite the extensive search, SD
+  meets the contract's scarce criterion. Marked SD **complete (scarce)**. Moving to the next
+  unprocessed tier-2 state (UT, next alphabetically).
