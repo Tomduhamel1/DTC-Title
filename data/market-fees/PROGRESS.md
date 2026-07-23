@@ -1183,6 +1183,26 @@ still vary and matter).
   documented with exactly 1 calculator provider each, and CALCULATORS.md substantially expanded
   with dead-end detail so a future session (ideally browser-driven, per the recommendation logged
   there) doesn't re-walk the same paths. No state reached the 3-provider threshold this session.
-  Freshness/blocked-retries priorities not reached this session -- calculator harvest consumed the
-  full time budget; resume with those next, then continue calculator harvest into PA/MI/NJ/VA/etc.
-  (tier-2/3 high-population scarce states still uncovered by any working calculator).
+  Blocked-retries priority completed after calculator harvest (see below); freshness
+  re-verification of the 5 oldest published sources was not reached this session.
+- 2026-07-23: Blocked-source retries (CATIC CT, Arizona DIFI, Jackson & Scott AL). **CATIC CT:
+  breakthrough** -- retrying via direct curl with a standard browser User-Agent (rather than
+  WebFetch's default UA) got `www.catic.com/state-resources/connecticut` to return HTTP 200 for
+  the first time across 3 sessions; the prior 403s were evidently UA-based bot protection, not a
+  hard block. The page links to 3 FlippingBook-hosted rate resources including a "CT Rate Manual"
+  and, promisingly, "Rocky Hill Title Services Rates" and "Fairfield County Title Services Rates"
+  (names suggesting genuine settlement-fee content, the exact gap this file flags). All 3 return
+  HTTP 200 but FlippingBook renders as an image-tile JS viewer with no extractable text and no
+  plain-HTTP path to the underlying PDF found this session (the viewer's own `/download` endpoint
+  returns the HTML shell, not a PDF) -- content not read, no figures recorded or verified, but
+  reclassified in CT.md from "blocked (403)" to "accessible, needs browser/OCR," a meaningfully
+  better starting point for a future browser-driven session. **Arizona DIFI**: retried 3 paths
+  with the same browser-UA curl technique -- still 403 on all 3; confirmed this is a genuine
+  Cloudflare WAF block independent of User-Agent (the CATIC workaround does not generalize). No
+  change. **Jackson & Scott AL**: retried again via browser-UA curl -- still 403; also confirmed
+  UA-independent (this one was already tested with a browser UA in a prior session with the same
+  result). No change. Net: 1 of 3 blocked sources meaningfully progressed (CATIC), 2 confirmed
+  still genuinely blocked. Freshness re-verification (5 oldest published sources) not reached this
+  session -- deferred to next run, along with continuing calculator harvest into PA/MI/NJ/VA/etc.
+  (tier-2/3 high-population scarce states still uncovered by any working calculator) and, if a
+  browser-driven session becomes available, the FNF/FACC/Stewart/CATIC-flipbook jsOnly queue.

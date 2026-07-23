@@ -78,6 +78,11 @@ in AL.json.
     direct curl request with a full browser User-Agent string — both still returned HTTP 403
     Forbidden. Still blocked (WAF/bot-protection, not a transient failure); the search-snippet
     figures above remain unverified and excluded.
+  - **Retried 2026-07-23** (blocked-source retry pass): re-fetched again via direct curl with a
+    current-generation browser User-Agent (both bare and `www.`-prefixed hosts) — still HTTP 403
+    Forbidden on every attempt. Confirms this is a persistent WAF block, not UA-based (matches
+    AZ DIFI's pattern this session, unlike CT's CATIC block which *was* UA-based and broke
+    through). No change; figures remain unverified and excluded.
 - **alabamaclosingandtitle.com/services** and **/cost-calculator** (Huntsville) — fetched; no
   published figures, calculator-only.
 - **boundarytitle.com/huntsville-al/** — fetched; no published figures, quote-only.

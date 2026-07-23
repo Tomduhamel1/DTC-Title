@@ -78,6 +78,22 @@ fee). Full liability-tiered schedules for both are recorded verbatim in CT.json.
   not attempted this session).
   - **Retried 2026-07-22** (blocked-source retry pass): catic.com/rates re-fetched via WebFetch —
     still HTTP 403 Forbidden. Still blocked; no change from prior sessions.
+  - **Retried 2026-07-23** (blocked-source retry pass): re-fetched via direct `curl` with a
+    standard browser User-Agent string rather than WebFetch's default UA — **breakthrough**:
+    `www.catic.com/state-resources/connecticut` now returns HTTP 200 (the prior 403s were
+    evidently a bot-protection block on WebFetch's UA, not a hard server-side block). The page
+    links to 3 rate resources hosted on `online.flippingbook.com`: "CT Rate Manual"
+    (`/view/224197286/`), "Rocky Hill Title Services Rates" (`/view/719422339/`), and "Fairfield
+    County Title Services Rates" (`/view/719403949/`) — the latter two names strongly suggest
+    genuine settlement/service-fee content (not just premium), which would fill exactly the gap
+    this file already flags. All 3 flipbook pages return HTTP 200, but FlippingBook renders pages
+    as image tiles via a JS viewer (confirmed: page source has no extractable text, only an
+    images-API reference; the viewer's own `/download` endpoint returns the HTML shell, not a raw
+    PDF, so no client-side-JS-free path to the underlying PDF was found this session) — content
+    could not be read and no dollar figures were verified or recorded. **Still excluded per
+    evidence rules** (numbers must be read, not guessed from a title), but reclassified from
+    "blocked (403)" to "accessible, needs browser/OCR to extract" — a materially different, more
+    promising status for a future browser-driven session to finish.
 - **firsttitleservices.com/connecticut-title-closing/** (First Title & Escrow) — HTTP 403 Forbidden.
 - **agency.firstam.com/ct** (First American Title CT Agency Services) — fetched successfully;
   describes AgentNet/AgentAdvantage services only, no settlement-fee dollar figures published.

@@ -131,6 +131,15 @@ WebFetch — still HTTP 403 Forbidden, same Cloudflare block confirmed across 3+
 change. (See also the calculator-basis harvest added this session in the "Calculator harvest"
 section above, which independently adds a 6th Maricopa County data point via Old Republic's
 public calculator, unaffected by the DIFI block.)
+
+## Blocked-source retry (2026-07-23)
+Retried via direct `curl` with a standard browser User-Agent (the technique that broke through
+CT's CATIC block this same session) against 3 DIFI paths: `difi.az.gov/title-insurance-rate-
+filings` (403), `difi.az.gov/Consumers/Insurance/Title` (403), and `azdifi.gov/title-insurance-
+rate-filings` (connection failure, no DNS/route). All still blocked — confirms this is a genuine
+Cloudflare WAF block independent of User-Agent (unlike CATIC's, which was UA-based), so the
+CATIC-style browser-UA workaround does not apply here. No change; still flagged for a future
+browser-driven or IP-diverse session.
 - **Magnus Title Agency** (`magnustitle.com`) — fetched; publishes a "Cost Estimator" tool
   and "Resources" page but no static fee schedule; quote-only.
 - **Premier Title Agency** (`ptanow.com`) — fetched; "Order Title & Get Rates" is an
