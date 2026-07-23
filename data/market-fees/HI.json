@@ -9,18 +9,50 @@
       "escrowFee50PercentEachParty": "Half of the above full-tier fee, e.g. $583 at $100,000; $1,125 at $500,000; $1,515.50 at $1,000,000"
     },
     "itemizedFees": {
-      "wire": { "note": "Deposits by wire recommended 48hrs before disbursement; no separate fee stated" },
-      "courier": { "continentalUSA": "$50.00", "international": "$100.00 (one way, international express mail)" },
+      "wire": {
+        "note": "Deposits by wire recommended 48hrs before disbursement; no separate fee stated"
+      },
+      "courier": {
+        "continentalUSA": "$50.00",
+        "international": "$100.00 (one way, international express mail)"
+      },
       "other": [
-        { "name": "USA lender refinance escrow fee (up to $1,000,000 new loan)", "amount": "$550.00" },
-        { "name": "International lender refinance escrow fee (up to $1,000,000)", "amount": "$900.00" },
-        { "name": "Refinance with title transfer for cash consideration, additional borrower charge", "amount": "$450.00" },
-        { "name": "FIRPTA/HARPTA payment form submission", "amount": "$50.00 per reporting" },
-        { "name": "Non-real-estate-brokered transaction, additional fee", "amount": "$250.00 to each applicable party" },
-        { "name": "Tax-deferred Exchange minimum fee", "amount": "$300.00 (plus scheduled rate)" },
-        { "name": "Holding Escrow setup", "amount": "$1,500.00 minimum setup, $125.00/year minimum, $125.00 per disbursement" },
-        { "name": "Accommodation signing fee (non-escrowed transaction)", "amount": "$150.00" },
-        { "name": "Minimum escrow deposit to open", "amount": "$500.00" }
+        {
+          "name": "USA lender refinance escrow fee (up to $1,000,000 new loan)",
+          "amount": "$550.00"
+        },
+        {
+          "name": "International lender refinance escrow fee (up to $1,000,000)",
+          "amount": "$900.00"
+        },
+        {
+          "name": "Refinance with title transfer for cash consideration, additional borrower charge",
+          "amount": "$450.00"
+        },
+        {
+          "name": "FIRPTA/HARPTA payment form submission",
+          "amount": "$50.00 per reporting"
+        },
+        {
+          "name": "Non-real-estate-brokered transaction, additional fee",
+          "amount": "$250.00 to each applicable party"
+        },
+        {
+          "name": "Tax-deferred Exchange minimum fee",
+          "amount": "$300.00 (plus scheduled rate)"
+        },
+        {
+          "name": "Holding Escrow setup",
+          "amount": "$1,500.00 minimum setup, $125.00/year minimum, $125.00 per disbursement"
+        },
+        {
+          "name": "Accommodation signing fee (non-escrowed transaction)",
+          "amount": "$150.00"
+        },
+        {
+          "name": "Minimum escrow deposit to open",
+          "amount": "$500.00"
+        }
       ]
     },
     "bundlingNotes": "Explicitly a genuine escrow/settlement fee schedule, not a title-premium-only manual -- rare among this survey's sources. Fees described as 'minimum fees for basic escrow services ordinarily rendered in a residential purchase and sale transaction'; commercial/developer transactions quoted separately. Hawaii general excise tax (GET) added to all escrow charges. Title Guaranty is described as 'Hawaii's largest escrow company' with 17 statewide branch locations, established 1955 (escrow arm) / 1896 (title arm) -- likely the dominant provider in this market.",
@@ -40,13 +72,34 @@
     },
     "itemizedFees": {
       "other": [
-        { "name": "Junior Loan Policy", "amount": "$150 (up to $250,000 coverage) / $250 (up to $500,000)" },
-        { "name": "Litigation Guarantee", "amount": "$500 (coverage $3,500) / $550 (coverage $15,000); endorsement $125" },
-        { "name": "Certificate of Title", "amount": "$500 minimum, coverage up to $250,000" },
-        { "name": "Status Report", "amount": "$500 minimum" },
-        { "name": "Lien Report", "amount": "$50 minimum" },
-        { "name": "Property Search Report", "amount": "$150 minimum" },
-        { "name": "Release processing fee (seller, mortgage monitoring)", "amount": "$55.00" }
+        {
+          "name": "Junior Loan Policy",
+          "amount": "$150 (up to $250,000 coverage) / $250 (up to $500,000)"
+        },
+        {
+          "name": "Litigation Guarantee",
+          "amount": "$500 (coverage $3,500) / $550 (coverage $15,000); endorsement $125"
+        },
+        {
+          "name": "Certificate of Title",
+          "amount": "$500 minimum, coverage up to $250,000"
+        },
+        {
+          "name": "Status Report",
+          "amount": "$500 minimum"
+        },
+        {
+          "name": "Lien Report",
+          "amount": "$50 minimum"
+        },
+        {
+          "name": "Property Search Report",
+          "amount": "$150 minimum"
+        },
+        {
+          "name": "Release processing fee (seller, mortgage monitoring)",
+          "amount": "$55.00"
+        }
       ]
     },
     "bundlingNotes": "Buyer pays 40% / seller pays 60% of the title premium by Hawaii custom -- an unusually explicit split published directly on the rate card rather than left to negotiation, found nowhere else in this survey to date. Title insurance premium credits of up to 50% (prior policy within 12 months) or 25% (within 8 years) are available; a 30% Military Credit applies to active-duty/retired service members' primary residence transactions.",
@@ -66,14 +119,37 @@
       "reverseMortgageOneRateEscrowFee": "$500.00 flat (includes customary escrow services, mailing up to $25, courier up to $25, two wire fees, tax search, one e-delivery, lien/financing statement search on two borrowers; excludes title premium, endorsements, recording, transfer tax, notary, loan signing)"
     },
     "itemizedFees": {
-      "notarySigning": { "accommodationSellerDocs": "$75.00 + G.E.T.", "accommodationLoanSigning": "$150.00 + G.E.T.", "accommodation1stAnd2ndLoanSigning": "$200.00 + G.E.T.", "mobileNotaryRefinanceOnly": "$125.00" },
+      "notarySigning": {
+        "accommodationSellerDocs": "$75.00 + G.E.T.",
+        "accommodationLoanSigning": "$150.00 + G.E.T.",
+        "accommodation1stAnd2ndLoanSigning": "$200.00 + G.E.T.",
+        "mobileNotaryRefinanceOnly": "$125.00"
+      },
       "other": [
-        { "name": "IBA (Interim Binder Agreement) set up", "amount": "$50.00 + G.E.T." },
-        { "name": "Financing Statement and Lien Guarantee", "amount": "$25.00 per name checked, plus G.E.T." },
-        { "name": "Record Property Information Report", "amount": "$50.00 plus G.E.T. per property" },
-        { "name": "Record Property Search Report", "amount": "$200.00 plus G.E.T. (first property), $35.00 each additional" },
-        { "name": "Preliminary Title Report only (no policy)", "amount": "$300.00 minimum plus G.E.T." },
-        { "name": "Simultaneous-issue Extended/Eagle Lender's Policy, $1-2M liability", "amount": "$250.00 / $275.00" }
+        {
+          "name": "IBA (Interim Binder Agreement) set up",
+          "amount": "$50.00 + G.E.T."
+        },
+        {
+          "name": "Financing Statement and Lien Guarantee",
+          "amount": "$25.00 per name checked, plus G.E.T."
+        },
+        {
+          "name": "Record Property Information Report",
+          "amount": "$50.00 plus G.E.T. per property"
+        },
+        {
+          "name": "Record Property Search Report",
+          "amount": "$200.00 plus G.E.T. (first property), $35.00 each additional"
+        },
+        {
+          "name": "Preliminary Title Report only (no policy)",
+          "amount": "$300.00 minimum plus G.E.T."
+        },
+        {
+          "name": "Simultaneous-issue Extended/Eagle Lender's Policy, $1-2M liability",
+          "amount": "$250.00 / $275.00"
+        }
       ]
     },
     "bundlingNotes": "The only source in this survey found to publish title premium AND escrow fee side-by-side across a full price-tier table with 50+ rows (vs. Title Guaranty's two separate documents for the same information). Same 60%/40% seller/buyer premium split convention as Title Guaranty, but escrow fee is split 50/50. Multiple special discount rates (Investor's, Senior Citizen, U.S. Armed Forces, First-Time Homebuyer, Government Employee, each 25% off Title Fee) are unusually generous and numerous compared to other states surveyed. Document is from 2013 -- the oldest-vintage source in this HI file -- so dollar figures likely understate 2026 pricing, but the escrow-fee-to-premium ratio pattern remains a useful structural reference.",
@@ -89,14 +165,63 @@
       "escrowAndIncidentalProcessingFees": "$400.00 estimated"
     },
     "itemizedFees": {
-      "docPrep": { "deedDrafting": "$171.87 plus tax (additional fees for multiple intervals)" },
-      "courier": { "mailingAndHandling": "$50.00 plus tax (subject to increase for foreign parties)" },
-      "eRecording": { "recordingFee": "$41.00" },
+      "docPrep": {
+        "deedDrafting": "$171.87 plus tax (additional fees for multiple intervals)"
+      },
+      "courier": {
+        "mailingAndHandling": "$50.00 plus tax (subject to increase for foreign parties)"
+      },
+      "eRecording": {
+        "recordingFee": "$41.00"
+      },
       "other": [
-        { "name": "Initial escrow deposit required", "amount": "$400.00" }
+        {
+          "name": "Initial escrow deposit required",
+          "amount": "$400.00"
+        }
       ]
     },
     "bundlingNotes": "This document is a timeshare-interval resale transfer packet (Resort Name, Interval Control Number, Week Number fields), not a standard fee-simple residential purchase/sale -- included as evidence of Old Republic's genuine dollar-denominated Hawaii pricing but flagged as a narrower transaction type than the other 3 HI sources. Old Republic Title & Escrow of Hawaii serves Oahu, Kauai, Maui, and the Big Island per company materials, though this specific document is from the Honolulu (Oahu) office.",
     "transactionContext": "Timeshare/vacation-ownership interval resale (title-only transfer), Oahu office; not comparable to standard purchase/sale/refinance escrow fees found in the other 3 HI sources."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company \u2014 Estimated Rate/Fee Calculator (ortconline.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
+    "calculatorUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
+    "retrievalDate": "2026-07-23",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, residential resale, Sale transaction type, Loan Estimate calculation. Property location: Honolulu, HI (Honolulu County/Oahu, HI's most populous county).",
+    "methodology": "Harvested via direct HTTP GET/POST against the calculator's ASP.NET WebForms postback mechanism (__VIEWSTATE/__EVENTVALIDATION), replicating the sequential form submissions the browser's JS performs (state select -> city select, which auto-populated the EscrowCountyComboList to 'Honolulu' -> Sales Price/Loan Amount/Lien Payoff=0 -> Submit); no browser/JS execution was used or required. The 'Your Name', 'Your Company', and 'This estimate is being prepared for' fields were left blank throughout -- confirmed optional -- no fabricated personal information was entered at any step.",
+    "settlementFee": {
+      "note": "Not a single line item in this tool's output; the closest analog is the 'Settlement Agent Fee' shown in Section C, split buyer/seller (buyer's share shown here). Settlement Agent Fee total (both parties): Title - Settlement Agent Fee (Total: $2,252.36)."
+    },
+    "itemizedFees": {
+      "processing": "$1,126.18 (Settlement Agent Fee, buyer's share; Total both parties: $2,252.36)",
+      "other": [
+        {
+          "name": "Title - Lender's Title Policy (Total: $1,735.00)",
+          "amount": "$1,735.00"
+        },
+        {
+          "name": "Title - Lien Check Fee",
+          "amount": "$52.36"
+        },
+        {
+          "name": "Title - Financing Statement Fee",
+          "amount": "$52.36"
+        },
+        {
+          "name": "Recording Fees (Total: $82.00)",
+          "amount": "$82.00"
+        },
+        {
+          "name": "Title - Owner's Title Policy* (Total: $836.00, buyer's share shown)",
+          "amount": "$380.00"
+        }
+      ]
+    },
+    "sectionTotals": "C: Services You Can Shop For: $2,965.90; E: Taxes and Other Government Fees: $82.00; H: Other: $380.00",
+    "bundlingNotes": "Selecting City=Honolulu auto-selected EscrowCountyComboList=Honolulu (Oahu is coextensive with Honolulu County, no zip disambiguation needed, unlike MO's Kansas City). Owner's Title Policy* (Total: $836.00) calculated from full Homeowner's Policy rate of $2,321... consistent with the tool's standard cross-state disclosure language (same wording pattern as OH/AZ/NV/NM/UT/MO harvests) that this total reflects the full Homeowner's Policy rate plus a concurrent lender's-issue charge, less the full lender's policy premium. This is the first HI-specific Old Republic figure in this survey; HI.json's existing sources (Title Guaranty, First American, Old Republic Title & Escrow's own manual) are all published-schedule (basis 'published'), so this calculator harvest is a genuine independent cross-check, not a duplicate.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k purchase scenario; property location Honolulu, HI (Honolulu County/Oahu, HI's most populous county)."
   }
 ]

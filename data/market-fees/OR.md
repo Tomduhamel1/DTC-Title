@@ -1,6 +1,30 @@
 # Oregon (OR) — Market Fee Evidence
 
-## Status: COMPLETE (scarce market) — 3 documents / 2 providers verified
+## Status: COMPLETE (scarce market) — 3 documents / 2 providers verified + 1 calculator-basis provider (not yet at the 3-provider calculator threshold), 2026-07-23
+
+## Calculator harvest (2026-07-23)
+Old Republic Title's public **Estimated Rate/Fee Calculator**
+(https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx) was
+driven directly via HTTP GET/POST (ASP.NET WebForms postback replication, no browser/JS execution)
+for the standard $500,000 purchase/$400,000 loan scenario, **Portland, OR 97201 (Multnomah County,
+OR's most populous county)**. Unlike HI/MO, OR's flow required an explicit `PropertyCountyList`
+postback (selecting "Multnomah") after the zip selection — this control renders empty-by-default
+here rather than auto-populating from the city choice. Also: OR's form does not render a
+`LienPayoffTextbox` control at this stage; posting a value for it anyway (copying the HI/MO recipe
+verbatim) produced a hard HTTP 500, the same "posting a field for a control not in the DOM breaks
+the postback" gotcha CALCULATORS.md already documented for the `ReoList` radio — omitting it fixed
+submission. Result: Lender's Title Policy $1,495.00, Settlement Agent Fee $1,150.00 (of $2,300.00
+total, buyer half), Recording Service Fee $10.00, Recording Fees $400.00, Owner's Title Policy
+$1,350.00 (shown fully seller-paid by this tool's default OR buyer/seller split). Section totals: C
+(shop-for) $2,655.00, E (gov't fees) $400.00. Notably, the tool's own Settlement Agent Fee footnote
+quotes Old Republic's actual OR-filed escrow-rate formula verbatim ("$1800.00 plus $1.00 per
+$1,000... minimum charge $2,000.00 [if negotiated above $2,000]") — this directly corroborates and
+extends this file's existing finding that OAR 836-080-0365 requires escrow rates to be filed with
+DFR but confirmed non-public in directory form; the calculator output is itself a legitimate, dated
+disclosure of that private filing's content, a higher-quality find than the other Old-Republic-tool
+harvests to date. Full entry recorded in OR.json with `"basis": "calculator"`. No personal
+information was entered. This is 1 calculator provider; the task's 3-provider threshold was not
+reached this session (see CALCULATORS.md).
 
 3 documents verified across 2 providers: the Oregon Title Insurance Rating
 Organization (OTIRO) bureau manual at 2 vintages (2025-09-01 and 2017-06-15,

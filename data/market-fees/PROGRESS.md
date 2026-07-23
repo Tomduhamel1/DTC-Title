@@ -23,6 +23,8 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | NM | 1 (Old Republic — Albuquerque/Bernalillo County) | below 3-provider threshold | 2026-07-22 |
 | UT | 1 (Old Republic — Salt Lake City/Salt Lake County) | below 3-provider threshold | 2026-07-22 |
 | MO | 1 (Old Republic — Kansas City 64106/Jackson County) | below 3-provider threshold | 2026-07-22 |
+| HI | 1 (Old Republic — Honolulu/Honolulu County-Oahu) | below 3-provider threshold | 2026-07-23 |
+| OR | 1 (Old Republic — Portland 97201/Multnomah County) | below 3-provider threshold | 2026-07-23 |
 
 FNF's ratecalculator.fnf.com/rates.fntg.com and First American's FACC calculator
 (agency.facc.firstam.com) were both investigated and confirmed **jsOnly** (ASP.NET postback/AJAX
@@ -1146,3 +1148,41 @@ still vary and matter).
   calculator harvest: higher-volume scarce states not covered by Old Republic's tool (PA, MI, NJ,
   VA, MD, WI, MN, CO, SC, AL, LA, KY, CT, WV, MS, WY, and the rest of tier 2/3) need their own
   provider-specific calculators found and evaluated -- session ended here on time/scope grounds.
+- 2026-07-23: Calculator harvest continued. Extended Old Republic's tool to its 2 remaining
+  unharvested footprint states, **HI** (Honolulu/Honolulu County-Oahu) and **OR** (Portland
+  97201/Multnomah County) -- both succeeded with full itemized results (see each state's .json/.md
+  and CALCULATORS.md). OR required a new sub-step not seen in HI/MO/AZ/NV/NM/UT: its
+  `PropertyCountyList` control must be explicitly postback-selected (doesn't auto-populate from
+  city choice like HI/MO), and posting a `LienPayoffTextbox` value it doesn't render for OR caused
+  the same class of HTTP 500 as the already-known `ReoList` gotcha -- both documented in
+  CALCULATORS.md for future harvests. This exhausts Old Republic's tool -- every state in its
+  footprint that wasn't already saturated/complete now has exactly 1 calculator provider (OH, AZ,
+  NV, NM, UT, MO, HI, OR), none yet at the 3-provider threshold.
+  Spent the remainder of this session's calculator-harvest budget attempting to unlock a *second*
+  provider, since a state can only reach the 3-provider threshold with additional working
+  calculators. Two candidates were investigated in depth and both hit real blockers (full detail
+  in CALCULATORS.md): **Stewart's `/api/SRC/quote` POST** -- mapped 3 more GET endpoints
+  (`policyinsuredtypes`, `policycoveragetypes`, `providers`, all stateless/no-auth) and built a
+  full `quoteRequestRoot` JSON payload from `nrc.js`'s field references, but the final POST
+  returns an uninformative HTTP 500 with no validation detail, and static analysis confirmed
+  `hidQuoteRequestRoot` doesn't exist as a real form field until the JS wizard runs client-side --
+  concluded this needs real browser automation to finish, not further static reverse-engineering.
+  **WFG National's own rate calculator** (newly discovered this session at
+  rates.wfgnationaltitle.com, redirected from dashboard.wfgnationaltitle.com/rates/) has a working
+  no-auth `GET /GeoInformation/FromState/<ST>` (useful county/city/FIPS lookup, not itself a fee
+  source) and a working no-auth `POST /fees/estimatefeesforsellernet`, but the latter returned the
+  **exact same** owner's-premium-only figure across 24 tested parameter combinations (varying
+  product type, transaction type, and implicitly loan amount) -- concluded it's an intentionally
+  gated marketing teaser, not a real itemized-fee calculator, and is not usable as calculator-basis
+  evidence. WFG's richer `sellernet/calculate` endpoint was mapped but not tested (out of time).
+  Also checked and ruled out: PalmAgent (Angular SPA, JS bundle fetch blocked by an HTTP 305,
+  needs a browser), Prism Powered (dead, 502), Commonwealth Land Title's classic ASP calculator
+  (dead, DNS no longer resolves), and a third-party premium-only rate-table site (alphaadv.net,
+  out of scope -- not a provider's own system, not itemized settlement fees). Net result this
+  session: 2 new states harvested (HI, OR), all 8 Old-Republic-footprint scarce states now
+  documented with exactly 1 calculator provider each, and CALCULATORS.md substantially expanded
+  with dead-end detail so a future session (ideally browser-driven, per the recommendation logged
+  there) doesn't re-walk the same paths. No state reached the 3-provider threshold this session.
+  Freshness/blocked-retries priorities not reached this session -- calculator harvest consumed the
+  full time budget; resume with those next, then continue calculator harvest into PA/MI/NJ/VA/etc.
+  (tier-2/3 high-population scarce states still uncovered by any working calculator).

@@ -59,9 +59,22 @@ National Title, Commonwealth, Ticor, etc.)
   throughout — no personal data entered, satisfying the hard rule.
   - **State coverage in this tool**: AZ, CA, HI, MO, NM, NV, OH, OK, OR, TX, UT, WA (county- or
     city-tiered dropdowns; not a nationwide tool). CA/WA/OK/TX are already saturated/complete in
-    the published-schedule survey; the other 6 (AZ, MO, NM, NV, OH, UT) are all "complete
-    (scarce)" states and were harvested this session (1 provider each — see PROGRESS.md tracker
-    and each state's .json/.md for full itemized results).
+    the published-schedule survey; the other 8 (AZ, HI, MO, NM, NV, OH, OR, UT) are all "complete
+    (scarce)" states and have now been harvested (1 provider each — see PROGRESS.md tracker and
+    each state's .json/.md for full itemized results). This exhausts every state in this tool's
+    footprint that wasn't already saturated/complete — no further *new states* are reachable via
+    Old Republic's calculator alone. Pushing any of these 8 states to the 3-provider threshold
+    requires a second working calculator for that state (Stewart/WFG/FNF/FACC or an agency
+    widget); as of 2026-07-23 all of those remain jsOnly, gated, or unreverse-engineered — see the
+    2026-07-23 findings below for the specific blockers hit this session on Stewart and WFG.
+  - **OR-specific gotcha (new 2026-07-23)**: OR's `PropertyCountyList` control renders
+    empty-by-default and must be explicitly selected via its own postback (unlike HI/MO where the
+    county combo auto-populates from the city choice). Also, OR's form does not render a
+    `LienPayoffTextbox` control; posting a value for it anyway (reusing the HI/MO recipe verbatim)
+    produced a hard HTTP 500 — the same "posting a field for a control that isn't in the DOM
+    breaks the postback" failure mode as the already-documented `ReoList` gotcha below. General
+    lesson for future harvests with this tool: always re-derive the field list fresh from each
+    state's actual rendered form rather than reusing a fixed field set across states.
   - **OH-specific note**: this tool's OH footprint is only 15 northern-Ohio counties (Ashland,
     Cuyahoga, Erie, Geauga, Huron, Lake, Lorain, Lucas, Medina, Ottawa, Portage, Stark, Summit,
     Wayne, Wood) — Franklin County (Columbus, OH's actual most-populous county) is not served.
@@ -92,19 +105,91 @@ National Title, Commonwealth, Ticor, etc.)
     follow-up session, since the individual GET endpoints prove the API itself has no
     authentication/session barrier.
 
-## Agency-level widgets (TitleCapture / Qualia)
-Not yet investigated this session — deferred to a future harvest pass. Given the difficulty
-already encountered driving even the "big four" brand calculators without a browser, agency-level
-widgets (typically embedded iframes) should be checked for either (a) a directly-loadable iframe
-`src=` URL with query-string parameters, or (b) a discoverable JSON endpoint in the embed's own
-JS bundle, using the same technique documented above for Stewart. If neither exists, log as
-jsOnly and queue for the browser-driven session.
+### Stewart Title — 2026-07-23 update: `quote` endpoint schema mapped further, still failing (500)
+This session made material progress reverse-engineering the `/api/SRC/quote` POST but did **not**
+get a working final quote — recording the exact state reached so a future session (ideally
+browser-driven) doesn't repeat the same dead ends:
+- Confirmed 3 more stateless, no-auth GET endpoints beyond last session's `transactiontypes` /
+  `propertysearch`: `policyinsuredtypes?statecode=<ST>&transactiontype=<full description string,
+  e.g. "Sale/Purchase with Mortgage">` (returns `MP`/`OP` fee-type codes), `policycoveragetypes
+  ?statecode=<ST>&transactionType=<description>&policyInsuredTypeCode=<MP|OP>&networkid=
+  &propertytype=Residential` (returns coverage codes like `BASIC`/`HOP`; `propertytype` is
+  required even though the site's own JS only conditionally sends it), and `providers?statecode=
+  <ST>&countycode=<FIPS>&zipcode=<ZIP>&transactiontype=<SALE|REFI|CASH short code>&networkid=`
+  (returns real provider IDs/names/addresses — `networkid=` empty works fine, and the plain `http`
+  host 301-redirects to `www.` which itself sometimes further redirects, so use `curl -L`).
+- Built a full `quoteRequestRoot.QuoteRequest` JSON object (TransactionInformation/PropertyAddress/
+  PolicyInfo.PolicyList.Policy[LenderPremium,OwnerPremium]/Recording/Internal, per the field
+  references in `/js/nrc.js`'s `UpdateQuoteRequest()`) and POSTed it form-urlencoded as
+  `hidQuoteRequestRoot` alongside guessed values for `hidNetworkID`, `hidStateSetting` (the raw
+  `statesettings` JSON), `hidQuoteType=3` (Loan Estimate), `hidCountyName`,
+  `hidIsCalculatePremium`/`hidIsCalculateTitleServiceFee=true`, `TransactionType=SALE`,
+  `LoanAmount`/`SalesPrice` — to `POST /api/SRC/quote`. Result: **HTTP 500, empty body**, no
+  validation-error JSON (unlike every GET endpoint above, which return clean, informative 400s).
+- Root cause not isolated. Most likely explanation: the real form's `hidQuoteRequestRoot` (and
+  possibly other hidden fields) only exist in the DOM after the full JS wizard flow runs client-
+  side (state select -> transaction type -> policy setup -> provider selection all trigger partial
+  object construction) — this session's page-load HTML confirmed `hidQuoteRequestRoot` is **not
+  present as a static form field at all** (it's created/populated by JS at runtime), so the exact
+  field `name` attribute used at POST time (assumed to equal its `id`, a common but unverified
+  ASP.NET MVC convention) could not be confirmed from static HTML alone.
+- **Recommendation for next session**: this is now a browser-automation task, not a reverse-
+  engineering one — the fastest path is driving the real wizard in a headless browser and
+  capturing the actual network request Stewart's own JS sends (exact field names, full
+  `quoteRequestRoot` shape actually used), rather than reconstructing it from `nrc.js` alone.
+
+### WFG National Title — 2026-07-23 update: own rate calculator found, partially working but GATED
+`dashboard.wfgnationaltitle.com/rates/` redirects to **`rates.wfgnationaltitle.com`**, an Angular
+SPA ("WFG Rate Calculator: Escrow Calculator") with a real backend at
+`rates.wfgnationaltitle.com/api/rates/`:
+- `GET /api/rates/GeoInformation/FromState/<ST>` — **WORKING, no auth, no personal data.** Returns
+  the state's full county list (with FIPS) and city list (with per-county city-ID arrays).
+  Confirmed working for PA (67 counties, e.g. Philadelphia `countyID=470`/`fips=42101`). This
+  alone is a nationally-useful lookup endpoint (not itself a fee source) for whoever picks up the
+  `quote`/`sellernet` work next.
+- `POST /api/rates/fees/estimatefeesforsellernet` — **WORKING but GATED-BY-DESIGN, not a usable
+  evidence source.** No auth required and returns clean HTTP 200 JSON (`closingFeeEstimate.
+  premiums.{lendersPremium, fullLendersPremium, ownersPremium}` plus an always-empty `hudFees`
+  array). Tested the standard $500k/$400k PA/Philadelphia scenario across 24 combinations of
+  `TransactionProductType.{ProductTypeId, TransactionTypeId}` (1-6 x 1-4): **the response was
+  byte-for-byte identical every time** (`ownersPremium: 3635.50`, `lendersPremium: 0`,
+  `fullLendersPremium: 0`, `hudFees: []`), regardless of the loan amount or product/transaction
+  type submitted. This strongly indicates the endpoint is an intentionally-limited marketing
+  "teaser" (a bare owner's-premium preview to drive signups for the full net-sheet product) rather
+  than the real itemized-fee calculator — it does not compute a lender's premium or itemize any
+  settlement/closing/recording fees no matter what is sent. **Do not use this endpoint as a
+  calculator-basis source**; the single owners-premium number it returns is not verifiably
+  parameter-driven and duplicates WFG's own already-verified filed-rate manuals at best.
+  `POST /api/rates/sellernet/calculate` (full settlement statement, richer request shape partially
+  mapped from `main.*.js`: `IsReissue`, `SettlementStatementVersion`, `SalesPrice`, `Loans[]`,
+  `TransactionProductType`, `Endorsements[]`, `Properties[]`, `PriorLenderPolicy`,
+  `PriorOwnerPolicy`, `calculateTaxRequest`) was identified but **not tested** this session (out of
+  time budget) — flagged as the more promising WFG target for a future session, since it's the
+  endpoint the real net-sheet UI actually uses, unlike the teaser endpoint above.
+
+## Agency-level widgets (TitleCapture / Qualia / Palm Agent / Prism Powered)
+Partially investigated 2026-07-23. **PalmAgent** (`palmagent.com`, an Angular SPA similar to WFG's)
+was checked but its JS bundle returned an HTTP 305 on direct fetch (likely an SPA base-href/asset-
+path quirk needing a real browser to resolve) — not yet resolved. **Prism Powered**
+(`go.prismpowered.com`) is dead (502 Bad Gateway). **Commonwealth Land Title's** classic ASP
+calculator menu (`commonwealthct.com/calculators_menu.asp`, an FNF brand, structurally similar to
+Old Republic's postback-driven tool) is DNS-dead (host no longer resolves) — a promising lead that
+no longer exists. TitleCapture and Qualia themselves remain uninvestigated. A third-party site
+(`alphaadv.net`, John Granger's "Title Insurance Rate Calculator" family covering CT/DE/FL/MD/
+NJ/NY/PA/SC/TX/VA) was found and ruled **out of scope**: it's pure client-side JS math against an
+embedded premium-only rate table (not a provider's own system, and not itemized settlement/closing
+fees) — does not meet the "providers' own public quote calculators" mandate. For a future session:
+check TitleCapture (`titlecapture.com`) and Qualia's own embed/API patterns directly rather than
+via third-party agency sites, since those are the two platforms actually named in the task brief.
 
 ## For the browser-driven follow-up session
 Priority queue (highest-value first): (1) First American FACC — map the `Questions` page flow
 after `Calculator/Next` to find where the itemized quote actually renders; (2) FNF's
 ratecalculator.fnf.com — drive the state/county cascading dropdowns and Submit via real browser
 automation, one state at a time, prioritizing PA/MI/NJ/VA (highest-population scarce states not
-covered by Old Republic's tool); (3) Stewart's `quote` POST — either reverse-engineer
-`quoteRequestRoot`'s JSON schema from `/js/nrc.js`, or drive it via browser and capture the
-network request Stewart's own JS sends, which is likely faster than static reverse-engineering.
+covered by Old Republic's tool); (3) Stewart's `quote` POST — capture the real network request
+Stewart's own JS sends (browser automation, not further static reverse-engineering — see the
+2026-07-23 note above for why); (4) WFG's `sellernet/calculate` — the richer, untested endpoint
+(see above), likely also faster to crack by capturing the real UI's network request than by
+guessing the request shape statelessly; (5) PalmAgent — resolve the 305 on its JS bundle (probably
+trivial with a real browser) and repeat the Stewart/WFG-style JS-bundle-mining technique.

@@ -1,6 +1,24 @@
 # Hawaii — Market Fee Evidence
 
-## Status: complete (scarce market) — 4 verified sources (3 genuine escrow-fee schedules + 1 timeshare-specific), 2026-07-22
+## Status: complete (scarce market) — 4 verified sources (3 genuine escrow-fee schedules + 1 timeshare-specific) + 1 calculator-basis provider (not yet at the 3-provider calculator threshold), 2026-07-23
+
+## Calculator harvest (2026-07-23)
+Old Republic Title's public **Estimated Rate/Fee Calculator**
+(https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx) was
+driven directly via HTTP GET/POST (ASP.NET WebForms postback replication, no browser/JS execution)
+for the standard $500,000 purchase/$400,000 loan scenario, **Honolulu, HI (Honolulu County/Oahu, HI's
+most populous county)** — selecting City=Honolulu auto-populated the EscrowCountyComboList to
+"Honolulu", no zip disambiguation needed (unlike MO's multi-county Kansas City). Result: Lender's
+Title Policy $1,735.00, Settlement Agent Fee $1,126.18 (of $2,252.36 total, buyer half), Lien Check
+Fee $52.36, Financing Statement Fee $52.36, Recording Fees $82.00, Owner's Title Policy $380.00
+(buyer share of $836.00 total). Section totals: C (shop-for) $2,965.90, E (gov't fees) $82.00, H
+(other) $380.00. This is the first Old Republic-specific HI calculator figure in this survey (the 3
+genuine escrow schedules already on file are Title Guaranty and First American published rate
+cards plus Old Republic's own separately-filed manual) and serves as an independent cross-check
+against those published schedules. Full entry recorded in HI.json with `"basis": "calculator"`. No
+personal information was entered (Name/Company fields are optional and were left blank). This is 1
+calculator provider; the task's 3-provider threshold was not reached this session (see
+CALCULATORS.md).
 
 Hawaii is unusual among "scarce" states in this survey: this session found **genuine, dollar-
 denominated escrow/settlement fee schedules** (not just title-premium-only manuals) from **3

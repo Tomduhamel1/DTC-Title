@@ -80,5 +80,41 @@
     },
     "bundlingNotes": "IMPORTANT SCOPE CAVEAT: this is a genuine, dollar-denominated published fee schedule from an actual independent Oregon title/escrow company (Cascade Title, Lane County/Eugene), but it prices 'Contract Collections' -- ongoing loan-servicing/collection-agent duties for privately seller-financed land sale contracts -- NOT a standard purchase or refinance settlement/closing fee. Cascade Title's standard purchase/refinance escrow fee is not published on its site (only an interactive 'Estimated Closing Statements' calculator is offered). Recorded here as evidence of the company and its published pricing model, but excluded from any settlement-fee-stack range calculation as a non-comparable product line.",
     "transactionContext": "Seller-financed land sale contract collection/servicing (not purchase or refinance closing), Lane County, Oregon."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company \u2014 Estimated Rate/Fee Calculator (ortconline.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
+    "calculatorUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
+    "retrievalDate": "2026-07-23",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, residential resale, Sale transaction type, Loan Estimate calculation. Property location: Portland, OR 97201 (Multnomah County, OR's most populous county).",
+    "methodology": "Harvested via direct HTTP GET/POST against the calculator's ASP.NET WebForms postback mechanism (__VIEWSTATE/__EVENTVALIDATION): state select -> city select (Portland) -> zip select (97201, to disambiguate Portland's multi-county footprint) -> a required PropertyCountyList postback (select 'Multnomah' -- this control renders empty-by-default for OR and must be explicitly selected via its own postback, unlike HI/MO where the county combo auto-populates from the city selection) -> Sales Price/Loan Amount -> Submit. Note: unlike HI/MO, OR's form does not render a LienPayoffTextbox control at this stage; including that field in the POST body anyway (copying the HI/MO recipe verbatim) produced a hard HTTP 500, matching the documented ReoList gotcha (posting a value for a control not actually in the DOM breaks the ASP.NET postback) -- omitting it fixed the submission. No personal-data fields were populated at any step.",
+    "settlementFee": {
+      "note": "Not a single line item in this tool's output; the closest analog is the 'Settlement Agent Fee' shown in Section C, split buyer/seller (buyer's share shown here). Settlement Agent Fee total (both parties): Title - Settlement Agent Fee (Total: $2,300.00)."
+    },
+    "itemizedFees": {
+      "processing": "$1,150.00 (Settlement Agent Fee, buyer's share; Total both parties: $2,300.00)",
+      "other": [
+        {
+          "name": "Title - Lender's Title Policy (Total: $1,495.00)",
+          "amount": "$1,495.00"
+        },
+        {
+          "name": "Title - Recording Service Fee (Total: $10.00)",
+          "amount": "$10.00"
+        },
+        {
+          "name": "Recording Fees (Total: $400.00)",
+          "amount": "$400.00"
+        },
+        {
+          "name": "Title - Owner's Title Policy** (Total: $1,350.00, seller-paid in this tool's default buyer/seller split)",
+          "amount": "$0.00 (buyer share)"
+        }
+      ]
+    },
+    "sectionTotals": "C: Services You Can Shop For: $2,655.00; E: Taxes and Other Government Fees: $400.00; H: Other: $0.00 (buyer share; Owner's Policy shown as fully seller-paid by this tool's default OR custom-and-practice split)",
+    "bundlingNotes": "The tool's own itemized Settlement Agent Fee note quotes Old Republic's actual OR-filed escrow-rate formula verbatim: '$1800.00 plus $1.00 per $1,000, or fraction thereof, based on the sales price above $0... For transactions where the charge... exceeds $2,000.00, the escrow fee shall be negotiable... minimum charge $2,000.00' -- this is a rare case where the calculator surfaces the underlying filed-rate formula language, not just a computed number, materially strengthening this as evidence (directly corroborates/extends OR.md's existing finding that OAR 836-080-0365 requires escrow rates to be filed with DFR but confirmed non-public in directory form -- this calculator output is itself a legitimate, dated disclosure of that private filing's content). Notably higher-quality find than the HI/MO/AZ/NV/NM/UT Old Republic harvests to date.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k purchase scenario; property location Portland, OR 97201 (Multnomah County, OR's most populous county)."
   }
 ]
