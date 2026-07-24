@@ -125,31 +125,47 @@ export const INFERRED_SERVICE_BAND: ServiceBand = { low: 1.05, high: 1.4, basis:
 //    much larger deals UNDERSTATE savings in those states. Price-aware bands
 //    are the planned fix; understating is the acceptable failure direction.
 //  - FA's PA figure ($0) is a product-selection quirk — excluded.
+// July 24 boundary audit: every band re-derived under ONE symmetric stack
+// convention (provider-controlled service charges; government fees,
+// premiums, explicit pass-throughs, recording-service handling, and
+// optional add-ons excluded on BOTH sides; per-state search/abstract
+// treatment aligned to the state's market convention with the
+// lower-savings tiebreak; disclosure gaps recorded as bundlingUnknowns in
+// the audit output, silence treated as included = conservative).
+// Notable judgment calls, documented:
+//  - CA: WFG/PCT filed sale-escrow fees don't publish a buyer/seller split;
+//    halved (conservative). FA's explicit buyer-side $1,750 anchors the low.
+//  - ID: NOT raised despite nine DOI-filed schedules at $1,650–1,750 — FA's
+//    buyer-side $700 implies those filed fees are whole-transaction and
+//    split by custom; band stays FA-anchored until the split is resolved
+//    (resolution would roughly double ID's claimable savings).
+//  - IA: single full-service provider — point band, flagged.
+//  - IL: Chicago-metro band; downstate handled separately below.
 const SERVICE_BANDS: Record<string, ServiceBand> = {
-  CA: { low: 1.8, high: 2.5, basis: 'published', providers: 2 },
-  GA: { low: 1.09, high: 1.2, basis: 'published', providers: 2 },
-  WA: { low: 1.23, high: 1.88, basis: 'published', providers: 7 },
+  CA: { low: 2.19, high: 2.5, basis: 'published', providers: 3 },
+  GA: { low: 1.0, high: 1.2, basis: 'published', providers: 2 },
+  WA: { low: 1.42, high: 2.17, basis: 'published', providers: 6 },
   ID: { low: 0.77, high: 0.89, basis: 'published', providers: 9 },
-  IA: { low: 0.36, high: 1.3, basis: 'published', providers: 4 },
-  IL: { low: 2.87, high: 3.35, basis: 'published', providers: 11 },
-  KS: { low: 0.64, high: 1.14, basis: 'published', providers: 13 },
+  IA: { low: 0.74, high: 0.74, basis: 'published', providers: 1 },
+  IL: { low: 2.93, high: 3.15, basis: 'published', providers: 8 },
+  KS: { low: 0.61, high: 0.93, basis: 'published', providers: 13 },
   MT: { low: 1.14, high: 1.43, basis: 'published', providers: 2 },
-  OK: { low: 0.22, high: 0.46, basis: 'published', providers: 3 },
-  TX: { low: 0.57, high: 0.94, basis: 'published', providers: 5 },
-  FL: { low: 0.88, high: 1.35, basis: 'published', providers: 6 },
-  NY: { low: 0.58, high: 1.36, basis: 'published', providers: 2 },
+  OK: { low: 0.24, high: 0.94, basis: 'published', providers: 3 },
+  TX: { low: 0.66, high: 1.14, basis: 'published', providers: 5 },
+  FL: { low: 0.88, high: 1.12, basis: 'published', providers: 6 },
+  NY: { low: 0.82, high: 2.14, basis: 'published', providers: 2 },
 
   // ── July 24 second wave: calculator/API evidence (FA direct API + Old
   // Republic harvest + late-extracted published schedules). n=2 states use
   // min–max of the two observed buyer-side stacks ÷ our service total.
-  OH: { low: 0.67, high: 1.73, basis: 'calculator', providers: 2 },
-  NV: { low: 0.48, high: 0.55, basis: 'calculator', providers: 2 },
-  UT: { low: 0.59, high: 0.61, basis: 'calculator', providers: 2 },
+  OH: { low: 0.6, high: 1.26, basis: 'calculator', providers: 3 },
+  NV: { low: 0.48, high: 0.51, basis: 'calculator', providers: 2 },
+  UT: { low: 0.59, high: 0.6, basis: 'calculator', providers: 2 },
   MO: { low: 0.54, high: 0.75, basis: 'calculator', providers: 2 },
-  HI: { low: 1.89, high: 2.39, basis: 'published', providers: 2 },
-  AK: { low: 0.39, high: 0.77, basis: 'published', providers: 2 },
-  DC: { low: 0.71, high: 1.06, basis: 'published', providers: 2 },
-  CT: { low: 0.77, high: 1.64, basis: 'published', providers: 2 },
+  HI: { low: 1.89, high: 2.39, basis: 'published', providers: 3 },
+  AK: { low: 0.42, high: 0.77, basis: 'published', providers: 2 },
+  DC: { low: 0.61, high: 1.06, basis: 'published', providers: 2 },
+  CT: { low: 0.68, high: 1.14, basis: 'published', providers: 3 },
 
   // Single-evidence-point states: basis stays 'inferred' (pooled high), but
   // the LOW is capped at the observed point whenever that point sits below
@@ -192,12 +208,33 @@ const SERVICE_BANDS_REFI: Record<string, ServiceBand> = {
   OR: { low: 0.79, high: 1.26, basis: 'calculator', providers: 1 },
 }
 
+// Illinois is two markets: the Chicago-metro published floor is ~$1,950–
+// $2,400 while downstate closing fees run ~$600 (TitleStar downstate
+// schedules). One statewide band would overstate downstate savings or
+// understate Chicago. ZIPs 600xx–608xx (city + collar) get the metro band;
+// everything else gets a downstate band capped at the single downstate
+// observation (anti-inflation, n=1).
+const IL_DOWNSTATE_BAND: ServiceBand = { low: 0.85, high: 1.4, basis: 'inferred', providers: 1 }
+const IL_METRO_ZIP = /^60[0-8]/
+
+// In states whose market bills search/abstract work as a third-party
+// pass-through while we bill it as our own line, the audit aligned both
+// sides by EXCLUDING search-type charges. The engine must apply the same
+// boundary at quote time: our search/exam/abstract lines in these states
+// carry no market comparison (no savings claimed on them).
+export const SEARCH_PASSTHROUGH_STATES = new Set(['CA', 'FL', 'HI', 'IL', 'NY', 'TX', 'WA'])
+// Oklahoma: only ABSTRACT charges are pass-through; exam/opinion stays
+// comparable (both we and the OK market bill exam/opinion as own charges).
+export const ABSTRACT_ONLY_PASSTHROUGH_STATES = new Set(['OK'])
+
 export function serviceBandFor(
   state: string | undefined | null,
   mode: 'purchase' | 'refinance' = 'purchase',
+  zip?: string,
 ): ServiceBand {
   const code = resolveStateCode(state)
   if (!code) return INFERRED_SERVICE_BAND
   if (mode === 'refinance' && SERVICE_BANDS_REFI[code]) return SERVICE_BANDS_REFI[code]
+  if (code === 'IL' && zip && !IL_METRO_ZIP.test(zip)) return IL_DOWNSTATE_BAND
   return SERVICE_BANDS[code] ?? INFERRED_SERVICE_BAND
 }
