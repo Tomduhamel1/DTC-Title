@@ -25,6 +25,7 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | MO | 1 (Old Republic — Kansas City 64106/Jackson County) | below 3-provider threshold | 2026-07-22 |
 | HI | 1 (Old Republic — Honolulu/Honolulu County-Oahu) | below 3-provider threshold | 2026-07-23 |
 | OR | 1 (Old Republic — Portland 97201/Multnomah County) | below 3-provider threshold | 2026-07-23 |
+| MI | 1 (Modern Title Group — Ann Arbor/Washtenaw County, statewide formula) | below 3-provider threshold | 2026-07-24 |
 
 FNF's ratecalculator.fnf.com/rates.fntg.com and First American's FACC calculator
 (agency.facc.firstam.com) were both investigated and confirmed **jsOnly** (ASP.NET postback/AJAX
@@ -1206,3 +1207,52 @@ still vary and matter).
   session -- deferred to next run, along with continuing calculator harvest into PA/MI/NJ/VA/etc.
   (tier-2/3 high-population scarce states still uncovered by any working calculator) and, if a
   browser-driven session becomes available, the FNF/FACC/Stewart/CATIC-flipbook jsOnly queue.
+- 2026-07-24: Calculator harvest continued into tier-2/3 high-population scarce states not
+  covered by Old Republic's tool (MI, VA, TN, PA, NJ, MD, WI, MN targeted). **MI**: found and
+  harvested Modern Title Group (Ann Arbor) -- a rare case of a provider's own itemized
+  buyer/seller/refi fee calculator implemented as hardcoded constants in client-side JS
+  (`/js/views/rateCalculator.js`), readable via plain HTTP GET with no JS execution -- MI's
+  first genuine settlement-fee evidence in this survey (1 provider, below 3-provider threshold).
+  Checked but ruled out: Independent Title Services' MI calculator (premium-only formula, no
+  settlement-fee itemization, out of scope), the same company's TitleCapture-hosted page and a
+  Qualia Connect embed (both jsOnly Angular/iframe SPAs). **WFG's `sellernet/calculate`**
+  endpoint (the richer endpoint flagged untested 2026-07-23) was mapped and tested this session
+  (built a full request body: IsReissue/SettlementStatementVersion="CD"/SalesPrice/Loans/
+  TransactionProductType/Properties/PriorLenderPolicy/PriorOwnerPolicy/calculateTaxRequest/
+  closingLocationProperties, iteratively discovering 3 required top-level fields --
+  PropertyState/PropertyCounty/PropertyCity -- from its error messages) -- it returns clean
+  HTTP 200 JSON but `titleInsurance: 0` across all 24 tested ProductTypeId x TransactionTypeId
+  combinations (1-6 x 1-4), identical to the already-documented `estimatefeesforsellernet`
+  teaser pattern; concluded this endpoint also requires product-catalog data not present in any
+  discoverable static endpoint (likely populated client-side from a separate lazy-loaded
+  Angular route this session didn't locate) and is not usable as calculator-basis evidence
+  without a browser session. **TitleCapture** (named in the task brief) was investigated
+  directly for the first time: confirmed per-agency-subdomain architecture (bare
+  `calculator.titlecapture.com` returns "Your company was not found"; a real agency instance at
+  `moderntitlegroup.titlecapture.com/title-quote` loads) but is an Angular SPA whose JS bundle
+  references 3 API hosts (`api.titlecapture.com/api-30/`, `api-node.titlecapture.com/`,
+  `api-wb.titlecapture.com/apis/`) without any concatenated path segments findable via static
+  grep -- logged as jsOnly with these 3 hosts as a starting map for a browser-driven session.
+  **Qualia** was also investigated directly for the first time: Qualia Connect's embeddable
+  quote widget (`connect.qualia.com/quote-widget/scripts/init`, found embedded on Endeavor
+  Title's MD site and Modern Title Group's own MI site via a `data-token`) uses a postMessage-
+  based iframe architecture (`ui/activator` + `ui/stage` frames) with no static REST calls
+  visible in either the loader script or the stage iframe shell -- logged as jsOnly, recurring
+  across multiple states' agency sites so worth a browser session once cracked once. Freshness
+  pass (reduced): re-verified 5 sources from the earliest-touched states (CA, GA, NC, IL, WI) --
+  all 5 still return HTTP 200 with a standard browser User-Agent (the GA/virtualunderwriter.com
+  source initially 403'd on a bare curl UA, then returned 200 with a full browser UA/Accept/
+  Accept-Language header set -- the same UA-based-block pattern already seen with CATIC, not a
+  real dead link); no sources marked stale. Blocked-retries: re-tried Arizona DIFI and Jackson &
+  Scott AL with the full-browser-header curl technique that broke through for CATIC -- both
+  still 403, reconfirming these are genuine UA-independent WAF blocks, not bot-UA detection (no
+  change; CATIC's flipbook OCR/browser gap from 2026-07-23 also left unchanged, not re-attempted
+  this session). Net this session: 1 new calculator-basis state (MI, 1 provider), 2 major
+  platforms named in the task brief (TitleCapture, Qualia) now have a first concrete jsOnly
+  entry each with useful technical detail instead of being wholly uninvestigated, and one more
+  dead-end endpoint (WFG sellernet/calculate) ruled out and documented. Still below the
+  3-provider threshold for every state touched so far by calculator harvest; next session should
+  keep searching for individual agency-level in-house calculators (the Modern Title Group
+  pattern -- small companies' own hand-rolled JS calculators -- appears to be a higher-yield
+  search target than the big-four brands' locked-down SPAs) in VA/TN/PA/NJ/MD/WI/MN, and push MI
+  to 2-3 providers specifically.

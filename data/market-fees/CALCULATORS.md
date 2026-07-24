@@ -174,22 +174,103 @@ path quirk needing a real browser to resolve) — not yet resolved. **Prism Powe
 (`go.prismpowered.com`) is dead (502 Bad Gateway). **Commonwealth Land Title's** classic ASP
 calculator menu (`commonwealthct.com/calculators_menu.asp`, an FNF brand, structurally similar to
 Old Republic's postback-driven tool) is DNS-dead (host no longer resolves) — a promising lead that
-no longer exists. TitleCapture and Qualia themselves remain uninvestigated. A third-party site
-(`alphaadv.net`, John Granger's "Title Insurance Rate Calculator" family covering CT/DE/FL/MD/
-NJ/NY/PA/SC/TX/VA) was found and ruled **out of scope**: it's pure client-side JS math against an
-embedded premium-only rate table (not a provider's own system, and not itemized settlement/closing
-fees) — does not meet the "providers' own public quote calculators" mandate. For a future session:
-check TitleCapture (`titlecapture.com`) and Qualia's own embed/API patterns directly rather than
-via third-party agency sites, since those are the two platforms actually named in the task brief.
+no longer exists. A third-party site (`alphaadv.net`, John Granger's "Title Insurance Rate
+Calculator" family covering CT/DE/FL/MD/NJ/NY/PA/SC/TX/VA) was found and ruled **out of scope**:
+it's pure client-side JS math against an embedded premium-only rate table (not a provider's own
+system, and not itemized settlement/closing fees) — does not meet the "providers' own public quote
+calculators" mandate.
+
+### TitleCapture — 2026-07-24 update: investigated directly, confirmed jsOnly, API hosts mapped
+Named directly in the task brief. `titlecapture.com`/`www.titlecapture.com` is only the platform's
+own WordPress marketing site (no calculator there). The real product is per-agency-subdomain:
+`calculator.titlecapture.com` (bare, no agency) returns a plain HTML "Oops. Your company was not
+found." page — confirming every real instance lives at `<agencyslug>.titlecapture.com`. Found and
+fetched a live instance, `moderntitlegroup.titlecapture.com/title-quote` (linked from Modern Title
+Group's own site, see below) — **jsOnly**: an Angular SPA (`main.<hash>.js` + `polyfills`/
+`runtime`/`scripts` chunks, same build pattern as WFG's rate calculator). Its JS bundle references
+3 distinct API hosts — `api.titlecapture.com/api-30/`, `api-node.titlecapture.com/`, and
+`api-wb.titlecapture.com/apis/` — but no concatenated path segments were findable via static grep
+(`"/api/..."` string literals), meaning endpoint paths are built from variables at runtime rather
+than being static string literals in this bundle. `api.titlecapture.com` itself 403s on a bare
+fetch (likely requires an Origin/Referer or auth header the SPA sets at runtime). **Recommendation
+for a browser-driven session**: drive `<agency>.titlecapture.com/title-quote` for any of the target
+scarce states and capture the real XHR/fetch calls to these 3 hosts — this would likely unlock many
+states at once since TitleCapture is used by numerous independent agencies nationwide (not just
+Modern Title Group).
+
+### Qualia Connect — 2026-07-24 update: investigated directly, confirmed jsOnly (iframe/postMessage)
+Named directly in the task brief. `qualia.com`/`www.qualia.com` is the platform's own corporate
+site (no calculator there). The actual embeddable consumer product is **Qualia Connect's quote
+widget**, found live on 2 agency sites this session: Endeavor Title (Maryland,
+`endeavortitle.com/closing-cost-calculator`) and Modern Title Group's own MI site (both via a
+`<script src="https://connect.qualia.com/quote-widget/scripts/init" data-token="...">` snippet with
+an agency-specific token, e.g. `bAQ2Tvo7Bsxa39R5j` for Endeavor Title). Fetched the loader script
+directly: it does **not** call a REST API itself — it injects two hidden `<iframe>` elements
+(`activator` at `/quote-widget/ui/activator`, `stage` at `/quote-widget/ui/stage`) and communicates
+with them via a `WindowMessenger` postMessage protocol (`registrationAcknowledged` / `settings`
+events), passing the page's token into the stage iframe. Fetched the stage iframe's HTML shell
+directly (`connect.qualia.com/quote-widget/ui/stage`) — it's a static shell (jQuery + Qualia's own
+`semantic.min.js` UI framework) with no visible REST endpoint calls; the actual quoting logic loads
+dynamically inside that iframe context after receiving the `settings` postMessage, which a plain
+HTTP fetch cannot trigger. **jsOnly** — logged for a browser-driven session. Because this widget
+recurs across many independent agencies' sites (found twice already, unprompted, in this session's
+unrelated MI/MD searches), cracking its real backend API once would likely be a high-leverage,
+multi-state unlock, same rationale as TitleCapture above.
+
+### Modern Title Group (Ann Arbor, MI) — 2026-07-24: WORKING, a genuine in-house JS calculator
+Found via general web search for MI title calculators, not one of the big-four/agency-platform
+searches above. `moderntitlegroup.com/Calculator/Rate` embeds both a Qualia Connect widget AND a
+TitleCapture-hosted quote page (both jsOnly, see above) **and its own separate, fully client-side
+Vue 3 calculator** at `/js/views/rateCalculator.js`, fetched via plain HTTP GET — the complete
+computation logic (a tiered per-thousand title-premium formula plus 6 flat ancillary fees: closing,
+recording, courier, wire transfer, deed escrow, title search — separately priced for buyer/seller/
+refi sides) is hardcoded as literal constants in the fetched JS source, fully readable and
+computable without executing any JS. **Harvested this session** — see MI.json's `basis:
+"calculator"` entry for full itemized figures at the standard $500,000 scenario. This is a
+different pattern from every big-four/platform SPA investigated so far: a small independent
+company's own hand-rolled calculator rather than a locked-down enterprise Angular/ASP.NET system,
+and it happens to be genuinely itemized (unlike Independent Title Services' MI calculator, checked
+the same session, which is premium-only client-side math and out of scope for this mission).
+**Recommendation for future sessions**: search specifically for small/independent title agencies'
+own custom calculators (view-source + grep for hardcoded fee constants in first-party JS, as done
+here) rather than only chasing the big-four/platform SPAs — likely a higher-yield, lower-effort
+target across the many scarce states still uncovered.
+
+### Dead ends checked 2026-07-24 (logged so they aren't re-tried)
+- **myticor.com/title-escrow-rates/** (Ticor Title, an FNF brand) — HTTP 404, page no longer
+  exists.
+- **velocity-title.com/rate-calculator** (Richmond, VA) — merely embeds WFG's own rate calculator
+  (`rates.wfgnationaltitle.com/step1`), already documented above as gated/teaser; not a distinct
+  source.
+- **Independent Title Services** (`independenttitle.services/michigan-rates-calculator`, MI) — a
+  genuine first-party client-side JS calculator (same discovery technique as Modern Title Group
+  above) but premium-only (Basic Rate / Ext. Coverage Policy / Loan Premium, no settlement/closing/
+  escrow fee line items) — out of scope for the calculator-harvest mission, though it would be a
+  valid published-schedule-survey source if MI's premium-only tier needed another corroboration
+  (it doesn't; MI already has 6 premium manuals on file).
 
 ## For the browser-driven follow-up session
-Priority queue (highest-value first): (1) First American FACC — map the `Questions` page flow
-after `Calculator/Next` to find where the itemized quote actually renders; (2) FNF's
+Priority queue (highest-value first): (1) TitleCapture — drive `<agency>.titlecapture.com/
+title-quote` for a real agency instance (e.g. moderntitlegroup.titlecapture.com) and capture the
+actual network calls to `api.titlecapture.com/api-30/`, `api-node.titlecapture.com/`, or
+`api-wb.titlecapture.com/apis/` — likely unlocks many agencies/states at once since it's a shared
+platform, not single-provider; (2) Qualia Connect — drive the `quote-widget/ui/stage` iframe (found
+on Endeavor Title MD and Modern Title Group MI so far, likely present on many more agency sites)
+and capture what the `settings` postMessage triggers it to fetch — same multi-state-unlock
+rationale as TitleCapture; (3) First American FACC — map the `Questions` page flow after
+`Calculator/Next` to find where the itemized quote actually renders; (4) FNF's
 ratecalculator.fnf.com — drive the state/county cascading dropdowns and Submit via real browser
-automation, one state at a time, prioritizing PA/MI/NJ/VA (highest-population scarce states not
-covered by Old Republic's tool); (3) Stewart's `quote` POST — capture the real network request
-Stewart's own JS sends (browser automation, not further static reverse-engineering — see the
-2026-07-23 note above for why); (4) WFG's `sellernet/calculate` — the richer, untested endpoint
-(see above), likely also faster to crack by capturing the real UI's network request than by
-guessing the request shape statelessly; (5) PalmAgent — resolve the 305 on its JS bundle (probably
-trivial with a real browser) and repeat the Stewart/WFG-style JS-bundle-mining technique.
+automation, one state at a time, prioritizing VA/TN/PA/NJ (highest-population scarce states still
+not covered by any working calculator as of 2026-07-24, MI now partially covered — see PROGRESS.md
+tracker); (5) Stewart's `quote` POST — capture the real network request Stewart's own JS sends
+(browser automation, not further static reverse-engineering — see the 2026-07-23 note above for
+why); (6) WFG's `sellernet/calculate` — tested 2026-07-24 and ruled out as not staticly reachable
+(returns `titleInsurance: 0` regardless of 24 tested product/transaction-type combinations, same
+teaser pattern as `estimatefeesforsellernet`) — a browser session capturing the real UI's network
+request might still reveal a missing required field (likely a product-catalog ID not available via
+any static endpoint found so far); (7) PalmAgent — resolve the 305 on its JS bundle (probably
+trivial with a real browser) and repeat the Stewart/WFG-style JS-bundle-mining technique. Also
+worth trying without a browser at all: repeat the Modern-Title-Group technique (view-source + grep
+first-party JS for hardcoded fee constants) against more small independent agencies in VA/TN/PA/
+NJ/MD/WI/MN — it found a genuine itemized source in MI this session with no JS execution needed and
+may generalize.

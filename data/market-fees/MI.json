@@ -10,7 +10,10 @@
     },
     "itemizedFees": {
       "other": [
-        { "name": "Work Fee (unusual complexity / more than one chain of title)", "amount": "$300/hour" }
+        {
+          "name": "Work Fee (unusual complexity / more than one chain of title)",
+          "amount": "$300/hour"
+        }
       ]
     },
     "bundlingNotes": "This 2024 vintage is titled 'ALL-INCLUSIVE RESIDENTIAL SCHEDULE OF CHARGES FOR TITLE INSURANCE' and states: 'The charges are \"all-inclusive\", in that same include all ordinary charges including, but not limited to, ordinary charges for the title search, tax search, title examination, commitment, and policy.' No separate settlement/escrow/closing service fee is itemized; the premium itself bundles search/exam. Superseded 11 months later by the 2025 vintage below, which drops the all-inclusive language entirely -- a notable regulatory/product shift.",
@@ -27,7 +30,10 @@
     },
     "itemizedFees": {
       "other": [
-        { "name": "Work Fee (unusual complexity / more than one chain of title)", "amount": "$300/hour" }
+        {
+          "name": "Work Fee (unusual complexity / more than one chain of title)",
+          "amount": "$300/hour"
+        }
       ]
     },
     "bundlingNotes": "This 2025 vintage drops the 'all-inclusive' title and language entirely, replacing it with: 'The charges are risk rates for title insurance only and do not include any fees or costs for title searches, title examinations or any other fees for services that might be charged by the Company or agents.' Same underwriter, same $ structure format, but the bundling model flipped between the 2024 and 2025 filings -- Owner's Policy base rate also rose from $375 to $450 over the same period (+20%), consistent with unbundling search/exam costs out of the premium and into separately-charged (but unpublished) service fees.",
@@ -86,10 +92,43 @@
     },
     "itemizedFees": {
       "other": [
-        { "name": "Additional work charge for multi-parcel single policy", "amount": "$300/hour" }
+        {
+          "name": "Additional work charge for multi-parcel single policy",
+          "amount": "$300/hour"
+        }
       ]
     },
     "bundlingNotes": "Explicit statement in Section 1 (Introduction): 'The charges shown herein as applicable to title insurance products, also known as the \"title premiums\", are risk rates for title insurance only for all counties in the State of Michigan, and do not include charges for a title search, tax search, title examination, or any other fees that might be charged by the Company or its agents.' Identical rate figures to Stewart's 2025 vintage (both $450 owner's minimum, same per-thousand tiers), suggesting a shared/coordinated MI rate filing baseline between WFG and Stewart -- a useful cross-underwriter corroboration data point even though neither prices settlement fees.",
     "transactionContext": "Owner's, Homeowner's (expanded), and Loan Policy premium schedules for residential (1-4 family) property, all Michigan counties. No purchase/refinance settlement-service-fee breakdown."
+  },
+  {
+    "provider": "Modern Title Group (Ann Arbor, MI independent title/settlement company)",
+    "basis": "calculator",
+    "sourceUrl": "https://moderntitlegroup.com/Calculator/Rate",
+    "calculatorUrl": "https://moderntitlegroup.com/Calculator/Rate",
+    "retrievalDate": "2026-07-24",
+    "scenario": "$500,000 purchase price, residential resale, buyer-side and seller-side breakdowns (this calculator prices off sale price only; it has no loan-amount input, so the $400,000 loan amount in the standard scenario does not affect its output). No county/city selector in this tool -- Modern Title Group is headquartered in Ann Arbor, Washtenaw County, MI and the calculator's formula is presented as a single statewide schedule, not county-tiered.",
+    "methodology": "Not a server-side calculator -- Modern Title Group's own /js/views/rateCalculator.js (a Vue 3 component fetched via plain HTTP GET, no JS execution needed) contains the complete calculation logic and all fee constants hardcoded client-side: a tiered per-thousand title-insurance-premium formula (separate buyer/seller/refi base rates and marginal rates) plus 6 flat ancillary fees per transaction side. Recomputed by hand from the fetched JS source for the $500,000 scenario -- these are Modern Title Group's own published figures, not a third-party rate-table clone (contrast with the out-of-scope alphaadv.net-style aggregators already logged in CALCULATORS.md). The same page also embeds a Qualia Connect widget (connect.qualia.com/quote-widget, token bAQ2Tvo7Bsxa39R5j-style embed) and links to a moderntitlegroup.titlecapture.com/title-quote page -- both are separate JS-only quoting systems for the same company, logged separately in CALCULATORS.md as jsOnly.",
+    "settlementFee": {
+      "buyerClosingFee": "$550.00",
+      "sellerClosingFee": "$250.00",
+      "note": "Company itself labels this line 'Closing Fee'; buyer and seller are charged different flat amounts."
+    },
+    "itemizedFees": {
+      "searchExam": "$150.00 (Title Search Fee, same for buyer/seller/refi sides)",
+      "processing": "$0 separately itemized (see Closing Fee above; no separate 'processing' line)",
+      "wireTransfer": "$45.00 (Wire Transfer Fee, all 3 sides)",
+      "courier": "$45.00 (Courier/Express Mail, all 3 sides)",
+      "recording": "$35.00 (Recording Service Fee, all 3 sides)",
+      "escrow": "$250.00 (Deed Escrow Fee, all 3 sides)",
+      "titleInsurancePremium": {
+        "buyer": "$2,335 (computed from the tiered formula at $500,000: base $425 + 5.75/thousand [$20k-$100k tier, capped] + 4.50/thousand [$100k-$200k tier, capped] + 4.00/thousand [$200k-$300k tier, capped] + 3.00/thousand [$300k-$1M tier])",
+        "seller": "$2,065 (same tiers, seller base $375 and marginal rates 5.50/4.50->3.75/3.25/2.75 respectively)",
+        "refi": "$1,780 (base $295, marginal rates 3.25/2.25/2.00/1.60 -- not applicable to the standard purchase scenario, recorded for completeness)"
+      }
+    },
+    "sectionTotals": "Buyer side: title insurance $2,335 + ancillary fees (closing $550 + recording $35 + courier $45 + wire $45 + escrow $250 + search $150 = $1,075) = $3,410 total. Seller side: title insurance $2,065 + ancillary fees (closing $250 + recording $35 + courier $45 + wire $45 + escrow $250 + search $150 = $775) = $2,840 total.",
+    "bundlingNotes": "Calculator caps input at $1,000,000 sale price (values above return a validation error, not a quote). Ancillary fee constants (recording/courier/wire/escrow/search) are identical across buyer, seller, and refi sides -- only the Closing Fee and title-insurance-premium formula differ by transaction side.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k scenario; statewide MI formula, no county tiering; Ann Arbor/Washtenaw County is the company's home base."
   }
 ]

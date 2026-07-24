@@ -106,3 +106,23 @@ Plus direct provider-site fetches: prioritytitle.biz, sterling-title.com documen
 oldrepublictitle.com/michigan/state, and all 6 underwriter rate-manual PDFs (via WebFetch +
 Read-tool binary-PDF recovery, since WebFetch cannot parse FlateDecode-compressed PDF
 streams directly — same recovery technique used in prior sessions for CA/GA/NC/WA).
+
+## Calculator harvest (2026-07-24, separate from the published-schedule survey above)
+
+Found and harvested **Modern Title Group** (Ann Arbor, Washtenaw County) — see MI.json's
+`basis: "calculator"` entry for full itemized figures. Unlike every underwriter rate manual
+above (premium-only, zero settlement-fee dollar figures despite exhaustive search), this
+independent company's own website (`moderntitlegroup.com/Calculator/Rate`) ships a genuinely
+itemized buyer/seller/refi fee calculator whose complete logic (title-insurance-premium
+formula plus 6 flat ancillary fees: closing, recording, courier, wire transfer, deed escrow,
+title search) lives as hardcoded constants in its own client-side JS (`/js/views/
+rateCalculator.js`), fetchable via plain HTTP GET with no JS execution or personal data
+required. This is the first genuine MI settlement-fee evidence found in this survey. The same
+company's site also links to a Qualia Connect widget and a TitleCapture-hosted quote page —
+both logged as jsOnly in CALCULATORS.md; only the custom Vue calculator was harvestable
+statelessly. MI calculator-basis status: 1 provider — below the 3-provider threshold (see
+PROGRESS.md tracker); 2 more MI-specific working calculators are needed to cross it. A
+same-technique check of Independent Title Services' MI rate calculator
+(independenttitle.services/michigan-rates-calculator) found only a premium-only client-side
+formula (no settlement/closing fee itemization) — excluded as out of scope for the calculator
+mission (duplicates the premium-only evidence already on file, adds no settlement-fee signal).
