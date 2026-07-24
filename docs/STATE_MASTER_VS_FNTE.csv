@@ -1,0 +1,52 @@
+state,premium_regime,service_band_basis,evidence_providers,band_low_x,band_high_x,our_service_stack_500k,our_settlement_line_500k,FA_buyer_settlement_500k,market_low_500k,market_high_500k,claimed_service_savings_500k,verdict_vs_market,notes
+AK,filed,published,2,0.39,0.77,1555,1150,650,606,1197,0,ABOVE market,FA fee scales with deal size — flat band understates jumbo savings
+AL,filed,inferred,,1.05,1.4,1595,1150,,1675,2233,80,parity,
+AR,filed,inferred,,1.05,1.4,995,550,,1045,1393,50,parity,
+AZ,filed,inferred,,1.05,1.4,950,550,,998,1330,48,parity,
+CA,filed,published,2,1.8,2.5,700,550,1750,1260,1750,560,BELOW market,FA fee scales with deal size — flat band understates jumbo savings
+CO,filed,inferred-capped,1,0.94,1.4,725,550,685,682,1015,0,ABOVE market,
+CT,filed,published,2,0.77,1.64,1100,550,,847,1804,0,ABOVE market,
+DC,filed,published,2,0.71,1.06,1200,750,,852,1272,0,ABOVE market,
+DE,rating-bureau,inferred,,1.05,1.4,850,550,,892,1190,42,parity,
+FL,promulgated,published,6,0.88,1.35,700,550,595,616,945,0,ABOVE market,
+GA,filed,published,2,1.09,1.2,1100,550,,1199,1320,99,parity,
+HI,filed,published,2,1.89,2.39,595,595,1425,1125,1422,530,BELOW market,FA fee scales with deal size — flat band understates jumbo savings
+IA,filed,published,4,0.36,1.3,1150,250,,414,1495,0,ABOVE market,abstract state; partial published stacks
+ID,filed,published,9,0.77,0.89,975,450,700,751,868,0,ABOVE market,
+IL,filed,published,11,2.87,3.35,750,550,2200,2152,2512,1402,BELOW market,FA fee scales with deal size — flat band understates jumbo savings
+IN,filed,inferred,,1.05,1.4,,,,,,,unknown (engine errors),fee-engine denominator unavailable (persistent upstream 500s)
+KS,filed,published,13,0.64,1.14,700,550,225,448,798,0,ABOVE market,
+KY,filed,inferred,,1.05,1.4,750,550,,788,1050,38,parity,
+LA,filed,inferred,,1.05,1.4,750,550,,788,1050,38,parity,
+MA,filed,inferred,,1.05,1.4,1000,550,,1050,1400,50,parity,
+MD,filed,inferred,,1.05,1.4,825,520,,866,1155,41,parity,
+ME,filed,inferred,,1.05,1.4,825,550,,866,1155,41,parity,
+MI,filed,inferred-capped,1,0.85,1.4,700,550,595,595,980,0,ABOVE market,
+MN,filed,inferred-capped,1,0.46,1.4,700,550,325,322,980,0,ABOVE market,
+MO,filed,calculator,2,0.54,0.75,725,550,395,392,544,0,ABOVE market,pricing review candidate
+MS,filed,inferred,,1.05,1.4,700,550,,735,980,35,parity,
+MT,filed,published,2,1.14,1.43,700,550,,798,1001,98,BELOW market,
+NC,rating-bureau,inferred,,1.05,1.4,,,,,,,unknown (engine errors),fee-engine denominator unavailable (persistent upstream 500s)
+ND,filed,inferred,,1.05,1.4,700,550,,735,980,35,parity,
+NE,filed,inferred,,1.05,1.4,725,550,,761,1015,36,parity,
+NH,filed,inferred,,1.05,1.4,725,550,,761,1015,36,parity,
+NJ,rating-bureau,inferred-capped,1,0.7,1.4,750,350,525,525,1050,0,ABOVE market,
+NM,promulgated,inferred-capped,1,0.44,1.4,1880,1700,834,827,2632,0,ABOVE market,FA fee scales with deal size — flat band understates jumbo savings; pricing review candidate
+NV,filed,calculator,2,0.48,0.55,1450,1300,695,696,798,0,ABOVE market,FA fee scales with deal size — flat band understates jumbo savings; pricing review candidate
+NY,rating-bureau,published,2,0.58,1.36,1100,550,,638,1496,0,ABOVE market,
+OH,rating-bureau,calculator,2,0.67,1.73,441,291,295,295,763,0,ABOVE market,
+OK,filed,published,3,0.22,0.46,2340,550,395,515,1076,0,ABOVE market,3 sources; market far below our fee — pricing review
+OR,filed,inferred-capped,1,0.8,1.4,1500,1200,1200,1200,2100,0,ABOVE market,FA fee scales with deal size — flat band understates jumbo savings
+PA,rating-bureau,inferred,,1.05,1.4,950,550,,998,1330,48,parity,FA $0 quirk excluded from evidence
+RI,filed,inferred,,1.05,1.4,885,550,,929,1239,44,parity,
+SC,filed,inferred,,1.05,1.4,1085,550,,1139,1519,54,parity,
+SD,filed,inferred,,1.05,1.4,2436,550,,2558,3410,122,parity,"our service stack unusually high ($2,436) with no market evidence — investigate"
+TN,filed,inferred,,1.05,1.4,1050,550,,1102,1470,52,parity,
+TX,promulgated,published,5,0.57,0.94,850,550,795,484,799,0,ABOVE market,pricing review candidate
+UT,filed,calculator,2,0.59,0.61,700,550,415,413,427,0,ABOVE market,pricing review candidate
+VA,filed,inferred,,1.05,1.4,835,550,,877,1169,42,parity,
+VT,filed,inferred,,1.05,1.4,1100,550,,1155,1540,55,parity,
+WA,filed,published,7,1.23,1.88,650,450,1631,800,1222,150,BELOW market,FA fee scales with deal size — flat band understates jumbo savings
+WI,filed,inferred,,1.05,1.4,700,550,,735,980,35,parity,
+WV,filed,inferred,,1.05,1.4,915,550,,961,1281,46,parity,
+WY,filed,inferred-capped,1,0.27,1.4,830,580,225,224,1162,0,ABOVE market,
