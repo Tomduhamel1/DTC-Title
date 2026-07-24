@@ -95,6 +95,26 @@ async function main() {
   }
   await Promise.all(Array.from({ length: CONCURRENCY }, worker))
 
+  // Failure tolerance: a state whose upstream calls fail this run KEEPS its
+  // anchor from the previous generated file (stale beats absent — absent
+  // silently falls back to the national average on the live site). Only
+  // states with no previous value are truly omitted.
+  if (failed.length > 0) {
+    try {
+      const prev = await import('../src/lib/stateSavings.generated')
+      for (const st of [...failed]) {
+        const prevAnchor = (prev.STATE_ANCHORS as Record<string, StateAnchor>)[st]
+        if (prevAnchor) {
+          anchors[st] = prevAnchor
+          failed.splice(failed.indexOf(st), 1)
+          console.log(`${st}: retained previous anchor (upstream failed this run)`)
+        }
+      }
+    } catch {
+      // no previous file — nothing to retain
+    }
+  }
+
   const done = Object.keys(anchors).sort()
   if (done.length === 0) throw new Error('every state failed — refusing to write an empty table')
 
