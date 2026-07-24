@@ -140,6 +140,7 @@ function withTypicalRange(
   ourCost: number,
   category: FeeCategory,
   stateCode: string | undefined,
+  transactionType: 'purchase' | 'refinance',
 ): Pick<FeeLineItem, 'isFixed' | 'typicalRange'> {
   if (category === 'recording' || category === 'taxes') {
     return { isFixed: true }
@@ -152,7 +153,9 @@ function withTypicalRange(
   // Service lines all use the state's evidence-derived band (published or
   // inferred — see marketBaseline). Applying the same band to every service
   // line keeps the package-level sums equal to band × our service total.
-  const range = isPremiumLine ? PREMIUM_RANGE_FILED : serviceBandFor(stateCode)
+  const range = isPremiumLine
+    ? PREMIUM_RANGE_FILED
+    : serviceBandFor(stateCode, transactionType)
   return {
     isFixed: false,
     typicalRange: {
@@ -220,7 +223,7 @@ export async function fetchElendFeeEstimate(req: ElendRequest): Promise<FeeRepor
     const rawForCategorize = row.FeeDescription || rawName
     const label = cleanDescription(rawName)
     const category = categorize(rawForCategorize)
-    const variability = withTypicalRange(label, buyer, category, data.stateCode)
+    const variability = withTypicalRange(label, buyer, category, data.stateCode, req.transactionType)
     // Uniform-premium states (promulgated/bureau rates): surface the premium
     // as state-set so the UI explains why there's no comparison on that line.
     const uniformPremium =

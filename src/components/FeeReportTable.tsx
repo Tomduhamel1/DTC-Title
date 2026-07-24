@@ -114,7 +114,7 @@ export default function FeeReportTable({
               </div>
               <div className="text-[10px] text-gray-400 mt-1.5 leading-snug">
                 {(() => {
-                  const band = serviceBandFor(report.state)
+                  const band = serviceBandFor(report.state, report.transactionType)
                   if (band.basis === 'published')
                     return `Typical range from ${band.providers} published ${report.state} fee schedules (July 2026 survey).`
                   if (band.basis === 'calculator')
