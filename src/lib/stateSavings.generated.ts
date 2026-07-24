@@ -9,7 +9,7 @@
 // States omitted after upstream failures (runtime falls back to the
 // national anchor): IN, LA, NC
 
-export const GENERATED_AT = '2026-07-24T05:29:33.001Z'
+export const GENERATED_AT = '2026-07-24T07:24:29.604Z'
 
 // Anchor scenario: $500,000 purchase, $400,000 loan (80% LTV);
 // refinance of a $400,000 note.
@@ -28,24 +28,24 @@ export interface StateAnchor {
 }
 
 // Mean across generated states.
-export const NATIONAL_ANCHOR: StateAnchor = { purchase: { save: 442, ourTotal: 4515 }, refinance: { save: 217, ourTotal: 2043 } }
+export const NATIONAL_ANCHOR: StateAnchor = { purchase: { save: 442, ourTotal: 4515 }, refinance: { save: 192, ourTotal: 2043 } }
 
 export const STATE_ANCHORS: Record<string, StateAnchor> = {
   AK: { purchase: { save: 459, ourTotal: 3505 }, refinance: { save: 444, ourTotal: 2535 } },
   AL: { purchase: { save: 531, ourTotal: 4633 }, refinance: { save: 156, ourTotal: 1747 } },
   AR: { purchase: { save: 380, ourTotal: 3325 }, refinance: { save: 179, ourTotal: 1286 } },
   AZ: { purchase: { save: 596, ourTotal: 3238 }, refinance: { save: 139, ourTotal: 1050 } },
-  CA: { purchase: { save: 874, ourTotal: 2116 }, refinance: { save: 538, ourTotal: 1433 } },
+  CA: { purchase: { save: 874, ourTotal: 2116 }, refinance: { save: 324, ourTotal: 1433 } },
   CO: { purchase: { save: 145, ourTotal: 1469 }, refinance: { save: 181, ourTotal: 1296 } },
   CT: { purchase: { save: 530, ourTotal: 3524 }, refinance: { save: 368, ourTotal: 2308 } },
   DC: { purchase: { save: 848, ourTotal: 12065 }, refinance: { save: 124, ourTotal: 1270 } },
   DE: { purchase: { save: 44, ourTotal: 13725 }, refinance: { save: 26, ourTotal: 2300 } },
   FL: { purchase: { save: 0, ourTotal: 5775 }, refinance: { save: 0, ourTotal: 4179 } },
-  GA: { purchase: { save: 895, ourTotal: 5519 }, refinance: { save: 183, ourTotal: 2324 } },
+  GA: { purchase: { save: 895, ourTotal: 5519 }, refinance: { save: 137, ourTotal: 2324 } },
   HI: { purchase: { save: 1174, ourTotal: 3277 }, refinance: { save: 790, ourTotal: 2368 } },
   IA: { purchase: { save: 334, ourTotal: 2668 }, refinance: { save: 246, ourTotal: 2050 } },
   ID: { purchase: { save: 528, ourTotal: 3170 }, refinance: { save: 538, ourTotal: 2735 } },
-  IL: { purchase: { save: 1471, ourTotal: 5334 }, refinance: { save: 1055, ourTotal: 1214 } },
+  IL: { purchase: { save: 1471, ourTotal: 5334 }, refinance: { save: 100, ourTotal: 1214 } },
   KS: { purchase: { save: 0, ourTotal: 1241 }, refinance: { save: 146, ourTotal: 1574 } },
   KY: { purchase: { save: 624, ourTotal: 3323 }, refinance: { save: 298, ourTotal: 1739 } },
   MA: { purchase: { save: 689, ourTotal: 3935 }, refinance: { save: 172, ourTotal: 1420 } },

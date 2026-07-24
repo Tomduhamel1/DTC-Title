@@ -168,8 +168,36 @@ const SERVICE_BANDS: Record<string, ServiceBand> = {
   // band until the denominator lands and the ratio can be computed.
 }
 
-export function serviceBandFor(state: string | undefined | null): ServiceBand {
+// Refinance-specific overrides. Refi service fees are a different market
+// than purchase (FA's schedules run lower and flatter on refi), and our own
+// refi fees differ too — so refi ratios are computed from refi evidence
+// against our refi service stacks, never assumed equal to purchase.
+// A state without a refi override falls back to its purchase band.
+//
+// July 24: single-point refi evidence (FA direct API @$400k loan; GA from
+// Campbell & Brannon's published refi schedule) mandates DOWNWARD overrides
+// wherever the refi ratio sits below the purchase band's low — refi is a
+// cheaper, flatter market and the purchase band would overstate savings
+// (IL: Chicago refi closing $325 vs $2,200 purchase). Single points never
+// push a band UP (CT/ID/WA refi evidence above purchase band is parked
+// until a second provider corroborates). Highs bounded at min(purchase
+// high, 1.6 × the observed point).
+const SERVICE_BANDS_REFI: Record<string, ServiceBand> = {
+  CA: { low: 1.37, high: 2.19, basis: 'calculator', providers: 1 },
+  GA: { low: 1.0, high: 1.2, basis: 'published', providers: 1 },
+  IL: { low: 0.57, high: 0.91, basis: 'calculator', providers: 1 },
+  MI: { low: 0.39, high: 0.62, basis: 'calculator', providers: 1 },
+  MO: { low: 0.48, high: 0.75, basis: 'calculator', providers: 1 },
+  OH: { low: 0.5, high: 0.8, basis: 'calculator', providers: 1 },
+  OR: { low: 0.79, high: 1.26, basis: 'calculator', providers: 1 },
+}
+
+export function serviceBandFor(
+  state: string | undefined | null,
+  mode: 'purchase' | 'refinance' = 'purchase',
+): ServiceBand {
   const code = resolveStateCode(state)
   if (!code) return INFERRED_SERVICE_BAND
+  if (mode === 'refinance' && SERVICE_BANDS_REFI[code]) return SERVICE_BANDS_REFI[code]
   return SERVICE_BANDS[code] ?? INFERRED_SERVICE_BAND
 }
