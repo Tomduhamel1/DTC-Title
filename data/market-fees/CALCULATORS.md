@@ -398,6 +398,44 @@ needed.
   platform on the proven WebForms-postback technique, likely underexploited beyond the 3 states
   checked this session.
 
+### CATICulator (caticulator.com) — 30-state platform, auth pattern cracked, Calculate not completed
+Discovered 2026-07-25 during the CT blocked-retry pass (CATIC's own domain calculator, an
+alternative to its static rate manual, which remains locked behind a FlippingBook JS image viewer
+— see CT.md). `caticulator.com` is a Knockout.js SPA covering a surprising **30 states** per its
+own `pc.model.js` `toServerModel()` state-code enum: CT, ME, MA, NH, RI, VT, NY, FL, NJ, PA, GA,
+OH, SC, AL, TN, IL, NC, KY, IN, TX, MD, VA, DC, WI, MI, DE, WV, OK, MO, KS.
+- **Auth pattern (the key unlock)**: a bare POST to any API endpoint 404s/redirects even with
+  correct JSON body. The fix: (1) GET `caticulator.com/PremiumCalculator/Form?stateCode=<ST>` first
+  with a `requests.Session()` (cookies enabled) to receive an `ASP.NET_SessionId` cookie; (2) reuse
+  that session's cookies on subsequent POSTs; (3) include `X-Requested-With: XMLHttpRequest` and a
+  matching `Referer` header — without both the cookie AND this header, every endpoint 404s.
+- `POST caticulator.com/PremiumCalculator/GetSupportData` with JSON body
+  `{"propertyState":"<ST>","isPolPropUser":false}` — **WORKING**, no personal data. Returns
+  `ConveyancePropertyTypes`, `MortgagePropertyTypes`, `TransactionTypes` (Purchase=1/Refinance=2 for
+  CT), `CoverageTypes` (None=0/Standard=1/Expanded=2), `PropertyTypes`
+  (OneToFourFamilyResidential=1/NonResidential=2).
+- `POST caticulator.com/PremiumCalculator/GetPolicyData` with JSON body
+  `{"policyId":"","stateAbbr":"<ST>"}` — **WORKING**, no personal data. Returns a `SelectionSet`
+  object with `Endorsements` (22 for CT) and, critically, `Fees` — the closest thing to a
+  settlement/service-fee catalog this tool exposes. **For CT this list contains exactly one
+  entry: `CplFee`** — meaning this tool's fee-itemization ceiling is a CPL fee at most, not a full
+  settlement/service-fee breakdown like the mytitlerates.com or ALT Title finds above. Worth
+  checking other states' `Fees` arrays in a future session (may differ by state — CT's attorney-
+  closing structure may explain why it's especially thin here).
+- `POST caticulator.com/PremiumCalculator/Calculate` — **NOT completed this session**. The request
+  body (`model.toServerModel()` in `pc.model.js`) requires ~40 fields including the full
+  `SelectionSet` from GetPolicyData (with per-endorsement `IsMPSelected`/`IsOPSelected` flags) plus
+  several nested sub-objects not yet mapped: `RecFeeModel` (recording-fee calculator sub-model),
+  `AdditionalCharges`, `AdditionalEndorsementFees`, `AdditionalTitleFees` (all `ko.toJS()`-serialized
+  Knockout observables of unknown shape). Not pursued further given the modest payoff ceiling noted
+  above (premium + CPL fee only, once working) relative to the effort remaining.
+- **Recommendation for a future session**: if pursued, (1) drive the real form in a headless
+  browser and capture the actual `Calculate` network request body once, to get an exact working
+  template to replay statelessly afterward (much faster than static reverse-engineering from
+  `pc.model.js`/`pc.viewmodel.js` alone); (2) check whether other states' `GetPolicyData.Fees`
+  arrays are richer than CT's CPL-only list before investing further effort — a state with a fuller
+  `Fees` list would justify completing the Calculate flow, a CPL-only state would not.
+
 ## For the browser-driven follow-up session
 Priority queue (highest-value first): (1) TitleCapture — drive `<agency>.titlecapture.com/
 title-quote` for a real agency instance (e.g. moderntitlegroup.titlecapture.com) and capture the

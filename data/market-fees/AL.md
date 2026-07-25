@@ -112,3 +112,9 @@ binary-PDF recovery, since WebFetch cannot parse FlateDecode-compressed PDF stre
 Alabama Title, Alabama Land Services, alabamalandtitle.com, University Title, Jackson & Scott
 (blocked), Alabama Closing & Title (2 pages), Boundary Title, and Cook and Associates/Blackbelt
 Lawyers.
+  - **Retried 2026-07-25** (blocked-source retry pass): re-fetched `realestatelclosings.com/
+    closing-costs-calculator/` via direct curl with a full current-generation browser header set
+    (User-Agent, Accept, Accept-Language) — still HTTP 403 Forbidden. No change; confirms this
+    remains a persistent WAF block across at least 4 retry sessions, not a transient or UA-specific
+    issue. The search-snippet figures (Title Search Fee $200.00, Closing Fee $350/$450) remain
+    unverified and excluded.

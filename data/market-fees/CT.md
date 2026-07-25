@@ -135,3 +135,24 @@ binary-PDF recovery, same technique used throughout this survey), CATIC (blocked
 state-resources page), ctclosing.com/pricing/, simpletitle.us (no pricing found), yonalaw.com/closings,
 connecticutrealestateclosinglawyers.com, firsttitleservices.com (blocked 403), agency.firstam.com/ct
 (no pricing found), mancusocarey.com (no pricing found), pedersonrealestatelaw.com (dead redirect).
+
+## Blocked-source retry / calculator investigation (2026-07-25)
+As part of the calculator-harvest mission's blocked-retry pass, investigated **CATICulator**
+(`caticulator.com`, first noted as an alternative to the blocked static CATIC rate manual in the
+2026-07-21 entry above). This turned out to be a substantial discovery: a genuine multi-state
+Knockout.js premium calculator covering **30 states** (CT, ME, MA, NH, RI, VT, NY, FL, NJ, PA, GA,
+OH, SC, AL, TN, IL, NC, KY, IN, TX, MD, VA, DC, WI, MI, DE, WV, OK, MO, KS — per its own
+`toServerModel()` state-code mapping), not just CT. Made real progress cracking its REST API (see
+CALCULATORS.md for the full technical detail) — session-cookie + `X-Requested-With: XMLHttpRequest`
+header unlocks working `GetSupportData` and `GetPolicyData` JSON endpoints (no browser needed) —
+but did not complete a working `Calculate` call this session (the request body requires
+reconstructing several nested Knockout view-model objects, e.g. `RecFeeModel`/`AdditionalCharges`/
+`AdditionalEndorsementFees`/`AdditionalTitleFees`, not yet mapped). Critically, `GetPolicyData`'s
+own `SelectionSet.Fees` array for CT contains only **one** fee type (`CplFee`) — meaning even a
+fully-working Calculate call would return title insurance premium plus, at most, a CPL fee, not a
+broader itemized settlement/service-fee breakdown. Given this narrow ceiling relative to the
+mission's itemized-fee target, further reverse-engineering was not pursued this session, but is
+flagged as a real (if modest) future opportunity — see CALCULATORS.md's CATICulator section for
+the exact recipe/auth pattern discovered, which could unlock CPL-fee corroboration across all 30
+states the platform covers, several of which (VA, TN, MD, DE, WV, MO, OK, NJ, PA, MI, WI) are
+already scarce/complete states in this survey.

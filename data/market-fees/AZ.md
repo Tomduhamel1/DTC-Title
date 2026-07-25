@@ -159,3 +159,8 @@ browser-driven or IP-diverse session.
 ## Sources
 
 See `AZ.json` for full structured records with source URLs.
+
+## Blocked-source retry (2026-07-25)
+Retried `difi.az.gov` root and the escrow-rate-filings path via direct curl with a full current-
+generation browser header set (User-Agent, Accept, Accept-Language) — still HTTP 403 Forbidden.
+No change; confirms the Cloudflare WAF block persists across at least 4 retry sessions now.

@@ -1305,3 +1305,22 @@ still vary and matter).
   the lower actual charges collected -- a genuine regulatory disclosure-vs-reality gap unique to
   this state in the survey to date. Net for this addition: MN and MI each now have 2 of 3
   providers needed; WI has 1 of 3. Committing this as a second batch within the same session.
+- 2026-07-25 (same session, continued): Blocked-source retries per mission brief. **CATIC CT**:
+  retried its rate-manual page (still FlippingBook JS-image-locked, no change) but investigated the
+  alternative CATICulator calculator tool and made a real breakthrough on its auth pattern (session
+  cookie + `X-Requested-With` header unlocks working `GetSupportData`/`GetPolicyData` JSON
+  endpoints, no browser needed) -- discovered it's actually a 30-state platform, though its CT fee
+  catalog contains only a CPL fee (not a broader settlement-fee itemizer), so completing the final
+  `Calculate` call was not pursued further this session; full recipe and recommendation logged in
+  CALCULATORS.md. **Arizona DIFI**: retried with full browser headers -- still HTTP 403, confirms
+  persistent Cloudflare WAF block across 4+ retry sessions now, no change. **Jackson & Scott AL**:
+  retried `realestatelclosings.com/closing-costs-calculator/` with full browser headers -- still
+  HTTP 403, confirms persistent WAF block across 4+ retry sessions now, no change. All three
+  retries documented in their respective state .md files. This closes out tonight's session --
+  summary: PA reached calculator-quoted (3 providers); NJ and WI each gained a first calculator-
+  basis provider; MN and MI each reached 2 of 3 providers; two major reusable calculator platforms
+  (MyTitleRates.com, Knight Barry Title Group's multi-state ASP.NET tool) were discovered and
+  partially exploited, with clear recommendations left for extending both to more states/agencies
+  next session; FNF's calculator was cracked technically but ruled out of scope (premium-only); and
+  CATICulator's 30-state auth pattern was cracked but its CT fee catalog proved too narrow (CPL
+  only) to justify finishing the Calculate flow this session.
