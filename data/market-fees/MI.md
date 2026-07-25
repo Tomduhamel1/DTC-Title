@@ -126,3 +126,13 @@ same-technique check of Independent Title Services' MI rate calculator
 (independenttitle.services/michigan-rates-calculator) found only a premium-only client-side
 formula (no settlement/closing fee itemization) — excluded as out of scope for the calculator
 mission (duplicates the premium-only evidence already on file, adds no settlement-fee signal).
+
+**Update 2026-07-25**: found and harvested a second MI provider, **Knight Barry Title Group**
+(`knightbarry.com`) — its own ASP.NET rate calculator (`dashboard.knightbarry.com/Rates/
+michigan-rate-calculator.aspx`, statewide formula, no county tiering) was cracked via a plain
+`__doPostBack`/`__VIEWSTATE` HTTP replay (the same WebForms-postback technique that worked on Old
+Republic's ortconline.com tool and FNF's ratecalculator.fnf.com — no browser needed). Itemized:
+Loan Closing Fee $350.00, Transaction Security Fee $25.00/side, Loan Policy premium $1,372.00,
+Owner's Policy premium $2,435.60 — a materially different fee structure from Modern Title Group's
+own (6 separate named ancillary fees) despite both being "independent" MI providers. MI now has 2
+of the 3 providers needed to cross the calculator-quoted threshold.

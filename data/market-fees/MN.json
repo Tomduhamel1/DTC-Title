@@ -146,5 +146,42 @@
     "sectionTotals": "Title Charges: $350 (closing) + $1,125 (lender's title insurance) + $700 (search & exam) = $2,175.00. Taxes and Government Fees: $5 (conservation) + $92 (recording) + $960 (mortgage registration tax) = $1,057.00. Expanded Coverage and Endorsements: $743.75 (homeowner's policy premium, optional).",
     "bundlingNotes": "First calculator-basis MN provider. MN's Mortgage Registration Tax ($960 at this loan amount, a state-specific ad valorem tax on recorded mortgages under Minn. Stat. 287.035) and Conservation Fee ($5, a per-document state fee) are unique line items not seen in most other states surveyed. DCA Title's own calculator also serves Wisconsin, but WI's county dropdown is hidden in the visible form and the server rejected every placeholder county value tried this session (empty string, 'N/A', 'None', 'All', 'Any', 'Statewide', and a valid Minnesota county name) -- the real WI county list appears to load dynamically via a mechanism not captured by a static HTML/JS fetch; logged in CALCULATORS.md as a follow-up target rather than jsOnly (the MN half of the same tool works perfectly via plain POST).",
     "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k Hennepin County (Minneapolis) purchase scenario, buyer side."
+  },
+  {
+    "basis": "calculator",
+    "provider": "Knight Barry Title Group (independent, multi-state title agency; own ASP.NET rate calculator, agent for Stewart Title Guaranty Company)",
+    "sourceUrl": "https://www.knightbarry.com/rate-calculators",
+    "calculatorUrl": "https://dashboard.knightbarry.com/Rates/minnesota-rate-calculator.aspx",
+    "endpoint": "POST https://dashboard.knightbarry.com/Rates/minnesota-rate-calculator.aspx (ASP.NET WebForms __doPostBack/__VIEWSTATE replay, same plain-HTTP technique used for Old Republic's ortconline.com and FNF's ratecalculator.fnf.com -- no JS execution needed, no personal data)",
+    "retrievalDate": "2026-07-25",
+    "scenario": "$500,000 purchase price ($500,000 owner's policy liability), $400,000 loan policy liability, Hennepin County (Minneapolis, MN's most populous county), Purchase, Both Owner's and Loan Policy, Enhanced Homeowner's Policy, Residential, default underwriter (Stewart Title Guaranty via Knight Barry)",
+    "methodology": "Classic ASP.NET WebForms app (Telerik RadAjax controls present but the app accepts a plain full postback when async-specific headers are omitted, same as the other WebForms tools in this catalog). Recipe: (1) GET the page; (2) POST with ddCounties=<county id> (310=Hennepin) and matching __EVENTTARGET to select county; (3) POST with txtAmount=<sale/owner's liability>, txtTridLoanAmount=<loan/lender's liability>, and btnCalculate clicked (__EVENTTARGET empty) for the final quote, leaving all radio-button defaults (Purchase, Both Owner's+Loan, Enhanced Homeowner's, Residential, low-cost underwriter) as-is.",
+    "settlementFee": {
+      "loanClosingFee": "$400.00"
+    },
+    "itemizedFees": {
+      "searchExam": "$580.00 (Title Search and Exam Fee)",
+      "docPrep": null,
+      "processing": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "courier": null,
+      "wire": null,
+      "cpl": null,
+      "transactionSecurityFee_buyer": "$25.00",
+      "transactionSecurityFee_seller": "$25.00",
+      "governmentRecordingFeePerDoc": "$46.00",
+      "conservationFee": "$5.00",
+      "mortgageRegistrationTax": "$960.00",
+      "titleInsurancePremium": {
+        "loanPolicy_disclosed": "$1,090.00 (simultaneous-issue disclosed rate)",
+        "ownersPolicy_disclosed": "$657.75 (simultaneous-issue disclosed rate, Enhanced Homeowner's)",
+        "ownersPolicy_filed": "$1,597.75 (full filed rate reported to the underwriter)",
+        "loanPolicy_filed_simultaneous": "$150.00 (full filed simultaneous rate reported to the underwriter)"
+      }
+    },
+    "sectionTotals": "Disclosed buyer-side total: Loan Policy $1,090 + Owner's Policy $657.75 + Loan Closing Fee $400 + Transaction Security Fee (buyer) $25 + Search & Exam $580 + Recording $46 + Conservation $5 + Mortgage Registration Tax $960 = $3,763.75.",
+    "bundlingNotes": "This tool distinguishes between the 'disclosed' rate shown to consumers (reflecting simultaneous-issue discounting) and the full rate the agency reports to the underwriter under Minnesota Department of Commerce filed premiums ($1,597.75 owner's + $150 simultaneous loan) -- a useful cross-check against the state's filed-rate regime already documented in this survey. Second MN calculator-basis provider (see DCA Title above); MN now has 2 of the 3 providers needed to cross the calculator-quoted threshold.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k Hennepin County (Minneapolis) purchase scenario, buyer side, both owner's and loan policy, enhanced homeowner's coverage."
   }
 ]

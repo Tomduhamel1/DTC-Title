@@ -117,3 +117,21 @@ binary streams WebFetch's own summarizer couldn't parse as text.
   general market commentary.
 - WFG National Title's Wisconsin rate manual (not checked this session; likely to also be
   premium-only based on the pattern in every other state's WFG filing found to date).
+
+## Calculator harvest addendum (2026-07-25)
+
+Separate from the published-schedule survey above (which remains **complete (scarce)** — Knight
+Barry's calculator was noted above as "checked but not usable" for that survey since it has no
+static published schedule), this session harvested a first calculator-basis WI provider for the
+standard $500,000/$400,000 Milwaukee County (WI's most populous county) purchase scenario — see
+WI.json's `"basis": "calculator"` entry and CALCULATORS.md for full technical detail. **Knight
+Barry Title Group**'s own ASP.NET rate calculator was cracked via a plain `__doPostBack`/
+`__VIEWSTATE` HTTP replay (the same technique used for FNF and Old Republic elsewhere in this
+survey) — no browser needed. Notable finding: Wisconsin's calculator separately discloses (a) the
+rate lenders must show on the federal Loan Estimate/Closing Disclosure forms (higher, per a
+WI-specific regulatory rule requiring full owner's-policy-based rates plus the simultaneous-loan
+discount) versus (b) the lower "Actual Charges to All Parties" collected at closing — a genuine
+regulatory disclosure-vs-reality gap not seen in any other state surveyed. Flat fees: Loan Closing
+Fee $350.00, Transaction Security Fee $25.00/side, Recording Fee $30.00/document (stated flat
+statewide). This is 1 of 3 providers needed to cross the calculator-quoted threshold for WI (see
+PROGRESS.md tracker).

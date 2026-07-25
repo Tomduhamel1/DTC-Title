@@ -165,4 +165,10 @@ states surveyed to date) and a $5 Conservation Fee. DCA Title's tool also config
 WI's county list is not exposed in the static form and every placeholder value tried this session
 was rejected server-side — logged in CALCULATORS.md as a follow-up target, not jsOnly (the MN half
 works via plain POST). This is 1 of 3 providers needed to cross the calculator-quoted threshold for
-MN (see PROGRESS.md tracker).
+MN (see PROGRESS.md tracker) at the time it was harvested. **Update, same session**: a second MN
+provider, **Knight Barry Title Group** (`knightbarry.com`, own ASP.NET rate calculator, cracked via
+the same `__doPostBack`/`__VIEWSTATE` plain-HTTP replay technique used for FNF and Old Republic
+elsewhere in this survey), was also harvested for Hennepin County: Loan Closing Fee $400, Title
+Search and Exam Fee $580, Transaction Security Fee $25/side, Conservation Fee $5, plus a notable
+disclosed-vs-filed premium distinction (disclosed simultaneous-issue rate vs. the full rate
+reported to the underwriter under Minnesota DOC filings). MN now has 2 of the 3 providers needed.

@@ -130,5 +130,37 @@
     "sectionTotals": "Buyer side: title insurance $2,335 + ancillary fees (closing $550 + recording $35 + courier $45 + wire $45 + escrow $250 + search $150 = $1,075) = $3,410 total. Seller side: title insurance $2,065 + ancillary fees (closing $250 + recording $35 + courier $45 + wire $45 + escrow $250 + search $150 = $775) = $2,840 total.",
     "bundlingNotes": "Calculator caps input at $1,000,000 sale price (values above return a validation error, not a quote). Ancillary fee constants (recording/courier/wire/escrow/search) are identical across buyer, seller, and refi sides -- only the Closing Fee and title-insurance-premium formula differ by transaction side.",
     "transactionContext": "Calculator-derived point estimate for the standard $500k scenario; statewide MI formula, no county tiering; Ann Arbor/Washtenaw County is the company's home base."
+  },
+  {
+    "basis": "calculator",
+    "provider": "Knight Barry Title Group (independent, multi-state title agency; own ASP.NET rate calculator, agent for Stewart Title Guaranty Company)",
+    "sourceUrl": "https://www.knightbarry.com/rate-calculators",
+    "calculatorUrl": "https://dashboard.knightbarry.com/Rates/michigan-rate-calculator.aspx",
+    "endpoint": "POST https://dashboard.knightbarry.com/Rates/michigan-rate-calculator.aspx (ASP.NET WebForms __doPostBack/__VIEWSTATE replay, same technique as the MN/WI entries above -- no JS execution needed, no personal data)",
+    "retrievalDate": "2026-07-25",
+    "scenario": "$500,000 purchase price, $400,000 loan, statewide (this agency's MI calculator has no county selector -- consistent with MI's statewide-formula premium filings already on file), Purchase, both owner's and loan policy, residential",
+    "methodology": "Same WebForms postback recipe as the MN/WI entries above; MI's version of the tool has no county dropdown at all (statewide formula), so only the sale/loan amount fields and the Calculate button postback were needed.",
+    "settlementFee": {
+      "loanClosingFee": "$350.00"
+    },
+    "itemizedFees": {
+      "searchExam": null,
+      "docPrep": null,
+      "processing": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "courier": null,
+      "wire": null,
+      "cpl": null,
+      "transactionSecurityFee_buyer": "$25.00",
+      "transactionSecurityFee_seller": "$25.00",
+      "titleInsurancePremium": {
+        "loanPolicy": "$1,372.00",
+        "ownersPolicy": "$2,435.60"
+      }
+    },
+    "sectionTotals": "Buyer-side total: Loan Policy $1,372 + Owner's Policy $2,435.60 + Loan Closing Fee $350 + Transaction Security Fee (buyer) $25 = $4,182.60.",
+    "bundlingNotes": "Second MI calculator-basis provider (see Modern Title Group entry above) -- distinct company, distinct fee structure (Knight Barry itemizes a flat $350 Loan Closing Fee + $25/side Transaction Security Fee where Modern Title Group itemizes 6 separate named ancillary fees). MI now has 2 of the 3 providers needed to cross the calculator-quoted threshold.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k statewide MI purchase scenario, buyer side, both owner's and loan policy."
   }
 ]

@@ -366,6 +366,38 @@ a plain, unauthenticated AJAX call — no browser needed, no personal data requi
   directly (Milwaukee, Dane, Waukesha) in case the earlier failures were simply due to trying
   Minnesota-specific or nonsense placeholder values rather than a structural block.
 
+### Knight Barry Title Group (MN/WI/MI, likely more) — WORKING, ASP.NET WebForms, plain HTTP
+`knightbarry.com/rate-calculators` links to per-state ASP.NET calculators at
+`dashboard.knightbarry.com/Rates/<state>-rate-calculator.aspx` (confirmed working: `minnesota-`,
+`wisconsin-`, `michigan-rate-calculator.aspx`; the same host likely also serves TX and FL per this
+company's own marketing, both already saturated/complete in the published-schedule survey so not
+checked). Classic ASP.NET WebForms (`__doPostBack`/`__VIEWSTATE`/`__EVENTVALIDATION`, Telerik
+RadAjax controls present but a plain full postback works fine when async-specific headers are
+omitted) — cracked with the exact same recipe as FNF's ratecalculator.fnf.com above, no browser
+needed.
+- Recipe: (1) GET `<state>-rate-calculator.aspx`; (2) if the state has a county dropdown
+  (`ddCounties` — MN and WI have one, MI does not — statewide formula), POST with
+  `ddCounties=<county's numeric option value>` and matching `__EVENTTARGET` to select it; (3) POST
+  with `txtAmount=<sale price / owner's policy liability>`, `txtTridLoanAmount=<loan amount /
+  loan policy liability>`, and `btnCalculate` clicked (`__EVENTTARGET` empty) for the final quote
+  — leave the radio-button defaults (`rbFileType=Purchase`, `rbPolicyType=OPLP` i.e. both Owner's
+  and Loan Policy, `rbPropertyType=R` residential, `rbUnderwriterPref` default) as rendered, they
+  already match the standard scenario. No personal data fields exist on this form at all.
+- **WI-specific structural note**: Wisconsin's calculator separately shows a federal Loan
+  Estimate/Closing Disclosure-mandated rate (higher, per a WI regulatory rule) alongside the lower
+  "Actual Charges to All Parties" actually collected, further split into 3 sub-scenarios (A/B/C)
+  by who contractually pays the owner's policy — the richest single-tool disclosure structure found
+  in this survey; capture both the LE figure and at least one Actual-Charges option when harvesting
+  WI.
+- Harvested this session: MN/Hennepin County (2nd MN provider), WI/Milwaukee County (1st WI
+  provider — resolves the DCA Title WI blocker documented above via an independent source), MI
+  statewide (2nd MI provider, alongside Modern Title Group).
+- **Recommendation for next session**: try `dashboard.knightbarry.com/Rates/<state>-rate-
+  calculator.aspx` for other state name slugs (e.g. `texas-`, `florida-` per the company's own
+  claimed footprint, or other states Knight Barry may serve) — this is a working multi-state
+  platform on the proven WebForms-postback technique, likely underexploited beyond the 3 states
+  checked this session.
+
 ## For the browser-driven follow-up session
 Priority queue (highest-value first): (1) TitleCapture — drive `<agency>.titlecapture.com/
 title-quote` for a real agency instance (e.g. moderntitlegroup.titlecapture.com) and capture the

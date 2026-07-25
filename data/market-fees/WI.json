@@ -92,5 +92,40 @@
     },
     "bundlingNotes": "Title-premium-only rate schedule; hosted on an independent Wisconsin title agency's own website (Southwest Title) rather than firstam.com directly, but the branding and content are First American's -- Southwest Title itself does not publish its own separate settlement/closing fee schedule anywhere on its site.",
     "transactionContext": "Statewide Wisconsin (qualifying transactions closed on or after July 10, 2024); residential and commercial purchase/refinance title insurance premium rates; no settlement/closing fee published."
+  },
+  {
+    "basis": "calculator",
+    "provider": "Knight Barry Title Group (independent, multi-state title agency; own ASP.NET rate calculator, agent for Stewart Title Guaranty Company)",
+    "sourceUrl": "https://www.knightbarry.com/rate-calculators",
+    "calculatorUrl": "https://dashboard.knightbarry.com/Rates/wisconsin-rate-calculator.aspx",
+    "endpoint": "POST https://dashboard.knightbarry.com/Rates/wisconsin-rate-calculator.aspx (ASP.NET WebForms __doPostBack/__VIEWSTATE replay, same technique as the MN entry above -- no JS execution needed, no personal data)",
+    "retrievalDate": "2026-07-25",
+    "scenario": "$500,000 purchase price, $400,000 loan, Milwaukee County (WI's most populous county), Purchase, default underwriter (Stewart Title Guaranty via Knight Barry), residential",
+    "methodology": "Same WebForms postback recipe as the MN entry above, applied to Knight Barry's separate Wisconsin-specific calculator page. This resolves the WI blocker noted elsewhere in this session (DCA Title's WI county list could not be reached statically) via a completely different, independently working provider.",
+    "settlementFee": {
+      "loanClosingFee": "$350.00"
+    },
+    "itemizedFees": {
+      "searchExam": null,
+      "docPrep": null,
+      "processing": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "courier": null,
+      "wire": null,
+      "cpl": null,
+      "transactionSecurityFee_buyer": "$25.00",
+      "transactionSecurityFee_seller": "$25.00",
+      "governmentRecordingFeePerDoc": "$30.00 (stated by the tool as flat statewide across all WI counties)",
+      "titleInsurancePremium": {
+        "loanPolicy_LEDisclosure": "$1,848.00 (Loan Estimate/Closing Disclosure figure -- WI regulatory rule requires disclosing full owner's-policy-based + simultaneous-loan rate on the LE/CDF, not the lower actual simultaneous-issue charge)",
+        "ownersPolicy_LEDisclosure": "$1,090.00",
+        "loanPolicy_actualCharge": "$525.00 (actual charge to all parties, Option C basis)",
+        "ownersPolicy_actualCharge": "$2,413.00 (actual charge to all parties, Option C basis)"
+      }
+    },
+    "sectionTotals": "LE/CDF-disclosed buyer-side total: Loan Policy $1,848 + Owner's Policy $1,090 + Loan Closing Fee $350 + Transaction Security Fee (buyer) $25 = $3,313.00 (plus $30 recording fee per document).",
+    "bundlingNotes": "Wisconsin's calculator is structurally more complex than any other state's tool encountered this session: since 2015-10-03 (per the tool's own on-page disclaimer) Knight Barry's WI calculator has separately shown (a) the rate lenders must disclose on the federal Loan Estimate/Closing Disclosure forms (which uses full owner's-policy rates plus the simultaneous-loan discount rate, producing a HIGHER loan-policy figure than the actual charge) versus (b) the 'Actual Charges to All Parties' actually collected at closing, further split into 3 sub-options (A/B/C) depending on whether buyer or seller contractually pays for the owner's policy. Recorded here are the LE-disclosure figures (the consumer-facing regulatory disclosure) and the Option C actual-charge figures for comparison; this LE-vs-actual gap is itself a notable WI-specific regulatory finding worth flagging in any future settlement-fee analysis. First WI calculator-basis provider found this session (below the 3-provider threshold).",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k Milwaukee County purchase scenario, buyer side."
   }
 ]

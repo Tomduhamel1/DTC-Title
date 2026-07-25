@@ -25,10 +25,11 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | MO | 1 (Old Republic — Kansas City 64106/Jackson County) | below 3-provider threshold | 2026-07-22 |
 | HI | 1 (Old Republic — Honolulu/Honolulu County-Oahu) | below 3-provider threshold | 2026-07-23 |
 | OR | 1 (Old Republic — Portland 97201/Multnomah County) | below 3-provider threshold | 2026-07-23 |
-| MI | 1 (Modern Title Group — Ann Arbor/Washtenaw County, statewide formula) | below 3-provider threshold | 2026-07-24 |
+| MI | 2 (Modern Title Group — Ann Arbor/Washtenaw County, statewide formula; Knight Barry Title Group — statewide formula) | below 3-provider threshold | 2026-07-25 |
 | PA | 3 (ALT Title, TitleWorks, Trident Land Transfer — all Philadelphia County) | **calculator-quoted (3 providers)** | 2026-07-25 |
 | NJ | 1 (Trident Land Transfer — statewide, no county tiering) | below 3-provider threshold | 2026-07-25 |
-| MN | 1 (DCA Title — Hennepin County/Minneapolis) | below 3-provider threshold | 2026-07-25 |
+| MN | 2 (DCA Title, Knight Barry Title Group — both Hennepin County/Minneapolis) | below 3-provider threshold | 2026-07-25 |
+| WI | 1 (Knight Barry Title Group — Milwaukee County) | below 3-provider threshold | 2026-07-25 |
 
 FNF's ratecalculator.fnf.com **is drivable via plain HTTP POST, no browser needed** — confirmed
 2026-07-25 by replaying its ASP.NET WebForms `__doPostBack`/`__VIEWSTATE` protocol directly (the
@@ -1294,3 +1295,13 @@ still vary and matter).
   first calculator-basis provider; MyTitleRates.com is a major new reusable-platform find (see
   CALCULATORS.md) that should be searched further for VA/MD/CT/MA/WI/CO agency instances next
   session, alongside pushing NJ and MN to their own 3-provider thresholds.
+- 2026-07-25 (same session, continued): Found and harvested **Knight Barry Title Group**'s own
+  multi-state ASP.NET rate calculator (`dashboard.knightbarry.com/Rates/<state>-rate-
+  calculator.aspx`), cracked via the same `__doPostBack`/`__VIEWSTATE` plain-HTTP replay technique
+  as FNF above. Harvested MN/Hennepin County (2nd MN provider), WI/Milwaukee County (1st WI
+  provider -- resolves the DCA Title WI county-list blocker via an independent source), and MI
+  statewide (2nd MI provider). Notable WI-specific finding: the tool separately discloses a
+  federal Loan Estimate/Closing Disclosure-mandated rate (higher, per a WI regulatory rule) versus
+  the lower actual charges collected -- a genuine regulatory disclosure-vs-reality gap unique to
+  this state in the survey to date. Net for this addition: MN and MI each now have 2 of 3
+  providers needed; WI has 1 of 3. Committing this as a second batch within the same session.
