@@ -8,7 +8,9 @@
 
 import type { FeeCategory, FeeLineItem, FeeReport, FeeSource } from './feeReport'
 import {
+  ABSTRACT_ONLY_PASSTHROUGH_STATES,
   PREMIUM_RANGE_FILED,
+  SEARCH_PASSTHROUGH_STATES,
   premiumsAreUniform,
   serviceBandFor,
 } from './marketBaseline'
@@ -141,6 +143,7 @@ function withTypicalRange(
   category: FeeCategory,
   stateCode: string | undefined,
   transactionType: 'purchase' | 'refinance',
+  zip?: string,
 ): Pick<FeeLineItem, 'isFixed' | 'typicalRange'> {
   if (category === 'recording' || category === 'taxes') {
     return { isFixed: true }
@@ -150,12 +153,23 @@ function withTypicalRange(
   if (isPremiumLine && premiumsAreUniform(stateCode)) {
     return { isFixed: true }
   }
+  // Boundary symmetry (July 24 audit): where the state's market bills
+  // search/abstract as a third-party pass-through, our own search-type
+  // lines carry no comparison — the bands were derived excluding them on
+  // both sides, and claiming savings on a line the market treats as
+  // pass-through would break the symmetric-stack convention.
+  const st = stateCode?.toUpperCase()
+  const isSearchLine = /search|abstract|exam|opinion|title cert/i.test(label) && !isPremiumLine
+  if (isSearchLine && st) {
+    if (SEARCH_PASSTHROUGH_STATES.has(st)) return { isFixed: true }
+    if (ABSTRACT_ONLY_PASSTHROUGH_STATES.has(st) && /abstract/i.test(label)) return { isFixed: true }
+  }
   // Service lines all use the state's evidence-derived band (published or
   // inferred — see marketBaseline). Applying the same band to every service
   // line keeps the package-level sums equal to band × our service total.
   const range = isPremiumLine
     ? PREMIUM_RANGE_FILED
-    : serviceBandFor(stateCode, transactionType)
+    : serviceBandFor(stateCode, transactionType, zip)
   return {
     isFixed: false,
     typicalRange: {
@@ -223,7 +237,7 @@ export async function fetchElendFeeEstimate(req: ElendRequest): Promise<FeeRepor
     const rawForCategorize = row.FeeDescription || rawName
     const label = cleanDescription(rawName)
     const category = categorize(rawForCategorize)
-    const variability = withTypicalRange(label, buyer, category, data.stateCode, req.transactionType)
+    const variability = withTypicalRange(label, buyer, category, data.stateCode, req.transactionType, req.zip)
     // Uniform-premium states (promulgated/bureau rates): surface the premium
     // as state-set so the UI explains why there's no comparison on that line.
     const uniformPremium =
