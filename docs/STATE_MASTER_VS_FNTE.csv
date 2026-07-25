@@ -1,52 +1,52 @@
 state,generated,premium_regime,evidence_basis,evidence_providers,purchase_band_x_our_stack,refi_band_x_our_stack,purchase_our_stack,purchase_our_settlement_line,purchase_FA_settlement,purchase_market_stack_low,purchase_market_stack_high,purchase_claimed_savings,purchase_verdict,refi_our_stack,refi_our_settlement_line,refi_FA_settlement,refi_market_stack_low,refi_market_stack_high,refi_claimed_savings,refi_verdict,notes
-AK,2026-07-24,filed,published,2,0.39-0.77,0.39-0.77,1555,1150,650,606,1197,0,above ALL known providers,575,350,400,224,443,0,above ALL known providers,FA fee scales with deal size
-AL,2026-07-24,filed,inferred,0,1.05-1.4,1.05-1.4,1595,1150,,1675,2233,80,no direct evidence (pooled inferred band),500,350,,525,700,25,no direct evidence (pooled inferred band),
-AR,2026-07-24,filed,inferred,0,1.05-1.4,1.05-1.4,995,550,,1045,1393,50,no direct evidence (pooled inferred band),500,350,,525,700,25,no direct evidence (pooled inferred band),
-AZ,2026-07-24,filed,inferred,0,1.05-1.4,1.05-1.4,950,550,,998,1330,48,no direct evidence (pooled inferred band),500,350,,525,700,25,no direct evidence (pooled inferred band),
-CA,2026-07-24,filed,published,2,1.8-2.5,1.37-2.19 (override),700,550,1750,1260,1750,560,CHEAPEST — below all known providers,500,350,685,685,1095,185,CHEAPEST — below all known providers (single known provider),FA fee scales with deal size
-CO,2026-07-24,filed,inferred-capped,1,0.94-1.4,0.94-1.4,725,550,685,682,1015,0,MID-RANGE of known providers (single known provider),425,250,425,400,595,0,MID-RANGE of known providers (single known provider),
-CT,2026-07-24,filed,published,2,0.77-1.64,0.77-1.64,1100,550,,847,1804,0,MID-RANGE of known providers,550,350,,424,902,0,MID-RANGE of known providers,
-DC,2026-07-24,filed,published,2,0.71-1.06,0.71-1.06,1200,750,,852,1272,0,MID-RANGE of known providers,550,350,,390,583,0,MID-RANGE of known providers,
-DE,2026-07-24,rating-bureau,inferred,0,1.05-1.4,1.05-1.4,850,550,,892,1190,42,no direct evidence (pooled inferred band),500,350,,525,700,25,no direct evidence (pooled inferred band),
-FL,2026-07-24,promulgated,published,6,0.88-1.35,0.88-1.35,700,550,595,616,945,0,MID-RANGE of known providers,500,350,,440,675,0,MID-RANGE of known providers,
-GA,2026-07-24,filed,published,2,1.09-1.2,1.0-1.2 (override),1100,550,,1199,1320,99,CHEAPEST — below all known providers,550,350,,550,660,0,MID-RANGE of known providers (single known provider),
-HI,2026-07-24,filed,published,2,1.89-2.39,1.89-2.39,595,595,1425,1125,1422,530,CHEAPEST — below all known providers,350,350,,662,836,312,CHEAPEST — below all known providers,FA fee scales with deal size
-IA,2026-07-24,filed,published,4,0.36-1.3,0.36-1.3,1150,250,,414,1495,0,MID-RANGE of known providers,900,350,,324,1170,0,MID-RANGE of known providers,
-ID,2026-07-24,filed,published,9,0.77-0.89,0.77-0.89,975,450,700,751,868,0,above ALL known providers,500,350,900,385,445,0,above ALL known providers,
-IL,2026-07-24,filed,published,11,2.87-3.35,0.57-0.91 (override),750,550,2200,2152,2512,1402,CHEAPEST — below all known providers,575,350,325,328,523,0,above ALL known providers (single known provider),FA fee scales with deal size
-IN,2026-07-24,filed,inferred,0,1.05-1.4,1.05-1.4,,,,,,,unknown (engine errors),,,,,,,unknown (engine errors),engine cannot quote (upstream 500s)
-KS,2026-07-24,filed,published,13,0.64-1.14,0.64-1.14,700,550,225,448,798,0,MID-RANGE of known providers,500,350,400,320,570,0,MID-RANGE of known providers,
-KY,2026-07-24,filed,inferred,0,1.05-1.4,1.05-1.4,750,550,,788,1050,38,no direct evidence (pooled inferred band),550,350,,578,770,28,no direct evidence (pooled inferred band),
-LA,2026-07-24,filed,inferred,0,1.05-1.4,1.05-1.4,750,550,,788,1050,38,no direct evidence (pooled inferred band),,,,,,,unknown (engine errors),
-MA,2026-07-24,filed,inferred,0,1.05-1.4,1.05-1.4,1000,550,,1050,1400,50,no direct evidence (pooled inferred band),500,350,,525,700,25,no direct evidence (pooled inferred band),
-MD,2026-07-24,filed,inferred,0,1.05-1.4,1.05-1.4,825,520,,866,1155,41,no direct evidence (pooled inferred band),555,350,,583,777,28,no direct evidence (pooled inferred band),
-ME,2026-07-24,filed,inferred,0,1.05-1.4,1.05-1.4,825,550,,866,1155,41,no direct evidence (pooled inferred band),525,350,,551,735,26,no direct evidence (pooled inferred band),
-MI,2026-07-24,filed,inferred-capped,1,0.85-1.4,0.39-0.62 (override),700,550,595,595,980,0,MID-RANGE of known providers (single known provider),500,350,195,195,310,0,above ALL known providers (single known provider),
-MN,2026-07-24,filed,inferred-capped,1,0.46-1.4,0.46-1.4,700,550,325,322,980,0,MID-RANGE of known providers (single known provider),500,350,325,230,700,0,MID-RANGE of known providers (single known provider),
-MO,2026-07-24,filed,calculator,2,0.54-0.75,0.48-0.75 (override),725,550,395,392,544,0,above ALL known providers,525,350,250,252,394,0,above ALL known providers (single known provider),pricing review (multi-source)
-MS,2026-07-24,filed,inferred,0,1.05-1.4,1.05-1.4,700,550,,735,980,35,no direct evidence (pooled inferred band),500,350,,525,700,25,no direct evidence (pooled inferred band),
-MT,2026-07-24,filed,published,2,1.14-1.43,1.14-1.43,700,550,,798,1001,98,CHEAPEST — below all known providers,500,350,,570,715,70,CHEAPEST — below all known providers,
-NC,2026-07-24,rating-bureau,inferred,0,1.05-1.4,1.05-1.4,,,,,,,unknown (engine errors),500,350,,525,700,25,no direct evidence (pooled inferred band),engine cannot quote (upstream 500s)
-ND,2026-07-24,filed,inferred,0,1.05-1.4,1.05-1.4,700,550,,735,980,35,no direct evidence (pooled inferred band),500,350,,525,700,25,no direct evidence (pooled inferred band),
-NE,2026-07-24,filed,inferred,0,1.05-1.4,1.05-1.4,725,550,,761,1015,36,no direct evidence (pooled inferred band),500,350,,525,700,25,no direct evidence (pooled inferred band),
-NH,2026-07-24,filed,inferred,0,1.05-1.4,1.05-1.4,725,550,,761,1015,36,no direct evidence (pooled inferred band),525,350,,551,735,26,no direct evidence (pooled inferred band),
-NJ,2026-07-24,rating-bureau,inferred-capped,1,0.7-1.4,0.7-1.4,750,350,525,525,1050,0,MID-RANGE of known providers (single known provider),500,350,525,350,700,0,MID-RANGE of known providers (single known provider),
-NM,2026-07-24,promulgated,inferred-capped,1,0.44-1.4,0.44-1.4,1880,1700,834,827,2632,0,MID-RANGE of known providers (single known provider),500,350,592,220,700,0,MID-RANGE of known providers (single known provider),FA fee scales with deal size; pricing review (multi-source)
-NV,2026-07-24,filed,calculator,2,0.48-0.55,0.48-0.55,1450,1300,695,696,798,0,above ALL known providers,500,350,,240,275,0,above ALL known providers,FA fee scales with deal size; pricing review (multi-source)
-NY,2026-07-24,rating-bureau,published,2,0.58-1.36,0.58-1.36,1100,550,,638,1496,0,MID-RANGE of known providers,550,350,,319,748,0,MID-RANGE of known providers,
-OH,2026-07-24,rating-bureau,calculator,2,0.67-1.73,0.5-0.8 (override),441,291,295,295,763,0,MID-RANGE of known providers,500,350,250,250,400,0,above ALL known providers (single known provider),
-OK,2026-07-24,filed,published,3,0.22-0.46,0.22-0.46,2340,550,395,515,1076,0,above ALL known providers,1415,350,325,311,651,0,above ALL known providers,"pricing review (multi-source); refi stack $1,415 vs FA $325"
-OR,2026-07-24,filed,inferred-capped,1,0.8-1.4,0.79-1.26 (override),1500,1200,1200,1200,2100,0,MID-RANGE of known providers (single known provider),500,350,395,395,630,0,MID-RANGE of known providers (single known provider),FA fee scales with deal size
-PA,2026-07-24,rating-bureau,inferred,0,1.05-1.4,1.05-1.4,950,550,,998,1330,48,no direct evidence (pooled inferred band),700,350,,735,980,35,no direct evidence (pooled inferred band),FA $0 quirk excluded
-RI,2026-07-24,filed,inferred,0,1.05-1.4,1.05-1.4,885,550,,929,1239,44,no direct evidence (pooled inferred band),585,350,,614,819,29,no direct evidence (pooled inferred band),
-SC,2026-07-24,filed,inferred,0,1.05-1.4,1.05-1.4,1085,550,,1139,1519,54,no direct evidence (pooled inferred band),535,350,,562,749,27,no direct evidence (pooled inferred band),
-SD,2026-07-24,filed,inferred,0,1.05-1.4,1.05-1.4,2436,550,,2558,3410,122,no direct evidence (pooled inferred band),2218,350,,2329,3105,111,no direct evidence (pooled inferred band),"our stack unusually high, no evidence"
-TN,2026-07-24,filed,inferred,0,1.05-1.4,1.05-1.4,1050,550,,1102,1470,52,no direct evidence (pooled inferred band),500,350,,525,700,25,no direct evidence (pooled inferred band),
-TX,2026-07-24,promulgated,published,5,0.57-0.94,0.57-0.94,850,550,795,484,799,0,above ALL known providers,500,350,,285,470,0,above ALL known providers,pricing review (multi-source)
-UT,2026-07-24,filed,calculator,2,0.59-0.61,0.59-0.61,700,550,415,413,427,0,above ALL known providers,500,350,410,295,305,0,above ALL known providers,pricing review (multi-source)
-VA,2026-07-24,filed,inferred,0,1.05-1.4,1.05-1.4,835,550,,877,1169,42,no direct evidence (pooled inferred band),535,350,,562,749,27,no direct evidence (pooled inferred band),
-VT,2026-07-24,filed,inferred,0,1.05-1.4,1.05-1.4,1100,550,,1155,1540,55,no direct evidence (pooled inferred band),900,350,,945,1260,45,no direct evidence (pooled inferred band),
-WA,2026-07-24,filed,published,7,1.23-1.88,1.23-1.88,650,450,1631,800,1222,150,CHEAPEST — below all known providers,500,350,768,615,940,115,CHEAPEST — below all known providers,FA fee scales with deal size
-WI,2026-07-24,filed,inferred,0,1.05-1.4,1.05-1.4,700,550,,735,980,35,no direct evidence (pooled inferred band),500,350,,525,700,25,no direct evidence (pooled inferred band),
-WV,2026-07-24,filed,inferred,0,1.05-1.4,1.05-1.4,915,550,,961,1281,46,no direct evidence (pooled inferred band),615,350,,646,861,31,no direct evidence (pooled inferred band),
-WY,2026-07-24,filed,inferred-capped,1,0.27-1.4,0.27-1.4,830,580,225,224,1162,0,MID-RANGE of known providers (single known provider),600,350,225,162,840,0,MID-RANGE of known providers (single known provider),
+AK,2026-07-25,filed,published [symmetric-boundary audited],2,0.42-0.77,0.42-0.77,1555,1150,650,653,1197,0,above ALL known providers,575,350,400,242,443,0,above ALL known providers,FA fee scales with deal size
+AL,2026-07-25,filed,inferred,0,1.05-1.4,1.05-1.4,1595,1150,,1675,2233,80,no direct evidence (pooled inferred band),500,350,,525,700,25,no direct evidence (pooled inferred band),
+AR,2026-07-25,filed,inferred,0,1.05-1.4,1.05-1.4,995,550,,1045,1393,50,no direct evidence (pooled inferred band),500,350,,525,700,25,no direct evidence (pooled inferred band),
+AZ,2026-07-25,filed,inferred,0,1.05-1.4,1.05-1.4,950,550,,998,1330,48,no direct evidence (pooled inferred band),500,350,,525,700,25,no direct evidence (pooled inferred band),
+CA,2026-07-25,filed,published [symmetric-boundary audited],3,2.19-2.5,1.37-2.19 (override),700,550,1750,1533,1750,833,CHEAPEST — below all known providers,500,350,685,685,1095,185,CHEAPEST — below all known providers (single known provider),FA fee scales with deal size
+CO,2026-07-25,filed,inferred-capped,1,0.94-1.4,0.94-1.4,725,550,685,682,1015,0,MID-RANGE of known providers (single known provider),425,250,425,400,595,0,MID-RANGE of known providers (single known provider),
+CT,2026-07-25,filed,published [symmetric-boundary audited],3,0.68-1.14,0.68-1.14,1100,550,,748,1254,0,MID-RANGE of known providers,550,350,,374,627,0,MID-RANGE of known providers,
+DC,2026-07-25,filed,published [symmetric-boundary audited],2,0.61-1.06,0.61-1.06,1200,750,,732,1272,0,MID-RANGE of known providers,550,350,,336,583,0,MID-RANGE of known providers,
+DE,2026-07-25,rating-bureau,inferred,0,1.05-1.4,1.05-1.4,850,550,,892,1190,42,no direct evidence (pooled inferred band),500,350,,525,700,25,no direct evidence (pooled inferred band),
+FL,2026-07-25,promulgated,published [symmetric-boundary audited],6,0.88-1.12,0.88-1.12,700,550,595,616,784,0,MID-RANGE of known providers,500,350,,440,560,0,MID-RANGE of known providers,
+GA,2026-07-25,filed,published [symmetric-boundary audited],2,1.0-1.2,1.0-1.2 (override),1100,550,,1100,1320,0,MID-RANGE of known providers,550,350,,550,660,0,MID-RANGE of known providers (single known provider),
+HI,2026-07-25,filed,published [symmetric-boundary audited],3,1.89-2.39,1.89-2.39,595,595,1425,1125,1422,530,CHEAPEST — below all known providers,350,350,,662,836,312,CHEAPEST — below all known providers,FA fee scales with deal size
+IA,2026-07-25,filed,published [symmetric-boundary audited],1,0.74-0.74,0.74-0.74,1150,250,,851,851,0,above ALL known providers (single known provider),900,350,,666,666,0,above ALL known providers (single known provider),single-provider point band
+ID,2026-07-25,filed,published [symmetric-boundary audited],9,0.77-0.89,0.77-0.89,975,450,700,751,868,0,above ALL known providers,500,350,900,385,445,0,above ALL known providers,HOLD: DOI-filed fees suggest ~2x upside pending buyer/seller split resolution
+IL,2026-07-25,filed,published [symmetric-boundary audited],8,2.93-3.15 (Chicago metro; downstate 0.85-1.4),0.57-0.91 (override),750,550,2200,2198,2362,1448,CHEAPEST — below all known providers,575,350,325,328,523,0,above ALL known providers (single known provider),FA fee scales with deal size
+IN,2026-07-25,filed,inferred,0,1.05-1.4,1.05-1.4,,,,,,,unknown (engine errors),,,,,,,unknown,engine cannot quote (upstream 500s)
+KS,2026-07-25,filed,published [symmetric-boundary audited],13,0.61-0.93,0.61-0.93,700,550,225,427,651,0,above ALL known providers,500,350,400,305,465,0,above ALL known providers,
+KY,2026-07-25,filed,inferred,0,1.05-1.4,1.05-1.4,750,550,,788,1050,38,no direct evidence (pooled inferred band),550,350,,578,770,28,no direct evidence (pooled inferred band),
+LA,2026-07-25,filed,inferred,0,1.05-1.4,1.05-1.4,750,550,,788,1050,38,no direct evidence (pooled inferred band),,,,,,,unknown,
+MA,2026-07-25,filed,inferred,0,1.05-1.4,1.05-1.4,1000,550,,1050,1400,50,no direct evidence (pooled inferred band),500,350,,525,700,25,no direct evidence (pooled inferred band),
+MD,2026-07-25,filed,inferred,0,1.05-1.4,1.05-1.4,825,520,,866,1155,41,no direct evidence (pooled inferred band),555,350,,583,777,28,no direct evidence (pooled inferred band),
+ME,2026-07-25,filed,inferred,0,1.05-1.4,1.05-1.4,825,550,,866,1155,41,no direct evidence (pooled inferred band),525,350,,551,735,26,no direct evidence (pooled inferred band),
+MI,2026-07-25,filed,inferred-capped,1,0.85-1.4,0.39-0.62 (override),700,550,595,595,980,0,MID-RANGE of known providers (single known provider),500,350,195,195,310,0,above ALL known providers (single known provider),
+MN,2026-07-25,filed,inferred-capped,1,0.46-1.4,0.46-1.4,700,550,325,322,980,0,MID-RANGE of known providers (single known provider),500,350,325,230,700,0,MID-RANGE of known providers (single known provider),
+MO,2026-07-25,filed,calculator [symmetric-boundary audited],2,0.54-0.75,0.48-0.75 (override),725,550,395,392,544,0,above ALL known providers,525,350,250,252,394,0,above ALL known providers (single known provider),pricing review (multi-source)
+MS,2026-07-25,filed,inferred,0,1.05-1.4,1.05-1.4,700,550,,735,980,35,no direct evidence (pooled inferred band),500,350,,525,700,25,no direct evidence (pooled inferred band),
+MT,2026-07-25,filed,published [symmetric-boundary audited],2,1.14-1.43,1.14-1.43,700,550,,798,1001,98,CHEAPEST — below all known providers,500,350,,570,715,70,CHEAPEST — below all known providers,
+NC,2026-07-25,rating-bureau,inferred,0,1.05-1.4,1.05-1.4,,,,,,,unknown (engine errors),500,350,,525,700,25,no direct evidence (pooled inferred band),engine cannot quote (upstream 500s)
+ND,2026-07-25,filed,inferred,0,1.05-1.4,1.05-1.4,700,550,,735,980,35,no direct evidence (pooled inferred band),500,350,,525,700,25,no direct evidence (pooled inferred band),
+NE,2026-07-25,filed,inferred,0,1.05-1.4,1.05-1.4,725,550,,761,1015,36,no direct evidence (pooled inferred band),500,350,,525,700,25,no direct evidence (pooled inferred band),
+NH,2026-07-25,filed,inferred,0,1.05-1.4,1.05-1.4,725,550,,761,1015,36,no direct evidence (pooled inferred band),525,350,,551,735,26,no direct evidence (pooled inferred band),
+NJ,2026-07-25,rating-bureau,inferred-capped,1,0.7-1.4,0.7-1.4,750,350,525,525,1050,0,MID-RANGE of known providers (single known provider),500,350,525,350,700,0,MID-RANGE of known providers (single known provider),
+NM,2026-07-25,promulgated,inferred-capped,1,0.44-1.4,0.44-1.4,1880,1700,834,827,2632,0,MID-RANGE of known providers (single known provider),500,350,592,220,700,0,MID-RANGE of known providers (single known provider),FA fee scales with deal size; pricing review (multi-source)
+NV,2026-07-25,filed,calculator [symmetric-boundary audited],2,0.48-0.51,0.48-0.51,1450,1300,695,696,740,0,above ALL known providers,500,350,,240,255,0,above ALL known providers,FA fee scales with deal size; pricing review (multi-source)
+NY,2026-07-25,rating-bureau,published [symmetric-boundary audited],2,0.82-2.14,0.82-2.14,700,550,,574,1498,0,MID-RANGE of known providers,550,350,,451,1177,0,MID-RANGE of known providers,
+OH,2026-07-25,rating-bureau,calculator [symmetric-boundary audited],3,0.6-1.26,0.5-0.8 (override),441,291,295,265,556,0,MID-RANGE of known providers,500,350,250,250,400,0,above ALL known providers (single known provider),
+OK,2026-07-25,filed,published [symmetric-boundary audited],3,0.24-0.94,0.24-0.94,1615,550,395,388,1518,0,above ALL known providers,1415,350,325,340,1330,0,above ALL known providers,pricing review (multi-source)
+OR,2026-07-25,filed,inferred-capped,1,0.8-1.4,0.79-1.26 (override),1500,1200,1200,1200,2100,0,MID-RANGE of known providers (single known provider),500,350,395,395,630,0,MID-RANGE of known providers (single known provider),FA fee scales with deal size
+PA,2026-07-25,rating-bureau,inferred,0,1.05-1.4,1.05-1.4,950,550,,998,1330,48,no direct evidence (pooled inferred band),700,350,,735,980,35,no direct evidence (pooled inferred band),FA $0 quirk excluded; 3 calculator providers pending fold-in
+RI,2026-07-25,filed,inferred,0,1.05-1.4,1.05-1.4,885,550,,929,1239,44,no direct evidence (pooled inferred band),585,350,,614,819,29,no direct evidence (pooled inferred band),
+SC,2026-07-25,filed,inferred,0,1.05-1.4,1.05-1.4,1085,550,,1139,1519,54,no direct evidence (pooled inferred band),535,350,,562,749,27,no direct evidence (pooled inferred band),
+SD,2026-07-25,filed,inferred,0,1.05-1.4,1.05-1.4,2436,550,,2558,3410,122,no direct evidence (pooled inferred band),2218,350,,2329,3105,111,no direct evidence (pooled inferred band),"our stack unusually high, no evidence"
+TN,2026-07-25,filed,inferred,0,1.05-1.4,1.05-1.4,1050,550,,1102,1470,52,no direct evidence (pooled inferred band),500,350,,525,700,25,no direct evidence (pooled inferred band),
+TX,2026-07-25,promulgated,published [symmetric-boundary audited],5,0.66-1.14,0.66-1.14,700,550,795,462,798,0,MID-RANGE of known providers,500,350,,330,570,0,MID-RANGE of known providers,pricing review (multi-source)
+UT,2026-07-25,filed,calculator [symmetric-boundary audited],2,0.59-0.6,0.59-0.6,700,550,415,413,420,0,above ALL known providers,500,350,410,295,300,0,above ALL known providers,pricing review (multi-source)
+VA,2026-07-25,filed,inferred,0,1.05-1.4,1.05-1.4,835,550,,877,1169,42,no direct evidence (pooled inferred band),535,350,,562,749,27,no direct evidence (pooled inferred band),
+VT,2026-07-25,filed,inferred,0,1.05-1.4,1.05-1.4,1100,550,,1155,1540,55,no direct evidence (pooled inferred band),900,350,,945,1260,45,no direct evidence (pooled inferred band),
+WA,2026-07-25,filed,published [symmetric-boundary audited],6,1.42-2.17,1.42-2.17,600,450,1631,852,1302,252,CHEAPEST — below all known providers,500,350,768,710,1085,210,CHEAPEST — below all known providers,FA fee scales with deal size
+WI,2026-07-25,filed,inferred,0,1.05-1.4,1.05-1.4,700,550,,735,980,35,no direct evidence (pooled inferred band),500,350,,525,700,25,no direct evidence (pooled inferred band),
+WV,2026-07-25,filed,inferred,0,1.05-1.4,1.05-1.4,915,550,,961,1281,46,no direct evidence (pooled inferred band),615,350,,646,861,31,no direct evidence (pooled inferred band),
+WY,2026-07-25,filed,inferred-capped,1,0.27-1.4,0.27-1.4,830,580,225,224,1162,0,MID-RANGE of known providers (single known provider),600,350,225,162,840,0,MID-RANGE of known providers (single known provider),
