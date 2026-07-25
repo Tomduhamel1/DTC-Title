@@ -21,3 +21,10 @@ never individual line items, because providers itemize the same work differently
     above ALL known = even the priciest known provider beats us   |   no direct evidence = pooled band
   "(single known provider)" flags n=1 states. Verdicts say nothing about providers we haven't observed.
 - evidence_basis: published schedules > calculator harvests > inferred-capped (n=1 point) > inferred.
+
+- purchase_our_stack_composition — the LITERAL line items from a live quote that sum to our stack
+  (convention already applied: search lines auto-excluded in pass-through-convention states).
+- comparison_assumptions — the state's boundary convention, the market-low provider's exact
+  arithmetic and source, and every silence-treated-as-included judgment (always resolved AGAINST
+  our savings). This column is the falsifiability contract: if an assumption here is wrong,
+  the band is wrong — challenge these first.
