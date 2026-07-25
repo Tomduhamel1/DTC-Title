@@ -236,3 +236,30 @@ finding of this session is not a pricing range but a structural one: TIRBOP's ow
 (Section 5.1.C) explicitly names the Approved Attorney's settlement charge as unregulated, giving
 this state's "scarce" classification an unusually well-documented legal mechanism rather than a
 mere absence of public information.
+
+## Calculator harvest addendum (2026-07-25)
+
+Separate from the published-schedule survey above (which remains **complete (scarce market)**),
+this session harvested three provider quote calculators for the standard $500,000/$400,000
+Philadelphia County purchase scenario — see PA.json entries marked `"basis": "calculator"` and
+CALCULATORS.md for full technical detail:
+
+1. **ALT Title** (`alttitle.com`) — its own WordPress "tiq" plugin calls a genuine unauthenticated
+   JSON REST API (`/wp-json/tiq/v1/quote`). ALT's own ancillary fees (closing/notary/courier/wire/
+   e-doc/broker admin) are all **$0.00** — a deliberate competitive positioning also visible in the
+   tool's own "competitor range" comparison figures. CPL $125, lender's premium $2,735 (standard).
+2. **TitleWorks** (`titleworks.com`) — embeds a shared third-party platform, MyTitleRates.com
+   (agency id `a=24`), driven via a single plain HTTP POST with no JS/auth. Produced the richest,
+   most itemized HUD-1-style breakdown found in this survey: Document Prep $295, Notary $50,
+   Courier $42.50, CPL $125, three $100 endorsements, Total Closing Costs $16,109 (buyer side,
+   dominated by Philadelphia's transfer tax).
+3. **Trident Land Transfer** (`tridentland.com`) — a second, distinct agency on the same
+   MyTitleRates.com platform (`a=15`), confirming the platform reflects each agency's own real fee
+   schedule rather than a shared template: E Doc Fee $125, Notary $55 (estimate), Wire $7.80,
+   Overnight $20 — materially different from TitleWorks's own figures at the identical scenario.
+
+This crosses the 3-provider calculator-quoted threshold for PA (see PROGRESS.md tracker). The
+MyTitleRates.com discovery is significant beyond PA: it is shared SaaS infrastructure used by many
+independent title agencies nationwide (each with its own `a=<id>`), analogous in importance to Old
+Republic's ortconline.com postback tool for other states — see CALCULATORS.md's "For future
+sessions" note for the recommended follow-up search strategy.

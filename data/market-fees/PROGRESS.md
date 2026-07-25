@@ -26,17 +26,35 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | HI | 1 (Old Republic — Honolulu/Honolulu County-Oahu) | below 3-provider threshold | 2026-07-23 |
 | OR | 1 (Old Republic — Portland 97201/Multnomah County) | below 3-provider threshold | 2026-07-23 |
 | MI | 1 (Modern Title Group — Ann Arbor/Washtenaw County, statewide formula) | below 3-provider threshold | 2026-07-24 |
+| PA | 3 (ALT Title, TitleWorks, Trident Land Transfer — all Philadelphia County) | **calculator-quoted (3 providers)** | 2026-07-25 |
+| NJ | 1 (Trident Land Transfer — statewide, no county tiering) | below 3-provider threshold | 2026-07-25 |
+| MN | 1 (DCA Title — Hennepin County/Minneapolis) | below 3-provider threshold | 2026-07-25 |
 
-FNF's ratecalculator.fnf.com/rates.fntg.com and First American's FACC calculator
-(agency.facc.firstam.com) were both investigated and confirmed **jsOnly** (ASP.NET postback/AJAX
-SPA with no stateless discoverable endpoint returning a final quote without replicating a long
-multi-step authenticated session) — logged in CALCULATORS.md for a future browser-driven session.
+FNF's ratecalculator.fnf.com **is drivable via plain HTTP POST, no browser needed** — confirmed
+2026-07-25 by replaying its ASP.NET WebForms `__doPostBack`/`__VIEWSTATE` protocol directly (the
+same technique used for Old Republic's ortconline.com tool below), correcting the prior session's
+jsOnly classification. However, its output is **premium-only** by the tool's own explicit
+disclaimer ("totals may not include...title search, examination,...or closing" charges) — it does
+not serve the calculator-harvest mission (itemized settlement/service fees) and was not pursued
+further for that reason; see CALCULATORS.md for the full technical recipe in case a future session
+needs an additional premium corroboration source. rates.fntg.com and First American's FACC
+calculator (agency.facc.firstam.com) remain **jsOnly** as previously found.
 Stewart's rate calculator (stewartratecalculator.com) exposes a genuine discoverable JSON REST API
 at `/api/SRC/*` (confirmed working: `transactiontypes`, `propertysearch` endpoints return live JSON
 via plain GET) but its final `quote` endpoint requires a large serialized client-side state object
 (`quoteRequestRoot`) built up across the wizard flow that was not fully reverse-engineered this
 session — flagged in CALCULATORS.md as a promising API-based target for a follow-up session rather
 than jsOnly.
+
+**MyTitleRates.com** (`calculator.mytitlerates.com`) — discovered 2026-07-25, a major new find: a
+shared white-label calculator SaaS platform used by many independent title agencies nationwide
+(each with its own `a=<id>` agency parameter), driven via a single plain HTML form POST with no
+JS/auth/personal-data needed, returning a full HUD-1/Closing-Disclosure-style itemized breakdown
+per agency's own real configured fee schedule. Two agency instances harvested this session
+(TitleWorks `a=24` for PA, Trident Land Transfer `a=15` for PA+NJ) — see CALCULATORS.md for the
+full recipe and the recommended search strategy for finding more agency instances in other scarce
+states (VA, MD, CT, MA, WI, CO, etc.), analogous in potential impact to Old Republic's
+ortconline.com tool.
 
 ## The completion contract
 
@@ -1256,3 +1274,23 @@ still vary and matter).
   pattern -- small companies' own hand-rolled JS calculators -- appears to be a higher-yield
   search target than the big-four brands' locked-down SPAs) in VA/TN/PA/NJ/MD/WI/MN, and push MI
   to 2-3 providers specifically.
+- 2026-07-25: Cracked FNF's ratecalculator.fnf.com via plain HTTP `__doPostBack`/`__VIEWSTATE`
+  replay (same technique as Old Republic's ortconline.com tool) -- confirmed working end-to-end
+  for PA/Philadelphia (full quote returned), but the tool is premium-only by its own explicit
+  disclaimer and does not serve the calculator-harvest mission; not pursued further, recorded in
+  CALCULATORS.md so no future session re-attempts the same dead end. Then found and harvested
+  ALT Title's own WordPress "tiq" plugin REST API (`alttitle.com/wp-json/tiq/v1/quote`) -- a
+  genuine, itemized, no-personal-data-required quote engine -- for PA/Philadelphia. Then
+  discovered **MyTitleRates.com**, a shared white-label calculator SaaS platform used by many
+  independent title agencies nationwide (plain HTML form POST, no JS/auth needed, returns each
+  agency's own real HUD-1-style itemized fee schedule); harvested two distinct agency instances
+  (TitleWorks `a=24`, Trident Land Transfer `a=15`) for PA, crossing PA's 3-provider threshold
+  (**PA now calculator-quoted, 3 providers**) -- and harvested Trident's NJ instance (1 provider,
+  below threshold; NJ has no county tiering in this tool). Also found and harvested DCA Title's
+  first-party WordPress calculator (`dcatitle.com`, plain `admin-ajax.php` POST) for MN/Hennepin
+  County (1 provider, below threshold); DCA's WI county list could not be resolved this session
+  (every placeholder value tested was rejected server-side) -- logged as a follow-up target, not
+  jsOnly. Net this session: PA reaches calculator-quoted (3 providers); NJ and MN each gain a
+  first calculator-basis provider; MyTitleRates.com is a major new reusable-platform find (see
+  CALCULATORS.md) that should be searched further for VA/MD/CT/MA/WI/CO agency instances next
+  session, alongside pushing NJ and MN to their own 3-provider thresholds.

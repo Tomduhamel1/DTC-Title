@@ -153,3 +153,19 @@ than PA's TIRBOP, which only bundles settlement into the premium under one of tw
 meaning NJ's title-side settlement fee is regulatory, not market, evidence, while the market
 signal that does exist is concentrated in the narrow wire-fee ($15 vs. $25) and attorney-fee
 ($995 vs. $2,000) data points documented above.
+
+## Calculator harvest addendum (2026-07-25)
+
+Separate from the published-schedule survey above (which remains **complete (scarce market)**),
+this session harvested a first calculator-basis NJ provider for the standard $500,000/$400,000
+statewide purchase scenario (this agency's NJ configuration has no county/city tiering) — see
+NJ.json's `"basis": "calculator"` entry and CALCULATORS.md for full technical detail. **Trident
+Land Transfer** (`tridentland.com`) embeds a MyTitleRates.com white-label calculator instance
+(`a=15`, the same platform/agency also harvested for PA — see PA.md), driven via a single plain
+HTTP POST, no JS/auth/personal data needed. Notable findings: a flat **$250.00 Settlement Fee**
+(each side) — below NJLTIRB's own promulgated $300-with-disbursements figure already on file — and
+several NJ-specific itemized search products not seen as separate lines in any other state surveyed
+(County Search $95, Tax Search $33, Tideland Search $30, Upper Court Search $44, Notice of
+Settlement $40), consistent with NJ conveyancing custom of multiple discrete municipal/county
+searches. This is 1 of 3 providers needed to cross the calculator-quoted threshold (see
+PROGRESS.md tracker) — 2 more distinct NJ agency calculators are needed.

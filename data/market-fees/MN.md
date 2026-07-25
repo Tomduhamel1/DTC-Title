@@ -149,3 +149,20 @@ not as a saturated range.
   (Duluth, St. Cloud, Mankato) was found publishing a static fee schedule — consistent with
   the broader pattern (seen in AZ, CO, MI, MO, VA, WI) of settlement-fee opacity outside major
   metro markets.
+
+## Calculator harvest addendum (2026-07-25)
+
+Separate from the published-schedule survey above (which remains **complete (scarce)**), this
+session harvested a first calculator-basis MN provider for the standard $500,000/$400,000 Hennepin
+County (Minneapolis) purchase scenario — see MN.json's `"basis": "calculator"` entry and
+CALCULATORS.md for full technical detail. **DCA Title** (`dcatitle.com`) runs its own custom
+WordPress calculator plugin that computes a genuine itemized quote server-side, reached via a plain
+`admin-ajax.php` POST discovered by reading the plugin's own JS source (no browser/JS execution
+needed to reproduce). Findings: Closing Service Fee $350, Search & Exam Fee $700 (+$100/additional
+parcel), lender's title insurance $1,125, plus MN-specific government charges — Mortgage
+Registration Tax $960 (Minn. Stat. 287.035, an ad valorem tax on recorded mortgages unique among
+states surveyed to date) and a $5 Conservation Fee. DCA Title's tool also configures Wisconsin, but
+WI's county list is not exposed in the static form and every placeholder value tried this session
+was rejected server-side — logged in CALCULATORS.md as a follow-up target, not jsOnly (the MN half
+works via plain POST). This is 1 of 3 providers needed to cross the calculator-quoted threshold for
+MN (see PROGRESS.md tracker).

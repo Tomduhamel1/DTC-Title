@@ -12,16 +12,36 @@ discoverable stateless endpoint that returns a final quote — queued for a brow
 ### FNF family (First American? no — Fidelity National Financial brands: Chicago Title, Fidelity
 National Title, Commonwealth, Ticor, etc.)
 - **ratecalculator.fnf.com** (`?ID=<brand>&state=<ST>`, e.g. `?ID=FNF&state=PA`,
-  `?ID=nationalgranite&state=ny`, `?id=weichert`) — **jsOnly**. Confirmed ASP.NET WebForms SPA
-  using `WebForm_DoPostBackWithOptions()`; no traditional form action or discoverable AJAX/API
-  endpoint found in page source. State/county dropdowns populate via postback, not URL params (the
-  `state=` query param only pre-selects the initial dropdown value, it is not a full query
-  interface). Tested against PA.
-- **rates.fntg.com** — **jsOnly**. Same SPA pattern; brand + state + city dropdowns, "Busy
-  Loading" JS indicator, no discoverable API endpoint in fetched source, explicitly a
-  "Residential Transaction tool" with no query-string interface.
-- Status: queued for browser-driven session. Both need full JS execution (dropdown-driven
-  cascading postbacks) to reach a final quote.
+  `?ID=nationalgranite&state=ny`, `?id=weichert`) — **2026-07-25 update: NOT actually jsOnly,
+  WORKING via plain HTTP, but premium-only, out of scope for the calculator-harvest mission.**
+  This is a classic ASP.NET WebForms `__doPostBack`/`__VIEWSTATE`/`__EVENTVALIDATION` app (same
+  pattern as Old Republic's ortconline.com tool below) -- fully drivable with a plain
+  `requests.Session()`, no JS execution needed at all, contrary to the prior session's assessment.
+  Recipe: (1) GET `?ID=<brand>&state=<ST>` to capture hidden fields; (2) POST with
+  `ddlCounty=<lowercase county name>` and `__EVENTTARGET=...ddlCounty` to select the county; (3)
+  POST with `btnGeneralNext=Next` (a real submit button, `__EVENTTARGET` empty) to advance to the
+  Amounts step; (4) POST with `pnlAmountsTransactionQuestions$0$TranType$ddl=PropertyPurchase` +
+  matching `__EVENTTARGET` to select transaction type, which reveals amount fields; (5) POST
+  `AmountPurchase$txt=<sale price>` (own `__EVENTTARGET`) then `AmountLoan1$txt=<loan amount>`
+  (own `__EVENTTARGET`) -- `PropertyType` defaults to `residential`, `PolicyForm` defaults to the
+  standard ALTA forms, all fine for the standard scenario; (6) POST `btnFinish=Finish` for the
+  final quote. Verified end-to-end for PA/Philadelphia County: returned a full premium quote
+  (Owner's $570 disclosure/$2,735 adjustment/$3,305 total; Loan policy $0 under the Concurrent
+  Owner's & Loan rate). **However the tool's own disclaimer states explicitly: "the totals...may
+  not include any other amounts, such as charges/fees related to title search, examination,
+  additional work charges, certification, or closing"** -- i.e. it is a title-insurance-premium
+  calculator only, structurally incapable of producing the itemized settlement/service fees this
+  mission targets. Not pursued further for that reason (would only ever duplicate premium data
+  already on file from rate manuals). A CPL toggle exists (`IsClosingService$rc_IsClosingService`,
+  confusingly named) but setting it to "Yes" produces no separate CPL dollar line in the output --
+  the disclaimer text just becomes conditionally present, no dollar figure attached. Useful as a
+  premium corroboration source for a future session if a state's premium-side evidence ever needs
+  it, but not calculator-harvest evidence.
+- **rates.fntg.com** — **jsOnly** (not re-tested 2026-07-25; may share the same WebForms
+  architecture as ratecalculator.fnf.com above and be crackable with the same technique --
+  untested this session, worth a quick check before assuming it needs a browser).
+- Status: ratecalculator.fnf.com's WebForms flow is solved (see above) but out of scope by design
+  (premium-only). rates.fntg.com still needs verification.
 
 ### First American
 - **firstam.com/title-fee-calculator/index.html** — landing page only, links to facc.firstam.com;
@@ -248,6 +268,103 @@ target across the many scarce states still uncovered.
   escrow fee line items) — out of scope for the calculator-harvest mission, though it would be a
   valid published-schedule-survey source if MI's premium-only tier needed another corroboration
   (it doesn't; MI already has 6 premium manuals on file).
+
+## Independent-agency first-party APIs — WORKING, discovered 2026-07-25
+
+### ALT Title / Associates Land Transfer Company LLC (PA) — WORKING, genuine itemized REST API
+`alttitle.com/pa-title-insurance-quote-title-calculator/` embeds a first-party React app (a
+WordPress plugin literally named "tiq") that calls a genuine, unauthenticated (nonce-only) JSON
+REST API on ALT's own domain — no JS execution needed to reproduce, no personal data required.
+- `GET alttitle.com/wp-json/tiq/v1/settings` — no auth. Returns the full PA county (and, for some
+  counties, municipality/school-district) list plus `min_sale_price`/`max_sale_price`/
+  `min_loan_amount`/`max_loan_amount`. Philadelphia County has no municipality/school-district
+  sub-tiers (`{"name": "PHILADELPHIA"}`), simplifying the standard-scenario request.
+- `POST alttitle.com/wp-json/tiq/v1/quote` — requires header `X-WP-Nonce: <nonce>` where the nonce
+  is read from the page's embedded `window.TIQ_SETTINGS.nonce` (present in the raw page HTML on
+  every fresh GET, no login needed). Body (JSON): `{policy_type, owners_policy, transaction_type,
+  quote_type, county, municipality, school_district, sale_price, loan_amount,
+  adjustable_rate_mortgage, hoa, condo, pa_1030}`. **Gotcha**: all enum values are lowercase
+  (`"standard"`/`"enhanced"`, `"included"`/`"excluded"`, `"purchase"`/`"refinance"`,
+  `"quick"`/`"custom"`) — sending them uppercase (a natural first guess) is silently accepted by
+  the API but produces a degraded/wrong response (e.g. `owners_policy` defaults to excluded) with
+  no validation error, so always verify enum casing against the plugin's own minified JS
+  (`tiq/frontend/build/static/js/main.*.chunk.js`, search for the literal enum object definitions
+  like `{INCLUDED:"included",EXCLUDED:"excluded"}`) rather than guessing from field names.
+  `quote_type: "quick"` avoids the `"custom"` mode's `insured_name`/`property_address` fields
+  (personal data, never send). Response is a fully itemized quote (title premium by coverage tier,
+  endorsements, CPL, ALT's own $0 ancillary-fee lineup vs. a competitor-range comparison, and
+  government recording/transfer-tax figures) — see PA.json's `basis: "calculator"` ALT Title entry
+  for the full harvested result.
+- **Generalization note**: the "tiq" plugin is WordPress-installable (`/wp-content/plugins/tiq/`)
+  — if it turns out to be a licensed product used by other agencies (not confirmed this session),
+  the identical `tiq/v1/settings` + `tiq/v1/quote` recipe would apply verbatim to any other site
+  running it. Worth a quick `"wp-content/plugins/tiq"` web search in a future session.
+
+### MyTitleRates.com — WORKING, major shared-platform find, plain HTML POST, no JS/auth needed
+A white-label calculator SaaS product (`mytitlerates.com`, "MyTitleRates.com LLC") licensed to many
+independent title agencies nationwide, each embedding an iframe at
+`calculator.mytitlerates.com/rateCalculator.php?a=<agency-id>&results=<n>`. Despite being shared
+infrastructure, **each agency ID reflects that agency's own real, distinct fee schedule** — not a
+generic template — confirmed by harvesting two different PA agency IDs (`a=24` TitleWorks, `a=15`
+Trident Land Transfer) at the identical standard scenario and getting materially different dollar
+figures for every ancillary line item (Document Prep $295 vs. E-Doc Fee $125, Wire $0 vs. $7.80,
+etc.). This satisfies the "providers' own public quote calculators" mandate per-agency, exactly
+like TitleCapture/Qualia are treated per-agency elsewhere in this catalog — except this platform
+turned out to be a **plain server-rendered PHP form**, not a JS SPA, so it needed no browser at all.
+- Recipe: GET `rateCalculator.php?a=<id>&results=<n>` (form loads with a `state_picked` dropdown
+  listing only that agency's served states, and county/city dropdowns once a state is picked via
+  `?a=<id>&state=<state-option-value>`). POST to the same URL (`rateCalculator.php`, no query
+  string needed on the POST) with all visible form fields: `state_picked`, `StatesKey` (a hidden
+  field whose value is state-specific — re-fetch per state, don't reuse across states),
+  `financeType=purchase`, `purchasePrice`, `loanAmount`, `enhancedCoverage=0` (standard coverage),
+  `county` (option value from the state-specific dropdown; some agency/state combos have no county
+  select at all — statewide pricing, e.g. Trident's NJ configuration), `city=0` (all
+  municipalities) where a city select exists, the default-checked endorsement checkboxes (vary by
+  state — inspect the actual rendered form, e.g. PA uses `end100`/`end300`/`end900`, NJ uses
+  `alta81`/`alta9`/`surveyEndorsement`), `CustomerInfoOption=0`, `sent=2`, `page=2`,
+  `test_calckey=<StatesKey's numeric state code>`, `a=<agency id>`. No cookies/session/nonce
+  needed — a single stateless POST returns the full itemized HUD-1/Closing-Disclosure-style result
+  page directly. No personal data fields are required (the `saveQuoteEmailAddress`/
+  `saveQuoteCustomName` fields are for an optional "save/email this quote" feature, never used).
+- Known agency instances (found and harvested this session): `a=24` = TitleWorks (PA/NJ/FL),
+  `a=15` = Trident Land Transfer (NJ/PA). See PA.json and NJ.json for the harvested results.
+- **Recommendation for next session**: search `"calculator.mytitlerates.com"` combined with target
+  state names (VA, MD, CT, MA, WI, CO, etc. — the highest-population still-unharvested scarce
+  states) to find more agency IDs; also try web-searching agency names already known to use the
+  platform combined with other state names, since some agencies (like Trident) serve multiple
+  states from one `a=<id>`. Do not attempt to enumerate `a=<id>` values sequentially/blindly —
+  find agency names organically via search first, consistent with the mission's calculator-
+  discovery approach elsewhere in this catalog.
+
+### DCA Title (MN/WI) — WORKING for MN, blocked for WI, plain WordPress admin-ajax POST
+`dcatitle.com/calculator/` runs a first-party custom WordPress plugin
+(`wp-content/plugins/dcatitle-calculator/js/dcatitle-calculator.js`) whose source directly reveals
+a plain, unauthenticated AJAX call — no browser needed, no personal data required.
+- `POST dcatitle.com/wp-admin/admin-ajax.php` with `action=dcatitle_calculator_results` plus
+  `transactionType` (`Purchase`/`Refinance`/`Second Mortgage`/`Construction`/`Contract for Deed
+  Payoff`), `userType` (`Buyer`/`Seller`), `state` (`Minnesota`/`Wisconsin`), `county` (a plain
+  MN county name for Minnesota, e.g. `Hennepin`), `saleAmount`, `loanAmount` (both capped at
+  $1,000,000 by the tool's own client-side validation — informational only, not enforced by this
+  recipe since we stay under the cap anyway), `lenderPolicyEndorsement` (`Yes`/`No`),
+  `manufacturedHousing` (`Yes`/`No`). Response is `{"html": "<table>...itemized quote...</table>"}`
+  — strip tags to read it. Confirmed working end-to-end for Minnesota/Hennepin County (Minneapolis)
+  — see MN.json's DCA Title entry.
+- **Wisconsin is configured in the same tool but not resolved this session**: the page's own JS
+  (`toggleFields()`) hides the county-selection UI entirely when `state == 'Wisconsin'` (implying
+  WI needs no county), but the server-side `admin-ajax.php` handler still rejects every request
+  with `{"alert":{"type":"error","msg":"Please select a valid County value."}}` regardless of what
+  `county` value is sent — tried empty string, `N/A`, `None`, `All`, `Any`, `Statewide`, and a real
+  Minnesota county name (`Aitkin`, which instead produced a *different* error, "Please select a
+  valid State value" — suggesting the server cross-validates county-belongs-to-state and reports
+  the mismatch confusingly as a state error). The real WI county list is not present anywhere in
+  the static page HTML or the calculator JS file — it likely loads via a separate AJAX call
+  triggered by the state dropdown's `change` event that this session did not capture (the static
+  fetch only shows Minnesota's initial DOM state). **Recommendation for next session**: either
+  drive the page in a real/headless browser and change the state dropdown to Wisconsin to capture
+  the resulting network request (should reveal the real WI county list or the correct payload
+  shape), or grep the plugin's PHP source if it's ever exposed, or try common WI county names
+  directly (Milwaukee, Dane, Waukesha) in case the earlier failures were simply due to trying
+  Minnesota-specific or nonsense placeholder values rather than a structural block.
 
 ## For the browser-driven follow-up session
 Priority queue (highest-value first): (1) TitleCapture — drive `<agency>.titlecapture.com/

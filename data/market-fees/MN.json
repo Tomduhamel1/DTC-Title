@@ -113,5 +113,38 @@
     },
     "bundlingNotes": "Page explicitly labels the figures as 'representative of a typical transaction' and advises contacting the firm for transaction-specific questions -- treated as a published (if illustrative) fee schedule rather than a blind interactive calculator, since dollar amounts are displayed on the page itself without requiring form input.",
     "transactionContext": "Rochester, MN metro area (Olmsted County); residential closing, title evidence/examination, and recording fees; company is a subsidiary of a local law firm (Dunlap Seeger), giving attorney-affiliated provider-type coverage."
+  },
+  {
+    "basis": "calculator",
+    "provider": "DCA Title (independent title/settlement company, serving Minnesota and Wisconsin)",
+    "sourceUrl": "https://www.dcatitle.com/calculator/",
+    "calculatorUrl": "https://www.dcatitle.com/calculator/",
+    "endpoint": "POST https://www.dcatitle.com/wp-admin/admin-ajax.php (action=dcatitle_calculator_results, plain WordPress admin-ajax POST, no auth/nonce required, no personal data)",
+    "retrievalDate": "2026-07-25",
+    "scenario": "$500,000 purchase price, $400,000 loan, Hennepin County (MN's most populous county, Minneapolis), residential purchase, buyer side, no lender policy endorsement, not manufactured housing",
+    "methodology": "DCA Title's own custom WordPress plugin ('dcatitle-calculator') computes a real, first-party itemized quote server-side and returns it via a plain admin-ajax.php POST (discovered by fetching the plugin's own dcatitle-calculator.js and reading its jQuery.ajax() call directly) -- no JS execution needed to reproduce, no browser required.",
+    "settlementFee": {
+      "closingServiceFee": "$350.00 (Title - Closing Service Fee)"
+    },
+    "itemizedFees": {
+      "searchExam": "$700.00 (Title - Search & Exam Fee; plus $100 for each additional parcel)",
+      "docPrep": null,
+      "processing": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "courier": null,
+      "wire": null,
+      "cpl": null,
+      "governmentRecording": "$92.00 (Government Recording Fee, based on 2 abstract documents at $46.00 per document)",
+      "conservationFee": "$5.00 (paid to county treasurer with the Mortgage Registration Tax)",
+      "mortgageRegistrationTax": "$960.00",
+      "titleInsurancePremium": {
+        "lendersPolicy": "$1,125.00",
+        "homeownersPolicyPremium_expandedCoverage": "$743.75"
+      }
+    },
+    "sectionTotals": "Title Charges: $350 (closing) + $1,125 (lender's title insurance) + $700 (search & exam) = $2,175.00. Taxes and Government Fees: $5 (conservation) + $92 (recording) + $960 (mortgage registration tax) = $1,057.00. Expanded Coverage and Endorsements: $743.75 (homeowner's policy premium, optional).",
+    "bundlingNotes": "First calculator-basis MN provider. MN's Mortgage Registration Tax ($960 at this loan amount, a state-specific ad valorem tax on recorded mortgages under Minn. Stat. 287.035) and Conservation Fee ($5, a per-document state fee) are unique line items not seen in most other states surveyed. DCA Title's own calculator also serves Wisconsin, but WI's county dropdown is hidden in the visible form and the server rejected every placeholder county value tried this session (empty string, 'N/A', 'None', 'All', 'Any', 'Statewide', and a valid Minnesota county name) -- the real WI county list appears to load dynamically via a mechanism not captured by a static HTML/JS fetch; logged in CALCULATORS.md as a follow-up target rather than jsOnly (the MN half of the same tool works perfectly via plain POST).",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k Hennepin County (Minneapolis) purchase scenario, buyer side."
   }
 ]
