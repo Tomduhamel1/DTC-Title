@@ -436,6 +436,151 @@ OH, SC, AL, TN, IL, NC, KY, IN, TX, MD, VA, DC, WI, MI, DE, WV, OK, MO, KS.
   arrays are richer than CT's CPL-only list before investing further effort — a state with a fuller
   `Fees` list would justify completing the Calculate flow, a CPL-only state would not.
 
+## 2026-07-26 session — VA/MD/CT/MA parallel harvest: 2 new shared platforms, 1 new Old Republic tool
+
+Four states (VA, MD, CT, MA — all "complete (scarce)" in the published-schedule survey, chosen as
+the highest-population still-unharvested scarce states per this catalog's own 2026-07-25
+recommendation) were harvested in parallel this session. Results: VA crossed the 3-provider
+calculator-quoted threshold; MD (1), CT (1), and MA (2) did not, but two significant new reusable
+platforms were found and several near-miss/high-priority leads were mapped for a future session.
+
+### TitleClose.com — WORKING, national ASP.NET MVC "shopping mall" platform, plain HTTP
+A shared multi-tenant SaaS (`<agency>.titleclose.com`) discovered via Bon Air Title Agency's (VA)
+own site. Classic ASP.NET MVC, driven with a plain `requests.Session()`, no browser needed:
+(1) GET `/Consumer/Welcome` to capture a session cookie + `SearchID`; (2) POST search criteria
+(state/county/city IDs resolved via `GET /Search/GetAllCountiesByStateId?stateId=<ID>&zip=<zip>` and
+`GET /Consumer/Welcome/GetCities?stateID=<ID>`) to `/Consumer/Search`; (3) GET the returned order
+token's detail page (`/Consumer/Order/<token>`), which contains the full itemized fee breakdown as
+readonly hidden form inputs (`SettlementTitleFees[n].Description/Amount/BuyerAmount/SellerAmount`)
+in the raw HTML even though the visual UI shows an iframe-security "Launch Calculator" overlay. No
+personal data required when a tenant has `shouldAskForConsumerData = false` (confirmed true for both
+VA tenants found). Two distinct VA agency tenants harvested — Bon Air Title Agency
+(`bonairtitleagency.titleclose.com`, $0 settlement fee, defers to an outside closing attorney per VA
+custom) and Appomattox (`apptitle.titleclose.com`, $450 settlement fee + 5 more line items Bon Air's
+schedule lacks entirely) — confirming each tenant reflects its own real, independently-configured
+fee schedule, the same pattern as MyTitleRates.com/TitleCapture. A third tenant, Old Republic's own
+`ortris.titleclose.com`, returned zero results for Fairfax County (likely a Richmond-area-only
+footprint for that specific tenant) — not retried with a different county this session.
+**Recommendation**: search `"titleclose.com/Consumer/Welcome"` combined with target state names to
+find more tenants — likely underexploited across other scarce states given the proven recipe.
+
+### NetSheetCalc / TitleTap — WORKING (per-tenant), plain JSON GET, no auth
+A white-label net-sheet calculator SaaS (`app.netsheetcalc.com/c/<tenant-slug>`), found via
+Independent Title & Escrow LLC's (VA) own site. Unlike MyTitleRates.com's PHP form POST, this
+platform exposes plain unauthenticated JSON GETs once a tenant's "Quick Quote (No sign in needed)"
+mode is available: `GET non-auth-ajax.php?action=getAppData&app_id=<id>` returns the tenant's full
+fee-form schema as JSON, including hardcoded flat-dollar ancillary fee constants (closing/settlement
+fee, abstract, binder, exam, doc prep, CPL, e-record, deed/mortgage recording) embedded directly in
+the config — the same "grep first-party config for hardcoded fee constants" technique as Modern
+Title Group, but here the constants arrive as clean JSON rather than requiring JS-source grepping.
+`GET api/index.php/rate/<sale price>/<rate-key>` (e.g. `Owner533`, tenant-specific) returns a live,
+dynamically-computed title insurance premium for that tenant. Harvested successfully for Independent
+Title & Escrow LLC (VA, app_id 533/534) — the richest single-agency ancillary-fee breakdown found in
+this session (10 distinct itemized line items plus VA-specific state/local grantee-tax formulas).
+**Not every tenant is open**: the MA-area instance found (Elite Title Company, `appid=438`) and the
+general netsheetcalc.com/titleagentmarketing.com flow both require real-estate-agent account
+login/signup for their main calculator UI — **gated**, no personal data entered, logged and skipped.
+**Recommendation**: search `"app.netsheetcalc.com/c/"` combined with target state names for more
+"Quick Quote / No sign in needed" tenants specifically (the gated, login-required tenants are a dead
+end, but the no-signin mode is a real, repeatable win where it exists).
+
+### Federal Title & Escrow — WORKING, first-party ASP.NET WebForms, plain HTTP (MD)
+`tools.federaltitle.com/titleagents/QuickQuote/Default.aspx` is Federal Title's own first-party
+calculator (distinct from its jsOnly Vite/React "guaranteed-quote" tool at `ftec.federaltitle.com`
+already logged above) — a classic ASP.NET WebForms postback app, same technique as FNF/Old
+Republic/Knight Barry. Montgomery County (MD's most populous) is the tool's own default, no
+substitution needed. **New gotcha for the ReoList/OR-county-list pattern already documented
+elsewhere in this file**: a `rblRepeatClient` RadioButtonList renders on the initial GET but is
+*not* re-rendered after the state-selection postback; submitting a value for it on the final POST
+throws HTTP 500 (`RadioButtonList.LoadPostData` invalid postback argument) — omit the field entirely
+once the state has been selected. Returned a fully itemized buyer/seller settlement statement
+(Settlement Fee $975 buyer/$550 seller, CPL $30, Search/Abstract $275, recording, transfer/
+recordation taxes, both title insurance premiums). The page's own text states "No login or personal
+information required," confirmed accurate.
+
+### Old Republic's second calculator — `ortratecalculator.oldrepublictitle.com` (CT)
+A previously-uncatalogued Old Republic tool, **distinct from `ortconline.com/Web2`** (which does not
+serve CT and was re-confirmed unchanged: AZ, CA, HI, MO, NM, NV, OH, OK, OR, TX, UT, WA only). Found
+via Quiet Title LLC's (CT) own calculators resource page linking to
+`ortratecalculator.oldrepublictitle.com/RateCalc.aspx?CallingApp=PUBLIC&Location=06` (Location=06 =
+Connecticut). Same ASP.NET WebForms postback pattern; auto-establishes a temporary session via a
+redirect through `/Login.aspx` with no credentials needed. Statewide for CT (no county dropdown).
+Premium-only structure plus one itemized CPL line ($50.00, tool's own editable default — not
+independently confirmed against CT's C.G.S.A. §38a-404 statutory CPL rate). **Recommendation**: this
+tool's `Location=<code>` parameter likely covers other states beyond CT/ortconline.com's footprint —
+worth enumerating `Location=01` through `Location=50`-ish in a future session to map full coverage.
+
+### Absolute Title, LLC / Law Office of David R. Rocheford Jr. — WORKING, first-party (MA)
+Two independent first-party finds in Massachusetts, an attorney-closing state. **Absolute Title**
+(`absolutetitle.com/ratecalculator_ma.asp`) is a first-party JS calculator (`rc-ma.js`), no browser
+needed, statewide (no MA county tiering). **The Law Office of David R. Rocheford Jr.**
+(`thebestclosings.com/title-calc/`) combines static HTML fee constants with a small JS formula file
+— the richest MA find, a full buyer/seller settlement breakdown (Settlement Fee $565, Title Exam
+$300, Survey $160, MLC, recording, homestead, transfer tax) directly confirming MA's
+attorney-as-settlement-agent market structure already noted in MA.md's published-schedule findings.
+
+### High-priority near-miss: Title Resources Guaranty (ratecalculator.trguw.com) — GraphQL, live 500
+Found independently in both the CT and MA sessions. A Next.js/Apollo GraphQL backend at
+`POST /api/proxy/graphql`, no auth. The `getQuote` query schema was **fully mapped** (`stateFees`,
+`premiumTax`, `closingProtectionLetters` fields — a potentially rich itemized source) and confirmed
+to serve ~40 states including CT and TX. However `getQuote` returns a bare HTTP 500 for *any* request
+containing a policy input, reproduced identically across states — and the live production page
+itself hangs on loading skeletons, indicating a genuine current backend outage on Title Resources'
+own side, not a request-shape problem on this survey's end. **Recommendation**: retry in a future
+session (the schema is fully mapped and ready to replay the moment the backend recovers) rather than
+investing more reverse-engineering effort now.
+
+### CATICulator — `Calculate` endpoint body structure now solved, still 500s (new finding)
+Following up the 2026-07-25 entry above: this session fully reverse-engineered the `Calculate` POST
+body shape — it's `{"data": "<JSON.stringify(serverModel)>"}` (the entire payload **double JSON
+string-encoded** inside a `data` field, not a raw object as the prior session assumed), with
+`serverModel` = `toServerModel()` output plus a lowercased `selectionSet` reused verbatim from
+`GetPolicyData`, plus `endorsementsSelected`/`policyId`/`IsPolPropUser`. Posting a complete, correctly
+-shaped body still returns a generic ASP.NET 500 "Runtime Error" with remote error details disabled
+server-side, so the remaining defect could not be isolated further this session. Also confirmed MA's
+`GetPolicyData.Fees` array is CPL-only, identical to CT's — the state-by-state richness check
+recommended in the 2026-07-25 entry found no state (of the 2 checked) where completing this flow
+would yield more than a CPL fee, further lowering the priority of finishing this reverse-engineering.
+
+### New dead ends / gated / jsOnly logged this session (don't re-try without a new angle)
+- **choicefinance.net** (MD/VA/DC calculator) — DNS-dead, unreachable (ENOTFOUND / 502 via proxy).
+- **safeharbortc.com/calculator/** (VA) — blocked by a captcha wall (`sgcaptcha` redirect).
+- **calculator3.mytitlerates.com** — a *separate*, Laravel-based "MyTitleRates Demo" instance (not
+  the PHP `calculator.mytitlerates.com` platform documented above), covering PA/NJ/NY/FL/GA/NC/SC/
+  IN/AR/DC/MD/KY only — no VA or CT agency found on it; `/calculator/98` is its admin/login backend,
+  not a public quote page.
+- **Pinnacle Title & Escrow, Charter Title Company, Allied Title & Escrow, Lakeside Title Company**
+  (all MD) — all embed TitleCapture, jsOnly (platform-level block already documented).
+- **GPN Title** (MD) — embeds Qualia Connect (token `YenRKppiKqAQP9m4a`), jsOnly.
+- **Mid-Atlantic Settlement Services** (MD) — first-party WordPress plugin loads an Angular SPA from
+  a new platform, **TRGC PowerSnap** (`mobile.trgc.com/powersnap/`), confirmed to require
+  `Authorization: Bearer` JWT auth in its bundle — jsOnly + gated, no discoverable stateless endpoint.
+- **Guaranteed Trust Title, LLC** (MD) — routes to a TitleClose.com tenant's
+  `/Consumer/Account/Login` — this specific tenant requires consumer account login (gated), unlike
+  the two open VA tenants above; confirms TitleClose.com tenants vary in their
+  `shouldAskForConsumerData`/login-gating configuration per agency.
+- **Landmark Abstract** (MD, formerly logged for PA) — MD section links to `prismpowered.com`,
+  already-logged-dead (502) AND separately gated (requires account creation) — double dead end.
+- **AnytimeEstimate.com** — genuinely itemized client-side calculator but confirmed (via its own
+  About page) to be a third-party financial-comparison site, not a title provider itself — out of
+  scope per the "providers' own calculators" mandate, same reasoning as the already-logged
+  alphaadv.net aggregator. Do not harvest this site for any state.
+- **statecalc.com, netsheetcalc.com's own marketing/demo page** — generic aggregator / vendor
+  marketing page, not a specific agency's live instance — out of scope.
+- **Accurate Title** (NH/MA/ME) — embeds First American's "AgentNet"/Prism Angular SPA
+  (`marketing.agentnetsolutions.com`), jsOnly.
+- **massrealtylaw.com** — Wix/React SPA, jsOnly.
+- **firsttitleservices.com** (CT) — still HTTP 403 even retried with a browser User-Agent (the
+  technique that unblocked catic.com did NOT work here — a genuinely different/stronger block).
+- **Stewart's CT agents page** — 301-redirects to the already-logged, unresolved
+  `stewartratecalculator.com/Quote/LoanEstimate` Angular SPA; confirms CT is in Stewart's footprint
+  but adds no new information.
+- **Knight Barry Title Group** — confirmed NOT serving MD, CT, or MA (all 302-redirect to the
+  platform's error page; MD's `ddlState` dropdown lists only WI/FL/MI/MN, matching the
+  MN/WI/MI-only footprint already on file).
+- **TitleVest** (`titlevest.com`) — New York-focused, no MD coverage found.
+- **titlefeescalculator.com** — unreachable/connection timeout across repeated attempts (MA session).
+
 ## For the browser-driven follow-up session
 Priority queue (highest-value first): (1) TitleCapture — drive `<agency>.titlecapture.com/
 title-quote` for a real agency instance (e.g. moderntitlegroup.titlecapture.com) and capture the

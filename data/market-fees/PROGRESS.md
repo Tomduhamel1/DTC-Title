@@ -30,6 +30,10 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | NJ | 1 (Trident Land Transfer — statewide, no county tiering) | below 3-provider threshold | 2026-07-25 |
 | MN | 2 (DCA Title, Knight Barry Title Group — both Hennepin County/Minneapolis) | below 3-provider threshold | 2026-07-25 |
 | WI | 1 (Knight Barry Title Group — Milwaukee County) | below 3-provider threshold | 2026-07-25 |
+| VA | 3 (Bon Air Title Agency + Appomattox, both TitleClose.com tenants, Fairfax; Independent Title & Escrow LLC, NetSheetCalc/TitleTap, Fairfax) | **calculator-quoted (3 providers)** | 2026-07-26 |
+| MD | 1 (Federal Title & Escrow Company — Montgomery County, own first-party ASP.NET tool) | below 3-provider threshold | 2026-07-26 |
+| CT | 1 (Old Republic — ortratecalculator.oldrepublictitle.com, statewide, a distinct tool from ortconline.com) | below 3-provider threshold | 2026-07-26 |
+| MA | 2 (Absolute Title LLC, statewide; Law Office of David R. Rocheford Jr., Worcester County) | below 3-provider threshold | 2026-07-26 |
 
 FNF's ratecalculator.fnf.com **is drivable via plain HTTP POST, no browser needed** — confirmed
 2026-07-25 by replaying its ASP.NET WebForms `__doPostBack`/`__VIEWSTATE` protocol directly (the
@@ -56,6 +60,33 @@ per agency's own real configured fee schedule. Two agency instances harvested th
 full recipe and the recommended search strategy for finding more agency instances in other scarce
 states (VA, MD, CT, MA, WI, CO, etc.), analogous in potential impact to Old Republic's
 ortconline.com tool.
+
+**2026-07-26 session — VA/MD/CT/MA parallel harvest.** Worked the four highest-population
+still-unharvested "complete (scarce)" states in parallel (per the 2026-07-25 recommendation above).
+VA crossed the 3-provider threshold; MD/CT/MA did not, but the session surfaced two significant new
+reusable shared platforms plus a new Old Republic tool — full technical detail in CALCULATORS.md's
+"2026-07-26 session" entry:
+- **TitleClose.com** — a national ASP.NET MVC "shopping mall" platform (`<agency>.titleclose.com`),
+  2 VA tenants harvested (Bon Air Title Agency, Appomattox) confirming each reflects its own real
+  fee schedule; a 3rd tenant (Guaranteed Trust Title, MD) turned out to require consumer login,
+  showing gating varies per tenant.
+- **NetSheetCalc/TitleTap** — a white-label net-sheet SaaS exposing plain JSON GETs for "Quick
+  Quote/No sign in needed" tenants; harvested Independent Title & Escrow LLC (VA, the richest
+  single-agency ancillary-fee breakdown found this session) but found other tenants (MA) gated
+  behind agent-account login.
+- **Old Republic's second tool**, `ortratecalculator.oldrepublictitle.com` (distinct from
+  `ortconline.com/Web2`), harvested for CT — its `Location=<code>` parameter likely covers more
+  states beyond CT, flagged for a future session to enumerate.
+- **High-priority near-miss**: Title Resources Guaranty's GraphQL backend (`ratecalculator.trguw.com`)
+  was fully schema-mapped (found independently by both the CT and MA sub-sessions) but its `getQuote`
+  query currently 500s for any input — a live backend bug on their side, not a request-shape issue;
+  worth a retry-only follow-up once it recovers, no further reverse-engineering needed.
+- CATICulator's `Calculate` POST body was fully solved (double-JSON-encoded `data` field) but still
+  500s server-side with no error detail; also confirmed MA's `Fees` list is CPL-only like CT's,
+  further lowering priority on finishing this one.
+- MD, CT, and MA's calculator landscapes are dominated by gated/jsOnly shared platforms (TitleCapture,
+  Qualia Connect, a newly-found TRGC PowerSnap) with few first-party statelessly-drivable exceptions
+  — consistent with these 3 states' already-thin published-schedule coverage.
 
 ## The completion contract
 
@@ -1324,3 +1355,26 @@ still vary and matter).
   next session; FNF's calculator was cracked technically but ruled out of scope (premium-only); and
   CATICulator's 30-state auth pattern was cracked but its CT fee catalog proved too narrow (CPL
   only) to justify finishing the Calculate flow this session.
+- 2026-07-26: Freshness pass (5 oldest sources by retrieval date: 5 CA sources + NC's
+  24hourclose.com/fee-schedule/, plus FL's ftic.net pages as the next-oldest) -- all re-fetched
+  successfully; Stewart's virtualunderwriter.com CA PDF 403'd on a bare-curl request but returned
+  HTTP 200 with a standard browser User-Agent (a UA-sensitivity quirk, not a dead link) -- no
+  sources marked stale. Blocked-source retries: **CATIC CT** (catic.com root, HTTP 200, unchanged
+  from the 2026-07-25 breakthrough -- still FlippingBook JS-image-locked underneath, no further
+  progress this pass); **Arizona DIFI** (difi.az.gov/title-insurance-rate-filings, still HTTP 403,
+  persistent Cloudflare WAF block confirmed again); **Jackson & Scott AL**
+  (realestatelclosings.com/closing-costs-calculator/, still HTTP 403, persistent WAF block
+  confirmed again) -- no change on any of the three. Then ran the calculator harvest's main
+  priority: 4 parallel sessions on VA/MD/CT/MA (the highest-population still-unharvested
+  "complete (scarce)" states, per the 2026-07-25 recommendation). VA reached calculator-quoted (3
+  providers: 2 TitleClose.com tenants + 1 NetSheetCalc/TitleTap tenant); MD gained its 1st provider
+  (Federal Title & Escrow's own tool); CT gained its 1st provider (a second, previously-uncatalogued
+  Old Republic calculator); MA gained 2 providers (Absolute Title, Law Office of David R. Rocheford
+  Jr.). Two major new reusable platforms found (TitleClose.com, NetSheetCalc/TitleTap) plus a
+  high-priority near-miss (Title Resources Guaranty's GraphQL backend, fully schema-mapped but
+  currently 500ing on their end) -- see CALCULATORS.md's 2026-07-26 entry for full detail. Each
+  state's changes were committed and pushed as its own checkpoint. Next session: extend
+  TitleClose.com/NetSheetCalc/TitleTap searches to push MD/CT/MA toward the 3-provider threshold,
+  retry Title Resources Guaranty once its backend recovers, and continue down the priority-ordered
+  scarce-state list (next up by population: CO, AL, SC, remaining tier-2/tier-3 scarce states not
+  yet calculator-harvested).
