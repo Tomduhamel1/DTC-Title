@@ -57,7 +57,7 @@
         "Virtually all standard ALTA endorsements (zoning excepted, at $0.25/$1,000) issued at no charge"
       ]
     },
-    "bundlingNotes": "Introduction states explicitly: 'Title insurance premiums do not include charges or fees for title search, abstracts, attorney's fees, surveys, escrow, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant' — the clearest and most complete disclaimer of settlement-fee content found in this state's dataset.",
+    "bundlingNotes": "Introduction states explicitly: 'Title insurance premiums do not include charges or fees for title search, abstracts, attorney's fees, surveys, escrow, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant' \u2014 the clearest and most complete disclaimer of settlement-fee content found in this state's dataset.",
     "transactionContext": "Statewide Maryland; residential and commercial purchase/refinance title insurance premium rates; no settlement/service fee published in this document by design."
   },
   {
@@ -80,11 +80,11 @@
         "Cecil County recording fee: $60.00 per instrument",
         "Recordation stamps: $8.20 per thousand of the higher of purchase price/loan amount",
         "State transfer tax: 0.5% of sales price; County transfer tax: 0.5% of sales price",
-        "Title insurance itself is not a flat fee on this schedule — page states it 'is based on a percentage of the purchase price and loan amount and regulated by the Maryland Insurance Administration' (this refers to rate filing, not a promulgated/bureau rate)",
+        "Title insurance itself is not a flat fee on this schedule \u2014 page states it 'is based on a percentage of the purchase price and loan amount and regulated by the Maryland Insurance Administration' (this refers to rate filing, not a promulgated/bureau rate)",
         "Estimated basic purchase total (excluding title insurance premium): approximately $750.00"
       ]
     },
-    "bundlingNotes": "Independent (non-underwriter) title company; closing/settlement fee explicitly bundles document preparation and consummation into one $395 charge, while examination, notary, wire, courier, and binder/CPL are itemized as separate line items — a hybrid bundling pattern.",
+    "bundlingNotes": "Independent (non-underwriter) title company; closing/settlement fee explicitly bundles document preparation and consummation into one $395 charge, while examination, notary, wire, courier, and binder/CPL are itemized as separate line items \u2014 a hybrid bundling pattern.",
     "transactionContext": "Residential purchase and refinance; Cecil County, Maryland (northeastern MD, Delaware/PA border area)."
   },
   {
@@ -105,7 +105,7 @@
       "binder": null,
       "other": []
     },
-    "bundlingNotes": "Page publishes only a single all-in flat rate for the closing attorney's service and does not itemize document prep, title exam, wire, recording, or other line items separately — the flat rate appears to be positioned as a complete closing-attorney fee, distinct from title insurance premium and third-party charges (recording, transfer tax) which are billed separately per standard Maryland practice.",
+    "bundlingNotes": "Page publishes only a single all-in flat rate for the closing attorney's service and does not itemize document prep, title exam, wire, recording, or other line items separately \u2014 the flat rate appears to be positioned as a complete closing-attorney fee, distinct from title insurance premium and third-party charges (recording, transfer tax) which are billed separately per standard Maryland practice.",
     "transactionContext": "Residential real estate closing attorney representation; Maryland (firm scope not further geographically limited on the page)."
   },
   {
@@ -129,7 +129,48 @@
         "Title insurance priced at First American's filed rates, not a flat fee on this sheet; a 40% reissue-rate discount applies if the firm has the prior owner's policy from an earlier closing"
       ]
     },
-    "bundlingNotes": "Buyer-side settlement fee explicitly bundles attorney fee, notary fees, and document preparation into one $395 charge; every other service (binder, title search, courier, wire, e-recording, judgment report, CPL, title exam, survey) is itemized separately. Seller's side is a much smaller separate $250 settlement fee plus deed prep and release-tracking — a clear buyer/seller fee split distinct from a single shared settlement charge.",
+    "bundlingNotes": "Buyer-side settlement fee explicitly bundles attorney fee, notary fees, and document preparation into one $395 charge; every other service (binder, title search, courier, wire, e-recording, judgment report, CPL, title exam, survey) is itemized separately. Seller's side is a much smaller separate $250 settlement fee plus deed prep and release-tracking \u2014 a clear buyer/seller fee split distinct from a single shared settlement charge.",
     "transactionContext": "Residential purchase; Burtonsville, Montgomery County, Maryland (DC-suburb submarket); bilingual settlement firm run by a licensed attorney."
+  },
+  {
+    "basis": "calculator",
+    "provider": "Federal Title & Escrow Company (independent title/settlement company, Chevy Chase MD/DC/VA)",
+    "sourceUrl": "https://www.federaltitle.com/quick-quote/",
+    "calculatorUrl": "https://tools.federaltitle.com/titleagents/QuickQuote/Default.aspx",
+    "endpoint": "ASP.NET WebForms postback (__doPostBack/__VIEWSTATE/__EVENTVALIDATION) driven via plain requests.Session() POSTs, no browser needed. (1) GET Default.aspx, capture hidden fields; (2) POST with __EVENTTARGET=ddlState and ddlState=<Maryland's GUID option value>, plus ddlTransactionType=1 (Purchase), ddlPropertyType=single, ddlPropertyUse=principal, ddlLoanType=1 (Conventional) -- this postback populates ddlCounty, which already defaults to Montgomery selected; (3) final POST with __EVENTTARGET empty, txtPurchasePrice=500000, txtLoanAmount=400000, ddlTranferTaxesPayingBy=Split, rblComplexTransaction=false, rblIsSellerBuilderOrDeveloper=false, and btnGenerateQuote=\"Get Quote\" clicked as a real submit button. No auth, no cookies beyond the session's own ASP.NET_SessionId, no personal data (txtEmailAddress/txtStreetAddress left blank -- confirmed optional, the page's own text states 'No login or personal information required').",
+    "retrievalDate": "2026-07-26",
+    "scenario": "$500,000 purchase price, $400,000 loan, Montgomery County, Maryland (the calculator's own dropdown default for MD -- no substitution needed), residential purchase, Conventional loan, Principal/Owner-Occupied, Transfer/Recordation Tax split 50/50 buyer-seller, not a short sale/REO/new-construction, seller not a builder/developer",
+    "methodology": "Federal Title's own 'Quick Quote' tool is a classic ASP.NET WebForms app (same postback pattern already proven for FNF/Old Republic/Knight Barry elsewhere in CALCULATORS.md) hosted on the company's own tools.federaltitle.com subdomain -- a genuine first-party calculator, not a third-party platform embed. One EventValidation gotcha encountered and resolved: a 'rblRepeatClient' RadioButtonList (repeat-client question) is rendered on the very first GET but is NOT re-rendered in the response to the state-selection postback -- submitting any value for it on the final POST throws a hard HTTP 500 ('Invalid postback or callback argument', traced to RadioButtonList.LoadPostData), the same 'field for a control not in the current DOM breaks the postback' failure mode already documented for Old Republic's ReoList and Knight Barry's OR county gotchas. Fix: omit rblRepeatClient entirely from the final POST (it is not required once absent from the rendered form). The 24-county MD dropdown (Baltimore City + 23 counties) already defaults to Montgomery County -- Federal Title's own home submarket -- so no county substitution was needed for the standard scenario.",
+    "settlementFee": {
+      "buyerBorrowerSettlementOrClosingFee": "$975.00 (labeled 'Settlement or Closing Fee (Includes REALCredit(TM) Discount)')",
+      "sellerSettlementOrClosingFee": "$550.00"
+    },
+    "itemizedFees": {
+      "docPrep": "$0.00 (Document Prep Fee, both buyer and seller sides -- folded into the Settlement/Closing Fee above per the tool's own line-item breakdown)",
+      "notarySigning": null,
+      "cpl": "$30.00 (Closing Protection Letter, buyer/borrower side; $0.00 seller side)",
+      "searchExam": "$275.00 (Title Search/Abstract Fee, buyer/borrower side; $0.00 seller side)",
+      "eRecording": null,
+      "wire": null,
+      "courier": "$0.00 (Courier/Tracking Fee, both sides)",
+      "recordingDeed": "$60.00 (Deed Recording Fee, buyer/borrower side)",
+      "recordingMortgage": "$60.00 (Mortgage/Deed of Trust Recording Fee, buyer/borrower side)",
+      "titleBinderFee": "$0.00 (both sides)",
+      "titleCommitmentFee": "$0.00 (both sides)",
+      "electronicStorageTechnologyFee": "$0.00 (both sides)",
+      "documentDeliveryFee": "$0.00 (both sides)",
+      "releaseProcurementFee": "$0.00 (buyer/borrower side) / $185.00 (seller side, 'if applicable')",
+      "deedPrepFee": "$0.00 (buyer/borrower side) / $250.00 (seller side)",
+      "countyTransferTax": "$2,500.00 (buyer/borrower side) / $2,500.00 (seller side)",
+      "stateTransferTax": "$1,250.00 (buyer/borrower side) / $1,250.00 (seller side)",
+      "stateRecordationTax": "$1,780.00 (buyer/borrower side) / $1,780.00 (seller side)",
+      "titleInsurancePremium": {
+        "lendersTitleInsurance": "$1,298.00 (buyer/borrower side; $0.00 seller side)",
+        "ownersTitleInsurance": "$1,290.00 (Standard Coverage, buyer/borrower side; $0.00 seller side)"
+      }
+    },
+    "sectionTotals": "TOTAL Title Fees: $3,563.00 (buyer/borrower) / $985.00 (seller). TOTAL Taxes and Other Government Fees: $5,650.00 (buyer/borrower) / $5,530.00 (seller). Buyer/borrower grand total across both sections (Title Fees + Taxes/Government Fees, excluding the optional Location Survey): $9,213.00.",
+    "bundlingNotes": "Federal Title bundles document preparation into its core Settlement/Closing Fee (docPrep line items are $0.00 on both sides while the settlement fee itself is $975/$550) -- similar to the bundling pattern already seen in Ardent Title and CAL Settlements' static schedules in this same state's dataset (MD.json). Notary is not itemized as a separate line at all in this tool's output (not even a $0.00 placeholder), unlike CPL, search/exam, and recording, which are all itemized as distinct non-zero lines. The tool applies a clean buyer/seller cost split matching Maryland's typical settlement-statement structure, with government transfer/recordation taxes duplicated identically on both the buyer and seller sides per the 'Split 50/50' selection made for this scenario.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500,000/$400,000 Montgomery County, Maryland purchase scenario, Conventional financing, single-family principal residence, retrieved via Federal Title & Escrow Company's own public 'Quick Quote' tool (tools.federaltitle.com), a DC/MD/VA-licensed independent title and settlement company. Distinct from the two static Montgomery County/DC-suburb sources already in this dataset (CAL Settlements) in that this is a live calculator quote rather than a published fee sheet."
   }
 ]

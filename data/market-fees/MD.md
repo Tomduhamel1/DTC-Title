@@ -138,3 +138,37 @@ WFG, CAL Settlements) whose binary streams WebFetch's own summarizer couldn't pa
 - Additional Baltimore-city-specific independent title companies not yet searched for,
   which could establish a third metro data point alongside Cecil County and Montgomery
   County.
+
+## Calculator harvest addendum (2026-07-26)
+
+Separate from the published-schedule survey above (which remains **complete (scarce
+market)**), this session hunted provider quote calculators (as opposed to static fee
+schedules) for the standard $500,000/$400,000 Montgomery County purchase scenario — see the
+MD.json entry marked `"basis": "calculator"` and CALCULATORS.md for full technical detail.
+
+1. **Federal Title & Escrow Company** (`tools.federaltitle.com/titleagents/QuickQuote/`) —
+   a genuine first-party ASP.NET WebForms calculator (DC/MD/VA-licensed independent title
+   company, Chevy Chase MD), driven end-to-end via plain HTTP POST with no browser, no auth,
+   and no personal data (the tool's own copy states "No login or personal information
+   required"). Montgomery County is the calculator's own default MD county — no substitution
+   needed. Returned a fully itemized buyer/seller settlement statement: Settlement/Closing
+   Fee $975 (buyer) / $550 (seller), CPL $30, Title Search/Abstract Fee $275, deed and
+   mortgage recording fees $60 each, plus state/county transfer and recordation taxes; total
+   Title Fees $3,563 (buyer) / $985 (seller). One EventValidation gotcha was hit and resolved:
+   a `rblRepeatClient` radio control present on the initial page load is absent from the
+   post-state-selection re-render, so submitting any value for it crashes the postback with an
+   HTTP 500 — omitting the field entirely (matching the currently-rendered form) fixed it, the
+   same "field for a control not in the current DOM breaks the postback" failure mode already
+   logged for Old Republic's `ReoList` and Knight Barry's Oregon county control.
+
+This is **one** working calculator for Maryland, short of the 3-provider calculator-quoted
+threshold. A broad search (MyTitleRates.com, Knight Barry, Old Republic's ortconline.com,
+and roughly a dozen independent MD agencies found via web search) turned up no further
+harvestable calculators this session — see CALCULATORS.md for the full list of dead ends
+investigated (mostly TitleCapture and Qualia Connect widget embeds, which remain jsOnly
+platform-wide, plus several gated/account-required and third-party-aggregator sites ruled
+out of scope). Maryland's calculator landscape is dominated by a small number of shared
+third-party platforms (TitleCapture, Qualia Connect, TRGC PowerSnap, TitleClose) rather than
+first-party tools, which is why the yield here is thinner than PA's — Federal Title is the
+only MD-licensed provider found this session running its own uncontrolled, stateless,
+browser-free-drivable calculator.
