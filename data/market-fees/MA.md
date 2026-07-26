@@ -212,3 +212,103 @@ Lazan Glover & Puciloski (used), Cote Law Group (used).
 - Justia MA lawyer directory — 403 on direct fetch, could not use as a discovery tool.
 
 No further candidate leads remain unchecked. State closed as scarce; see Status above.
+
+## Calculator harvest addendum (2026-07-26)
+
+Separate from the published-schedule survey above (which remains **complete (scarce
+market)**), this session hunted for provider-run quote CALCULATORS for the standard
+$500,000/$400,000 purchase scenario (Middlesex County requested; no calculator found with
+county-level tiering for MA at all -- both harvests below are statewide flat-fee tools with
+no county selector). See MA.json entries marked `"basis": "calculator"` for full itemized
+figures.
+
+**2 calculators harvested** -- below the 3-provider "calculator-quoted" threshold, reported
+honestly as a thin but real result, consistent with MA's mandatory-attorney-closing,
+premiums-not-filed market structure already documented above (the same opacity pattern that
+kept the published-schedule survey to 5 sources).
+
+1. **Absolute Title, LLC** (`absolutetitle.com`) -- "New England's Premier Title Company,"
+   an independent title company with an MA office in Lowell (Middlesex County), though its
+   calculator itself has no county selector (statewide MA pricing). A genuine first-party,
+   non-platform JS calculator (`rc-ma.js`) with fee logic as literal hardcoded constants/
+   formulas -- reproduced directly in Python, no browser execution needed. Settlement Fee
+   $850, Plot Plan $150, Lender Premium $1,000, Owner Premium (incremental) $1,300, Wire
+   $50 (static), CPL $35 (static).
+2. **The Law Office of David R. Rocheford, Jr., P.C.** (`thebestclosings.com`), a Leominster
+   (Worcester County) closing attorney -- the richest single itemization found this session.
+   A WordPress "title-loan-calculator" plugin combining static per-line fee constants in the
+   page HTML with a small JS formula file for the 3 computed lines (owner's/lender's title
+   insurance, transfer tax). Buyer side: Settlement Fee $565, Title Exam $300, Survey $160,
+   Municipal Lien Certificate $50 (+ $85 recording-side MLC), Overnight $50, Wire $75,
+   Recording (Deed & Mortgage) $370, Homestead $40, Owner's Title Insurance $1,075,
+   Lender's Title Insurance $1,100 -- Grand Total Buyer Pays $3,870. Seller side: Discharge/
+   Release Fee $110 (+ $110 recording-side discharge), Overnight $50, Wire $75, Transfer Tax
+   $2,280 -- Grand Total Seller Pays $2,625. This is a direct confirmation of MA.md's
+   market-structure finding above: the closing attorney IS the settlement-fee-charging
+   party, and this firm's own calculator discloses that fee alongside every ancillary
+   government/service charge with buyer/seller allocation.
+
+Both finds followed the "small independent provider's own hand-rolled JS calculator"
+pattern already identified as high-yield in CALCULATORS.md (the Modern Title Group/MI
+precedent) rather than a shared national platform -- consistent with MA's mandatory-
+attorney-closing structure, where no independent title/escrow layer exists to run a
+big-platform calculator in the first place.
+
+**Techniques tried and ruled out this session** (full technical detail reported to
+CALCULATORS.md's maintainer for cataloging):
+- **CATICulator** (`caticulator.com`) -- MA's `GetPolicyData.SelectionSet.Fees` array
+  contains exactly one entry (`CplFee`), identical to CT's already-documented CPL-only
+  result -- per the mission brief's own instruction to check other states' Fees arrays
+  before investing in the unsolved `Calculate` POST, MA is NOT richer than CT and the
+  Calculate flow was not attempted.
+- **Old Republic Title** -- `ortconline.com`'s known 12-state footprint (documented in
+  CALCULATORS.md) does not include MA; a second, distinct Old Republic domain
+  (`oldrepublictitle.com/rate-calculator/`) was checked and found to be a bare office-
+  locator page with no calculator form or API at all (no `<form>` beyond a site search box).
+- **Knight Barry Title Group** -- `dashboard.knightbarry.com/Rates/massachusetts-rate-
+  calculator.aspx` 302-redirects to `knightbarry.com/default.aspx?aspxerrorpath=...`, the
+  same "state not served" error pattern CALCULATORS.md documents for other unserved states
+  -- MA is confirmed NOT in this tool's footprint.
+- **MyTitleRates.com** -- extensive web search for New England/Massachusetts/Boston agency
+  instances of this platform (already proven to work in PA/NJ) found none; the only nearby
+  hit was `calculator.mytitlerates.com/rateCalculator.php?a=25`, which serves FL/NJ/PA, not
+  MA. Also checked Suburban Abstract's own MyTitleRates instance (confirmed on the platform)
+  but its state dropdown does not include Massachusetts either.
+- **Accurate Title (NH/MA/ME)** (`accuratetitlenh.com/resources/calculators/`) -- embeds a
+  "Prism"-branded quote widget at `marketing.agentnetsolutions.com/AccurateTitleNH/guest-
+  home`, an Angular SPA (First American's "AgentNet" product family, per `cdn.direct.
+  firstam.com` references in its bundle) with no discoverable stateless endpoint in a quick
+  check -- **jsOnly**, not pursued further given time budget.
+- **Michael Baird / massrealtylaw.com** (`massrealtylaw.com/sellingfeescalculator`) -- a Wix
+  site (React/Velo, `WixCode` custom element) with no static form or discoverable REST API
+  -- **jsOnly**.
+- **Title Resources** (`ratecalculator.trguw.com`) -- a Next.js SPA; its main index JS chunk
+  was essentially empty (617 bytes, likely a redirect stub) and no `/api/` routes or MA
+  references were found in a quick check -- **jsOnly**, state coverage unconfirmed.
+- **Advantage Title** (`advantitle.com/resources/calculator/`) -- no state selector or form
+  fields found in static HTML (likely a JS-rendered app); not confirmed to serve MA at all
+  -- not pursued further.
+- **Stewart Title** (`stewart.com/en/state-pages/massachusetts-agents/rates`) -- redirects
+  to "Stewart Rate Calculator," almost certainly the same `stewartratecalculator.com`
+  Angular SPA already extensively documented in CALCULATORS.md (API discovered, `quote`
+  POST endpoint unsolved) -- not re-investigated per the mission's instruction not to repeat
+  already-logged dead ends without a new angle.
+- **CATIC** (`catic.com/state-resources/massachusetts`) -- HTTP 403 "Service unavailable" on
+  direct fetch.
+- **Two Lights Settlement Services** (`tlsettlement.com/fee-calculator/`) -- confirmed
+  Maine/NH only, does not serve Massachusetts (contradicts a stale note in this file's
+  Session 1 search log, which is corrected here).
+- **titlefeescalculator.com** -- unreachable (connection timeout/000 on repeated attempts
+  across several minutes) -- effectively DNS-dead or the host is down, similar to
+  `smartgfecalculator.com`'s already-documented dead-end status elsewhere in this project.
+- **netsheetcalc.com** -- the only concrete MA agency instance found
+  (`app.netsheetcalc.com/login?appid=438`, Elite Title Company) requires an Email/Password
+  login before any quote is shown -- **gated**, no credentials entered per the hard rule.
+- **FNF family / rates.fntg.com** (`?brand=commonwealth`, Commonwealth Land Title) -- not
+  investigated: per the mission brief and CALCULATORS.md, the entire FNF/ratecalculator.fnf.com
+  family is structurally premium-only by the tool's own disclaimer, regardless of state, so a
+  Commonwealth-branded instance would not meet the itemized-fee bar even if technically
+  reachable.
+- **WFG National Title** -- not re-checked for MA specifically; already logged platform-wide
+  in CALCULATORS.md as a premium-only teaser endpoint regardless of state/product/transaction
+  type combination tested.
