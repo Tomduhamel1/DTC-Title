@@ -24,7 +24,7 @@
         "Subordination Agreement (refinance): $125.00"
       ]
     },
-    "bundlingNotes": "Settlement fee is a single flat line item per side, separate from title insurance premiums, deed prep, trust review, and POA — no all-inclusive bundled figure published.",
+    "bundlingNotes": "Settlement fee is a single flat line item per side, separate from title insurance premiums, deed prep, trust review, and POA \u2014 no all-inclusive bundled figure published.",
     "transactionContext": "Residential purchase (buyer and seller fees shown separately) and refinance; statewide VA, no county/metro breakdown published."
   },
   {
@@ -54,7 +54,7 @@
         "Centralized Processing Loan and Refinance Rate (CPLR): $275 (up to $125k) scaling to $2,150 ($4M-$5M)"
       ]
     },
-    "bundlingNotes": "'Scheduled charges do NOT include any costs incidental to title insurance (e.g., title search and/or examination fees, commitment and/or final policy preparation, recordation, etc.) and any of these fees are NOT to be charged with title insurance premiums.' Direct underwriter confirmation that VA separates title premium (this manual) from settlement/closing service fees (billed separately by the settlement agent) — consistent with VA Code §38.2-4608's mandated separation.",
+    "bundlingNotes": "'Scheduled charges do NOT include any costs incidental to title insurance (e.g., title search and/or examination fees, commitment and/or final policy preparation, recordation, etc.) and any of these fees are NOT to be charged with title insurance premiums.' Direct underwriter confirmation that VA separates title premium (this manual) from settlement/closing service fees (billed separately by the settlement agent) \u2014 consistent with VA Code \u00a738.2-4608's mandated separation.",
     "transactionContext": "Statewide VA; residential and commercial purchase/refinance premium rates; standard and enhanced (homeowner's) policy tiers."
   },
   {
@@ -79,14 +79,14 @@
         "Expedited Closing: $350 (add-on)"
       ]
     },
-    "bundlingNotes": "One flat all-inclusive settlement fee covering title exam, storage/access, courier, tax certificate, recording, and notary — the most fully bundled single-number VA settlement fee found, with a clear ~16% jurisdiction-tier premium for Arlington/Fairfax/Alexandria vs. all other VA counties ($1,275 vs $1,475 — note the higher figure applies to the less-dense 'other counties', the reverse of the usual urban-premium pattern seen in other states).",
+    "bundlingNotes": "One flat all-inclusive settlement fee covering title exam, storage/access, courier, tax certificate, recording, and notary \u2014 the most fully bundled single-number VA settlement fee found, with a clear ~16% jurisdiction-tier premium for Arlington/Fairfax/Alexandria vs. all other VA counties ($1,275 vs $1,475 \u2014 note the higher figure applies to the less-dense 'other counties', the reverse of the usual urban-premium pattern seen in other states).",
     "transactionContext": "Residential home-buying (purchase); jurisdiction-tiered (Arlington/Fairfax/Alexandria vs. other VA counties); DC/MD figures shown for comparison on the same page."
   },
   {
     "provider": "Lighthouse Title (Virginia offices: Fairfax, Arlington, McLean, Woodbridge)",
     "sourceUrl": "https://www.federaltitle.com/wp-content/uploads/2011/02/Seller.Lighthouse-Title.VA_.pdf",
     "asOf": "Revised 2010-02-03 (older document; retrieved and read this session, dated by document revision date)",
-    "settlementFee": "Residential resale with mortgage — Purchaser Title Services (includes settlement fee, courier, title exam, title binder): $575.00; Seller Title Services (includes settlement fee, wire/UPS, release management): $410. Short sale/foreclosure/REO/assumption/FSBO purchases: Purchaser $600.00; Seller $460.",
+    "settlementFee": "Residential resale with mortgage \u2014 Purchaser Title Services (includes settlement fee, courier, title exam, title binder): $575.00; Seller Title Services (includes settlement fee, wire/UPS, release management): $410. Short sale/foreclosure/REO/assumption/FSBO purchases: Purchaser $600.00; Seller $460.",
     "itemizedFees": {
       "docPrep": null,
       "processing": null,
@@ -106,14 +106,14 @@
         "Commercial sale (purchaser): Settlement Fee min $500 + Title Exam $175 + Courier $75 + Title Binder $200"
       ]
     },
-    "bundlingNotes": "Bundles settlement fee, courier, title exam, and title binder into single per-side 'Title Services' line items for standard residential resale — buyer $575 / seller $410, a lower combined figure than Federal Title's newer $1,275-$1,475 all-inclusive fee, though this document is from 2010 and pre-dates over a decade of fee inflation, so the two are not directly comparable without adjusting for date.",
-    "transactionContext": "Residential resale with mortgage, short sale/foreclosure/REO/FSBO purchases, residential refinance, construction refinance, and commercial sale/refinance — the most transaction-type-granular VA source found, covering Fairfax/Arlington/McLean/Woodbridge offices (Northern Virginia)."
+    "bundlingNotes": "Bundles settlement fee, courier, title exam, and title binder into single per-side 'Title Services' line items for standard residential resale \u2014 buyer $575 / seller $410, a lower combined figure than Federal Title's newer $1,275-$1,475 all-inclusive fee, though this document is from 2010 and pre-dates over a decade of fee inflation, so the two are not directly comparable without adjusting for date.",
+    "transactionContext": "Residential resale with mortgage, short sale/foreclosure/REO/FSBO purchases, residential refinance, construction refinance, and commercial sale/refinance \u2014 the most transaction-type-granular VA source found, covering Fairfax/Arlington/McLean/Woodbridge offices (Northern Virginia)."
   },
   {
     "provider": "WFG National Title Insurance Company (underwriter rate manual)",
     "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/virginia/rate-manuals/WFG%20Virginia%20Title%20Rates%20and%20Rules%20effective%209-1-2023.pdf",
     "asOf": "2023-09-01",
-    "settlementFee": "NOT INCLUDED — manual explicitly states rates 'do not include charges for title search, surveys, escrow, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant.'",
+    "settlementFee": "NOT INCLUDED \u2014 manual explicitly states rates 'do not include charges for title search, surveys, escrow, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant.'",
     "itemizedFees": {
       "docPrep": null,
       "processing": null,
@@ -135,7 +135,113 @@
         "ALTA Residential Limited Coverage Junior Loan Policy: flat $110 up to $250k liability"
       ]
     },
-    "bundlingNotes": "Title-premium-only rate manual; explicitly excludes settlement/closing/escrow services from its rates, matching the Stewart Guaranty and VA Code §38.2-4608 pattern. Notably lower CPL fee ($35) than Stewart's ($50), a useful cross-underwriter CPL comparison point for VA.",
+    "bundlingNotes": "Title-premium-only rate manual; explicitly excludes settlement/closing/escrow services from its rates, matching the Stewart Guaranty and VA Code \u00a738.2-4608 pattern. Notably lower CPL fee ($35) than Stewart's ($50), a useful cross-underwriter CPL comparison point for VA.",
     "transactionContext": "Statewide VA; residential and commercial purchase/refinance premium rates; separate Lender's Special Rate program for high-volume centralized-processing refinance lenders."
+  },
+  {
+    "basis": "calculator",
+    "provider": "Bon Air Title Agency (independent title/settlement company, Richmond, VA; embeds a TitleClose.com white-label calculator instance, agency subdomain bonairtitleagency.titleclose.com)",
+    "sourceUrl": "https://bonairtitle.com/website/mobile/default.asp?pg=CostCalculator",
+    "calculatorUrl": "https://bonairtitleagency.titleclose.com/Consumer/Welcome",
+    "endpoint": "POST https://bonairtitleagency.titleclose.com/Consumer/Search (plain ASP.NET MVC form POST, no auth token required -- this agency's own page sets `shouldAskForConsumerData = false` so the SearchEmail/SearchUserName/SearchUserPhoneNumber fields are left blank per the hard rule); requires a fresh session cookie + SearchID GUID captured from a prior GET of /Consumer/Welcome. County/city IDs resolved via GET /Search/GetAllCountiesByStateId?stateId=47&zip=<zip> (Fairfax=4341) and GET /Consumer/Welcome/GetCities?stateID=47 (Fairfax city=10612). Final itemized breakdown fetched via GET https://bonairtitleagency.titleclose.com/Consumer/Order/<token>, where <token> is returned in the search-results HTML (data-token attribute on the 'Fee Detail/Order' button) -- no personal data needed at any step.",
+    "retrievalDate": "2026-07-26",
+    "scenario": "$500,000 purchase price, $400,000 loan, Fairfax, Virginia (city of Fairfax used as the ZipCode/City lookup key, County=Fairfax County), residential purchase (buyer getting a loan), single-family, buyer-occupied primary residence, owner's title insurance requested",
+    "methodology": "Bon Air Title's own site links directly to a per-agency instance of the TitleClose.com platform (a shared national ASP.NET MVC 'shopping mall' SaaS, discovered via general web search for VA title company calculators, not previously logged in CALCULATORS.md). Drove the real 3-step consumer flow with a plain requests.Session(): (1) GET the welcome page to capture a session cookie + SearchID; (2) POST the search criteria to /Consumer/Search; (3) GET the returned order token's detail page, which contains the full itemized fee breakdown as readonly hidden form inputs (SettlementTitleFees[n].Description/Amount/BuyerAmount/SellerAmount) even though the visual UI shows an iframe-security 'Launch Calculator' overlay -- the underlying HTML/data is present in the raw response regardless. No JS execution needed.",
+    "settlementFee": {
+      "titleSettlementClosingOrEscrowFee": "$0.00 (this agency's own line item; site disclaimer states quotes are for title insurance only and settlement is handled by an outside approved closing attorney, contacted separately)"
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "notarySigning": null,
+      "cpl": "$50.00 (Title - Closing Protection Letter Fee)",
+      "searchExam": "$165.00 (Title - Search Fee)",
+      "eRecording": null,
+      "wire": null,
+      "courier": null,
+      "recordingDeed": null,
+      "recordingMortgage": null,
+      "recordingFee_combined": "$100.00 (Title - Recording Fee, not split by instrument)",
+      "binderFee": "$75.00 (Title - Binder Fee)",
+      "titleInsurancePremium": {
+        "lendersPolicy_netOfSimultaneousIssue": "$200.00 (Lender's Coverage Premium $1,247.00 less a $1,047.00 simultaneous-issue adjustment)",
+        "ownersPolicy_netOfSimultaneousIssue": "$2,518.00 (Owner's Coverage Premium $1,471.00 plus a $1,047.00 simultaneous-issue adjustment)"
+      }
+    },
+    "sectionTotals": "Buyer-side Total Fee Amount: $3,108.00 (Binder $75 + CPL $50 + Lender's title insurance $200 + Owner's title insurance $2,518 + Recording $100 + Search $165 + Settlement/Closing/Escrow $0). No seller-side fees returned in this scenario (this agency's tool populated only a buyer-side result row).",
+    "bundlingNotes": "This agency's own tool explicitly zeroes its 'Title - Settlement, Closing or Escrow Fee' line item and its closing-agent disclaimer states: 'The quotes generated on this calculator are for title insurance through an approved closing attorney... Please contact the closing attorney directly... to discuss their closing fees and to order title services' -- i.e. Bon Air prices only the title-insurance side of the transaction and defers settlement/closing agent fees entirely to a separate outside attorney, consistent with Virginia's common attorney-closing convention (also noted in the existing VA.md published-schedule findings). Despite that, the tool still itemizes CPL, search, binder, and recording as its own line items -- clearing the calculator-harvest itemization bar even though the core settlement fee itself is $0/outsourced.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k Fairfax, VA purchase scenario via TitleClose.com's 'Consumer/Search' + 'Consumer/Order' flow, single-family, buyer-occupied primary residence, conventional loan, requested owner's title insurance."
+  },
+  {
+    "basis": "calculator",
+    "provider": "Appomattox (independent title/settlement company, Chesterfield, VA; a second, distinct agency instance of the TitleClose.com platform, subdomain apptitle.titleclose.com)",
+    "sourceUrl": "https://apptitle.titleclose.com/Consumer/Welcome",
+    "calculatorUrl": "https://apptitle.titleclose.com/Consumer/Welcome",
+    "endpoint": "Same recipe/platform as the Bon Air Title Agency entry above (POST https://apptitle.titleclose.com/Consumer/Search, then GET https://apptitle.titleclose.com/Consumer/Order/<token>), but a completely distinct agency tenant on the shared TitleClose.com SaaS platform -- confirmed by materially different fee line items and amounts from Bon Air's instance at the identical scenario (e.g. this agency charges a $450 settlement fee and 5 additional line items Bon Air's schedule doesn't have at all, while Bon Air charges $0 for settlement/closing). No personal data required (this tenant also has shouldAskForConsumerData = false).",
+    "retrievalDate": "2026-07-26",
+    "scenario": "$500,000 purchase price, $400,000 loan, Fairfax, Virginia (same ZipCode/City/County lookup as the Bon Air entry -- Fairfax County, FIPS-style CountyID=4341), residential purchase (buyer getting a loan), single-family, buyer-occupied primary residence, owner's title insurance requested",
+    "methodology": "Discovered by testing whether the TitleClose.com platform (found via Bon Air Title's site) hosts other independent VA agencies at guessable/searchable subdomains; apptitle.titleclose.com surfaced directly in a web search for 'titleclose.com/Consumer/Welcome Virginia' and its Order-detail page identifies the closing agent as 'Appomattox,' 10310 Memory Lane, Chesterfield, VA 23832 (email sharon@apptitle.com, phone 804-796-5677). Same stateless GET/POST flow as Bon Air, no JS execution needed -- confirms TitleClose.com is a genuine multi-tenant shared platform (analogous to MyTitleRates.com and TitleCapture documented elsewhere in CALCULATORS.md) where each agency's own real, distinct fee schedule is returned.",
+    "settlementFee": {
+      "titleSettlementClosingOrEscrowFee": "$450.00 (buyer side)"
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "notarySigning": null,
+      "cpl": "$35.00 (Title - Closing Protection Letter, paid to the underwriter; buyer side)",
+      "searchExam": "$185.00 (Title - Title Search Fee, buyer side)",
+      "eRecording": null,
+      "wire": "$60.00 (Title - Wire Fee, buyer side) / $50.00 (Title - Wire Transfer Fee, seller side)",
+      "courier": "$45.00 (Title - Courier Fee, buyer side) / $50.00 (Title - Courier Fee to seller, per delivery, seller side)",
+      "recordingDeed": null,
+      "recordingMortgage": null,
+      "adminFee": "$375.00 (Title - Admin Fee, seller side)",
+      "attorneyFeeForDeedDocs": "$150.00 (Title - Attorney Fee for Deed Docs, seller side)",
+      "titleCommitmentFee": "$125.00 (Title - Title Commitment Fee, buyer side)",
+      "titleUpdateToRecordFee": "$100.00 (Title - Title Update to Record Fee, buyer side)",
+      "releaseTracking": "$45.00 (Title - Release Tracking, per payoff to REquire, seller side)",
+      "titleInsurancePremium": {
+        "lendersPolicy_netOfSimultaneousIssue": "$200.00 (Lender's Coverage Premium $1,247.00 less a $1,047.00 simultaneous-issue adjustment; buyer side)",
+        "ownersPolicy_netOfSimultaneousIssue": "$2,518.00 (Owner's Coverage Premium $1,471.00 plus a $1,047.00 simultaneous-issue adjustment; buyer side)"
+      }
+    },
+    "sectionTotals": "Buyer-side Total Fee Amount: $3,718.00 (CPL $35 + Courier $45 + Lender's title insurance $200 + Owner's title insurance $2,518 + Settlement/Closing/Escrow $450 + Title Commitment $125 + Title Search $185 + Title Update to Record $100 + Wire $60). Seller-side fees (not included in the buyer total above): Admin Fee $375 + Attorney Fee for Deed Docs $150 + Courier (seller) $50 + Release Tracking $45 + Wire Transfer (seller) $50 = $670.00.",
+    "bundlingNotes": "The identical rate-title-insurance figures ($200 lender's / $2,518 owner's, i.e. the same $1,247/$1,471 base premiums with the same $1,047 simultaneous-issue adjustment) as the Bon Air Title entry strongly suggest both agencies price title insurance off the same underlying VA rate manual/underwriter, while every settlement-service line item (admin, attorney deed-doc fee, courier, release tracking, settlement fee itself, title commitment, title search, title update, wire) is agency-specific and differs completely in kind and amount from Bon Air's schedule -- direct confirmation that TitleClose.com reflects each tenant's own real, independently configured ancillary-fee pricing rather than a shared template, exactly as documented for MyTitleRates.com and TitleCapture elsewhere in CALCULATORS.md.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k Fairfax, VA purchase scenario via TitleClose.com's 'Consumer/Search' + 'Consumer/Order' flow, single-family, buyer-occupied primary residence, conventional loan, requested owner's title insurance."
+  },
+  {
+    "basis": "calculator",
+    "provider": "Independent Title & Escrow LLC (Fairfax, VA; embeds a NetSheetCalc/TitleTap white-label net-sheet calculator instance, app_id=533/534, tenant slug independent-VA)",
+    "sourceUrl": "https://itetitle.com/net-sheet-calculator/",
+    "calculatorUrl": "https://app.netsheetcalc.com/c/independent-VA (splash page) -> Quick Quote at https://app.netsheetcalc.com/company/quickquote.php?appid=533 (no sign-in needed)",
+    "endpoint": "GET https://app.netsheetcalc.com/company/non-auth-ajax.php?action=getAppData&app_id=533 (no auth) returns this agency's full fee-form schema as JSON, including hardcoded flat-dollar ancillary fee constants (closing_fee, abstract_fee, title_binder_fee, exam_fee, document_prep, cpl, e_record_fee, deed_recording, mortgage_recording) and formula-driven VA grantee-tax fields; GET https://app.netsheetcalc.com/api/index.php/rate/<purchase_price>/Owner533 (no auth) returns this agency's own dynamically-rated Owner's Title Insurance Premium for a given sale price.",
+    "retrievalDate": "2026-07-26",
+    "scenario": "$500,000 purchase price, $400,000 loan, Fairfax, Virginia (this agency's own office address is 3951 Pender Drive, Suite 105, Fairfax, VA 22030 -- exact match to the standard scenario's target county, no substitution needed), residential purchase with financing ('finance' estimate type)",
+    "methodology": "Found via web search for VA title companies using TitleTap's net-sheet calculator; itetitle.com/net-sheet-calculator/ embeds an iframe at app.netsheetcalc.com/c/independent-VA, whose splash page links to a 'Quick Quote (No sign in needed)' page. That page's own JS (company/js/services/api.js and company/js/app-v2.js) revealed two plain, unauthenticated GET JSON endpoints: non-auth-ajax.php?action=getAppData (the full fee-schema/config, including this agency's own hardcoded fee constants embedded directly in the JSON, following the same 'grep first-party JS/config for hardcoded fee constants' technique used for Modern Title Group in CALCULATORS.md) and api/index.php/rate/<amount>/<rate-key> (a dynamic per-agency title-premium rate lookup, rate key 'Owner533' specific to this tenant). No form submission, cookies, or personal data needed -- both endpoints are plain GETs.",
+    "settlementFee": {
+      "closingFee": "$375.00 (labeled 'Settlement Fee' in this agency's own finance/purchase fee schema)"
+    },
+    "itemizedFees": {
+      "docPrep": "$300.00 (Document Prep)",
+      "notarySigning": null,
+      "cpl": "$50.00 (CPL)",
+      "searchExam": "$300.00 (Exam Fee)",
+      "eRecording": "$10.00 (E-Record Fee)",
+      "wire": null,
+      "courier": null,
+      "recordingDeed": "$47.00 (Deed Recording)",
+      "recordingMortgage": "$60.00 (Mortgage Recording)",
+      "abstractFee": "$350.00 (Abstract Fee)",
+      "titleBinderFee": "$300.00 (Binder Fee)",
+      "stateGranteeTaxOnDeed": "$1,250.00 (0.25% of $500,000 purchase price, per this tool's own formula)",
+      "localGranteeTaxOnDeed": "$416.63 (1/3 of the state grantee tax on deed, per this tool's own formula)",
+      "stateGranteeTaxOnMortgage": "$1,000.00 (0.25% of $400,000 loan amount, per this tool's own formula)",
+      "localGranteeTaxOnMortgage": "$333.30 (1/3 of the state grantee tax on mortgage, per this tool's own formula)",
+      "titleInsurancePremium": {
+        "lendersPolicy_flatSimultaneousIssueDefault": "$200.00 (hardcoded default in this agency's fee schema, not API-computed)",
+        "ownersPolicy_apiComputed": "$2,097.50 (returned live by this agency's own rate API for a $500,000 sale price, rate key Owner533)"
+      }
+    },
+    "sectionTotals": "Sum of this agency's own ancillary settlement/service fees (settlement fee, abstract, binder, exam, doc prep, CPL, e-record, deed recording, mortgage recording, excluding taxes/premiums/commission): $1,992.00. Adding title insurance premiums ($200 lender's + $2,097.50 owner's) and VA state/local grantee (recordation) taxes on deed and mortgage ($1,250 + $416.63 + $1,000 + $333.30): grand total $7,089.43 before any real estate commission (left blank/unspecified in the quick-quote scenario).",
+    "bundlingNotes": "Unlike the two TitleClose-platform agencies above (which returned $0 or bundled some ancillary items), this agency's schema itemizes 10 distinct flat-dollar settlement/service fee line items individually (settlement fee $375, abstract $350, binder $300, exam $300, doc prep $300, CPL $50, e-record $10, deed recording $47, mortgage recording $60) plus separately-formula-computed VA state and local grantee taxes on both the deed and the mortgage (VA's recordation-tax structure, distinct from Fairfax-specific real property tax) -- the richest single-agency ancillary-fee breakdown found in this VA harvest. Only the Owner's Title Insurance Premium is dynamically rated via a live API call; every other dollar figure is a static per-agency constant embedded directly in the tool's own JSON configuration, confirming this is Independent Title & Escrow's actual configured pricing rather than a generic template.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k Fairfax, VA purchase-with-financing scenario via NetSheetCalc/TitleTap's Quick Quote flow (app_id 533/534, tenant independent-VA)."
   }
 ]

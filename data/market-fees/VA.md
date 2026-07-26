@@ -118,3 +118,48 @@ schedule", plus direct fetches of every candidate URL surfaced.
 - **Old Republic Title's VA escrow department** — confirmed to exist
   (`oldrepublictitle.com/virginia/escrow-department/`) but no VA-specific fee PDF found
   (unlike Old Republic's WA schedule, which was found and used in WA.json).
+
+## Calculator harvest addendum (2026-07-26)
+
+Separate from the published-schedule survey above (which remains **complete (scarce
+market)**), this session harvested three provider quote calculators for the standard
+$500,000/$400,000 Fairfax, VA purchase scenario — see VA.json entries marked `"basis":
+"calculator"` and CALCULATORS.md for full technical detail:
+
+1. **Bon Air Title Agency** (`bonairtitle.com`, Richmond, VA) — embeds a per-agency
+   instance of the TitleClose.com white-label consumer platform
+   (`bonairtitleagency.titleclose.com`), driven via a plain ASP.NET MVC POST/GET flow
+   with no JS execution and no personal data required. Itemizes CPL $50, Search Fee
+   $165, Binder Fee $75, and Recording $100, but explicitly zeroes its own "Settlement,
+   Closing or Escrow Fee" line item ($0.00) — its own disclaimer confirms quotes are for
+   title insurance only, with settlement handled by a separate outside closing attorney.
+   Buyer-side total: $3,108.00.
+2. **Appomattox** (Chesterfield, VA) — a second, distinct agency tenant on the same
+   TitleClose.com platform (`apptitle.titleclose.com`), confirming the platform reflects
+   each tenant's own real fee schedule: this agency charges a $450 Settlement/Closing/
+   Escrow Fee (vs. Bon Air's $0), plus Admin Fee $375, Attorney Fee for Deed Docs $150,
+   Title Commitment Fee $125, and separate buyer/seller Courier and Wire fees — the
+   richest ancillary-fee breakdown of the two TitleClose instances. Buyer-side total:
+   $3,718.00; seller-side fees: $670.00.
+3. **Independent Title & Escrow LLC** (Fairfax, VA) — embeds a NetSheetCalc/TitleTap
+   white-label net-sheet calculator (`app.netsheetcalc.com`, app_id 533/534, tenant
+   `independent-VA`); this agency's Fairfax office address is an exact match to the
+   standard scenario's target county, no substitution needed. Its own unauthenticated
+   `getAppData` JSON endpoint exposes 10 hardcoded flat-dollar settlement/service fee
+   constants directly (Settlement Fee $375, Abstract Fee $350, Title Binder $300, Exam
+   Fee $300, Document Prep $300, CPL $50, E-Record $10, Deed Recording $47, Mortgage
+   Recording $60), plus VA state/local grantee (recordation) tax formulas on both deed
+   and mortgage; a separate live rate-API call (`api/index.php/rate/500000/Owner533`)
+   returned this agency's own Owner's Title Insurance Premium of $2,097.50.
+
+This crosses the 3-provider calculator-quoted threshold for VA. Two independent shared
+platforms were newly discovered this session and are not yet logged in CALCULATORS.md:
+**TitleClose.com** (a national ASP.NET MVC "shopping mall" SaaS, confirmed here across
+2 distinct VA agency tenants, analogous in importance to MyTitleRates.com and
+TitleCapture for other states) and **NetSheetCalc/TitleTap** (a Laravel-style JSON-API
+SaaS product with a "Quick Quote, no sign-in needed" mode that exposes hardcoded
+per-agency fee constants directly in an unauthenticated config endpoint). Both platforms
+are used by many independent title agencies nationwide per their own marketing pages and
+are likely high-leverage, multi-state/multi-agency unlocks for future harvest sessions,
+following the same per-tenant-distinct-fee-schedule pattern already established for
+MyTitleRates.com and TitleCapture elsewhere in CALCULATORS.md.
