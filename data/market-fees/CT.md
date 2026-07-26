@@ -156,3 +156,67 @@ flagged as a real (if modest) future opportunity — see CALCULATORS.md's CATICu
 the exact recipe/auth pattern discovered, which could unlock CPL-fee corroboration across all 30
 states the platform covers, several of which (VA, TN, MD, DE, WV, MO, OK, NJ, PA, MI, WI) are
 already scarce/complete states in this survey.
+
+## Calculator harvest addendum (2026-07-26)
+
+Separate from the published-schedule survey above (which remains **complete (scarce market)**),
+this session hunted provider quote calculators for the standard $500,000/$400,000 Fairfield County
+purchase scenario, per the calculator-harvest mission. **Result: 1 successful harvest — below the
+3-provider "calculator-quoted" threshold.** CT's attorney-closing structure and small number of
+public interactive calculators (as opposed to static filed-rate manuals) made this state genuinely
+thin for this mission, consistent with its "scarce" status in the published-schedule survey above.
+See CT.json's new `"basis": "calculator"` entry and CALCULATORS.md for full technical detail.
+
+1. **Old Republic Title** (`ortratecalculator.oldrepublictitle.com/RateCalc.aspx?Location=06`) — a
+   distinct, previously-uncatalogued Old Republic ASP.NET WebForms calculator (not the same system
+   as the already-documented `ortconline.com/Web2` tool, which does not serve CT), found via an
+   independent CT/MD/DC/VA title company's (Quiet Title LLC) own "calculators" resource page. No
+   county/town tiering exists for CT in this tool (statewide pricing, so no Fairfield-specific
+   substitution was needed/possible). Driven end-to-end with a plain `requests.Session()` — no
+   login, account, or personal data required despite an initial redirect through `/Login.aspx`.
+   Confirms the same "policy premiums only" structure already on file from WFG and Stewart's CT
+   manuals (identical disclaimer text), but adds one genuine itemized ancillary line beyond the
+   static manuals: a toggleable Closing Protection Letter fee (tool's own default $50.00 — not
+   independently confirmed as CT's actual statutory CPL rate, contrast WFG's cited $25.00 statutory
+   figure). Actual charge for the standard scenario (Owner's Basic $500k + simultaneous Loan Basic
+   $400k, both basic/standard coverage): Owner's Policy $1,929.00, Loan Policy $0.00 (credited under
+   simultaneous issuance), CPL $50.00, total $1,979.00.
+
+Two other leads came close but did not yield a usable harvest, and are recorded in full in
+CALCULATORS.md for a future session:
+
+- **Title Resources Guaranty Company** (`ratecalculator.trguw.com`) — a Next.js/Apollo GraphQL app
+  whose backend (`POST /api/proxy/graphql`) was fully reverse-engineered this session: confirmed CT
+  is served (statewide, not county-tiered) among 40 states, and the full query schema was mapped,
+  including a promising `getQuote` query with `stateFees`, `premiumTax`, and
+  `closingProtectionLetters` fields — a potentially rich itemized source. However, the `getQuote`
+  resolver returns a bare HTTP 500 for every request that includes any policy input (`ownerPolicyInput`
+  or `lenderPolicyInput`), reproduced identically for both CT and TX, and the tool's own live
+  production page independently confirmed the same failure (stuck on loading skeletons) — indicating
+  a genuine, currently-live backend bug on Title Resources' side rather than a request-shape error on
+  ours. No dollar figures could be obtained. Flagged as the highest-priority follow-up for a future
+  session (the schema is fully mapped and ready to use once/if the backend is fixed).
+- **CATICulator** (`caticulator.com`) — building on the prior session's auth-pattern discovery (see
+  the 2026-07-25 entry above), this session fully reverse-engineered the client-side request
+  construction for `POST /PremiumCalculator/Calculate`: the real body is a wrapper object
+  `{"data": "<JSON.stringify(serverModel)>"}` (the model is double-encoded as a JSON string inside
+  a `data` property, not sent as a raw JSON object as previously assumed), with `serverModel` built
+  from `pc.model.js`'s `toServerModel()` output merged with a lowercase `selectionSet` field (the
+  full endorsement/property-state object from `GetPolicyData`, reused as-is) plus `endorsementsSelected`,
+  `policyId`, and `IsPolPropUser`. Built and POSTed a complete, scenario-correct body (Owner's/Loan
+  amounts $500k/$400k, CT county=Fairfield/town=Bridgeport, CPL fee requested) using this corrected
+  structure — still received a generic ASP.NET "Runtime Error" (HTTP 500, remote error details
+  disabled) with no informative validation message, so the exact remaining defect could not be
+  isolated this session. Given the mission's prior note that CT's `GetPolicyData.Fees` ceiling is
+  CPL-only (matched by the Old Republic harvest above), this was not pursued further once time
+  became the binding constraint — recorded in CALCULATORS.md as substantial additional groundwork
+  for whoever picks this up next.
+
+Given the thin result, CT does **not** cross the 3-provider calculator-quoted threshold this
+session. Combined with the state's already-"complete (scarce)" published-schedule status, this
+likely reflects a real characteristic of CT's market (attorney-closing, insurer-filed-but-
+uncoordinated premiums, few provider-run interactive quote tools) rather than a search-strategy
+gap — 4 independent search techniques (MyTitleRates.com agency search, Old Republic's alternate
+calculator, CATICulator, Title Resources' GraphQL API) were tried, plus general web searches for
+independent CT title agencies' own calculators, none of which surfaced additional itemized
+settlement-fee sources beyond the one harvest above.

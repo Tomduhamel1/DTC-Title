@@ -89,5 +89,38 @@
     },
     "bundlingNotes": "Site advertises 'zero hidden costs' and 'transparent flat-fee pricing' but does not break out title search, document prep, recording, notary, courier, or wire fees within the quoted range. Serves all 8 Connecticut counties with no stated metro/county pricing variation.",
     "transactionContext": "Residential purchase, sale, and refinance closings, statewide (all 8 CT counties), no itemized fee breakdown."
+  },
+  {
+    "basis": "calculator",
+    "provider": "Old Republic Title (ortratecalculator.oldrepublictitle.com premium calculator -- a distinct, previously-uncatalogued Old Republic system, different from the ortconline.com/Web2 tool already on file for other states, which does NOT serve CT)",
+    "sourceUrl": "http://www.quiettitlellc.com/calculators.php",
+    "calculatorUrl": "http://ortratecalculator.oldrepublictitle.com/RateCalc.aspx?CallingApp=PUBLIC&Location=06",
+    "endpoint": "GET/POST ortratecalculator.oldrepublictitle.com/RateCalc.aspx (classic ASP.NET WebForms __doPostBack/__VIEWSTATE/__EVENTVALIDATION app, driven with a plain requests.Session(); CallingApp=PUBLIC&Location=06 auto-establishes a temporary session via a redirect chain through /Login.aspx to a session-scoped URL -- no credentials, account, or personal data required at any point)",
+    "retrievalDate": "2026-07-26",
+    "scenario": "$500,000 purchase price, $400,000 loan, statewide Connecticut (this tool has no county/town dropdown for CT -- CT premiums are not county-tiered in this system, consistent with WFG/Stewart's statewide liability-tiered manuals already on file; Fairfield County substitution not applicable since the tool is statewide), residential purchase, Policy Category = SIMULTANEOUS LOAN & OWNERS, Owner's Type = OWNERS-BASIC, Lender's Type = SIMUL-LOAN RESIDENTIAL BASIC, Closing Protection Letter checkbox checked (tool's own editable default fee amount of $50.00, not verified against CT's statutory C.G.S.A. Sec. 38a-404 CPL amount -- see bundlingNotes)",
+    "methodology": "Found via Quiet Title LLC's (a CT/MD/DC/VA title company) own 'Title Insurance Calculators' resource page, which links directly to Old Republic's per-state RateCalc.aspx tool with Location=06 confirmed as Connecticut. Driven end-to-end with a plain Python requests.Session(): (1) GET the Location=06 URL, which redirects through /Login.aspx and back to a session-scoped RateCalc.aspx URL returning HTTP 200 with no login required; (2) POST with __EVENTTARGET set to the Policy Category dropdown (value=5, SIMULTANEOUS LOAN & OWNERS) to reveal the Owner's Type/Purchase Price/Lender's Type/Loan Amount/CPL-checkbox fields; (3) POST with ddlPolicyType1=6699 (OWNERS-BASIC), txtLiabilityAmt=500000, ddlPolicyType2=6702 (SIMUL-LOAN RESIDENTIAL BASIC), txtCrLiabilityAmt=400000, chkFee=on, txtFeeAmount=50.00, and btnCalculate clicked -- returns the itemized results grid inline in the same page's UpdatePanelResults.",
+    "settlementFee": {
+      "note": "Like WFG's and Stewart's CT rate manuals already on file, this calculator's own disclaimer states explicitly 'THE RATE QUOTED IS FOR POLICY PREMIUMS ONLY' -- it is fundamentally a title-insurance-premium calculator, not a settlement/closing-fee schedule. It differs from the static manuals only in also offering one itemized ancillary fee: an optional, user-editable Closing Protection Letter charge."
+    },
+    "itemizedFees": {
+      "cpl": "$50.00 (tool's own editable default value for the Closing Protection Letter checkbox; NOT independently confirmed as CT's statutory/filed CPL rate -- contrast with WFG's manual, already on file, which cites a $25.00 statutory CPL fee pursuant to C.G.S.A. Sec. 38a-404. This figure is exactly what the calculator returned when the field was left at its pre-filled default, so it is recorded verbatim per the evidence rules, but should be treated as a generic UI default rather than a confirmed CT-specific rate)",
+      "docPrep": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "eRecording": null,
+      "wire": null,
+      "courier": null,
+      "recordingDeed": null,
+      "recordingMortgage": null,
+      "titleInsurancePremium": {
+        "ownersPolicy_basic_500000liability_actualCharged": "$1,929.00",
+        "loanPolicy_simulLoanResidentialBasic_400000liability_simultaneousIssueCharge": "$0.00 (credited in full against the owner's premium under simultaneous issuance)",
+        "loanPolicy_simulLoanResidentialBasic_400000liability_standAloneCharge": "$1,472.00 (what the loan policy would cost if issued separately, not simultaneously with the owner's policy -- shown for Closing Disclosure allocation purposes)",
+        "closingDisclosureFormulatedCostOfOwners": "$457.00 (= $1,929.00 owner's actual charge minus $1,472.00 loan stand-alone charge; the tool's own CFPB-methodology-driven allocation of the simultaneous-issue premium to the Owner's Policy line on a Closing Disclosure)"
+      }
+    },
+    "sectionTotals": "Grand Total Policy & Endorsement Premium: $1,472.00 (stand-alone-basis column) / $1,929.00 (actual-charge column). Total Premium & Endorsement & Fees/Taxes (adding the $50.00 CPL fee to each column): $1,522.00 (stand-alone-basis) / $1,979.00 (actual amount charged for this transaction).",
+    "bundlingNotes": "Confirms the same premium-only structure already on file from WFG and Stewart's CT rate manuals (identical explicit disclaimer language: rates quoted are for policy premiums only, search/exam/closing/settlement fees charged separately by the closing attorney are not included). The one incremental data point beyond the static manuals is the itemized, toggleable Closing Protection Letter fee line -- a thin but genuine itemized ancillary fee, consistent with the mission's allowance for CPL-only calculator harvests. No settlement/closing/search/exam/doc-prep/recording fee figures are produced by this tool.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k statewide Connecticut purchase scenario, Simultaneous Owner's & Loan Policy issuance, both Basic (standard, non-enhanced) coverage. No county or town-level pricing tier exists in this tool for CT."
   }
 ]
