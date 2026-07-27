@@ -125,6 +125,26 @@ published-schedule survey (Sherman Law, Lazan Glover & Puciloski, Cote Law Group
 calculator platform found on any of them via plain HTTP fetch. MA remains at 2 calculator-basis
 providers (Absolute Title, Law Office of David R. Rocheford Jr.).
 
+## Blocked-source retries (2026-07-27)
+One retry each per the task's standing instruction, all still unusable:
+- **Arizona DIFI** — direct-fetched a specific filing PDF URL (`difi.az.gov/sites/default/files/
+  1039959_Accelerated_Title_Agency_LLC_RF_5.15.22.pdf`, surfaced via this session's AZ calculator
+  search) rather than the previously-blocked search portal, on the theory that a static asset URL
+  might bypass the portal's Cloudflare challenge. Still HTTP 403 with a Cloudflare "Just a moment..."
+  interstitial — confirmed the block applies at the domain/WAF level, not just the search UI. No
+  change from prior sessions.
+- **CATIC CT** — retried `catic.com/state-resources/connecticut`, which is now reachable (HTTP 200,
+  previously 403) and links to 3 FlippingBook-hosted documents (CT Rate Manual, Rocky Hill Title
+  Services Rates, Fairfield County Title Services Rates). However, the FlippingBook viewer itself
+  still renders pages as dynamically-loaded images/canvas tiles with no static PDF/download URL or
+  text API found in the page source — still not text-extractable without a browser or OCR. Partial
+  improvement (the landing page unblocked) but the underlying rate content remains inaccessible.
+- **Jackson & Scott, AL** — both direct `curl` and the WebFetch tool now fail with a DNS resolution
+  error (`getaddrinfo ENOTFOUND`) for `www.jacksonandscott.com`, a different failure mode than the
+  previously-logged HTTP 403 — the domain itself appears to no longer resolve. Logged as dead/
+  unreachable rather than blocked; no further retry recommended unless a new URL for this firm is
+  found.
+
 ## The completion contract
 
 A **good source**: published by the provider itself or a regulator/rating
