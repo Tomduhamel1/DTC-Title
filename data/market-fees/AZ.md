@@ -1,6 +1,25 @@
 # Arizona — Market Fee Evidence
 
-## Status: complete (scarce) — 5 verified published sources + 1 calculator-basis provider (not yet at the 3-provider calculator threshold), 2026-07-22
+## Status: complete (scarce) — 5 verified published sources + 2 calculator-basis providers (not yet at the 3-provider calculator threshold), 2026-07-27
+
+## Calculator harvest (2026-07-27 update) — new platform discovered: TRACcalculator
+Harvested a 2nd AZ calculator provider, **First Integrity Title Agency** (Phoenix/Maricopa County),
+via **TRACcalculator** (comparetitlecompanies.com/get_quote/, operated by TI Services, LLC) — a
+newly-discovered nationwide title-industry SaaS platform, comparable in scope to MyTitleRates.com.
+The entire quote wizard is plain server-rendered PHP driven via session-cookie POST, no JS execution
+needed, and requires no personal data (the free-text "Prepared By" field was left blank; the required
+"Address" field was filled with a non-identifying place-name, "Phoenix, AZ"). Result at $500,000
+purchase/$400,000 loan, Maricopa County: Sale Escrow Fee $675 (both sides), Transaction Fee $100 (both
+sides), Notary Fee $150 (both sides), Loan Tie-in Fee $100 (both sides), CPL-Lender $20 (buyer only),
+Estimated Endorsement Fee $300 (buyer/loan side), Owner's Title Insurance premium $2,371 (seller-paid,
+per AZ custom), Lender's Title Insurance premium $1,219 (buyer-paid), Recording Fee $35 (both sides).
+Total buyer costs $2,564; total seller costs $3,396. Full entry in AZ.json with `"basis": "calculator"`.
+This is a genuine unbundled fee structure (5 separate line items totaling $1,045 in buyer-side closing
+services) versus Pioneer Title Agency's/Arizona Escrow & Financial's single bundled escrow-fee figures
+already on file — see AZ.json's bundlingNotes for the full comparison. AZ now has 2 calculator-basis
+providers (Old Republic + First Integrity Title Agency), still below the 3-provider threshold; see
+CALCULATORS.md for the full TRACcalculator technical recipe, which is a strong lead for other
+"complete (scarce)" states given it is a licensed multi-agency nationwide platform.
 
 ## Calculator harvest (2026-07-22)
 Old Republic Title's public **Estimated Rate/Fee Calculator**

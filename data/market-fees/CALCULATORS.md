@@ -581,6 +581,92 @@ would yield more than a CPL fee, further lowering the priority of finishing this
 - **TitleVest** (`titlevest.com`) — New York-focused, no MD coverage found.
 - **titlefeescalculator.com** — unreachable/connection timeout across repeated attempts (MA session).
 
+## 2026-07-27 session — TRACcalculator (comparetitlecompanies.com) — MAJOR NEW PLATFORM, WORKING, plain HTTP POST
+
+A significant new find, discovered via First Integrity Title Agency's (Phoenix, AZ) own website. **TI
+Services, LLC** (`tiservicesllc.com`) operates a nationwide title-industry SaaS suite —
+**TRACcalculator**, **TRACcompare**, **TRACSELECT**, and a public consumer-facing instance,
+**CompareTitleCompanies.com** (itself branded for Colorado consumers) — licensed to individual title
+agencies nationwide, each identified by a numeric `title_co_id` parameter. This is comparable in
+scope/significance to MyTitleRates.com and worth prioritizing for every remaining "complete (scarce)"
+state.
+
+- **Platform mechanics**: the entire quote wizard is **plain server-rendered PHP**, NOT a JS SPA — a
+  3-step form flow driven by session cookies (`SID` embedded in each step's `<form action="?...">`),
+  crackable with a plain `requests.Session()`, no browser/JS execution at all.
+- **Entry point**: `https://comparetitlecompanies.com/get_quote/getquote.php?title_co_id=<id>` (Step
+  1 — GET). The page embeds itself via `<iframe>` on individual agencies' own sites (search for
+  `comparetitlecompanies.com/get_quote/getquote.php?` combined with agency/state names to find more
+  `title_co_id` values).
+- **Step 1 (property location)**: county/city dropdowns populate via plain, no-auth GET AJAX
+  endpoints: `GET /get_quote/ajax_get_counties.php?state=<ST>` and
+  `GET /get_quote/ajax_get_cities.php?state=<ST>&counties_id=<countyId>` (both confirmed working,
+  return raw `<option>` HTML fragments, not JSON). POST all of Step 1's hidden fields (copy verbatim
+  from the GET response) plus `transaction_types_id` (1=Sale, 2=Refinance), `address` (a required
+  field — use a non-identifying place-name like "Phoenix, AZ" rather than a fabricated street
+  address, consistent with the no-personal-data rule), `counties_id`, `city_town_id`, and
+  `submit_1=Go to STEP 2`, back to the same `getquote.php?title_co_id=<id>` URL (not a different path
+  — a gotcha: the form's own relative `action="?title_co_id=...&SID=..."` must be resolved against
+  `getquote.php`, not treated as a bare query string against the directory root).
+- **Step 2 (transaction details)**: POST the new hidden fields from Step 2's response plus
+  `property_types_id` (1=Single Family/1-4 units, 2=Condo, 3=Townhome), `q2_amt` (purchase price),
+  `q4_amt` (1st mortgage/loan amount), `addlq_48` (Lien Payoff Involved: 1=Yes/2=No — use 2 for a
+  standard purchase), and the optional free-text `addlq_54` ("Prepared By" — leave blank), submitted
+  as `submit_2=Calculate Costs`. **No personal data fields exist anywhere in the flow** — no name,
+  email, or phone number requested at any step (confirmed by inspecting all hidden/visible fields
+  across all 3 steps).
+- **Step 3 (final quote)**: returned inline in the same POST response — a full itemized "Detailed
+  Title Quote" (buyer/seller-split settlement statement: escrow/closing fee, CPL, notary, transaction
+  fee, loan tie-in fee, endorsements, both title insurance premiums, recording fees) **plus** a
+  TRID-formatted Loan Estimate (Sections C/E breakdown). This is a genuinely rich, fully-itemized
+  source — one of the richest single-source formats found in this survey to date, on par with
+  MyTitleRates.com/ALT Title's own React-based quote APIs.
+- **Confirmed working for**: First Integrity Title Agency, AZ (`title_co_id=567`) — see AZ.json.
+- **Recommendation for next session**: this is a high-priority target for every remaining
+  below-3-provider or scarce state. Search `"comparetitlecompanies.com/get_quote/getquote.php"` or
+  `"tiservicesllc.com" TRACcalculator` combined with target state/agency names to find more
+  `title_co_id` values (do NOT blindly enumerate IDs sequentially — find them organically via search
+  or by checking individual agencies' own "rate calculator"/"instant quote" pages for an embedded
+  iframe, the same technique that surfaced this one). `comparetitlecompanies.com`'s own root domain
+  markets directly to Colorado consumers and may itself list multiple subscribing CO agencies —
+  worth checking for a quick multi-provider win in CO, which currently has zero calculator-basis
+  providers on file. `firsttitlesource.com/tquote.php` (found via search, state/agency not yet
+  identified) is another live TRAC-powered instance worth checking in a future session.
+
+## 2026-07-27 session — Michigan (MI) retry: still 2 providers, PalmAgent reconfirmed jsOnly
+Searched for a 3rd MI provider to push past the 2-provider mark (Modern Title Group, Knight Barry
+already on file). No new usable source found this session:
+- **Michigan Title Insurance Agency** (michigantitle.com/rate-calculator/, Taylor/Brownstown/Trenton —
+  Wayne County/Metro Detroit, would have been a strong find) embeds a **PalmAgent** "Quick Quote"
+  widget (`widgets.palmagent.com/quick_quote_widget.js`, agency code `CAV###T4flDC6EW4` base64-
+  decoded from `qq_w_code`). Traced further than the 2026-07-23 attempt: the widget injects an iframe
+  at `widgets.palmagent.com/widget_frame_v2.php?id=<code>&...` (fetched successfully, HTTP 200, 400KB+
+  of HTML) which itself loads `cdn.palmagent.com/calcs_js/calcs_js.js` (1.8MB minified) — but the
+  frame's own static HTML ships every data field empty (`widget_county_id`, `GPSCounty`, etc. all
+  `value=''`), confirming the actual quote computation is fully client-side/AJAX-driven after a user
+  selects an address via Google Places autocomplete, with no discoverable static API path found in the
+  1.8MB bundle (no literal `"api/..."` string constants, unlike Stewart's cleaner `/api/SRC/` split).
+  **jsOnly, reconfirmed** — would need a real/headless browser to capture the actual XHR the address
+  selection triggers.
+- **Vanguard Title Company** (vgtitle.com/resources/rate-calculator/, Livonia/Oakland-Macomb Counties)
+  embeds the same PalmAgent widget plus a **ConvertCalculator.com** (`convertcalculator.com`)
+  third-party embed — not investigated further given the PalmAgent dead end above and
+  ConvertCalculator being a generic form-builder SaaS (client config not yet located statically).
+- **Prestige Title Insurance Agency** (prtitle.com/net-sheet-calculator/, Adrian/Tecumseh/Manitou
+  Beach — Lenawee County) embeds a **netsheetcalc.com/TitleTap** widget, `app_id=385` — but this
+  specific tenant instance requires agent login/registration at its `quickquote.php` entry page
+  (**gated**), unlike the VA netsheetcalc tenants already on file; the platform's newer
+  `non-auth-ajax.php?action=getAppData` recipe documented in the 2026-07-26 entry above 404s on this
+  tenant (platform appears to have migrated to a different, TitleTap-branded backend since that
+  recipe was written).
+- **Reputation First Title Agency** (rftitle.com, Livonia — Wayne County) and **Rock Title Agency**
+  (rockclosings.com, MI+IN) are both Wix-hosted marketing sites with no calculator link found in
+  either site's navigation.
+- **Recommendation for next session**: try more independent MI agencies specifically for the
+  Modern-Title-Group-style hand-rolled JS calculator pattern (view-source + grep hardcoded fee
+  constants) rather than the big-four/PalmAgent/netsheetcalc platforms, which have proven
+  consistently jsOnly or gated for MI so far.
+
 ## 2026-07-27 session — Ohio (OH) shared-template discovery: "OH netsheet calculator" engine
 
 ### Columbus Title Agency of Westerville / Owl Creek Title Agency — WORKING, shared JS engine, plain HTTP GET

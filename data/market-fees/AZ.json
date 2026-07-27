@@ -159,5 +159,51 @@
     "sectionTotals": "C: Services You Can Shop For: $3,089.50; H: Other: $0.00",
     "bundlingNotes": "Section H (Owner's Title Policy) totaled $0.00 for the buyer -- consistent with Arizona's customary seller-pays-owner's-policy practice already noted elsewhere in this state's file; the buyer-side Lender's Title Policy premium ($2,187.00) and its own $200 concurrent-issue surcharge line are shown instead. This cross-checks against Pioneer Title Agency's and Arizona Escrow & Financial's already-verified Maricopa escrow fee tiers ($1,342 at the $500k Real-Property tier for AEFC) -- Old Republic's $677.50 buyer-side Settlement Agent Fee (half of a $1,355 total) is lower than those two independents' full-fee figures, a genuine cross-provider spread data point for Maricopa County.",
     "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k purchase scenario; City used: Phoenix (Maricopa County, AZ's most populous county)."
+  },
+  {
+    "provider": "First Integrity Title Agency (independent title/escrow agency; Phoenix, AZ [Maricopa County], 5100 N 99th Ave Suite 112) — via the TRACcalculator platform (comparetitlecompanies.com/get_quote/, operated by TI Services, LLC)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.firstintegritytitle.com/client-resources/az-rate-calculator/",
+    "calculatorUrl": "https://comparetitlecompanies.com/get_quote/getquote.php?title_co_id=567",
+    "endpointOrParams": "Plain server-rendered PHP multi-step form (from_step/next_step wizard, no JS/SPA), driven via POST with a requests.Session() cookie jar. Step 1: POST county/city/transaction-type selection (counties_id=599 for Maricopa, city_town_id=4369 for Phoenix -- both values discoverable via the same host's plain-GET AJAX endpoints, e.g. GET /get_quote/ajax_get_cities.php?state=AZ&counties_id=599, no auth). Step 2: POST property_types_id=1 (Single Family), q2_amt=500000 (purchase price), q4_amt=400000 (1st mortgage amount), addlq_48=2 (Lien Payoff Involved: No). Step 3 returns the full itemized Detailed Title Quote / TRID Loan Estimate inline in the same response.",
+    "retrievalDate": "2026-07-27",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Single Family residential, Sale transaction, Phoenix/Maricopa County (AZ's most populous county). Underwriter shown: Stewart Title Company.",
+    "methodology": "Discovered via First Integrity Title's own website, which embeds this calculator in an <iframe>. The form requires no personal data at all -- the only free-text field ('Prepared By') was left blank, and the property 'Address' field (required) was filled with a non-identifying place-name value ('Phoenix, AZ') rather than a fabricated street address, consistent with the hard rule against entering fabricated personal information. No login/registration was required at any step.",
+    "itemizedFees": {
+      "cpl": "$20.00 (CPL - Lender; buyer-side only, no seller-side CPL line)",
+      "processing": "$100.00 (Transaction Fee (Loan no Pay off); charged to both buyer and seller)",
+      "notarySigning": "$150.00 (Notary Fee; both buyer and seller)",
+      "docPrep": null,
+      "searchExam": null,
+      "other": [
+        {
+          "name": "Sale Escrow Fee (closing/settlement fee; both buyer and seller pay this amount)",
+          "amount": "$675.00 (each side)"
+        },
+        {
+          "name": "Loan Tie-in Fee (both buyer and seller)",
+          "amount": "$100.00 (each side)"
+        },
+        {
+          "name": "Estimated Endorsement Fee (buyer/loan side only)",
+          "amount": "$300.00"
+        },
+        {
+          "name": "Owner's Title Insurance Policy premium (seller-paid, per AZ custom)",
+          "amount": "$2,371.00"
+        },
+        {
+          "name": "Lender's/Loan Title Insurance Policy premium (buyer-paid)",
+          "amount": "$1,219.00"
+        },
+        {
+          "name": "Estimated Recording Fee (government)",
+          "amount": "$35.00 (each side)"
+        }
+      ]
+    },
+    "sectionTotals": "Total Estimated Buyer Costs: $2,564.00 (incl. $35 recording); Total Estimated Seller Costs: $3,396.00 (incl. $35 recording). Loan Estimate 'C. Services You Can Shop For': $3,594.00 (Closing Services $1,045.00 [Escrow $675 + Transaction Fee $100 + Loan Tie-in $100 + CPL $20 + Notary $150] + Endorsements $300.00 + Lender's Title Insurance $2,249.00 [buyer's concurrent-loan rate, distinct from the $1,219 standalone figure shown in the itemized quote above]); 'E. Taxes and Other Government Fees': $35.00 (Recording).",
+    "bundlingNotes": "Major platform discovery this session: TRACcalculator (a.k.a. CompareTitleCompanies.com), operated by TI Services, LLC (tiservicesllc.com), is a nationwide title-industry SaaS subscription product -- comparable in scope to MyTitleRates.com -- licensed to individual title agencies (each with its own numeric title_co_id) and to at least one state-branded consumer comparison portal (comparetitlecompanies.com itself, which markets to Colorado consumers). This session confirmed the entire quote wizard is plain server-rendered PHP with a session-cookie-based multi-step POST flow -- no JavaScript execution needed -- a strong new lead for other 'scarce' states. Escrow/closing fee ($675) is notably lower than the two AZ independents already on file for the published-schedule survey (Pioneer Title Agency $1,342 and Arizona Escrow & Financial $1,250 at the $500k tier for their combined/bundled escrow product), but First Integrity's fee structure unbundles far more granularly (separate Transaction Fee, Loan Tie-in Fee, Notary Fee, CPL all itemized independently) rather than bundling wire/courier/doc-prep into one number the way Pioneer and AEFC do -- a genuine structural difference, not necessarily a lower total cost once all line items are summed ($675+$100+$150+$100+$20 = $1,045 buyer-side closing-services subtotal, within range of the bundled competitors).",
+    "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Phoenix/Maricopa County -- AZ's most populous county, matching the county used for the Old Republic entry above."
   }
 ]

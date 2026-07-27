@@ -18,7 +18,7 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | State | Calculator-basis providers | Status | Last run |
 |---|---|---|---|
 | OH | 3 (Old Republic — Cuyahoga County; Columbus Title Agency of Westerville — Franklin County/Columbus, own JS netsheet calculator; Owl Creek Title Agency — Knox County/statewide incl. Franklin, same shared JS netsheet template as Columbus Title but distinct fee constants) | **calculator-quoted (3 providers)** | 2026-07-27 |
-| AZ | 1 (Old Republic — Phoenix/Maricopa County) | below 3-provider threshold | 2026-07-22 |
+| AZ | 2 (Old Republic — Phoenix/Maricopa County; First Integrity Title Agency — Phoenix/Maricopa County, via the newly-discovered TRACcalculator/comparetitlecompanies.com platform) | below 3-provider threshold | 2026-07-27 |
 | NV | 1 (Old Republic — Las Vegas/Clark County) | below 3-provider threshold | 2026-07-22 |
 | NM | 1 (Old Republic — Albuquerque/Bernalillo County) | below 3-provider threshold | 2026-07-22 |
 | UT | 1 (Old Republic — Salt Lake City/Salt Lake County) | below 3-provider threshold | 2026-07-22 |
@@ -99,6 +99,31 @@ Group (MI). Both are seller-side-only net sheets (no loan-amount field). This cr
 calculator-basis providers. See CALCULATORS.md for the full technical entry, including two gated/
 blocked near-misses (First Ohio Title's new net sheet system requires agent login; Talon Title
 Agency's calculator subdomain 406'd on every user-agent tried).
+
+**2026-07-27 session — AZ retry surfaces a major new platform (TRACcalculator).** Discovered via
+First Integrity Title Agency's (Phoenix) own site: **TRACcalculator** (comparetitlecompanies.com,
+operated by TI Services LLC) is a nationwide title-industry SaaS platform, licensed per-agency via a
+`title_co_id` parameter — comparable in scope to MyTitleRates.com. Fully plain-HTTP-POST driven (no
+JS), no personal data required, returns a rich itemized settlement statement + TRID Loan Estimate.
+Harvested First Integrity Title Agency (Maricopa County) as AZ's 2nd calculator provider (still below
+the 3-provider threshold). Full recipe in CALCULATORS.md — flagged as a high-priority target for every
+remaining scarce/below-threshold state in a future session, since it is clearly a multi-agency,
+multi-state subscription product (the platform's own consumer-facing root domain markets to Colorado,
+which currently has zero calculator-basis providers on file).
+
+**2026-07-27 session — MI retry: still 2 providers.** Searched for a 3rd MI calculator provider;
+found only jsOnly/gated dead ends (PalmAgent widget on Michigan Title Insurance Agency and Vanguard
+Title reconfirmed jsOnly with the actual iframe/JS-bundle chain traced further than the prior
+session; Prestige Title's netsheetcalc/TitleTap tenant is gated; Capital Title's own calculator is
+premium-only, out of scope). Full detail in CALCULATORS.md. MI remains at 2 calculator-basis
+providers (Modern Title Group, Knight Barry).
+
+**2026-07-27 session — MA retry: no new provider found.** Searched for a 3rd MA calculator provider
+across MyTitleRates.com, TitleClose.com, and independent attorney/title-firm sites named in MA's
+published-schedule survey (Sherman Law, Lazan Glover & Puciloski, Cote Law Group) plus new leads
+(Foy Law Office, Mass Title, massrealtylaw.com — the latter already logged jsOnly). No embedded
+calculator platform found on any of them via plain HTTP fetch. MA remains at 2 calculator-basis
+providers (Absolute Title, Law Office of David R. Rocheford Jr.).
 
 ## The completion contract
 
