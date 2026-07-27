@@ -28,3 +28,7 @@ never individual line items, because providers itemize the same work differently
   arithmetic and source, and every silence-treated-as-included judgment (always resolved AGAINST
   our savings). This column is the falsifiability contract: if an assumption here is wrong,
   the band is wrong — challenge these first.
+
+- *_market_low_source — provenance of the market-low figure: REAL (an actual provider's price, with its
+  arithmetic) vs SYNTHETIC (an interpolated percentile, with the nearest real datapoint named). If a low
+  is SYNTHETIC, the nearest-real figure is the one to sanity-check against.
