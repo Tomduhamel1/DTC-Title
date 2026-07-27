@@ -581,6 +581,47 @@ would yield more than a CPL fee, further lowering the priority of finishing this
 - **TitleVest** (`titlevest.com`) — New York-focused, no MD coverage found.
 - **titlefeescalculator.com** — unreachable/connection timeout across repeated attempts (MA session).
 
+## 2026-07-27 session — Ohio (OH) shared-template discovery: "OH netsheet calculator" engine
+
+### Columbus Title Agency of Westerville / Owl Creek Title Agency — WORKING, shared JS engine, plain HTTP GET
+Discovered while searching for a Franklin-County (Columbus)-serving OH calculator, since Old
+Republic's ortconline.com tool (already catalogued above) does not reach OH's most populous county.
+Found two independent Ohio title agencies running what is clearly a shared, licensed first-party JS
+"netsheet calculator" template — byte-for-byte identical `TitleCalc()` (bracket-rate premium formula
+with a final `Math.ceil(x*115)/100` retail markup), `computeForm()`, and `computeSellerTotals()`
+functions, plus an identical 88-Ohio-county `CountyMultiplier` dropdown — but each agency's own flat
+service-fee dollar constants differ meaningfully, confirming genuine independent configuration rather
+than a generic demo:
+- **Columbus Title Agency of Westerville** — `columbustitle.com/netsheets/` (page) +
+  `columbustitle.com/netsheets/scripts/netsheet.js` (logic, served as a linked file at a path
+  relative to `/netsheets/`, NOT resolvable from the site root — a gotcha: the site's current
+  WordPress/Elementor theme 404s a bare `/scripts/netsheet.js` request, the legacy static page's own
+  subdirectory must be used). Fee constants: Title Search Fee $275.00, Seller Closing Fee $210.00,
+  Title Binder Fee $50.00, Doc Prep $85.00 — all confirmed flat/unconditional across every county
+  branch in the JS source (no execution needed, just reading the `if/else` chain).
+- **Owl Creek Title Agency** — `owlcreektitle.com/netsheet` (Squarespace-hosted page with the same
+  engine inlined directly in the page's `<script>` rather than linked externally). Fee constants:
+  Title Search Fee $225.00, Seller Closing Fee $125.00, Title Binder Fee $50.00, Doc Prep $75.00.
+- **Structural limitation for both**: seller-side net sheet only, no buyer/loan-amount field at all —
+  the standard scenario's $400,000 loan amount does not apply; only the $500,000 purchase price feeds
+  the premium/fee calculation.
+- **Recipe**: plain `curl`/GET of the page (and, for Columbus Title, the separately-linked JS file);
+  grep the HTML for `readonly` `<input name="s_...">` fields for the flat fee defaults, and the JS
+  source for the `TitleCalc()`/`computeForm()` functions to confirm which fields are truly flat vs.
+  county-/price-dependent (only the government conveyance/transfer-fee field varies by county in both
+  tools — the actual title-company fees are flat statewide). No personal data required (`preparedby`/
+  `preparedforseller`/property address are free-text, left blank).
+- **Recommendation for a future session**: search for more Ohio independent agencies running this same
+  engine (try `"netsheet" Ohio title "seller closing costs"` combined with other city names — Toledo,
+  Akron, Youngstown, Canton — not yet tried) to push OH past the 3-provider floor toward the 3-6
+  target range. Two near-misses found but not pursued further: **First Ohio Title**'s
+  `newnetsheet.firstohiotitle.com` "NEW Net Sheet System" requires agent username/password login
+  (gated); **Talon Title Agency**'s `netsellers.talontitle.net/calculator` returned HTTP 406 on every
+  user-agent string tried (both a default `curl` UA and a full Chrome UA string) — worth a browser-
+  driven retry. **Mutual Title Agency** (OH+MI) has a HubSpot-hosted "seller-net-sheet" marketing page
+  with no embedded calculator form found in the static HTML — likely gated behind a HubSpot form/CTA
+  not captured by a plain GET.
+
 ## For the browser-driven follow-up session
 Priority queue (highest-value first): (1) TitleCapture — drive `<agency>.titlecapture.com/
 title-quote` for a real agency instance (e.g. moderntitlegroup.titlecapture.com) and capture the

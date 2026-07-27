@@ -156,5 +156,65 @@
     "sectionTotals": "C: Services You Can Shop For: $2,240.00; E: Taxes and Other Government Fees: $252.00; H: Other: $506.25",
     "bundlingNotes": "Old Republic's OH agency footprint in this calculator covers only 15 northern-Ohio counties (Ashland, Cuyahoga, Erie, Geauga, Huron, Lake, Lorain, Lucas, Medina, Ottawa, Portage, Stark, Summit, Wayne, Wood) -- Franklin County (Columbus, OH's most populous county) is NOT served by this tool, so Cuyahoga (Cleveland, the largest available county in this tool's footprint and OH's 2nd-most-populous county overall) was used as the highest-volume available proxy. Identical dollar figures were independently returned for Lorain County, confirming Old Republic prices this OH agency territory on a flat statewide (not county-tiered) basis. Owner's Title Policy note: full ALTA Owner's rate $2,187.50, plus concurrent-issue lender's charge of $125, less the full lender's policy premium of $1,300, netting the $506.25/$1,012.50 figures shown.",
     "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k purchase scenario; County used: Cuyahoga (most populous county in this calculator's OH service footprint; Franklin/Columbus not served)."
+  },
+  {
+    "provider": "Columbus Title Agency of Westerville, Inc. — Seller Netsheet Calculator (independent title/settlement agency; Westerville, OH, serving Franklin County/Columbus metro plus statewide Ohio per its own 88-county dropdown)",
+    "basis": "calculator",
+    "sourceUrl": "https://columbustitle.com/netsheets/",
+    "calculatorUrl": "https://columbustitle.com/netsheets/",
+    "endpointOrParams": "Static legacy HTML form + linked JS file https://columbustitle.com/netsheets/scripts/netsheet.js. No POST/submission required -- the seller-side fee fields are hardcoded dollar constants written by the page's own client-side JS (computeForm()/TitleCalc()/computeSellerTotals()), read directly from the fetched HTML/JS source without executing it.",
+    "retrievalDate": "2026-07-27",
+    "scenario": "$500,000 purchase price. This is a seller-side net sheet tool only -- it has no loan-amount/buyer field, so the standard scenario's $400,000 loan amount does not apply here. County: Franklin (Columbus, OH's actual most populous county -- available in the tool's own county dropdown, though the page defaults to Knox). Confirmed via the JS source that the flat service-fee constants below (search fee, seller closing fee) are identical across every county/zone the tool serves (`if/else` branches in computeForm() all resolve to the same dollar value) -- only the government conveyance/transfer fee varies by county.",
+    "methodology": "Fetched via plain HTTP GET of the static page and its linked JS -- no browser/JS execution needed, no personal data entered (the 'prepared by'/'prepared for seller'/property address fields are free-text and were left blank). This is the same discovery technique used for Modern Title Group (MI) and Independent Title & Escrow (VA/NetSheetCalc) in this catalog: view-source + read hardcoded fee constants directly from first-party JS rather than driving a live UI.",
+    "itemizedFees": {
+      "searchExam": "$275.00 (Title Search Fee -- flat statewide; confirmed via JS: `form.s_searchfee.value = formatNum(275)` unconditionally for every county branch)",
+      "processing": "$210.00 (Seller Closing Fee -- flat statewide; `form.s_sellclosefee.value = formatNum(210)` unconditionally for every county branch)",
+      "binder": "$50.00 (Title Binder Fee)",
+      "docPrep": "$85.00 (Doc Prep)",
+      "other": [
+        {
+          "name": "Owner's Title Insurance premium (tool's own retail rate, at $500,000 purchase price)",
+          "amount": "$2,515.63 (bracket-rate formula: $862.50 to $150k + $4.50/thousand $150k-$250k + $3.50/thousand $250k-$500k = $2,187.50 base, then the tool's own `Math.ceil(base * 115)/100` retail markup -- an exact match to OTIRB's own documented 'Homeowner's Policy variant: PR-1 rate +15%' already on file in this state's OTIRB entry above, a clean cross-source corroboration)"
+        },
+        {
+          "name": "County conveyance/transfer fee (Franklin County; a government tax, not a title-company fee)",
+          "amount": "$1,500.00 (Franklin County's own $3.00/thousand transfer-fee rate x $500,000, per the tool's CountyMultiplier table; seller-paid per Ohio custom)"
+        },
+        {
+          "name": "Buyer-side endorsement fee (hidden form field, appears vestigial/unused -- no visible buyer-side UI section found in this seller-only tool)",
+          "amount": "$100.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Discovered via this session's search for reusable Ohio-specific calculators after Old Republic's ortconline.com (which does not serve Franklin County) left OH below the 3-provider threshold. Columbus Title's own tool and Owl Creek Title's tool (harvested the same session, see below) run byte-for-byte identical JS (same TitleCalc()/computeForm() logic, same field names, same 88-county CountyMultiplier table) -- a shared white-label 'OH netsheet calculator' template licensed to multiple independent Ohio agencies (a smaller-scale analog to MyTitleRates.com/TitleCapture), but each agency's flat service-fee constants (search/closing/binder/docPrep) are independently configured and differ meaningfully between the two, confirming genuine per-provider evidence rather than a shared template with shared numbers.",
+    "transactionContext": "Seller-side settlement/service-fee schedule for a residential resale at $500,000 purchase price, Franklin County (Columbus)."
+  },
+  {
+    "provider": "Owl Creek Title Agency — Netsheet Calculator (independent title/settlement agency; Mount Vernon, OH [Knox County], statewide Ohio service area including Franklin County per its own 88-county dropdown)",
+    "basis": "calculator",
+    "sourceUrl": "http://owlcreektitle.com/netsheet",
+    "calculatorUrl": "http://owlcreektitle.com/netsheet",
+    "endpointOrParams": "Static HTML page with inline JS (same computeForm()/TitleCalc()/computeSellerTotals() engine as Columbus Title Agency above, served inline rather than as a linked file). No POST/submission required -- fee constants read directly from the fetched HTML/JS.",
+    "retrievalDate": "2026-07-27",
+    "scenario": "$500,000 purchase price. Seller-side net sheet tool only, no loan-amount/buyer field (same structural limitation as Columbus Title's tool above). County: Franklin (available in this tool's own dropdown; page defaults to Knox, the agency's home county). The flat service-fee constants below are confirmed identical regardless of which county is selected.",
+    "methodology": "Fetched via plain HTTP GET, no browser/JS execution, no personal data entered (same technique as Columbus Title Agency above).",
+    "itemizedFees": {
+      "searchExam": "$225.00 (Title Search Fee -- flat statewide)",
+      "processing": "$125.00 (Seller Closing Fee -- flat statewide)",
+      "binder": "$50.00 (Title Binder Fee)",
+      "docPrep": "$75.00 (Doc Prep)",
+      "other": [
+        {
+          "name": "Owner's Title Insurance premium (at $500,000 purchase price)",
+          "amount": "$2,515.63 (identical bracket-rate + 15% markup formula as Columbus Title Agency's tool -- confirms the two agencies share the same underlying calculator engine/template)"
+        },
+        {
+          "name": "Ship/courier fee (seller-side; appears twice in the form -- one editable $10.77 default and one readonly $25.00 -- both recorded as found)",
+          "amount": "$10.77 (editable default) / $25.00 (readonly)"
+        }
+      ]
+    },
+    "bundlingNotes": "Second agency found running the same shared OH netsheet-calculator template as Columbus Title Agency (see that entry's bundlingNotes) -- confirms this is a genuine multi-agency reusable platform, not a one-off. Owl Creek's own fee constants (search $225 vs. Columbus's $275; closing $125 vs. $210; doc prep $75 vs. $85) differ meaningfully from Columbus Title's, satisfying the 'each instance reflects its own real fee schedule' pattern already established for MyTitleRates.com/TitleCapture elsewhere in this survey. Combined with Old Republic's ortconline.com entry above, this brings OH to 3 calculator-basis providers, crossing the calculator-quoted threshold.",
+    "transactionContext": "Seller-side settlement/service-fee schedule for a residential resale at $500,000 purchase price; agency home county Knox (Mount Vernon), statewide service area."
   }
 ]

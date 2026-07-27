@@ -17,7 +17,7 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 
 | State | Calculator-basis providers | Status | Last run |
 |---|---|---|---|
-| OH | 1 (Old Republic — Cuyahoga County, largest county in this tool's OH footprint; Franklin/Columbus not served) | below 3-provider threshold | 2026-07-22 |
+| OH | 3 (Old Republic — Cuyahoga County; Columbus Title Agency of Westerville — Franklin County/Columbus, own JS netsheet calculator; Owl Creek Title Agency — Knox County/statewide incl. Franklin, same shared JS netsheet template as Columbus Title but distinct fee constants) | **calculator-quoted (3 providers)** | 2026-07-27 |
 | AZ | 1 (Old Republic — Phoenix/Maricopa County) | below 3-provider threshold | 2026-07-22 |
 | NV | 1 (Old Republic — Las Vegas/Clark County) | below 3-provider threshold | 2026-07-22 |
 | NM | 1 (Old Republic — Albuquerque/Bernalillo County) | below 3-provider threshold | 2026-07-22 |
@@ -87,6 +87,18 @@ reusable shared platforms plus a new Old Republic tool — full technical detail
 - MD, CT, and MA's calculator landscapes are dominated by gated/jsOnly shared platforms (TitleCapture,
   Qualia Connect, a newly-found TRGC PowerSnap) with few first-party statelessly-drivable exceptions
   — consistent with these 3 states' already-thin published-schedule coverage.
+
+**2026-07-27 session — OH threshold crossed via a new shared-template discovery.** Searched
+specifically for Franklin County (Columbus)-serving OH calculators since Old Republic's ortconline.com
+tool doesn't reach OH's most populous county. Found two independent agencies (Columbus Title Agency of
+Westerville, Owl Creek Title Agency) running an identical first-party JS "netsheet calculator" engine
+(same `TitleCalc()`/`computeForm()` functions, same 88-county dropdown) with distinct hardcoded flat
+fee constants each — a smaller-scale analog to the MyTitleRates.com/TitleCapture shared-platform
+pattern, discovered via the same view-source-for-hardcoded-constants technique used for Modern Title
+Group (MI). Both are seller-side-only net sheets (no loan-amount field). This crosses OH to 3
+calculator-basis providers. See CALCULATORS.md for the full technical entry, including two gated/
+blocked near-misses (First Ohio Title's new net sheet system requires agent login; Talon Title
+Agency's calculator subdomain 406'd on every user-agent tried).
 
 ## The completion contract
 

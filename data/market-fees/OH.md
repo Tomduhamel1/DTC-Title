@@ -1,6 +1,38 @@
 # Ohio (OH) — Market Fee Evidence
 
-## Status: complete (scarce market) — 2 verified published sources + 1 calculator-basis provider (not yet at the 3-provider calculator threshold), 2026-07-22
+## Status: complete (scarce market) — 2 verified published sources + 3 calculator-basis providers (**calculator-quoted (3 providers)**, threshold crossed 2026-07-27)
+
+## Calculator harvest (2026-07-27 update) — Franklin County (Columbus) reached, threshold crossed
+Old Republic's ortconline.com tool (below) does not serve Franklin County, OH's actual most-populous
+county, so this session searched specifically for Franklin-County-serving OH calculators. Found and
+harvested two independent title agencies running the **same shared "OH netsheet calculator" JS
+template** (identical `TitleCalc()`/`computeForm()` engine, 88-county `CountyMultiplier` dropdown) —
+**Columbus Title Agency of Westerville** (columbustitle.com/netsheets/, Franklin County/Columbus
+metro) and **Owl Creek Title Agency** (owlcreektitle.com/netsheet, Knox County/Mount Vernon, serves
+Franklin statewide). Both are seller-side-only net sheets (no loan-amount field, so the standard
+scenario's $400,000 loan amount doesn't apply) with hardcoded flat fee constants read directly from
+each site's own static HTML/JS via plain HTTP GET — no browser/JS execution, no personal data. Results
+at $500,000 purchase price, Franklin County:
+
+| Item | Columbus Title Agency | Owl Creek Title Agency |
+|---|---|---|
+| Title Search Fee | $275.00 | $225.00 |
+| Seller Closing Fee | $210.00 | $125.00 |
+| Title Binder Fee | $50.00 | $50.00 |
+| Doc Prep | $85.00 | $75.00 |
+| Owner's Title Insurance premium (formula) | $2,515.63 | $2,515.63 (identical formula) |
+| Franklin Co. conveyance/transfer tax (government, not a title fee) | $1,500.00 | (same $3/thousand rate) |
+
+Both agencies' premium formula independently corroborates OTIRB's own documented "Homeowner's Policy
+variant: PR-1 rate +15%" (base bracket-rate premium of $2,187.50 at $500k x 1.15 = $2,515.63 exactly).
+The two agencies' own service-fee constants differ meaningfully from each other, confirming genuine
+per-provider evidence despite the shared template — the same pattern already established for
+MyTitleRates.com/TitleCapture elsewhere in this survey. Full entries in OH.json with `"basis":
+"calculator"`. Combined with Old Republic below, **OH now has 3 calculator-basis providers, crossing
+the calculator-quoted threshold.** First Ohio Title's net sheet system requires agent login (gated,
+logged in CALCULATORS.md); Mutual Title Agency's page is HubSpot marketing content with no embedded
+calculator found; Talon Title Agency's calculator subdomain returned HTTP 406 on every user-agent
+tried (not pursued further this session).
 
 ## Calculator harvest (2026-07-22)
 Old Republic Title's public **Estimated Rate/Fee Calculator**
