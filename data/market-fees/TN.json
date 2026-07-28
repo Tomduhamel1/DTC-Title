@@ -80,5 +80,113 @@
     },
     "bundlingNotes": "Only a single closing-fee figure was published on the homepage (as a delay-guarantee marketing claim); no itemized breakdown or full rate schedule found. A thin but genuine, directly quoted data point distinct from the two underwriter manuals.",
     "transactionContext": "Nashville-area residential closings; single flat closing fee figure, transaction type not specified."
+  },
+  {
+    "provider": "Tennessee Title Services, LLC (independent title/settlement agency, Middle Tennessee — Brentwood office used for the standard scenario)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.tennesseetitle.com/calculator.html",
+    "calculatorUrl": "https://www.tennesseetitle.com/calculator/calc.php",
+    "endpointOrParams": "First-party HTML form (id=\"calculator\") embedded directly on the company's own site (not an iframe from a third-party platform), whose \"Submit\" click handler (in calculator/js/calculator.js) POSTs plain form-urlencoded fields directly to calculator/calculator.php: type=PURCHASE, purchasePrice=500000, loanAmount=400000, numMortgages=0, dwr=1 (\"Is the property in Davidson, Williamson or Rutherford County?\" Yes), davidson=1 (property is in Davidson County specifically), tn=1 (property is in Tennessee), buyer=1 (a payer-perspective toggle; confirmed the returned fee list is identical whether buyer=1 or buyer=0), location=Brentwood (nearest of the tool's own office dropdown values to Davidson County -- the office list itself has no Nashville/Davidson entry, but the dwr/davidson flags apply the correct county-specific pricing regardless of which office location is selected). Returns JSON directly, no HTML parsing needed.",
+    "retrievalDate": "2026-07-28",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Purchase transaction, Davidson County (Nashville — TN's most populous county).",
+    "methodology": "No personal data fields exist anywhere in this flow -- the only optional 'email your results' feature is a separate button/endpoint (calc-email.php) not used here. All fields are plain scenario parameters (price, loan amount, county flags).",
+    "itemizedFees": {
+      "settlementClosing": "Settlement Fee $595.00",
+      "docPrep": "Document Preparation $150.00",
+      "processing": "Document Storage $50.00",
+      "eRecording": "Recording Services $10.00",
+      "cpl": "Closing Protection Letter $50.00",
+      "searchExam": null,
+      "notarySigning": null,
+      "other": [
+        {
+          "name": "Owner's Title Insurance premium",
+          "amount": "$764.00"
+        },
+        {
+          "name": "Lender's Title Insurance premium",
+          "amount": "$2,565.69"
+        },
+        {
+          "name": "Recording Fee: Warranty Deed (government)",
+          "amount": "$22.00"
+        },
+        {
+          "name": "Recording Fee: Deed of Trust (government)",
+          "amount": "$130.00"
+        },
+        {
+          "name": "Transfer Tax - Deed of Trust (government)",
+          "amount": "$458.70"
+        },
+        {
+          "name": "Transfer Tax - Warranty Deed (government)",
+          "amount": "$1,851.00"
+        }
+      ]
+    },
+    "sectionTotals": "Settlement/closing services subtotal (Settlement Fee + Doc Prep + Doc Storage + Recording Services + CPL): $855.00. Full itemized list total including both title premiums and all government recording/transfer taxes: $6,146.39.",
+    "bundlingNotes": "A genuine first-party calculator (not a shared SaaS platform) -- Tennessee Title Services runs its own calculator.php backend rather than embedding MyTitleRates/TitleCapture/TRACcalculator/etc. The 'buyer' parameter was tested both ways (1 and 0) and produced identical fee output, suggesting it controls a display/label toggle (who is shown as paying) rather than which fees are charged -- consistent with TN's All-Inclusive-Rate/all-parties-see-same-schedule convention already noted in this state's published-schedule file for the underwriter rate manuals.",
+    "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Davidson County (Nashville)."
+  },
+  {
+    "provider": "Signature Title Services (independent title/settlement agency, Tennessee)",
+    "basis": "calculator",
+    "sourceUrl": "https://app.signaturetitleservices.net/PurchaseCalculator",
+    "calculatorUrl": "https://app.signaturetitleservices.net/PurchaseCalculator",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (same __VIEWSTATE/__VIEWSTATEGENERATOR/__EVENTVALIDATION pattern as FNF/Old Republic/Federal Title/Knight Barry, already documented elsewhere in this catalog), driven with a single GET (capture hidden fields) then one POST (no intermediate postbacks needed -- all fields are already present on the initial page, no cascading dropdowns to trigger). POST fields: ctl00$MainContent$DD_Property_County=Davidson, ctl00$MainContent$TxtOwnerPolicyAmt=500000 (purchase price), ctl00$MainContent$txtLoanPolicyAmt=400000 (loan amount), ctl00$MainContent$Reissue=RadioButton2 (No -- standard purchase, not a reissue rate), ctl00$MainContent$DD_LP_Type=Basic Rate, ctl00$MainContent$txtDeedPgs=4, ctl00$MainContent$txtPgs1=25 (1st mortgage page count), ctl00$MainContent$txtPgs2=0 (no 2nd mortgage), ctl00$MainContent$btnCalc=Calculate.",
+    "retrievalDate": "2026-07-28",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Basic Rate (non-reissue), Davidson County (Nashville — TN's most populous county), 4-page deed + 25-page 1st mortgage (the form's own defaults for page-count fields).",
+    "methodology": "No personal data fields exist anywhere in this form -- every field is a plain scenario parameter (county, price, loan amount, rate type, document page counts for recording-fee calculation). No login/registration required.",
+    "itemizedFees": {
+      "settlementClosing": "Buyer's Settlement Fee $595.00",
+      "searchExam": "Search Fee $125.00",
+      "processing": "Document Storage Fee $60.00 + Verification Service Fee $15.00",
+      "docPrep": null,
+      "notarySigning": null,
+      "eRecording": "E-Record $10.00 (2 documents, included within Recording Fees total)",
+      "cpl": "Closing Protection Letter $50.00",
+      "other": [
+        {
+          "name": "Owner's premium (incremental cost, disclosed, simultaneous issue)",
+          "amount": "$739.00"
+        },
+        {
+          "name": "ALTA Owner's Policy full premium rate (actual, if issued alone)",
+          "amount": "$3,105.00"
+        },
+        {
+          "name": "Loan premium (full premium rate, disclosed)",
+          "amount": "$2,566.00"
+        },
+        {
+          "name": "ALTA Loan Policy (actual, simultaneous-issue rate)",
+          "amount": "$200.00"
+        },
+        {
+          "name": "*Remote Closing Fee (distance-based, $0 for this scenario per the tool's own note it's typically $75-$175)",
+          "amount": "$0.00"
+        },
+        {
+          "name": "Recording Fee: Deed (government)",
+          "amount": "$22.00"
+        },
+        {
+          "name": "Recording Fee: Mortgage (government)",
+          "amount": "$127.00"
+        },
+        {
+          "name": "Transfer Tax (government)",
+          "amount": "$1,850.00"
+        },
+        {
+          "name": "Mortgage Tax (government)",
+          "amount": "$460.00"
+        }
+      ]
+    },
+    "sectionTotals": "Total Title Fees (Owner's + Loan premiums, disclosed basis): $3,305.00. Total Closing Costs (Settlement Fee + Search + Doc Storage + Verification + Remote Closing): $795.00. Closing Protection Letter: $50.00. Total Recording Fees & Transfer/Mortgage Taxes: $2,469.00 (Recording Fees $159.00 [Deed $22 + Mortgage $127 + E-Record $10] + Taxes $2,310.00 [Transfer Tax $1,850 + Mortgage Tax $460]). Grand Total: $6,619.00.",
+    "bundlingNotes": "A genuine first-party ASP.NET calculator, distinct from the shared SaaS platforms (MyTitleRates/TRACcalculator/TitleClose/NetSheetCalc) already catalogued elsewhere in this file. Settlement/closing-services-only subtotal ($795 Total Closing Costs + $50 CPL = $845) is close to Tennessee Title Services' equivalent subtotal ($855 for the same categories) at the same $500k/$400k Davidson County scenario -- a useful cross-provider consistency check for TN's Nashville-metro independent-agency settlement fee range.",
+    "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Davidson County (Nashville), Basic (non-reissue) rate."
   }
 ]

@@ -113,3 +113,39 @@ scarce threshold.
 - **CLOSED Nashville, Ark Title Group, Bell Law Settlement Services** — all confirmed
   real, operating Nashville-area title/settlement companies; none publish a static fee
   schedule, all are quote-request-only.
+
+## Calculator harvest (2026-07-28 session)
+
+TN had zero calculator-basis providers on file entering this session (a tier-1 high-population
+state per PROGRESS.md's priority order). Harvested 2 independent providers, both first-party
+calculators (not shared SaaS platforms), both for the standard $500k/$400k scenario in Davidson
+County (Nashville — TN's most populous county):
+
+- **Tennessee Title Services, LLC** (`tennesseetitle.com/calculator.html`) — a first-party HTML
+  form whose JS directly POSTs plain form-urlencoded fields to the company's own
+  `calculator/calculator.php`, no shared platform involved. Returned JSON: Settlement Fee $595,
+  Document Preparation $150, Document Storage $50, Recording Services $10, CPL $50, plus both
+  title premiums and government recording/transfer taxes. No personal data fields anywhere in
+  the flow (a separate "email your results" feature exists but was not used).
+- **Signature Title Services** (`app.signaturetitleservices.net/PurchaseCalculator`) — a classic
+  ASP.NET WebForms postback app (same pattern as FNF/Old Republic/Federal Title/Knight Barry).
+  Returned: Buyer's Settlement Fee $595, Search Fee $125, Document Storage Fee $60,
+  Verification Service Fee $15, CPL $50, both title premiums, and government recording/transfer/
+  mortgage taxes (Grand Total $6,619.00). Notably the $595 Settlement Fee figure matches Tennessee
+  Title Services' figure exactly — a genuine cross-provider consistency data point for Nashville's
+  independent-agency settlement fee, not a platform-sharing artifact (confirmed these are two
+  unrelated first-party calculators, not the same SaaS backend).
+- **Investigated, not usable**: Express Title & Closing (`expresstc.com/estimator/`) embeds a
+  TitleClose.com tenant (`expresstc.titleclose.com`) that redirects to a required
+  `/Consumer/Account/Login` — gated (unlike the VA TitleClose tenants already on file, which had
+  `shouldAskForConsumerData=false`); no personal data entered, logged and skipped. Magnolia Title
+  (`magnoliatitle.com/rate-calculator/`) embeds TitleCapture (`magnoliatitle.titlecapture.com`),
+  already documented platform-wide as jsOnly (browser-session priority item). Title Company TN
+  (`titlecompanytn.com/calculator/`) embeds a branded Stewart Rate Calculator instance — see
+  CALCULATORS.md's 2026-07-28 Stewart entry for the still-unsolved POST mechanism. Title Group of
+  Tennessee (`titlegroupoftn.com/interactive-fee-calculator/`) embeds First American's
+  "AgentNet®"/PrismPowered widget (`prismpowered.com/titlegroupoftn/guest-home`), an Angular SPA —
+  **jsOnly**, newly logged in CALCULATORS.md.
+- Below the 3-provider calculator-quoted threshold (2 of 3) — one more distinct TN provider
+  needed; flagged for a future session (Stewart's officeid-based platform, once its POST mechanism
+  is solved via a browser-driven session, would likely supply this and many other states at once).

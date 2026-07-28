@@ -708,6 +708,107 @@ than a generic demo:
   with no embedded calculator form found in the static HTML — likely gated behind a HubSpot form/CTA
   not captured by a plain GET.
 
+## 2026-07-28 session — comparetitlecompanies.com's multi-company comparison tool (CO); Stewart Rate Calculator POST mechanism identified
+
+### comparetitlecompanies.com/get_quote/get_quote.php?id=1 — WORKING, plain HTTP POST, multi-company
+Distinct from the already-documented per-agency `getquote.php?title_co_id=<id>` embed (used for
+AZ's First Integrity Title Agency, see the 2026-07-27 TRACcalculator entry above): `get_quote.php?
+id=1` is comparetitlecompanies.com's own Colorado-branded multi-company **shopping/comparison**
+tool, reachable directly (no iframe/agency site needed) since the whole domain markets to Colorado
+consumers. One standard-scenario submission returns every title company licensed in the chosen
+county at once.
+- **Flow**: Step 1 (GET the page for a fresh `SID`/`quote_id`, then POST `counties_id`/
+  `city_town_id` — both discoverable via `GET ajax_get_cities.php?state=CO&counties_id=<id>`, no
+  auth — plus `transaction_types_id=1` for Sale and a required `address` field filled with a
+  non-identifying place-name, e.g. "Denver, CO"; `contact_email` is present but has no
+  required-asterisk and can be left blank, confirmed safe). Step 2 (POST `property_types_id=1`,
+  `q2_amt`/`q4_amt` for purchase price/loan amount, `q10_int=0` mortgages-to-pay-off, and 5
+  Colorado-specific `addlq_*` payer-allocation dropdowns that default sensibly (Seller pays
+  Owner's Policy/OEC, Closing Fee Split 50/50, include both CPLs) — **gotcha**: 4 additional
+  hidden fields (`q7_amt=1`, `q8_y_n=0`, `q9_amt=1`, `q11_y_n=0`) are embedded inside Step 2's own
+  form but NOT in the top hidden-field block; omitting them causes an opaque "Please correct the
+  following 1 errors" response with no per-field error text rendered, since the failing field
+  isn't part of the visible Step 2 form at all — must be copied verbatim from the Step 2 GET/POST
+  response). Two placeholder scenario dates (current owner's purchase date; most recent mortgage
+  date) are required by the form even though the standard scenario brief doesn't specify them —
+  used a generic `01-15-2015` (property-scenario metadata, not personal information).
+- **Result**: redirects (302) to `summary_quote.php?quote=<id>`, listing every company found.
+  Only **TRAC-subscribing** companies show a "View Details" link to
+  `quote_detail.php?id=<company_id>&buyer`/`&seller` with a full itemized line-item breakdown
+  (Title Insurance, endorsements, CPLs, closing fees, ancillary fees, government recording/transfer
+  tax, each in its own table row). The majority — **non-subscribing** companies — show only a
+  single aggregate total per the tool's own footnote ("reflected costs are publicly on file...with
+  the Division of Insurance...View Details feature is not available for a Non-Subscribing
+  Company"), i.e. a DOI-filed-rate estimate, not live calculator output — out of scope for
+  calculator-basis evidence.
+- **Confirmed working for**: First Integrity Title Company, CO (Denver/Jefferson/Arapahoe/Douglas
+  Counties all show it as the sole subscriber; El Paso [CO's nominally most populous], Boulder,
+  Larimer, Pueblo, Weld, and Mesa Counties returned zero subscribing companies) — see CO.json.
+- **Recommendation**: worth checking whether comparetitlecompanies.com's sister/TI-Services-LLC
+  brands (`firsttitlesource.com/tquote.php`, flagged 2026-07-27) have an equivalent `id=1`-style
+  multi-company entry point for other states, rather than only searching for individual
+  `title_co_id` values one at a time.
+
+### Stewart Rate Calculator — `/api/SRC/quote` mechanism identified (POST is plain form-urlencoded, NOT JSON)
+Correcting the 2026-07-26 session's note (which flagged the `quote` endpoint as needing "a large
+serialized client-side state object... not fully reverse-engineered"): found a live branded
+instance via Advanced Title Company's site (`advancedtitleco.com/rate-calculator/` embeds
+`stewartratecalculator.com/?branded=false&officeid=2f33fe38-a50a-431a-9d84-cad7dd329fcf`, a CO
+agency instance) and traced the site's `nrc.js` bundle's `sendAjaxRequest` call sites. Findings:
+- The lookup endpoints are confirmed plain, no-auth GETs: `/api/SRC/transactiontypes?stateCode=CO&
+  propertyType=Residential` (returns REFI/CASH/SALE transaction codes) and `/api/SRC/
+  propertysearch?stateCode=CO&propertyType=Residential&value=<city or county name>` (returns
+  City/County/CountyFIPS/ZipCode/StateAbbrv matches — fuzzy-matches nationwide, not scoped to the
+  officeid's own state, so filter results by `StateAbbrv`).
+  Other same-shape lookups exist for `statesettings`, `endorsements`, `providers`,
+  `providerdetails`, `ernstlookup`, `netsheetlookup`, and `policyinsuredtypes` (all
+  `?statecode=<ST>&...`).
+- The final quote submission is `sendAjaxRequest(POST, API_PREFIX + "quote",
+  $('#frmCalculateRates').serialize(), ...)` — i.e. a **plain form-urlencoded POST of the
+  actual HTML `<form id="frmCalculateRates">`'s serialized fields**, not a hand-built JSON
+  `quoteRequestRoot` payload as previously assumed. `API_PREFIX` = `/api/SRC/`, so the full URL is
+  `https://www.stewartratecalculator.com/api/SRC/quote`.
+- **Still unsolved**: the form itself renders with only one static hidden field
+  (`__RequestVerificationToken`, a per-session CSRF token tied to the response cookie) — every
+  other field (property location, transaction type, purchase price, loan amount, payer-allocation
+  choices) is added to the DOM client-side via Knockout.js data-binding from a template, not
+  present in the static page HTML and not reconstructable by grepping the minified `nrc.js`/
+  `results.js`/`document.js`/`document.js` bundles for literal `name="..."` strings (none found —
+  names are almost certainly set via `data-bind="attr: {name: ...}"` bindings resolved at
+  render time). Solving this needs a real browser/devtools network capture of one live submission
+  to see the actual POST field names, not further static source reading.
+- **Recommendation**: high priority for the browser-driven follow-up session (already flagged as
+  item 5 in that section below) — now that the endpoint mechanism (plain form POST, not JSON) and
+  a live `officeid` (Advanced Title Company, CO: `2f33fe38-a50a-431a-9d84-cad7dd329fcf`) are both
+  confirmed, a single devtools capture of one manual quote submission should be enough to fully
+  script this platform, which is likely a many-state/many-agency unlock similar in scope to
+  MyTitleRates.com/TRACcalculator.
+
+### TN dead ends / gated / jsOnly logged this session
+- **Tennessee Title Services, LLC** and **Signature Title Services** — both WORKING, see PROGRESS.md
+  and TN.json/TN.md for full recipes (first-party PHP form-POST and first-party ASP.NET WebForms
+  respectively — neither is a shared SaaS platform).
+- **Express Title & Closing** (`expresstc.com/estimator/`) — embeds a TitleClose.com tenant
+  (`expresstc.titleclose.com`) that redirects to a required `/Consumer/Account/Login` — **gated**,
+  confirming (as already noted for MD's Guaranteed Trust Title) that TitleClose.com tenants vary in
+  their login-gating configuration per agency; the VA tenants already on file remain the only
+  confirmed-open ones.
+- **Magnolia Title** (`magnoliatitle.com/rate-calculator/`) — embeds TitleCapture
+  (`magnoliatitle.titlecapture.com/title-quote`, backed by `api.titlecapture.com`/`api-node.
+  titlecapture.com`/`api-wb.titlecapture.com`) — **jsOnly**, consistent with the platform-level
+  block already documented (browser-session priority item 1 below).
+- **Title Company TN** (`titlecompanytn.com/calculator/`) — embeds a branded Stewart Rate Calculator
+  instance (`stewartratecalculator.com`) — see the Stewart entry above; POST mechanism identified
+  but not fully solved this session.
+- **Title Group of Tennessee** (`titlegroupoftn.com/interactive-fee-calculator/`) — embeds
+  `prismpowered.com/titlegroupoftn/guest-home`, confirmed this session to be First American's
+  "AgentNet®" product, an Angular SPA (`runtime.*.js`/`polyfills.*.js`/`scripts.*.js`/`main.*.js`
+  bundle, same family as the already-logged `marketing.agentnetsolutions.com` instance found for
+  NH/MA/ME's Accurate Title) — **jsOnly**. Note: a *different* `prismpowered.com` tenant path was
+  logged 2026-07-26 as dead (502)/gated for MD's Landmark Abstract; this TN tenant path returned a
+  live 200 SPA shell instead — the platform's availability/gating varies per agency tenant, same
+  pattern as TitleClose.com.
+
 ## For the browser-driven follow-up session
 Priority queue (highest-value first): (1) TitleCapture — drive `<agency>.titlecapture.com/
 title-quote` for a real agency instance (e.g. moderntitlegroup.titlecapture.com) and capture the

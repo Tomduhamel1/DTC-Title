@@ -34,6 +34,8 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | MD | 1 (Federal Title & Escrow Company — Montgomery County, own first-party ASP.NET tool) | below 3-provider threshold | 2026-07-26 |
 | CT | 1 (Old Republic — ortratecalculator.oldrepublictitle.com, statewide, a distinct tool from ortconline.com) | below 3-provider threshold | 2026-07-26 |
 | MA | 2 (Absolute Title LLC, statewide; Law Office of David R. Rocheford Jr., Worcester County) | below 3-provider threshold | 2026-07-26 |
+| CO | 1 (First Integrity Title Company — Denver County, via comparetitlecompanies.com's multi-company comparison tool) | below 3-provider threshold | 2026-07-28 |
+| TN | 2 (Tennessee Title Services, LLC — Davidson County, own first-party calculator; Signature Title Services — Davidson County, own ASP.NET WebForms calculator) | below 3-provider threshold | 2026-07-28 |
 
 FNF's ratecalculator.fnf.com **is drivable via plain HTTP POST, no browser needed** — confirmed
 2026-07-25 by replaying its ASP.NET WebForms `__doPostBack`/`__VIEWSTATE` protocol directly (the
@@ -124,6 +126,40 @@ published-schedule survey (Sherman Law, Lazan Glover & Puciloski, Cote Law Group
 (Foy Law Office, Mass Title, massrealtylaw.com — the latter already logged jsOnly). No embedded
 calculator platform found on any of them via plain HTTP fetch. MA remains at 2 calculator-basis
 providers (Absolute Title, Law Office of David R. Rocheford Jr.).
+
+**2026-07-28 session — CO gets its first calculator provider; Stewart Rate Calculator's POST
+mechanism identified but not fully solved.** CO entered this session with zero calculator-basis
+providers (the highest-priority gap per the 2026-07-27 recommendation). Found and harvested
+`comparetitlecompanies.com/get_quote/get_quote.php?id=1` — a previously-uncatalogued entry point
+distinct from the AZ-documented per-agency `getquote.php?title_co_id=<id>` embed: this is the
+platform's own Colorado-branded multi-company comparison tool, returning every licensed title
+company in a chosen county at once, with itemized "View Details" breakdowns available only for
+the platform's subscribing agencies (the rest show DOI-filed-rate aggregate totals only, out of
+scope). First Integrity Title Company (Denver, underwriter Westcor Land Title) is the platform's
+only current CO subscriber — confirmed identical across Denver/Jefferson/Arapahoe/Douglas
+Counties, with zero subscribers found in El Paso (CO's nominally most-populous county, hence
+Denver substituted), Boulder, Larimer, Pueblo, Weld, and Mesa. This is 1 of the 3 needed for
+calculator-quoted status. Separately, traced Advanced Title Company's embedded Stewart Rate
+Calculator instance (`stewartratecalculator.com`, officeid discovered via view-source) far enough
+to confirm the final `/api/SRC/quote` endpoint is a plain form-urlencoded POST (jQuery
+`.serialize()`), correcting the 2026-07-26 session's assumption that it needed a hand-built JSON
+`quoteRequestRoot` body — but the actual form fields are Knockout.js-templated client-side and
+weren't reconstructable from the minified JS bundles this session; flagged in CALCULATORS.md for
+a browser-driven session to capture the real POST body via devtools. CO remains below threshold
+(1 of 3); MyTitleRates.com/TitleClose.com/NetSheetCalc searches for additional CO agencies this
+session found no open ("no sign-in needed") tenant.
+
+**2026-07-28 session — TN gets its first 2 calculator providers.** TN (tier-1, high-population,
+zero calculator-basis providers on file) was the next priority after CO. Found two genuine
+first-party (non-shared-platform) calculators, both for Davidson County (Nashville): Tennessee
+Title Services, LLC (own PHP backend, discovered by reading the page's own JS rather than an
+iframe-embed search) and Signature Title Services (ASP.NET WebForms, same postback pattern as
+FNF/Old Republic/Federal Title/Knight Barry). Both returned a $595 Settlement Fee independently —
+a genuine cross-provider consistency point, not a shared-backend artifact. Also investigated and
+logged: Express Title & Closing's TitleClose.com tenant is gated (requires login, unlike VA's open
+tenants); Magnolia Title's TitleCapture embed remains jsOnly; Title Company TN embeds the same
+unsolved Stewart Rate Calculator flagged for CO; Title Group of Tennessee embeds a new First
+American "AgentNet"/PrismPowered Angular SPA, logged jsOnly. TN remains below threshold (2 of 3).
 
 ## Blocked-source retries (2026-07-27)
 One retry each per the task's standing instruction, all still unusable:

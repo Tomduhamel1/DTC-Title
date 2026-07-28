@@ -87,5 +87,49 @@
     },
     "bundlingNotes": "Title-insurance premium manual only, zoned by county (Zone 1: Adams/Arapahoe/Broomfield/Denver/Douglas/Elbert/Jefferson; Zone 2: Boulder/Larimer/Weld; Zone 3: El Paso/Pueblo/Teller; Zone 4: all others). Owner's policy minimum premiums: Zone 1 $900, Zone 2 $700, Zone 3 $600, Zone 4 $900 (for $0-$5,000 coverage tier), scaling up per the Basic Rate Table (e.g., $1M policy = $2,990 Zone 1 / $2,640 Zone 2 / $2,572 Zone 3 / $2,990 Zone 4). Confirms CO is a filed-rate (not promulgated) state and that closing/settlement fees are filed and charged separately from the underwriter's premium by the settlement agent.",
     "transactionContext": "Premiums are purchase/owner's-policy and loan-policy, price(liability)-tiered by $5,000 increments up to $1M then larger increments; also lists 'Bundled Simultaneous Purchase Loan Rate' and 'Bundled Residential Refinance Loan Rate' tables which bundle the loan policy premium (not settlement fees) with specified endorsements at no extra charge."
+  },
+  {
+    "provider": "First Integrity Title Company (Denver, CO) — via comparetitlecompanies.com's multi-company \"Comparison Summary\" tool (TRACcalculator/TI Services, LLC platform), underwriter Westcor Land Title Insurance Company",
+    "basis": "calculator",
+    "sourceUrl": "https://www.firstintegritytitle.com/client-resources/co-rate-calculator/",
+    "calculatorUrl": "https://comparetitlecompanies.com/get_quote/get_quote.php?id=1",
+    "endpointOrParams": "Plain server-rendered PHP 2-step wizard (from_step/next_step), driven via POST with a requests.Session() cookie jar -- the same TRACcalculator/TI Services LLC engine already on file for AZ (title_co_id-based getquote.php), but this is a DIFFERENT entry point: get_quote.php?id=1 is comparetitlecompanies.com's own state-branded (Colorado) multi-company COMPARISON tool, which runs the standard scenario against every title company licensed in the chosen county at once (both TRAC-subscribing agencies with itemized detail AND non-subscribing agencies with a DOI-filed-rate-only estimate) rather than one single named agency. Step 1: POST counties_id=17 (Denver) + city_town_id=50 (Denver) + transaction_types_id=1 (Sale) + address (place-name only, e.g. 'Denver, CO', no street address) + contact_email left blank (optional, no asterisk) to get_quote.php?SID=<session>. Step 2: POST property_types_id=1 (Single Family), q2_amt=500000, q4_amt=400000, q10_int=0 (mortgages to pay off), addlq_40/41=1 (Seller pays Owner's Policy/OEC, page defaults), addlq_42=3 (Closing Fee Split 50/50, page default), addlq_45/46=1 (include buyer/seller CPL, page defaults) -- plus 4 easy-to-miss HIDDEN fields embedded deeper in Step 2's own form (q7_amt=1, q8_y_n=0, q9_amt=1, q11_y_n=0) that are NOT in the visible field list and must be copied verbatim from the Step 2 GET response or the POST 500s/re-renders Step 2 with an uninformative 'Please correct the following 1 errors' banner and no visible per-field error text. Redirects (302) to summary_quote.php?quote=<id>, which lists every CO company found in that county; TRAC-subscribing companies (a small minority) show a 'View Details' link to quote_detail.php?id=<company id>&buyer/seller for the full line-item breakdown -- non-subscribing companies show only a DOI-filed-rate aggregate total with no itemization and are out of scope for calculator-basis evidence.",
+    "retrievalDate": "2026-07-28",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Single Family residential, Sale transaction. County used: Denver (Denver County/City), NOT El Paso County (Colorado Springs) -- El Paso is CO's most populous county but this tool found zero TRAC-subscribing (itemized) companies there, only DOI-filed-rate-only non-subscribers; Denver County (CO's 2nd/3rd most populous, and the only other county checked with a subscribing company) was substituted per the task's own fallback allowance for a calculator's actual service footprint. First Integrity Title Company was also confirmed as the sole subscribing company in Jefferson, Arapahoe, and Douglas Counties (same statewide agency, not additional distinct providers) -- Boulder, Larimer, Pueblo, Weld, and Mesa Counties returned zero subscribing companies.",
+    "methodology": "No personal data entered at any step -- contact_email (Step 1) has no required-asterisk and was left blank; no name/phone field exists anywhere in the 2-step flow. Verified the omission is safe: leaving contact_email blank still produced a full itemized quote. The address field (required) was filled with a non-identifying place-name ('Denver, CO') rather than a fabricated street address. Two placeholder scenario dates required by the form (date current owner purchased property; date of most recent mortgage) were set to 01-15-2015 -- generic transaction-scenario metadata about the modeled property, not personal information about any person -- since the standard scenario brief does not specify these and the form rejects blank/zero dates.",
+    "itemizedFees": {
+      "settlementClosing": "Residential Sale Closing Fee $180.00 (charged both buyer and seller, CO's Split 50/50 default) + Residential Sale 1st Loan Closing Fee $450.00 (buyer only, for the new 1st mortgage)",
+      "cpl": "Buyer's CPL $25.00 + Lender's CPL $25.00 (both buyer-paid); Seller's CPL $25.00 (seller-paid)",
+      "searchExam": "Owner's Extended Coverage (OEC) endorsement $95.00 (seller-paid, deletes standard pre-printed exceptions 1-4)",
+      "processing": "Tax Certificate Fee $25.00 (buyer-paid; county tax-status certificate required for closing)",
+      "notarySigning": null,
+      "docPrep": null,
+      "eRecording": null,
+      "other": [
+        {
+          "name": "Conveyance Deed recording (government, buyer-paid, estimated)",
+          "amount": "$43.00"
+        },
+        {
+          "name": "1st Deed of Trust release recording (government, buyer-paid, estimated)",
+          "amount": "$43.00"
+        },
+        {
+          "name": "Colorado State Documentary Transfer Tax (government, buyer-paid; C.R.S. 39-13-102, $0.01/$100 of purchase price)",
+          "amount": "$50.00"
+        },
+        {
+          "name": "1st - Concurrent Loan Policy title insurance premium (buyer-paid)",
+          "amount": "$450.00"
+        },
+        {
+          "name": "Owner's Title Insurance premium (seller-paid)",
+          "amount": "$2,001.00"
+        }
+      ]
+    },
+    "sectionTotals": "Buyer Total Estimated Costs: $1,155.00 (Title Insurance $0 [concurrent-issue] + Loan Policy $450 + Buyer's CPL $25 + Lender's CPL $25 + Closing Fee $180 + 1st Loan Closing Fee $450 + Tax Certificate $25); plus government recording ($43+$43=$86, shown separately, not in the $1,155 total) and transfer tax ($50, also separate). Seller Total Estimated Costs: $2,301.00 (Owner's Title Insurance $2,001 + OEC $95 + Seller's CPL $25 + Closing Fee $180); no separate government charges on the seller side.",
+    "bundlingNotes": "This is a distinct recipe from AZ's already-documented title_co_id-specific TRACcalculator embed (comparetitlecompanies.com/get_quote/getquote.php?title_co_id=567) -- get_quote.php?id=1 is the platform's own Colorado-branded multi-company shopping/comparison tool and does not require knowing an agency's title_co_id in advance; it surfaces whichever agencies subscribe in the chosen county automatically. First Integrity Title Company appears to be the platform's only Colorado-subscribing agency at present (confirmed identical across Denver/Jefferson/Arapahoe/Douglas Counties); the remaining ~8 companies listed in every county checked (Equitable Title & Escrow, and others) are non-subscribers whose displayed totals are DOI-filed-rate aggregate estimates, not live calculator output, and were excluded from this harvest as out of scope for calculator-basis evidence (footnote: '* This Title Company does not use the services of CompareTitleCompanies.com for marketing purposes... The View Details feature is not available for a Non-Subscribing Company').",
+    "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Denver County -- substituted for El Paso County (CO's nominally most populous county) because El Paso had zero subscribing/itemized calculator companies on this platform."
   }
 ]

@@ -104,6 +104,51 @@ agency closing/settlement fee (Empire, Warranty, Homestead).
   logged dead ends — combined total comfortably exceeds the contract's 8-strategy scarce
   threshold.
 
+## Calculator harvest (2026-07-28 session)
+
+Colorado had **zero calculator-basis providers on file** entering this session, flagged in
+PROGRESS.md as a high-priority target since `comparetitlecompanies.com`'s own consumer-facing
+root domain markets directly to Colorado. This session confirmed and harvested it:
+
+- **comparetitlecompanies.com/get_quote/get_quote.php?id=1** — a plain server-rendered PHP
+  2-step wizard (no JS/browser needed), distinct from the already-documented per-agency
+  `getquote.php?title_co_id=<id>` embed (used for AZ). This `id=1` entry point is
+  comparetitlecompanies.com's own Colorado-branded multi-company **comparison** tool: one
+  standard-scenario submission returns every title company licensed in the chosen county at
+  once. Only companies that subscribe to the platform ("TRAC-subscribing") show a "View
+  Details" link with a full itemized buyer/seller breakdown; the remaining (majority)
+  non-subscribing companies show only a DOI-filed-rate aggregate total with no itemization —
+  explicitly out of scope for calculator-basis evidence per the tool's own footnote.
+- **Provider found**: First Integrity Title Company (Denver, CO; underwriter Westcor Land
+  Title Insurance Company) — the platform's only Colorado-subscribing agency, confirmed
+  identical across every county checked (Denver, Jefferson, Arapahoe, Douglas). El Paso
+  County (CO's nominally most populous) had zero subscribing companies, so Denver County was
+  substituted per the task's fallback allowance. Boulder, Larimer, Pueblo, Weld, and Mesa
+  Counties also returned zero subscribing companies — this appears to be the platform's only
+  active CO subscriber statewide, not a coverage gap in this session's search.
+- Standard scenario ($500k purchase / $400k loan, Denver County) returned: Buyer Total
+  $1,155.00 (Closing Fee $180 + 1st Loan Closing Fee $450 + Buyer's CPL $25 + Lender's CPL
+  $25 + Loan Policy premium $450, plus government recording $86 and transfer tax $50 shown
+  separately); Seller Total $2,301.00 (Owner's Title Insurance $2,001 + OEC $95 + Seller's
+  CPL $25 + Closing Fee $180). See `CO.json` for the full itemized record.
+- **Near-miss, not solved**: Advanced Title Company's (`advancedtitleco.com/rate-calculator/`)
+  own site embeds a branded Stewart Rate Calculator instance
+  (`stewartratecalculator.com/?branded=false&officeid=2f33fe38-a50a-431a-9d84-cad7dd329fcf`).
+  Confirmed this session (correcting the prior session's guess in CALCULATORS.md) that
+  Stewart's final `/api/SRC/quote` endpoint is a **plain form-urlencoded POST** (jQuery
+  `.serialize()` of `#frmCalculateRates`), not a hand-built JSON `quoteRequestRoot` object —
+  but the form's actual input fields are rendered client-side via Knockout.js data-binding
+  from a template, not present in the static HTML or reconstructable from the minified JS
+  bundles via source inspection alone, so the exact POST field names remain unsolved. The
+  `transactiontypes` and `propertysearch` lookup endpoints are confirmed working plain GETs
+  (`?stateCode=CO&propertyType=Residential` and `?stateCode=CO&propertyType=Residential&value=<city>`
+  respectively). Flagged in CALCULATORS.md for a browser-driven session to capture the real
+  POST body via devtools network inspection.
+- Below the 3-provider calculator-quoted threshold (1 of 3) — flagged for a future session to
+  find 2 more distinct CO calculator providers (Stewart's officeid above, once solved, would
+  be a 2nd; MyTitleRates.com/TitleClose.com/NetSheetCalc searches this session found no open
+  "no sign-in needed" CO tenant).
+
 ## Sources
 
 See `CO.json` for full structured records with source URLs.
