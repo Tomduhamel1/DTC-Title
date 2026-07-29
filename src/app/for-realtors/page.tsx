@@ -122,6 +122,12 @@ export default function RealtorsPage() {
                 >
                   Sign in
                 </Link>
+                <a
+                  href="/pdfs/betterclose-for-agents.pdf"
+                  className="text-base font-semibold text-primary-700 hover:underline whitespace-nowrap"
+                >
+                  Download one-pager (PDF)
+                </a>
               </div>
               <p className="text-sm text-gray-500 mt-4">
                 No login required. See your buyer&apos;s estimate in under a minute.
