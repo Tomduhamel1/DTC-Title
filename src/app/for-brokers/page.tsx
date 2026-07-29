@@ -196,6 +196,12 @@ export default function BrokersPage() {
                 >
                   Sign in
                 </Link>
+                <a
+                  href="/pdfs/betterclose-for-brokers.pdf"
+                  className="text-base font-semibold text-primary-700 hover:underline whitespace-nowrap"
+                >
+                  Download one-pager (PDF)
+                </a>
               </div>
               <p className="text-sm text-gray-500 mt-4">
                 No login required. Create an account when you&apos;re ready to send or open a closing.

@@ -53,6 +53,16 @@ export default function FooterComprehensive() {
                 </Link>
               </li>
               <li>
+                <a href="/pdfs/betterclose-for-agents.pdf" className="hover:text-primary-400 transition-colors">
+                  Agent one-pager (PDF)
+                </a>
+              </li>
+              <li>
+                <a href="/pdfs/betterclose-for-brokers.pdf" className="hover:text-primary-400 transition-colors">
+                  Broker one-pager (PDF)
+                </a>
+              </li>
+              <li>
                 <a href="#" className="hover:text-primary-400 transition-colors text-sm">
                   Professional Portal Login →
                 </a>
