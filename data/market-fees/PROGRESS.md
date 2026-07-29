@@ -36,6 +36,8 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | MA | 2 (Absolute Title LLC, statewide; Law Office of David R. Rocheford Jr., Worcester County) | below 3-provider threshold | 2026-07-26 |
 | CO | 1 (First Integrity Title Company — Denver County, via comparetitlecompanies.com's multi-company comparison tool) | below 3-provider threshold | 2026-07-28 |
 | TN | 2 (Tennessee Title Services, LLC — Davidson County, own first-party calculator; Signature Title Services — Davidson County, own ASP.NET WebForms calculator) | below 3-provider threshold | 2026-07-28 |
+| IN | 1 (Agency Title, Inc. — New Albany/Louisville-metro Southern Indiana office, NetSheetCalc/TitleTap "Quick Quote" JSON API) | below 3-provider threshold | 2026-07-29 |
+| KY | 1 (Agency Title, Inc. — Louisville/Jefferson County, same operator's KY instance of NetSheetCalc/TitleTap) | below 3-provider threshold | 2026-07-29 |
 
 FNF's ratecalculator.fnf.com **is drivable via plain HTTP POST, no browser needed** — confirmed
 2026-07-25 by replaying its ASP.NET WebForms `__doPostBack`/`__VIEWSTATE` protocol directly (the
@@ -160,6 +162,38 @@ logged: Express Title & Closing's TitleClose.com tenant is gated (requires login
 tenants); Magnolia Title's TitleCapture embed remains jsOnly; Title Company TN embeds the same
 unsolved Stewart Rate Calculator flagged for CO; Title Group of Tennessee embeds a new First
 American "AgentNet"/PrismPowered Angular SPA, logged jsOnly. TN remains below threshold (2 of 3).
+
+**2026-07-29 session — IN and KY get their first calculator provider each; new NetSheetCalc
+"Quick Quote" instances found via provider-site search rather than iframe-detection.** IN
+(the highest-volume still-unharvested "complete (scarce)" state, ~6.8M population) and KY
+(~4.5M) were the priority targets this session. Ruled out several avenues first: Knight
+Barry's `dashboard.knightbarry.com/Rates/<state>-rate-calculator.aspx` pattern does NOT
+serve IN or SC (confirmed via `aspxerrorpath` redirect to the site's generic error page,
+distinguishing a real vs. fallback response for this platform); Old Republic's newly-
+noticed second tool now confirmed to expose alpha state codes too (`EmbedRateCalc.aspx?
+Location=IN`/`Location=SC`, found via `oldrepublictitle.com/rate-calculator/?location=
+<state>` landing pages linking to it) but both IN and SC requests were hard-rejected by
+its NoBot anti-bot control ("You are not authorized to access the site. Code: 2") even
+after replaying the parent page's Referer/cookie/User-Agent context — a harder block than
+the CT harvest hit previously, logged as **blocked (NoBot check)**, not usable this
+session. Found via `agencytitle.com/calculator/` (an Indiana/Kentucky title company):
+**Agency Title, Inc.** operates NetSheetCalc/TitleTap "Quick Quote (No sign in needed)"
+instances for both its IN (`appid=581`, New Albany office) and KY (`appid=582`,
+Louisville/Jefferson County) markets — both harvested via the platform's plain
+unauthenticated `non-auth-ajax.php?action=getAppData&app_id=<id>` JSON GET, no browser
+needed. This is the same operator serving both states from one calculator-platform
+account family, not two independent companies, but each state's config carries its own
+distinct hardcoded fee constants (confirmed by inspecting each JSON payload directly) so
+each counts as a genuine per-state calculator source per the mission's per-agency-
+instance precedent (TitleCapture/TitleClose/MyTitleRates are all treated the same way
+elsewhere in this catalog). IN and KY each now have 1 of the 3 calculator-basis providers
+needed for calculator-quoted status. Also logged **gated**: Mattingly Ford Title
+Services' (Louisville, KY) LodeStar Software Solutions calculator embed
+(`lodestarss.com/Live/Mattingly_Ford/Login/index.php?guest=1`) requires an email address
+plus Google reCAPTCHA even in "guest" mode — no personal data entered, not pursued
+further. Time budget was spent entirely on the calculator-harvest priority this session;
+the standing freshness re-verification and blocked-retries passes (below) were not run
+this session and remain due for a future session.
 
 ## Blocked-source retries (2026-07-27)
 One retry each per the task's standing instruction, all still unusable:

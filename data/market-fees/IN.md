@@ -128,3 +128,29 @@ tiers) are recorded in IN.json.
 29. "1st Title / Near North Title / Capital Title Indianapolis fee schedule"
 30. "Indiana title company published rate sheet buyer's/seller's closing fee"
 31. "Vanderburgh County Evansville title company fees.pdf"
+
+## Calculator harvest addendum (2026-07-29)
+
+Separate from the published-schedule survey above (which remains **complete (scarce)**),
+this session harvested Indiana's first provider quote calculator for the standard
+$500,000/$400,000 purchase scenario — see IN.json's entry marked `"basis": "calculator"`
+and CALCULATORS.md for full technical detail.
+
+**Agency Title, Inc.** (New Albany, IN office; serves the Louisville-metro/Southern
+Indiana market) embeds the NetSheetCalc/TitleTap white-label platform (`appid=581`),
+found via the agency's own site (`agencytitle.com/calculator/`). Unlike the gated
+`login`/`quickquote.php` UI page itself, the platform's `non-auth-ajax.php?action=
+getAppData&app_id=581` endpoint is a plain, unauthenticated JSON GET (the same "Quick
+Quote, no sign in needed" pattern documented for Independent Title & Escrow LLC, VA)
+that returns the agency's full fee-form schema, including hardcoded flat-dollar
+constants: Settlement Fee $495.00, Borrower's CPL $25.00, Lender's CPL $25.00, Incoming
+Wire Fee $35.00, TIEFF $10.00, E-Recording Fee $10.00, Recording Fees $118.50, Sales
+Disclosure Fee $30.00, plus an ancillary "Lender's Title Insurance" line item ($120.00,
+distinct from the underwriter's actual filed premium). These are statewide-flat
+defaults in the tool's own config (not computed from the entered sale/loan amount) —
+its 416-entry municipality dropdown supplies only a local transfer-tax multiplier for
+the tax-proration line, so no specific county selection was needed to read them.
+
+This is 1 of the 3 calculator-basis providers needed for IN to reach calculator-quoted
+status (still below threshold). The same agency operator also has a Kentucky instance
+(`appid=582`) harvested the same session — see KY.md.

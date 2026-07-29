@@ -809,6 +809,75 @@ agency instance) and traced the site's `nrc.js` bundle's `sendAjaxRequest` call 
   live 200 SPA shell instead — the platform's availability/gating varies per agency tenant, same
   pattern as TitleClose.com.
 
+## 2026-07-29 session — Indiana/Kentucky harvest; NetSheetCalc's non-auth `getAppData` endpoint confirmed reusable across states; Old Republic's alpha `Location` codes found but NoBot-blocked; Knight Barry confirmed NOT to cover IN/SC
+
+### Agency Title, Inc. (IN + KY) — WORKING, NetSheetCalc/TitleTap "Quick Quote" JSON API, no browser needed
+Found via the agency's own site, `agencytitle.com/calculator/`, which links to two per-state
+NetSheetCalc instances (`app.netsheetcalc.com/company/quickquote.php?appid=581` for Indiana,
+`appid=582` for Kentucky). The `quickquote.php` UI page itself is a JS-rendered shell with no
+static form fields, but its underlying data endpoint is a plain, unauthenticated JSON GET —
+`GET app.netsheetcalc.com/company/non-auth-ajax.php?action=getAppData&app_id=<id>` — confirmed
+working for both IDs with **no personal data, cookies, or session required at all** (simpler than
+the VA-documented NetSheetCalc recipe, which needed a tenant-specific `app_id` discovered via
+page-source grep; here the `appid` query param IS the `app_id`). The response is the tenant's full
+fee-form JSON schema (`estimate_type.finance.sections.*.elements[]`), with hardcoded flat-dollar
+constants directly readable from each element's `initial_val` field — no computation, POST, or
+JS execution needed to read them. IN's config: Settlement Fee $495.00, Borrower's/Lender's CPL
+$25.00 each, Incoming Wire Fee $35.00, TIEFF $10.00, E-Recording Fee $10.00, Recording Fees
+$118.50, Sales Disclosure Fee $30.00. KY's config (same operator, distinct instance): Lender's
+Title Insurance Premium $200.00, CPL $50.00, Deed Recording $54.25, Mortgage Recording $130.25,
+E-Recording Fee $10.00, POA Prep Fee $125.00 (no hardcoded Settlement Fee default in this
+instance). Each state's `city_drp` municipality dropdown (416 entries for both IN and KY,
+suspiciously identical in structure/count — possibly a shared vendor demo dataset reused across
+this operator's state instances rather than curated per-state, so do not treat county/city
+selection here as verified-accurate local geography) supplies only a per-mille local-tax
+multiplier for a tax-proration field, not the flat fee constants above, so no county/city
+selection step was needed to harvest them. KY's list was confirmed to include Louisville/Jefferson
+County ("Louisville Urban Services", "Dist Louisville-Jefferson"). **Recommendation**: this
+confirms NetSheetCalc's `non-auth-ajax.php?action=getAppData&app_id=<id>` is a general, reusable,
+zero-browser recipe — worth searching `"app.netsheetcalc.com" quickquote` or `"netsheetcalc.com"`
+combined with other still-below-threshold state names (SC, AL, LA, MS, NE, ND, SD, etc.) in a
+future session, rather than relying on iframe-detection on agency sites (this instance's own
+landing page, `agencytitle.com/calculator/`, does not embed an iframe at all — WebFetch's markdown
+summarization stripped the raw `appid=` links, only a raw `curl`/grep pass surfaced them).
+
+### Knight Barry Title Group — confirmed does NOT cover Indiana or South Carolina
+Tested `dashboard.knightbarry.com/Rates/indiana-rate-calculator.aspx` and
+`.../south-carolina-rate-calculator.aspx` (plus an `alabama-`/`louisiana-`/`kentucky-`/`mississippi-
+`/etc. sweep). All returned HTTP 200, but every one of these silently 302-redirects to
+`www.knightbarry.com/default.aspx?aspxerrorpath=/Rates/<slug>-rate-calculator.aspx` — the site's
+generic error fallback — confirmed by diffing byte size/content against a known-good state
+(`minnesota-rate-calculator.aspx`, which returns distinct, larger content with no `aspxerrorpath`
+in the final URL). **Lesson for future harvests using this tool**: always check
+`%{url_effective}` / the final redirect target, not just the HTTP status code, before assuming a
+guessed state slug is real — a 200 status alone is not sufficient evidence of a working page on
+this platform.
+
+### Old Republic's second tool (`ortratecalculator.oldrepublictitle.com`) — alpha `Location` codes found, but blocked by NoBot check for IN/SC
+`oldrepublictitle.com/rate-calculator/?location=<state>` landing pages (e.g. `?location=indiana`,
+`/south-carolina`) embed `ortratecalculator.oldrepublictitle.com/EmbedRateCalc.aspx?Location=<ST>`
+using plain 2-letter state abbreviations (`Location=IN`, `Location=SC`) — a broader coverage
+pattern than the numeric `Location=06` code previously found and used for CT, suggesting this
+tool's real footprint is much larger than just CT. However, both IN and SC requests (with a fresh
+session, and separately with the parent page's Referer header + shared cookie jar replayed) were
+rejected outright by the page's `NoBot` AJAX Toolkit control, rendering "You are not authorized to
+access the site. Code: 2." directly in the response body rather than the expected form — a harder
+failure than the CT harvest saw previously (which worked without incident). Root cause not
+isolated; possibly IP/session-reputation-based rather than purely Referer-based. Logged as
+**blocked** for IN/SC specifically — not re-attempted further this session. **Recommendation**: a
+future session should retry with a longer warm-up (visit 2-3 pages on oldrepublictitle.com first
+to build session history) or enumerate other `Location=<ST>` codes to see if the block is state-
+specific or session/IP-specific across the board.
+
+### Mattingly Ford Title Services (Louisville, KY) — LodeStar Software Solutions, GATED
+`mattinglyford.com/fee-calculator/` embeds `lodestarss.com/Live/Mattingly_Ford/Login/index.php?
+guest=1` — a new calculator platform ("LodeStar") not previously catalogued. Despite the
+`guest=1` parameter's implication of a no-login mode, the actual guest form still requires
+entering an email address (`required` field, "Invalid Email Address!" validation) plus solving a
+Google reCAPTCHA before any quote is returned — **gated**, no personal data entered per the hard
+rule, not pursued further (the reCAPTCHA alone would also make this jsOnly/browser-only even if
+the email requirement were waived).
+
 ## For the browser-driven follow-up session
 Priority queue (highest-value first): (1) TitleCapture — drive `<agency>.titlecapture.com/
 title-quote` for a real agency instance (e.g. moderntitlegroup.titlecapture.com) and capture the

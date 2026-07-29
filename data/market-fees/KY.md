@@ -134,3 +134,33 @@ oldrepublictitle.com (agency page + rate calculator), Guardian Title of Kentucky
 Title Agency, BesTitle FAQ page, First Title & Escrow (403), Key Title & Closing (confirmed
 wrong-state), Ivy Pointe Title, sbwhlaw.com's customary-fees guide, and virtualunderwriter.com's
 Kentucky location page.
+
+## Calculator harvest addendum (2026-07-29)
+
+Separate from the published-schedule survey above (which remains **complete (scarce)**),
+this session harvested Kentucky's first provider quote calculator for the standard
+$500,000/$400,000 purchase scenario — see KY.json's entry marked `"basis": "calculator"`
+and CALCULATORS.md for full technical detail.
+
+**Agency Title, Inc.** (Louisville/Jefferson County market; the same operator's Indiana
+office is documented in IN.md/IN.json) embeds a second, Kentucky-specific instance of
+the NetSheetCalc/TitleTap white-label platform (`appid=582`), found via the same
+`non-auth-ajax.php?action=getAppData&app_id=582` unauthenticated JSON endpoint used for
+the Indiana instance. The municipality dropdown (416 KY municipalities) confirmed
+"Louisville Urban Services"/"Dist Louisville-Jefferson" entries — i.e. Jefferson County,
+KY's most-populous county, is within this instance's service footprint. Hardcoded
+flat-dollar constants returned: Lender's Title Insurance Premium $200.00, Closing
+Protection Letter $50.00, Deed Recording Fee $54.25, Mortgage Recording Fee $130.25,
+E-Recording Fee $10.00, POA Prep Fee $125.00. Unlike the Indiana instance, this
+config's "Settlement Fee" field itself ships with no hardcoded default (blank), so no
+flat settlement-fee dollar figure could be recorded for this provider.
+
+This is 1 of the 3 calculator-basis providers needed for KY to reach calculator-quoted
+status (still below threshold).
+
+Also checked and logged as **gated** this session: Mattingly Ford Title Services
+(Louisville, KY) embeds LodeStar Software Solutions' fee calculator
+(`lodestarss.com/Live/Mattingly_Ford/Login/index.php?guest=1`) — even the "guest" mode
+requires entering an email address plus passing a Google reCAPTCHA before any quote is
+shown; no personal data was entered per the hard rule, and the reCAPTCHA is JS-only
+regardless. See CALCULATORS.md.

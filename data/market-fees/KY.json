@@ -40,5 +40,22 @@
     },
     "bundlingNotes": "Section 1 Introduction states explicitly: 'The rates shown are the all-inclusive title insurance fees and charges and includes both the risk portion and the service or work portion, but does not include charges for title search, surveys, escrow, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant.' A companion WFG informational bulletin (KY 2020-01, Oct. 14, 2020) confirms Kentucky's municipal premium tax (varying by county/municipality per the KY Dept. of Revenue's annual tax schedule) applies to the title premium, to endorsements, AND to Closing Protection Letters -- but the bulletin itself prices no settlement/escrow fees, only pointing to the premium-tax schedule. WFG's CPL is a flat $50 per party regardless of role, unlike Stewart's tiered $50/$25/$25 lender/buyer/seller structure -- a genuine cross-underwriter difference in this ancillary charge.",
     "transactionContext": "Statewide (no metro/county breakout published; 'State' is defined simply as 'the State of Kentucky'). Owner's/Leasehold (Standard and Expanded), Acquisition and Finance(refinance) Loan policies (Standard and Expanded), simultaneous-issue rates, Lender's Special Rates (volume-based, for qualifying high-volume lenders), Master Home Equity/HE2 certificates, specialty limited-coverage policies (Junior Loan, Mortgage Protection Guarantee, Mortgage Modification), a full ALTA endorsement price list, and Closing Protection Letters. No purchase/refinance settlement-service-fee breakdown anywhere in the 26-page document."
+  },
+  {
+    "provider": "Agency Title, Inc. — Kentucky (Louisville/Jefferson County market)",
+    "basis": "calculator",
+    "calculatorUrl": "https://app.netsheetcalc.com/company/quickquote.php?appid=582",
+    "endpoint": "GET https://app.netsheetcalc.com/company/non-auth-ajax.php?action=getAppData&app_id=582 -- NetSheetCalc/TitleTap white-label platform's public, unauthenticated 'Quick Quote (No sign in needed)' JSON API; no personal data required or entered.",
+    "retrievalDate": "2026-07-29",
+    "scenario": "$500,000 purchase price / $400,000 loan, residential resale (buyer-finance closing statement form). Municipality dropdown (416 KY municipalities, confirmed includes 'Louisville Urban Services'/'Dist Louisville-Jefferson', i.e. Jefferson County/Louisville, KY's most-populous county) supplies only a per-mille local-tax multiplier for the tax-proration line; the service-fee constants below are statewide-flat hardcoded defaults in the tool's own JSON config, not computed from county choice.",
+    "itemizedFees": {
+      "lendersTitleInsurancePremium": 200.00,
+      "closingProtectionLetter": 50.00,
+      "deedRecordingFee": 54.25,
+      "mortgageRecordingFee": 130.25,
+      "eRecordingFee": 10.00,
+      "poaPrepFee": 125.00
+    },
+    "bundlingNotes": "Same operator/platform instance as the Indiana entry above (Agency Title, Inc. serves both the Louisville, KY and Southern Indiana markets from one shared NetSheetCalc account family, per its own site copy: 'serving the greater Louisville and Southern Indiana communities'). First calculator-basis provider for Kentucky. Unlike the Indiana instance, this KY config's 'Settlement Fee' field itself ships with no hardcoded default (blank in the schema) -- only the ancillary/recording/CPL/doc-prep lines above have fixed defaults, so no flat settlement fee dollar figure is recorded for this provider."
   }
 ]

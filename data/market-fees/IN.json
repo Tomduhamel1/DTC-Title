@@ -118,5 +118,26 @@
     },
     "bundlingNotes": "The only genuine settlement/service-fee (non-premium) schedule found for Indiana this session, despite ~25+ query variants and 10+ direct company-site checks. Closing fee, doc prep, title search, and processing are itemized separately by transaction type (purchase/refinance/cash sale).",
     "transactionContext": "Purchase, refinance, and cash-sale settlement fee schedules, Bloomington / Monroe County office."
+  },
+  {
+    "provider": "Agency Title, Inc. — Indiana (New Albany office; serves the Louisville-metro/Southern Indiana market)",
+    "basis": "calculator",
+    "calculatorUrl": "https://app.netsheetcalc.com/company/quickquote.php?appid=581",
+    "endpoint": "GET https://app.netsheetcalc.com/company/non-auth-ajax.php?action=getAppData&app_id=581 -- NetSheetCalc/TitleTap white-label platform's public, unauthenticated 'Quick Quote (No sign in needed)' JSON API; no personal data required or entered.",
+    "retrievalDate": "2026-07-29",
+    "scenario": "$500,000 purchase price / $400,000 loan, residential resale (buyer-finance closing statement form). The tool's fee constants are statewide-flat hardcoded defaults shipped in its own JSON config (confirmed by inspecting the raw schema, not computed from the entered sale/loan amount); its 416-entry municipality dropdown only supplies a per-mille local-tax multiplier for the tax-proration line, not these service-fee constants, so no specific county/city needed to be selected to read them.",
+    "itemizedFees": {
+      "settlementFee": 495.00,
+      "cpl": { "borrower": 25.00, "lender": 25.00 },
+      "incomingWireFee": 35.00,
+      "tieff": 10.00,
+      "eRecordingFee": 10.00,
+      "recordingFees": 118.50,
+      "salesDisclosureFee": 30.00,
+      "other": [
+        { "name": "Lender's Title Insurance (tool's own 'Misc. Fees' line item -- an ancillary charge distinct from the underwriter's actual filed premium)", "amount": 120.00 }
+      ]
+    },
+    "bundlingNotes": "Discovered via the agency's own site (agencytitle.com/calculator/), which links out to this NetSheetCalc-hosted Quick Quote tool. First calculator-basis provider for Indiana; TIEFF figure here ($10.00) is this agency's own line item and does not need to match Stewart's cited $5.00 statutory pass-through figure exactly (may reflect a doubled buyer+seller-policy charge or the agency's own rounding)."
   }
 ]
