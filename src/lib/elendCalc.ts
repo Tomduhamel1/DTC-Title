@@ -6,6 +6,7 @@
 // Set FEE_CALC_API_URL to the production stage once the API owner confirms
 // it; do not hardcode a new stage here.
 
+import { betterCloseServiceFee } from './betterCloseFees'
 import type { FeeCategory, FeeLineItem, FeeReport, FeeSource } from './feeReport'
 import {
   ABSTRACT_ONLY_PASSTHROUGH_STATES,
@@ -102,6 +103,11 @@ function cleanDescription(raw: string): string {
   return d
 }
 
+// Premium/CPL lines carry the underwriter's filed rates — never ours to set.
+function isPremiumLabel(label: string): boolean {
+  return /title insurance/i.test(label) || /closing protection letter/i.test(label)
+}
+
 function categorize(feeDescription: string): FeeCategory {
   const d = feeDescription.toLowerCase()
   if (d.includes('recording')) return 'recording'
@@ -148,8 +154,7 @@ function withTypicalRange(
   if (category === 'recording' || category === 'taxes') {
     return { isFixed: true }
   }
-  const isPremiumLine =
-    /title insurance/i.test(label) || /closing protection letter/i.test(label)
+  const isPremiumLine = isPremiumLabel(label)
   if (isPremiumLine && premiumsAreUniform(stateCode)) {
     return { isFixed: true }
   }
@@ -237,7 +242,22 @@ export async function fetchElendFeeEstimate(req: ElendRequest): Promise<FeeRepor
     const rawForCategorize = row.FeeDescription || rawName
     const label = cleanDescription(rawName)
     const category = categorize(rawForCategorize)
-    const variability = withTypicalRange(label, buyer, category, data.stateCode, req.transactionType, req.zip)
+
+    // BetterClose service-charge schedule (betterCloseFees.ts): replaces the
+    // upstream FNTE amount on matching service lines. Premiums/CPL (filed
+    // rates), endorsements, recording, and taxes are never overridden.
+    const overridable =
+      !isPremiumLabel(label) &&
+      category !== 'recording' &&
+      category !== 'taxes' &&
+      category !== 'endorsements'
+    const override = overridable
+      ? betterCloseServiceFee(label, data.stateCode, req.transactionType)
+      : undefined
+    if (override === 0) return // 0 = BetterClose doesn't charge this fee
+    const ourCost = override ?? buyer
+
+    const variability = withTypicalRange(label, ourCost, category, data.stateCode, req.transactionType, req.zip)
     // Uniform-premium states (promulgated/bureau rates): surface the premium
     // as state-set so the UI explains why there's no comparison on that line.
     const uniformPremium =
@@ -250,7 +270,7 @@ export async function fetchElendFeeEstimate(req: ElendRequest): Promise<FeeRepor
       id: `elend-${i}`,
       label,
       category,
-      ourCost: buyer,
+      ourCost,
       ...variability,
       ...(feeSource ? { feeSource } : {}),
     })
