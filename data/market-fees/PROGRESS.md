@@ -38,6 +38,7 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | TN | 2 (Tennessee Title Services, LLC — Davidson County, own first-party calculator; Signature Title Services — Davidson County, own ASP.NET WebForms calculator) | below 3-provider threshold | 2026-07-28 |
 | IN | 1 (Agency Title, Inc. — New Albany/Louisville-metro Southern Indiana office, NetSheetCalc/TitleTap "Quick Quote" JSON API) | below 3-provider threshold | 2026-07-29 |
 | KY | 1 (Agency Title, Inc. — Louisville/Jefferson County, same operator's KY instance of NetSheetCalc/TitleTap) | below 3-provider threshold | 2026-07-29 |
+| AL | 3 (Signature Title Services — Jefferson County, AL-specific ASP.NET WebForms portal distinct from the TN instance; Land Title Company of Alabama — Jefferson/Shelby Counties, first-party JS calculator; Alabama Land Title — statewide, first-party "ydwebpro" platform calculator) | **calculator-quoted (3 providers)** | 2026-07-30 |
 
 FNF's ratecalculator.fnf.com **is drivable via plain HTTP POST, no browser needed** — confirmed
 2026-07-25 by replaying its ASP.NET WebForms `__doPostBack`/`__VIEWSTATE` protocol directly (the
@@ -194,6 +195,31 @@ plus Google reCAPTCHA even in "guest" mode — no personal data entered, not pur
 further. Time budget was spent entirely on the calculator-harvest priority this session;
 the standing freshness re-verification and blocked-retries passes (below) were not run
 this session and remain due for a future session.
+
+**2026-07-30 session — Alabama (AL) crosses the 3-provider threshold; South Carolina (SC)
+searched extensively but yielded zero new calculator providers.** SC (~5.3M population, the
+single highest-volume "complete (scarce)" state with zero calculator-basis providers on file)
+was tried first per the standing highest-volume-first priority. Extensive search (TRACcalculator/
+comparetitlecompanies.com, MyTitleRates.com including the separate `calculator3.mytitlerates.com`
+Laravel demo instance, NetSheetCalc/TitleTap — over a dozen appid candidates surfaced by search
+all resolved to FL/TX/KY/IN agencies misattributed to SC by search-engine snippet matching, not
+actual SC instances — TitleClose.com, Knight Barry [already confirmed 2026-07-29 not to cover SC],
+Old Republic's second tool [already confirmed 2026-07-29 NoBot-blocked for SC], the two published-
+schedule closing-attorney firms Mogil/Ingram, and several independent SC title/closing-attorney
+sites) found no working, non-gated calculator for South Carolina — every embedded widget found was
+either a lead-generation form requiring name/email/phone (Armour Title Company — gated, no personal
+data entered per the hard rule) or a real-estate-brokerage generic percentage-based estimator out
+of scope per the "provider's own calculator" mandate (Hunt LLC — also 403-blocked on direct fetch).
+SC's calculator landscape appears to match its already-thin published-schedule coverage (an
+attorney-closing state with little independent title-agency web presence). Session time was
+redirected to **Alabama** (~5.1M population, 2nd-highest-volume zero-provider scarce state),
+where NetSheetCalc/TitleTap search surfaced abundant candidates and 3 were successfully harvested
+in one pass, crossing the threshold — see AL.md's new "Calculator harvest" section and AL.json for
+full detail, and CALCULATORS.md for a new white-label platform discovery ("ydwebpro"). SC remains
+at 0 calculator-basis providers and is now the top-priority target for a future session (try a
+browser-driven pass on Hunt LLC/Selling Carolinas Group-style real-estate-team tools to confirm
+whether they're genuinely out of scope, or search independent SC closing-attorney firms not yet
+checked in either survey).
 
 ## Blocked-source retries (2026-07-27)
 One retry each per the task's standing instruction, all still unusable:

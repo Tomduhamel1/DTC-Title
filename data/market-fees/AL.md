@@ -59,6 +59,33 @@ WFG (2024) = $3.50/thousand up to $50,000 then $3.00/thousand to $100,000 = $325
 Loan, reissue/refinance credits, simultaneous-issue rates, and CPL charges are recorded verbatim
 in AL.json.
 
+## Calculator harvest (2026-07-30) — 3 providers, threshold crossed
+
+Separate from the published-schedule survey above (see PROGRESS.md's calculator harvest tracker
+for the cross-state methodology). AL had zero calculator-basis providers at the start of this
+session; found and harvested 3, crossing the 3-provider **calculator-quoted** threshold in one
+session:
+
+1. **Signature Title Services** (`secure.signaturetitleservices.net/Default.aspx?tabid=517`) — a
+   distinct AL-specific portal from this same operator's TN instance already on file
+   (`app.signaturetitleservices.net/PurchaseCalculator`, see TN.json) — classic ASP.NET WebForms
+   postback, driven directly via `requests`, no browser needed. Jefferson County (Birmingham).
+2. **Land Title Company of Alabama** (`land-title.net/rate-calculator/`) — first-party hand-rolled
+   JS slider calculator with hardcoded bracket-rate premium formulas and flat fee constants,
+   readable via plain view-source (the same technique already used for Modern Title Group/MI and
+   the OH netsheet-calculator agencies). Jefferson/Shelby Counties.
+3. **Alabama Land Title** (`alabamalandtitle.com/Closing-Cost-Calculator`) — resolves the prior
+   session's HTTP 503 (the `https://` host 503s; plain `http://` works). A first-party calculator
+   built on a previously-uncatalogued white-label CMS platform ("ydwebpro"), whose full fee
+   schedule and premium-bracket formulas are hardcoded in a separately-linked JS file
+   (`Content/plugins/ydshortcodes/closingcostcalculator/code.js`), again readable without browser
+   execution. Statewide (no county tiering).
+
+All three are genuine itemized settlement/service-fee sources (not premium-only), a meaningful
+upgrade over this state's published-schedule survey, which found zero settlement-fee dollar
+figures anywhere. See AL.json for full itemized figures; see CALCULATORS.md for the full technical
+recipes (including the new "ydwebpro" platform, flagged there for reuse in other scarce states).
+
 ## Not used / found-but-blocked
 
 - **southoaktitle.com/resources/title-closing-rates/birmingham-rates** — fetched; directs to

@@ -38,5 +38,96 @@
     },
     "bundlingNotes": "General Provisions state: 'The charges hereinafter set out are basic charges only and do not include all charges for searches, abstracts, attorney's fees, escrow or closing services, inspections or other services that may also be charged by agents, local attorneys, surveyors, abstractors, or abstract companies.' The 'Charge' definition further clarifies: 'This charge does not include abstracting or searching fee, examination fee, settlement fees, closing fees, or escrow fees.' Same premium/settlement separation pattern as WFG, and same geographic split (Birmingham-metro Jefferson/Shelby/Blount counties vs. rest-of-state), suggesting this county carve-out is a standing AL market convention rather than underwriter-specific.",
     "transactionContext": "Owner's and Loan policy premium schedules (State charge vs. Birmingham Metro charge), reissue/refinance credits, simultaneous-issue rates, Closing Protection Letter charges, and full commercial endorsement price list. No purchase/refinance settlement-service-fee breakdown."
+  },
+  {
+    "provider": "Signature Title Services (independent title/settlement agency, Alabama)",
+    "basis": "calculator",
+    "sourceUrl": "https://secure.signaturetitleservices.net/Default.aspx?tabid=517",
+    "calculatorUrl": "https://secure.signaturetitleservices.net/Default.aspx?tabid=517",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (DotNetNuke portal, same __VIEWSTATE/__VIEWSTATEGENERATOR pattern documented elsewhere in this catalog for FNF/Old Republic/Federal Title/Knight Barry/this same operator's separate TN instance at app.signaturetitleservices.net) -- a distinct host/page structure from the TN instance (field prefix ctl00$mainContent$ctl00$... vs TN's ctl00$MainContent$...), confirming this is a separately-configured AL-specific portal, not the same live instance reused. Driven with a single GET (capture __VIEWSTATE/__VIEWSTATEGENERATOR) then one POST, no intermediate postbacks needed. POST fields: ctl00$mainContent$ctl00$rb_PurRefi=Purchase, ctl00$mainContent$ctl00$TxtOwnerPolicyAmt=500000 (purchase price), ctl00$mainContent$ctl00$txtLoanPolicyAmt=400000 (loan amount), ctl00$mainContent$ctl00$DD_Property_County=Jefferson (fixed-width padded option value, AL's most populous county / Birmingham), ctl00$mainContent$ctl00$DD_LP_Type=Basic Rate, ctl00$mainContent$ctl00$txtDeedPgs=4 and txtPgs1=25 (the form's own default page-count fields, left unchanged), ctl00$mainContent$ctl00$txt_PolicySplit=100.00 and txt_ClosingSplit=100.00 (100% buyer-paid, the form's own defaults), ctl00$mainContent$ctl00$btnCalc=Calculate.",
+    "retrievalDate": "2026-07-30",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Basic Rate (non-reissue), Jefferson County (Birmingham -- Alabama's most populous county).",
+    "methodology": "No personal data fields exist anywhere in this form -- every field is a plain scenario parameter (county, price, loan amount, rate type, document page counts). No login/registration required.",
+    "itemizedFees": {
+      "settlementClosing": "Settlement Fee $595.00 (buyer)",
+      "searchExam": "Title Exam & Binder $350.00 (buyer)",
+      "processing": "Document Storage Fee $10.00 (buyer) + $10.00 (seller); Document Prep* $150.00 (buyer); Payoff Processing* $30.00 (seller)",
+      "docPrep": "$150.00 (buyer, marked with a footnote asterisk on the tool's own results page)",
+      "notarySigning": null,
+      "eRecording": null,
+      "cpl": "Closing Protection Letter $25.00",
+      "other": [
+        { "name": "Courier Fee* (buyer)", "amount": "$75.00" },
+        { "name": "Owner's premium (Incremental cost, disclosed, simultaneous issue)", "amount": "$800.00" },
+        { "name": "ALTA Owner's Policy (Full premium rate, actual)", "amount": "$1,550.00" },
+        { "name": "Loan premium (Full premium rate, disclosed)", "amount": "$1,000.00" },
+        { "name": "ALTA Loan Policy (Actual)", "amount": "$250.00" },
+        { "name": "Recording: Deed", "amount": "$25.00" },
+        { "name": "Recording: Mortgage", "amount": "$88.00" },
+        { "name": "Transfer Tax (government)", "amount": "$100.00" },
+        { "name": "Mortgage Tax (government)", "amount": "$600.00" }
+      ]
+    },
+    "sectionTotals": "Total Title Fees (Owner's + Loan premiums, disclosed basis): $1,800.00. Total Closing Costs (Settlement Fee + Title Exam/Binder + Document Storage + Document Prep + Courier, buyer side): $1,180.00; seller-side Total Closing Costs (Document Storage + Payoff Processing): $40.00. Closing Protection Letter: $25.00. Total Recording Fees & Transfer/Mortgage Taxes: $813.00 (Recording $113.00 [Deed $25 + Mortgage $88] + Taxes $700.00 [Transfer Tax $100 + Mortgage Tax $600]). Grand Total (buyer side): $3,818.00; seller side: $40.00.",
+    "bundlingNotes": "A genuine first-party ASP.NET calculator operated by the same company/brand as TN's Signature Title Services entry but on a structurally distinct portal (DotNetNuke-based secure.signaturetitleservices.net vs. TN's dedicated app.signaturetitleservices.net/PurchaseCalculator app) -- treated as a separate AL-specific source since it reflects AL's own county list, rate structure, and fee constants (e.g. AL's $595 Settlement Fee + $350 Title Exam & Binder vs. TN's $595 Settlement Fee + $350 Title Exam & Binder -- notably identical dollar figures for these two line items despite being different states/portals, suggesting a shared corporate fee-setting policy across this operator's state instances, distinct from the TN result documented in TN.json).",
+    "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Jefferson County (Birmingham), Basic (non-reissue) rate."
+  },
+  {
+    "provider": "Land Title Company of Alabama",
+    "basis": "calculator",
+    "sourceUrl": "https://www.land-title.net/rate-calculator/",
+    "calculatorUrl": "https://www.land-title.net/rate-calculator/",
+    "endpointOrParams": "A first-party, hand-rolled client-side JS calculator (noUiSlider-driven purchase-price slider plus purchase/refinance and residential/commercial toggles) with all fee constants and premium rate brackets hardcoded directly in the page's own inline <script> block -- readable via plain view-source/curl, no execution needed (the same 'grep hardcoded fee constants' technique already used elsewhere in this catalog for Modern Title Group/MI and the OH netsheet-calculator agencies). Rate brackets (per $1,000 of sales price, cumulative marginal-bracket formula): Owner's Policy (purchase, standard non-ALTA) -- $0-100k @ $3.50/k, $100k-500k @ $2.50/k, $500k-10M @ $1.75/k, $10M-15M @ $1.50/k, $15M+ @ $1.25/k, minimum $125. Flat constants: CPL Fee $25 (purchase), Simultaneous [loan-policy] Issue Fee $125 (purchase+finance only), Residential Title Services Fee $350 (Commercial $500).",
+    "retrievalDate": "2026-07-30",
+    "scenario": "$500,000 purchase price, financed purchase (simultaneous loan-policy issuance fee applies), residential, standard (non-ALTA-Homeowner) Owner's Policy. Jefferson/Shelby Counties (Birmingham metro, AL's most populous) -- the tool's own stated service area, no separate county selector (one statewide-for-this-agency rate table).",
+    "methodology": "Fee constants and bracket-rate formula read directly from the page's own unminified inline JavaScript (jQuery/noUiSlider slider calculator, function names 'rate()'/'updateTotal()'); the Owner's Policy premium figure below was computed by hand-replaying the tool's own published bracket formula against the $500,000 standard scenario ($100k tier: 100 x $3.50 = $350.00; next $400k tier: 400 x $2.50 = $1,000.00; total $1,350.00), not independently estimated. No personal data fields exist on this calculator at all (purchase price slider plus purchase/refi and res/com toggles only).",
+    "itemizedFees": {
+      "settlementClosing": "Title Services Fee $350.00 (the tool's own label for its settlement/closing service charge, residential rate)",
+      "searchExam": null,
+      "processing": null,
+      "docPrep": null,
+      "notarySigning": null,
+      "eRecording": null,
+      "cpl": "CPL Fee $25.00",
+      "other": [
+        { "name": "Owner's Policy premium (standard, non-ALTA-Homeowner, bracket-rate computed for $500,000)", "amount": "$1,350.00" },
+        { "name": "Simultaneous [Loan Policy] Issue Fee (financed-purchase only)", "amount": "$125.00" }
+      ]
+    },
+    "sectionTotals": "Purchase+Finance total (the tool's own 'pfTotal' displayed figure: Owner's Policy premium + Title Services Fee + CPL Fee + Simultaneous Issue Fee): $1,850.00. (For reference, the tool's Cash-purchase total omitting the Simultaneous Issue Fee would be $1,725.00; its Refinance total, using a separate lower Loan-Policy-only bracket table (2.00/k for the $100k-500k tier) plus the same $350 service fee and $25 CPL, would be $1,425.00.)",
+    "bundlingNotes": "A genuine independent-agency first-party calculator, distinct from the shared SaaS platforms (MyTitleRates/TRACcalculator/TitleClose/NetSheetCalc) already catalogued elsewhere in this file, and a second confirmed instance of the 'read hardcoded JS constants without browser execution' technique. The $350 Title Services Fee is a clean, singular settlement-service dollar figure -- directly comparable to Signature Title Services' $595 Settlement Fee for the same Jefferson County / Birmingham market above, showing real cross-provider spread within the same metro.",
+    "transactionContext": "Calculator-derived itemized quote for the standard $500,000 purchase-price scenario (financed), Jefferson/Shelby Counties (Birmingham metro)."
+  },
+  {
+    "provider": "Alabama Land Title",
+    "basis": "calculator",
+    "sourceUrl": "http://alabamalandtitle.com/Closing-Cost-Calculator",
+    "calculatorUrl": "http://alabamalandtitle.com/Closing-Cost-Calculator",
+    "endpointOrParams": "A first-party 'ydwebpro' shortcode-loaded closing-cost calculator (`Content/plugins/ydshortcodes/closingcostcalculator/code.js`, a white-label WordPress/ASP.NET-hybrid CMS platform product distinct from every other platform already catalogued in CALCULATORS.md) with the entire fee schedule and premium-rate bracket formulas hardcoded directly in the linked JS file -- readable via plain curl/grep of the .js file itself, no execution needed. Key hardcoded constants (function names verbatim): getOwnersPolicyRate()/getMortgagePolicyRate() (per-$1,000 bracket tables), getSearchFee() (bracket table for the seller-side Title Exam fee), plus flat constants Settlement Fee (buyer) $450 financed / $250 cash, Admin Fee $50 (each of buyer and seller), Attorney Fee (seller) $85, Doc Stamp on Deed (buyer) $21, Doc Stamp on Mortgage (buyer, financed only) $66, CPL Fee (buyer) $25, Simultaneous Issue Fee (buyer) $125, plus formula-driven Transfer Tax Deed/Mortgage fields.",
+    "retrievalDate": "2026-07-30",
+    "scenario": "$500,000 purchase price, $400,000 loan amount (financed purchase), statewide -- the tool has no county selector at all (one fee schedule for all of Alabama, unlike the Jefferson/Shelby-scoped Land Title Company of Alabama entry above).",
+    "methodology": "Fee constants and bracket-rate formulas read directly from the calculator's own unminified `code.js` file (fetched via plain HTTP GET, not the page markup itself, since the calculator is loaded dynamically by a jQuery shortcode loader). All dollar figures below were computed by hand-replaying the tool's own published `calculateClosingCost()` JS function against the standard $500,000/$400,000 scenario (financed, so `cashSell=false`): Owner's/Mortgage Policy bracket rate ceil(500000/1000)*2.00=$1,000.00 (this tool's own logic assigns the mortgage-policy-rate table's output to the 'Owner's Title Insurance' seller-side line when the purchase is financed); Lender's Policy flat $175 (since loanAmount <= purchasePrice); Title Exam/Search Fee bracket formula (ceil(500000/1000)-50)*0.75+350=$687.50; Transfer Tax Deed floor((purchasePrice-loanAmount)/1000)=floor(100000/1000)=$100.00; Transfer Tax Mortgage 1.5*floor(loanAmount/1000)=1.5*400=$600.00. No personal data fields exist on this calculator (Sale Price, Loan Amount, Down Payment, optional misc-charge fields, and a free-text Property Description field only).",
+    "itemizedFees": {
+      "settlementClosing": "Settlement Fee $450.00 (buyer, financed-purchase rate; $250.00 flat for an all-cash purchase)",
+      "searchExam": "Title Exam / Search Fee $687.50 (seller side)",
+      "processing": "Admin Fee $50.00 (buyer) + $50.00 (seller)",
+      "docPrep": null,
+      "notarySigning": null,
+      "eRecording": null,
+      "cpl": "CPL Fee $25.00 (buyer)",
+      "other": [
+        { "name": "Owner's Title Insurance (bracket-rate computed, assigned to seller side per the tool's own financed-purchase logic)", "amount": "$1,000.00" },
+        { "name": "Lender's Policy (buyer, flat rate since loan does not exceed purchase price)", "amount": "$175.00" },
+        { "name": "Attorney Fee (seller)", "amount": "$85.00" },
+        { "name": "Simultaneous Issue Fee (buyer)", "amount": "$125.00" },
+        { "name": "Doc Stamp on Deed (buyer)", "amount": "$21.00" },
+        { "name": "Transfer Tax -- Deed (buyer, government)", "amount": "$100.00" },
+        { "name": "Doc Stamp on Mortgage (buyer, financed-purchase only)", "amount": "$66.00" },
+        { "name": "Transfer Tax -- Mortgage (buyer, government)", "amount": "$600.00" }
+      ]
+    },
+    "sectionTotals": "Buyer-side subtotal (Lender's Policy + Settlement Fee + Admin Fee + CPL Fee + Simultaneous Issue Fee + Doc Stamps + Transfer Taxes): $1,612.00. Seller-side subtotal (Owner's Title Insurance + Title Exam Fee + Admin Fee + Attorney Fee): $1,822.50.",
+    "bundlingNotes": "A third independent-agency first-party calculator using yet another shared-CMS white-label platform ('ydwebpro') not previously catalogued in this survey -- worth checking for other AL/regional agency instances in a future session (the platform is likely licensed to multiple small title/law-firm sites, similar in structure to the OH netsheet-calculator template already documented, though this specific instance was found independently via search rather than via a known-platform search). Crosses AL to the 3-calculator-basis-provider threshold alongside Signature Title Services (Jefferson County) and Land Title Company of Alabama (Jefferson/Shelby Counties).",
+    "transactionContext": "Calculator-derived itemized quote for the standard $500,000 purchase price / $400,000 loan amount scenario (financed), statewide Alabama (no county tiering in this tool)."
   }
 ]

@@ -878,6 +878,63 @@ Google reCAPTCHA before any quote is returned — **gated**, no personal data en
 rule, not pursued further (the reCAPTCHA alone would also make this jsOnly/browser-only even if
 the email requirement were waived).
 
+## 2026-07-30 session — Alabama (AL) harvest crosses threshold; new "ydwebpro" white-label platform found; South Carolina (SC) searched extensively, zero new providers
+
+SC (highest-volume zero-provider "complete (scarce)" state, ~5.3M) was tried first but yielded
+nothing usable (see PROGRESS.md's session note for the full list of dead ends: mislabeled
+NetSheetCalc search results, TitleClose/Knight Barry/Old Republic all already-confirmed non-covering
+or blocked for SC, and only lead-gen forms or out-of-scope real-estate-team estimators found).
+Session redirected to Alabama, where three providers were found and harvested in one pass:
+
+### Signature Title Services — Alabama-specific portal, distinct from the TN instance already on file
+`secure.signaturetitleservices.net/Default.aspx?tabid=517` — **WORKING**. Same company/brand as the
+already-catalogued TN instance (`app.signaturetitleservices.net/PurchaseCalculator`) but a
+structurally different DotNetNuke-portal page (field prefix `ctl00$mainContent$ctl00$...` vs. TN's
+`ctl00$MainContent$...`, and a different field set — no `Reissue`/`txtPgs2` fields present in the AL
+version), confirming it's a separately-configured, AL-specific instance rather than the same live
+app reused across states. Classic ASP.NET WebForms postback, single GET (capture `__VIEWSTATE`/
+`__VIEWSTATEGENERATOR`) then one POST — no cascading dropdowns needed since the county select
+(`DD_Property_County`, all 67 AL counties, fixed-width-padded option values e.g. `"Jefferson           "`
+with trailing spaces that must be preserved verbatim in the POST body) is present on the initial
+page load. POST fields: `rb_PurRefi=Purchase`, `TxtOwnerPolicyAmt`/`txtLoanPolicyAmt` (price/loan),
+`DD_Property_County`, `DD_LP_Type=Basic Rate`, `txtDeedPgs`/`txtPgs1` (left at their own page
+defaults, 4/25), `txt_PolicySplit`/`txt_ClosingSplit=100.00` (100% buyer-paid, the defaults),
+`btnCalc=Calculate`. No personal data fields anywhere. Confirmed working for Jefferson County
+(Birmingham) — see AL.json. **Recommendation**: this operator may run more per-state DotNetNuke
+portals beyond TN/AL — worth a `secure.signaturetitleservices.net` / `app.signaturetitleservices.net`
+sweep of other state names in a future session.
+
+### Land Title Company of Alabama — WORKING, first-party JS calculator, hardcoded rate brackets
+`land-title.net/rate-calculator/` — a hand-rolled client-side JS calculator (jQuery + noUiSlider
+purchase-price slider, purchase/refinance and residential/commercial toggles) with the entire fee
+schedule (Owner's/Loan Policy premium bracket-rate tables, CPL Fee $25, Simultaneous [loan-policy]
+Issue Fee $125, Residential Title Services Fee $350 / Commercial $500) hardcoded directly in the
+page's own unminified inline `<script>` block. Read via plain `curl`/view-source, no JS execution
+needed — the same "grep hardcoded fee constants" technique first used for Modern Title Group (MI)
+and the OH netsheet-calculator agencies. The bracket-rate `rate()` function itself was hand-replayed
+against the $500,000 standard scenario to get the actual premium figure (a cumulative marginal-
+bracket formula, more complex than a flat constant but still fully static/readable). Jefferson/Shelby
+Counties (Birmingham metro) is the tool's own stated service area — no separate county selector.
+
+### Alabama Land Title — WORKING, new "ydwebpro" white-label platform discovered
+`alabamalandtitle.com/Closing-Cost-Calculator` — previously logged 2026-07-22 as "HTTP 503,
+unusable"; **resolved this session**: the `https://` host 503s but plain `http://` returns 200. The
+page loads its calculator via a jQuery shortcode loader (`if (typeof ydclosingcostcalcshortcode ==
+'undefined') $.getScript(ydwebpro.path + '/Content/plugins/ydshortcodes/closingcostcalculator/
+code.js', ...)`) — **"ydwebpro"** is a previously-uncatalogued white-label CMS/calculator platform
+(distinct from every other platform already documented in this file: MyTitleRates, TRACcalculator,
+TitleClose, NetSheetCalc, TitleCapture, Qualia, CATICulator, PalmAgent). The entire fee schedule and
+premium-rate bracket formulas (`getOwnersPolicyRate()`, `getMortgagePolicyRate()`, `getSearchFee()`,
+plus flat constants: Settlement Fee $450 financed/$250 cash, Admin Fee $50/$50, Attorney Fee $85,
+Doc Stamps $21/$66, CPL Fee $25, Simultaneous Issue Fee $125) are hardcoded in the linked `code.js`
+file itself, fetched directly via plain GET (not the page HTML, since the calculator is injected
+dynamically) — no browser execution needed, same static-JS-reading technique as Land Title Company
+of Alabama above. Statewide (no county selector at all, unlike the Jefferson/Shelby-scoped Land
+Title Company of Alabama entry). **Recommendation**: search `"ydclosingcostcalcshortcode"` or
+`"ydshortcodes/closingcostcalculator"` combined with other scarce-state title-agency names — since
+this is a shared CMS product (`ydwebpro.path`-relative asset loading suggests a licensed platform,
+not a one-off custom build), it likely serves other agencies/states not yet found.
+
 ## For the browser-driven follow-up session
 Priority queue (highest-value first): (1) TitleCapture — drive `<agency>.titlecapture.com/
 title-quote` for a real agency instance (e.g. moderntitlegroup.titlecapture.com) and capture the
