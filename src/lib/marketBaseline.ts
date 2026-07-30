@@ -182,6 +182,13 @@ const SERVICE_BANDS: Record<string, ServiceBand> = {
   // NC has published evidence (buyer stack $1,175, one provider) but our own
   // NC service denominator couldn't be measured (upstream 500s) — inferred
   // band until the denominator lands and the ratio can be computed.
+
+  // RI: owner-supplied market low (Tom, 2026-07-30) — lowest observed RI
+  // buyer-side full service stack $690 purchase / $590 refi. Ratio vs our RI
+  // stack at the anchor scenario incl. the BetterClose $250 settlement fee
+  // (betterCloseFees.ts): $690 / $550 = 1.25 (kept at 2dp, conservative).
+  // Single evidence point → pooled high, providers: 1.
+  RI: { low: 1.25, high: 1.4, basis: 'inferred', providers: 1 },
 }
 
 // Refinance-specific overrides. Refi service fees are a different market
@@ -199,6 +206,9 @@ const SERVICE_BANDS: Record<string, ServiceBand> = {
 // until a second provider corroborates). Highs bounded at min(purchase
 // high, 1.6 × the observed point).
 const SERVICE_BANDS_REFI: Record<string, ServiceBand> = {
+  // RI: owner-supplied market low $590 refi full stack (see purchase note):
+  // $590 / $450 refi stack = 1.31; high bounded at the purchase high.
+  RI: { low: 1.31, high: 1.4, basis: 'inferred', providers: 1 },
   CA: { low: 1.37, high: 2.19, basis: 'calculator', providers: 1 },
   GA: { low: 1.0, high: 1.2, basis: 'published', providers: 1 },
   IL: { low: 0.57, high: 0.91, basis: 'calculator', providers: 1 },

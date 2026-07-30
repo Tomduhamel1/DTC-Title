@@ -31,7 +31,10 @@ export interface BetterCloseFeeTable {
 
 export const BETTERCLOSE_SERVICE_FEES: BetterCloseFeeTable = {
   default: {},
-  byState: {},
+  byState: {
+    // Tom, 2026-07-30: BetterClose RI settlement fee $250 (purchase and refi).
+    RI: { 'Settlement Fee': 250 },
+  },
 }
 
 function resolveAmount(
