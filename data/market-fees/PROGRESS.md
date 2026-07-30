@@ -221,6 +221,19 @@ browser-driven pass on Hunt LLC/Selling Carolinas Group-style real-estate-team t
 whether they're genuinely out of scope, or search independent SC closing-attorney firms not yet
 checked in either survey).
 
+**Same session, continued — Louisiana (LA) also searched extensively, 0 new providers.** After AL
+crossed the threshold, LA (~4.6M, 3rd-highest-volume zero-provider scarce state) was tried next.
+The strongest lead, Southern Title's own first-party all-64-parish closing cost calculator
+(`southerntitleonline.com/calculators/closing-costs`), turned out to be a Next.js SPA with no
+discoverable fee-computation endpoint (only analytics/logging APIs found) — logged jsOnly.
+Louisiana Title Services' premium-rate-calculator 503'd on every host/scheme variant tried,
+matching its 2026-07-22 published-schedule-session failure. A previously-uncatalogued
+TRACcalculator entry-point variant (`netsheet.php?pid=<n>`, found via Ascendant Title, pid=29) is
+hardcoded to Colorado for that specific pid and did not yield an LA instance. See LA.md's new
+"Calculator harvest" section for the full list of dead ends. LA remains at 0 calculator-basis
+providers; SC and LA are now tied as the top-priority targets for a future session, with Mississippi
+(~2.9M) next in line after them.
+
 ## Blocked-source retries (2026-07-27)
 One retry each per the task's standing instruction, all still unusable:
 - **Arizona DIFI** — direct-fetched a specific filing PDF URL (`difi.az.gov/sites/default/files/

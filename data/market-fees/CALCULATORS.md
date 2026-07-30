@@ -935,6 +935,37 @@ Title Company of Alabama entry). **Recommendation**: search `"ydclosingcostcalcs
 this is a shared CMS product (`ydwebpro.path`-relative asset loading suggests a licensed platform,
 not a one-off custom build), it likely serves other agencies/states not yet found.
 
+## 2026-07-30 session, continued — Louisiana (LA) searched, 0 new providers; new TRACcalculator entry-point variant found but not usable
+
+### comparetitlecompanies.com/get_quote/netsheet.php?pid=<n> — a third TRACcalculator entry-point pattern, state-pinned per pid
+Distinct from the already-documented `getquote.php?title_co_id=<id>` (per-agency embed) and
+`get_quote.php?id=1` (CO's own multi-company comparison tool) entry points: `netsheet.php?pid=29`
+is a single-agency netsheet request form (found via Ascendant Title, a multi-state national title
+company with a confirmed LA branch) using a `pid` parameter instead of `title_co_id`. Two cascading
+AJAX endpoints populate its dropdowns: `GET /get_quote/ajax_get_closing_offices_netsheet.php?
+pid=<n>&nstype=<Buyer|Seller>&var_name=<field>` and `GET /get_quote/ajax_get_counties_netsheet.php?
+state=<ST>&title_co=<office_id>&var_name=<field>` (both plain, no auth). **Gotcha**: unlike the
+other two entry points, this form's target state is **hardcoded in the page's own inline JS**
+(`var state_val = "CO";`) rather than derived from the property address — confirmed for `pid=29`
+specifically (Ascendant's Colorado branch/listing), so this pid does not serve LA despite Ascendant
+having an LA office elsewhere. Not pursued further to a working quote this session (no LA-scoped
+pid found). **Recommendation**: search `"comparetitlecompanies.com/get_quote/netsheet.php?pid="`
+combined with target state names, or check whether Ascendant/other multi-state agencies have a
+separate pid per branch/state (the CO-hardcoding suggests each pid is state-specific, so an LA pid
+may exist under a different number) — a future session's next step for LA specifically.
+
+### Southern Title (LA) — jsOnly, Next.js SPA, no discoverable computation endpoint
+`southerntitleonline.com/calculators/closing-costs` — a genuine first-party, all-64-Louisiana-parish
+closing cost calculator (the single richest-looking LA lead found), but built as a Next.js/React
+SPA. The only backend endpoints discoverable in the page's webpack chunks are
+`/api/calculator-usage` and `/api/saved-calculations` (both analytics/logging POSTs, confirmed by
+their request bodies which echo already-computed results rather than requesting a computation) and
+`/api/geocode` (address lookup only) — the actual fee/millage computation logic and data appear to
+be fully client-side but were not located in any of the ~10 webpack chunk files fetched this
+session (likely lazy-loaded on interaction, not present in the initial page-load bundle set).
+**jsOnly**, logged for the browser-driven follow-up queue — likely a high-value target given the
+calculator's own marketing claims of ward-level millage precision across all 64 parishes.
+
 ## For the browser-driven follow-up session
 Priority queue (highest-value first): (1) TitleCapture — drive `<agency>.titlecapture.com/
 title-quote` for a real agency instance (e.g. moderntitlegroup.titlecapture.com) and capture the

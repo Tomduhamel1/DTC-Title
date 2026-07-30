@@ -81,6 +81,38 @@ reissue/substitution credits, mechanics'/materialmen's lien protection, simultan
 issue, and the complete 109-item ALTA/LATISSO endorsement rate schedule are recorded
 verbatim in LA.json.
 
+## Calculator harvest (2026-07-30) — 0 providers found, extensively searched
+
+Tried per the standing calculator-harvest priority (LA is ~4.6M population, the 3rd-highest-volume
+"complete (scarce)" state with zero calculator-basis providers on file, after SC and AL). No
+usable calculator found this session:
+- **Southern Title** (`southerntitleonline.com/calculators/closing-costs`) — the strongest lead
+  found (a genuine first-party, itemized, all-64-parish closing cost calculator) but is a Next.js/
+  React SPA; the only discoverable backend endpoints (`/api/calculator-usage`,
+  `/api/saved-calculations`, `/api/geocode`) are analytics/logging calls, not the fee-computation
+  itself, which appears to run entirely client-side against data not found in any fetched JS
+  chunk (parish millage tables likely load from a separate data source not identified this
+  session). **jsOnly**, logged for the browser-driven follow-up queue.
+- **Louisiana Title Services, Inc.** (`louisianatitle.com/premium-rate-calculator`) — HTTP 503 on
+  every host/scheme variant tried (`http://`, `https://`, with/without `www.`), consistent across
+  repeated attempts (also 503'd in the 2026-07-22 published-schedule session) — likely a standing
+  server-side or bot-protection issue, not transient.
+- **comparetitlecompanies.com/get_quote/netsheet.php?pid=29** (Ascendant Title, a multi-state
+  national title company confirmed to have an LA branch per public filings) — a previously-
+  uncatalogued TRACcalculator entry-point variant (`netsheet.php`, distinct from the already-
+  documented `getquote.php`/`get_quote.php` variants), but this specific `pid=29` instance is
+  hardcoded to Colorado (`var state_val = "CO"` in its own JS) — Ascendant's LA branch, if it has
+  its own `pid`, was not located this session. Flagged for a future session: search for other
+  `netsheet.php?pid=<n>` values or Ascendant's own site for an LA-specific embed.
+- Also checked without success: Great American Title Company (confirmed Texas, not LA, despite
+  surfacing in LA-targeted search results), Bayou Title, Grand Title, Legacy Title, Cypress Title,
+  Central Title & Closing, Team Title (commercial-only calculator, out of scope), TitleClose.com
+  (no LA tenant found), MyTitleRates.com (no LA agency found), NetSheetCalc/TitleTap (search
+  results for LA cities returned only non-LA agencies, the same false-positive pattern seen in
+  this session's SC search).
+- LA's civil-law notary-closing structure (see below) likely explains the thin calculator coverage
+  here, consistent with its already-scarce published-schedule survey.
+
 ## Not used / found-but-blocked
 
 - **steeglaw.com/residential-real-estate/residential-closing-fees-purchaser/** (New
