@@ -67,7 +67,9 @@ export const STATE_ANCHORS: Record<string, StateAnchor> = {
   OK: { purchase: { save: 493, ourTotal: 4835 }, refinance: { save: 232, ourTotal: 2862 } },
   OR: { purchase: { save: 374, ourTotal: 3327 }, refinance: { save: 424, ourTotal: 2512 } },
   PA: { purchase: { save: 49, ourTotal: 16378 }, refinance: { save: 36, ourTotal: 4066 } },
-  RI: { purchase: { save: 503, ourTotal: 2885 }, refinance: { save: 188, ourTotal: 1347 } },
+  // RI re-measured 2026-07-30 (same code path as build-state-savings) after
+  // the BetterClose $250 settlement fee + owner-evidenced RI bands landed.
+  RI: { purchase: { save: 598, ourTotal: 2585 }, refinance: { save: 300, ourTotal: 1247 } },
   SC: { purchase: { save: 374, ourTotal: 2420 }, refinance: { save: 148, ourTotal: 1075 } },
   SD: { purchase: { save: 509, ourTotal: 4060 }, refinance: { save: 243, ourTotal: 2821 } },
   TN: { purchase: { save: 54, ourTotal: 3534 }, refinance: { save: 150, ourTotal: 1606 } },
