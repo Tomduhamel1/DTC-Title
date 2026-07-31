@@ -198,7 +198,8 @@ export default function FeeReportTable({
         charges are compared as a complete package, since providers itemize
         the same work differently. &ldquo;Typical&rdquo; ranges reflect our
         estimate of local market pricing, and savings are measured against
-        the low end of that range.
+        the low end of that range. BetterClose Bucks is an introductory
+        promotional credit from BetterClose, applied at closing.
       </div>
     </div>
   )
@@ -225,6 +226,34 @@ function FeeRow({
   // Same conservative definition computeTotals sums — premium badges plus the
   // service-package badge must add up to the headline "Save at closing".
   const lineSavings = comparedInPackage ? 0 : conservativeLineSavings(item)
+
+  // Promotional credit (BetterClose Bucks): its own treatment — emerald
+  // negative amount, no market comparison column.
+  if (item.isCredit) {
+    return (
+      <div className="relative pl-9">
+        <div className="absolute top-1 left-0 w-3.5 h-3.5 rounded-full bg-emerald-500 ring-2 ring-emerald-100" />
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex-1 min-w-0">
+            <div className="text-[15px] font-semibold text-dark-900 leading-tight tracking-tight">
+              {item.label}
+              <span className="ml-2 align-middle inline-block text-[9px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-2 py-0.5">
+                New
+              </span>
+            </div>
+            {item.description && (
+              <div className="text-[11px] text-gray-400 mt-1">{item.description}</div>
+            )}
+          </div>
+          <div className="text-right whitespace-nowrap">
+            <div className="text-[17px] font-black text-emerald-700 tabular-nums leading-none tracking-tight">
+              −{formatCurrency(-item.ourCost)}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="relative pl-9">
