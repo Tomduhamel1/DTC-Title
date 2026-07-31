@@ -6,6 +6,7 @@
 // Set FEE_CALC_API_URL to the production stage once the API owner confirms
 // it; do not hardcode a new stage here.
 
+import { betterCloseBucksLine } from './betterCloseBucks'
 import { betterCloseServiceFee } from './betterCloseFees'
 import type { FeeCategory, FeeLineItem, FeeReport, FeeSource } from './feeReport'
 import {
@@ -275,6 +276,10 @@ export async function fetchElendFeeEstimate(req: ElendRequest): Promise<FeeRepor
       ...(feeSource ? { feeSource } : {}),
     })
   })
+
+  // BetterClose Bucks — introductory credit on every quote (betterCloseBucks.ts).
+  const bucks = betterCloseBucksLine(lineItems, data.stateCode)
+  if (bucks) lineItems.push(bucks)
 
   return {
     state: data.stateCode || '',

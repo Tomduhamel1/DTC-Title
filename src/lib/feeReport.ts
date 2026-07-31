@@ -34,6 +34,10 @@ export interface FeeLineItem {
   // Optional — when present, computeTotals classifies this line's savings into
   // the breakdown. When absent, falls back to category-based inference.
   savingsSource?: SavingsSource
+  // Promotional credit line (negative ourCost), e.g. BetterClose Bucks.
+  // Lowers ourTotal and counts toward estimatedSavings dollar-for-dollar;
+  // never affects the market comparison range (the market doesn't offer it).
+  isCredit?: boolean
 }
 
 // Location precision of this report. Drives result-page UX only — at every
@@ -111,6 +115,9 @@ export interface FeeReportTotals {
     settlement_fee: number
     other_controllable: number
     pass_through_total: number
+    // Promotional credits (BetterClose Bucks). Optional so totals frozen
+    // before the feature existed still type-check.
+    promotional_credit?: number
   }
   // Backwards-compatibility — every component reading the old range fields now
   // gets the same conservative number for low and high. Removes the "low–high
@@ -215,6 +222,7 @@ export function computeTotals(report: FeeReport): FeeReportTotals {
     settlement_fee: 0,
     other_controllable: 0,
     pass_through_total: 0,
+    promotional_credit: 0,
   }
 
   const serviceStack: ServiceStackTotals = {
@@ -226,6 +234,15 @@ export function computeTotals(report: FeeReport): FeeReportTotals {
   }
 
   for (const item of report.lineItems) {
+    // Promotional credits (BetterClose Bucks): lower what the borrower pays
+    // and widen savings dollar-for-dollar. The market range is untouched —
+    // other providers don't offer the credit, so marketLow/High describe the
+    // market's own stack only.
+    if (item.isCredit) {
+      ourTotal += item.ourCost
+      breakdown.promotional_credit += Math.max(0, -item.ourCost)
+      continue
+    }
     ourTotal += item.ourCost
     const source = inferSavingsSource(item)
 
@@ -260,7 +277,8 @@ export function computeTotals(report: FeeReport): FeeReportTotals {
   breakdown.settlement_fee = serviceStack.savings
   breakdown.other_controllable = 0
 
-  const estimatedSavings = breakdown.title_related + serviceStack.savings
+  const estimatedSavings =
+    breakdown.title_related + serviceStack.savings + breakdown.promotional_credit
   const lifetimeSavings = lifetimeFinancedAmount(estimatedSavings)
 
   return {
@@ -342,6 +360,17 @@ export function getSampleFeeReport(): FeeReport {
         isFixed: true,
         feeSource: 'county',
         savingsSource: 'pass_through',
+      },
+      {
+        // BetterClose Bucks (betterCloseBucks.ts): 15% of the sample's
+        // combined policy premium ($760 lender's) = $114.
+        id: 'betterclose-bucks',
+        label: 'BetterClose Bucks',
+        category: 'other',
+        ourCost: -114,
+        isFixed: false,
+        isCredit: true,
+        description: 'Introductory BetterClose credit, applied at closing.',
       },
     ],
   }
@@ -467,6 +496,24 @@ export function getMockFeeReport(input: {
       isFixed: true,
       feeSource: 'county',
       savingsSource: 'pass_through',
+    })
+  }
+
+  // BetterClose Bucks: 15% of combined policy premium (mirrors
+  // betterCloseBucks.ts; hand-rolled here to keep this file dependency-free).
+  const policyTotal = items
+    .filter((li) => /title insurance/i.test(li.label))
+    .reduce((sum, li) => sum + li.ourCost, 0)
+  const bucks = Math.round(policyTotal * 0.15)
+  if (bucks > 0) {
+    items.push({
+      id: 'betterclose-bucks',
+      label: 'BetterClose Bucks',
+      category: 'other',
+      ourCost: -bucks,
+      isFixed: false,
+      isCredit: true,
+      description: 'Introductory BetterClose credit, applied at closing.',
     })
   }
 
