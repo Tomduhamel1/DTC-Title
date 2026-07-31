@@ -966,6 +966,93 @@ session (likely lazy-loaded on interaction, not present in the initial page-load
 **jsOnly**, logged for the browser-driven follow-up queue — likely a high-value target given the
 calculator's own marketing claims of ward-level millage precision across all 64 parishes.
 
+## 2026-07-31 session — Mississippi searched (0 new), Arkansas gets its first provider (TitleTech of Arkansas); appid misattribution guard technique generalized; 3 new platforms logged (Elko, LodeStar/Closeline, MVT)
+
+### TitleTech of Arkansas, LLC — WORKING, NetSheetCalc/TitleTap, statewide flat fees, no county tiering
+`titletech-arkansas.io/calculator/` embeds NetSheetCalc's `widget.v2.js` with a static
+`__widget_app_data` script tag exposing `app_id=393` directly in the page HTML (no iframe-hunting
+needed, unlike the VA/IN/KY instances which required either page-source grep or an iframe splash
+page). Same recipe as prior NetSheetCalc harvests: `GET non-auth-ajax.php?action=getAppData&
+app_id=393` (no auth) for the fee-form schema, `GET api/index.php/rate/<amount>/<rate-key>` (no
+auth) for the dynamically-rated title insurance premium (`finance393`/`cash393`) and transfer-tax
+"Revenue Stamps" figure (`Revenue393`). Confirmed working for the standard $500,000 scenario —
+see AR.json for full itemized figures (Closing Fee $400, Search Fee $250, CPL $25, eFiling Fee $10,
+Recording Fees $125, Technology Fee $250, optional Mobile Notary $350). **Structural note**: this
+tool has no county/city dropdown at all — flat statewide ancillary fees, unlike every other
+NetSheetCalc tenant on file (VA/IN/KY all have county- or city-level branching) — so the standard
+scenario's Pulaski County/Little Rock target wasn't a substitutable input for this specific tenant.
+
+### Misattribution guard — generalizing the 2026-07-30 SC lesson into a standard verification step
+Following the 2026-07-30 SC session's discovery that NetSheetCalc/TitleTap appids surfacing in
+state-flavored web searches are often misattributed (Google's snippet-matching surfaces a generic
+"netsheetcalc.com net-sheet-calculator-by-state" marketing page's internal links regardless of
+which state a company's own account is actually configured for), this session made this an explicit
+verification step rather than an occasional check: **before harvesting any appid found via search,
+fetch its own `getAppData` JSON and inspect the `property_address_section`'s `state` field
+`initial_val` (or, absent that, any county/city dropdown's option list) to confirm it actually
+matches the target state.** This session found 4 more false-positive appids this way while
+searching for Arkansas instances: appid 523 defaults to `state: "TX"`, appid 462 has a
+Cook/DuPage/Kane/Lake/... county dropdown (Illinois/Chicago-area, no state field at all), appid
+444 defaults to `state: "FL"`, and appid 438 ("Elite Title Company") matches the already-logged
+Massachusetts tenant from the 2026-07-26 VA/MD/CT/MA session (no state field, but the same company
+name/config). **Recommendation**: apply this same appid-config-verification step to every future
+NetSheetCalc/TitleTap search result before harvesting, not just when a session is already
+suspicious of a specific state's results — the false-positive rate this session (4 of 5 candidates
+found for AR) suggests it's the norm rather than the exception for search-surfaced appids.
+
+### Capital Abstract & Title (AR) — TitleClose.com tenant, flow completed technically but redirects with no order token
+`capitalabstract.titleclose.com`, linked from Capital Abstract & Title's (Van Buren, AR) own site.
+Drove the full recipe already documented above (GET `/Consumer/Welcome` for a session cookie +
+`SearchID`, resolve county via `GET /Search/GetAllCountiesByStateId?stateId=4` [Arkansas] ->
+Pulaski County = `CountyID=2790`, resolve city via `GET /Consumer/Welcome/GetCities?stateID=4` ->
+Little Rock = `CityID=5970`, POST to `/Consumer/Search`). **New requirement found this session, not
+needed by the VA tenants already on file**: the welcome page's form embeds a hidden
+`__RequestVerificationToken` ASP.NET MVC anti-forgery input distinct from the same-named cookie —
+omitting it from the POST body (relying on the cookie alone, as the VA recipe write-up implied
+was sufficient) still returns a 302 redirect to `/Consumer/Welcome` rather than an error; including
+the correct token value (freshly captured from the same GET that supplied `SearchID`) did not
+change this outcome either. Every submission attempted (with and without the token, across 2 fresh
+sessions) redirected back to Welcome with no order token in the response — never an explicit error
+message. This tenant's response headers carry `Access-Control-Allow-Origin: aclearchoicetitle.com`,
+a different company name than Capital Abstract & Title, suggesting this specific tenant instance
+may be branded/configured for a different company's coverage area (or simply doesn't have Pulaski
+County priced) rather than being gated or broken. **Not classified as working, gated, or jsOnly** —
+a genuine dead end pending a future session's retry with a different AR county or a direct inquiry
+into the `aclearchoicetitle.com` branding mismatch.
+
+### Elko (useelko.com) — new nationwide platform found, confirmed login-gated, no public quote mode found
+A previously-uncatalogued nationwide white-label title-quote SaaS ("Elko," per its own marketing,
+575+ agencies) with per-agency subdomains (`<agency>.useelko.com`). Every instance found this
+session (`legacytitle.useelko.com`, `gcstitle.useelko.com`, `executivetitle.useelko.com`) is a
+login-only portal (`/auth/signup/`, `/auth/forgot-password/`) with no public consumer-facing
+calculator page found at any path checked — **gated**, no personal data entered. Elko's own
+marketing pages (`useelko.com/title-quote-calculator/`, `/calculators/arkansas-title-insurance-
+calculator/`) are lead-generation forms ("submit your information to quickly receive a quote"),
+also out of scope per the hard rule. **Recommendation**: if a future session finds an Elko agency
+instance advertising a "no sign-in" or "guest" quote mode (not seen at any of the 3 instances
+checked this session), it would be worth investigating for a discoverable JSON API in the same vein
+as NetSheetCalc's `non-auth-ajax.php`.
+
+### LodeStar Software Solutions (lodestarss.com) — confirmed gated at a 2nd tenant (Closeline Settlements)
+Following up the 2026-07-29 finding for Mattingly Ford Title Services (KY): Closeline Settlements'
+(`closeline.com`, a 40+-state nationwide title company) own GFE calculator page
+(`closeline.com/gfe-calculator/`) also embeds a LodeStar instance
+(`lodestarss.com/Live/Closeline/Login/index.php?guest=1`) with the identical gating pattern — the
+"guest" mode still requires a valid email address plus Google reCAPTCHA before quoting. **Gated**,
+confirmed at a 2nd independent tenant, reinforcing that this platform's guest mode is uniformly
+gated rather than tenant-configurable. Note: `closeline.com` itself needs a realistic browser
+`User-Agent` header to avoid a Sucuri/Cloudproxy WAF challenge on plain `curl` — a lighter block
+than a full Cloudflare interstitial, resolved simply by setting a standard Chrome UA string.
+
+### MVT / Mississippi Valley Title Services Company — WORKING, no personal data, but premium-only (out of scope)
+`mvt.com/Calculator/GFECalculator`, an Old Republic agent operating in Alabama and Mississippi
+(found while searching for MS calculators, and cross-checked for AR since it separately surfaced
+there). Plain page, no auth/personal data required, State (AL/MS) and County (Shelby/Other)
+dropdowns plus Loan/Owner's Policy Amount fields — but outputs only title insurance premium tiers
+(Standard/Expanded Loan, Standard/Homeowner's Owner's, simultaneous-issue combinations), no
+settlement/closing/escrow fee line items anywhere. **Out of scope** for the calculator-harvest
+mission, logged so it isn't re-investigated as a lead in a future MS or AL session.
+
 ## For the browser-driven follow-up session
 Priority queue (highest-value first): (1) TitleCapture — drive `<agency>.titlecapture.com/
 title-quote` for a real agency instance (e.g. moderntitlegroup.titlecapture.com) and capture the

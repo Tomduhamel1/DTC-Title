@@ -39,6 +39,8 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | IN | 1 (Agency Title, Inc. — New Albany/Louisville-metro Southern Indiana office, NetSheetCalc/TitleTap "Quick Quote" JSON API) | below 3-provider threshold | 2026-07-29 |
 | KY | 1 (Agency Title, Inc. — Louisville/Jefferson County, same operator's KY instance of NetSheetCalc/TitleTap) | below 3-provider threshold | 2026-07-29 |
 | AL | 3 (Signature Title Services — Jefferson County, AL-specific ASP.NET WebForms portal distinct from the TN instance; Land Title Company of Alabama — Jefferson/Shelby Counties, first-party JS calculator; Alabama Land Title — statewide, first-party "ydwebpro" platform calculator) | **calculator-quoted (3 providers)** | 2026-07-30 |
+| AR | 1 (TitleTech of Arkansas, LLC — Rogers/Benton County-NWA home office, statewide flat fees, first-party NetSheetCalc/TitleTap "Quick Quote" instance, app_id=393) | below 3-provider threshold | 2026-07-31 |
+| MS | 0 — extensively searched, zero found | below 3-provider threshold | 2026-07-31 |
 
 FNF's ratecalculator.fnf.com **is drivable via plain HTTP POST, no browser needed** — confirmed
 2026-07-25 by replaying its ASP.NET WebForms `__doPostBack`/`__VIEWSTATE` protocol directly (the
@@ -234,6 +236,37 @@ hardcoded to Colorado for that specific pid and did not yield an LA instance. Se
 providers; SC and LA are now tied as the top-priority targets for a future session, with Mississippi
 (~2.9M) next in line after them.
 
+**2026-07-31 session — Mississippi (MS) searched extensively, 0 new providers; Arkansas (AR) gets
+its first calculator provider after ruling out 4 misattributed search results.** MS (~2.9M, next in
+line per the 2026-07-30 session's own recommendation after SC/LA) was tried first: NetSheetCalc/
+TitleTap, MyTitleRates.com, TRACcalculator, TitleClose.com, Stewart Rate Calculator, ydwebpro, Elko,
+and direct checks of 5+ named independent MS agencies all found nothing usable — either no
+calculator link at all, a Colorado-only platform (TRACcalculator confirmed via TI Services LLC's own
+site), a premium-only tool (MVT/Mississippi Valley Title Services, an Old Republic agent), or a
+gated lead-gen form (Armour, matching its already-logged SC gating). MS remains at 0 calculator-basis
+providers — see MS.md's new "Calculator harvest" section. Session redirected to Arkansas (~3.0M, next
+highest-volume zero-provider scarce state after MS), where a NetSheetCalc/TitleTap search surfaced 4
+Arkansas-flavored appid candidates — but verifying each one's own `getAppData` JSON config (rather
+than trusting the search snippet, per the misattribution lesson from the 2026-07-30 SC session) showed
+3 of the 4 default to TX/IL/FL configurations and the 4th matches an already-logged MA tenant — none
+are genuine AR instances. A 5th candidate, **TitleTech of Arkansas, LLC** (found via its own
+Arkansas-named domain), checked out as genuinely AR-specific and was harvested successfully
+(app_id=393, statewide flat fees: Closing Fee $400, Search Fee $250, CPL $25, plus formula-driven
+transfer tax and title insurance premium). AR now has 1 of 3 needed calculator-basis providers. Also
+investigated and logged: Capital Abstract & Title's TitleClose.com tenant (`capitalabstract.
+titleclose.com`) drove the full 3-step flow (including the `__RequestVerificationToken` anti-forgery
+field, a detail the prior TitleClose.com recipe writeups didn't need to call out explicitly) but every
+submission redirected back to Welcome with no order token — logged as a dead end, not gated/jsOnly;
+Elko (`useelko.com`, a new 575+-agency nationwide platform) confirmed login-gated with no public quote
+mode across every instance found; Closeline Settlements' GFE calculator embeds the same gated LodeStar
+platform already logged for KY's Mattingly Ford. **Recommendation for a future session**: retry MS/SC/
+LA with a search strategy targeting smaller independent agencies' own domains directly (the technique
+that found TitleTech of Arkansas) rather than generic platform-marketing-page searches, which have now
+produced misattribution false positives in 2 consecutive sessions (SC 2026-07-30, AR this session);
+also worth double-checking Huntsville Abstract/Fort Dearborn Land Title/The Title Firm's own sites
+directly in case they run a *second*, correctly-configured NetSheetCalc instance distinct from the
+appids that turned out to be other states.
+
 ## Blocked-source retries (2026-07-27)
 One retry each per the task's standing instruction, all still unusable:
 - **Arizona DIFI** — direct-fetched a specific filing PDF URL (`difi.az.gov/sites/default/files/
@@ -253,6 +286,14 @@ One retry each per the task's standing instruction, all still unusable:
   previously-logged HTTP 403 — the domain itself appears to no longer resolve. Logged as dead/
   unreachable rather than blocked; no further retry recommended unless a new URL for this firm is
   found.
+
+**2026-07-31 retry** (one quick check each, no change from 2026-07-27 findings): AZ DIFI still
+returns HTTP 403; CATIC CT's `catic.com/state-resources/connecticut` landing page still returns
+HTTP 200 (unchanged, FlippingBook viewer content still not independently re-verified as
+text-extractable this session — no structural change expected since 2026-07-27); Jackson & Scott
+AL's domain still fails to resolve (proxy CONNECT tunnel 502, consistent with DNS being dead). All
+three remain unusable; no further standing retry recommended for Jackson & Scott specifically
+unless a new URL surfaces.
 
 ## The completion contract
 

@@ -48,5 +48,35 @@
     "itemizedFees": {},
     "bundlingNotes": "Published as a printable marketing rate-chart flyer (not a formal regulatory filing document, consistent with WFG's confirmation that AR premiums are unfiled/unregulated). No settlement, escrow, or closing service fee figures appear anywhere on the flyer -- premium only, matching the pattern of the other two AR sources.",
     "transactionContext": "Owner's (Basic Rate and Homeowner) and Loan (Standard and Expanded) policy premium schedules in $5,000 increments from $50,000 to $1,000,000 of policy liability, statewide. No purchase/refinance settlement-service-fee breakdown."
+  },
+  {
+    "basis": "calculator",
+    "provider": "TitleTech of Arkansas, LLC (independent title/closing company, home office Rogers, AR/Benton County-NWA; embeds a NetSheetCalc/TitleTap white-label net-sheet calculator instance, app_id=393)",
+    "sourceUrl": "https://titletech-arkansas.io/calculator/",
+    "calculatorUrl": "https://app.netsheetcalc.com/c/titletech-title (splash) -> Quick Quote at https://app.netsheetcalc.com/company/quickquote.php?appid=393 (no sign-in needed, though the UI page itself is a JS-rendered shell with no static form -- the data endpoints below were driven directly)",
+    "endpoint": "GET https://app.netsheetcalc.com/company/non-auth-ajax.php?action=getAppData&app_id=393 (no auth) returns this agency's full fee-form JSON schema, including hardcoded flat-dollar ancillary fee constants (closing_fee, search fee, cpl, eFiling_fee_estimate, recording_fee, technology fee, mobile notary); GET https://app.netsheetcalc.com/api/index.php/rate/<amount>/<rate-key> (no auth) returns this agency's own dynamically-rated title insurance premium and transfer-tax ('Revenue Stamps') figures for a given dollar amount, rate keys 'finance393' (title insurance premium, keyed off purchase price per this tool's own formula reference for both the owner's and lender's premium fields), 'cash393', and 'Revenue393' (revenue stamps/transfer tax) specific to this tenant.",
+    "retrievalDate": "2026-07-31",
+    "scenario": "$500,000 purchase price, $400,000 loan, residential purchase with financing ('finance' estimate type), buyer paying for owner's title insurance policy. This tool has no county/city selector at all (a free-text city/state/zip field only, no dropdown or county-based fee branching found anywhere in the schema) -- its ancillary fee constants are flat statewide, so Pulaski County/Little Rock (AR's most-populous county, the mission's standard-scenario target) was not a substitutable input; the company's own home office is in Rogers, AR (Benton County, Northwest Arkansas), not Pulaski County.",
+    "methodology": "Found via web search for Arkansas-specific title-company rate calculators (search snippet: 'Calculator - TitleTech of Arkansas LLC.'); confirmed genuinely Arkansas-specific by the company's own name/domain (titletech-arkansas.io), distinguishing it from several other app.netsheetcalc.com appids that surfaced in Arkansas-flavored search snippets but were confirmed via this same getAppData recipe to actually default to TX/IL/FL/no-state configurations (appids 523, 462, 444 respectively) -- a misattribution pattern matching the one already documented for South Carolina in the 2026-07-30 session, guarded against here by verifying each candidate's own JSON config before treating it as a real state match. The calculator page itself embeds NetSheetCalc's widget.v2.js with a static '__widget_app_data' script tag exposing app_id=393 directly in the page HTML (no iframe-hunting needed). No personal data fields (name/email/phone) exist anywhere in the fee-form schema.",
+    "settlementFee": {
+      "closingFee": "$400.00 (labeled 'Closing Fee' in this agency's own finance/purchase fee schema)"
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "notarySigning": "$350.00 (Mobile Notary, as needed, buyer-side optional line item)",
+      "cpl": "$25.00 (CPL)",
+      "searchExam": "$250.00 (Search Fee)",
+      "eRecording": "$10.00 (eFiling Fee Estimate, $5 per doc x 2 docs)",
+      "wire": null,
+      "courier": null,
+      "recordingFee_combined": "$125.00 (Recording Fees, not split by instrument)",
+      "technologyFee": "$250.00",
+      "transferTaxRevenueStamps": "$825.00 (this tool's own 'Revenue393' formula at $500,000 purchase price -- Arkansas real property transfer tax/revenue stamps, $3.30/thousand)",
+      "ownersTitleInsurancePremium": "$1,100.00 (this tool's own 'finance393' rate at $500,000 purchase price)",
+      "lendersTitleInsurancePremium": "$1,100.00 (this tool's schema reuses the same 'finance393' rate keyed off purchase price, not loan amount, for both the owner's-policy field in the property section and the separate 'Lenders Title Insurance Premium' field in the misc-fee section -- recorded exactly as the tool computes it, not adjusted)",
+      "cashScenario_ownersTitleInsurancePremium_forComparison": "$1,450.00 ('cash393' rate at $500,000, i.e. the no-financing premium tier, materially higher than the finance-scenario rate at the same price point)"
+    },
+    "bundlingNotes": "First genuinely Arkansas-specific calculator-harvest source found this session, after 3 other NetSheetCalc/TitleTap appids surfacing in AR-flavored search results were checked and ruled out as other-state instances (see methodology). No county-based fee variation exists in this tool at all -- flat statewide ancillary fees, distinguishing it from most other NetSheetCalc tenants already on file (VA/IN/KY instances all have county- or city-level fields).",
+    "transactionContext": "Standard purchase-with-financing net sheet: Closing Fee, Search Fee, CPL, eFiling Fee, Recording Fees, Technology Fee, optional Mobile Notary, formula-driven Revenue Stamps (transfer tax) and Owner's/Lender's Title Insurance Premium, statewide."
   }
 ]

@@ -86,3 +86,58 @@ Plus direct provider-site fetches: Stewart, WFG, and Southwest Title/FNTI rate P
 + Read-tool binary-PDF recovery, since WebFetch cannot parse FlateDecode-compressed PDF
 streams directly — same recovery technique used in prior sessions for CA/GA/NC/WA/MI/AL/AK),
 First Title & Escrow (blocked), Eastern Title, and Old Republic Arkansas.
+
+## Calculator harvest (2026-07-31 session)
+
+**1 of 3 calculator-basis providers found** (below the 3-provider threshold) — see AR.json's
+`basis: "calculator"` entry for the full itemized figures.
+
+- **TitleTech of Arkansas, LLC** (Rogers, AR/Benton County) — WORKING. Embeds a NetSheetCalc/
+  TitleTap white-label instance, `app_id=393`, driven via the platform's plain unauthenticated
+  `non-auth-ajax.php?action=getAppData` + `api/index.php/rate/<amount>/<rate-key>` JSON GETs (no
+  browser, no personal data). Genuinely Arkansas-specific (confirmed by the company's own name/
+  domain), unlike 3 other appids found in AR-flavored search results this session that turned out
+  to be misattributed (see dead ends below). Statewide flat fees, no county tiering: Closing Fee
+  $400, Search Fee $250, CPL $25, eFiling Fee $10, Recording Fees $125, Technology Fee $250,
+  optional Mobile Notary $350, plus formula-driven Revenue Stamps/transfer tax and Owner's/Lender's
+  title insurance premium.
+- **Search-result misattribution dead ends** (same pattern documented in the 2026-07-30 SC
+  session): 3 other `app.netsheetcalc.com` appids (523, 462, 444) surfaced in searches for
+  "Arkansas...netsheetcalc" but their own `getAppData` JSON configs showed default states of
+  TX, no-state (Cook/DuPage/IL county dropdown), and FL respectively — none are Arkansas
+  instances, ruled out before use. A 4th (appid=438, "Elite Title Company") matches an
+  already-logged Massachusetts tenant from the 2026-07-26 session, also not Arkansas.
+- **Capital Abstract & Title** (Van Buren, AR) — its own site links to a TitleClose.com tenant,
+  `capitalabstract.titleclose.com`. Drove the full 3-step Consumer/Welcome -> Consumer/Search flow
+  (StateID=4/Arkansas, CountyID=2790/Pulaski, CityID=5970/Little Rock, including the
+  `__RequestVerificationToken` anti-forgery hidden field the VA-documented recipe didn't need to
+  use explicitly) but every submission redirected back to `/Consumer/Welcome` with no order token
+  — this tenant's `Access-Control-Allow-Origin` header is scoped to `aclearchoicetitle.com`, a
+  different company name than Capital Abstract, suggesting this specific tenant may not actually
+  be configured to price Arkansas/Pulaski County. Logged as a dead end, not gated or jsOnly —
+  a future session could retry with a different AR county or investigate the aclearchoicetitle.com
+  branding mismatch.
+- **Elko** (`useelko.com`) — a nationwide white-label title-quote SaaS (575+ agencies per its own
+  marketing) with an Arkansas-specific landing page, but every agency instance found
+  (`legacytitle.useelko.com`, `gcstitle.useelko.com`, `executivetitle.useelko.com`) is a login-only
+  portal with no public consumer-facing calculator — **gated**, no instance found with a guest/
+  no-signin mode.
+- **Closeline Settlements** (`closeline.com/gfe-calculator/`) — nationwide title company; its GFE
+  calculator embeds an iframe to `lodestarss.com/Live/Closeline/Login/index.php?guest=1`
+  (LodeStar Software Solutions), which requires an email address plus Google reCAPTCHA even in
+  guest mode — **gated**, same platform/pattern already logged for Mattingly Ford Title Services
+  (KY) in the 2026-07-29 session, no personal data entered.
+- **MVT** (`mvt.com`, Mississippi Valley Title Services Company, an Old Republic agent operating in
+  AL/MS — checked here after its GFE calculator surfaced in an MS search) — WORKING/no personal
+  data, but premium-only (Owner's/Loan/Homeowner's/simultaneous-issue premiums, no settlement fee
+  line items) — out of scope for the calculator-harvest mission.
+- No working instance found for MyTitleRates.com, TRACcalculator/comparetitlecompanies.com
+  (confirmed Colorado-only for its own consumer-facing tools, no AR `title_co_id` found via
+  search), TitleCapture, or Qualia Connect for Arkansas this session.
+- **Recommendation for a future session**: search for more independent AR title/abstract
+  companies' own sites (Huntsville Abstract, Fort Dearborn Land Title, and The Title Firm all
+  surfaced in searches but their `app.netsheetcalc.com` appids resolved to other states per above
+  — worth checking each company's own domain directly for a *different*, correctly-configured
+  appid rather than trusting the generic netsheetcalc.com marketing-page search result); revisit
+  Capital Abstract's TitleClose.com tenant with a different county or a fresh investigation of the
+  aclearchoicetitle.com branding mismatch.

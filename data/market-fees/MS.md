@@ -129,3 +129,39 @@ differentiation published by either underwriter).
 
 With only 2 verified sources despite this exhaustive search, MS meets the contract's
 scarce criterion.
+
+## Calculator harvest (2026-07-31 session)
+
+**0 calculator-basis providers found** despite an extensive search (NetSheetCalc/TitleTap,
+MyTitleRates.com, TRACcalculator/comparetitlecompanies.com, TitleClose.com, Stewart Rate
+Calculator, ydwebpro, Knight Barry [already confirmed 2026-07-29 not to cover MS], Elko, and
+direct checks of 5+ named independent MS title agencies) — no working, non-gated, itemized
+calculator found for Mississippi:
+- **MyTitleRates.com's own marketing/Mississippi page** — landing page only, no agency-specific
+  calculator link or iframe embed found.
+- **`comparetitlecompanies.com`/TRACcalculator** — confirmed (via TI Services LLC's own site) to
+  be a Colorado-only consumer-facing product; no MS `title_co_id` found via search.
+- **MVT (Mississippi Valley Title Services Company)**, `mvt.com/Calculator/GFECalculator` — an
+  Old Republic agent operating in AL/MS. WORKING/no personal data required, but premium-only
+  (Lender's/Owner's/Homeowner's/simultaneous-issue premium tiers, no settlement/closing/escrow
+  fee line items) — out of scope for the calculator-harvest mission; logged for AR.md too since it
+  was found during this session's follow-on AR search.
+- **Armour Settlement Services / Armour Title Company** (nationwide, operates in MS) — its
+  "Free Title Quote" page is a lead-generation form requiring name/email/phone — **gated**, no
+  personal data entered, consistent with the 2026-07-30 SC session's finding for the same company.
+- **Elko** (`useelko.com`) — Mississippi is not among its named calculator pages found this
+  session; its agency instances found in a parallel AR search are all login-gated portals with no
+  public quote mode (see AR.md), a platform-level pattern rather than MS-specific.
+- Direct checks of named independent MS agencies (Mississippi Title Group, First Title & Escrow
+  [403], North Mississippi Title & Closing, Magnolia Title of Mississippi [still HTTP 503, same as
+  the 2026-07-22 published-schedule session]) found no calculator link on any site.
+- No working instance found for TitleClose.com, NetSheetCalc/TitleTap (no MS-specific appid
+  found; several appid candidates surfacing in MS-flavored searches were not tested since no
+  MS-branded landing page linked to any, unlike Arkansas's TitleTech find the same session), or
+  ydwebpro (no MS agency found running this platform).
+
+MS remains at 0 calculator-basis providers, tied with SC/LA as a top-priority target for a future
+session — try direct-site searches for smaller independent MS agencies not yet named in either
+survey, and a browser-driven pass on Armour's gated lead-gen form to confirm it's genuinely out of
+scope (it should be, per the hard rule against fabricated personal data, but worth double-checking
+whether a non-required-field submission is possible).
