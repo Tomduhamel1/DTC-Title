@@ -92,6 +92,10 @@ export default function TimelineDesignsPage() {
     homeValue: 500000,
     transactionType: 'purchase',
   })
+  // Legacy design explorations predate credit lines (BetterClose Bucks) and
+  // assume every non-fixed line has a typicalRange — filter credits out so
+  // prerendering this archive page doesn't crash.
+  report.lineItems = report.lineItems.filter((li) => !li.isCredit)
 
   const newVariations = variations.filter((v) => v.group === 'new')
   const previousVariations = variations.filter((v) => v.group === 'previous')

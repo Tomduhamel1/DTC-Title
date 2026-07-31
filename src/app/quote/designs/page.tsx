@@ -89,6 +89,10 @@ export default function DesignsPage() {
     homeValue: 500000,
     transactionType: 'purchase',
   })
+  // Legacy design explorations predate credit lines (BetterClose Bucks) and
+  // assume every non-fixed line has a typicalRange — filter credits out so
+  // prerendering this archive page doesn't crash.
+  report.lineItems = report.lineItems.filter((li) => !li.isCredit)
 
   return (
     <div className="min-h-screen bg-gray-100">
