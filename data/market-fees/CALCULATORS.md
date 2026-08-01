@@ -1078,3 +1078,109 @@ worth trying without a browser at all: repeat the Modern-Title-Group technique (
 first-party JS for hardcoded fee constants) against more small independent agencies in VA/TN/PA/
 NJ/MD/WI/MN — it found a genuine itemized source in MI this session with no JS execution needed and
 may generalize.
+
+## 2026-08-01 session — SC and LA searched extensively again, 0 new working providers; major new "Modiphy/Flux" multi-state platform discovered (jsOnly); Old Republic's `Location=` parameter confirmed NoBot-blocked for LA too
+
+South Carolina and Louisiana (per the 2026-07-31 session's own recommendation, tied as the
+highest-priority zero-provider "complete (scarce)" states) were both retried with the "search
+independent agencies' own domains directly" technique. Neither crossed even 1 calculator-basis
+provider this session, but one significant new platform was found and several new dead ends/false
+leads were logged to save future sessions the same rediscovery cost.
+
+### Pulsar Title Insurance Company / "Modiphy Flux" — NEW PLATFORM, jsOnly, but high-value multi-state (LA, MS, AL, FL, TX; GA "coming soon")
+`pulsartitleinsurance.com/rate-calculator` (found searching for LA rate calculators; the site's own
+footer states it services "the Mississippi Gulf Coast & Louisiana") embeds a first-party-branded but
+platform-built calculator hosted on Azure Static Web Apps
+(`pulsartitlecalc.z21.web.core.windows.net/calculator.js`, a 600KB+ Aurelia/webpack SPA bundle) that
+loads its stylesheet from **`flux.modiphy.com/api/418?css=calculator`** — a previously-uncatalogued
+title-industry calculator SaaS ("Modiphy"/"Flux") distinct from every other platform already
+documented in this file. The bundle's inline SVG US-map component has clickable/styled state paths
+for **Louisiana, Mississippi, Alabama, Florida, Texas** and a disabled "GA Coming soon..." tooltip —
+strong evidence this is a genuine multi-state product, not a single-state custom build, comparable in
+potential scope to TRACcalculator/MyTitleRates.com. However, the actual quote-computation network
+call could not be located via static analysis: the only literal `flux.modiphy.com` reference in the
+bundle is the CSS request; the real submission endpoint/URL is assembled at runtime from mangled
+variable names (Aurelia router config only exposed two client-side route names, `calculation-results`
+and `tcc-disclosure`, no visible `HttpClient`/`fetch` base-URL string). **jsOnly** — logged for the
+browser-driven follow-up queue (devtools network capture would very likely reveal a `flux.modiphy.com`
+JSON API reusable for LA and MS in one shot, both currently at 0 calculator-basis providers).
+**Recommendation**: search `"modiphy.com"` combined with other scarce-state title agency names (AL,
+FL, TX are also on the map and may already have their own state's calculator-quoted status improved
+by this platform too) once a browser-driven session solves the request shape.
+
+### Southern Law Group (SC) — TitleClose.com tenant, technically driven end-to-end but no itemized fees returned (inconclusive, not classified working/gated)
+`southernlawgroup.titleclose.com` is a genuine live SC tenant of the already-catalogued TitleClose.com
+platform (confirmed via its own `StateID` dropdown listing South Carolina=41). Drove the full
+documented recipe: GET `/Consumer/Welcome` for `SearchID`/cookies, resolved Greenville County
+(SC's most populous, CountyID=4061) via `GET /Search/GetAllCountiesByStateId?stateId=41`, resolved
+Greenville city (CityID=10038) via `GET /Consumer/Welcome/GetCities?stateID=41`, POSTed the full
+scenario to `/Consumer/Search` with the anti-forgery token. Response was HTTP 200 with title "Search
+Results" (not redirected back to Welcome, unlike AR's Capital Abstract dead end) but the returned page
+contains no `SettlementTitleFees[n]` fields, no order token, and no visible company/results listing —
+just the tenant's normal site chrome plus an unrelated zeroed-out "submit a help request" form. Same
+`Access-Control-Allow-Origin: aclearchoicetitle.com` branding-mismatch header already flagged for
+Capital Abstract & Title (AR), reinforcing the theory that this specific header may indicate a
+misconfigured/inactive tenant rather than a genuine block. Not classified working, gated, or jsOnly —
+a dead end pending a future session's retry with a different SC county or direct inquiry into the
+branding mismatch (same open question as AR's entry).
+
+### Verus Title Inc. (SC) — PalmAgent-powered, jsOnly (platform-level, already known)
+`verustitle.com/south-carolina/` links to `verustitleapp.com/?id=widget` ("Verus Title ONE — Get a
+Quote... without having to login or signup" per the marketing site), which embeds
+`widgets.palmagent.com/widget_transfer_tax_calculator.js` plus its own Angular SPA bundle — the same
+PalmAgent platform already confirmed jsOnly (Michigan Title Insurance Agency, Vanguard Title,
+2026-07-27 MI retry session). No new endpoint found; logged for the browser-driven PalmAgent queue
+entry already on file rather than as a separate lead.
+
+### Tryon Title Agency (SC) — TitleCapture, jsOnly (platform-level, already known)
+`tryontitle.com/rate-calculator/` embeds `tryontitle.titlecapture.com/title-quote-uw` in an iframe.
+Fetched the iframe page and its `main.*.js` chunk directly looking for a static
+`api-30`/`api-node`/`api-wb.titlecapture.com` endpoint per the standing browser-driven-queue
+recommendation — the chunk (73KB) contains only bare references to those three hostnames with no
+concrete path/payload shape, confirming (as already suspected) that TitleCapture's real API call is
+assembled by application code not present in the initially-loaded bundle. No progress beyond the
+existing jsOnly classification; still queued for a real browser network-capture session.
+
+### Alpha Advanced (`alphaadv.net/sctitle/scratecalc.html`) — out of scope, not a provider
+A hobbyist multi-state (CT/DE/FL/MD/NJ/NY/PA/SC/TX/VA) title-rate calculator page copyrighted to an
+individual ("John Granger," 2010-2012), premium-only (no settlement/service fees), served from a
+personal site unaffiliated with any title company/underwriter. Same "third-party aggregator, not a
+provider's own calculator" exclusion already applied to AnytimeEstimate.com — logged so it isn't
+re-investigated for SC or any other state.
+
+### NetSheetCalc/TitleTap appids checked for SC/LA this session, all misattributed (apply the standard verification step before harvesting any of these)
+Per the misattribution-guard technique standardized 2026-07-31: appid 356 (Turner Title) → `state`
+initial_val `FL`; appid 1056 (Momentum Title Agency) → `IN`; appid 599 (Title Insights LLC) → `FL`;
+appid 94 (AWS Title Services) → `FL`; appid 467 (Capital Title and Escrow) → `FL`; appid 283 (Green
+Label Title) → `NJ`; appid 612 (Infinity Title Insurance Agency) → `FL`. None are SC or LA instances
+despite surfacing in state-flavored search snippets for both.
+
+### Trident Land Transfer Company (MyTitleRates.com `a=15`) — confirmed NJ/PA only, does not extend to LA/SC
+Checked whether the already-harvested PA/NJ MyTitleRates.com instance's own `state_picked` dropdown
+covers additional states (a cheap way to extend existing harvests) — it lists exactly two options,
+New Jersey and Pennsylvania. No extension to LA or SC.
+
+### Old Republic's second tool — `Location=LA` also NoBot-blocked (extends the IN/SC finding)
+`oldrepublictitle.com/rate-calculator/louisiana` links to
+`ortratecalculator.oldrepublictitle.com/EmbedRateCalc.aspx?CallingApp=PUBLIC&Location=LA`, which
+returns the same "You are not authorized to access the site. Code: 2" NoBot rejection already
+documented for `Location=IN`/`Location=SC` (2026-07-29 session), even with a realistic Referer/
+User-Agent. Confirms the anti-bot block applies broadly across this tool's state codes, not just
+IN/SC specifically — deprioritize retrying this tool for any remaining scarce state without a
+browser session.
+
+### Louisiana/SC sites checked with no calculator found at all (generic company sites, no lead)
+Bayou Title Inc., TitlePlus of LA (has a "request-a-quote" lead-gen page, no calculator), La
+Louisiane Title Company, United Title of Louisiana, Cypress Title, Legacy Title (all LA) — all
+Wix/Squarespace-hosted marketing sites with no calculator subpage in their own sitemaps and no
+calculator-platform script tags found on their resources/useful-links pages. Mainstay Title, Inc.,
+DHI Title SC page (both SC) — same result. Louisiana Title Services' `premium-rate-calculator` is
+now fully unreachable (`HTTP 000`/connection failure on both http and https), a regression from the
+already-logged 503 (2026-07-22/2026-07-30), confirming this source is dead rather than intermittently
+broken.
+
+**Blocked-source retries** (per the standing one-retry-per-session instruction): AZ DIFI —
+`difi.az.gov` still HTTP 403 (Cloudflare); CATIC CT — `catic.com/state-resources/connecticut` HTTP
+403 this session (was HTTP 200 on 2026-07-27/2026-07-31, so this varies run-to-run — the underlying
+FlippingBook-viewer content-extraction problem is unchanged regardless); Jackson & Scott AL — still
+unreachable (proxy CONNECT tunnel does not complete). No status change for any of the three.

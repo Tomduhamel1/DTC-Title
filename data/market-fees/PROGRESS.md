@@ -267,6 +267,32 @@ also worth double-checking Huntsville Abstract/Fort Dearborn Land Title/The Titl
 directly in case they run a *second*, correctly-configured NetSheetCalc instance distinct from the
 appids that turned out to be other states.
 
+**2026-08-01 session — SC and LA retried per the standing recommendation, still 0 new providers for
+either; major new multi-state platform found but jsOnly.** Applied the "search independent agencies'
+own domains directly" technique to both tied top-priority states. For SC: found and technically drove
+a live TitleClose.com tenant (Southern Law Group, Greenville County) end-to-end, but the response
+contained no itemized fees or order token — an inconclusive dead end matching AR's Capital Abstract &
+Title pattern from 2026-07-31, not classified working/gated; also ruled out Verus Title (PalmAgent,
+already-known jsOnly platform), Tryon Title Agency (TitleCapture, already-known jsOnly platform), and
+Alpha Advanced (a hobbyist multi-state calculator, out of scope as a non-provider aggregator, same
+exclusion as AnytimeEstimate.com). For LA: found a significant new discovery, **Pulsar Title Insurance
+Company**'s calculator, which loads from a previously-uncatalogued platform ("Modiphy Flux",
+`flux.modiphy.com`) whose own embedded US map shows coverage for Louisiana, Mississippi, Alabama,
+Florida, and Texas (Georgia "coming soon") — a potentially high-value multi-state unlock for both LA
+and MS (both at 0 calculator-basis providers), but the actual quote-computation network call could not
+be pinned down via static JS analysis of the 600KB+ Aurelia bundle, so it's logged **jsOnly** for the
+browser-driven follow-up queue rather than harvested this session. Both states' generic NetSheetCalc/
+TitleTap search results (7 appids checked across SC/LA searches) were again all misattributed to other
+states per the standard verification step. Old Republic's `Location=` parameter was confirmed
+NoBot-blocked for LA too (`Location=LA`), extending the existing IN/SC finding — deprioritize this
+tool for remaining scarce states without a browser session. Louisiana Title Services' premium
+calculator regressed from HTTP 503 to fully unreachable (connection failure), confirming it's dead
+rather than intermittent. See CALCULATORS.md's "2026-08-01 session" entry for full technical detail.
+SC and LA remain at 0 calculator-basis providers, tied as the top-priority target for a future
+session — recommend that session goes straight for a browser-driven capture of the Modiphy/Flux
+`flux.modiphy.com` API (likely the single highest-value remaining target given its multi-state reach
+into both tied-priority states) before further plain-HTTP search of either state.
+
 ## Blocked-source retries (2026-07-27)
 One retry each per the task's standing instruction, all still unusable:
 - **Arizona DIFI** — direct-fetched a specific filing PDF URL (`difi.az.gov/sites/default/files/
@@ -294,6 +320,12 @@ text-extractable this session — no structural change expected since 2026-07-27
 AL's domain still fails to resolve (proxy CONNECT tunnel 502, consistent with DNS being dead). All
 three remain unusable; no further standing retry recommended for Jackson & Scott specifically
 unless a new URL surfaces.
+
+**2026-08-01 retry** (one quick check each): AZ DIFI still HTTP 403; CATIC CT's
+`catic.com/state-resources/connecticut` returned HTTP 403 this run (fluctuates 200/403 across
+sessions — 200 on 2026-07-27/2026-07-31, 403 now — the underlying FlippingBook-viewer
+content-extraction blocker is unchanged either way); Jackson & Scott AL's domain still fails to
+resolve. No status change for any of the three.
 
 ## The completion contract
 

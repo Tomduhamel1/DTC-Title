@@ -190,3 +190,33 @@ Carolina's own underwriter manuals confirming the settlement-fee layer is
 real but priced by individual closing agents rather than centrally
 published, SC meets the contract's scarce criterion. Marked
 **complete (scarce)**.
+
+## Calculator harvest (2026-07-30 / 2026-08-01 sessions) — 0 providers found across 2 sessions, extensively searched
+
+Tried per the standing calculator-harvest priority (SC is ~5.3M population, the highest-volume
+"complete (scarce)" state with zero calculator-basis providers on file as of 2026-07-30). Still 0
+providers after a second session's retry with a different search technique:
+- **2026-07-30**: TRACcalculator/comparetitlecompanies.com, MyTitleRates.com (including the separate
+  `calculator3.mytitlerates.com` Laravel demo instance, which lists SC among its covered states but
+  whose `/calculator/98` is an admin/login backend, not a public quote page), NetSheetCalc/TitleTap,
+  TitleClose.com, Knight Barry (already confirmed not to cover SC), Old Republic's second tool
+  (already confirmed NoBot-blocked for SC) all found nothing usable; the only widget found
+  (Armour Title Company) is a lead-generation form requiring name/email/phone — **gated**, no
+  personal data entered.
+- **2026-08-01**: found and technically drove a live SC tenant of TitleClose.com (**Southern Law
+  Group**, `southernlawgroup.titleclose.com`, Greenville County — SC's most populous), but the
+  response to a fully-completed search POST contained no itemized settlement fees and no order
+  token — an inconclusive dead end (same `Access-Control-Allow-Origin: aclearchoicetitle.com`
+  branding-mismatch pattern already logged for Arkansas's Capital Abstract & Title), not
+  classified working/gated. Also found and ruled out: **Verus Title Inc.** (`verustitleapp.com`,
+  embeds the already-known-jsOnly PalmAgent platform), **Tryon Title Agency**
+  (`tryontitle.com/rate-calculator/`, embeds the already-known-jsOnly TitleCapture platform), and
+  **Alpha Advanced** (`alphaadv.net/sctitle/scratecalc.html`, a hobbyist multi-state premium-only
+  calculator unaffiliated with any title company — out of scope as a non-provider aggregator, same
+  exclusion as AnytimeEstimate.com). 7 NetSheetCalc/TitleTap appids surfacing in SC-flavored search
+  results were checked via the misattribution-guard technique and all resolved to FL/IN/NJ agency
+  configs, none genuinely SC. Full technical detail in CALCULATORS.md's "2026-08-01 session" entry.
+  SC remains tied with Louisiana as the top-priority target for a future session; recommend that
+  session try a browser-driven capture of the newly-discovered Modiphy/Flux platform
+  (`flux.modiphy.com`, found via Louisiana's Pulsar Title Insurance) first, since a working recipe
+  there could plausibly also unlock an SC agency instance if the platform serves this region.

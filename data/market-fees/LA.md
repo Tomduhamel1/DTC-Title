@@ -113,6 +113,22 @@ usable calculator found this session:
 - LA's civil-law notary-closing structure (see below) likely explains the thin calculator coverage
   here, consistent with its already-scarce published-schedule survey.
 
+### 2026-08-01 retry — still 0 providers, but a major new lead surfaced (jsOnly)
+Retried per the standing recommendation (LA tied with SC as top priority). **Pulsar Title Insurance
+Company** (`pulsartitleinsurance.com/rate-calculator`, servicing "the Mississippi Gulf Coast &
+Louisiana" per its own footer) embeds a calculator built on a previously-uncatalogued platform,
+"Modiphy Flux" (`flux.modiphy.com`), whose bundle's own US-map component shows coverage for LA, MS,
+AL, FL, and TX. The actual quote-computation API call could not be pinned down via static analysis of
+the 600KB+ minified Aurelia bundle (only a CSS-fetch URL is a literal string; the JSON/quote endpoint
+is assembled from mangled variables at runtime) — logged **jsOnly**, see CALCULATORS.md's "2026-08-01
+session" entry for full detail. This is now the single highest-priority browser-driven target for LA
+(and MS) given its apparent multi-state reach. Also confirmed Old Republic's `Location=LA` parameter
+is NoBot-blocked (matching the already-logged IN/SC block) and that Louisiana Title Services' premium
+calculator has regressed from HTTP 503 to a full connection failure. No new NetSheetCalc/TitleTap, no
+new TitleClose.com tenant, and no calculator found on Bayou Title, TitlePlus of LA, La Louisiane Title
+Company, United Title of Louisiana, Cypress Title, or Legacy Title (all checked directly, all
+Wix/Squarespace marketing sites with no calculator subpage).
+
 ## Not used / found-but-blocked
 
 - **steeglaw.com/residential-real-estate/residential-closing-fees-purchaser/** (New
