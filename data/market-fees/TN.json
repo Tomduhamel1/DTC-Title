@@ -188,5 +188,55 @@
     "sectionTotals": "Total Title Fees (Owner's + Loan premiums, disclosed basis): $3,305.00. Total Closing Costs (Settlement Fee + Search + Doc Storage + Verification + Remote Closing): $795.00. Closing Protection Letter: $50.00. Total Recording Fees & Transfer/Mortgage Taxes: $2,469.00 (Recording Fees $159.00 [Deed $22 + Mortgage $127 + E-Record $10] + Taxes $2,310.00 [Transfer Tax $1,850 + Mortgage Tax $460]). Grand Total: $6,619.00.",
     "bundlingNotes": "A genuine first-party ASP.NET calculator, distinct from the shared SaaS platforms (MyTitleRates/TRACcalculator/TitleClose/NetSheetCalc) already catalogued elsewhere in this file. Settlement/closing-services-only subtotal ($795 Total Closing Costs + $50 CPL = $845) is close to Tennessee Title Services' equivalent subtotal ($855 for the same categories) at the same $500k/$400k Davidson County scenario -- a useful cross-provider consistency check for TN's Nashville-metro independent-agency settlement fee range.",
     "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Davidson County (Nashville), Basic (non-reissue) rate."
+  },
+  {
+    "provider": "Cornerstone Title of Tennessee, LLC (independent title agency; Murfreesboro, TN [Rutherford County], 1602 W. Northfield Blvd, Ste 2) - via app.netsheetcalc.com/TitleTap platform, app_id 227",
+    "basis": "calculator",
+    "sourceUrl": "https://app.netsheetcalc.com/company/index.php?appid=227",
+    "calculatorUrl": "https://app.netsheetcalc.com/company/quickquote.php?appid=227",
+    "endpointOrParams": "Config: GET https://app.netsheetcalc.com/company/non-auth-ajax.php?action=getNetSheetConfig&app_id=227 (plain, unauthenticated -- 'is_qq_enabled':1 confirmed in the response, i.e. Quick Quote/no-signin mode is genuinely available for this tenant, not gated). Price-tiered Owner's Policy Premium resolved via GET https://app.netsheetcalc.com/api/index.php/rate/500000/TN1040Davidson (the county-specific rate-table key, read from the config's own county_drp dropdown option list -- 'TN1040Davidson' selects Davidson County/Nashville, TN's most populous, distinct from this tenant's own Rutherford County home office). Flat-dollar fields (Search Fees, Document Prep, Closing Fee, CPL, recording fees) are literal initial_val constants in the config JSON; Lender's Policy Premium is a flat $225.00 constant under this tenant's default payer-allocation toggle (Buyer pays Owner's title insurance).",
+    "retrievalDate": "2026-08-02",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Finance (purchase-with-loan) scenario, Davidson County (Nashville, TN's most populous county -- matching the county used for the existing Tennessee Title Services and Signature Title Services entries), default payer allocation (Buyer pays Owner's title insurance).",
+    "methodology": "Found via web search for TN-area TitleTap tenants; verified this tenant's own config (company_name, address, approved_states:['TN']) directly per the standing misattribution-guard technique before harvesting (a sibling search result, appid 420 'Members Title Agency', turned out to be Florida-based despite a TN-flavored search snippet -- correctly excluded, not logged here or anywhere for TN). No personal data fields required for the fee/rate figures used (address/city/zip exist but are optional labeling fields, left blank).",
+    "itemizedFees": {
+      "cpl": "$50.00 (CPL Fee)",
+      "processing": null,
+      "notarySigning": null,
+      "docPrep": "$75.00 (Document Prep Fee)",
+      "searchExam": "$250.00 (Search Fees)",
+      "other": [
+        {
+          "name": "Closing Fee",
+          "amount": "$300.00"
+        },
+        {
+          "name": "Owner's Policy Premium (Davidson County, $500,000)",
+          "amount": "$3,104.69"
+        },
+        {
+          "name": "Lender's Policy Premium (flat simultaneous-issue rate under this tenant's default payer allocation)",
+          "amount": "$225.00"
+        },
+        {
+          "name": "Deed Recording Fee",
+          "amount": "$18.00"
+        },
+        {
+          "name": "Mortgage Recording Fees",
+          "amount": "$108.00"
+        },
+        {
+          "name": "Conveyance Tax (TN transfer tax, government charge, not a title-company fee: purchase_price x 0.0037 + $3 per this tenant's own formula)",
+          "amount": "$1,853.00"
+        },
+        {
+          "name": "Mortgage Tax (TN recording tax on the loan amount, government charge: (loan_amount - $2,000) x 0.00115 per this tenant's own formula)",
+          "amount": "$457.70"
+        }
+      ]
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "This tenant's Owner's Policy Premium ($3,104.69 at $500k, Davidson County) is notably higher than the flat $595 Settlement Fee both existing TN providers (Tennessee Title Services, Signature Title Services) independently returned in the 2026-07-28 session -- not directly comparable figures, since this tenant's $3,104.69 is the title INSURANCE PREMIUM (a state-filed-rate-adjacent figure), while the existing providers' $595 is their SETTLEMENT/CLOSING fee specifically; this tenant's own equivalent settlement-side figure is the $300.00 Closing Fee, which is in the same range. This tenant is also the first TN calculator source to disclose government conveyance/mortgage tax formulas alongside its own fees, and the first to expose a buyer/seller payer-allocation toggle that changes which fees are computed at all (Search Fees and both title insurance premiums are conditionally hidden/zeroed under the alternate 'Seller pays' toggle setting, not evaluated this session).",
+    "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Davidson County (Nashville) -- matching the county used for TN's existing 2 calculator-basis providers. This is TN's 3rd calculator-basis provider, crossing the 3-provider threshold."
   }
 ]

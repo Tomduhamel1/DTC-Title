@@ -149,3 +149,18 @@ County (Nashville — TN's most populous county):
 - Below the 3-provider calculator-quoted threshold (2 of 3) — one more distinct TN provider
   needed; flagged for a future session (Stewart's officeid-based platform, once its POST mechanism
   is solved via a browser-driven session, would likely supply this and many other states at once).
+
+**Update 2026-08-02 — 3rd provider found, TN crosses the calculator threshold.** Harvested
+**Cornerstone Title of Tennessee, LLC** (Murfreesboro/Rutherford County home office, Davidson County
+scenario used for comparability) via the TitleTap/NetSheetCalc platform (app_id 227), confirmed
+genuinely TN-based and Quick-Quote-enabled (`is_qq_enabled:1`) per its own fetched config — a sibling
+search result for the same platform, appid 420 "Members Title Agency," turned out to be Florida-based
+despite a TN-flavored search snippet and was correctly excluded (not logged for TN). Result at
+$500k/$400k, Davidson County: Closing Fee $300.00, Search Fees $250.00, Document Prep Fee $75.00, CPL
+Fee $50.00, Owner's Policy Premium $3,104.69, Lender's Policy Premium $225.00 (flat, simultaneous
+issue under this tenant's default payer allocation), Deed Recording Fee $18.00, Mortgage Recording
+Fees $108.00, plus the tenant's own Conveyance Tax and Mortgage Tax government-charge formulas. The
+$300 Closing Fee is in the same range as, though not identical to, the $595 Settlement Fee both
+existing TN providers independently returned — a useful third data point on Nashville's independent
+settlement-fee market. This crosses TN to 3 calculator-basis providers (Tennessee Title Services,
+Signature Title Services, Cornerstone Title of Tennessee) — **calculator-quoted (3 providers)**.

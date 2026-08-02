@@ -1341,3 +1341,56 @@ identified for these).
 - Crosses **MN** to 3 calculator-basis providers (DCA Title, Knight Barry, Minnesota Secured Title)
   and **MO** to 3 calculator-basis providers (Old Republic, Elite Title Company, Secured Title of
   Kansas City) — see MN.json/MN.md and MO.json/MO.md.
+
+### Nebraska Title Company (NE) — new find via Title Midwest, but a different tenant tech (Vue.js client-side, no server API)
+Also found via the Title Midwest directory listing (`nebtitlecoratecalc` slug), but architecturally
+distinct from the classic-ASP/`ajax.asp` tenants above: this one is a Vue.js SPA with zero server-side
+rate API at all — every figure (Old Republic-branded bracket-rate premium formulas, plus flat
+endorsement/CPL/recording constants) is embedded directly, unminified, in the page's own inline
+`<script>`. Read and replicated by hand rather than executed: `getOldRepublicExpanded(amount)` = `175
++ min(max(⌈amount/1000⌉-10,0),40)×4.25 + min(max(⌈amount/1000⌉-50,0),50)×3.75 +
+min(max(⌈amount/1000⌉-100,0),900)×2.75`; at $500,000 this yields $1,632.50. Lender's premium uses a
+flat `simultaneousIssue` constant ($75) when the loan doesn't exceed the purchase price. Notably, this
+tool's "Escrow Settlement Fee" field defaults to $0.00 as a blank user-fillable input, not a
+company-preset constant — the only Title Midwest tenant found this session that does NOT disclose its
+own settlement/closing fee. NE's 1st calculator-basis provider — see NE.json/NE.md.
+
+## 2026-08-02 session, continued — TN crosses the 3-provider threshold via a 3rd TitleTap tenant
+
+### Cornerstone Title of Tennessee, LLC — WORKING, TitleTap platform, plain HTTP GET, richer formula schema than AZ/MI
+Found via web search for TN-area TitleTap tenants (`app_id=227`); confirmed genuinely TN-based
+(`approved_states:["TN"]`) and Quick-Quote-enabled (`is_qq_enabled:1`) directly from its own fetched
+`getNetSheetConfig` response before harvesting — a sibling search result for the same platform,
+`appid=420` ("Members Title Agency"), turned out to be Florida-based (`approved_states:["FL"]`)
+despite a TN-flavored search snippet, and was correctly excluded per the standing misattribution-guard
+technique (not logged anywhere for TN).
+- This tenant's config introduced a formula shape not seen in the AZ/MI tenants harvested earlier this
+  session: `{"first_value": <rounded purchase price>, "second_value": "county_drp", "second_id": "1",
+  "is_api_call": "1"}` — here `second_value` is not a literal rate-table-key string but a **reference
+  to another form field's own value** (the county dropdown, whose options carry state-prefixed
+  string keys like `"TN1040Davidson"`, not the AZ/MI-style `<Label><app_id>` pattern). Confirmed via
+  the platform's own `formula.js` (`case ""` branch, `data.second_id == "1"` check) that this simply
+  means "use the currently-selected value of the referenced field" — practically, still just a second
+  path segment for the same `GET api/index.php/rate/<amount>/<key>` endpoint, e.g.
+  `rate/500000/TN1040Davidson` → `3104.69` (Owner's Policy Premium, Davidson County — read the target
+  county's rate-key directly from the config's own `county_drp` select options rather than assuming a
+  single fixed key per tenant, since this tenant serves 8 named TN counties from one config).
+- Also introduces a conditional toggle (`is_seller_paying_owners_title_insurance`, confusingly-labeled
+  "Buyer"/"Seller" radio options with values `yes`/`no`) that changes which fields compute at all —
+  under the default ("Buyer" pays, value `yes`), Owner's Premium computes via the rate API and
+  Lender's Premium is a flat $225 simultaneous-issue constant; under the alternate setting, Search
+  Fees/both premiums are hidden entirely and Lender's Premium instead uses a separate rate-API call
+  keyed off `loan_amount`. Only the default setting was evaluated this session.
+- Result at $500k/$400k, Davidson County: Closing Fee $300.00, Search Fees $250.00, Document Prep Fee
+  $75.00, CPL Fee $50.00, Owner's Policy Premium $3,104.69, Lender's Policy Premium $225.00, Deed
+  Recording Fee $18.00, Mortgage Recording Fees $108.00, plus the tenant's own Conveyance Tax
+  (`purchase_price×0.0037+3`) and Mortgage Tax (`(loan_amount-2000)×0.00115`) government-charge
+  formulas.
+- Crosses **TN** to 3 calculator-basis providers (Tennessee Title Services, Signature Title Services,
+  Cornerstone Title of Tennessee) — see TN.json/TN.md.
+
+**Recommendation for a future session**: MA is now the only state needing just 1 more provider to
+cross threshold (2 of 3) — this session's two new techniques (TitleTap backend migration, Title
+Midwest) were both checked against MA leads without success; a browser-driven session for the
+zero-provider states (MS, SC, LA) via the Modiphy/Flux platform remains the standing highest-priority
+recommendation from 2026-08-01.

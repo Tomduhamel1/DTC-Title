@@ -35,7 +35,7 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | CT | 1 (Old Republic — ortratecalculator.oldrepublictitle.com, statewide, a distinct tool from ortconline.com) | below 3-provider threshold | 2026-07-26 |
 | MA | 2 (Absolute Title LLC, statewide; Law Office of David R. Rocheford Jr., Worcester County) | below 3-provider threshold | 2026-07-26 |
 | CO | 1 (First Integrity Title Company — Denver County, via comparetitlecompanies.com's multi-company comparison tool) | below 3-provider threshold | 2026-07-28 |
-| TN | 2 (Tennessee Title Services, LLC — Davidson County, own first-party calculator; Signature Title Services — Davidson County, own ASP.NET WebForms calculator) | below 3-provider threshold | 2026-07-28 |
+| TN | 3 (Tennessee Title Services, LLC — Davidson County, own first-party calculator; Signature Title Services — Davidson County, own ASP.NET WebForms calculator; Cornerstone Title of Tennessee, LLC — Davidson County scenario, via TitleTap) | **calculator-quoted (3 providers)** | 2026-08-02 |
 | IN | 1 (Agency Title, Inc. — New Albany/Louisville-metro Southern Indiana office, NetSheetCalc/TitleTap "Quick Quote" JSON API) | below 3-provider threshold | 2026-07-29 |
 | KY | 1 (Agency Title, Inc. — Louisville/Jefferson County, same operator's KY instance of NetSheetCalc/TitleTap) | below 3-provider threshold | 2026-07-29 |
 | AL | 3 (Signature Title Services — Jefferson County, AL-specific ASP.NET WebForms portal distinct from the TN instance; Land Title Company of Alabama — Jefferson/Shelby Counties, first-party JS calculator; Alabama Land Title — statewide, first-party "ydwebpro" platform calculator) | **calculator-quoted (3 providers)** | 2026-07-30 |
@@ -293,6 +293,25 @@ SC and LA remain at 0 calculator-basis providers, tied as the top-priority targe
 session — recommend that session goes straight for a browser-driven capture of the Modiphy/Flux
 `flux.modiphy.com` API (likely the single highest-value remaining target given its multi-state reach
 into both tied-priority states) before further plain-HTTP search of either state.
+
+**2026-08-02 session — AZ, MI, MN, MO, TN all cross the 3-provider calculator threshold in one
+session; NE gets its first provider.** Worked every state needing only 1-2 more providers to cross
+threshold, per the standing priority. Two platform discoveries drove most of this session's yield:
+(1) TitleTap/NetSheetCalc has migrated to a newer backend (`getNetSheetConfig` + `api/index.php/rate`)
+that resurrects several previously-logged-gated tenants and unlocks new ones (AZ, MI, TN); (2) a new
+multi-state platform, Title Midwest (`forms.titlemidwest.com`), was found via Minnesota Secured
+Title's own site, with an open directory listing exposing 25+ tenant slugs across MN/MO/KS/NE/TX
+(MN, MO, NE harvested this session; KS and TX confirmed already non-scarce/out of scope). Also
+corrected a 2026-07-26 misattribution: TitleTap `appid=438` was logged as a gated MA tenant but is
+genuinely Missouri-based — re-logged there instead, with no effect on MA's count. Full detail in each
+state's own PROGRESS.md row/narrative above and in CALCULATORS.md. States crossing threshold this
+session: **AZ, MI, MN, MO, TN** (all now calculator-quoted). Remaining below-threshold states needing
+just 1 more provider: **MA** (2 of 3) — recommended next-session priority, since this session's two
+new techniques (TitleTap backend migration, Title Midwest) were both checked against MA leads without
+success (Elite Title Company turned out to be MO; no Title Midwest MA tenant found in the disclosed
+slug list). Zero-provider states (MS, SC, LA) remain blocked pending a browser-driven session per the
+2026-08-01 recommendation and were not retried this session (time was directed at the
+closer-to-threshold states per the standing priority order).
 
 **2026-08-02 session — AZ crosses the 3-provider threshold via a TitleTap/NetSheetCalc backend
 migration discovery.** Per the standing priority (states needing only 1 more provider to cross
