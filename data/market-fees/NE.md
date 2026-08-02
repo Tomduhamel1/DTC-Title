@@ -1,6 +1,26 @@
 # Nebraska (NE) — Market Fee Evidence
 
-## Status: COMPLETE (scarce market) — 4 verified sources
+## Status: COMPLETE (scarce market) — 4 verified sources + 1 calculator-basis provider (not yet at the 3-provider calculator threshold), 2026-08-02
+
+## Calculator harvest (2026-08-02) — NE's first calculator-basis provider
+Harvested **Nebraska Title Company** (statewide, Omaha/Douglas County scenario) — the same company
+whose site (`nebtitleco.com`) the published-schedule survey found and noted "routes to its own 'Rate
+Calculator' tool" (item 22 in the search log above) without pursuing it, since that survey is scoped
+to static schedules. This session found the actual tool via the newly-discovered Title Midwest
+platform (`forms.titlemidwest.com`, tenant slug `nebtitlecoratecalc`) — see CALCULATORS.md and
+MN.json's Minnesota Secured Title entry for the platform's full discovery writeup. Unlike the other
+Title Midwest tenants (classic-ASP with a server-side `ajax.asp` JSON endpoint), this tenant is a
+Vue.js single-page app with all rate-table logic embedded directly, unminified, in the page's own
+inline `<script>` — no execution needed, just reading the literal bracket-rate formulas. At $500,000
+purchase/$400,000 loan (Expanded coverage, buyer pays both policies, Omaha/Douglas County — NE's most
+populous): Owner's Title Insurance Premium $1,632.50, Lender's Title Insurance Premium (simultaneous
+issue) $75.00, Endorsements $75.00 (flat), Closing Protection Letter $25.00 (flat), Recording Fees
+$150.00 (flat, loan transactions). Notably, the tool's own "Escrow Settlement Fee" field defaults to
+$0.00 as a blank user-fillable input rather than a company-preset constant — unlike every other flat
+fee in this entry, it is NOT disclosed by the tool itself, so it is not reported as evidence here
+(consistent with this state's already-established zero-settlement-fee-disclosure pattern from the
+published-schedule survey above). NE now has 1 of the 3 providers needed to cross the calculator-quoted
+threshold.
 
 4 premium-only rate manuals/rate sheets verified (FNTI, Stewart, WFG, First
 American via an independent Omaha agent), all explicitly excluding

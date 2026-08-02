@@ -119,5 +119,43 @@
     },
     "bundlingNotes": "Footer explicitly states: 'This is not a complete Schedule of Fees. All fees are subject to State sales tax as applicable... Above pricing does not include recording fees, mortgage registration tax or consenting fee. As with any insurance contract, the insuring provisions express the coverage afforded by the policy and there are exceptions, exclusions and conditions to coverage that limit or narrow the coverage afforded by the policy.' Zero settlement/closing/escrow service-fee dollar figures found in either the front or back page of this 2-page rate sheet; distributed by an independent Omaha title agency (Builders Title) that does not separately publish its own escrow/closing fee schedule.",
     "transactionContext": "Owner's policy (purchase, Basic and Eagle/enhanced coverage), loan policy (purchase and refinance), subdivision, construction loan -- premium calculation only."
+  },
+  {
+    "provider": "Nebraska Title Company (independent title agency; statewide, including Omaha/Douglas County -- NE's most populous) - via forms.titlemidwest.com's Title Midwest platform, tenant slug 'nebtitlecoratecalc'",
+    "basis": "calculator",
+    "sourceUrl": "https://forms.titlemidwest.com/titlemidwestForms/RateCalculator/nebtitlecoratecalc/",
+    "calculatorUrl": "https://forms.titlemidwest.com/titlemidwestForms/RateCalculator/nebtitlecoratecalc/",
+    "endpointOrParams": "Unlike the classic-ASP/ajax.asp tenants on this same platform (MN, MO -- see MN.json/MO.json), this tenant is a Vue.js single-page app with NO server-side rate API at all -- every figure is computed entirely client-side from rate-table constants embedded directly in the page's own inline <script> (Old Republic-branded bracket-rate formulas: getOldRepublicBasic()/getOldRepublicExpanded() functions, plus flat constants for endorsements/CPL/recording/simultaneous-issue). Fetched via plain HTTP GET (no execution needed) and the formulas replicated by hand from the literal JS source: Owner's Expanded Premium at $500,000 = 175 + min(max(500-10,0),40)*4.25 + min(max(500-50,0),50)*3.75 + min(max(500-100,0),900)*2.75 = $1,632.50 (thousands = ceil(purchasePrice/1000) = 500). Lender's premium uses the flat simultaneousIssue constant ($75) since the $400,000 loan does not exceed the $500,000 purchase price.",
+    "retrievalDate": "2026-08-02",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, 'Purchase with Loan' transaction type, Expanded (default) title insurance coverage, Buyer-pays-both-policies (default), Omaha/Douglas County preferred location (NE's most populous county/metro).",
+    "methodology": "Found via this session's Title Midwest platform discovery (see MN.json's Minnesota Secured Title entry for the initial find) -- located directly in the platform's own open directory listing. All rate-table constants and formulas were read directly from the page's unminified inline <script> (the tool ships its full Old Republic-branded bracket-rate logic client-side, unobfuscated) rather than executing any JavaScript. The calculator's own 'Escrow Settlement Fee' field defaults to $0.00 and is a blank user-fillable input, not a company-preset value -- left blank/not reported here since it does not represent Nebraska Title Company's own disclosed fee (unlike every other flat constant in this entry, which IS hardcoded in the tool's own source). No personal data fields are required to view the fee schedule itself (name/address/prepared-by fields exist but are optional report-labeling fields, not gates).",
+    "itemizedFees": {
+      "cpl": "$25.00 (Closing Protection Letter, fixed constant)",
+      "processing": null,
+      "notarySigning": null,
+      "docPrep": null,
+      "searchExam": null,
+      "other": [
+        {
+          "name": "Owner's Title Insurance Premium (Expanded coverage, $500,000, Old Republic-branded rate table)",
+          "amount": "$1,632.50"
+        },
+        {
+          "name": "Lender's Title Insurance Premium (simultaneous issue, $400,000 loan does not exceed purchase price)",
+          "amount": "$75.00"
+        },
+        {
+          "name": "Endorsements (fixed constant, loan transactions only)",
+          "amount": "$75.00"
+        },
+        {
+          "name": "Recording Fees (fixed constant, loan/refinance transactions; $10.00 for cash transactions)",
+          "amount": "$150.00"
+        }
+      ]
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "This tool notably does NOT disclose a company-set Escrow/Closing/Settlement Fee -- that field defaults to $0.00 and is left for the user/agent to fill in manually, unlike every other calculator-basis source on file for other states, which all disclose a company-configured settlement/closing fee constant or formula. This may reflect Nebraska's closing-fee market being genuinely unpublished even by companies with an otherwise-public premium calculator (consistent with NE's published-schedule survey finding zero settlement-fee dollar figures anywhere). The tool also supports 'Basic' vs. 'Expanded' coverage and Buyer/Seller/Split policy-payer toggles as user-selectable options (not fixed per-company defaults), and a Douglas/Sarpy-specific real-estate-tax-proration toggle distinct from the fee schedule itself.",
+    "transactionContext": "Calculator-derived premium + fixed-ancillary-fee figures for the standard $500k/$400k purchase scenario, Omaha/Douglas County -- NE's most populous county. This is NE's 1st calculator-basis provider (2 more needed to cross the 3-provider threshold)."
   }
 ]

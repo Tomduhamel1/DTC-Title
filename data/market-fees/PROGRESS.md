@@ -41,6 +41,7 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | AL | 3 (Signature Title Services — Jefferson County, AL-specific ASP.NET WebForms portal distinct from the TN instance; Land Title Company of Alabama — Jefferson/Shelby Counties, first-party JS calculator; Alabama Land Title — statewide, first-party "ydwebpro" platform calculator) | **calculator-quoted (3 providers)** | 2026-07-30 |
 | AR | 1 (TitleTech of Arkansas, LLC — Rogers/Benton County-NWA home office, statewide flat fees, first-party NetSheetCalc/TitleTap "Quick Quote" instance, app_id=393) | below 3-provider threshold | 2026-07-31 |
 | MS | 0 — extensively searched, zero found | below 3-provider threshold | 2026-07-31 |
+| NE | 1 (Nebraska Title Company — statewide, Omaha/Douglas County scenario, via the Title Midwest platform's Vue.js client-side calculator) | below 3-provider threshold | 2026-08-02 |
 
 FNF's ratecalculator.fnf.com **is drivable via plain HTTP POST, no browser needed** — confirmed
 2026-07-25 by replaying its ASP.NET WebForms `__doPostBack`/`__VIEWSTATE` protocol directly (the
