@@ -401,6 +401,19 @@ sessions — 200 on 2026-07-27/2026-07-31, 403 now — the underlying FlippingBo
 content-extraction blocker is unchanged either way); Jackson & Scott AL's domain still fails to
 resolve. No status change for any of the three.
 
+**2026-08-02 retry** (one quick check each): AZ DIFI still HTTP 403; CATIC CT still HTTP 403 (same
+as 2026-08-01, underlying blocker unchanged); Jackson & Scott AL's domain still fails to resolve
+(HTTP 000/connection failure, consistent with prior sessions). No status change for any of the
+three.
+
+**2026-08-02 freshness spot-check** (reduced priority per the standing instruction): re-verified 5
+of the survey's oldest-retrieved published sources (all originally fetched 2026-07-21, day 1 of the
+survey) — Pioneer Title Agency's First American-Maricopa PDF (AZ), Corinthian Title's North American
+rate schedule (CA), Pacific Coast Title's escrow schedule PDF (CA — HTTP 503 on `http://`, confirmed
+live at HTTP 200 on `https://`, a protocol redirect quirk not a dead source), 24 Hour Closing's fee
+schedule page (NC/SC), and Fidelity National Title's rate book PDF (CA). All 5 still live and
+returning real content — no `{stale: true}` flags needed this session.
+
 ## The completion contract
 
 A **good source**: published by the provider itself or a regulator/rating
