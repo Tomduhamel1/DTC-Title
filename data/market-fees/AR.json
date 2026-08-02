@@ -11,7 +11,9 @@
       "reissueCredit": "40% (owner's/homeowner's), 30% (loan/refinance)"
     },
     "itemizedFees": {
-      "cpl": { "perLetter": "$25.00 per party receiving the benefit, plus $25 more for a second mortgage/HELOC by a different lender" },
+      "cpl": {
+        "perLetter": "$25.00 per party receiving the benefit, plus $25 more for a second mortgage/HELOC by a different lender"
+      },
       "other": []
     },
     "bundlingNotes": "Definitions section states explicitly: 'A charge does not include the abstracting, searching and examination fee... [nor] any settlement fee, trustee fee, attorney fee, surveying fee, inspection fee, document fee, closing fee, escrow fee or any other fee associated with escrow.' Most current-vintage rate manual found in this entire survey to date (effective just months from now, 2026-03-16), reflecting Stewart's active AR filing cadence.",
@@ -31,7 +33,10 @@
     },
     "itemizedFees": {
       "other": [
-        { "name": "Master Home Equity / HE2 certificate fee", "amount": "$45-$300 tiered by loan amount up to $1,000,000" }
+        {
+          "name": "Master Home Equity / HE2 certificate fee",
+          "amount": "$45-$300 tiered by loan amount up to $1,000,000"
+        }
       ]
     },
     "bundlingNotes": "Opens with an explicit statement unique among states surveyed: 'Search and examination fees, as well as closing and escrow fees, are separate from title insurance premiums in the state of Arkansas. The state of Arkansas is an unregulated state, and the title insurance premiums herein are not filed rates.' Confirms AR has no rate-filing requirement at all (unlike AL/AK), yet WFG still publishes a customary rate card -- settlement fees remain entirely unpublished.",
@@ -78,5 +83,43 @@
     },
     "bundlingNotes": "First genuinely Arkansas-specific calculator-harvest source found this session, after 3 other NetSheetCalc/TitleTap appids surfacing in AR-flavored search results were checked and ruled out as other-state instances (see methodology). No county-based fee variation exists in this tool at all -- flat statewide ancillary fees, distinguishing it from most other NetSheetCalc tenants already on file (VA/IN/KY instances all have county- or city-level fields).",
     "transactionContext": "Standard purchase-with-financing net sheet: Closing Fee, Search Fee, CPL, eFiling Fee, Recording Fees, Technology Fee, optional Mobile Notary, formula-driven Revenue Stamps (transfer tax) and Owner's/Lender's Title Insurance Premium, statewide."
+  },
+  {
+    "provider": "Hot Springs Title (independent title agency; Hot Springs, AR [Garland County]) - via forms.titlemidwest.com's Title Midwest platform, tenant slug 'HstCalc'",
+    "basis": "calculator",
+    "sourceUrl": "https://forms.titlemidwest.com/titlemidwestForms/RateCalculator/HstCalc/Calculator.asp",
+    "calculatorUrl": "https://forms.titlemidwest.com/titlemidwestForms/RateCalculator/HstCalc/Calculator.asp",
+    "endpointOrParams": "Plain unauthenticated JSON GET: https://forms.titlemidwest.com/titlemidwestForms/RateCalculator/HstCalc/ajax.asp?loantype=p&purchamt=500000&loanamt=400000 (single-county deployment, no county/state parameter needed). Found via this session's Title Midwest platform discovery (see MN.json's Minnesota Secured Title entry for the initial find) -- located directly in the platform's own open directory listing (`forms.titlemidwest.com/titlemidwestForms/RateCalculator/`). The remaining flat 'Other Title Charges' constants are hardcoded in the page's own inline <script> (var feeOtherPurchase = 650; -- split into two $325 line items per the static HTML list) and static HTML, read directly, no execution needed.",
+    "retrievalDate": "2026-08-02",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Purchase transaction, Garland County (Hot Springs, this tenant's own single-county service area; statewide flat fees, no county tiering, consistent with the existing TitleTech of Arkansas entry's own statewide-flat-fee structure).",
+    "methodology": "Found via this session's Title Midwest platform directory listing. The page's own text explicitly references 'Arkansas' mechanic-lien-coverage rules, confirming genuine AR attribution (not a misattributed out-of-state tenant). No personal data fields exist anywhere in the calculator's HTML form (only Purchase Price and Loan Amount).",
+    "itemizedFees": {
+      "cpl": null,
+      "processing": null,
+      "notarySigning": null,
+      "docPrep": null,
+      "searchExam": null,
+      "other": [
+        {
+          "name": "Net Lender's Title Policy Charge",
+          "amount": "$100.00"
+        },
+        {
+          "name": "Net Owner's Title Policy Charge",
+          "amount": "$1,655.00"
+        },
+        {
+          "name": "Seller closing fee",
+          "amount": "$325.00"
+        },
+        {
+          "name": "Buyer closing fee",
+          "amount": "$325.00"
+        }
+      ]
+    },
+    "sectionTotals": "Other Title Charges (Seller + Buyer closing fees combined): $650.00. Total of All Title Charges: pLender + pOwner + Other = $100 + $1,655 + $650 = $2,405.00 (per the page's own 'Total of All Title Charges on this Transaction' figure, not independently re-verified beyond this arithmetic).",
+    "bundlingNotes": "This tenant's split Seller/Buyer closing fee ($325 each, flat, statewide) is structurally similar to TitleTech of Arkansas' own statewide flat-fee model (also on file for AR) but at a different dollar amount ($325 vs. TitleTech's $400 Closing Fee) -- a genuine cross-provider data point on AR's independent-agency closing-fee range. Both AR providers on file to date are single-county-office, statewide-flat-fee operations, consistent with AR's published-schedule survey finding no metro-tiered pricing anywhere.",
+    "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Garland County/Hot Springs. This is AR's 2nd calculator-basis provider, still below the 3-provider threshold (1 more needed)."
   }
 ]

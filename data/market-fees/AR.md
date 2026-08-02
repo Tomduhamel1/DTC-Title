@@ -106,7 +106,22 @@ First Title & Escrow (blocked), Eastern Title, and Old Republic Arkansas.
   "Arkansas...netsheetcalc" but their own `getAppData` JSON configs showed default states of
   TX, no-state (Cook/DuPage/IL county dropdown), and FL respectively — none are Arkansas
   instances, ruled out before use. A 4th (appid=438, "Elite Title Company") matches an
-  already-logged Massachusetts tenant from the 2026-07-26 session, also not Arkansas.
+  already-logged Massachusetts tenant from the 2026-07-26 session, also not Arkansas — **note
+  2026-08-02**: this specific appid was itself later corrected to Missouri, not Massachusetts (see
+  MO.json) — either way, not Arkansas, no change to this entry's conclusion.
+
+## Calculator harvest (2026-08-02 update) — 2nd provider found via the Title Midwest platform
+Harvested **Hot Springs Title** (Garland County) via `forms.titlemidwest.com` ("Title Midwest"), a
+newly-discovered multi-state shared calculator platform found the same session via Minnesota Secured
+Title's own site (see MN.json/CALCULATORS.md for the platform's full discovery writeup) — located
+directly in the platform's own open directory listing (tenant slug `HstCalc`). Plain unauthenticated
+JSON GET: `ajax.asp?loantype=p&purchamt=500000&loanamt=400000` (single-county deployment, no
+state/county parameter needed). Result: Net Lender's Title Policy Charge $100.00, Net Owner's Title
+Policy Charge $1,655.00, Seller closing fee $325.00, Buyer closing fee $325.00 (Total of All Title
+Charges $2,405.00 per the page's own total). Genuinely AR-specific (the page's own text references
+Arkansas mechanic-lien-coverage rules). Both AR providers on file are single-county-office, statewide-
+flat-fee operations — a $325 vs. $400 closing-fee spread between them is a useful cross-provider data
+point. AR now has 2 of the 3 providers needed to cross the calculator-quoted threshold.
 - **Capital Abstract & Title** (Van Buren, AR) — its own site links to a TitleClose.com tenant,
   `capitalabstract.titleclose.com`. Drove the full 3-step Consumer/Welcome -> Consumer/Search flow
   (StateID=4/Arkansas, CountyID=2790/Pulaski, CityID=5970/Little Rock, including the

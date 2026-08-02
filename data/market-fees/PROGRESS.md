@@ -39,7 +39,7 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | IN | 1 (Agency Title, Inc. — New Albany/Louisville-metro Southern Indiana office, NetSheetCalc/TitleTap "Quick Quote" JSON API) | below 3-provider threshold | 2026-07-29 |
 | KY | 1 (Agency Title, Inc. — Louisville/Jefferson County, same operator's KY instance of NetSheetCalc/TitleTap) | below 3-provider threshold | 2026-07-29 |
 | AL | 3 (Signature Title Services — Jefferson County, AL-specific ASP.NET WebForms portal distinct from the TN instance; Land Title Company of Alabama — Jefferson/Shelby Counties, first-party JS calculator; Alabama Land Title — statewide, first-party "ydwebpro" platform calculator) | **calculator-quoted (3 providers)** | 2026-07-30 |
-| AR | 1 (TitleTech of Arkansas, LLC — Rogers/Benton County-NWA home office, statewide flat fees, first-party NetSheetCalc/TitleTap "Quick Quote" instance, app_id=393) | below 3-provider threshold | 2026-07-31 |
+| AR | 2 (TitleTech of Arkansas, LLC — Rogers/Benton County-NWA; Hot Springs Title — Garland County, via the Title Midwest platform) | below 3-provider threshold | 2026-08-02 |
 | MS | 0 — extensively searched, zero found | below 3-provider threshold | 2026-07-31 |
 | NE | 1 (Nebraska Title Company — statewide, Omaha/Douglas County scenario, via the Title Midwest platform's Vue.js client-side calculator) | below 3-provider threshold | 2026-08-02 |
 
