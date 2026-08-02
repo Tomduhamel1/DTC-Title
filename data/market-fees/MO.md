@@ -1,6 +1,21 @@
 # Missouri — Market Fee Evidence
 
-## Status: complete (scarce market) — 2 verified premium sources, 0 published settlement/service-fee schedules + 1 calculator-basis provider (not yet at the 3-provider calculator threshold), 2026-07-22
+## Status: complete (scarce market) — 2 verified premium sources, 0 published settlement/service-fee schedules + 2 calculator-basis providers (not yet at the 3-provider calculator threshold), 2026-08-02
+
+## Calculator harvest (2026-08-02 update) — 2nd provider found, via a misattribution correction
+**Elite Title Company** (Des Peres, MO, St. Louis County) was harvested via the TitleTap/NetSheetCalc
+platform's newer `getNetSheetConfig` backend (app_id 438) — the same platform-migration fix discovered
+this session for AZ/MI. This tenant was previously logged (2026-07-26 session) as a gated
+*Massachusetts* instance based on an unverified search-snippet association; this session fetched the
+tenant's own config JSON directly and found its embedded company address is "12231 Manchester Road,
+Des Peres, MO 63131" — a genuine Missouri company, corrected here per the standing misattribution-guard
+technique (and NOT logged for MA, where it does not belong). Result at $500k purchase/$400k loan, St.
+Louis County: Closing Fee $395.00, Title Service Fee $1,302.49 (price-tiered, distinct rate table from
+the title insurance premium), Owner's Title Insurance Premium $450.00, Lender's Title Insurance
+Premium $300.00, Closing Protection Letter $25.00, E-Recording Fee $10.00, Delivery & Handling $35.00,
+Recording Fee Estimate $100.00. MO now has 2 of the 3 providers needed to cross the calculator-quoted
+threshold (Old Republic — Kansas City/Jackson County; Elite Title Company — St. Louis County), giving
+useful geographic diversity between MO's two largest metros.
 
 ## Calculator harvest (2026-07-22)
 Old Republic Title's public **Estimated Rate/Fee Calculator**

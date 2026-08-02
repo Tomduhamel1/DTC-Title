@@ -205,5 +205,47 @@
     "sectionTotals": "Total Estimated Buyer Costs: $2,564.00 (incl. $35 recording); Total Estimated Seller Costs: $3,396.00 (incl. $35 recording). Loan Estimate 'C. Services You Can Shop For': $3,594.00 (Closing Services $1,045.00 [Escrow $675 + Transaction Fee $100 + Loan Tie-in $100 + CPL $20 + Notary $150] + Endorsements $300.00 + Lender's Title Insurance $2,249.00 [buyer's concurrent-loan rate, distinct from the $1,219 standalone figure shown in the itemized quote above]); 'E. Taxes and Other Government Fees': $35.00 (Recording).",
     "bundlingNotes": "Major platform discovery this session: TRACcalculator (a.k.a. CompareTitleCompanies.com), operated by TI Services, LLC (tiservicesllc.com), is a nationwide title-industry SaaS subscription product -- comparable in scope to MyTitleRates.com -- licensed to individual title agencies (each with its own numeric title_co_id) and to at least one state-branded consumer comparison portal (comparetitlecompanies.com itself, which markets to Colorado consumers). This session confirmed the entire quote wizard is plain server-rendered PHP with a session-cookie-based multi-step POST flow -- no JavaScript execution needed -- a strong new lead for other 'scarce' states. Escrow/closing fee ($675) is notably lower than the two AZ independents already on file for the published-schedule survey (Pioneer Title Agency $1,342 and Arizona Escrow & Financial $1,250 at the $500k tier for their combined/bundled escrow product), but First Integrity's fee structure unbundles far more granularly (separate Transaction Fee, Loan Tie-in Fee, Notary Fee, CPL all itemized independently) rather than bundling wire/courier/doc-prep into one number the way Pioneer and AEFC do -- a genuine structural difference, not necessarily a lower total cost once all line items are summed ($675+$100+$150+$100+$20 = $1,045 buyer-side closing-services subtotal, within range of the bundled competitors).",
     "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Phoenix/Maricopa County -- AZ's most populous county, matching the county used for the Old Republic entry above."
+  },
+  {
+    "provider": "Arizona Premier Title (independent title agency; Scottsdale, AZ [Maricopa County], 7669 E Pinnacle Peak Rd Suite #120) - via app.netsheetcalc.com/TitleTap platform, app_id 546",
+    "basis": "calculator",
+    "sourceUrl": "https://azpremiertitle.com/net-sheet-calculator/",
+    "calculatorUrl": "https://app.netsheetcalc.com/c/API",
+    "endpointOrParams": "TitleTap's newer (2026) 'Quick Quote' backend, distinct from the app_id-numeric non-auth-ajax.php?action=getAppData recipe documented for the VA/IN/KY/AR TitleTap tenants in earlier sessions (that action name 404s on this newer tenant). Config fetched via plain unauthenticated GET: https://app.netsheetcalc.com/company/non-auth-ajax.php?action=getNetSheetConfig&app_id=546 -- returns the full fee-form schema as JSON per scenario type (seller/cash/finance/refinance), including flat-dollar constants and price-tiered-rate formulas referencing named rate-table keys. Price-tiered rates (escrow/closing fee split, owner's and lender's title insurance premiums) are resolved via a second plain GET: https://app.netsheetcalc.com/api/index.php/rate/<amount>/<rate-key>, e.g. rate/500000/ClosingFee546 (total escrow fee at $500k, split 50/50 buyer/seller per the config's own division-by-2 formula), rate/500000/MPPCOwner546 (Owner's Title Insurance, Maricopa/Pima/Pinal County tier), rate/400000/MPPCLoan546 (Lender's simultaneous-issue Title Insurance at $400k loan). No form submission, browser, or JS execution needed -- both endpoints are plain GET with no personal data fields anywhere in the schema.",
+    "retrievalDate": "2026-08-02",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Finance (purchase-with-loan) scenario, Maricopa/Pima/Pinal County tier (county_drp default for this tenant, covers Maricopa -- AZ's most populous county).",
+    "methodology": "Found via Arizona Premier Title's own site, which embeds the calculator as an iframe pointing to app.netsheetcalc.com/c/API. Reverse-engineered the tenant's config/rate API directly from the page's own loaded JS (company/js/app-v2.js, services/api.js) rather than driving the JS form -- both endpoints called are plain GET with app_id/amount/rate-key path or query parameters, no auth, no personal data (no name/email/phone field exists anywhere in the fetched config schema).",
+    "itemizedFees": {
+      "cpl": "$25.00 (Closing Protection Letter, buyer/finance scenario)",
+      "processing": null,
+      "notarySigning": null,
+      "docPrep": null,
+      "searchExam": null,
+      "other": [
+        {
+          "name": "Escrow Fee (buyer's half of the total $1,777.00 tiered escrow/closing fee at $500,000 purchase price -- seller pays the identical other half per the config's matching formula)",
+          "amount": "$888.50"
+        },
+        {
+          "name": "Owner's Title Insurance Premium (Maricopa/Pima/Pinal County tier, $500,000)",
+          "amount": "$2,310.00"
+        },
+        {
+          "name": "Lender's Title Insurance Premium (simultaneous-issue rate, $400,000 loan)",
+          "amount": "$1,185.00"
+        },
+        {
+          "name": "8.1 Endorsement",
+          "amount": "$100.00"
+        },
+        {
+          "name": "9 Endorsement",
+          "amount": "$100.00"
+        }
+      ]
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "This tenant's config confirms the total Escrow/Closing Fee at $500,000 purchase price is $1,777.00 combined (retrieved via the ClosingFee546 rate-table key), split 50/50 buyer/seller ($888.50 each) -- both the buyer-side 'finance' and 'cash' scenario configs and the seller-side scenario config share the identical formula and rate-table key, confirming this is a single combined fee, not two independently-priced halves. Distinct fee structure from First Integrity Title Agency (TRACcalculator, also on file for AZ): Arizona Premier's endorsements (8.1, 9) are flat $100 each rather than a single bundled 'Estimated Endorsement Fee'; no separate Transaction/Loan Tie-in/Notary fee line items exist in this tenant's schema at all (TitleTap's config format is a simpler flat-fee + tiered-rate model than TRACcalculator's fully-itemized settlement statement).",
+    "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Maricopa County (Scottsdale/Phoenix metro) -- AZ's most populous county tier, matching the county used for the Old Republic and First Integrity entries above. This is AZ's 3rd calculator-basis provider, crossing the 3-provider threshold."
   }
 ]

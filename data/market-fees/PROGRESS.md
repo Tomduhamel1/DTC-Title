@@ -18,14 +18,14 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | State | Calculator-basis providers | Status | Last run |
 |---|---|---|---|
 | OH | 3 (Old Republic — Cuyahoga County; Columbus Title Agency of Westerville — Franklin County/Columbus, own JS netsheet calculator; Owl Creek Title Agency — Knox County/statewide incl. Franklin, same shared JS netsheet template as Columbus Title but distinct fee constants) | **calculator-quoted (3 providers)** | 2026-07-27 |
-| AZ | 2 (Old Republic — Phoenix/Maricopa County; First Integrity Title Agency — Phoenix/Maricopa County, via the newly-discovered TRACcalculator/comparetitlecompanies.com platform) | below 3-provider threshold | 2026-07-27 |
+| AZ | 3 (Old Republic — Phoenix/Maricopa County; First Integrity Title Agency — Phoenix/Maricopa County, via TRACcalculator/comparetitlecompanies.com; Arizona Premier Title — Scottsdale/Maricopa County, via TitleTap's newer getNetSheetConfig backend) | **calculator-quoted (3 providers)** | 2026-08-02 |
 | NV | 1 (Old Republic — Las Vegas/Clark County) | below 3-provider threshold | 2026-07-22 |
 | NM | 1 (Old Republic — Albuquerque/Bernalillo County) | below 3-provider threshold | 2026-07-22 |
 | UT | 1 (Old Republic — Salt Lake City/Salt Lake County) | below 3-provider threshold | 2026-07-22 |
-| MO | 1 (Old Republic — Kansas City 64106/Jackson County) | below 3-provider threshold | 2026-07-22 |
+| MO | 2 (Old Republic — Kansas City 64106/Jackson County; Elite Title Company — Des Peres/St. Louis County, via TitleTap's newer getNetSheetConfig backend) | below 3-provider threshold | 2026-08-02 |
 | HI | 1 (Old Republic — Honolulu/Honolulu County-Oahu) | below 3-provider threshold | 2026-07-23 |
 | OR | 1 (Old Republic — Portland 97201/Multnomah County) | below 3-provider threshold | 2026-07-23 |
-| MI | 2 (Modern Title Group — Ann Arbor/Washtenaw County, statewide formula; Knight Barry Title Group — statewide formula) | below 3-provider threshold | 2026-07-25 |
+| MI | 3 (Modern Title Group — Ann Arbor/Washtenaw County, statewide formula; Knight Barry Title Group — statewide formula; Prestige Title Insurance Agency — Lenawee County, via TitleTap's newer getNetSheetConfig backend) | **calculator-quoted (3 providers)** | 2026-08-02 |
 | PA | 3 (ALT Title, TitleWorks, Trident Land Transfer — all Philadelphia County) | **calculator-quoted (3 providers)** | 2026-07-25 |
 | NJ | 1 (Trident Land Transfer — statewide, no county tiering) | below 3-provider threshold | 2026-07-25 |
 | MN | 2 (DCA Title, Knight Barry Title Group — both Hennepin County/Minneapolis) | below 3-provider threshold | 2026-07-25 |
@@ -292,6 +292,45 @@ SC and LA remain at 0 calculator-basis providers, tied as the top-priority targe
 session — recommend that session goes straight for a browser-driven capture of the Modiphy/Flux
 `flux.modiphy.com` API (likely the single highest-value remaining target given its multi-state reach
 into both tied-priority states) before further plain-HTTP search of either state.
+
+**2026-08-02 session — AZ crosses the 3-provider threshold via a TitleTap/NetSheetCalc backend
+migration discovery.** Per the standing priority (states needing only 1 more provider to cross
+threshold), AZ was tried first. Found **Arizona Premier Title** (Scottsdale/Maricopa County) embedding
+the TitleTap/NetSheetCalc platform, but its tenant instance 404s on the platform's previously-
+catalogued `non-auth-ajax.php?action=getAppData` recipe — traced the tenant's own JS to discover the
+platform has migrated to a newer backend (`getNetSheetConfig` action, under a `/company/` path, plus a
+separate `api/index.php/rate/<amount>/<rate-key>` endpoint for price-tiered fields) since the
+2026-07-27 MI session first noticed the old endpoint breaking. Result at $500k/$400k: total Escrow/
+Closing Fee $1,777 (split $888.50/$888.50 buyer/seller), Owner's Title Insurance Premium $2,310,
+Lender's Title Insurance Premium $1,185, endorsements $100 each, CPL $25. AZ now has 3 calculator-basis
+providers — **calculator-quoted (3 providers)**. This is a generalizable fix: any previously-logged
+TitleTap tenant that 404s on `getAppData` should be retried with `getNetSheetConfig` before being
+written off as dead — flagged in CALCULATORS.md as a priority recheck for Prestige Title (MI) and Elite
+Title Company (MA), both previously logged gated/dead on the old endpoint. Also ruled out: Equity Title
+Agency's instant-quote result page (a genuine server-side PHP bug, not gating — logged dead); Landmark
+Title (Cloudflare-blocked); confirmed comparetitlecompanies.com's CO-branded multi-company tool
+(`get_quote.php?id=1`) is hardcoded to Colorado's own subscriber list even when the state parameter is
+overridden, so it does not generalize to AZ or other states as had been hoped.
+
+**Same session, continued — MI crosses the 3-provider threshold too.** Immediately retried the
+recheck flagged above: **Prestige Title Insurance Agency** (Lenawee County), logged gated 2026-07-27,
+turned out to be a stale finding from before the platform's backend migration — `getNetSheetConfig`
+works cleanly for it, no gating at all. Result at $500k/$400k: Closing Fee $425 (flat), Owner's Title
+Insurance Premium $2,436, Lender's Title Insurance Premium $1,372, plus 4 flat recording-related fees
+($30/$5/$10/$30). MI now has 3 calculator-basis providers (Modern Title Group, Knight Barry, Prestige
+Title) — **calculator-quoted (3 providers)**.
+
+**Same session, continued — MO gets a 2nd provider, correcting a MA misattribution.** The other
+tenant flagged in the same recheck, TitleTap `appid=438` ("Elite Title Company," logged 2026-07-26
+as a gated Massachusetts instance), turned out on direct re-verification to carry a Des Peres,
+Missouri company address in its own config — not Massachusetts at all, and not gated once queried via
+`getNetSheetConfig`. Re-logged correctly under MO instead (Old Republic's existing MO entry is
+Kansas City-area; this new one is St. Louis-area, useful geographic diversity). Result at $500k/
+$400k: Closing Fee $395, Title Service Fee $1,302.49, Owner's Title Insurance Premium $450, Lender's
+Title Insurance Premium $300, CPL $25, E-Recording $10, Delivery & Handling $35, Recording Fee
+Estimate $100. MO now has 2 of 3 needed providers. MA's own count is unchanged (still 2 of 3) since
+this tenant was never a genuine MA source — MA's next-session priority (a 3rd genuine MA provider)
+stands as previously recommended.
 
 ## Blocked-source retries (2026-07-27)
 One retry each per the task's standing instruction, all still unusable:

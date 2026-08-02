@@ -1,6 +1,23 @@
 # Arizona — Market Fee Evidence
 
-## Status: complete (scarce) — 5 verified published sources + 2 calculator-basis providers (not yet at the 3-provider calculator threshold), 2026-07-27
+## Status: complete (scarce) — 5 verified published sources + **calculator-quoted (3 providers)**, 2026-08-02
+
+## Calculator harvest (2026-08-02 update) — 3rd provider found, AZ crosses the calculator threshold
+Harvested a 3rd AZ calculator provider, **Arizona Premier Title** (Scottsdale/Maricopa County), via a
+newer (2026) backend of the **TitleTap/NetSheetCalc** platform (`app.netsheetcalc.com`, app_id 546) —
+distinct from the `non-auth-ajax.php?action=getAppData` recipe used for the VA/IN/KY/AR TitleTap
+tenants in earlier sessions (that action 404s on this newer tenant; the correct action is
+`getNetSheetConfig`, and price-tiered rates resolve via a separate `api/index.php/rate/<amount>/
+<rate-key>` GET). Both endpoints are plain unauthenticated GET, no personal data anywhere in the
+schema. Result at $500,000 purchase/$400,000 loan, Maricopa/Pima/Pinal County tier: total Escrow/
+Closing Fee $1,777.00 (split 50/50 buyer/seller, $888.50 each), Owner's Title Insurance Premium
+$2,310.00, Lender's Title Insurance Premium (simultaneous issue, $400k loan) $1,185.00, 8.1
+Endorsement $100.00, 9 Endorsement $100.00, Closing Protection Letter $25.00. Full entry in AZ.json
+with `"basis": "calculator"`. This crosses AZ to 3 calculator-basis providers (Old Republic, First
+Integrity Title Agency, Arizona Premier Title) — **calculator-quoted (3 providers)**. See
+CALCULATORS.md's new entry for the full `getNetSheetConfig`/`api/index.php/rate` recipe, which is a
+generalizable update to the existing TitleTap/NetSheetCalc technique for any tenant using this newer
+backend (test `getNetSheetConfig` before assuming `getAppData` gating/404 means a tenant is dead).
 
 ## Calculator harvest (2026-07-27 update) — new platform discovered: TRACcalculator
 Harvested a 2nd AZ calculator provider, **First Integrity Title Agency** (Phoenix/Maricopa County),

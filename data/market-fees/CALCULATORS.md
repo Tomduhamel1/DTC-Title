@@ -477,9 +477,12 @@ Title Group, but here the constants arrive as clean JSON rather than requiring J
 dynamically-computed title insurance premium for that tenant. Harvested successfully for Independent
 Title & Escrow LLC (VA, app_id 533/534) — the richest single-agency ancillary-fee breakdown found in
 this session (10 distinct itemized line items plus VA-specific state/local grantee-tax formulas).
-**Not every tenant is open**: the MA-area instance found (Elite Title Company, `appid=438`) and the
-general netsheetcalc.com/titleagentmarketing.com flow both require real-estate-agent account
-login/signup for their main calculator UI — **gated**, no personal data entered, logged and skipped.
+**Not every tenant is open**: the general netsheetcalc.com/titleagentmarketing.com flow requires
+real-estate-agent account login/signup for its main calculator UI — **gated**, no personal data
+entered, logged and skipped. (`appid=438`, "Elite Title Company," was originally logged here as a
+MA-area instance and gated — **corrected 2026-08-02**: its own config JSON gives a Des Peres, MO
+address, and it is not gated at all once queried via the platform's newer `getNetSheetConfig` backend;
+see MO.json/MO.md for the harvested entry. Not a MA source.)
 **Recommendation**: search `"app.netsheetcalc.com/c/"` combined with target state names for more
 "Quick Quote / No sign in needed" tenants specifically (the gated, login-required tenants are a dead
 end, but the no-signin mode is a real, repeatable win where it exists).
@@ -1000,6 +1003,17 @@ NetSheetCalc/TitleTap search result before harvesting, not just when a session i
 suspicious of a specific state's results — the false-positive rate this session (4 of 5 candidates
 found for AR) suggests it's the norm rather than the exception for search-surfaced appids.
 
+**2026-08-02 correction**: the "same company name/config" match for appid 438 above was itself a
+misattribution — matching company *name* isn't sufficient when the tenant has "no state field" in
+the schema actually used for verification (`property_address_section`). Re-checked appid 438's full
+config (via the newer `getNetSheetConfig` endpoint) and found a `company` section with a literal
+street address: "12231 Manchester Road, Des Peres, MO 63131" — this tenant is Missouri, not
+Massachusetts, and was re-logged under MO.json/MO.md instead. **Refinement to the verification
+step**: when `property_address_section` has no `state` default, also check the config's top-level
+`company`/contact block (address/city/state/zip/phone), not just the property-address defaults —
+the company's own registered address is a more reliable state signal than a property form field that
+may be left generic across all tenants on a shared template.
+
 ### Capital Abstract & Title (AR) — TitleClose.com tenant, flow completed technically but redirects with no order token
 `capitalabstract.titleclose.com`, linked from Capital Abstract & Title's (Van Buren, AR) own site.
 Drove the full recipe already documented above (GET `/Consumer/Welcome` for a session cookie +
@@ -1184,3 +1198,70 @@ broken.
 403 this session (was HTTP 200 on 2026-07-27/2026-07-31, so this varies run-to-run — the underlying
 FlippingBook-viewer content-extraction problem is unchanged regardless); Jackson & Scott AL — still
 unreachable (proxy CONNECT tunnel does not complete). No status change for any of the three.
+
+## 2026-08-02 session — TitleTap/NetSheetCalc's newer backend discovered (`getNetSheetConfig` +
+`api/index.php/rate`), AZ crosses the 3-provider threshold
+
+### Arizona Premier Title (Scottsdale, AZ) — WORKING, TitleTap platform's newer 2026 backend, plain HTTP GET
+Found via Arizona Premier Title's own site (`azpremiertitle.com/net-sheet-calculator/`), which embeds
+`app.netsheetcalc.com/c/API` (a company-code-style tenant slug rather than the numeric `app_id` used
+in the platform's URLs elsewhere — the numeric id, 546, is recoverable from the page's own OpenGraph
+image URLs `.../company/img/546-icon.png`). This tenant's **`non-auth-ajax.php?action=getAppData`
+already-catalogued endpoint 404s** (matching the 2026-07-27 MI-session note that the platform "appears
+to have migrated to a different, TitleTap-branded backend") — the platform has evidently rolled out a
+newer config format since. Reverse-engineered from the tenant's own loaded JS
+(`company/js/app-v2.js`, `company/js/services/api.js`) rather than assuming the old recipe still
+applies:
+- **Config endpoint**: `GET https://app.netsheetcalc.com/company/non-auth-ajax.php?
+  action=getNetSheetConfig&app_id=<id>` (note: different **host path** than the old recipe too — under
+  `/company/`, not the bare root) returns the full fee-form schema as JSON, broken out per scenario
+  type (`seller`, `cash`, `finance`, `refinance`) — each with its own `sections`/`elements` tree.
+  Flat-dollar fields carry a literal `initial_val` (e.g. Closing Protection Letter `"25.00"`,
+  endorsements `"100.00"` each); price-tiered fields instead carry `"is_formula":"1"` plus a
+  `formula` object referencing a named rate-table key (e.g. `ClosingFee546`, `MPPCOwner546`,
+  `MPPCLoan546` — the numeric suffix is this tenant's `app_id`, confirming these keys are
+  tenant-specific, not shared across tenants).
+- **Rate-resolution endpoint**: `GET https://app.netsheetcalc.com/api/index.php/rate/<amount>/
+  <rate-key>` (root host, NOT under `/company/` — a gotcha, since the config endpoint above IS under
+  `/company/`) returns `[{"rate":"<dollar-amount-no-decimals>"}]` for a given dollar amount and
+  rate-table key. Confirmed for AZ: `rate/500000/ClosingFee546` → `1777` (total combined escrow/
+  closing fee at $500k purchase price — the config's own formula divides this by 2 for each side's
+  itemized "Escrow Fee" line, confirming a 50/50 buyer/seller split, not two independently-tiered
+  fees); `rate/500000/MPPCOwner546` → `2310` (Owner's Title Insurance Premium, "Maricopa, Pima or
+  Pinal County" tier — this tenant's own dropdown label, confirming it covers AZ's most populous
+  county); `rate/400000/MPPCLoan546` → `1185` (Lender's simultaneous-issue Title Insurance Premium).
+- **No personal data anywhere**: the entire `getNetSheetConfig` schema for all 4 scenario types was
+  inspected field-by-field — no name/email/phone field exists in any of them (only address/city/zip,
+  left blank per the standing rule since they're not required for the rate lookups used here).
+- **Recommendation**: this is a generalizable fix, not a one-off — **any previously-logged TitleTap/
+  NetSheetCalc tenant that 404s on the old `getAppData` action should be retried with
+  `getNetSheetConfig` under the `/company/` path before being written off**, since the 404 reflects a
+  platform-side backend migration (observed in progress as of the 2026-07-27 MI session), not that the
+  tenant itself is dead/gated. This session already cleared the two most obvious candidates flagged
+  above — Prestige Title (MI, see below) and appid 438 (which turned out to be Missouri, not MA, once
+  actually re-checked — see the misattribution correction below and MO.json). Any other tenant logged
+  gated/dead on the old `getAppData` action anywhere in this file is worth the same recheck in a
+  future session.
+- Crosses **AZ** to 3 calculator-basis providers (Old Republic, First Integrity Title Agency, Arizona
+  Premier Title) — see AZ.json/AZ.md.
+
+### Other AZ leads checked this session, ruled out
+- **Equity Title Agency** (`eta-az.com/instant-rate-quote-result`) — a plain GET form, no personal
+  data required, but the result page throws a PHP fatal error (`Uncaught Error: Undefined constant
+  "yes"`) on every submission tried (`quote-type=yes` and `quote-type=no` both fail identically) —
+  a genuine server-side bug in their WordPress theme unrelated to request shape, not a gating/jsOnly
+  case. Logged as dead/broken, not worth retrying without a site-side fix on their end.
+- **Landmark Title** (`ltaag.com/quote/arizona/`) — Cloudflare-blocked (HTTP 403, "Attention
+  Required!" interstitial), same class of block as AZ DIFI.
+- **comparetitlecompanies.com/get_quote/get_quote.php?id=1** (the CO-branded multi-company
+  comparison tool documented 2026-07-28) — confirmed **not** reusable for AZ: its `state` hidden
+  field can be overridden to `AZ` in the POST and AZ counties/cities do resolve via the shared
+  `ajax_get_counties.php`/`ajax_get_cities.php` endpoints, but the tool's own `title_co_id=1`
+  identifier is CO-specific — submitting with `state=AZ` redirects to `contact_us.php?
+  1title_co_id=invalid`, confirming this specific comparison-tool instance is hardcoded to Colorado's
+  own subscriber list regardless of the state parameter, not a general nationwide multi-company
+  entry point (the per-agency `getquote.php?title_co_id=<id>` embed remains the correct pattern for
+  other states).
+- Pioneer Title Agency's own `pioneertitleagency.com/calculator/` was not pursued — Pioneer is
+  already an AZ provider on file (published-schedule survey), so a calculator instance from the same
+  company would not add a new distinct provider toward the 3-provider count.

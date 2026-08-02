@@ -162,5 +162,55 @@
     "sectionTotals": "Buyer-side total: Loan Policy $1,372 + Owner's Policy $2,435.60 + Loan Closing Fee $350 + Transaction Security Fee (buyer) $25 = $4,182.60.",
     "bundlingNotes": "Second MI calculator-basis provider (see Modern Title Group entry above) -- distinct company, distinct fee structure (Knight Barry itemizes a flat $350 Loan Closing Fee + $25/side Transaction Security Fee where Modern Title Group itemizes 6 separate named ancillary fees). MI now has 2 of the 3 providers needed to cross the calculator-quoted threshold.",
     "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k statewide MI purchase scenario, buyer side, both owner's and loan policy."
+  },
+  {
+    "provider": "Prestige Title Insurance Agency (independent title agency; Adrian/Tecumseh/Manitou Beach, MI [Lenawee County]) - via app.netsheetcalc.com/TitleTap platform, app_id 385",
+    "basis": "calculator",
+    "sourceUrl": "https://prtitle.com/net-sheet-calculator/",
+    "calculatorUrl": "https://app.netsheetcalc.com/company/quickquote.php?appid=385",
+    "endpointOrParams": "Previously logged 2026-07-27 as gated (the old non-auth-ajax.php?action=getAppData recipe 404s on this tenant); this session confirmed the platform's newer backend (discovered same-session for AZ's Arizona Premier Title, app_id 546) also covers this tenant and is NOT gated. Config: GET https://app.netsheetcalc.com/company/non-auth-ajax.php?action=getNetSheetConfig&app_id=385 (plain, unauthenticated) returns the full fee-form schema per scenario type (seller/cash/finance/refinance). Price-tiered fields resolved via GET https://app.netsheetcalc.com/api/index.php/rate/<amount>/<rate-key>: rate/500000/Owners385 (Owner's Title Insurance Premium) and rate/400000/Lenders385 (Lender's Title Insurance Premium). Flat-dollar fields (Closing Fee, recording fees) are literal initial_val constants in the config JSON, no API call needed.",
+    "retrievalDate": "2026-08-02",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Finance (purchase-with-loan) scenario, Lenawee County (this tenant's own service area; MI's most populous county, Wayne, is not served by any calculator-basis provider found to date).",
+    "methodology": "Found via Prestige Title's own site, which embeds the calculator at app.netsheetcalc.com/company/quickquote.php?appid=385. Config and rate endpoints reverse-engineered from the platform's own JS (same recipe discovered this session for AZ's Arizona Premier Title tenant) -- both plain GET, no auth, no personal data anywhere in the fetched config schema (address/city/zip fields exist but are not required for the fee/rate figures used here and were left blank).",
+    "itemizedFees": {
+      "cpl": null,
+      "processing": null,
+      "notarySigning": null,
+      "docPrep": null,
+      "searchExam": null,
+      "other": [
+        {
+          "name": "Closing Fee",
+          "amount": "$425.00"
+        },
+        {
+          "name": "Owner's Title Insurance Premium ($500,000)",
+          "amount": "$2,436.00"
+        },
+        {
+          "name": "Lender's Title Insurance Premium ($400,000 loan)",
+          "amount": "$1,372.00"
+        },
+        {
+          "name": "Deed Recording Fee",
+          "amount": "$30.00"
+        },
+        {
+          "name": "Deed Certification Fee",
+          "amount": "$5.00"
+        },
+        {
+          "name": "Recording Service Fees",
+          "amount": "$10.00"
+        },
+        {
+          "name": "Mortgage Recording Fee",
+          "amount": "$30.00"
+        }
+      ]
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "This tenant's schema is leaner than Arizona Premier Title's (same platform, app_id 546, harvested same session): no CPL, notary, doc-prep, search, or exam fee fields exist anywhere in the config for any of the 4 scenario types -- Closing Fee ($425 flat) appears to be this agency's all-in settlement/closing charge, with title insurance premiums and government recording fees itemized separately. Confirms the TitleTap platform's config schema is genuinely per-tenant-configured (not a shared demo/template), consistent with the pattern already established for Modern Title Group/Knight Barry (MI) and Columbus Title/Owl Creek (OH).",
+    "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Lenawee County -- this tenant's own service footprint. This is MI's 3rd calculator-basis provider, crossing the 3-provider threshold."
   }
 ]

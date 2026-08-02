@@ -1,6 +1,6 @@
 # Michigan — Market Fee Evidence
 
-## Status: complete (scarce market) — 6 verified premium sources, 0 published settlement/service-fee schedules, 2026-07-21
+## Status: complete (scarce market) — 6 verified premium sources, 0 published settlement/service-fee schedules + 3 calculator-basis providers (**calculator-quoted (3 providers)**, threshold crossed 2026-08-02)
 
 Michigan is a filed-rate (insurer-filed, not promulgated) state for title insurance premiums, and
 premium schedules count as "good sources" under the completion contract for filed-rate states.
@@ -136,3 +136,18 @@ Loan Closing Fee $350.00, Transaction Security Fee $25.00/side, Loan Policy prem
 Owner's Policy premium $2,435.60 — a materially different fee structure from Modern Title Group's
 own (6 separate named ancillary fees) despite both being "independent" MI providers. MI now has 2
 of the 3 providers needed to cross the calculator-quoted threshold.
+
+**Update 2026-08-02 — 3rd provider found, MI crosses the calculator threshold.** The 2026-07-27
+session logged **Prestige Title Insurance Agency** (Adrian/Tecumseh/Manitou Beach, Lenawee County)
+as gated on the TitleTap/NetSheetCalc platform (`non-auth-ajax.php?action=getAppData` 404s for its
+`app_id=385`). This session discovered (via AZ's Arizona Premier Title tenant, same platform) that
+TitleTap has migrated to a newer backend — `getNetSheetConfig` action under a `/company/` path, plus
+a separate `api/index.php/rate/<amount>/<rate-key>` endpoint for tiered fields — and retried Prestige
+Title's tenant against it: **not actually gated**, just stale documentation of a platform migration.
+Result at $500k purchase/$400k loan, Lenawee County: Closing Fee $425.00 (flat), Owner's Title
+Insurance Premium $2,436.00, Lender's Title Insurance Premium $1,372.00, Deed Recording Fee $30.00,
+Deed Certification Fee $5.00, Recording Service Fees $10.00, Mortgage Recording Fee $30.00. No
+CPL/notary/doc-prep/search/exam fields exist in this tenant's schema at all — a leaner fee structure
+than Modern Title Group's. This crosses MI to 3 calculator-basis providers (Modern Title Group,
+Knight Barry, Prestige Title) — **calculator-quoted (3 providers)**. See CALCULATORS.md's
+2026-08-02 entry for the full `getNetSheetConfig`/`api/index.php/rate` recipe.
