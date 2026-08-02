@@ -136,5 +136,51 @@
     "sectionTotals": null,
     "bundlingNotes": "This tenant separates a 'Title Service Fee' ($1,302.49 at $500k, price-tiered via its own rate-table key distinct from the Owner's Title Insurance Premium rate table) from the Owner's Title Insurance Premium itself ($450.00) -- an unusual split versus most calculator-basis providers on file, where title search/exam work is either bundled into the premium or into a flat closing/settlement fee. Confirms MO's calculator-basis market has genuine structural diversity between its 2 providers (Old Republic's premium+fee bundling vs. this tenant's explicit Title Service Fee line item).",
     "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, St. Louis County/Des Peres -- MO's most-populous metro area, complementing the existing Old Republic entry's Kansas City-area scenario. This is MO's 2nd calculator-basis provider, still below the 3-provider threshold."
+  },
+  {
+    "provider": "Secured Title of Kansas City (independent title agency; Kansas City, MO [Jackson County]) - via forms.titlemidwest.com's RateCalculator platform, tenant slug 'SecuredTitleKC'",
+    "basis": "calculator",
+    "sourceUrl": "https://forms.titlemidwest.com/titlemidwestForms/RateCalculator/SecuredTitleKC/MstCalculator.asp",
+    "calculatorUrl": "https://forms.titlemidwest.com/titlemidwestForms/RateCalculator/SecuredTitleKC/MstCalculator.asp",
+    "endpointOrParams": "Plain unauthenticated JSON GET: https://forms.titlemidwest.com/titlemidwestForms/RateCalculator/SecuredTitleKC/ajax.asp?loantype=p&purchamt=500000&loanamt=400000&state=MO&county=JA (county=JA is Jackson County per the page's own <select id=\"loc_county\"> option list, MO's most populous county / Kansas City). Found this shared platform (forms.titlemidwest.com, 'Title Midwest') via its own open directory listing at /titlemidwestForms/RateCalculator/, discovered while investigating Minnesota Secured Title's calculator (same platform operator, tenant slug 'mnSecured') -- the directory listing exposes 25+ tenant slugs across KS, MO, NE, TX in addition to MN, a significant new multi-state platform find. The remaining fee breakdown (closing fees, wire fee, delivery fee) is a set of flat dollar constants embedded directly in the page's own inline <script> and HTML (not returned by the ajax.asp JSON) -- read directly from view-source, no execution needed.",
+    "retrievalDate": "2026-08-02",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Purchase transaction, Jackson County (Kansas City, MO's most populous county / metro -- same county as the existing Old Republic entry, giving a same-market cross-provider comparison point).",
+    "methodology": "Found via this session's Title Midwest platform discovery (see Minnesota Secured Title's MN.json entry for the initial find). This specific tenant (Secured Title of Kansas City) was located directly in the platform's own open directory listing rather than via a targeted web search. No personal data fields exist anywhere in the calculator's HTML form (only Purchase Price, Loan Amount, State, County).",
+    "itemizedFees": {
+      "cpl": "$50.00 (CPL Fee, both Owner's-side and Lender's-side policy charges)",
+      "processing": null,
+      "notarySigning": null,
+      "docPrep": null,
+      "searchExam": "Missouri Title Service Fee: $665.50 (Owner's-side) / $372.00 (Lender's-side)",
+      "other": [
+        {
+          "name": "Filed Premium (Owner's-side)",
+          "amount": "$294.50"
+        },
+        {
+          "name": "Filed Premium (Lender's-side, simultaneous issue)",
+          "amount": "$3.00"
+        },
+        {
+          "name": "Seller closing fee",
+          "amount": "$500.00"
+        },
+        {
+          "name": "Buyer / borrower closing fee",
+          "amount": "$400.00"
+        },
+        {
+          "name": "Wire / Banking service fee",
+          "amount": "$25.00"
+        },
+        {
+          "name": "Overnight / Delivery Service fee",
+          "amount": "$45.00"
+        }
+      ]
+    },
+    "sectionTotals": "Net Owner's Title Policy Charge: $1,010.00 (CPL $50 + MO Title Service Fee $665.50 + Filed Premium $294.50). Net Lender's Title Policy Charge: $425.00 (CPL $50 + MO Title Service Fee $372.00 + Filed Premium $3.00). Total Other Title Charges: $970.00 (Seller closing fee $500 + Buyer/borrower closing fee $400 + Wire fee $25 + Delivery fee $45).",
+    "bundlingNotes": "This tenant explicitly splits 'closing fee' into a Seller closing fee ($500) and a separate Buyer/borrower closing fee ($400) -- a genuine buyer/seller-asymmetric closing-fee structure, distinct from Elite Title Company's (also on file for MO, harvested this session) single flat $395 Closing Fee, and from Old Republic's bundled escrow product. The 'Missouri Title Service Fee' + 'Filed Premium' split (rather than a single title insurance premium line) matches the same platform's Minnesota Secured Title tenant structure (which uses 'Title Evidence'/'Title Examination' instead) -- confirms the Title Midwest platform's schema is genuinely per-tenant-configured, not a copy-paste demo, despite the shared backend.",
+    "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Jackson County/Kansas City -- the same metro area as the existing Old Republic entry, giving a direct same-market comparison point. This is MO's 3rd calculator-basis provider, crossing the 3-provider threshold."
   }
 ]

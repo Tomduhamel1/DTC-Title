@@ -22,13 +22,13 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | NV | 1 (Old Republic — Las Vegas/Clark County) | below 3-provider threshold | 2026-07-22 |
 | NM | 1 (Old Republic — Albuquerque/Bernalillo County) | below 3-provider threshold | 2026-07-22 |
 | UT | 1 (Old Republic — Salt Lake City/Salt Lake County) | below 3-provider threshold | 2026-07-22 |
-| MO | 2 (Old Republic — Kansas City 64106/Jackson County; Elite Title Company — Des Peres/St. Louis County, via TitleTap's newer getNetSheetConfig backend) | below 3-provider threshold | 2026-08-02 |
+| MO | 3 (Old Republic — Kansas City 64106/Jackson County; Elite Title Company — Des Peres/St. Louis County; Secured Title of Kansas City — Jackson County, via the Title Midwest platform) | **calculator-quoted (3 providers)** | 2026-08-02 |
 | HI | 1 (Old Republic — Honolulu/Honolulu County-Oahu) | below 3-provider threshold | 2026-07-23 |
 | OR | 1 (Old Republic — Portland 97201/Multnomah County) | below 3-provider threshold | 2026-07-23 |
 | MI | 3 (Modern Title Group — Ann Arbor/Washtenaw County, statewide formula; Knight Barry Title Group — statewide formula; Prestige Title Insurance Agency — Lenawee County, via TitleTap's newer getNetSheetConfig backend) | **calculator-quoted (3 providers)** | 2026-08-02 |
 | PA | 3 (ALT Title, TitleWorks, Trident Land Transfer — all Philadelphia County) | **calculator-quoted (3 providers)** | 2026-07-25 |
 | NJ | 1 (Trident Land Transfer — statewide, no county tiering) | below 3-provider threshold | 2026-07-25 |
-| MN | 2 (DCA Title, Knight Barry Title Group — both Hennepin County/Minneapolis) | below 3-provider threshold | 2026-07-25 |
+| MN | 3 (DCA Title, Knight Barry Title Group — both Hennepin County/Minneapolis; Minnesota Secured Title — Hennepin County, via the newly-discovered Title Midwest platform) | **calculator-quoted (3 providers)** | 2026-08-02 |
 | WI | 1 (Knight Barry Title Group — Milwaukee County) | below 3-provider threshold | 2026-07-25 |
 | VA | 3 (Bon Air Title Agency + Appomattox, both TitleClose.com tenants, Fairfax; Independent Title & Escrow LLC, NetSheetCalc/TitleTap, Fairfax) | **calculator-quoted (3 providers)** | 2026-07-26 |
 | MD | 1 (Federal Title & Escrow Company — Montgomery County, own first-party ASP.NET tool) | below 3-provider threshold | 2026-07-26 |
@@ -331,6 +331,21 @@ Title Insurance Premium $300, CPL $25, E-Recording $10, Delivery & Handling $35,
 Estimate $100. MO now has 2 of 3 needed providers. MA's own count is unchanged (still 2 of 3) since
 this tenant was never a genuine MA source — MA's next-session priority (a 3rd genuine MA provider)
 stands as previously recommended.
+
+**Same session, continued — a new multi-state platform (Title Midwest) discovered via Minnesota
+Secured Title, crossing both MN's and MO's thresholds in one pass.** Found via Minnesota Secured
+Title's own site: `forms.titlemidwest.com`, a shared classic-ASP calculator platform whose directory
+listing is left open, exposing 25+ tenant slugs across MN, MO, KS (11 county instances), NE, and TX.
+Harvested Minnesota Secured Title (Hennepin County) for MN — Closing Fee $345, Title Evidence $645,
+Lender's/Owner's Title Insurance Premiums $1,087.50/$537.50, plus recording/courier/delivery fees —
+crossing MN to 3 calculator-basis providers. Also harvested Secured Title of Kansas City (Jackson
+County) for MO — Net Owner's/Lender's Title Policy Charges $1,010/$425, Seller/Buyer closing fees
+$500/$400, wire/delivery fees — crossing MO to 3 as well (its 2nd and 3rd providers both found this
+single session, alongside the MI/AZ threshold crossings above). **High-priority recommendation for a
+future session**: this platform's remaining un-investigated tenant slugs are a rich, already-located
+target list — the 11 Kansas county instances (KS is not yet tracked in this calculator tracker at
+all), `nebtitlecoratecalc` (would be NE's first calculator-basis provider), and the 2 Texas slugs are
+all worth a systematic harvest pass before searching for entirely new platforms elsewhere.
 
 ## Blocked-source retries (2026-07-27)
 One retry each per the task's standing instruction, all still unusable:

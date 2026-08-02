@@ -1265,3 +1265,79 @@ applies:
 - Pioneer Title Agency's own `pioneertitleagency.com/calculator/` was not pursued — Pioneer is
   already an AZ provider on file (published-schedule survey), so a calculator instance from the same
   company would not add a new distinct provider toward the 3-provider count.
+
+## 2026-08-02 session, continued — same-day recheck sweep crosses MI's threshold and corrects a MO/MA misattribution
+
+### Prestige Title Insurance Agency (MI) — no longer gated, same `getNetSheetConfig` backend fix as AZ
+Retried immediately after the AZ discovery above: this tenant (`app_id=385`, Adrian/Tecumseh/Lenawee
+County) was logged 2026-07-27 as gated because `non-auth-ajax.php?action=getAppData` 404s for it —
+confirmed this session that it was never actually gated, just affected by the same platform backend
+migration. `getNetSheetConfig&app_id=385` returns its full config cleanly. Result at $500k/$400k:
+Closing Fee $425.00 (flat), Owner's Title Insurance Premium $2,436.00 (`rate/500000/Owners385`),
+Lender's Title Insurance Premium $1,372.00 (`rate/400000/Lenders385`), Deed Recording Fee $30.00,
+Deed Certification Fee $5.00, Recording Service Fees $10.00, Mortgage Recording Fee $30.00. No CPL/
+notary/doc-prep/search/exam fields exist in this tenant's schema — a leaner config than Arizona
+Premier Title's. Crosses **MI** to 3 calculator-basis providers (Modern Title Group, Knight Barry,
+Prestige Title) — see MI.json/MI.md.
+
+### Misattribution correction: TitleTap `appid=438` ("Elite Title Company") is Missouri, not Massachusetts
+The other tenant flagged for the same recheck, `appid=438`, was logged 2026-07-26 as a gated
+Massachusetts-area instance based on matching company name against a search snippet (documented in
+the 2026-07-31 "misattribution guard" entry above, which itself only checked
+`property_address_section`'s `state` default — empty for this tenant, so the guard's original form
+didn't catch it). This session fetched the tenant's full `getNetSheetConfig` response and found a
+`company` block with a literal street address: `"address1": "12231 Manchester Road", "city": "Des
+Peres", "state": "MO", "zip": "63131"`. **Refinement to the misattribution guard**: when a tenant's
+`property_address_section` has no default `state`, also check the config's top-level `company`
+contact block — the company's own registered address is more reliable than a property-form default
+that may be blank across an entire shared template. Re-logged under MO instead: Closing Fee $395.00,
+Title Service Fee $1,302.49 (`rate/500000/PurchaseTitle437`), Owner's Title Insurance Premium $450.00
+(`rate/500000/Owner437`), Lender's Title Insurance Premium $300.00 (`rate/400000/Lender437`), Closing
+Protection Letter $25.00, E-Recording Fee $10.00, Delivery & Handling $35.00, Recording Fee Estimate
+$100.00. This tenant was never a genuine MA source — MA's calculator-basis count is unaffected (still
+2 of 3) — but gives **MO** its 2nd provider (Old Republic, Elite Title Company) toward the threshold;
+see MO.json/MO.md.
+
+## 2026-08-02 session, continued — Title Midwest, a new multi-state platform found via an open directory listing, crosses MN's and MO's thresholds
+
+### Title Midwest (`forms.titlemidwest.com`) — NEW MULTI-STATE PLATFORM, WORKING, plain HTTP GET, open directory listing
+Found via Minnesota Secured Title's own site (`mnsecuredtitle.com/Tools-Resources/Rate-Calculator`),
+which embeds `forms.titlemidwest.com/RateCalculator/mnsecured/calculator.asp`. A significant new find:
+the platform's own directory browsing is left open at
+`forms.titlemidwest.com/titlemidwestForms/RateCalculator/` (an IIS default directory listing, no
+index page configured), exposing every tenant slug directly rather than requiring one-at-a-time
+search discovery — a first for this survey. Confirmed slugs as of this session: `mnSecured` (MN),
+`MissouriSecuredTitleBethanyCalc` and `SecuredTitleKC` (MO), `kstButler`/`kstDouglas`/`kstGeary`/
+`kstGreenwood`/`kstitleratecalculator`/`kstJefferson`/`kstLeavenworth`/`kstMcPherson`/`kstRiley`/
+`kstSedgwick`/`kstShawnee`/`kstWalnutValley` (KS, 11 county-named instances — "kst" = Kansas Secured
+Title, evidently the same operator family as Minnesota/Missouri Secured Title), `nebtitlecoratecalc`
+(NE), `NSTTexas`/`securedtitletexasratecalculator` (TX), plus `BeachCalc`, `Coffeyville`, `HstCalc`,
+`mainstreettitleco`, `MstCalc`, `NtcCalc`, `RteCalc`, `TcrCalc`, `TitleProfessionals` (states not yet
+identified for these).
+- **Mechanics**: each tenant is a classic-ASP (`.asp`) server-rendered calculator page (not a JS SPA)
+  whose own `calculator.js` (or a per-tenant-named variant, e.g. `mstcalculator.051619.js` for
+  SecuredTitleKC) makes a plain jQuery/Prototype `$.ajax`/`Ajax.Request` **GET** to a sibling
+  `ajax.asp` with purchase price/loan amount/county (and for multi-state tenants, `state`) as query
+  parameters, returning a small JSON object of price-tiered dollar figures (title insurance premium,
+  search/title-service fee, CPL, filed premium). **No personal data fields exist in any tenant's
+  calculator form** — only price/county/state/loan-type inputs.
+  - Some flat-dollar fee constants (closing fee, wire fee, courier fee) are NOT part of the JSON
+    response — they're hardcoded in the page's own inline `<script>` (e.g. `var feeOtherPurchase =
+    970;`) or plain static HTML list items, readable directly via view-source, no execution needed.
+  - County/state option values are plain `<option value="...">` lists in the static HTML (numeric IDs
+    for MN, e.g. `27`=Hennepin; 2-letter county codes for the KC-area MO/KS shared tenant, e.g.
+    `JA`=Jackson).
+- **Confirmed working for**: Minnesota Secured Title (MN, county=27/Hennepin) — see MN.json; Secured
+  Title of Kansas City (MO, state=MO&county=JA/Jackson) — see MO.json.
+- **Recommendation**: this is a high-priority target for every remaining below-threshold or
+  zero-provider state, comparable in potential impact to MyTitleRates.com/TRACcalculator/TitleTap —
+  systematically work through the remaining un-investigated tenant slugs listed above in a future
+  session (the KS instances alone are 11 potential county-specific harvests for a state not yet
+  tracked in the calculator-harvest tracker at all; `nebtitlecoratecalc` would be NE's first
+  calculator-basis provider; the TX and unidentified-state slugs are also worth checking). Always
+  verify state/county attribution directly from each tenant's own dropdown options or ajax response
+  fields before harvesting (per the standing misattribution-guard technique), since this operator
+  clearly serves multiple states from shared infrastructure with per-tenant slugs.
+- Crosses **MN** to 3 calculator-basis providers (DCA Title, Knight Barry, Minnesota Secured Title)
+  and **MO** to 3 calculator-basis providers (Old Republic, Elite Title Company, Secured Title of
+  Kansas City) — see MN.json/MN.md and MO.json/MO.md.

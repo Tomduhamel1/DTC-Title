@@ -183,5 +183,59 @@
     "sectionTotals": "Disclosed buyer-side total: Loan Policy $1,090 + Owner's Policy $657.75 + Loan Closing Fee $400 + Transaction Security Fee (buyer) $25 + Search & Exam $580 + Recording $46 + Conservation $5 + Mortgage Registration Tax $960 = $3,763.75.",
     "bundlingNotes": "This tool distinguishes between the 'disclosed' rate shown to consumers (reflecting simultaneous-issue discounting) and the full rate the agency reports to the underwriter under Minnesota Department of Commerce filed premiums ($1,597.75 owner's + $150 simultaneous loan) -- a useful cross-check against the state's filed-rate regime already documented in this survey. Second MN calculator-basis provider (see DCA Title above); MN now has 2 of the 3 providers needed to cross the calculator-quoted threshold.",
     "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k Hennepin County (Minneapolis) purchase scenario, buyer side, both owner's and loan policy, enhanced homeowner's coverage."
+  },
+  {
+    "provider": "Minnesota Secured Title (independent title agency; Austin, MN, operating statewide including Hennepin County) - via forms.titlemidwest.com's RateCalculator platform, tenant slug 'mnsecured'",
+    "basis": "calculator",
+    "sourceUrl": "https://www.mnsecuredtitle.com/Tools-Resources/Rate-Calculator",
+    "calculatorUrl": "https://forms.titlemidwest.com/RateCalculator/mnsecured/calculator.asp",
+    "endpointOrParams": "Plain unauthenticated JSON GET: https://forms.titlemidwest.com/RateCalculator/mnsecured/ajax.asp?loantype=p&purchamt=500000&loanamt=400000&payoff=n&county=27 (county=27 is Hennepin per the page's own <select id=\"loc_county\"> option list, MN's most populous county). loantype=p for Purchase, payoff=n (no prior loan payoff). No personal data fields exist anywhere in the calculator's HTML form.",
+    "retrievalDate": "2026-08-02",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Purchase transaction, Hennepin County (MN's most populous county).",
+    "methodology": "Found via Minnesota Secured Title's own site, which embeds the calculator in an <iframe>. The underlying calculator.js file's getPremiums()/ajaxUpdate() functions were read directly to find the plain jQuery $.ajax GET call and its exact parameter names -- no form submission or JS execution needed, no personal data requested at any point.",
+    "itemizedFees": {
+      "cpl": null,
+      "processing": null,
+      "notarySigning": null,
+      "docPrep": null,
+      "searchExam": "Title Examination: $0.00 (TitleExam field returned zero for this tier/county; Title Evidence $645.00 appears to be this tenant's search/abstract-equivalent line item instead)",
+      "other": [
+        {
+          "name": "Closing Fee",
+          "amount": "$345.00"
+        },
+        {
+          "name": "Title Evidence",
+          "amount": "$645.00"
+        },
+        {
+          "name": "Lender's Title Insurance Premium ($400,000 loan, simultaneous issue)",
+          "amount": "$1,087.50"
+        },
+        {
+          "name": "Owner's Title Insurance Premium ($500,000, simultaneous-issue tier)",
+          "amount": "$537.50"
+        },
+        {
+          "name": "Recording Services Fee",
+          "amount": "$25.00"
+        },
+        {
+          "name": "Courier Fee",
+          "amount": "$40.00"
+        },
+        {
+          "name": "Delivery Service Fee",
+          "amount": "$30.00"
+        },
+        {
+          "name": "Plat Services / Name & Assess Search",
+          "amount": "$0.00 each (both zero for this county/tier)"
+        }
+      ]
+    },
+    "sectionTotals": "pTotal (combined Lender's + Owner's Title Insurance premium): $1,625.00 (Tier 4 rate bracket, per the API's own 'Tier' field).",
+    "bundlingNotes": "This tenant's fee structure separates 'Title Evidence' ($645) from 'Title Examination' ($0 at this tier) -- the reverse of most other calculator-basis sources on file, where search/exam work is either bundled into a single line or zeroed with the cost folded into the evidence/abstract fee. Two optional endorsement line items (ARM $50, Manufactured Home $50) exist but are not applicable to the standard scenario (a plain single-family purchase) and were excluded. The platform itself ('Title Midwest', forms.titlemidwest.com/RateCalculator/<tenant-slug>/) is a shared multi-tenant calculator SaaS analogous to MyTitleRates.com/TitleTap -- worth checking for other MN or neighboring-state tenant slugs in a future session.",
+    "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Hennepin County -- MN's most populous county. This is MN's 3rd calculator-basis provider, crossing the 3-provider threshold."
   }
 ]

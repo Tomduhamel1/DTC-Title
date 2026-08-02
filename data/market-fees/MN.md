@@ -172,3 +172,19 @@ elsewhere in this survey), was also harvested for Hennepin County: Loan Closing 
 Search and Exam Fee $580, Transaction Security Fee $25/side, Conservation Fee $5, plus a notable
 disclosed-vs-filed premium distinction (disclosed simultaneous-issue rate vs. the full rate
 reported to the underwriter under Minnesota DOC filings). MN now has 2 of the 3 providers needed.
+
+**Update 2026-08-02 — 3rd provider found, MN crosses the calculator threshold.** Harvested
+**Minnesota Secured Title** (statewide, Austin-based, serving Hennepin County) via a newly-discovered
+shared platform, `forms.titlemidwest.com` ("Title Midwest"), tenant slug `mnsecured`. The tenant's
+`calculator.js` file's own `ajaxUpdate()` function makes a plain unauthenticated JSON GET to
+`ajax.asp?loantype=p&purchamt=<amt>&loanamt=<amt>&payoff=n&county=<id>` (county=27 for Hennepin, per
+the page's own county dropdown) — no form submission or JS execution needed. Result at $500k/$400k,
+Hennepin County: Closing Fee $345.00, Title Evidence $645.00 (Title Examination itself returned
+$0.00 at this tier — evidently folded into Title Evidence for this tenant), Lender's Title Insurance
+Premium $1,087.50, Owner's Title Insurance Premium $537.50 (combined Tier-4 title insurance total
+$1,625.00), Recording Services Fee $25.00, Courier Fee $40.00, Delivery Service Fee $30.00. This
+crosses MN to 3 calculator-basis providers (DCA Title, Knight Barry, Minnesota Secured Title) —
+**calculator-quoted (3 providers)**. The Title Midwest platform itself is a significant new
+multi-state find — see CALCULATORS.md's 2026-08-02 entry: its open directory listing exposes 25+
+tenant slugs across MN, MO, KS, NE, and TX, several of which were harvested the same session for
+other states (see MO.json's Secured Title of Kansas City entry).

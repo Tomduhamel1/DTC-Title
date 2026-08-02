@@ -1,6 +1,19 @@
 # Missouri — Market Fee Evidence
 
-## Status: complete (scarce market) — 2 verified premium sources, 0 published settlement/service-fee schedules + 2 calculator-basis providers (not yet at the 3-provider calculator threshold), 2026-08-02
+## Status: complete (scarce market) — 2 verified premium sources, 0 published settlement/service-fee schedules + 3 calculator-basis providers (**calculator-quoted (3 providers)**, threshold crossed 2026-08-02)
+
+## Calculator harvest (2026-08-02 update, continued) — 3rd provider found via a new multi-state platform
+**Secured Title of Kansas City** (Jackson County, same metro as the existing Old Republic entry) was
+found via `forms.titlemidwest.com` ("Title Midwest"), a newly-discovered shared calculator platform
+(open directory listing exposes 25+ tenant slugs across MN/MO/KS/NE/TX — see CALCULATORS.md and
+MN.json's Minnesota Secured Title entry, found the same session via the same platform). Plain
+unauthenticated JSON GET: `ajax.asp?loantype=p&purchamt=500000&loanamt=400000&state=MO&county=JA`.
+Result: Net Owner's Title Policy Charge $1,010.00 (CPL $50 + Missouri Title Service Fee $665.50 +
+Filed Premium $294.50), Net Lender's Title Policy Charge $425.00 (CPL $50 + Title Service Fee $372 +
+Filed Premium $3), plus flat "Other Title Charges" read directly from the page's own HTML: Seller
+closing fee $500.00, Buyer/borrower closing fee $400.00, Wire/Banking service fee $25.00, Overnight/
+Delivery Service fee $45.00 (total $970.00). This crosses MO to 3 calculator-basis providers (Old
+Republic, Elite Title Company, Secured Title of Kansas City) — **calculator-quoted (3 providers)**.
 
 ## Calculator harvest (2026-08-02 update) — 2nd provider found, via a misattribution correction
 **Elite Title Company** (Des Peres, MO, St. Louis County) was harvested via the TitleTap/NetSheetCalc
