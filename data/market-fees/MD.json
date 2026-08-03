@@ -225,5 +225,58 @@
     "sectionTotals": "C. Services You Can Shop For (loan-related shoppable costs): $2,740.00. J. Total Closing Costs (buyer, incl. optional owner's policy and taxes): $9,777.50. Seller Fees (recordation/transfer tax, MD custom is often split or seller-paid by contract): $5,752.50.",
     "bundlingNotes": "2nd MD calculator-basis provider (after Federal Title & Escrow Company) -- still below the 3-provider threshold. This agency id (a=78) also serves New Jersey -- see NJ.json for the same-session NJ harvest from the identical provider/tool.",
     "transactionContext": "Calculator-derived point estimate for Montgomery County, MD (matches this survey's existing MD provider's county choice for comparability)."
+  },
+  {
+    "basis": "calculator",
+    "provider": "Tri-State Signature Settlements, LLC (independent, Hagerstown, MD; licensed/serving MD, PA, WV)",
+    "calculatorUrl": "https://mytitlerate.com/tristatesettlements/rate-calculator/ (embeds calculator.mytitlerates.com/rateCalculator.php?a=40)",
+    "endpoint": "POST https://calculator.mytitlerates.com/rateCalculator.php (MyTitleRates.com white-label platform, plain HTML form POST, no JS/auth/personal-data needed -- same recipe/tool as the Allstates Title Service entries above, a distinct agency id)",
+    "retrievalDate": "2026-08-03",
+    "scenario": "$500,000 purchase price, $400,000 loan, Montgomery County (matches the other MD entries' county choice for comparability), residential purchase, standard (non-enhanced) coverage, primary residence = yes, first-time buyer = no, re-issue discount = no",
+    "methodology": "Found via mytitlerate.com/tristatesettlements/ (a WordPress tenant site on the same mytitlerate.com network as Allstates Title Service), whose rate-calculator/ page embeds calculator.mytitlerates.com/rateCalculator.php?a=40; the form's state dropdown confirmed this agency id serves Maryland and Pennsylvania. Standard MyTitleRates.com plain-POST recipe replayed for MD (state_picked=103, StatesKey=4, county=16 [Montgomery], test_calckey=103 -- note this agency's numeric state_picked/test_calckey value for MD [103] differs from Allstates' [229], confirming these codes are agency-specific, not global constants).",
+    "itemizedFees": {
+      "settlementFee": "$425.00 (Settlement Fee)",
+      "searchExam": "$200.00 (Title Abstract)",
+      "courier": "$80.00 (Overnight / Courier Charges)",
+      "docPrep": null,
+      "processing": null,
+      "wire": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "cpl": null,
+      "binder": null,
+      "titleInsurancePremium": {
+        "lendersPolicy_standard": "$1,235.00"
+      },
+      "other": [
+        {
+          "name": "Recording - Deed",
+          "amount": "$60.00"
+        },
+        {
+          "name": "Recording - Mortgage",
+          "amount": "$60.00"
+        },
+        {
+          "name": "Recordation Tax - State",
+          "amount": "$2,002.50"
+        },
+        {
+          "name": "Transfer Tax - County",
+          "amount": "$2,500.00"
+        },
+        {
+          "name": "Transfer Tax - State",
+          "amount": "$1,250.00"
+        },
+        {
+          "name": "Owner's Title Insurance (optional, buyer-paid)",
+          "amount": "$1,165.00"
+        }
+      ]
+    },
+    "sectionTotals": "C. Services You Can Shop For (loan-related shoppable costs): $1,940.00. Seller Fees (recordation/transfer tax): $5,752.50.",
+    "bundlingNotes": "3rd MD calculator-basis provider (after Federal Title & Escrow Company and Allstates Title Service) -- crosses MD's 3-provider calculator-quoted threshold. Recordation/transfer tax figures match Allstates' MD quote exactly (both are Montgomery County government-set taxes, not provider-set, so identical figures are expected); the Settlement Fee ($425.00) also happens to match Allstates' figure exactly, a genuine coincidence worth noting rather than a sign of a shared template -- the two providers' Title Insurance Premium, Abstract/Search, and courier/wire line items differ.",
+    "transactionContext": "Calculator-derived point estimate for Montgomery County, MD (matches this survey's existing MD providers' county choice for comparability)."
   }
 ]

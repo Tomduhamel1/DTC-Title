@@ -1421,8 +1421,15 @@ block.
   this file for the full field list) — crosses NJ's providers to 3, MD's to 2. See NJ.json/MD.json
   for the full itemized results.
 - **Recommendation**: search `mytitlerate.com` (singular) combined with other still-below-
-  threshold state names (MD, CT, MA, WI, CO, KY) the same way this session found Allstates —
-  likely more tenant sites exist on this network beyond the one found so far.
+  threshold state names (CT, MA, WI, CO, KY) the same way this session found Allstates —
+  likely more tenant sites exist on this network beyond the ones found so far.
+- **Tri-State Signature Settlements, LLC** (`mytitlerate.com/tristatesettlements/`, Hagerstown,
+  MD) — a 2nd tenant found on this network, embedding a distinct agency id `a=40` (serves MD +
+  PA). Harvested MD/Montgomery County — **crosses MD to calculator-quoted (3 providers)**
+  together with the Allstates harvest above. Confirms each agency's numeric `state_picked`/
+  `test_calckey` value for the same state (MD=229 for Allstates, MD=103 for Tri-State) is
+  agency-specific, not a shared/global state code — always re-derive it from that agency's own
+  rendered form, never reuse a value seen on a different `a=<id>`.
 
 ### NetSheetCalc/TitleTap — netsheetcalc.com's own public directory is searchable by company name;
 2 more providers found (NJ, IN); a false-signal lesson on the `state` field default
@@ -1474,9 +1481,14 @@ search and ran each through a verification step before harvesting:
   unconfigured "TitleTap Web Calculator" placeholder company name, i.e. no real tenant behind
   them; not usable.
 
-**Recommendation for a future session**: MD needs 1 more provider to cross threshold (try more
-`mytitlerate.com` tenant pages and netsheetcalc.com directory searches for MD-based agency
-names); IN needs 1 more (same directory technique, search for other Indianapolis/Indiana-named
-title companies). CT, MA, WI, CO, KY remain the next-highest-value scarce-state targets by
-population; the Old-Republic-footprint 1-provider states (NV, NM, UT, HI, OR) are lower priority
-(smaller populations) but still open.
+**Recommendation for a future session**: IN needs 1 more provider to cross threshold -- this
+session checked several more netsheetcalc.com directory candidates (Fortis Title & Escrow
+appid=452 confirmed Virginia Beach VA, AWS Title Services appid=94 confirmed Lutz FL, Capital
+Title and Escrow appid=467 an unconfigured generic placeholder, Patriot Title Agency appid=653
+confirmed Canton OH) without finding a 3rd IN match; Columbia Title Group (columbiatitlegroup.com,
+a genuine Indiana company, Muncie/Lafayette-area) confirmed to run the TitleTap platform
+(`TitleTap Framework` JS visible on its site) but its specific quickquote/netsheetcalc appid was
+not located this session -- worth a follow-up search or a direct look at the site's own
+navigation/JS bundle for the embed URL. CT, MA, WI, CO, KY remain the next-highest-value
+scarce-state targets by population; the Old-Republic-footprint 1-provider states (NV, NM, UT,
+HI, OR) are lower priority (smaller populations) but still open.

@@ -188,3 +188,16 @@ Transfer Tax - State $1,250.00.
 This is 2 of the 3 calculator-basis providers needed for MD — still below threshold.
 See CALCULATORS.md for the full technical entry and the same-session NJ harvest from this
 same provider.
+
+**Tri-State Signature Settlements, LLC** (Hagerstown, MD; licensed and serving MD, PA, WV) —
+a 3rd MD calculator-basis provider, **crossing MD to calculator-quoted status**, found via
+a second `mytitlerate.com` tenant site (`mytitlerate.com/tristatesettlements/`), embedding a
+distinct MyTitleRates.com agency instance (`a=40`, vs. Allstates' `a=78`). Montgomery County
+figures: Settlement Fee $425.00, Title Abstract $200.00, Overnight/Courier Charges $80.00,
+Lender's Title Insurance $1,235.00. Recording and government-tax figures (Recording Deed
+$60, Recording Mortgage $60, Recordation Tax-State $2,002.50, Transfer Tax-County $2,500,
+Transfer Tax-State $1,250) match Allstates' MD quote exactly, as expected since these are
+Montgomery County government-set charges rather than provider-set fees.
+
+**MD is now calculator-quoted (3 providers)**: Federal Title & Escrow Company, Allstates
+Title Service, Tri-State Signature Settlements.

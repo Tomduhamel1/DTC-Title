@@ -31,7 +31,7 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | MN | 3 (DCA Title, Knight Barry Title Group — both Hennepin County/Minneapolis; Minnesota Secured Title — Hennepin County, via the newly-discovered Title Midwest platform) | **calculator-quoted (3 providers)** | 2026-08-02 |
 | WI | 1 (Knight Barry Title Group — Milwaukee County) | below 3-provider threshold | 2026-07-25 |
 | VA | 3 (Bon Air Title Agency + Appomattox, both TitleClose.com tenants, Fairfax; Independent Title & Escrow LLC, NetSheetCalc/TitleTap, Fairfax) | **calculator-quoted (3 providers)** | 2026-07-26 |
-| MD | 2 (Federal Title & Escrow Company — Montgomery County, own first-party ASP.NET tool; Allstates Title Service — Montgomery County, via MyTitleRates.com `a=78`) | below 3-provider threshold | 2026-08-03 |
+| MD | 3 (Federal Title & Escrow Company — Montgomery County, own first-party ASP.NET tool; Allstates Title Service — Montgomery County, via MyTitleRates.com `a=78`; Tri-State Signature Settlements — Montgomery County, via MyTitleRates.com `a=40`) | **calculator-quoted (3 providers)** | 2026-08-03 |
 | CT | 1 (Old Republic — ortratecalculator.oldrepublictitle.com, statewide, a distinct tool from ortconline.com) | below 3-provider threshold | 2026-07-26 |
 | MA | 2 (Absolute Title LLC, statewide; Law Office of David R. Rocheford Jr., Worcester County) | below 3-provider threshold | 2026-07-26 |
 | CO | 1 (First Integrity Title Company — Denver County, via comparetitlecompanies.com's multi-company comparison tool) | below 3-provider threshold | 2026-07-28 |
@@ -1734,9 +1734,19 @@ still vary and matter).
   `titlefirmllc.net` Louisiana company found via a separate web search -- avoiding a false LA
   win. Also ruled out appid=468 ("MVP Title Agency", ambiguous FL/IN naming collision, ultimately
   Florida per its own page) and appid=507/513 (both show only the platform's generic un-
-  configured "TitleTap Web Calculator" placeholder name, no real company behind them). MD/NJ/IN
-  updates committed and pushed as one checkpoint. Next session: MD needs 1 more provider to
-  cross threshold (try more `mytitlerate.com` WordPress tenant pages and netsheetcalc.com
-  directory names for MD-based agencies); IN needs 1 more; CT, MA, WI, CO, KY, and the
-  Old-Republic-footprint 1-provider states (NV, NM, UT, HI, OR) remain the next-highest-value
-  scarce-state targets by population.
+  configured "TitleTap Web Calculator" placeholder name, no real company behind them). First
+  checkpoint (MD/NJ/IN) committed and pushed. Continued the same session: found a 2nd
+  `mytitlerate.com` tenant, **Tri-State Signature Settlements, LLC** (Hagerstown, MD, agency id
+  `a=40`, distinct from Allstates' `a=78`), and harvested MD/Montgomery County from it --
+  **crosses MD to calculator-quoted (3 providers)** too. Also checked 4 more netsheetcalc.com
+  directory candidates for a 3rd IN provider (Fortis Title & Escrow appid=452 -> confirmed
+  Virginia Beach VA; AWS Title Services appid=94 -> confirmed Lutz FL; Capital Title and Escrow
+  appid=467 -> unconfigured generic placeholder; Patriot Title Agency appid=653 -> confirmed
+  Canton OH) -- none matched IN; also confirmed Columbia Title Group (a genuine Indiana company)
+  runs the TitleTap platform on its own site but its specific appid wasn't located this session.
+  IN remains at 2 of 3. Net this session: **NJ and MD both cross the 3-provider threshold**; IN
+  gains a 2nd provider. Next session: IN needs 1 more (follow up on Columbia Title Group's
+  TitleTap embed, or search further netsheetcalc.com directory names for Indianapolis/Fort
+  Wayne/Evansville-area agencies); CT, MA, WI, CO, KY, and the Old-Republic-footprint
+  1-provider states (NV, NM, UT, HI, OR) remain the next-highest-value scarce-state targets by
+  population.
