@@ -1750,3 +1750,14 @@ still vary and matter).
   Wayne/Evansville-area agencies); CT, MA, WI, CO, KY, and the Old-Republic-footprint
   1-provider states (NV, NM, UT, HI, OR) remain the next-highest-value scarce-state targets by
   population.
+- 2026-08-03 (same session, continued): Freshness pass (5 oldest CA published sources: North
+  American/Corinthian, First American, Pacific Coast Title, Stewart/virtualunderwriter.com, WFG) --
+  all 5 re-verified HTTP 200 with a standard browser User-Agent, no stale flags needed. Blocked-
+  source retries: **CATIC CT** (catic.com/state-resources/connecticut, HTTP 200, unchanged);
+  **Jackson & Scott AL** (realestatelclosings.com/closing-costs-calculator/, HTTP 403, persistent
+  WAF block confirmed again, unchanged); **Arizona DIFI** -- the `www.difi.az.gov` host failed at
+  the network/proxy level (502 CONNECT tunnel failure, not a real HTTP response) on first retry,
+  but the canonical no-www `difi.az.gov/title-insurance-rate-filings` host returned its usual
+  HTTP 403, reconfirming the persistent Cloudflare WAF block is unchanged (the `www` failure
+  appears to be a DNS/routing quirk for a subdomain that likely doesn't exist, not a new finding).
+  No status changes on any of the three blocked sources.
