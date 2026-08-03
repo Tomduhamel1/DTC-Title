@@ -27,16 +27,16 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | OR | 1 (Old Republic — Portland 97201/Multnomah County) | below 3-provider threshold | 2026-07-23 |
 | MI | 3 (Modern Title Group — Ann Arbor/Washtenaw County, statewide formula; Knight Barry Title Group — statewide formula; Prestige Title Insurance Agency — Lenawee County, via TitleTap's newer getNetSheetConfig backend) | **calculator-quoted (3 providers)** | 2026-08-02 |
 | PA | 3 (ALT Title, TitleWorks, Trident Land Transfer — all Philadelphia County) | **calculator-quoted (3 providers)** | 2026-07-25 |
-| NJ | 1 (Trident Land Transfer — statewide, no county tiering) | below 3-provider threshold | 2026-07-25 |
+| NJ | 3 (Trident Land Transfer — statewide, no county tiering; Allstates Title Service — statewide, via MyTitleRates.com `a=78`; The Closing Partner, LLC — statewide, NetSheetCalc/TitleTap `appid=638`) | **calculator-quoted (3 providers)** | 2026-08-03 |
 | MN | 3 (DCA Title, Knight Barry Title Group — both Hennepin County/Minneapolis; Minnesota Secured Title — Hennepin County, via the newly-discovered Title Midwest platform) | **calculator-quoted (3 providers)** | 2026-08-02 |
 | WI | 1 (Knight Barry Title Group — Milwaukee County) | below 3-provider threshold | 2026-07-25 |
 | VA | 3 (Bon Air Title Agency + Appomattox, both TitleClose.com tenants, Fairfax; Independent Title & Escrow LLC, NetSheetCalc/TitleTap, Fairfax) | **calculator-quoted (3 providers)** | 2026-07-26 |
-| MD | 1 (Federal Title & Escrow Company — Montgomery County, own first-party ASP.NET tool) | below 3-provider threshold | 2026-07-26 |
+| MD | 2 (Federal Title & Escrow Company — Montgomery County, own first-party ASP.NET tool; Allstates Title Service — Montgomery County, via MyTitleRates.com `a=78`) | below 3-provider threshold | 2026-08-03 |
 | CT | 1 (Old Republic — ortratecalculator.oldrepublictitle.com, statewide, a distinct tool from ortconline.com) | below 3-provider threshold | 2026-07-26 |
 | MA | 2 (Absolute Title LLC, statewide; Law Office of David R. Rocheford Jr., Worcester County) | below 3-provider threshold | 2026-07-26 |
 | CO | 1 (First Integrity Title Company — Denver County, via comparetitlecompanies.com's multi-company comparison tool) | below 3-provider threshold | 2026-07-28 |
 | TN | 3 (Tennessee Title Services, LLC — Davidson County, own first-party calculator; Signature Title Services — Davidson County, own ASP.NET WebForms calculator; Cornerstone Title of Tennessee, LLC — Davidson County scenario, via TitleTap) | **calculator-quoted (3 providers)** | 2026-08-02 |
-| IN | 1 (Agency Title, Inc. — New Albany/Louisville-metro Southern Indiana office, NetSheetCalc/TitleTap "Quick Quote" JSON API) | below 3-provider threshold | 2026-07-29 |
+| IN | 2 (Agency Title, Inc. — New Albany/Louisville-metro Southern Indiana office, NetSheetCalc/TitleTap "Quick Quote" JSON API; Momentum Title Agency [formerly Hocker Title] — Indianapolis, NetSheetCalc/TitleTap `appid=1056`) | below 3-provider threshold | 2026-08-03 |
 | KY | 1 (Agency Title, Inc. — Louisville/Jefferson County, same operator's KY instance of NetSheetCalc/TitleTap) | below 3-provider threshold | 2026-07-29 |
 | AL | 3 (Signature Title Services — Jefferson County, AL-specific ASP.NET WebForms portal distinct from the TN instance; Land Title Company of Alabama — Jefferson/Shelby Counties, first-party JS calculator; Alabama Land Title — statewide, first-party "ydwebpro" platform calculator) | **calculator-quoted (3 providers)** | 2026-07-30 |
 | AR | 2 (TitleTech of Arkansas, LLC — Rogers/Benton County-NWA; Hot Springs Title — Garland County, via the Title Midwest platform) | below 3-provider threshold | 2026-08-02 |
@@ -1704,3 +1704,39 @@ still vary and matter).
   retry Title Resources Guaranty once its backend recovers, and continue down the priority-ordered
   scarce-state list (next up by population: CO, AL, SC, remaining tier-2/tier-3 scarce states not
   yet calculator-harvested).
+- 2026-08-03: Calculator harvest crosses NJ's threshold; new MyTitleRates.com agency instance
+  (Allstates Title Service, `a=78`) discovered serving MD/NJ/PA at once. Found via web-searching
+  netsheetcalc.com's own public calculator directory for company names, then separately searching
+  `mytitlerate.com` (singular, not the previously-documented `calculator.mytitlerates.com` iframe
+  subdomain -- a related but distinct tenant-site WordPress network run by the same platform
+  operator) for agency pages serving MD/NJ. **Allstates Title Service, Inc.** (Hamilton Township,
+  NJ) embeds `calculator.mytitlerates.com/rateCalculator.php?a=78` on its own `mytitlerate.com/
+  allstates1/estimator/` tenant page (note: this specific page 406'd on a bare-curl UA/no-Accept-
+  header request -- needed the full browser header set, same UA-sensitivity pattern seen
+  repeatedly elsewhere in this survey -- not a real block). Its form confirmed agency id 78
+  serves Maryland, New Jersey, and Pennsylvania in one instance; harvested both MD (Montgomery
+  County, 2nd MD provider) and NJ (statewide, 2nd NJ provider) with the standard MyTitleRates.com
+  plain-POST recipe. Then searched netsheetcalc.com's directory further for NJ/IN/MD company
+  names via WebSearch and found **The Closing Partner, LLC** (Chester, NJ, `appid=638`) --
+  crosses **NJ to calculator-quoted (3 providers)** -- and **Momentum Title Agency** (Indianapolis,
+  IN, `appid=1056`, the same company previously indexed as "Hocker Title" before a 2025
+  acquisition/rebrand) -- IN now at 2 of 3. **Important new lesson**: the NetSheetCalc/TitleTap
+  JSON schema's `state` field `initial_val` (used loosely as a state-attribution signal in
+  earlier reasoning this session) turned out to be an unreliable, frequently-uncustomized
+  platform-demo default (FL, the platform's own home state) even for confirmed non-FL companies
+  (e.g. Closing Partner, a verified Chester-NJ agency, still shows `initial_val:"FL"`) -- do
+  **not** use it for state attribution in future sessions; the reliable signals are the
+  quickquote.php page's own `<title>`/`company_name` fields cross-checked against an independent
+  external search for the named company's real address (the same misattribution-guard standard
+  already established for appid-name mixups). This same check ruled OUT appid=444 ("The Title
+  Firm") as LA evidence -- its quickquote page's demo address (Orlando, FL, 407 area code)
+  confirmed it's a same-named Florida company, not the superficially-plausible
+  `titlefirmllc.net` Louisiana company found via a separate web search -- avoiding a false LA
+  win. Also ruled out appid=468 ("MVP Title Agency", ambiguous FL/IN naming collision, ultimately
+  Florida per its own page) and appid=507/513 (both show only the platform's generic un-
+  configured "TitleTap Web Calculator" placeholder name, no real company behind them). MD/NJ/IN
+  updates committed and pushed as one checkpoint. Next session: MD needs 1 more provider to
+  cross threshold (try more `mytitlerate.com` WordPress tenant pages and netsheetcalc.com
+  directory names for MD-based agencies); IN needs 1 more; CT, MA, WI, CO, KY, and the
+  Old-Republic-footprint 1-provider states (NV, NM, UT, HI, OR) remain the next-highest-value
+  scarce-state targets by population.

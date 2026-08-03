@@ -172,3 +172,19 @@ third-party platforms (TitleCapture, Qualia Connect, TRGC PowerSnap, TitleClose)
 first-party tools, which is why the yield here is thinner than PA's — Federal Title is the
 only MD-licensed provider found this session running its own uncontrolled, stateless,
 browser-free-drivable calculator.
+
+## Calculator harvest addendum (2026-08-03)
+
+**Allstates Title Service, Inc.** (Hamilton Township, NJ; licensed and serving MD) — a 2nd
+MD calculator-basis provider, found via the agency's own WordPress tenant site
+(`mytitlerate.com/allstates1/estimator/`), which embeds a MyTitleRates.com white-label
+calculator instance (`a=78`; this same agency id also serves NJ and PA — see NJ.md).
+Montgomery County (matching Federal Title's county choice) figures: Settlement Charge
+$375.00, Title Search/Abstract & Binder/Copies $930.00 (bundled), Wire/Edocs/Overnights
+$200.00 (bundled), Lender's Title Insurance $1,235.00, Recording - Deed $60.00, Recording -
+Mortgage $60.00, Recordation Tax - State $2,002.50, Transfer Tax - County $2,500.00,
+Transfer Tax - State $1,250.00.
+
+This is 2 of the 3 calculator-basis providers needed for MD — still below threshold.
+See CALCULATORS.md for the full technical entry and the same-session NJ harvest from this
+same provider.

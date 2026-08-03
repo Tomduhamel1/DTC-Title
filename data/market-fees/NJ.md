@@ -169,3 +169,30 @@ several NJ-specific itemized search products not seen as separate lines in any o
 Settlement $40), consistent with NJ conveyancing custom of multiple discrete municipal/county
 searches. This is 1 of 3 providers needed to cross the calculator-quoted threshold (see
 PROGRESS.md tracker) — 2 more distinct NJ agency calculators are needed.
+
+## Calculator harvest addendum (2026-08-03) — NJ crosses the 3-provider threshold
+
+Two more calculator-basis NJ providers harvested this session, crossing the threshold — see
+NJ.json's two new `"basis": "calculator"` entries and CALCULATORS.md for full technical detail.
+
+**Allstates Title Service, Inc.** (Hamilton Township, NJ) — a 2nd MyTitleRates.com agency
+instance (`a=78`, distinct from Trident's `a=15`), found via the agency's own WordPress tenant
+site (`mytitlerate.com/allstates1/estimator/`), whose `/estimator/` page embeds
+`calculator.mytitlerates.com/rateCalculator.php?a=78` (this agency id also serves Maryland and
+Pennsylvania — see MD.md). Statewide NJ figures: Settlement Fee $425.00, Standard Exam Charge
+$100.00, Closing Service Letter $75.00, Abstract $85.00, Edocs/Copies/Cover Record $20.00,
+Overnights/Wire Fees/Mail $100.00 (bundled), ALTA 8.1 $25.00, Survey Endorsement $25.00, Notice
+of Settlement $50.00, Tidelands/Tax/Upper Courts search $139.00.
+
+**The Closing Partner, LLC** (Chester, NJ) — a 3rd, distinct NetSheetCalc/TitleTap-hosted
+provider (`appid=638`), found via netsheetcalc.com's own public directory and independently
+corroborated as a genuine Chester, NJ agency via BBB and the company's own site
+(`closingpartner.net`, which advertises a net-sheet calculator page). Same `non-auth-ajax.php?
+action=getAppData` plain JSON GET recipe as the IN/KY/MD entries elsewhere in this survey.
+Statewide flat constants (finance/buyer scenario): Settlement Fee $625.00, Title Search
+$250.00, Municipal Lien Search $200.00, Attorney Fee $250.00, Post-Closing Fee $70.00,
+Fraud Protection and Verification Fee $35.00, Courier Fee $25.00, Wire Fee $25.00,
+E-Recording Fee $9.50, Lender's FF9 Endorsement $25.00.
+
+**NJ is now calculator-quoted (3 providers)**: Trident Land Transfer, Allstates Title
+Service, The Closing Partner.

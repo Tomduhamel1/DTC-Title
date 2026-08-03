@@ -1394,3 +1394,89 @@ cross threshold (2 of 3) — this session's two new techniques (TitleTap backend
 Midwest) were both checked against MA leads without success; a browser-driven session for the
 zero-provider states (MS, SC, LA) via the Modiphy/Flux platform remains the standing highest-priority
 recommendation from 2026-08-01.
+
+## 2026-08-03 session — `mytitlerate.com` (a related but distinct MyTitleRates.com tenant-site
+network) crosses NJ's threshold; MD and IN each gain a 2nd provider; a false-signal lesson on
+NetSheetCalc's `state` field default
+
+### mytitlerate.com (singular) — WORKING, a per-agency WordPress tenant-site network distinct
+from the `calculator.mytitlerates.com` iframe subdomain already on file
+Found by web-searching `"mytitlerates.com" title agency <state>` and noticing a hit on
+`mytitlerate.com` (no trailing "s") — a separate-but-related WordPress multisite network
+(`mytitlerate.com/<tenant-slug>/`) apparently run by the same platform operator, where each
+tenant gets a full marketing site (About/Services/Contact/**Estimator**) rather than just a bare
+iframe URL. The `/<tenant-slug>/estimator/` page is what actually embeds the already-documented
+`calculator.mytitlerates.com/rateCalculator.php?a=<id>` iframe — so this is a **new discovery
+channel** (search this WordPress network for tenant sites) for finding more `a=<id>` values, not
+a new backend. **UA sensitivity**: both the tenant homepage and its `/estimator/` page 406'd on a
+bare-curl request (default UA, no `Accept`/`Accept-Language` headers) but returned clean HTTP 200
+with a full browser header set — the same recurring pattern documented for CATIC/Stewart/GA
+elsewhere in this catalog; always retry a 406/403 with full browser headers before concluding a
+block.
+- **Allstates Title Service, Inc.** (`mytitlerate.com/allstates1/`, Hamilton Township, NJ) —
+  `/estimator/` embeds `a=78`. This single agency id's `state_picked` dropdown covers **Maryland,
+  New Jersey, and Pennsylvania** (PA already at threshold, not re-harvested here). Harvested both
+  MD (Montgomery County, StatesKey=4, county=16) and NJ (statewide, no county field, StatesKey=1)
+  with the standard documented plain-POST recipe (see the "MyTitleRates.com" entry earlier in
+  this file for the full field list) — crosses NJ's providers to 3, MD's to 2. See NJ.json/MD.json
+  for the full itemized results.
+- **Recommendation**: search `mytitlerate.com` (singular) combined with other still-below-
+  threshold state names (MD, CT, MA, WI, CO, KY) the same way this session found Allstates —
+  likely more tenant sites exist on this network beyond the one found so far.
+
+### NetSheetCalc/TitleTap — netsheetcalc.com's own public directory is searchable by company name;
+2 more providers found (NJ, IN); a false-signal lesson on the `state` field default
+Extending the 2026-07-29 finding that `non-auth-ajax.php?action=getAppData&app_id=<id>` is a
+general reusable recipe: netsheetcalc.com itself maintains a public, search-engine-indexed
+directory of every hosted company's `quickquote.php?appid=<id>` page (page title format
+"`<Company Name> - Quick Quote Net Sheet Calculator by TitleTap`"), so a plain WebSearch for
+`netsheetcalc.com quickquote <state name>` or generic terms surfaces a batch of appids with
+company names at once — no need to find them via each agency's own site first (though that
+remains a useful corroboration step). This session pulled 8 candidate appids from one such
+search and ran each through a verification step before harvesting:
+- **The Closing Partner, LLC** (Chester, NJ) — `appid=638` — confirmed via BBB/Alignable listings
+  and the company's own `closingpartner.net/calculators` page (which advertises a net-sheet
+  calculator, though the live embed on that specific page could not be located in raw HTML —
+  attribution rests on the quickquote.php page's own `<title>`/`company_name` fields plus the
+  external address match). Crosses **NJ to calculator-quoted (3 providers)**.
+- **Momentum Title Agency** (Indianapolis, IN, formerly "Hocker Title") — `appid=1056` — the
+  company's own live site (`hockertitle.com/net-sheet/`) now embeds a *different*, dead
+  vanity-slug widget (`app.netsheetcalc.com/c/momentumta`, returns the platform's generic 404
+  page) reflecting a 2025 rebrand/acquisition (per ALTA news: "Futura Title & Escrow Acquires
+  Hocker Title") — but the originally-indexed `appid=1056` is still live and was independently
+  confirmed correctly attributed: its own quickquote.php page's `<title>`/`company_name` read
+  "Momentum Title Agency", and its demo-profile address field (usually unreliable, see below)
+  happens to read Indianapolis/46250/(317) area code, an exact match to the company's real HQ.
+  IN now at 2 of 3 providers.
+- **False-signal lesson — do NOT use the JSON schema's `state` field `initial_val` for state
+  attribution.** While investigating these appids, noticed each tenant's fee-form JSON schema
+  includes a "Property Address" section with a `state` select whose `initial_val` looked like it
+  might encode the company's home state (e.g. `"initial_val":"IN"` for the confirmed-Indiana
+  Momentum Title Agency). Checked across all 8 candidate appids and found this is **not**
+  reliable: `appid=638` (Closing Partner, independently confirmed as a genuine Chester, NJ
+  company) still shows `"initial_val":"FL"` — evidently just an uncustomized platform-demo
+  default (FL, presumably the platform vendor's own home state) that many tenants never bother
+  to change. **Do not use this field for attribution in future sessions** — rely instead on the
+  quickquote.php page's own `<title>`/`company_name` (which IS tenant-specific) cross-checked
+  against an independent external search for that company's real address, per this survey's
+  standing misattribution-guard practice.
+- **Dead ends ruled out this session** (all found via the same directory search, all ruled out
+  by the same title/company_name + external-search verification step): `appid=444` ("The Title
+  Firm") — its quickquote.php page's demo address is Orlando, FL (407 area code), confirming it's
+  a same-named **Florida** company distinct from the superficially-plausible `titlefirmllc.net`
+  Louisiana company a naive search turned up (a near-miss false LA win avoided by this check —
+  Louisiana remains 0 calculator-basis providers). `appid=468` ("MVP Title Agency") — the page
+  gives no distinguishing address; the name collides with both a Naples, FL company and an
+  unrelated "MVP National Title" in Greenwood, IN, and could not be confidently attributed to
+  either — skipped rather than guessed. `appid=599` (Title Insights LLC, confirmed Tampa, FL) and
+  `appid=627` (Overstreet Law LLC, most likely Kissimmee, FL) — both clearly non-target states,
+  not pursued further. `appid=507` and `appid=513` — both show only the platform's generic
+  unconfigured "TitleTap Web Calculator" placeholder company name, i.e. no real tenant behind
+  them; not usable.
+
+**Recommendation for a future session**: MD needs 1 more provider to cross threshold (try more
+`mytitlerate.com` tenant pages and netsheetcalc.com directory searches for MD-based agency
+names); IN needs 1 more (same directory technique, search for other Indianapolis/Indiana-named
+title companies). CT, MA, WI, CO, KY remain the next-highest-value scarce-state targets by
+population; the Old-Republic-footprint 1-provider states (NV, NM, UT, HI, OR) are lower priority
+(smaller populations) but still open.

@@ -251,5 +251,116 @@
     "sectionTotals": "C. Services You Can Shop For: $2,655.00. E. Taxes and Other Government Fees: $300.00 (recording only). H. Other (optional owner's policy): $450.00. Seller Fees: $4,450.00 (notary $15 + settlement fee $250 + transfer tax $4,175 + wire $10).",
     "bundlingNotes": "First calculator-basis NJ provider (state was previously entirely published-schedule evidence: NJLTIRB's own promulgated $300/$150 settlement fee). Trident's flat $250 Settlement Fee (each side) sits well below NJLTIRB's promulgated $300-with-disbursements figure, and the tool itemizes several NJ-specific search products (County Search, Tax Search, Tideland Search, Upper Court Search, Notice of Settlement) not seen as separate line items in any other state surveyed -- consistent with NJ conveyancing custom of multiple discrete municipal/county searches rather than one bundled 'search and exam' fee.",
     "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k statewide NJ purchase scenario, standard (non-enhanced) coverage."
+  },
+  {
+    "basis": "calculator",
+    "provider": "Allstates Title Service, Inc. (independent, Hamilton Township, NJ; licensed/serving MD, NJ, PA)",
+    "calculatorUrl": "https://mytitlerate.com/allstates1/estimator/ (embeds calculator.mytitlerates.com/rateCalculator.php?a=78)",
+    "endpoint": "POST https://calculator.mytitlerates.com/rateCalculator.php (MyTitleRates.com white-label platform, plain HTML form POST, no JS/auth/personal-data needed -- same recipe as the existing PA/NJ MyTitleRates.com entries, new agency id a=78 found via Allstates' own WordPress tenant site)",
+    "retrievalDate": "2026-08-03",
+    "scenario": "$500,000 purchase price, $400,000 loan, statewide (NJ configuration has no county/city tiering in this tool), residential purchase, standard (non-enhanced) coverage, default endorsement set (surveyEndorsement checked, the tool's only pre-checked/disabled box for NJ)",
+    "methodology": "Found via mytitlerate.com/allstates1/ (Allstates' own WordPress site, a tenant of the mytitlerate.com multi-agency network) -> its /estimator/ page embeds calculator.mytitlerates.com/rateCalculator.php?a=78 in an iframe. Confirmed via the loaded form that agency id 78 serves Maryland, New Jersey, and Pennsylvania (3 states in one agency id's dropdown). Standard MyTitleRates.com plain-POST recipe (see CALCULATORS.md) replayed for NJ (state_picked=227, StatesKey=1, test_calckey=227).",
+    "itemizedFees": {
+      "settlementFee": "$425.00 (Title - Settlement Fee)",
+      "searchExam": "$100.00 (Standard Exam Charge)",
+      "cpl": "$75.00 (Closing Service Letter)",
+      "edoc": "$20.00 (Edocs / Copies / Cover Record)",
+      "wire": "$100.00 (Overnights / Wire Fees / Mail, bundled single line item)",
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "binder": "$85.00 (Abstract)",
+      "titleInsurancePremium": {
+        "lendersPolicy_standard": "$1,800.00"
+      },
+      "other": [
+        {
+          "name": "ALTA 8.1 Endorsement",
+          "amount": "$25.00"
+        },
+        {
+          "name": "Survey Endorsement",
+          "amount": "$25.00"
+        },
+        {
+          "name": "Notice of Settlement (recording-adjacent filing)",
+          "amount": "$50.00"
+        },
+        {
+          "name": "Tidelands / Tax / Upper Courts search",
+          "amount": "$139.00"
+        },
+        {
+          "name": "Recording - Deed",
+          "amount": "$100.00"
+        },
+        {
+          "name": "Recording - Mortgage",
+          "amount": "$250.00"
+        },
+        {
+          "name": "Owner's Title Insurance (optional, buyer-paid)",
+          "amount": "$450.00"
+        },
+        {
+          "name": "Transfer Tax (seller-paid)",
+          "amount": "$4,175.00"
+        }
+      ]
+    },
+    "sectionTotals": "C. Services You Can Shop For (loan-related shoppable costs): $2,844.00. J. Total Closing Costs (buyer, incl. optional owner's policy): $3,644.00.",
+    "bundlingNotes": "2nd NJ calculator-basis provider (after Trident Land Transfer, a=15). This agency id (a=78) also serves Maryland -- see MD.json for the same-session MD harvest from the identical provider/tool.",
+    "transactionContext": "Calculator-derived point estimate, statewide NJ (this tool has no county/city selector for NJ, consistent with the existing Trident Land Transfer NJ entry's finding)."
+  },
+  {
+    "basis": "calculator",
+    "provider": "The Closing Partner, LLC (independent, Chester, NJ)",
+    "calculatorUrl": "https://app.netsheetcalc.com/company/quickquote.php?appid=638",
+    "endpoint": "GET https://app.netsheetcalc.com/company/non-auth-ajax.php?action=getAppData&app_id=638 (NetSheetCalc/TitleTap platform's public, unauthenticated 'Quick Quote' JSON API; no personal data required)",
+    "retrievalDate": "2026-08-03",
+    "scenario": "$500,000 purchase price / $400,000 loan, statewide flat hardcoded fee constants read directly from the tool's JSON config (finance/buyer estimate type), consistent with the existing IN/KY NetSheetCalc entries' methodology",
+    "methodology": "Found via web search for netsheetcalc.com's own public directory of hosted calculators (title 'The Closing Partner, LLC - Quick Quote Net Sheet Calculator by TitleTap'), independently corroborated as a genuine NJ agency (Chester, NJ, 45 Perry Street) via BBB and the company's own site closingpartner.net, which advertises a net sheet calculator under its Resources/Calculators page. The quickquote.php page itself confirms via its <title> and company_name field ('The Closing Partner, LLC'); its own baked-in demo profile address field (city/zip/phone) was left at an uncustomized platform default and was NOT used for state attribution -- attribution rests on the company_name + independent external confirmation only, per this survey's misattribution-guard standard.",
+    "itemizedFees": {
+      "settlementFee": "$625.00 (Settlement Fee, finance/buyer scenario)",
+      "searchExam": "$250.00 (Title Search) + $200.00 (Municipal Lien Search)",
+      "docPrep": null,
+      "processing": null,
+      "courier": "$25.00 (Courier Fee)",
+      "wire": "$25.00 (Wire Fee)",
+      "eRecording": "$9.50 (E-Recording Fee)",
+      "notarySigning": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        {
+          "name": "Fraud Protection and Verification Fee",
+          "amount": "$35.00"
+        },
+        {
+          "name": "Lender's FF9 Endorsement",
+          "amount": "$25.00"
+        },
+        {
+          "name": "Attorney Fee",
+          "amount": "$250.00"
+        },
+        {
+          "name": "Post-Closing Fee",
+          "amount": "$70.00"
+        },
+        {
+          "name": "Deed Recording Fees (estimate)",
+          "amount": "$25.00"
+        },
+        {
+          "name": "Security Deed Recording Fee",
+          "amount": "$25.00"
+        }
+      ]
+    },
+    "bundlingNotes": "3rd NJ calculator-basis provider (after Trident Land Transfer a=15, and Allstates Title Service a=78 above) -- crosses NJ's 3-provider calculator-quoted threshold. Distinct from the seller-side estimate type in the same tool (Closing/Settlement Fee $625.00, Title Search $200.00, Municipal Lien Search $200.00 -- the buyer/finance figures above were used to match this survey's standard purchase-with-loan scenario).",
+    "transactionContext": "Calculator-derived flat statewide fee constants (no county/city selection exposed in this tool's schema); Chester, NJ is in Morris County, Northern NJ."
   }
 ]

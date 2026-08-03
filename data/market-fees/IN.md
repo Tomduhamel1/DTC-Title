@@ -154,3 +154,22 @@ the tax-proration line, so no specific county selection was needed to read them.
 This is 1 of the 3 calculator-basis providers needed for IN to reach calculator-quoted
 status (still below threshold). The same agency operator also has a Kentucky instance
 (`appid=582`) harvested the same session — see KY.md.
+
+## Calculator harvest addendum (2026-08-03)
+
+**Momentum Title Agency** (formerly Hocker Title; Indianapolis, IN) — a 2nd NetSheetCalc/
+TitleTap-hosted provider, `appid=1056`, found via netsheetcalc.com's own public directory
+listing (still indexed under the pre-rebrand name "Hocker Title"). Same `non-auth-ajax.php?
+action=getAppData&app_id=1056` plain JSON GET recipe as Agency Title above. Statewide flat
+constants: Closing Fee $175.00, Title Services Fee $125.00, CPL (Lender) $35.00 / (Buyer)
+$25.00 / (Seller) $25.00, TIEFF $5.00/policy, E-Recording $10.00 (2 documents), Deed
+Recording Fee $35.00, Mortgage Recording Fee (est.) $65.00, Indiana Sales Disclosure
+Recording $30.00, Endorsements $50.00 each. State attribution required extra care: the
+company's own live site (`hockertitle.com/net-sheet/`) now embeds a dead vanity-slug widget
+(`app.netsheetcalc.com/c/momentumta`, 404s) reflecting its 2025 rebrand, but `appid=1056`
+itself is confirmed still correctly configured — its own quickquote.php page's `<title>`/
+`company_name` read "Momentum Title Agency", corroborated by its address field (Indianapolis,
+zip 46250, matching the company's real HQ).
+
+This is 2 of the 3 calculator-basis providers needed for IN — still below threshold. See
+CALCULATORS.md for the full technical entry.

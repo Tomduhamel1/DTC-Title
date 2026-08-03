@@ -172,5 +172,58 @@
     "sectionTotals": "TOTAL Title Fees: $3,563.00 (buyer/borrower) / $985.00 (seller). TOTAL Taxes and Other Government Fees: $5,650.00 (buyer/borrower) / $5,530.00 (seller). Buyer/borrower grand total across both sections (Title Fees + Taxes/Government Fees, excluding the optional Location Survey): $9,213.00.",
     "bundlingNotes": "Federal Title bundles document preparation into its core Settlement/Closing Fee (docPrep line items are $0.00 on both sides while the settlement fee itself is $975/$550) -- similar to the bundling pattern already seen in Ardent Title and CAL Settlements' static schedules in this same state's dataset (MD.json). Notary is not itemized as a separate line at all in this tool's output (not even a $0.00 placeholder), unlike CPL, search/exam, and recording, which are all itemized as distinct non-zero lines. The tool applies a clean buyer/seller cost split matching Maryland's typical settlement-statement structure, with government transfer/recordation taxes duplicated identically on both the buyer and seller sides per the 'Split 50/50' selection made for this scenario.",
     "transactionContext": "Calculator-derived point estimate for the standard $500,000/$400,000 Montgomery County, Maryland purchase scenario, Conventional financing, single-family principal residence, retrieved via Federal Title & Escrow Company's own public 'Quick Quote' tool (tools.federaltitle.com), a DC/MD/VA-licensed independent title and settlement company. Distinct from the two static Montgomery County/DC-suburb sources already in this dataset (CAL Settlements) in that this is a live calculator quote rather than a published fee sheet."
+  },
+  {
+    "basis": "calculator",
+    "provider": "Allstates Title Service, Inc. (independent, Hamilton Township, NJ; licensed/serving MD, NJ, PA)",
+    "calculatorUrl": "https://mytitlerate.com/allstates1/estimator/ (embeds calculator.mytitlerates.com/rateCalculator.php?a=78)",
+    "endpoint": "POST https://calculator.mytitlerates.com/rateCalculator.php (MyTitleRates.com white-label platform, plain HTML form POST, no JS/auth/personal-data needed -- see NJ.json for the same-provider/same-session NJ harvest and CALCULATORS.md for the full platform recipe)",
+    "retrievalDate": "2026-08-03",
+    "scenario": "$500,000 purchase price, $400,000 loan, Montgomery County (matches the existing Federal Title & Escrow MD entry's county choice), residential purchase, standard (non-enhanced) coverage, primary residence = yes, first-time buyer = no, re-issue discount = no",
+    "methodology": "Found via mytitlerate.com/allstates1/estimator/ (Allstates' own WordPress tenant site), which embeds calculator.mytitlerates.com/rateCalculator.php?a=78; the form's state dropdown confirmed this agency id serves Maryland, New Jersey, and Pennsylvania. Standard MyTitleRates.com plain-POST recipe replayed for MD (state_picked=229, StatesKey=4, county=16 [Montgomery], test_calckey=229).",
+    "itemizedFees": {
+      "settlementFee": "$375.00 (Settlement Charge)",
+      "searchExam": "$930.00 (Title Search / Abstract & Binder / Copies, single bundled line item)",
+      "wire": "$200.00 (Wire / Edocs / Overnights, bundled single line item)",
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "cpl": null,
+      "binder": null,
+      "titleInsurancePremium": {
+        "lendersPolicy_standard": "$1,235.00"
+      },
+      "other": [
+        {
+          "name": "Recording - Deed",
+          "amount": "$60.00"
+        },
+        {
+          "name": "Recording - Mortgage",
+          "amount": "$60.00"
+        },
+        {
+          "name": "Recordation Tax - State",
+          "amount": "$2,002.50"
+        },
+        {
+          "name": "Transfer Tax - County",
+          "amount": "$2,500.00"
+        },
+        {
+          "name": "Transfer Tax - State",
+          "amount": "$1,250.00"
+        },
+        {
+          "name": "Owner's Title Insurance (optional, buyer-paid)",
+          "amount": "$1,165.00"
+        }
+      ]
+    },
+    "sectionTotals": "C. Services You Can Shop For (loan-related shoppable costs): $2,740.00. J. Total Closing Costs (buyer, incl. optional owner's policy and taxes): $9,777.50. Seller Fees (recordation/transfer tax, MD custom is often split or seller-paid by contract): $5,752.50.",
+    "bundlingNotes": "2nd MD calculator-basis provider (after Federal Title & Escrow Company) -- still below the 3-provider threshold. This agency id (a=78) also serves New Jersey -- see NJ.json for the same-session NJ harvest from the identical provider/tool.",
+    "transactionContext": "Calculator-derived point estimate for Montgomery County, MD (matches this survey's existing MD provider's county choice for comparability)."
   }
 ]

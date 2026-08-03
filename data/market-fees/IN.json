@@ -139,5 +139,31 @@
       ]
     },
     "bundlingNotes": "Discovered via the agency's own site (agencytitle.com/calculator/), which links out to this NetSheetCalc-hosted Quick Quote tool. First calculator-basis provider for Indiana; TIEFF figure here ($10.00) is this agency's own line item and does not need to match Stewart's cited $5.00 statutory pass-through figure exactly (may reflect a doubled buyer+seller-policy charge or the agency's own rounding)."
+  },
+  {
+    "basis": "calculator",
+    "provider": "Momentum Title Agency (formerly Hocker Title; Indianapolis, IN -- acquired by Futura Title & Escrow per ALTA, 2025)",
+    "calculatorUrl": "https://app.netsheetcalc.com/company/quickquote.php?appid=1056",
+    "endpoint": "GET https://app.netsheetcalc.com/company/non-auth-ajax.php?action=getAppData&app_id=1056 (NetSheetCalc/TitleTap platform's public, unauthenticated 'Quick Quote' JSON API; no personal data required)",
+    "retrievalDate": "2026-08-03",
+    "scenario": "$500,000 purchase price / $400,000 loan, statewide flat hardcoded fee constants read directly from the tool's JSON config (finance/buyer estimate type), same methodology as the existing Agency Title IN/KY entries",
+    "methodology": "Found via web search for netsheetcalc.com's own public directory (listed under its prior name, 'Hocker Title'). Hocker Title's own site (hockertitle.com/net-sheet/) currently embeds a different, dead vanity-slug widget (app.netsheetcalc.com/c/momentumta, 404s) reflecting the company's 2025 rebrand to Momentum Title Agency -- but appid=1056 itself is still live and correctly rebranded: its quickquote.php page's <title> and company_name field both read 'Momentum Title Agency', and its (separately unreliable, per this survey's misattribution-guard standard) demo-profile address field happens to read city=Indianapolis/zip=46250/phone=(317) 578-1630, matching the company's independently-confirmed real HQ (6626 E 75th St Fl 4, Indianapolis, IN 46250) -- stronger corroboration than the address field alone would normally provide.",
+    "itemizedFees": {
+      "settlementFee": 175.0,
+      "titleServicesFee": 125.0,
+      "cpl": {
+        "lender": 35.0,
+        "buyer": 25.0,
+        "seller": 25.0
+      },
+      "tieff": "5.00 (per policy, 1 for owner's + 1 for lender's)",
+      "eRecordingFee": "10.00 ($5 each document, 1 for deed + 1 for mortgage)",
+      "deedRecordingFee": 35.0,
+      "mortgageRecordingFeeEstimate": 65.0,
+      "indianaSalesDisclosureRecording": "30.00 ($10 per additional parcel)",
+      "endorsements": "50.00 each as requested",
+      "other": []
+    },
+    "bundlingNotes": "2nd IN calculator-basis provider (after Agency Title, Inc.) -- still below the 3-provider threshold. Fee structure is a useful cross-check against Agency Title's IN figures: Momentum's Closing Fee ($175) + Title Services Fee ($125) together roughly bracket Agency Title's single $495 Settlement Fee, while Momentum itemizes CPL/TIEFF/e-recording separately rather than bundling them."
   }
 ]
