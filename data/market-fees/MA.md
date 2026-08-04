@@ -312,3 +312,26 @@ CALCULATORS.md's maintainer for cataloging):
 - **WFG National Title** -- not re-checked for MA specifically; already logged platform-wide
   in CALCULATORS.md as a premium-only teaser endpoint regardless of state/product/transaction
   type combination tested.
+
+## Calculator harvest addendum (2026-08-04) — no new provider found
+
+Searched for a 3rd MA calculator provider via several new angles: NetSheetCalc/TitleTap directory
+search for Boston/Worcester/Springfield-named companies (surfaced 6 candidate appids -- Attorneys'
+Title Services, SUPREME Title Company, Title America, Title Squad, Pinnacle Title Agency, A & A
+Title Services -- all verified via the platform's `getNetSheetConfig` `approved_states` field to
+be FL/TX/MO instances, none MA); MyTitleRates.com search surfaced **Suburban Abstract Agency
+Incorporated** (`suburbanabstract.com`, a genuine MA independent title company), whose
+`calculator.php`/`quickQuote.php` pages both embed a legacy `mytitlerates.com/rateCalculator/
+rateCalculator.php` / `.../quickCalculator/rateCalculator.php` iframe URL (no `a=` agency
+parameter, a structurally older integration than the current `calculator.mytitlerates.com/
+rateCalculator.php?a=<id>` recipe used elsewhere in this survey) -- both URLs now 404 on the
+current mytitlerates.com site, confirming this specific integration is dead/stale rather than
+gated or jsOnly. FNF Massachusetts Agency (`fnf-ma.com`) returned HTTP 202 with no body on a plain
+fetch, consistent with a bot-challenge page -- not pursued further without a browser. MA remains
+at 2 of 3 calculator-basis providers. **Recommendation**: the "child tenant via
+`currentAppLocations`" pattern that found IN's 3rd provider (one company running dedicated
+per-state NetSheetCalc/TitleTap tenants) is worth checking against any multi-state operator
+already on file in this survey with a New England footprint; otherwise MA's next-session
+priority stands as previously recommended -- this remains a structurally thin market
+(mandatory-attorney-closing, no independent title/escrow layer) matching its published-schedule
+survey's own scarce classification.

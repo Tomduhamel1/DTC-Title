@@ -173,3 +173,17 @@ zip 46250, matching the company's real HQ).
 
 This is 2 of the 3 calculator-basis providers needed for IN — still below threshold. See
 CALCULATORS.md for the full technical entry.
+
+## Calculator harvest addendum (2026-08-04)
+
+**Rounsavall Title Group, LLC** (Louisville, KY-headquartered) — a 3rd NetSheetCalc/TitleTap
+provider, `appid=480`, discovered as a child tenant of the company's Kentucky instance
+(`appid=479`): its `currentAppLocations` payload lists a 2nd, sibling app_id explicitly scoped
+`approved_states: ["IN"]`, `location_name: "Indiana"`. The old `getAppData` endpoint returned
+only sparse fields for this tenant, but the newer `getNetSheetConfig` endpoint (per the
+2026-08-02 AZ/MI-session discovery) revealed the real config: Owner's Title Insurance Premium
+is formula-driven off a dedicated rate-table key (`Indiana480`), resolved via
+`GET app.netsheetcalc.com/api/index.php/rate/500000/Indiana480` → $1,100 at $500,000 purchase
+price; Lender's Title Insurance Premium is a flat $100.00 constant. Statewide, no county
+selector present in this tenant's schema. **This crosses IN to calculator-quoted (3
+providers).** See CALCULATORS.md for the full technical entry.

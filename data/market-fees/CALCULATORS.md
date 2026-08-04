@@ -1492,3 +1492,115 @@ not located this session -- worth a follow-up search or a direct look at the sit
 navigation/JS bundle for the embed URL. CT, MA, WI, CO, KY remain the next-highest-value
 scarce-state targets by population; the Old-Republic-footprint 1-provider states (NV, NM, UT,
 HI, OR) are lower priority (smaller populations) but still open.
+
+## 2026-08-04 session — Indiana (IN) crosses the 3-provider threshold via Rounsavall Title Group's dedicated IN tenant
+
+### Rounsavall Title Group, LLC — WORKING, NetSheetCalc/TitleTap newer backend, formula-driven premium via dedicated rate-table key
+Found via a broader netsheetcalc.com quickquote directory search that surfaced `appid=479`
+("Rounsavall Title Group, LLC", Louisville, KY) — its `currentAppLocations` payload (returned by
+both the old `getAppData` and newer `getNetSheetConfig` non-auth-ajax actions) lists a 2nd,
+child tenant: `app_id=480`, `tenant_name: "rounsavall-title-IN"`, `approved_states: ["IN"]`,
+`location_name: "Indiana"` — same company/office/phone as the KY parent, but an explicitly
+IN-scoped instance (the same one-company-multiple-state-tenant pattern already seen for Agency
+Title Inc./IN+KY). The old `getAppData` endpoint for app_id=480 returns HTTP 200 but with nearly
+all fields empty (`initial_val: ""` throughout) — this looked like a dead/unconfigured tenant at
+first glance, but the newer `getNetSheetConfig` endpoint (`GET app.netsheetcalc.com/company/
+non-auth-ajax.php?action=getNetSheetConfig&app_id=480`, per the 2026-08-02 AZ/MI-session
+discovery) revealed the real underlying config: Owner's Title Insurance Premium is
+**formula-driven**, not a flat constant, referencing a dedicated rate-table key `"Indiana480"`
+resolved via `GET app.netsheetcalc.com/api/index.php/rate/500000/Indiana480` → `{"rate":"1100"}`
+(confirming the tenant-specific-rate-table-key pattern documented for AZ generalizes to any
+formula field, not just AZ's own keys). Lender's Title Insurance Premium is a flat non-formula
+constant, `$100.00`. No county/city selector exists in this tenant's schema at all (unlike Agency
+Title's 416-entry municipality dropdown) — statewide only. No personal data anywhere in the
+schema. **This crosses IN to calculator-quoted (3 providers)**, alongside Agency Title Inc.
+(New Albany) and Momentum Title Agency (Indianapolis).
+
+**Generalizable lesson**: an app_id that returns HTTP 200 with an all-empty `getAppData` schema
+should not be written off as dead/unconfigured without also trying `getNetSheetConfig` — the two
+endpoints can disagree on how populated a given tenant's config looks, matching (but distinct
+from) the already-documented "old endpoint 404s, new endpoint works" migration pattern.
+
+### Dead ends checked for IN's 3rd-provider search this session
+- **DRG Title Agency** (`appid=313`) — despite the company having a stated Indianapolis office
+  (per its own marketing copy, "Northwest Indiana" and "Indianapolis" phone numbers listed), its
+  `getAppData` config's `county_drp` dropdown is exclusively Illinois counties (Cook, DuPage,
+  Kane, Lake, McHenry, Will, Boone, Dekalb, Grundy, Kankakee, Kendall, Peoria, Winnebago) — this
+  specific tenant instance is Illinois-configured only, not usable as IN evidence. Not re-flagged
+  gated/jsOnly since it did return real (if wrong-state) data; simply not IN.
+- **Meridian Title** (`meridiantitle.com`, a genuine multi-state IN-headquartered title company)
+  — its `/seller-net-sheet` page links to a first-party ASP.NET calculator at
+  `bypass.meridiantitle.com/CostCalculator.aspx?a=1&OfficeID=1`, but the entire `bypass.` subdomain
+  is Cloudflare-protected (HTTP 403, "Just a moment..." interstitial) on plain HTTP fetch —
+  **gated (Cloudflare)**, would need a browser-driven session.
+- **Empora Title** (`emporatitle.com/closing-costs-calculator`) — page loads (HTTP 200 with full
+  browser headers; 406 without an `Accept` header, a UA-sensitivity quirk seen elsewhere in this
+  survey) but no iframe, embedded widget div, or discoverable calculator API endpoint found
+  anywhere in the page HTML or linked JS — the "calculator" appears to be either non-functional
+  marketing copy or a dynamically-injected widget not present in the initial page load —
+  **jsOnly** (logged for the browser-driven follow-up queue; state coverage not yet confirmed to
+  include IN specifically).
+- **Columbia Title Group** (`columbiatitlegroup.com/calculators/`) — the specific TitleTap
+  netsheetcalc appid flagged as unlocated in the 2026-08-03 session turns out not to exist as a
+  separate NetSheetCalc tenant; the page instead embeds a **Qualia Connect quote widget**
+  (`connect.qualia.com/quote-widget/scripts/init`), a fully iframe/JS-driven tool matching the
+  already-catalogued Qualia Connect jsOnly pattern elsewhere in this survey — **jsOnly**, not a
+  NetSheetCalc/TitleTap instance after all (superseding the 2026-08-03 "worth a follow-up search"
+  note).
+
+**Recommendation for a future session**: CT, MA, WI, CO, KY remain the next-highest-value
+scarce-state targets by population; the Old-Republic-footprint 1-provider states (NV, NM, UT, HI,
+OR) are lower priority (smaller populations) but still open. The "child tenant via
+`currentAppLocations`" pattern found for Rounsavall this session (one company, multiple app_ids,
+one per approved state) is worth actively searching for on any other multi-state independent
+agency already on file (e.g. Agency Title Inc. itself only shows 2 locations currently, but the
+platform clearly supports more per company).
+
+## 2026-08-04 session — Wisconsin (WI) gains a 2nd calculator provider (Homestead Title, formula read from page JS); DCA Title's WI county blocker confirmed structural, not a payload guess
+
+### Homestead Title Company LLC (Dane County/Madison, WI) — WORKING, client-side JS formula, no server round-trip needed
+`homesteadtitle.net/title-quote.asp` computes its quote entirely in the browser via an inline
+`showpay()` function — no AJAX/POST call at all, just DOM manipulation. Read directly via plain
+GET/view-source (same "grep hardcoded/formula constants from inline script" technique already
+used for Land Title Company of Alabama and Modern Title Group MI). Rate brackets and flat-fee
+constants are visibly dated/commented in the source itself (`// BT 8-6-25 new formula from
+Peter`), a stronger real-pricing signal than an unremarked template default. Formula for Owner's
+Title Policy Premium: `575 + (H-15000)*0.0035 [$15k-$350k band] + (H-350000)*0.0025 [$350k-$500k
+band] + (H-500000)*0.001 [$500k-$2M band] + ...` where H = purchase price; WI Real Estate
+Transfer Fee approximated as `floor(H/333 - 0.5)` (≈ WI's statutory $3.00/$1,000 rate); flat
+Deed Drafting $150, Gap Endorsement $175, Special Assessment Certificate $75; a parallel
+loan-amount-driven formula produces the TRID Lender's/Owner's Title Insurance CD-disclosure
+figures. At $500k/$400k: Owner's Policy $2,123, Transfer Fee $1,501, grand total $4,024;
+TRID Lender's $1,723 / Owner's (net) $750. See WI.json for the full harvested entry.
+
+### DCA Title (WI branch) — retried, confirmed still blocked; root cause is now structural, not a payload-guessing problem
+Per the 2026-07-26 session's recommendation, retried `dcatitle.com`'s WordPress `admin-ajax.php`
+endpoint (`action=dcatitle_calculator_results`) with real Wisconsin county names substituted
+directly for the `county` parameter (`Milwaukee`, `Dane`, `Waukesha`) instead of the placeholder
+values already ruled out (empty string, `N/A`, `Statewide`, etc.) — all three still rejected with
+the identical `{"alert":{"type":"error","msg":"Please select a valid County value."}}` error.
+Fetched the calculator page's own live HTML (not just the plugin JS file) to inspect the actual
+`<select id="county">` DOM directly: it contains **only Minnesota county `<option>` values**
+(Aitkin through Yellow Medicine, no Wisconsin county anywhere) — confirming there genuinely is no
+valid WI county value obtainable via this form at all, a platform-side gap (the WI state option
+exists and the UI hides the county field for it, implying WI purchases are meant to skip county
+selection, but the server-side handler still hard-requires a county match against the
+Minnesota-only list it validates against). This is now confirmed **structural**, not a payload
+formatting issue — deprioritize further plain-HTTP attempts on this specific integration; a
+browser-driven session capturing the real network request (if the UI behaves differently than the
+static DOM suggests) remains the only path forward, per the original 2026-07-26 recommendation.
+
+### Land Title Services (Wauwatosa, WI) — GATED, requires email address
+`landtitleservices.net/calculators/seller-net-sheet/` runs a first-party WordPress plugin
+(`ltscalculator`) whose form POSTs to itself, but requires a `required` `ans_email_address` field
+before computing — **gated**, no personal data entered per the hard rule, not pursued further.
+
+### Burnet Title Wisconsin — jsOnly, another TRGC "PowerSnap" tenant (already-catalogued platform)
+`burnettitlewi.com/calculators/` embeds the same Title Resources Guaranty "PowerSnap" Angular SPA
+(confirmed via the page's own `aisCalcData = {"api_url":"https://mobile.trgc.com/powersnap/",...}`
+config) already logged jsOnly elsewhere in this survey under a different tenant — not a new
+platform, just another instance of an already-known dead end for plain-HTTP harvesting.
+
+**Recommendation for a future session**: WI needs 1 more provider to cross threshold. CO, CT, KY
+remain the next-highest-value scarce-state targets by population; the Old-Republic-footprint
+1-provider states (NV, NM, UT, HI, OR) are lower priority (smaller populations) but still open.

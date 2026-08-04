@@ -135,3 +135,36 @@ regulatory disclosure-vs-reality gap not seen in any other state surveyed. Flat 
 Fee $350.00, Transaction Security Fee $25.00/side, Recording Fee $30.00/document (stated flat
 statewide). This is 1 of 3 providers needed to cross the calculator-quoted threshold for WI (see
 PROGRESS.md tracker).
+
+## Calculator harvest addendum (2026-08-04)
+
+**Homestead Title Company LLC** (Madison, Dane County) — a 2nd WI calculator-basis provider,
+found via web search for "seller net sheet calculator" independent WI title companies. Its
+`title-quote.asp` page computes the quote entirely client-side via an inline `showpay()` JS
+function with hardcoded, dated/commented rate constants (e.g. "BT 8-6-25 new formula from
+Peter") — read directly via plain GET/view-source, same technique as Land Title Company of
+Alabama and Modern Title Group (MI) elsewhere in this survey, no browser execution needed. At
+$500,000 purchase/$400,000 loan (Dane County, the tool's single-county service area): Owner's
+Title Policy Premium $2,123, WI Real Estate Transfer Fee $1,501, Deed Drafting $150, Gap
+Endorsement $175, Special Assessment Certificate $75 (grand total $4,024), plus TRID-disclosure
+figures (Lender's Title Insurance $1,723, Owner's Title Insurance net of simultaneous credit
+$750). This is 2 of 3 providers needed to cross the calculator-quoted threshold for WI.
+
+Also checked and ruled out this session: **Land Title Services** (Wauwatosa, `landtitleservices.
+net/calculators/seller-net-sheet/`) — a genuine WordPress-plugin-based seller net sheet
+calculator, but its form requires a `required` email address field before computing — **gated**,
+no personal data entered per the hard rule. **Burnet Title Wisconsin** (`burnettitlewi.com/
+calculators/`) — embeds Title Resources Guaranty's "PowerSnap" Angular SPA (`mobile.trgc.com/
+powersnap/`, confirmed via the page's own `aisCalcData.api_url` config), the same jsOnly
+platform already catalogued elsewhere in this survey under a different tenant — **jsOnly**, not a
+new discovery. **DCA Title**'s WI branch (`dcatitle.com/calculator/`, previously logged
+"blocked" 2026-07-26) was retried with several real WI county names (Milwaukee, Dane, Waukesha)
+directly substituted into the AJAX payload — still rejected with the same "Please select a valid
+County value" error regardless of input, and the page's own county `<select>` DOM never contains
+any WI county option at all (only Minnesota counties) — confirms this is a genuine platform
+limitation (WI county data is not present anywhere in the static page), not a payload-value
+guessing problem; still unresolved without a browser session. **TitleSmart, Inc.** confirmed
+Minnesota-based (not WI-relevant despite surfacing in a WI-flavored search). **Perfect Title
+Company** (a previously-indexed TitleTap customer) — domain now redirects to TitleTap's own
+generic marketing site, dead/no longer a real company. See CALCULATORS.md for the full technical
+entries.

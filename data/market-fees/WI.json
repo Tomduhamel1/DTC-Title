@@ -127,5 +127,27 @@
     "sectionTotals": "LE/CDF-disclosed buyer-side total: Loan Policy $1,848 + Owner's Policy $1,090 + Loan Closing Fee $350 + Transaction Security Fee (buyer) $25 = $3,313.00 (plus $30 recording fee per document).",
     "bundlingNotes": "Wisconsin's calculator is structurally more complex than any other state's tool encountered this session: since 2015-10-03 (per the tool's own on-page disclaimer) Knight Barry's WI calculator has separately shown (a) the rate lenders must disclose on the federal Loan Estimate/Closing Disclosure forms (which uses full owner's-policy rates plus the simultaneous-loan discount rate, producing a HIGHER loan-policy figure than the actual charge) versus (b) the 'Actual Charges to All Parties' actually collected at closing, further split into 3 sub-options (A/B/C) depending on whether buyer or seller contractually pays for the owner's policy. Recorded here are the LE-disclosure figures (the consumer-facing regulatory disclosure) and the Option C actual-charge figures for comparison; this LE-vs-actual gap is itself a notable WI-specific regulatory finding worth flagging in any future settlement-fee analysis. First WI calculator-basis provider found this session (below the 3-provider threshold).",
     "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k Milwaukee County purchase scenario, buyer side."
+  },
+  {
+    "basis": "calculator",
+    "provider": "Homestead Title Company LLC (independent, Dane County/Madison WI)",
+    "sourceUrl": "https://homesteadtitle.net/title-quote.asp",
+    "calculatorUrl": "https://homesteadtitle.net/title-quote.asp",
+    "endpoint": "Not a server round-trip -- the page's own inline <script> block (function showpay()) computes the quote entirely client-side from hardcoded rate constants; read directly via plain GET/view-source, no JS execution needed (same technique used elsewhere in this survey for Land Title Company of Alabama and Modern Title Group MI).",
+    "retrievalDate": "2026-08-04",
+    "scenario": "$500,000 purchase price, $400,000 loan, Dane County (Madison) -- the tool's own stated service area, no county selector (single-county tool).",
+    "methodology": "Formula hand-replayed against the standard scenario: Owner's Title Policy = 575 + (min(500000,350000)-15000)*0.0035 + (min(500000,500000)-350000)*0.0025 = $2,122.50, rounded to $2,123 (no prior-title discount applied, standard scenario assumes no prior policy credit). WI Real Estate Transfer Fee = floor(500000/333 - 0.5) = $1,501 (approximates WI's statutory $3.00/$1,000 transfer fee rate). Lender's (TRID) Title Insurance = 525 + (min(400000,250000)-15000)*0.0035 + (min(400000,500000)-250000)*0.0025 = $1,722.50, rounded to $1,723. TRID Owner's Title Insurance (net/CD figure) = $2,123 - $1,723 + $350 = $750.",
+    "itemizedFees": {
+      "ownersTitlePolicyPremium": 2123.00,
+      "realEstateTransferFee": 1501.00,
+      "deedDrafting": 150.00,
+      "gapEndorsement": 175.00,
+      "specialAssessmentCertificate": 75.00,
+      "grandTotal": 4024.00,
+      "tridLendersTitleInsurance": 1723.00,
+      "tridOwnersTitleInsurance_netOfSimultaneousCredit": 750.00
+    },
+    "bundlingNotes": "2nd WI calculator-basis provider (after Knight Barry Title Group) -- still below the 3-provider threshold. Genuine itemized breakdown (title premium, statutory transfer fee, deed drafting, gap endorsement, special assessment certificate) rather than premium-only; the deed_drafting/gap_endorsement/special_assessment_certificate constants and rate-bracket coefficients are all visibly commented/dated in the page's own script (e.g. 'BT 8-6-25 new formula from Peter'), suggesting actively-maintained real pricing rather than a stale template default.",
+    "transactionContext": "Seller-side net calculation plus TRID buyer-side lender's/owner's title insurance figures, Dane County (Madison), WI."
   }
 ]

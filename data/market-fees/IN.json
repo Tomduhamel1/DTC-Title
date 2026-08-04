@@ -165,5 +165,20 @@
       "other": []
     },
     "bundlingNotes": "2nd IN calculator-basis provider (after Agency Title, Inc.) -- still below the 3-provider threshold. Fee structure is a useful cross-check against Agency Title's IN figures: Momentum's Closing Fee ($175) + Title Services Fee ($125) together roughly bracket Agency Title's single $495 Settlement Fee, while Momentum itemizes CPL/TIEFF/e-recording separately rather than bundling them."
+  },
+  {
+    "basis": "calculator",
+    "provider": "Rounsavall Title Group, LLC (Louisville, KY-headquartered; dedicated Indiana-approved tenant instance)",
+    "calculatorUrl": "https://app.netsheetcalc.com/company/quickquote.php?appid=480",
+    "endpoint": "GET https://app.netsheetcalc.com/company/non-auth-ajax.php?action=getNetSheetConfig&app_id=480 (config/schema); GET https://app.netsheetcalc.com/api/index.php/rate/500000/Indiana480 (formula-driven Owner's Title Insurance Premium rate resolution) -- NetSheetCalc/TitleTap platform's newer (2026) unauthenticated backend, no personal data required.",
+    "retrievalDate": "2026-08-04",
+    "scenario": "$500,000 purchase price / $400,000 loan, statewide (no county selector present in this tenant's config -- unlike Agency Title's/Momentum's flat constants, this tenant's Owner's Title Insurance Premium is formula-driven off a dedicated rate-table key ('Indiana480') resolved via the platform's rate endpoint).",
+    "methodology": "Discovered via this company's parent app_id (479, its Kentucky-approved instance, itself found via a broader netsheetcalc.com quickquote search) -- its 'currentAppLocations' payload lists a 2nd, child tenant (app_id=480, tenant_name 'rounsavall-title-IN', approved_states: [\"IN\"], location_name: \"Indiana\") sharing the same Louisville KY company address/phone but explicitly scoped to Indiana. This app_id=480 config's own getAppData response (old endpoint) returned only sparse/empty fields, but the newer getNetSheetConfig endpoint (per the 2026-08-02 AZ/MI-session discovery) revealed the real formula-driven schema underneath, avoiding a false 'thin/unusable' write-off.",
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": 1100.00,
+      "lendersTitleInsurancePremium": 100.00,
+      "other": []
+    },
+    "bundlingNotes": "3rd IN calculator-basis provider -- crosses Indiana to calculator-quoted (3 providers). Thinnest of the 3 IN tenants (only 2 itemized lines vs. Agency Title's 7 and Momentum's 9+), but genuinely and unambiguously IN-scoped per its own approved_states field, avoiding the appid misattribution risk flagged repeatedly elsewhere in this survey. Lender's Title Insurance Premium is a flat non-formula constant ($100.00, plausibly a simultaneous-issue rate) while Owner's Title Insurance Premium is priced off the tenant's own rate table."
   }
 ]
