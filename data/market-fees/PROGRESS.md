@@ -34,7 +34,7 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | MD | 3 (Federal Title & Escrow Company — Montgomery County, own first-party ASP.NET tool; Allstates Title Service — Montgomery County, via MyTitleRates.com `a=78`; Tri-State Signature Settlements — Montgomery County, via MyTitleRates.com `a=40`) | **calculator-quoted (3 providers)** | 2026-08-03 |
 | CT | 1 (Old Republic — ortratecalculator.oldrepublictitle.com, statewide, a distinct tool from ortconline.com) | below 3-provider threshold | 2026-07-26 |
 | MA | 2 (Absolute Title LLC, statewide; Law Office of David R. Rocheford Jr., Worcester County) | below 3-provider threshold | 2026-08-04 (retried, no new provider found) |
-| CO | 1 (First Integrity Title Company — Denver County, via comparetitlecompanies.com's multi-company comparison tool) | below 3-provider threshold | 2026-07-28 |
+| CO | 1 (First Integrity Title Company — Denver County, via comparetitlecompanies.com's multi-company comparison tool) | below 3-provider threshold | 2026-08-04 (retried, no new provider found; new jsOnly "Settlor" platform discovered via LTGC) |
 | TN | 3 (Tennessee Title Services, LLC — Davidson County, own first-party calculator; Signature Title Services — Davidson County, own ASP.NET WebForms calculator; Cornerstone Title of Tennessee, LLC — Davidson County scenario, via TitleTap) | **calculator-quoted (3 providers)** | 2026-08-02 |
 | IN | 3 (Agency Title, Inc. — New Albany/Louisville-metro Southern Indiana office, NetSheetCalc/TitleTap "Quick Quote" JSON API; Momentum Title Agency [formerly Hocker Title] — Indianapolis, NetSheetCalc/TitleTap `appid=1056`; Rounsavall Title Group, LLC — Louisville KY-headquartered, dedicated IN-approved tenant `appid=480`, formula-driven premium via `getNetSheetConfig`) | **calculator-quoted (3 providers)** | 2026-08-04 |
 | KY | 1 (Agency Title, Inc. — Louisville/Jefferson County, same operator's KY instance of NetSheetCalc/TitleTap) | below 3-provider threshold | 2026-07-29 |
@@ -413,6 +413,17 @@ rate schedule (CA), Pacific Coast Title's escrow schedule PDF (CA — HTTP 503 o
 live at HTTP 200 on `https://`, a protocol redirect quirk not a dead source), 24 Hour Closing's fee
 schedule page (NC/SC), and Fidelity National Title's rate book PDF (CA). All 5 still live and
 returning real content — no `{stale: true}` flags needed this session.
+
+**2026-08-04 retry** (one quick check each): AZ DIFI still HTTP 403; CATIC CT still HTTP 403;
+Jackson & Scott AL's domain still fails to resolve (connection failure, `curl` exit 56). No status
+change for any of the three.
+
+**2026-08-04 freshness spot-check**: re-verified 5 oldest-retrieved published sources not
+previously re-checked in the prior freshness passes' rotating CA-heavy set — Stewart Title
+Guaranty's Georgia rate manual PDF, Campbell & Brannon's GA closing-attorney fee page, and 3 WA
+sources (Old Republic's escrow/service-fee schedule PDF, WFG National's WA escrow-fees PDF, CW
+Title and Escrow's rate PDF), all originally fetched 2026-07-21. All 5 returned HTTP 200 — no
+`{stale: true}` flags needed this session.
 
 ## The completion contract
 
@@ -1761,3 +1772,25 @@ still vary and matter).
   HTTP 403, reconfirming the persistent Cloudflare WAF block is unchanged (the `www` failure
   appears to be a DNS/routing quirk for a subdomain that likely doesn't exist, not a new finding).
   No status changes on any of the three blocked sources.
+- 2026-08-04: Calculator harvest session. **IN crosses the 3-provider threshold**: found
+  Rounsavall Title Group, LLC's dedicated Indiana tenant on the NetSheetCalc/TitleTap platform
+  (a child app_id discovered via the parent Kentucky tenant's own `currentAppLocations`
+  payload — a new, generalizable "one company, multiple per-state tenants" search pattern),
+  crossing IN via a formula-driven Owner's Title Insurance Premium ($1,100 at $500k) resolved
+  through the platform's newer `getNetSheetConfig`/`api/index.php/rate` backend. **WI gains a
+  2nd provider**: Homestead Title Company (Dane County/Madison), harvested by reading its
+  hardcoded rate-bracket formula directly out of the page's own inline JS (`showpay()`), no
+  server round-trip needed. MA retried for a 3rd provider (none found; a legacy MyTitleRates.com
+  embed on Suburban Abstract Agency turned out dead). CO retried (still 1 of 3; surfaced a
+  significant new platform, "Settlor," via Land Title Guarantee Company — Colorado's largest
+  independent title company — but it's jsOnly). Confirmed the "PowerSnap" (mobile.trgc.com)
+  Angular SPA platform, already logged jsOnly, has multi-state reach into CO/WI/AR/KY/IN via
+  Upward Title & Closing's tenant pages. Standing freshness pass (5 oldest GA/WA published
+  sources, not previously re-checked in the prior sessions' CA-heavy rotation) and blocked-source
+  retries (AZ DIFI, CATIC CT, Jackson & Scott AL) run with no status changes. Checkpoint committed
+  and pushed after IN/WI/MA; CO/freshness/blocked-retries changes to follow in a 2nd checkpoint.
+  **Next session priority**: CT and KY are the next-highest-value plain-HTTP-reachable
+  scarce-state targets (both 1 of 3, next by population after WI); a browser-driven session
+  should prioritize PowerSnap and Settlor first, since each could unlock multiple below-threshold
+  states (CO, WI, AR, KY, IN for PowerSnap; CO, and possibly more, for Settlor) in one pass rather
+  than searching for new plain-HTTP platforms one state at a time.

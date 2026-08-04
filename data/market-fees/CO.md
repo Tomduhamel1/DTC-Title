@@ -152,3 +152,25 @@ root domain markets directly to Colorado. This session confirmed and harvested i
 ## Sources
 
 See `CO.json` for full structured records with source URLs.
+
+## Calculator harvest addendum (2026-08-04) — no new provider found; one significant new platform discovered but jsOnly
+
+Searched for CO's 2nd/3rd calculator provider. Found **Land Title Guarantee Company (LTGC)**,
+Colorado's largest independent title company, whose `ltgc.com/resources/seller-net-sheets/` page
+links to `portal.settlor.com/ltgc/rate-quote/create` — a previously-uncatalogued platform
+("Settlor," `api.settlor.com` backend). The portal page is a Vite-built JS SPA shell with no
+computation logic present in the initial bundle, and its `api.settlor.com/graphql` guess 404'd
+(not necessarily the real path) — **jsOnly**, logged for the browser-driven follow-up queue; given
+LTGC's market position this is a high-priority target for a future browser-driven session. Also
+checked **Upward Title & Closing**'s CO/UT calculator page (`upwardtitle.com/colorado-utah-
+calculators/`) and its AR/KY/IN-serving sibling page (`ar-ky.upwardtitle.com/calculators/`) — both
+embed Title Resources Guaranty's "PowerSnap" Angular SPA (`mobile.trgc.com/powersnap/company/
+UPWARDCO_*` and `UPWARDARKYIN_*` respectively), the same already-catalogued jsOnly platform found
+independently this session for Burnet Title Wisconsin — confirmed no static API config
+(`appConfig.json` and the Angular bundle itself carry no discoverable backend URL) — not a new
+discovery, just further confirmation of this platform's breadth (now confirmed to cover CO, WI,
+AR, KY, IN via various tenants, all jsOnly). CO remains at 1 of 3 calculator-basis providers.
+**Recommendation**: PowerSnap (`mobile.trgc.com/powersnap`) and Settlor (`portal.settlor.com`) are
+now confirmed high-value, multi-state, browser-only targets covering several of this survey's
+still-below-threshold scarce states at once — worth prioritizing in the first browser-driven
+session available, ahead of further plain-HTTP searching.

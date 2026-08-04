@@ -1604,3 +1604,34 @@ platform, just another instance of an already-known dead end for plain-HTTP harv
 **Recommendation for a future session**: WI needs 1 more provider to cross threshold. CO, CT, KY
 remain the next-highest-value scarce-state targets by population; the Old-Republic-footprint
 1-provider states (NV, NM, UT, HI, OR) are lower priority (smaller populations) but still open.
+
+## 2026-08-04 session, continued — Colorado (CO): new "Settlor" platform found (jsOnly); PowerSnap's multi-state breadth confirmed further
+
+### Land Title Guarantee Company (LTGC, Colorado's largest independent title company) — jsOnly, new "Settlor" platform
+`ltgc.com/resources/seller-net-sheets/` links to `portal.settlor.com/ltgc/rate-quote/create` — a
+previously-uncatalogued platform (distinct from every other one documented in this file: MyTitleRates,
+TRACcalculator, TitleClose, NetSheetCalc/TitleTap, TitleCapture, Qualia Connect, CATICulator,
+PalmAgent, ydwebpro, Title Midwest, PowerSnap/TRGC). The portal page is a bare Vite/JS SPA shell
+(`assets/index-<hash>.js`) referencing an `api.settlor.com` backend, but no request path/endpoint
+string is present anywhere in the bundle (likely constructed dynamically at runtime or behind an
+auth/session flow) — a blind guess at `api.settlor.com/graphql` 404'd. **jsOnly**, logged for the
+browser-driven follow-up queue. High priority given LTGC's market position in CO (a state with
+only 1 calculator-basis provider on file).
+
+### PowerSnap (`mobile.trgc.com/powersnap`) confirmed to also cover CO, AR, KY, IN via Upward Title & Closing tenants
+Upward Title & Closing embeds this already-catalogued jsOnly platform (see the same-session WI
+entry above for Burnet Title's tenant) for **both** its CO/UT calculator page
+(`UPWARDCO_nss`/`_refi`/`_tcc`/`_tridactual`/`_rnss` company slugs) and a separate AR/KY/IN-serving
+page at `ar-ky.upwardtitle.com/calculators/` (`UPWARDARKYIN_*` slugs) — confirming this platform's
+real footprint spans at least CO, WI, AR, KY, and IN. Checked the Angular bundle's own
+`Configs/appConfig.json` and `main.js` again for a discoverable backend API base URL (in case a
+different tenant's build exposed what Burnet Title's didn't) — still nothing statically
+discoverable. Not a new platform, but strengthens the case that PowerSnap is one of the highest-
+value remaining browser-driven targets, potentially unlocking several below-threshold states in
+one session (alongside the previously-flagged Modiphy/Flux platform for LA/MS/AL/FL/TX).
+
+**Recommendation for a future session**: CT, KY remain the next-highest-value scarce-state
+targets by population reachable via plain HTTP; PowerSnap and Settlor are now the two clearest
+browser-driven-session targets, each with confirmed multi-state reach into several still-open
+scarce states (CO, WI[partially resolved], AR, KY, IN for PowerSnap; CO for Settlor, though
+Settlor's install base beyond LTGC is unconfirmed).
