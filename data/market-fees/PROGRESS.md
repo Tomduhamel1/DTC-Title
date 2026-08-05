@@ -553,6 +553,21 @@ without login and appears to be a public pilot/demo state, not representative of
 AR now has 4 calculator-basis providers — **calculator-quoted (4 providers)**, one above the
 minimum threshold.
 
+**2026-08-05 session wrap-up.** Net this session: **WI, KY, CO, and AR all cross the 3-provider
+calculator-quoted threshold** (4 states, the most in a single session to date); CT gains a 2nd
+provider but remains below threshold. Remaining below-3-provider-threshold states, by population
+priority for a future session: **CT** (2 of 3 — closest to threshold, top priority; FACC's
+CORS-gated API is the most promising unsolved lead), **MA** (2 of 3, several prior sessions found
+no 3rd provider), **NE** (1 of 3), **NV/NM/UT/HI/OR** (1 of 3 each, all via a single Old Republic
+`ortconline.com` entry), **MS** (0 of 3, extensively searched across 2+ sessions with nothing
+found). **LA and SC are not yet tracked in this table at all** (0 calculator-basis providers per
+narrative notes above, despite being higher-population than most of the above) — both were
+extensively searched in 2026-07-30/08-01 sessions with only jsOnly finds (Modiphy/Flux for LA);
+worth a dedicated future pass now that this session's new techniques (state title-association
+member directories as a discovery channel, PII-gate-bypass via a form's own underlying JS
+endpoint, ratecalculator.fnf.com confirmed in-scope and requiring raw HTTP not WebFetch) are
+available. Four checkpoints committed and pushed this session (KY+WI, CT, CO, AR).
+
 ## The completion contract
 
 A **good source**: published by the provider itself or a regulator/rating
