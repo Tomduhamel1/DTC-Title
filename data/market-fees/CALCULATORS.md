@@ -1821,3 +1821,55 @@ already-catalogued as PA/NJ/DE-only, excluded to avoid misattribution); several 
 TitleTap CO-named tenant candidates were ambiguous/unconfirmed as genuine distinct CO agencies
 and not pursued further; `comparetitlecompanies.com/get_quote.php?id=1` re-checked, First
 Integrity Title Company remains the platform's only CO subscriber.
+
+## 2026-08-05 session, continued — Arkansas (AR) crosses the 3-provider threshold (4 total)
+
+### `ratecalculator.fnf.com` — must be driven via raw HTTP/curl, not WebFetch
+**Important tooling note for future FNF harvests**: WebFetch's HTML-to-markdown conversion
+strips the raw `__VIEWSTATE`/`__EVENTVALIDATION` hidden ASP.NET fields needed to replay this
+tool's postback flow — use a plain HTTP client (curl / Python `requests`) instead. Confirmed AR
+is a supported state (all 75 counties enumerated). Harvested **Chicago Title Insurance Company**:
+Owner's Policy Premium $1,265.00, CPL $25.00, Grand Total $1,290.00 (Pulaski County) — no Loan
+Policy line appeared despite a $400k loan amount entered, recorded as-is. Confirmed a
+simplification to the postback recipe: a state's dropdowns (county, underwriter) can be set via
+one combined form resubmission rather than individual `__EVENTTARGET` postbacks per dropdown —
+only fields that don't exist in the DOM until a prior field is submitted (TranType,
+AmountPurchase, AmountLoan1) strictly require their own dedicated `__EVENTTARGET` postback.
+Byte-identical output confirmed again for the Fidelity National Title brand on the same platform
+— one entry per state per the standing dedup rule.
+
+### All American Title & Abstract, LLC (Little Rock, AR) — WORKING, first-party static-page calculator, JS-formula extraction technique
+A genuinely first-party, non-SaaS tool (no netsheetcalc/titletap/mytitlerates platform involved
+at all) — a static WordPress page whose client-side JS (`homeScripts.js`) contains the full
+formula set. Read the JS directly, extracted a `NETSHEET_VALUES` object plus 2 price-linked
+formulas (`INSURANCE_POLICY_PRICE = (price-100000)*0.005+575`, `DOC_STAMPS_PRICE = price*0.007`),
+and validated the extraction was correct by reproducing the page's own $900,000 default scenario
+exactly before applying the formulas at the standard $500,000 scenario. Result: Settlement/Title
+Exam Fee $850 (flat), Search Fee $300 (flat), Title Insurance Policy $2,575 (formula), Doc
+Stamps $3,500 (formula — notably 2x AR's statutory 0.33% transfer-tax rate documented elsewhere
+in this survey, flagged as a possible stale/incorrect JS constant but recorded as-is per the
+exact-figures rule, not corrected).
+
+### Old Republic's `Location=<code>` tool — confirmed gated for AR (and likely most states); Location=01 (Alabama) is the outlier public pilot
+This session found `Location=AR` (and other numeric codes tried) return "Access to Rate
+Calculator is denied. This application can only be accessed when logged in through..." — gated.
+Only `Location=01` (Alabama) loads publicly with no login. **Correction to the standing
+recommendation to enumerate this tool's Location codes for other states**: Alabama appears to be
+a public pilot/demo state, not representative of general access — do not assume other
+not-yet-tried Location codes (beyond the already-confirmed CT=06, KY=16) will be open; check for
+a login wall before investing further postback-flow effort.
+
+### AR dead ends / gated / jsOnly ruled out this session
+**Apex Title Northwest Arkansas** (NetSheetCalc/TitleTap `app_id=412`) — a genuine AR fee schema
+exists via `getAppData` (Closing Fee $350, Search Fee $250, Lender's Title Insurance $100, CPL
+$25, etc.) but the tenant's own `active` flag is `"0"` and its public page displays "This
+application is currently inactive" — not counted as a working live provider despite the backend
+JSON still returning data; worth rechecking if the agency reactivates it. **Pro Land Title**
+(Elko/`useelko.com`) — login-required portal, no guest mode — gated. **Allegiance Title of
+Arkansas** ("ALLQUOTE™" at `allegianceagentapp.com`) — renders no static content/discoverable
+endpoint — jsOnly. **Ozark Abstract and Title** — HTTP 403 on both WebFetch and curl — blocked.
+**First National Title Company** (`firstnationaltitle.net/QuoteRequest`) — Base44/Supabase SPA,
+no discoverable endpoint — jsOnly. **Fort Dearborn Land Title** (appid=462) — reconfirmed
+non-AR-configured, no change from the 2026-07-31 finding. No working calculator found for
+MyTitleRates.com (no AR agency instance located), Western Arkansas Title Services, Commerce
+Title & Closing, Lenders Title Co., or Advantage Title & Escrow.

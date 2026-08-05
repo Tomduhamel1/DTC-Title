@@ -39,7 +39,7 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | IN | 3 (Agency Title, Inc. — New Albany/Louisville-metro Southern Indiana office, NetSheetCalc/TitleTap "Quick Quote" JSON API; Momentum Title Agency [formerly Hocker Title] — Indianapolis, NetSheetCalc/TitleTap `appid=1056`; Rounsavall Title Group, LLC — Louisville KY-headquartered, dedicated IN-approved tenant `appid=480`, formula-driven premium via `getNetSheetConfig`) | **calculator-quoted (3 providers)** | 2026-08-04 |
 | KY | 3 (Agency Title, Inc. — Louisville/Jefferson County, NetSheetCalc/TitleTap; Rounsavall Title Group, LLC — Louisville/Jefferson County, a distinct `app_id=479` tenant on the same platform; Old Republic — Louisville/Jefferson County, via `ortratecalculator.oldrepublictitle.com` Location=KY) | **calculator-quoted (3 providers)** | 2026-08-05 |
 | AL | 3 (Signature Title Services — Jefferson County, AL-specific ASP.NET WebForms portal distinct from the TN instance; Land Title Company of Alabama — Jefferson/Shelby Counties, first-party JS calculator; Alabama Land Title — statewide, first-party "ydwebpro" platform calculator) | **calculator-quoted (3 providers)** | 2026-07-30 |
-| AR | 2 (TitleTech of Arkansas, LLC — Rogers/Benton County-NWA; Hot Springs Title — Garland County, via the Title Midwest platform) | below 3-provider threshold | 2026-08-02 |
+| AR | 4 (TitleTech of Arkansas, LLC — Rogers/Benton County-NWA; Hot Springs Title — Garland County, via the Title Midwest platform; Chicago Title Insurance Company — Pulaski County, via ratecalculator.fnf.com; All American Title & Abstract, LLC — Pulaski County/Little Rock, first-party static-page calculator) | **calculator-quoted (4 providers)** | 2026-08-05 |
 | MS | 0 — extensively searched, zero found | below 3-provider threshold | 2026-07-31 |
 | NE | 1 (Nebraska Title Company — statewide, Omaha/Douglas County scenario, via the Title Midwest platform's Vue.js client-side calculator) | below 3-provider threshold | 2026-08-02 |
 
@@ -527,6 +527,31 @@ Alliance Title (static PDFs only); Stewart Rate Calculator's CO agents page (HTT
 protection); Allied Title & Escrow (TitleCapture, a newly-observed jsOnly AngularJS SPA platform,
 flagged alongside PowerSnap/Settlor for a future browser-driven session); MyTitleRates.com (only
 concrete CO-adjacent hit was PA/NJ/DE-based, excluded to avoid misattribution).
+
+**2026-08-05 session, continued — Arkansas (AR) crosses the 3-provider threshold with 2 new
+providers (4 total).** Harvested **Chicago Title Insurance Company** via `ratecalculator.fnf.com`
+(confirmed AR is supported, all 75 counties enumerated, unlike Old Republic's `ortconline.com`
+which does not cover AR) — Owner's Policy Premium $1,265.00, CPL $25.00, Grand Total $1,290.00 at
+Pulaski County; no Loan Policy premium appeared despite the $400k loan amount entered, recorded
+as-is. Same brand-dedup finding as CT/CO's FNF entries (Fidelity National Title byte-identical,
+not separately recorded). Notable cross-corroboration: this $1,265.00 premium exactly matches
+Southwest Title/FNTI's own published Basic Rate at $500,000 already on file in AR's
+published-schedule survey. Also harvested **All American Title & Abstract, LLC** (Little Rock), a
+genuinely first-party static-page calculator (no third-party SaaS platform at all) — read its
+`homeScripts.js` formulas directly and recomputed at $500,000 after verifying the extraction
+against the page's own $900,000 default scenario: Settlement/Title Exam Fee $850, Search Fee
+$300, Title Insurance Policy $2,575 (formula-derived), title-fee subtotal $3,725. Flagged
+anomaly: this tool's Doc Stamps/transfer-tax formula (0.7% of price) is double AR's statutory
+0.33% rate documented elsewhere in this survey — recorded as-is per the exact-figures rule, not
+corrected. Ruled out this session: Apex Title Northwest Arkansas (a genuine AR NetSheetCalc
+tenant, but its own `active` flag is 0 and the public page shows "This application is currently
+inactive" — not counted); Pro Land Title (Elko, login-gated); Allegiance Title of Arkansas
+("ALLQUOTE" jsOnly, no discoverable endpoint); Ozark Abstract and Title (HTTP 403); First
+National Title Company (jsOnly Base44/Supabase SPA); Old Republic's `Location=` tool (AR
+specifically gated behind login, unlike the public CT/KY instances — Alabama, Location=01, loads
+without login and appears to be a public pilot/demo state, not representative of general access).
+AR now has 4 calculator-basis providers — **calculator-quoted (4 providers)**, one above the
+minimum threshold.
 
 ## The completion contract
 

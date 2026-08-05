@@ -156,3 +156,93 @@ point. AR now has 2 of the 3 providers needed to cross the calculator-quoted thr
   appid rather than trusting the generic netsheetcalc.com marketing-page search result); revisit
   Capital Abstract's TitleClose.com tenant with a different county or a fresh investigation of the
   aclearchoicetitle.com branding mismatch.
+
+## Calculator harvest addendum (2026-08-05)
+
+**2 new calculator-basis providers found, bringing AR to 4 of 4 — crosses the 3-provider
+calculator-quoted threshold.** See AR.json's two newest `basis: "calculator"` entries for full
+itemized figures, exact formulas, and methodology.
+
+- **Chicago Title Insurance Company** (national FNF-family underwriter, via
+  `ratecalculator.fnf.com`'s shared ASP.NET WebForms rate-calculator engine) — WORKING. AR *is* a
+  supported state on this platform (all 75 counties enumerated in the county dropdown), unlike Old
+  Republic's separate `ortconline.com` tool (already ruled out for AR in the original survey).
+  Driven entirely via plain `curl` HTTP POST (not WebFetch, which cannot expose or replay raw
+  ASP.NET hidden fields) through the classic `__doPostBack`/`__VIEWSTATE` flow: select
+  Pulaski County + Chicago Title underwriter + click Next → select "Property Purchase" transaction
+  type (own `__EVENTTARGET` postback) → enter Purchase Amount $500,000 (own postback, reveals Loan
+  Amount field) → enter Loan Amount $400,000 (own postback, advances to Endorsements) → click
+  Finish for the Rate Summary. Result at $500,000/Pulaski County: **Owner's Policy Premium
+  $1,265.00**, **Closing Protection Letter $25.00**, **Grand Total $1,290.00**. Notably, no Loan
+  Policy premium appeared anywhere in the AR flow despite the $400,000 loan amount being entered —
+  recorded as-is. Cross-checked the Fidelity National Title Insurance Company brand on the same
+  platform (a different landing `ID=FNT` with a different underwriter-dropdown subset) with an
+  identical fresh-session run: output was byte-identical, confirming a single shared calculation
+  engine — only one entry recorded per the mission's dedup instruction. Premium+CPL-only output is
+  valid calculator-harvest evidence per this project's 2026-08-05 scoping correction. Interesting
+  incidental cross-corroboration: this calculator's $1,265.00 Owner's Policy premium at $500,000
+  exactly matches Southwest Title/FNTI's own published Basic Rate of $1,265 at $500,000 already on
+  file in this same state's published-schedule survey.
+- **All American Title & Abstract, LLC** (independent title/abstract company, 401 W. Capitol
+  Avenue Suite 300, Little Rock, AR — Pulaski County) — WORKING, and genuinely first-party: a
+  static WordPress page (`all-american-title.net/net-sheet-calculator/`) with an inline HTML
+  `<table>` of fee inputs computed by the page's own client-side JS
+  (`.../assets/js/homeScripts.js`), no third-party SaaS platform (netsheetcalc/titletap/
+  mytitlerates) involved at all — the "view-source for hardcoded JS fee constants" technique.
+  Confirmed genuinely AR/Little Rock via independent BBB and Facebook business-page search. The
+  tool ships with a $900,000 sample scenario prefilled; recomputed its two price-linked formulas
+  by hand at $500,000 after verifying the formula extraction reproduces the page's own $900,000
+  defaults exactly. Result (Seller's Net Sheet, no loan field exists in this tool — a deviation
+  from the standard buyer/loan scenario, noted in AR.json): **Settlement and Title Examination Fee
+  $850.00** (flat), **Search Fee $300.00** (flat), **Title Insurance Policy $2,575.00**
+  (formula: (price−$100,000)×0.5%+$575), **Lien Search $375.00** (flat, estimated), **Estoppel Fee
+  $300.00** (flat, estimated), **Recording Fee $35.00** (flat, estimated), **Doc
+  Stamps/transfer tax $3,500.00** (formula: price×0.7% — notably double AR's statutory 0.33%
+  transfer-tax rate documented elsewhere in this file; recorded as-is, flagged as an anomaly for a
+  future session). Title-fee subtotal (Settlement/Exam + Search + Title Insurance Policy):
+  $3,725.00 at $500,000 — a useful independent cross-check against TitleTech's $400+$250 and Hot
+  Springs Title's $325+$325 closing-fee figures already on file.
+
+### Dead ends / gated / jsOnly this session
+- **FNF's other AR-supported brands** (`ID=CLTI` Commonwealth Land Title, `ID=NTI` National Title
+  Insurance of NY) were not separately driven after Chicago Title and Fidelity National Title
+  confirmed a shared engine — reasonable to assume the same result, not verified directly.
+- **Apex Title Northwest Arkansas** (Rogers/Fayetteville, AR) — a genuinely AR-specific
+  NetSheetCalc/TitleTap tenant (`app_id=412`), confirmed via `getAppData` to have a real AR fee
+  schema (Closing Fee $350, Search Fee $250, Lender's Title Insurance $100, CPL $25, Deed/Mortgage
+  Recording Fees, Express Delivery $35, Doc Prep $65), **but the tenant's own `active` flag is "0"
+  and its public-facing calculator page displays "This application is currently inactive"** —
+  not counted as a working provider since the live consumer-facing tool does not currently
+  function, even though the backend JSON endpoint still returns data. Worth rechecking in a future
+  session in case the agency reactivates it.
+- **Pro Land Title** (Central Arkansas, multiple offices including Van Buren/Benton, prolandtitle.com)
+  — its `/rates/` page links to an Elko (`useelko.com`) instance
+  (`prolandtitle.useelko.com/auth/company/prolandtitle/`) that is a **login-required portal**
+  (email + password, "Sign Up" for new users, no guest mode) — **gated**, matching the pattern
+  already logged for other Elko tenants in the original AR session.
+- **Allegiance Title of Arkansas** (`alltitle.com`, multiple NW Arkansas offices) — links to
+  "ALLQUOTE™" at `allegianceagentapp.com`, which renders no static HTML content at all (header
+  text only, no visible form or discoverable JSON endpoint found) — **jsOnly**, no stateless
+  endpoint found.
+- **Ozark Abstract and Title** (`ozarkabstractandtitle.com/calculator/`) — returned HTTP 403
+  Forbidden on both WebFetch and direct `curl` with a browser User-Agent — blocked, unusable.
+- **First National Title Company** ("AR's largest title company", Little Rock,
+  `firstnationaltitle.net`) — its `/QuoteRequest` page is a JS single-page app hosted on a
+  Base44/Supabase backend with no server-rendered form or discoverable stateless quote endpoint
+  found in the static HTML — **jsOnly**.
+- **Old Republic's second calculator tool**, `ortratecalculator.oldrepublictitle.com/RateCalc.aspx`
+  — confirmed this platform gates most states behind login: `Location=01` (Alabama) loads
+  publicly with no login, but `Location=02`, `03`, and `Location=AR` all return "Access to Rate
+  Calculator is denied. This application can only be accessed when logged in through..." — **gated**
+  for Arkansas specifically (Alabama appears to be a public pilot/demo state on this platform, not
+  representative of general access). No AR-specific numeric location code was found or needed,
+  since the state-keyed `Location=AR` parameter itself was rejected.
+- **Fort Dearborn Land Title Company, LLC** (`app.netsheetcalc.com`, appid=462) — re-surfaced in
+  this session's searches; already ruled out in the prior 2026-07-31 session as defaulting to a
+  no-state/IL-county configuration, not Arkansas-specific. No change to that conclusion.
+- No working instance found for MyTitleRates.com with an AR-specific agency ID (only generic
+  marketing-page search results, no AR agency's own embedded instance located), Western Arkansas
+  Title Services (Fort Smith, no calculator found on its own site), Commerce Title & Closing
+  (Little Rock, no calculator found via search), Lenders Title Co. (Little Rock, no calculator
+  found via search), or Advantage Title & Escrow (Bentonville/Fayetteville, mentions "an app to
+  calculate costs" in marketing copy but no working link found this session).
