@@ -174,3 +174,121 @@ AR, KY, IN via various tenants, all jsOnly). CO remains at 1 of 3 calculator-bas
 now confirmed high-value, multi-state, browser-only targets covering several of this survey's
 still-below-threshold scarce states at once — worth prioritizing in the first browser-driven
 session available, ahead of further plain-HTTP searching.
+
+## Calculator harvest addendum (2026-08-05) — 2 new providers found, 3-provider threshold CROSSED
+
+Entering this session CO had 1 of 3 calculator-basis providers (First Integrity Title Company).
+Nine candidates were investigated; **2 new genuine, independent calculators were successfully
+harvested**, bringing CO to **3 of 3** — the calculator-quoted threshold is now met.
+
+### New provider 1: FNF National Rate Calculator (`ratecalculator.fnf.com`)
+
+Confirmed CO is a fully supported state (all 64 counties, 3-brand underwriter dropdown: Chicago
+Title Insurance Company / Commonwealth Land Title Insurance Company / Fidelity National Title
+Insurance Company). This is the classic ASP.NET WebForms `__doPostBack`/`__VIEWSTATE` postback
+tool flagged as a strong lead in this task's brief, and it drove exactly as described: plain HTTP
+POST via a `requests.Session()` cookie jar, no JS execution needed. Full recipe (county select →
+underwriter select → Next → transaction-type radio → purchase amount → loan amount → CPL radio
+toggles → Finish) worked exactly as documented, with one addition not previously catalogued: radio
+button groups need `__EVENTTARGET` set to `<fieldname>$<index>` (e.g. `...TranType$rc_TranType$0`),
+not just the bare field name. **Standard scenario ($500k purchase / $400k loan, Residential,
+Denver County) result: Owner's Policy premium $1,998.00 (ALTA Standard, $500k liability) + Loan
+Policy premium $575.00 (ALTA Standard, $400k liability, qualifies for FNF's "Residential Resale
+Bundled Purchase Loan rate" since issued simultaneously with the Owner's Policy) + Buyer/Borrower
+CPL $25.00 + Seller CPL $25.00 + Lender CPL $25.00 = Grand Total $2,573.00.** Per this task's
+2026-08-05 scoping correction, this premium-and-CPL-only output is valid calculator-harvest
+evidence (FNF's own page footer confirms settlement/closing/search/exam fees are explicitly
+excluded and billed separately). **Brand dedup verified**: ran the identical scenario selecting
+Chicago Title Insurance Company and again selecting Fidelity National Title Insurance Company —
+every dollar figure was byte-identical between runs, confirming the brands share one calculation
+engine as this task's brief predicted. Recorded as a single entry, not one per brand (Commonwealth
+not separately re-tested given the confirmed shared engine).
+
+### New provider 2: Principal Title, LLC (Arvada, CO)
+
+A genuine independent Colorado title & escrow agency (5610 Ward Rd Ste 300, Arvada, CO 80002; ALTA
+member; CO trade name registered 2021-07-15) with a seller net-sheet calculator on its own site
+(`principaltitle.com/net-sheet-calculator/`). The on-page form itself gates its full computation
+behind a **required Seller Name field** (plus address/email/phone) — per the hard rule against
+entering personal information, that full-form path was not used. Instead, reading the form's own
+WordPress plugin JS (`residential-rate-quote/rrq-script.js`) surfaced an undocumented, stateless,
+no-auth, no-personal-data plain GET endpoint the form itself calls live on every keystroke:
+`https://principaltitle.com/?getsptia=yes&zone=<zone>&cp=<contractPrice>` ("sptia" = Seller-Paid
+Title Insurance Amount), returning a bare numeric dollar string keyed off a 3-zone county mapping
+scraped from the page's own county `<select>` (Denver = Zone 1, along with Adams, Arapahoe,
+Broomfield, Clear Creek, Douglas, Elbert, Gilpin, Jefferson, Lake, Mesa, Otero, Park). Verified
+genuine (not a static fallback) across 4 zone/price combinations, all distinct: Zone 1/$500k =
+**$1,790**, Zone 2/$500k = $1,590, Zone 3/$500k = $1,540, Zone 1/$400k = $1,590. This is a seller
+net-sheet tool (not a buyer+lender quote), so the standard scenario's $400k loan doesn't map to
+any input here — noted as a scenario deviation. The page also ships a non-server-computed default
+of $75.00 for the Owner's Extended Coverage (OEC) endorsement fee, recorded with a caveat that it
+is user-editable and not itself zone/price-computed like the title policy premium.
+
+### Dead ends / gated / jsOnly ruled out this session
+
+- **NetSheetCalc/TitleTap CO tenants** (Elite Title Company, Your Title Co., Digital Title
+  Solutions per generic search hits) — could not confirm any is a genuine, currently-operating
+  Colorado agency distinct from confusingly-similar-named companies found in search (e.g. multiple
+  unrelated "Elite Title" businesses in CO); not pursued further given ambiguity and successful
+  hits elsewhere.
+- **MyTitleRates.com** — the only concrete `calculator.mytitlerates.com`/`calculator3.mytitlerates.com`
+  hit found (Trident Land Transfer Company) is headquartered and operates in PA/NJ/DE, not CO —
+  excluded as a misattribution risk per this task's explicit warning about cross-state platform
+  tenants.
+- **National 1 Source** (`national1source.com/default.aspx?tabid=549`) — a genuine CO-specific
+  (Adams/Arapahoe/Broomfield/Clear Creek/Denver/Douglas/Elbert/Jefferson) DotNetNuke/Telerik ASP.NET
+  seller net-sheet calculator, but its `txtSeller` (Seller Name) field carries a
+  `RequiredFieldValidator` — **gated**, logged and not pursued (would also likely require property
+  address/email/phone). No client-side-only computed-field escape hatch (like Principal Title's
+  `getsptia`) was found for this platform in the time available.
+- **Denver Title Co / Title One of Colorado** (`denvertitleco.com/rate-calculator/sellers-net-sheet/`)
+  — DNS resolution failure (`ENOTFOUND`), domain appears dead/unregistered — dead end.
+  - **First Alliance Title** (`firstalliancetitle.com/rate-cards-net-sheets`) — no on-page
+  calculator; only static PDF rate cards plus an external account-gated app
+  (`firstallianceagent.com`, "create a free account to run net sheets") — dead end (auth-gated).
+- **Stewart Rate Calculator, Colorado agents page**
+  (`stewart.com/en/state-pages/colorado-agents/rates/rate-calculator.html`) — returned HTTP 403
+  (bot-protection) on this session's plain-HTTP fetch; not further pursued given time budget after
+  2 successful harvests. Remains a valid target for a future session (see prior addendum's notes
+  on `stewartratecalculator.com`'s Knockout.js-templated form fields for Advanced Title Company,
+  which likely applies here too).
+- **Allied Title & Escrow** (`alliedtitleandescrow.com/calculator`) — genuine CO presence (two
+  Colorado Springs offices; VA-headquartered multi-state company) but the embedded quote tool
+  (`alliedtitleandescrow.titlecapture.com/title-quote`) is a full AngularJS SPA ("TitleCapture"
+  platform, previously uncatalogued in CALCULATORS.md) with no discoverable stateless API endpoint
+  in its bundled JS (`main.*.js` references only its own static asset paths) — **jsOnly**, logged
+  as a new platform name for a future browser-driven session, not a re-hash of PowerSnap/Settlor.
+- `comparetitlecompanies.com/get_quote/get_quote.php?id=1` — re-checked per this task's
+  instruction to see if any new CO agency has subscribed since the prior session; First Integrity
+  Title Company remains the platform's only Colorado-subscribing agency (not re-verified county by
+  county this session given time budget, but no indication of change).
+
+### New platform discoveries for CALCULATORS.md
+
+1. **FNF National Rate Calculator** (`ratecalculator.fnf.com`) — CONFIRMED working for CO this
+   session using exactly the recipe already documented in CALCULATORS.md, with one refinement:
+   radio-button-group postbacks need `__EVENTTARGET=<fullFieldName>$<optionIndex>` (verified for
+   both the transaction-type radio group and the two CPL yes/no radio groups), not just the bare
+   field name as for text/select controls.
+2. **WordPress "Residential Rate Quote" plugin** (`residential-rate-quote/rrq-script.js`, seen on
+   `principaltitle.com`) — a new, plain-HTTP-drivable, no-auth, no-JS-execution-needed pattern:
+   the plugin's own client-side JS calls a same-origin `?getsptia=yes&zone=<n>&cp=<price>` GET
+   endpoint to live-populate the title insurance premium field, bypassing the full form's
+   PII-gated submit button entirely. Worth searching `"residential-rate-quote" rrq-script.js` or
+   `getsptia` for other WordPress-based title agency sites using the same plugin (unknown if this
+   is a licensed multi-tenant product or a bespoke build — not established this session).
+3. **TitleCapture** (`<agency>.titlecapture.com`) — a newly-observed AngularJS SPA quote-tool
+   platform (seen embedded via iframe on Allied Title & Escrow's site); jsOnly with no discoverable
+   API in this session's review, flagged for future browser-driven sessions alongside PowerSnap and
+   Settlor.
+
+### Search strategies used this session (beyond the candidates above)
+
+WebSearch queries: `"app.netsheetcalc.com" Colorado title company`, `"calculator.mytitlerates.com"
+Colorado`, `Colorado Land Title Association member directory`, `"Elite Title Company" Colorado
+title insurance`, `"Digital Title Solutions" Colorado`, `Trident Land Transfer Company location
+state`, `Colorado title company "net sheet calculator" OR "rate calculator" site:.com -jsOnly`,
+`"Principal Title" net sheet calculator location city state`, `Colorado independent title company
+"calculator" Denver Boulder "purchase price" "loan amount" estimate tool -jsOnly`, `"Principal
+Title" Arvada Colorado title company`, `"Allied Title & Escrow" Colorado headquarters office
+locations` — 11 distinct queries, plus direct fetches of 9 candidate calculator pages/endpoints.

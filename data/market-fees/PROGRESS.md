@@ -34,7 +34,7 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | MD | 3 (Federal Title & Escrow Company — Montgomery County, own first-party ASP.NET tool; Allstates Title Service — Montgomery County, via MyTitleRates.com `a=78`; Tri-State Signature Settlements — Montgomery County, via MyTitleRates.com `a=40`) | **calculator-quoted (3 providers)** | 2026-08-03 |
 | CT | 2 (Old Republic — ortratecalculator.oldrepublictitle.com, statewide, a distinct tool from ortconline.com; Fidelity National Title — statewide, via FNF's shared ratecalculator.fnf.com) | below 3-provider threshold | 2026-08-05 |
 | MA | 2 (Absolute Title LLC, statewide; Law Office of David R. Rocheford Jr., Worcester County) | below 3-provider threshold | 2026-08-04 (retried, no new provider found) |
-| CO | 1 (First Integrity Title Company — Denver County, via comparetitlecompanies.com's multi-company comparison tool) | below 3-provider threshold | 2026-08-04 (retried, no new provider found; new jsOnly "Settlor" platform discovered via LTGC) |
+| CO | 3 (First Integrity Title Company — Denver County, via comparetitlecompanies.com's multi-company comparison tool; FNF National Rate Calculator — Denver County, ratecalculator.fnf.com; Principal Title, LLC — Arvada/Denver-zone, via its WordPress "Residential Rate Quote" plugin's stateless GET endpoint) | **calculator-quoted (3 providers)** | 2026-08-05 |
 | TN | 3 (Tennessee Title Services, LLC — Davidson County, own first-party calculator; Signature Title Services — Davidson County, own ASP.NET WebForms calculator; Cornerstone Title of Tennessee, LLC — Davidson County scenario, via TitleTap) | **calculator-quoted (3 providers)** | 2026-08-02 |
 | IN | 3 (Agency Title, Inc. — New Albany/Louisville-metro Southern Indiana office, NetSheetCalc/TitleTap "Quick Quote" JSON API; Momentum Title Agency [formerly Hocker Title] — Indianapolis, NetSheetCalc/TitleTap `appid=1056`; Rounsavall Title Group, LLC — Louisville KY-headquartered, dedicated IN-approved tenant `appid=480`, formula-driven premium via `getNetSheetConfig`) | **calculator-quoted (3 providers)** | 2026-08-04 |
 | KY | 3 (Agency Title, Inc. — Louisville/Jefferson County, NetSheetCalc/TitleTap; Rounsavall Title Group, LLC — Louisville/Jefferson County, a distinct `app_id=479` tenant on the same platform; Old Republic — Louisville/Jefferson County, via `ortratecalculator.oldrepublictitle.com` Location=KY) | **calculator-quoted (3 providers)** | 2026-08-05 |
@@ -502,6 +502,31 @@ zero-result pattern VA's harvest hit on a different tenant) — inconclusive, no
 working/gated. CATIC and Title Resources Guaranty were retried per the standing instruction, both
 unchanged. **CT remains the top-priority scarce-state target for a future session** — recommend
 trying FACC with a browser session next, since it's the closest-to-solved unsolved lead on file.
+
+**2026-08-05 session, continued — Colorado (CO) crosses the 3-provider threshold**, ending a
+streak of 2 prior sessions (2026-07-28, 2026-08-04) that found only jsOnly dead ends. Harvested
+**FNF National Rate Calculator** (`ratecalculator.fnf.com`, Denver County) — Owner's Policy
+$1,998.00, Loan Policy $575.00, 3x CPL fees $25.00 each, Grand Total $2,573.00 — confirming the
+same brand-dropdown dedup finding as CT's FNF entry (Chicago Title/Fidelity National/Commonwealth
+Land Title share one engine, byte-identical output, recorded as one entry). Also harvested
+**Principal Title, LLC** (Arvada, an ALTA-member independent CO agency) — its net-sheet form
+gates on a required Seller Name field, but reading its WordPress plugin JS (`rrq-script.js`)
+revealed the underlying stateless, no-auth GET endpoint the form itself calls client-side
+(`principaltitle.com/?getsptia=yes&zone=<n>&cp=<price>`, Denver=Zone 1) — Owner's Title Policy
+premium $1,790.00, OEC endorsement $75.00 default, confirmed genuinely dynamic (not static)
+across 4 zone/price combinations. CO now has 3 calculator-basis providers — **calculator-quoted
+(3 providers)**. New technique for future sessions: a "WordPress Residential Rate Quote plugin"
+pattern (same `rrq-script.js` file) may exist on other title-agency WordPress sites gated behind
+a PII-requiring form on the surface but backed by the same open GET endpoint underneath — worth
+checking for other below-threshold states before assuming a PII-gated net-sheet form is a dead
+end. Also confirmed a new FNF WebForms detail: radio-group `__EVENTTARGET` values must be
+`<fullFieldName>$<optionIndex>` (e.g. `...TranType$rc_TranType$0`), not the bare field name — a
+useful correction for any future FNF harvest that hits a transaction-type radio group. Ruled out
+this session: National 1 Source (gated, required Seller Name); Denver Title Co (DNS-dead); First
+Alliance Title (static PDFs only); Stewart Rate Calculator's CO agents page (HTTP 403 bot
+protection); Allied Title & Escrow (TitleCapture, a newly-observed jsOnly AngularJS SPA platform,
+flagged alongside PowerSnap/Settlor for a future browser-driven session); MyTitleRates.com (only
+concrete CO-adjacent hit was PA/NJ/DE-based, excluded to avoid misattribution).
 
 ## The completion contract
 

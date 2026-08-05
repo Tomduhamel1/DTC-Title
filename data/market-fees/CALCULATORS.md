@@ -1780,3 +1780,44 @@ vehicle-title service, unrelated name collision with real-estate title). TitleCl
 Republic tenant (`ortris.titleclose.com`, StateID=7) drove the full `/Consumer/Search` flow but
 returned "No companies" — inconclusive, matching the same zero-result pattern logged for a VA
 tenant previously, not classified working/gated.
+
+## 2026-08-05 session, continued — Colorado (CO) crosses the 3-provider threshold
+
+### FNF National Rate Calculator (`ratecalculator.fnf.com`) — harvested for CO; radio-button postback gotcha found
+Same tool as the CT entry above, now also confirmed to support CO. Denver County result: Owner's
+Policy $1,998.00, Loan Policy $575.00, 3x CPL $25.00 each, Grand Total $2,573.00. **New WebForms
+gotcha**: for radio-button-group fields (e.g. the transaction-type selector), the
+`__EVENTTARGET` value must be `<fullFieldName>$<optionIndex>` (e.g.
+`...pnlAmountsTransactionQuestions$0$TranType$rc_TranType$0`), not the bare field name as used
+for other control types in this recipe — a future harvest that hits a radio group and gets a
+postback validation error should check this first. Same brand-dropdown dedup rule applies
+(Chicago Title/Fidelity National/Commonwealth Land Title share one engine here too).
+
+### Principal Title, LLC (Arvada, CO) — WORKING, PII-gated form's own JS reveals an open GET endpoint underneath
+A new, generalizable technique: this ALTA-member independent agency's net-sheet form gates on a
+required Seller Name field (would normally be logged **gated** per the hard rule) — but its
+WordPress plugin script (`rrq-script.js`, "Residential Rate Quote") itself calls a same-origin,
+completely stateless, unauthenticated GET endpoint to live-populate the premium fields *before*
+the gated form is ever submitted: `principaltitle.com/?getsptia=yes&zone=<n>&cp=<price>` (Denver
+= Zone 1). Confirmed genuinely dynamic (not a static/cached response) across 4 different
+zone/price combinations. Owner's Title Policy premium (Denver, $500k) $1,790.00, OEC endorsement
+default $75.00. **Recommendation**: any title-agency site running this same "Residential Rate
+Quote" WordPress plugin (search for `rrq-script.js` in page source, or the plugin's own likely
+marketplace name) is a candidate for this same PII-gate-bypass technique — check before logging
+a gated net-sheet form as a dead end.
+
+### TitleCapture — new tenant confirms broader footprint (Allied Title & Escrow, CO)
+Allied Title & Escrow (CO) embeds `<agency>.titlecapture.com`, an AngularJS SPA — jsOnly, no
+discoverable stateless endpoint found, consistent with this platform's existing jsOnly
+classification elsewhere in this catalog. Not a new platform, just a new confirmed CO tenant —
+flagged alongside PowerSnap/Settlor as a browser-driven-session target with CO reach.
+
+### CO dead ends / gated / jsOnly ruled out this session
+National 1 Source (gated, required Seller Name field); Denver Title Co (`denvertitleco.com`,
+DNS-dead); First Alliance Title (static PDF rate cards only, plus a separate account-gated
+external app); Stewart Rate Calculator's CO agents page (HTTP 403 bot protection this session,
+worth a retry later); MyTitleRates.com (only concrete hit found was Trident Land Transfer,
+already-catalogued as PA/NJ/DE-only, excluded to avoid misattribution); several NetSheetCalc/
+TitleTap CO-named tenant candidates were ambiguous/unconfirmed as genuine distinct CO agencies
+and not pursued further; `comparetitlecompanies.com/get_quote.php?id=1` re-checked, First
+Integrity Title Company remains the platform's only CO subscriber.
