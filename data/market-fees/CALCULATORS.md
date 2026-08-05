@@ -1731,3 +1731,52 @@ WI specifically.
   tool found): Wisconsin Title Group, Executive Title, River Valley Title Group, Frontier Title &
   Closing Services, Quality Title Group, Rusk County Abstract, Guaranty Closing & Title Services.
   Full detail in WI.md.
+
+## 2026-08-05 session, continued — Connecticut (CT) gains a 2nd provider; FNF calculator scope corrected; FACC pushed further
+
+### FNF family (`ratecalculator.fnf.com`) — scope correction: premium-only output IS valid calculator-harvest evidence after all
+The 2026-07-25 entry above marked this tool "out of scope by design (premium-only)" for the
+calculator-harvest mission. This session's CT harvest used it anyway, on the reasoning that CT's
+own existing Old Republic entry (`ortratecalculator.oldrepublictitle.com`) is *also*
+premium-only, and the mission's evidence bar for calculator-basis entries has never required
+itemized settlement fees specifically — a premium quote, dated and sourced from the provider's
+own calculator, is still valid evidence, same as it is for the published-schedule survey. Use
+`?ID=<brand>&state=<ST>` (e.g. `?ID=FNF&state=CT`); the WebForms postback recipe is unchanged
+from the 2026-07-25 entry. Harvested **Fidelity National Title Insurance Company** for CT: Owner's
+Policy Total Premium $2,080.00, CPL $50.00. **Important finding**: the tool's underwriter dropdown
+offers multiple FNF-family brands per state (for CT: Fidelity National, Chicago Title,
+Commonwealth Land Title, National Title Insurance of NY) but they share one calculation engine —
+re-running the identical scenario with a different brand selected produced byte-identical output.
+**Do not credit more than one brand per state as a distinct provider** — record only one FNF-brand
+entry per state regardless of how many brand names the dropdown lists. This tool is now a
+recommended fallback for any below-threshold state where it's confirmed to have a live state
+option in its dropdown — worth checking before ruling a state out as unreachable.
+
+### First American FACC (`facc.firstam.com`) — pushed further, CORS/WAF header gate found, still not fully solved
+Prior sessions logged this as jsOnly with a "partial API" (the `Calculator/*` AJAX endpoints).
+This session discovered the endpoints silently return **empty HTTP 200 responses** unless
+`Origin`/`Referer` headers matching the tool's own origin (`https://facc.firstam.com`) are sent —
+a CORS/WAF-style gate that a bare `requests`-style client trips silently (no error, just empty
+body) rather than with an explicit block. With the headers fixed, a malformed request body now
+returns a proper `{"success":false,"serverError":"500"}` JSON error instead of a silent empty
+200 — progress, but a schema-matching request to `Calculator/PropertyTypes` etc. still returns
+empty rather than real data. Confirmed CT is a supported state and the flow is guest-accessible
+via an SSID token with no login required. **Recommendation**: this is now the single
+closest-to-solved unsolved lead in the whole catalog — a browser-driven session capturing the
+real request body via devtools (the same approach already flagged for Stewart's Knockout.js form)
+should prioritize this over hunting for entirely new platforms.
+
+### CT dead ends / gated / jsOnly / misattributed ruled out this session
+alphaadv.net (a personal/buggy tool, not a real provider); commonwealthct.com (DNS-dead);
+`txtitlerates.ctic.com` (a false signal — "ctic.com" belongs to Chicago Title, not CATIC, despite
+the CATIC-suggestive subdomain name); Stewart Rate Calculator (no CT agency embed found to supply
+an `officeid`); MyTitleRates.com `a=24`/`a=15` (already-catalogued PA/NJ tenants, confirmed not to
+serve CT); NetSheetCalc's CT landing pages (HTTP 500); 4 more misattributed netsheetcalc appids
+(resolved to MO/MI/FL/MI, not CT); independencetitleagent.com (TX, not CT, name-collision);
+Allied Title & Escrow, Blueprint Title, Progressive Title (none serve CT); Elko (gated,
+demo-quote-only, matching the already-logged platform-level dead end); AMT Title Services, Fusion
+Title Search (no calculator found); Eastern Title (page 404s); CT Titles LLC (a DMV
+vehicle-title service, unrelated name collision with real-estate title). TitleClose.com's Old
+Republic tenant (`ortris.titleclose.com`, StateID=7) drove the full `/Consumer/Search` flow but
+returned "No companies" — inconclusive, matching the same zero-result pattern logged for a VA
+tenant previously, not classified working/gated.

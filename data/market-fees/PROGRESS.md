@@ -32,7 +32,7 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | WI | 3 (Knight Barry Title Group — Milwaukee County; Homestead Title Company LLC — Dane County/Madison, formula read directly from the page's own client-side JS; Avenue Title — Wausau/Marathon County, via NetSheetCalc/TitleTap app_id 235) | **calculator-quoted (3 providers)** | 2026-08-05 |
 | VA | 3 (Bon Air Title Agency + Appomattox, both TitleClose.com tenants, Fairfax; Independent Title & Escrow LLC, NetSheetCalc/TitleTap, Fairfax) | **calculator-quoted (3 providers)** | 2026-07-26 |
 | MD | 3 (Federal Title & Escrow Company — Montgomery County, own first-party ASP.NET tool; Allstates Title Service — Montgomery County, via MyTitleRates.com `a=78`; Tri-State Signature Settlements — Montgomery County, via MyTitleRates.com `a=40`) | **calculator-quoted (3 providers)** | 2026-08-03 |
-| CT | 1 (Old Republic — ortratecalculator.oldrepublictitle.com, statewide, a distinct tool from ortconline.com) | below 3-provider threshold | 2026-07-26 |
+| CT | 2 (Old Republic — ortratecalculator.oldrepublictitle.com, statewide, a distinct tool from ortconline.com; Fidelity National Title — statewide, via FNF's shared ratecalculator.fnf.com) | below 3-provider threshold | 2026-08-05 |
 | MA | 2 (Absolute Title LLC, statewide; Law Office of David R. Rocheford Jr., Worcester County) | below 3-provider threshold | 2026-08-04 (retried, no new provider found) |
 | CO | 1 (First Integrity Title Company — Denver County, via comparetitlecompanies.com's multi-company comparison tool) | below 3-provider threshold | 2026-08-04 (retried, no new provider found; new jsOnly "Settlor" platform discovered via LTGC) |
 | TN | 3 (Tennessee Title Services, LLC — Davidson County, own first-party calculator; Signature Title Services — Davidson County, own ASP.NET WebForms calculator; Cornerstone Title of Tennessee, LLC — Davidson County scenario, via TitleTap) | **calculator-quoted (3 providers)** | 2026-08-02 |
@@ -472,6 +472,36 @@ appids/agency IDs, and confirmed new WI tenant footprints on the already-jsOnly 
 Elko platforms). **Both WI and KY are now deprioritized**; CT (still below threshold — 1 of 3 as
 of this session, targeted in parallel but not yet resolved) and CO remain the next-highest-value
 scarce-state targets by population.
+
+**2026-08-05 session, continued — Connecticut (CT) gains a 2nd provider, still below threshold
+despite ~20 candidates tried.** Harvested **Fidelity National Title Insurance Company** via
+`ratecalculator.fnf.com` (FNF's shared national rate calculator, `?ID=<brand>&state=CT`) — Owner's
+Policy Total Premium $2,080.00, CPL $50.00, Grand Total $2,130.00 at $500k/$400k Fairfield County
+— a plausible ~$151 spread against the existing Old Republic entry ($1,979.00), consistent with
+CT's uncoordinated per-underwriter-filed premium market. **Methodological correction**: a prior
+session (2026-07-25) had marked `ratecalculator.fnf.com` "out of scope, premium-only" for the PA
+harvest; this session judged premium-only output valid calculator-harvest evidence after all
+(matching the standard already set by CT's own existing Old Republic entry, which is also
+premium-only) — see CALCULATORS.md for the reasoning. Also confirmed the tool's CT underwriter
+dropdown (Chicago Title, Commonwealth Land Title, National Title Insurance of NY) shares one
+calculation engine — re-running with Chicago Title selected produced byte-identical figures to
+Fidelity National, so only one entry was recorded rather than inflating the provider count with
+duplicates. CT now has 2 of 3 needed providers. Extensive further search (~20 candidates:
+alphaadv.net, commonwealthct.com [DNS-dead], a CATIC-name-collision false signal, Stewart Rate
+Calculator [no CT agency embed found], MyTitleRates.com, NetSheetCalc CT landing pages [HTTP
+500], 4 more misattributed netsheetcalc appids, several independent CT agencies with no
+calculator or dead pages) found no 3rd provider. First American's FACC
+(`facc.firstam.com`) was pushed further than any prior session — found it silently returns empty
+200 responses without matching `Origin`/`Referer` headers (a CORS/WAF-style gate); with headers
+fixed it returns proper error JSON instead of silent-empty for malformed bodies, and is confirmed
+to support CT via a guest SSID token with no login — but a schema-matching request body still
+doesn't return a quote, flagged as the most promising unsolved lead for a future browser-driven
+session. TitleClose.com's Old Republic tenant (`ortris.titleclose.com`) confirmed CT is
+configured (StateID=7) and drove the full `/Consumer/Search` flow, but got "No companies" (same
+zero-result pattern VA's harvest hit on a different tenant) — inconclusive, not classified
+working/gated. CATIC and Title Resources Guaranty were retried per the standing instruction, both
+unchanged. **CT remains the top-priority scarce-state target for a future session** — recommend
+trying FACC with a browser session next, since it's the closest-to-solved unsolved lead on file.
 
 ## The completion contract
 

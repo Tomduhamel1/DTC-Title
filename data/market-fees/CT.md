@@ -220,3 +220,154 @@ gap — 4 independent search techniques (MyTitleRates.com agency search, Old Rep
 calculator, CATICulator, Title Resources' GraphQL API) were tried, plus general web searches for
 independent CT title agencies' own calculators, none of which surfaced additional itemized
 settlement-fee sources beyond the one harvest above.
+
+## Calculator harvest addendum (2026-08-05)
+
+A second session picked up the calculator hunt where the 2026-07-26 session left off, aiming for
+the 3-provider "calculator-quoted" threshold (1 provider on file at the start of this session).
+**Result: 1 more successful harvest — CT now has 2 calculator-basis providers, still short of the
+3-provider threshold**, despite trying well over a dozen distinct candidate calculators/platforms.
+See CT.json's second `"basis": "calculator"` entry and CALCULATORS.md for full technical detail.
+
+2. **Fidelity National Title Insurance Company** (`ratecalculator.fnf.com`, FNF's/Fidelity National
+   Financial's shared multi-brand "National Rate Calculator") — a previously-uncatalogued-for-CT but
+   already-partially-documented platform (a prior 2026-07-25 session had marked it "out of scope,
+   premium-only" for the calculator-harvest mission when testing it for PA; this session judged that
+   premium-only output is in fact valid evidence per the mission's own rules, exactly matching the
+   precedent of CT's existing Old Republic calculator entry, which is likewise structurally
+   premium-plus-CPL-only). Classic ASP.NET WebForms `__doPostBack`/`__VIEWSTATE` app, driven
+   end-to-end with a plain `requests.Session()`, no login or personal data required (the tool's own
+   disclaimer explicitly warns against entering confidential/personal information). Fairfield County
+   selected explicitly from CT's 8-county dropdown. For the standard $500k/$400k Simultaneous
+   Owner's & Loan scenario: Owner's Policy Total Premium $2,080.00 (Closing-Disclosure allocation:
+   $515.00 disclosure amount + $1,565.00 adjustment), Loan Policy $0.00 (simultaneous-issue credit),
+   CPL $50.00, **Grand Total $2,130.00**. Cross-checked against the existing Old Republic entry for
+   the identical scenario ($1,929.00 Owner's + $50.00 CPL = $1,979.00 total): a $151 difference
+   entirely in the Owner's Policy premium line, consistent with CT being an uncoordinated
+   (non-rating-bureau) state where every underwriter files independently, exactly as already
+   documented between WFG's and Stewart's static manuals.
+   - **Important shared-engine finding**: this tool's CT underwriter dropdown also lists Chicago
+     Title Insurance Company, Commonwealth Land Title Insurance Company, and National Title
+     Insurance of New York (all FNF-family brands). Re-running the identical scenario with Chicago
+     Title selected instead returned **byte-identical** figures throughout (only the Quote Number
+     differed). This confirms the four listed underwriters share one common calculation engine in
+     this specific tool rather than being independently priced — a future session should **not**
+     harvest more than one entry per FNF-family tool instance, even though the underwriters are
+     legally distinct companies elsewhere in this survey (e.g. via separate rate-manual PDFs).
+
+**Significant new platform/technique findings this session** (see CALCULATORS.md for full recipes):
+- **ratecalculator.fnf.com is now confirmed WORKING for CT** and usable for the calculator-harvest
+  mission (superseding the 2026-07-25 PA session's "out of scope" judgment) — worth revisiting for
+  other "complete (scarce)" states still short of 3 calculator providers, since it's a national
+  multi-state tool (`?state=<ST>`) already proven to also serve at least PA and NY.
+- **First American's FACC tool** (`facc.firstam.com`, "First American Comprehensive Calculator") —
+  confirmed CT-supporting, guest-accessible via an SSID query-string token (found embedded in a CT
+  attorney firm's own "Helpful Links" page, `grassetteandassociates.com/blog`) with no login
+  required, and genuinely plain JSON AJAX (not a JS SPA) once view-sourced — but its `Calculator/*`
+  endpoints silently return **empty HTTP 200 responses** unless the request carries `Origin`/
+  `Referer` headers matching the tool's own origin (a CORS/WAF-style gate this session discovered
+  and solved: without those headers, malformed bodies return a 0-byte 200 with no error at all,
+  which is a trap for future debugging). With the headers fixed, malformed bodies now correctly
+  return `{"success":false,"serverError":"500"}` — but even a carefully-constructed, schema-matching
+  body (mirroring the page's own `GetFormData()` JS function field-for-field) still returns an empty
+  200 for `Calculator/PropertyTypes`/`Calculator/StateCounties`/`Calculator/PurposeOfTransactions`,
+  suggesting either an undiscovered required field or a server-side exception path this session could
+  not isolate further. **Recommendation for a future session**: this is now the single most promising
+  unsolved lead in CT (and likely other states, since FACC is presumably nationwide) — worth a
+  browser-driven session to capture one real network request and replay it statelessly, now that the
+  Origin/Referer gate is understood.
+- **TitleClose.com's Old Republic tenant** (`ortris.titleclose.com`) — confirmed CT is a configured
+  state in this tenant (`StateID=7`, all 8 CT counties present via `/Search/GetAllCountiesByStateId`),
+  and the full `/Consumer/Search` flow was driven end-to-end successfully (Fairfield County,
+  Bridgeport city, $500k/$400k, buyer-getting-loan) — but the tenant returned **"No companies"**,
+  the same zero-result outcome already documented for this tenant in VA, confirming it has no
+  Richmond-area-external footprint. `app.titleclose.com/Consumer/Welcome` (the generic,
+  non-tenant-scoped national app) was also tried as an alternative entry point, but renders a
+  different, ZIP/geocoding-driven form (no static `<select id="StateID">` of the kind the tenant
+  subdomain has) that this session did not fully map — a possible future avenue if a browser session
+  can capture its address-autocomplete network call.
+- **CATIC's `www.catic.com/state-resources/connecticut` page** — re-retried with a browser
+  User-Agent (as in the 2026-07-23 breakthrough already on file): still resolves to HTTP 200 (not
+  blocked), listing the same 3 FlippingBook-hosted rate-resource links already logged as
+  image-tile-rendered and unextractable without OCR/browser. No change from the existing entry above.
+- **Title Resources Guaranty** (`ratecalculator.trguw.com`) — retried per the mission's suggestion;
+  the live page still does not visibly resolve a quote in a plain fetch (consistent with the
+  already-documented server-side 500 on `getQuote`). Not independently re-confirmed via direct API
+  call this session; still flagged as the highest-priority "retry later" lead per the existing entry.
+
+**Dead ends / gated / jsOnly / misattributed, ruled out this session** (do not re-try without a new
+angle):
+- **alphaadv.net/cttitle/ctratecalc.html** — a personal (not-a-business) static page by "John
+  Granger," copyright 1997-2012, with a simple client-side JS premium formula. Not a genuine
+  provider (no company name/address, evidently a hobbyist/legal-reference page) and the formula
+  itself contains an obvious bug (`else if (amt <= 45000)` in a bracket clearly meant to be
+  `200000`, given the surrounding $100k/$200k/$500k tier structure) — excluded as neither a real
+  business nor reliable.
+- **commonwealthct.com/calculators_menu.asp** — DNS-dead (`ENOTFOUND`), a defunct legacy
+  Commonwealth Land Title CT-branded calculator site.
+- **txtitlerates.ctic.com** ("CT TX Rate Calculator") — a false-signal near-miss: "ctic.com" here is
+  **Chicago Title Insurance Company**'s domain (a Texas premium estimator, "CT" = Chicago Title, "TX"
+  = Texas), not Connecticut/CATIC as the name coincidentally suggests. Logged specifically to save a
+  future session the same momentary confusion.
+- **Stewart Rate Calculator** (`stewartratecalculator.com`) — Stewart's own CT agents page
+  (`stewart.com/en/state-pages/connecticut-agents/rates`) links only to the tool's generic
+  education/landing page, no CT-specific `officeid` embed found via search. Consistent with the
+  existing CALCULATORS.md entry: the final `/api/SRC/quote` POST mechanism is identified
+  (form-urlencoded serialization of `#frmCalculateRates`) but the form's dynamic fields still can't
+  be populated without a browser, and no CT agency embed was found this session to test against.
+- **MyTitleRates.com** (`calculator.mytitlerates.com`) — re-checked both previously-known agency IDs
+  (`a=24` TitleWorks, `a=15` Trident Land Transfer); neither's `state_picked` dropdown lists
+  Connecticut (PA/NJ/FL and NJ/PA respectively, unchanged from prior sessions' findings for other
+  states). No CT-serving agency ID found via web search this session.
+- **NetSheetCalc/TitleTap** (`app.netsheetcalc.com`) — the platform's own generic Connecticut
+  landing pages (`netsheetcalc.com/net-sheet-calculator-by-state/connecticut-net-sheet-calculator/`
+  and the `/title-insurance-cost-by-state/` variant) both return HTTP 500 consistently (server-side
+  issue, not a blocking/bot-detection problem — confirmed via both WebFetch and direct curl with a
+  browser User-Agent). A batch of `quickquote.php`/`index.php?appid=` search hits (Title Partners
+  Agency LLC, Community First Title Agency, Members Title Agency, Abstract Title Agency) were each
+  individually verified via their own config-JSON company name/address — all confirmed **MO, MI, FL,
+  MI respectively**, none Connecticut (a useful reminder that generic appid search results are not
+  state-filtered at all and every hit needs independent address verification, consistent with this
+  project's standing misattribution guard).
+- **independencetitleagent.com** (PalmAgent-powered net sheet calculator) — verified via its own
+  page content to be a Century 21 Randall Morris & Associates / Independence Title Company
+  instance based in **Austin, TX**, not Connecticut.
+- **Allied Title & Escrow** (`alliedtitleandescrow.com/calculator`) — confirmed serves only
+  DC/VA/MD/FL/TX/CO/PA; Connecticut not supported.
+- **Blueprint Title** (`blueprinttitle.com`) — confirmed 35-state footprint via its own "Where We
+  Work" page; Connecticut not among them.
+- **Progressive Title Company** (`progressivetitle.com/calculators/`) — a real multi-calculator
+  suite (Buyer Title Charges, Mortgage Payment, Refinance Title Charges, Seller Net Sheet) but no
+  Connecticut state coverage confirmed (company's known footprint is CA/MD/DC/VA per independent
+  search); not pursued further without state confirmation.
+- **Elko** (`useelko.com/title-quote-calculator/`) — B2B SaaS landing page only, gated behind a
+  "Book a Demo" flow with no accessible live tool or client directory found.
+- **AMT Title Services** (AmTrust Title Group brand) and **Blueprint Title** — searched by name per
+  a third-party "top CT title companies" listing; AMT Title Services' own site
+  (`amtrusttitlegroup.com`) lists 25 offices nationally with no confirmed CT-specific page or
+  calculator found; Blueprint Title confirmed not to serve CT (see above).
+- **Fusion Title Search** (`fusiontitle.com`) — CT-focused title search company, but no online
+  rate/quote calculator on its site; phone/email contact only.
+- **Eastern Title** (`easterntitle.com`) — the specific `/connecticut` page indexed by search engines
+  now 404s; the site's root page has no calculator or "Connecticut" mention at all in its current
+  content, suggesting a since-removed or relocated CT service page.
+- **CT Titles LLC** (New Haven) — confirmed to be a DMV tag-and-title service company (vehicle
+  titles), not a real-estate title/escrow provider — a name-collision false lead.
+- **First American FACC (`facc.firstam.com`)** — see "Significant new platform findings" above; not
+  a dead end exactly, but not completed this session either.
+
+**Techniques tried without success this session, beyond the specific candidates above**: general
+web searches combining "Connecticut" with "instant quote," "get a quote," "rate-calculator," and
+"net sheet" turned up only third-party rule-of-thumb estimator sites (Houzeo, ListWithClever,
+AnytimeEstimate, StateCalc, Rocket Mortgage, RealEstateWitch) already excluded per this file's
+standing non-primary-source rule, or the same handful of tools already logged above.
+
+Given this session's much broader sweep (roughly 20 distinct candidates/platforms tried, well past
+the mission's suggested 5-6 minimum) still landed on only 1 additional provider, CT's calculator
+landscape appears genuinely and unusually thin even by this project's "scarce market" standards —
+consistent with, and reinforcing, the state's attorney-closing structure and uncoordinated-premium
+market noted throughout this file. A future session's best remaining leads, in priority order, are:
+(1) finish reverse-engineering First American's FACC now that the Origin/Referer gate is solved;
+(2) retry Title Resources Guaranty's `getQuote` for a recovered backend; (3) revisit
+`app.titleclose.com`'s generic ZIP-driven flow with a browser session to see if it surfaces CT
+companies the `ortris` tenant doesn't have.
