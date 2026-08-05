@@ -149,5 +149,36 @@
     },
     "bundlingNotes": "2nd WI calculator-basis provider (after Knight Barry Title Group) -- still below the 3-provider threshold. Genuine itemized breakdown (title premium, statutory transfer fee, deed drafting, gap endorsement, special assessment certificate) rather than premium-only; the deed_drafting/gap_endorsement/special_assessment_certificate constants and rate-bracket coefficients are all visibly commented/dated in the page's own script (e.g. 'BT 8-6-25 new formula from Peter'), suggesting actively-maintained real pricing rather than a stale template default.",
     "transactionContext": "Seller-side net calculation plus TRID buyer-side lender's/owner's title insurance figures, Dane County (Madison), WI."
+  },
+  {
+    "basis": "calculator",
+    "provider": "Avenue Title (independent, multi-location Wisconsin title agency headquartered in Wausau; Marathon/Wood County service area; NetSheetCalc/TitleTap-powered calculator, app_id 235)",
+    "sourceUrl": "https://avenuetitles.com/net-sheet/",
+    "calculatorUrl": "https://app.netsheetcalc.com/company/non-auth-ajax.php?action=getAppData&app_id=235 (fee-form config JSON) and https://app.netsheetcalc.com/api/index.php/rate/<amount>/<rate-key> (live title-premium lookups)",
+    "retrievalDate": "2026-08-05",
+    "scenario": "$500,000 purchase price, $400,000 loan -- Wausau/Marathon County, WI (the tool's own single-office service area; no Milwaukee County option exists for this tenant, no county selector at all in the config), residential purchase (property_type=Residential is the config's own default).",
+    "methodology": "Same NetSheetCalc/TitleTap 'Quick Quote' recipe already catalogued for VA/IN/KY/AR: GET https://app.netsheetcalc.com/company/non-auth-ajax.php?action=getAppData&app_id=235 returns the tenant's full fee-form JSON schema with hardcoded flat-dollar constants, no auth and no personal data required. Confirmed genuinely Wisconsin (not a search misattribution, per this survey's standing verification rule) via the config's own currentAppInfo.state='WI' and street address '208 Grand Avenue, Wausau, WI 54403'. Owner's and Lender's title insurance premiums are live-rated (not hardcoded) via GET https://app.netsheetcalc.com/api/index.php/rate/<amount>/<rate-key> -- confirmed working at the root app.netsheetcalc.com host (NOT under the /company/ path used by getAppData -- a routing gotcha) using this tenant's own rate keys embedded in the config's formula objects: NewOwner235 (owner's policy, sale-price-driven, from the seller-side calculator's transfertax/owners_title_insurance_premium fields) and NewLender235 (lender's policy, loan-amount-driven, wired up only in this tenant's Refinance calculator). The Purchase/Finance calculator's own Lender's premium field is instead a flat hardcoded $450.00 default rather than an API call -- a genuine per-tenant configuration quirk, not a recipe error (confirmed by direct inspection of the config's is_formula flags: present on the Refinance version, absent on the Finance/Purchase version). Combined the seller-side and buyer/finance-side calculator outputs below since Wisconsin closings split fees across both sides of the transaction and this tenant models them as two separate calculators.",
+    "settlementFee": {
+      "closingFee_sellerSide": "$225.00 (residential default, Seller Estimated Closing Calculator)",
+      "closingFee_buyerFinanceSide": "$300.00 (residential default, Finance Estimated Closing Calculator)"
+    },
+    "itemizedFees": {
+      "sellerSide": {
+        "closingFee": 225.00,
+        "transferTax_statutory": 1500.00,
+        "ownersTitleInsurancePremium": 2022.50,
+        "specialAssessmentLetter": 25.00,
+        "deedPreparation": 100.00,
+        "gapEndorsement": 150.00
+      },
+      "buyerFinanceSide": {
+        "closingFee": 300.00,
+        "lendersTitleInsurancePremium": "$450.00 flat default in the Purchase/Finance calculator (this same tenant's separate Refinance calculator instead live-rates the identical line item via the NewLender235 API, which returns $500.00 at a $400,000 loan amount -- included here as a cross-check, not double-counted in the total below)",
+        "recordingFeesEstimate": 60.00
+      }
+    },
+    "sectionTotals": "Seller-side subtotal (excludes buyer's/listing agent commissions, which are user-input percentages, not fixed dollar fees, in this tool): $225.00 + $1,500.00 + $2,022.50 + $25.00 + $100.00 + $150.00 = $4,022.50. Buyer/finance-side subtotal: $300.00 + $450.00 + $60.00 = $810.00 (no CPL/wire/e-doc line items exist in this tenant's config, unlike the richer IN/KY/AR NetSheetCalc tenants already on file elsewhere in this survey).",
+    "bundlingNotes": "3rd WI calculator-basis provider (after Knight Barry Title Group and Homestead Title Company LLC) -- crosses the 3-provider calculator-quoted threshold for WI. Genuinely itemized (title premium, statutory transfer tax, deed preparation, gap endorsement, special assessment letter, split buyer/seller closing fees, recording) rather than premium-only. Notable cross-validation: this tenant's transfer-tax formula (sale_price * 0.003) independently confirms Homestead Title's own hand-derived Wisconsin statutory transfer-fee approximation (~$3.00/$1,000) from a completely separate provider and calculator platform. Also notable: this tenant's Purchase-calculator Lender's premium is a flat, non-rate-table default while its own Refinance-calculator computes the identical line item via a live rate lookup that returns a different figure at the same loan amount -- a real per-tenant configuration inconsistency worth flagging for future settlement-fee analysis, not a methodology error in this survey.",
+    "transactionContext": "Wausau/Marathon County (and Wisconsin Rapids/Marshfield per the tool's own page title) -- a smaller-market central-Wisconsin independent agency, not Milwaukee County; no Milwaukee-reaching calculator was found for this tenant (single-location statewide-style flat pricing, no county selector present in the config at all)."
   }
 ]

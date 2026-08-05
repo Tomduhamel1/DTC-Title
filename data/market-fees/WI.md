@@ -168,3 +168,89 @@ Minnesota-based (not WI-relevant despite surfacing in a WI-flavored search). **P
 Company** (a previously-indexed TitleTap customer) — domain now redirects to TitleTap's own
 generic marketing site, dead/no longer a real company. See CALCULATORS.md for the full technical
 entries.
+
+## Calculator harvest addendum (2026-08-05) — Avenue Title crosses the 3-provider threshold
+
+**Avenue Title** (Wausau, Marathon County/central WI — `avenuetitles.com/net-sheet/`, NetSheetCalc/
+TitleTap app_id 235) is a 3rd WI calculator-basis provider, crossing the 3-provider calculator-quoted
+threshold (Knight Barry Title Group, Homestead Title Company LLC, Avenue Title). Found via the
+Wisconsin Land Title Association's own company directory (`wlta.org/wi-title-companies/`), then
+confirmed genuinely Wisconsin (not a search misattribution) via its own config JSON's
+`currentAppInfo.state: "WI"` and street address (208 Grand Avenue, Wausau, WI 54403). At $500,000
+purchase price / $400,000 loan: seller-side Closing Fee $225.00, WI statutory Transfer Tax $1,500.00
+(0.3% of price, independently corroborating Homestead Title's own hand-derived transfer-fee formula
+from a completely separate provider/platform), Owner's Title Insurance Premium $2,022.50 (live-rated
+via the platform's `api/index.php/rate/<price>/NewOwner235` endpoint, not hardcoded), Special
+Assessment Letter $25.00, Deed Preparation $100.00, Gap Endorsement $150.00 (seller-side subtotal
+$4,022.50); buyer/finance-side Closing Fee $300.00, Lender's Title Insurance Premium $450.00 (flat
+default — notably, this same tenant's separate Refinance calculator instead live-rates the identical
+line item via `NewLender235` and returns $500.00 at a $400,000 loan amount, a real per-tenant
+configuration inconsistency), Recording Fees Estimate $60.00 (buyer-side subtotal $810.00). No
+Milwaukee County reach (single-location Wausau-area pricing, no county selector in the config at
+all) — recorded as the tool's own default service area per the standard scenario's deviation rule.
+See WI.json for the full entry and CALCULATORS.md for the endpoint recipe (a routing gotcha: the
+live-rate `api/index.php/rate/...` endpoint lives at the root `app.netsheetcalc.com` host, NOT under
+the `/company/` path used by this same tenant's `getAppData` config endpoint).
+
+Other candidates tried and ruled out this session (logged so a future session doesn't re-try them):
+- **Title Resources Guaranty's Next.js/GraphQL calculator** (`ratecalculator.trguw.com/wisconsin`)
+  — confirmed WI is a genuinely configured state on this platform (calculator nanoId, full policy/
+  endorsement list returned by `GetCalculatorByStateSlug`), and the full `getQuote` GraphQL query/
+  variable shape was reverse-engineered from the page's own Next.js JS chunks (`POST
+  ratecalculator.trguw.com/api/proxy/graphql`) — but every `getQuote` request, including a minimal
+  owner-policy-only one, returns a bare HTTP 500 with no validation-error JSON, matching the
+  already-documented live backend outage on Title Resources' own side noted for other states in
+  CALCULATORS.md. Re-confirmed still broken, not a request-shape problem on this survey's end.
+- **Lakefront Title** (Wauwatosa/Milwaukee-area, `lakefronttitle.com/mortgage-fee-calculators/
+  seller-net-sheet/`) — embeds a distinct, previously-uncatalogued First American tool,
+  `agentcostcalc.firstam.com` (a third First American calculator domain, separate from the already-
+  catalogued FACC and `ratecalculator.fnf.com`), but the domain is now DNS-dead (`ENOTFOUND`) —
+  confirmed via both a direct HTTP client and WebFetch.
+- **EnTrust Title Group** (Milwaukee-area, `etgtitle.com`) — links to `ratecalculator.fnf.com/
+  ?id=etgtitle`, the already-catalogued FNF WebForms calculator (working technique, but confirmed
+  premium-only, out of scope, per CALCULATORS.md). Its own separate `seller-net-proceeds.cfm` form
+  (a ColdFusion page with genuine Wisconsin-only itemized fields: sales price, loan amount,
+  commission, property taxes) accepts POST/GET submissions with no visible error, but returns the
+  byte-identical blank template regardless of submitted values (confirmed via a cookie-preserving
+  session and both POST-body and query-string submission) — the actual computation appears to be
+  purely client-side/JS-triggered with no discoverable server round-trip; not pursued further
+  (effectively jsOnly despite looking like a plain HTML form).
+- **4 misattributed NetSheetCalc/TitleTap appids** surfaced by search for "Wisconsin netsheetcalc
+  quickquote": appid 468 (MVP Title Agency) = FL, appid 653 (Patriot Title Agency) = OH, appid 461
+  (DRG Title Agency) = IN, appid 612 (Infinity Title Insurance Agency) = FL — none WI, confirming
+  this survey's standing appid-misattribution guard remains necessary.
+- **calculator.mytitlerates.com** agency IDs `a=49` and `a=25` (found via a WI-flavored search) —
+  both confirmed to serve only FL/MD/NJ/PA, no WI option in either agency's `state_picked` dropdown.
+- **Wisconsin Title Services** (Waukesha, `wititle.com`) — links to `marketing.agentnetsolutions.com/
+  wititle/sign-in`, First American's "AgentNet"/Prism Angular SPA, already-catalogued **jsOnly**
+  elsewhere in this survey (a new tenant, not a new platform).
+- **1st Service Title & Closing** (`1stservicetitleclosing.com`) and **CloseAtTitle**
+  (`closeattitle.com`) — both embed **TitleCapture** (`1servicetitle.titlecapture.com`; a
+  `tcWidgetBtn`-launched modal for CloseAtTitle), the already-catalogued **jsOnly** Angular SPA
+  platform — new tenants, not a new platform.
+- **Polk County Abstract & Title Services** (`pcatitle.com`) — embeds **Elko**
+  (`widget.useelko.com`, `company_id: com_ovf5dwhM78bLKcJZLn5j9d`), already confirmed
+  login-gated/no public quote mode in the 2026-07-31 session's catalog entry — a new tenant
+  confirming the same platform-level dead end, not a new discovery.
+- **Dominion Title & Exchange Services** (Brown County, `dominiontitlewi.com/rate-calculator/`) —
+  its "Rate Calculator" page embeds only a generic third-party mortgage-payment calculator
+  (`mymortgagecalculator.org/real-estate-tools`), not a title/settlement fee tool — out of scope.
+- **Wisconsin Title Group** (`wisconsintitlegroup.com`) and **Executive Title**
+  (`executivetitlewi.com`) — both publish only static PDF rate cards (title-premium-only), no
+  interactive calculator found on either site.
+- **River Valley Title Group** (`rivervalleytitlegroup.com`) — no calculator, quote tool, or
+  estimator link found anywhere on the site (confirmed via WebFetch after a direct HTTP fetch
+  returned HTTP 403).
+- **Frontier Title & Closing Services** (`frontiertitlellc.com`) — publishes only a static PDF rate
+  table, no calculator.
+- **Quality Title Group** (`qualitytitlegroup.com`), **Rusk County Abstract Company**
+  (`rusktitle.com`, DNS-unreachable this session), and **Guaranty Closing & Title Services**
+  (`titleservice.com`, returned an HTTP 202 challenge page) — no usable calculator found/reachable.
+
+**Recommendation for a future session**: WI has now crossed the 3-provider threshold and can be
+deprioritized relative to CT, KY, and CO (still below threshold at time of writing). If WI is
+revisited anyway to push toward the 3-6 stretch range, the `ratecalculator.trguw.com` GraphQL
+backend is fully mapped and ready to replay the moment Title Resources' own outage resolves (see
+CALCULATORS.md for the exact query/variable shapes and calculator nanoIds for WI); PowerSnap and
+Elko both have confirmed WI tenant footprints (Burnet Title, Polk County Abstract) but remain
+browser-driven-session targets per their existing catalog entries.

@@ -29,7 +29,7 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | PA | 3 (ALT Title, TitleWorks, Trident Land Transfer — all Philadelphia County) | **calculator-quoted (3 providers)** | 2026-07-25 |
 | NJ | 3 (Trident Land Transfer — statewide, no county tiering; Allstates Title Service — statewide, via MyTitleRates.com `a=78`; The Closing Partner, LLC — statewide, NetSheetCalc/TitleTap `appid=638`) | **calculator-quoted (3 providers)** | 2026-08-03 |
 | MN | 3 (DCA Title, Knight Barry Title Group — both Hennepin County/Minneapolis; Minnesota Secured Title — Hennepin County, via the newly-discovered Title Midwest platform) | **calculator-quoted (3 providers)** | 2026-08-02 |
-| WI | 2 (Knight Barry Title Group — Milwaukee County; Homestead Title Company LLC — Dane County/Madison, formula read directly from the page's own client-side JS) | below 3-provider threshold | 2026-08-04 |
+| WI | 3 (Knight Barry Title Group — Milwaukee County; Homestead Title Company LLC — Dane County/Madison, formula read directly from the page's own client-side JS; Avenue Title — Wausau/Marathon County, via NetSheetCalc/TitleTap app_id 235) | **calculator-quoted (3 providers)** | 2026-08-05 |
 | VA | 3 (Bon Air Title Agency + Appomattox, both TitleClose.com tenants, Fairfax; Independent Title & Escrow LLC, NetSheetCalc/TitleTap, Fairfax) | **calculator-quoted (3 providers)** | 2026-07-26 |
 | MD | 3 (Federal Title & Escrow Company — Montgomery County, own first-party ASP.NET tool; Allstates Title Service — Montgomery County, via MyTitleRates.com `a=78`; Tri-State Signature Settlements — Montgomery County, via MyTitleRates.com `a=40`) | **calculator-quoted (3 providers)** | 2026-08-03 |
 | CT | 1 (Old Republic — ortratecalculator.oldrepublictitle.com, statewide, a distinct tool from ortconline.com) | below 3-provider threshold | 2026-07-26 |
@@ -37,7 +37,7 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | CO | 1 (First Integrity Title Company — Denver County, via comparetitlecompanies.com's multi-company comparison tool) | below 3-provider threshold | 2026-08-04 (retried, no new provider found; new jsOnly "Settlor" platform discovered via LTGC) |
 | TN | 3 (Tennessee Title Services, LLC — Davidson County, own first-party calculator; Signature Title Services — Davidson County, own ASP.NET WebForms calculator; Cornerstone Title of Tennessee, LLC — Davidson County scenario, via TitleTap) | **calculator-quoted (3 providers)** | 2026-08-02 |
 | IN | 3 (Agency Title, Inc. — New Albany/Louisville-metro Southern Indiana office, NetSheetCalc/TitleTap "Quick Quote" JSON API; Momentum Title Agency [formerly Hocker Title] — Indianapolis, NetSheetCalc/TitleTap `appid=1056`; Rounsavall Title Group, LLC — Louisville KY-headquartered, dedicated IN-approved tenant `appid=480`, formula-driven premium via `getNetSheetConfig`) | **calculator-quoted (3 providers)** | 2026-08-04 |
-| KY | 1 (Agency Title, Inc. — Louisville/Jefferson County, same operator's KY instance of NetSheetCalc/TitleTap) | below 3-provider threshold | 2026-07-29 |
+| KY | 3 (Agency Title, Inc. — Louisville/Jefferson County, NetSheetCalc/TitleTap; Rounsavall Title Group, LLC — Louisville/Jefferson County, a distinct `app_id=479` tenant on the same platform; Old Republic — Louisville/Jefferson County, via `ortratecalculator.oldrepublictitle.com` Location=KY) | **calculator-quoted (3 providers)** | 2026-08-05 |
 | AL | 3 (Signature Title Services — Jefferson County, AL-specific ASP.NET WebForms portal distinct from the TN instance; Land Title Company of Alabama — Jefferson/Shelby Counties, first-party JS calculator; Alabama Land Title — statewide, first-party "ydwebpro" platform calculator) | **calculator-quoted (3 providers)** | 2026-07-30 |
 | AR | 2 (TitleTech of Arkansas, LLC — Rogers/Benton County-NWA; Hot Springs Title — Garland County, via the Title Midwest platform) | below 3-provider threshold | 2026-08-02 |
 | MS | 0 — extensively searched, zero found | below 3-provider threshold | 2026-07-31 |
@@ -424,6 +424,54 @@ Guaranty's Georgia rate manual PDF, Campbell & Brannon's GA closing-attorney fee
 sources (Old Republic's escrow/service-fee schedule PDF, WFG National's WA escrow-fees PDF, CW
 Title and Escrow's rate PDF), all originally fetched 2026-07-21. All 5 returned HTTP 200 — no
 `{stale: true}` flags needed this session.
+
+**2026-08-05 session — Kentucky (KY) crosses the 3-provider threshold.** Per the 2026-08-04
+recommendation (CT/KY next-highest-value plain-HTTP-reachable scarce-state targets after WI),
+KY was harvested in parallel with WI/CT. Found **Rounsavall Title Group, LLC** (Louisville,
+Jefferson County) as a second, independent NetSheetCalc/TitleTap tenant (`app_id=479`, distinct
+from the already-on-file Agency Title Inc. tenant) — Owner's Title Insurance Premium $1,940
+(formula-driven), Lender's Title Insurance Premium $200 flat, plus a Local Government Premium Tax
+$97 line (the first calculator-sourced figure anywhere in KY's evidence base for that municipal
+tax). Also drove **Old Republic**'s `ortratecalculator.oldrepublictitle.com` tool end-to-end for
+KY (Location code confirmed working, previously only logged as "interactive calculator only, no
+static figures" in KY.md) — Owner's Basic Policy Premium $2,075, Lender's Simultaneous Basic
+Policy Premium $225, plus a corroborating Louisville Urban Services District fee line of $115
+(same municipal tax Rounsavall priced at $97, a useful cross-provider variance data point). KY
+now has 3 calculator-basis providers — **calculator-quoted (3 providers)**. Ruled out this
+session: Kentucky Title Center/Title Center of Greater Kentucky (both route to an
+Investors-Title-underwritten TitleCapture embed, jsOnly); Metro Title/Louisville (TRGC
+PowerSnap, jsOnly, confirms a 2nd KY tenant on that platform beyond Upward Title & Closing);
+`calculator3.mytitlerates.com/calculator/98`'s Kentucky option (an unbranded "MyTitleRates Demo"
+shell, not attributable to a real KY agency, not harvested). See CALCULATORS.md for the full
+technical recipe, including a newly-solved NetSheetCalc second-order-formula chaining technique
+(a tenant's "Local Government Premium Tax" field resolves through a second `api/index.php/rate/`
+call keyed off the first call's result and a county-dropdown value string, with a trailing
+`#<id>` URL-fragment suffix that must be stripped before the second GET) and confirmation that
+Old Republic's `Location=<code>` tool covers KY (internal code 16) in addition to the
+previously-confirmed CT.
+
+**2026-08-05 session, continued — Wisconsin (WI) also crosses the 3-provider threshold.**
+Harvested in parallel with CT/KY. Found **Avenue Title** (Wausau, Marathon County/central WI) as
+a 3rd, independent NetSheetCalc/TitleTap tenant (`app_id=235`), via the Wisconsin Land Title
+Association's own company directory rather than generic search — confirmed genuinely WI via the
+tenant's own config JSON `currentAppInfo.state` field and street address. Owner's Title Insurance
+Premium $2,022.50 (live-rated), WI statutory Transfer Tax $1,500.00 (independently corroborating
+Homestead Title's own separately-derived transfer-fee formula from a different provider/
+platform), seller-side subtotal $4,022.50 / buyer-side subtotal $810.00 at $500k/$400k. No
+Milwaukee County reach (single-location Wausau-area pricing) — recorded per the standard
+scenario's deviation rule. WI now has 3 calculator-basis providers — **calculator-quoted (3
+providers)**. Also fully reverse-engineered Title Resources Guaranty's `ratecalculator.trguw.com`
+GraphQL `getQuote` mutation for WI specifically (confirmed a genuinely-configured WI calculator
+exists on the platform) but it still 500s server-side, matching the same live backend outage
+already logged for CT/MA — ready to replay the moment it recovers. See CALCULATORS.md for the
+full technical recipe (including a routing gotcha: this tenant's live-rate endpoint lives at the
+root `app.netsheetcalc.com` host, not under the `/company/` path its `getAppData` config endpoint
+uses) and WI.md for a long list of ruled-out candidates (DNS-dead First American domain
+`agentcostcalc.firstam.com`, a JS-only ColdFusion net-sheet form, several misattributed
+appids/agency IDs, and confirmed new WI tenant footprints on the already-jsOnly PowerSnap and
+Elko platforms). **Both WI and KY are now deprioritized**; CT (still below threshold — 1 of 3 as
+of this session, targeted in parallel but not yet resolved) and CO remain the next-highest-value
+scarce-state targets by population.
 
 ## The completion contract
 

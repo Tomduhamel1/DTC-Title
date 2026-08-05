@@ -1635,3 +1635,99 @@ targets by population reachable via plain HTTP; PowerSnap and Settlor are now th
 browser-driven-session targets, each with confirmed multi-state reach into several still-open
 scarce states (CO, WI[partially resolved], AR, KY, IN for PowerSnap; CO for Settlor, though
 Settlor's install base beyond LTGC is unconfirmed).
+
+## 2026-08-05 session — Kentucky (KY) crosses the 3-provider threshold
+
+### Rounsavall Title Group, LLC (Louisville, KY) — WORKING, a 2nd independent NetSheetCalc/TitleTap tenant, `app_id=479`
+Distinct from the already-catalogued Agency Title Inc. KY tenant (`app_id=582`) — a genuinely
+different company (verified against rtitlegroup.com's own address, 4360 Brownsboro Road, Suite
+102, Louisville KY 40207), same platform. Standard `getNetSheetConfig` + `api/index.php/rate/
+<amount>/<rate-key>` recipe (see the AZ/MI 2026-08-02 entries above for the base recipe).
+**New chaining technique found this session**: this tenant's "Local Government Premium Tax"
+field is itself formula-driven off a *second* rate-table call, keyed by combining the first
+call's resolved premium with a raw value string pulled from the county dropdown (format
+`pt_ml@<multiplier>#<id>`, e.g. `pt_ml@0.05#12`) — the trailing `#<id>` is a URL-fragment-style
+suffix that must be stripped before use, or the second GET 404s: `GET api/index.php/rate/1940/
+pt_ml@0.05` (using the first call's resolved Owner's Premium, 1940, as the path segment). Any
+other TitleTap tenant with a chained/derived fee field (percentage-of-another-fee style) should
+be checked for this same `pt_ml@<x>#<id>` pattern before being written off as unresolvable.
+Result at $500k/$400k, Jefferson County: Owner's Title Insurance Premium $1,940.00
+(formula-driven), Lender's Title Insurance Premium $200.00 (flat), Local Government Premium Tax
+$97.00 (via the chained call above).
+
+### Old Republic's second tool (`ortratecalculator.oldrepublictitle.com`) confirmed to cover KY (Location code 16), previously only logged as calculator-only/unusable
+KY.md previously logged this tool as "interactive calculator only, no static figures found" —
+this session actually drove the full ASP.NET WebForms postback flow (same technique as the
+already-solved CT instance: category-select postback -> full form postback with policy types +
+sale/loan amounts + a non-identifying placeholder property address, required only for the
+county-lookup/effective-date resolution, not personal data -> results render inline in the same
+page). No async/ScriptManager partial-postback headers needed, same as CT. Result at $500k/
+$400k, Jefferson County (Louisville): Owner's Basic Policy Premium $2,075.00, Lender's
+Simultaneous Basic Policy Premium $225.00, combined Grand Total Policy & Endorsement Premium
+$2,300.00, plus a "Fees/Taxes: LOUISVILLE URBAN SERVICES DIST" line of $115.00 — a second,
+independently-sourced corroborating figure for the same municipal premium tax Rounsavall's
+tenant priced at $97.00 (real market variance between two independent sources' pricing of the
+same statutory local tax, not a data error). **Recommendation**: this tool's `Location=<code>`
+parameter is now confirmed for both CT (06) and KY (16); worth systematically enumerating
+remaining codes for other below-threshold states (WI, CO, AR, NV, NM, UT, HI, OR, MS, SC, LA) in
+a future session before assuming no coverage.
+
+### KY dead ends / gated / jsOnly ruled out this session
+- **Kentucky Title Center / Title Center of Greater Kentucky** — both route to an
+  Investors-Title-underwritten calculator embedding TitleCapture — jsOnly, already-catalogued
+  platform.
+- **Metro Title (Louisville)** — embeds TRGC PowerSnap — jsOnly, already-catalogued platform;
+  confirms PowerSnap's KY footprint includes a 2nd tenant beyond Upward Title & Closing (see the
+  2026-08-04 CO/WI entry above).
+- **`calculator3.mytitlerates.com/calculator/98`** — has a Kentucky option in its state dropdown
+  but is explicitly branded "MyTitleRates Demo" (the platform's own admin/demo shell, same
+  pattern already excluded for SC in the 2026-07-30 session) — not attributable to any real KY
+  agency, not harvested.
+- No `calculator.mytitlerates.com/rateCalculator.php` or `<agency>.titleclose.com` KY tenant
+  found via search this session.
+
+## 2026-08-05 session, continued — Wisconsin (WI) also crosses the 3-provider threshold
+
+### Avenue Title (Wausau, WI) — WORKING, a 3rd independent NetSheetCalc/TitleTap tenant, `app_id=235`
+Found via the Wisconsin Land Title Association's own company directory (`wlta.org/
+wi-title-companies/`) rather than generic search — a higher-signal discovery channel than
+appid-guessing/keyword search, worth trying for other states' state title-association member
+directories before falling back to search. Confirmed genuinely WI (not a misattribution) via the
+tenant's own `getAppData` config JSON `currentAppInfo.state: "WI"` field plus its street address.
+**New routing gotcha**: this tenant's live-rate endpoint (`api/index.php/rate/<price>/
+NewOwner235`, `NewLender235`) resolves at the platform's root `app.netsheetcalc.com` host — NOT
+under the same `/company/<slug>/` path its `getAppData`/`getNetSheetConfig` config endpoints use.
+Also notable: the same rate-key naming convention (`NewLender235`) differs in live-rated value
+between this tenant's Purchase calculator ($450 flat default) and its separate Refinance
+calculator ($500 live-rated at the same $400,000 loan amount) — a genuine per-tenant/per-form
+configuration inconsistency, not a bug in the harvesting technique. Single-location Wausau/
+Marathon County pricing, no county selector — no Milwaukee County reach.
+
+### Title Resources Guaranty (`ratecalculator.trguw.com`) — WI's GraphQL `getQuote` confirmed configured but still 500s
+Reverse-engineered the `GetCalculatorByStateSlug` + `getQuote` GraphQL query/variable shape
+specifically for WI (via `POST ratecalculator.trguw.com/api/proxy/graphql`) and confirmed a
+genuinely-configured WI calculator (nanoId, full policy/endorsement list) exists on this
+platform — but every `getQuote` call, including a minimal owner-policy-only request, returns a
+bare HTTP 500 with no validation-error detail, matching the same live backend outage already
+logged for CT/MA elsewhere in this file. Not a request-shape problem on this survey's end — flag
+for a retry-only follow-up once the backend recovers, no further reverse-engineering needed for
+WI specifically.
+
+### WI dead ends / gated / jsOnly ruled out this session
+- **Lakefront Title** (Wauwatosa) — embeds a 3rd, previously-uncatalogued First American
+  calculator domain, `agentcostcalc.firstam.com` (distinct from FACC and `ratecalculator.fnf.com`)
+  — but the domain is now DNS-dead (`ENOTFOUND`), confirmed via two independent fetch methods.
+- **EnTrust Title Group** — its `seller-net-proceeds.cfm` ColdFusion form accepts POST/GET
+  submissions with a cookie-preserving session but always returns the byte-identical blank
+  template regardless of submitted values — effectively jsOnly (client-side-only computation)
+  despite superficially looking like a plain server-rendered form.
+- 4 more misattributed NetSheetCalc/TitleTap appids (468=FL, 653=OH, 461=IN, 612=FL) and 2 more
+  MyTitleRates.com agency IDs (`a=49`, `a=25`, both FL/MD/NJ/PA-only) surfaced by WI-flavored
+  search — none genuinely WI, reinforcing the standing misattribution guard.
+- Confirmed 2 more WI tenant footprints on already-catalogued jsOnly platforms: **PowerSnap**
+  (via Burnet Title, already logged 2026-08-04) and **Elko** (a new tenant, Polk County Abstract &
+  Title Services) — both remain browser-driven-session targets, not new discoveries.
+- Several WI independents checked with no calculator at all (static PDF rate cards only, or no
+  tool found): Wisconsin Title Group, Executive Title, River Valley Title Group, Frontier Title &
+  Closing Services, Quality Title Group, Rusk County Abstract, Guaranty Closing & Title Services.
+  Full detail in WI.md.

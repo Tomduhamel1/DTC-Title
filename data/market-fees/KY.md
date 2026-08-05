@@ -164,3 +164,83 @@ Also checked and logged as **gated** this session: Mattingly Ford Title Services
 requires entering an email address plus passing a Google reCAPTCHA before any quote is
 shown; no personal data was entered per the hard rule, and the reCAPTCHA is JS-only
 regardless. See CALCULATORS.md.
+
+## Calculator harvest addendum (2026-08-05)
+
+This session harvested **2 more Kentucky calculator-basis providers**, crossing KY to
+**3 total calculator-basis providers** — the calculator-quoted threshold — alongside
+Agency Title, Inc. already on file. Full itemized figures for both new entries are in
+KY.json (`"basis": "calculator"`); technical recipes are in CALCULATORS.md.
+
+**Rounsavall Title Group, LLC** (4360 Brownsboro Road, Suite 102, Louisville, KY 40207;
+phone 502-893-3336; independently verified against the company's own site,
+`rtitlegroup.com`) runs a separate, independent NetSheetCalc/TitleTap tenant (`app_id=479`)
+on the same platform as Agency Title Inc.'s already-catalogued instance — a distinct
+company, not a shared account. This tenant's Owner's Title Insurance Premium and Local
+Government Premium Tax fields are formula-driven (referencing a tenant-specific rate-table
+key, `Kentucky479`) rather than flat constants; both were resolved via the platform's own
+public `api/index.php/rate/<amount>/<key>` GET endpoint. For Jefferson County/Louisville at
+the standard $500,000/$400,000 scenario: Lender's Title Insurance Premium **$200.00** (flat),
+Owner's Title Insurance Premium **$1,940.00** (formula-driven; shown only if the tool's
+"buyer pays owner's policy" toggle is set to Yes — the tool's own default is No/seller-pays,
+so this figure was captured by directly replicating the formula/API call), and Local
+Government Premium Tax **$97.00** (Jefferson County's 0.05 mill-multiplier applied to the
+$1,940 owner's-premium base) — the first calculator-sourced dollar figure on file anywhere
+in KY's evidence base for the municipal premium tax that Stewart's and WFG's rate manuals
+reference but do not price. No settlement/closing/doc-prep/search/escrow/CPL fee fields
+exist anywhere in this tenant's schema.
+
+**Old Republic Title Insurance Company** (`ortratecalculator.oldrepublictitle.com`,
+`Location=KY`/internal numeric code 16) is a classic ASP.NET WebForms + UpdatePanel postback
+app, previously logged in this file's "Not used / found-but-blocked" section as
+"interactive calculator only, no static fee figures" — that was based only on visiting the
+landing page; this session drove the actual 3-step postback flow (select policy category ->
+select policy types/enter amounts/address -> Calculate) with a plain cookie-jar session, no
+browser/JS needed, and captured a fully itemized result. A placeholder, non-identifying
+address ("Main Street", Louisville, KY 40202 — no real address or personal data) let the
+tool's own address-verification lookup auto-resolve the correct local tax jurisdiction,
+"LOUISVILLE URBAN SERVICES DIST" (Jefferson County). At $500,000 purchase / $400,000 loan,
+Simultaneous Loan & Owner's policy category, Basic coverage: Owner's Basic Policy Premium
+**$2,075.00**, Lender's Simultaneous Basic Policy Premium **$225.00** (Lender's-only
+stand-alone would be $1,405.00), Grand Total Policy & Endorsement Premium **$2,300.00**
+combined, plus a county-specific "Fees / Taxes: LOUISVILLE URBAN SERVICES DIST" line of
+**$115.00** combined ($70.25 lender-only) — a second, independent calculator-sourced dollar
+figure for Kentucky's municipal premium tax at Jefferson County, corroborating (with a
+different dollar figure, reflecting a different underlying rate schedule) the Rounsavall
+Title Group figure above. Total Premium & Endorsement & Fees/Taxes: **$2,415.00** combined
+/ $1,475.25 lender-only. The tool's own Closing-Disclosure-formula line gives the
+TRID-disclosed incremental cost of the Owner's policy as **$895.00**
+(`$2,300.00 combined total - $1,405.00 lender's-only total`). Selecting the CPL-Lender and
+CPL-Purchaser endorsement checkboxes produced no separate dollar line (totals were
+byte-identical with or without them) — logged so a future session doesn't re-try expecting
+a distinct CPL figure from this specific tool/jurisdiction/policy-type combination.
+Title insurance premium and the one county tax line only — like Stewart's and WFG's manuals
+already on file, this tool prices no settlement/closing/escrow service fees.
+
+**Also checked this session, not usable**:
+- **Kentucky Title Center** (`kentuckytitlecenter.com`) and **Title Center of Greater
+  Kentucky** (`titlecentergreaterky.com`) both link to the same underwriter-level calculator,
+  `invtitle.com/calculator` (Investors Title Insurance Company), which itself embeds
+  `invtitle.titlecapture.com/title-quote-uw` — the already-catalogued **jsOnly** TitleCapture
+  platform. Not a distinct first-party agency calculator; not pursued further.
+- **Metro Title** (`metrotitleky.com/calculators/`, Louisville) embeds the already-catalogued
+  **jsOnly** TRGC "PowerSnap" Angular SPA (`mobile.trgc.com/powersnap/`) — confirms PowerSnap's
+  Kentucky footprint extends beyond the previously-logged Upward Title & Closing tenant to at
+  least one more KY agency, but adds no new usable data (same platform-level jsOnly block).
+- **calculator3.mytitlerates.com/calculator/98** — a Kentucky option (`calculator_id=328`)
+  exists in this tool's state dropdown, but the page's own branding explicitly identifies it
+  as "MyTitleRates Demo" (an AdminLTE admin/demo shell, not a real agency's branded public
+  quote page) — not attributable to any genuine Kentucky provider per the misattribution-guard
+  standard used throughout this catalog; not harvested. Confirms the prior session's
+  characterization of this specific instance as a demo/admin backend, not a public tool.
+- No `calculator.mytitlerates.com/rateCalculator.php?a=<id>` (the main MyTitleRates.com
+  platform, distinct from the demo instance above) or `<agency>.titleclose.com` Kentucky
+  tenant was found via web search this session.
+- Third-party aggregator estimators (StateCalc, AnytimeEstimate, LoanElk, MintRates,
+  RealEstateWitch, ListWithClever, Rocket Mortgage, Houzeo) surfaced repeatedly for Lexington/
+  Kentucky searches — all out of scope per the "providers' own calculators" mandate already
+  established elsewhere in this catalog (StateCalc and AnytimeEstimate specifically already
+  logged as out-of-scope aggregators; the same reasoning applies to the others).
+
+KY is now **calculator-quoted (3 providers)**: Agency Title, Inc.; Rounsavall Title Group,
+LLC; and Old Republic Title Insurance Company.
