@@ -146,5 +146,37 @@
     "sectionTotals": "Total Charges for the Policy: $2,211.00. Grand Total: $2,211.00.",
     "bundlingNotes": "Part of this project's ongoing 2026-08-06 calculator-harvest pass applying the FNF national rate calculator (already confirmed in-scope for premium-only evidence as of the 2026-08-05 CT session) across every remaining below-threshold scarce state where the tool's own county dropdown confirms coverage.",
     "transactionContext": "Owner's Policy premium for a $500,000 residential purchase, Clark County, NV. AR/NV precedent: no Loan Policy line appeared despite the $400,000 loan amount entered."
+  },
+  {
+    "provider": "Western Nevada Title Company (Reno-area independent title agency)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.wntco.com/calculator",
+    "calculatorUrl": "https://app.netsheetcalc.com/company/quickquote.php?appid=435 (NetSheetCalc/TitleTap white-label platform, app_id 435)",
+    "retrievalDate": "2026-08-06",
+    "scenario": "$500,000 purchase price, $400,000 loan, buyer-financed Purchase scenario (this tenant's 'finance' estimate type), statewide flat/formula fees (no county-tiered dropdown in this tenant's config -- Nevada title/escrow fees are largely uniform statewide for this agency). Seller paying Owner's Title Insurance and splitting Transfer Tax with buyer (tool's own defaults).",
+    "methodology": "Found via web search for NetSheetCalc/TitleTap Nevada tenants (title 'Western Nevada Title Company - Quick Quote Net Sheet Calculator by TitleTap'). Driven via the platform's plain unauthenticated JSON GETs (no browser, no personal data), the same recipe already on file in CALCULATORS.md for other NetSheetCalc tenants: (1) GET company/non-auth-ajax.php?action=getAppData&app_id=435 (or the newer getNetSheetConfig action, both work for this tenant) to retrieve the tenant's full fee-form schema as JSON, including hardcoded flat-dollar ancillary fees and formula-driven fields referencing rate-lookup keys (Settlement435, Owner435, Tranfer435, Lender435); (2) GET the root-host (not /company/-prefixed) api/index.php/rate/<amount>/<rate-key> endpoint for each formula-driven field at the standard scenario's sale price ($500,000) or loan amount ($400,000) as appropriate -- confirmed genuinely dynamic/live-rated, not static, since the 4 rate-keys returned 4 different values scaled to their respective inputs.",
+    "settlementFee": {
+      "note": "Settlement Agent Fee is buyer/seller-split (the tenant's own formula divides the API-returned total by 2): $1,570.00 total / $785.00 per side."
+    },
+    "itemizedFees": {
+      "settlementAgentFee_total": "$1,570.00 (from api/index.php/rate/500000/Settlement435; tenant's own formula splits this 50/50 buyer/seller = $785.00 each)",
+      "ownersTitleInsurancePremium": "$2,144.00 (from api/index.php/rate/500000/Owner435, at $500,000 purchase price; seller-paid per the tool's own default)",
+      "lendersTitleInsurancePremium": "$940.00 (from api/index.php/rate/400000/Lender435, at $400,000 loan amount)",
+      "transferTax_total": "$2,050.00 (from api/index.php/rate/500000/Tranfer435; tenant's own formula splits this 50/50 buyer/seller by default = $1,025.00 each)",
+      "loanTieInFee": "$150.00 (flat, finance transactions only)",
+      "wire": "$25.00 (flat)",
+      "courier": "$50.00 (flat)",
+      "docPrep": "$100.00 (flat, seller-side estimate type only)",
+      "lenderEndorsements": "$100.00 (flat, finance transactions only)",
+      "recordingDeed": "$43.00 (flat)",
+      "recordingDeedOfTrust": "$43.00 (flat, finance transactions only)",
+      "eRecording": "$10.00 (flat, 'E-filing Fee for Deed and Deed of Trust', finance transactions) / $5.00 (cash-transaction variant, deed only)",
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null
+    },
+    "sectionTotals": "No single combined grand-total field in this tenant's config (a live net sheet, not a single-total quote) -- the itemized lines above sum to $785.00 (seller's half of Settlement Agent Fee) + $2,144.00 (Owner's Premium) + $1,025.00 (seller's half of Transfer Tax) = $3,954.00 on the seller side alone at this scenario, before commissions; buyer/lender-side adds the $940.00 Lender's Premium plus the flat finance-transaction fees ($150 + $25 + $50 + $100 + $43 + $43 + $10 = $421.00).",
+    "bundlingNotes": "A genuinely first-party independent Nevada agency (not a big-four brand, not a shared-engine dedup case like this project's FNF entries) -- Nevada's 1st non-Old-Republic, non-FNF calculator-basis provider, and the richest single-source itemized breakdown found for NV to date (10 distinct line items across settlement/premium/recording/wire/courier categories). Crosses NV to the 3-provider calculator-quoted threshold (Old Republic + FNF national rate calculator + Western Nevada Title Company).",
+    "transactionContext": "Full buyer+seller itemized closing-cost breakdown for a $500,000 residential purchase with $400,000 financing, statewide Nevada pricing (this agency's own config has no county-tiered dropdown). This is NV's 3rd calculator-basis provider."
   }
 ]

@@ -200,3 +200,25 @@ high evidentiary quality of the First American escrow schedule.
   amount entered (same behavior already documented for this tool's NV/AR entries) — recorded as-is.
   Premium-only output is valid calculator-harvest evidence per the 2026-08-05 CT-session scoping
   correction. Same Clark County used as Old Republic's existing entry.
+
+## Calculator harvest addendum 2 (2026-08-06) — Western Nevada Title Company crosses NV to threshold
+
+**3 of 3 calculator-basis providers — crosses the 3-provider calculator-quoted threshold.** See
+NV.json's newest `basis: "calculator"` entry for full itemized figures.
+
+- **Western Nevada Title Company** (Reno-area independent title agency) — WORKING, a genuinely
+  first-party independent NV provider (not a shared big-four brand). Found via web search for
+  NetSheetCalc/TitleTap Nevada tenants (`app.netsheetcalc.com`, `app_id=435`). Driven via the
+  platform's plain unauthenticated JSON GETs, no browser, no personal data: `getAppData`/
+  `getNetSheetConfig` for the tenant's fee-form schema (hardcoded flat ancillary fees plus
+  formula-driven fields referencing rate-lookup keys), then `api/index.php/rate/<amount>/<rate-key>`
+  (root host, not `/company/`-prefixed) for each live-rated field. Result at $500,000 price/
+  $400,000 loan: Settlement Agent Fee $1,570.00 total ($785.00/side), Owner's Title Insurance
+  Premium $2,144.00, Lender's Title Insurance Premium $940.00, Transfer Tax $2,050.00 total
+  ($1,025.00/side), plus 7 flat ancillary fees (loan-tie-in, wire, courier, doc prep, lender
+  endorsements, deed recording, deed-of-trust recording, e-filing) — the richest single-source
+  itemized breakdown found for NV to date. Statewide pricing, no county tiering in this tenant's
+  config.
+
+This makes NV the 2nd state (after MA) to cross the calculator-quoted threshold in this session's
+2026-08-06 pass.

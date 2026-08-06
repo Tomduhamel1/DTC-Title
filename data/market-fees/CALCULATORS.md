@@ -1925,3 +1925,54 @@ as synchronous postbacks in this and every prior FNF harvest — worth trying th
 header/field set specifically for this one control before falling back to a browser session. Until
 solved: **UT and SC are not counted as having a new provider from this tool this session** (UT
 stays at 1 of 3 via Old Republic only; SC stays at 0 of 3).
+
+## 2026-08-06 session, continued — Western Nevada Title Company (NV) crosses NV's threshold; 3 leads ruled out
+
+Follow-up web-search pass after the FNF breadth harvest above, targeting the 5 states now closest
+to threshold (NV, NM, HI, OR, NE, each needing exactly 1 more provider).
+
+### Western Nevada Title Company — WORKING, NetSheetCalc/TitleTap, app_id 435
+Found via `wntco.com/calculator` (Western Nevada Title Company's own site links to the platform
+embed). A genuinely independent, first-party Nevada agency — not a shared big-four brand, so it
+counts as a distinct provider unlike this session's FNF entries. Confirmed via the newer
+`getNetSheetConfig`/`getAppData` config (both work for this tenant) plus the platform's
+formula-driven rate-lookup pattern already documented above for other NetSheetCalc tenants:
+`GET app.netsheetcalc.com/api/index.php/rate/<amount>/<rate-key>` (root host, NOT `/company/`-
+prefixed — same routing gotcha already noted for the WI/KY sessions) for each of 4 rate keys found
+in the tenant's config (`Settlement435`, `Owner435`, `Tranfer435`, `Lender435`). Result at
+$500,000 price/$400,000 loan: Settlement Agent Fee $1,570.00 total (split $785.00/side per the
+tenant's own formula), Owner's Title Insurance Premium $2,144.00, Lender's Title Insurance Premium
+$940.00, Transfer Tax $2,050.00 total ($1,025.00/side), plus 7 flat ancillary fees (loan-tie-in
+$150, wire $25, courier $50, doc prep $100, lender endorsements $100, deed recording $43,
+deed-of-trust recording $43, e-filing $10/$5). The richest single-source itemized NV breakdown on
+file — 10 distinct line items. Statewide pricing, no county-tiered dropdown in this tenant's
+config.
+
+### 3 leads ruled out (found via the same web-search pass, not counted)
+- **New Mexico Land & Title Company** (`nmltco.com/rate-calc.html`) — the page's own "New Mexico
+  Title Insurance Rate Calculator" is an `<iframe>` embed of
+  `ortratecalculator.oldrepublictitle.com/EmbedRateCalc.aspx?Agent=A30088&Location=NM` — Old
+  Republic's *other* calculator tool (distinct from `ortconline.com/Web2`, already documented
+  above). Confirmed genuinely live and **not** NoBot-blocked for NM (a session-cookie 302 redirect
+  through `/(S(...))/EmbedRateCalc.aspx` then a clean HTTP 200 with a populated `ddlCounty`
+  dropdown) — unlike the IN/SC/LA/AR hits on this same tool that were hard-blocked in prior
+  sessions. This is a real, harvestable NM data point, but **not counted as a distinct
+  calculator-basis provider** since it's the same underlying company (Old Republic) as NM's
+  existing `ortconline.com`-sourced entry — consistent with this project's brand/engine dedup rule
+  applied elsewhere (FNF-family, CATICulator). Flagged for a future session as available
+  supplementary/corroborating evidence, not a threshold-crossing find, and as a data point that
+  `Location=<state>` NoBot-blocking is agent-specific or has loosened, not a blanket policy.
+- **Principal Title, LLC net-sheet page** (`principaltitle.com/net-sheet-calculator/`) — surfaced
+  in an Oregon-targeted search, but this is the *same* Principal Title, LLC (Arvada, CO) already
+  harvested as a CO provider in the 2026-08-05 session, not a distinct Oregon-licensed entity — its
+  page happens to also reference Colorado/Denver content. Not counted for OR.
+- **Aksarben Title** (`aksarbentitle.com/rate-calculator.html`, Omaha, NE) — the page's
+  "rate-calculator" embeds a generic third-party mortgage-interest-rate widget
+  (`mortgagecalculator.org/rates-widgets/`), not a title-fee/closing-cost calculator at all — out
+  of scope, ruled out.
+
+**Recommendation for next session**: NM, HI, OR, NE each still need exactly 1 more genuine
+provider distinct from Old Republic/FNF/CO's Principal Title. Apply the same "web search for the
+platform name + state" technique that found Western Nevada Title Company (which succeeded where
+generic `comparetitlecompanies.com`/`calculator.mytitlerates.com` state-list checks alone had not)
+to each of these 4 states specifically.

@@ -19,7 +19,7 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 |---|---|---|---|
 | OH | 3 (Old Republic — Cuyahoga County; Columbus Title Agency of Westerville — Franklin County/Columbus, own JS netsheet calculator; Owl Creek Title Agency — Knox County/statewide incl. Franklin, same shared JS netsheet template as Columbus Title but distinct fee constants) | **calculator-quoted (3 providers)** | 2026-07-27 |
 | AZ | 3 (Old Republic — Phoenix/Maricopa County; First Integrity Title Agency — Phoenix/Maricopa County, via TRACcalculator/comparetitlecompanies.com; Arizona Premier Title — Scottsdale/Maricopa County, via TitleTap's newer getNetSheetConfig backend) | **calculator-quoted (3 providers)** | 2026-08-02 |
-| NV | 2 (Old Republic — Las Vegas/Clark County; FNF national rate calculator — Clark County, ratecalculator.fnf.com, Grand Total $2,211.00) | below 3-provider threshold | 2026-08-06 |
+| NV | 3 (Old Republic — Las Vegas/Clark County; FNF national rate calculator — Clark County, Grand Total $2,211.00; Western Nevada Title Company — statewide, via NetSheetCalc/TitleTap app_id 435, richest single-source NV breakdown on file) | **calculator-quoted (3 providers)** | 2026-08-06 |
 | NM | 2 (Old Republic — Albuquerque/Bernalillo County; FNF national rate calculator — Bernalillo County, Grand Total $2,487.00) | below 3-provider threshold | 2026-08-06 |
 | UT | 1 (Old Republic — Salt Lake City/Salt Lake County) | below 3-provider threshold | 2026-08-06 (FNF calculator surfaced a solvable-but-unsolved AmountLoan1 postback quirk this session — see CALCULATORS.md) |
 | MO | 3 (Old Republic — Kansas City 64106/Jackson County; Elite Title Company — Des Peres/St. Louis County; Secured Title of Kansas City — Jackson County, via the Title Midwest platform) | **calculator-quoted (3 providers)** | 2026-08-02 |
@@ -579,7 +579,22 @@ premium-only evidence as of the CT/CO/AR sessions) was replayed via a reusable P
 3-provider calculator-quoted threshold whose county dropdown confirmed the state is served by this
 tool: **NV, NM, HI, OR, NE** (each gain a 2nd provider), **MS, LA** (each gain a 1st provider), and
 **MA** (gains a 3rd provider — **crosses the calculator-quoted threshold**, after 3 prior sessions
-found no 3rd MA provider). All 8 harvests returned an Owner's Policy premium/Grand Total only — no
+found no 3rd MA provider). A follow-up web-search pass then found **Western Nevada Title
+Company** (a genuinely independent, first-party NV agency on the NetSheetCalc/TitleTap platform,
+`app_id=435`) as NV's 3rd provider — **NV also crosses the calculator-quoted threshold** this
+session, the richest single-source itemized breakdown on file for NV (10 line items: settlement
+fee, owner's/lender's premiums, transfer tax, recording, wire, courier, doc prep, endorsements).
+The same web-search pass also turned up: NM's `nmltco.com/rate-calc.html` embeds Old Republic's
+*other* calculator (`ortratecalculator.oldrepublictitle.com`, `Location=NM`) — confirmed NOT
+NoBot-blocked for NM (unlike the IN/SC/LA hits documented in prior sessions) and fully drivable,
+but **not counted as a distinct provider** since it's the same underlying company as NM's existing
+`ortconline.com` entry (consistent with this project's brand/engine dedup rule) — logged in
+CALCULATORS.md as available supplementary evidence, not a threshold-crossing find. OR's
+`principaltitle.com/net-sheet-calculator/` turned out to be the *same* Principal Title, LLC
+already on file as a CO provider (Arvada, CO-based), not a genuine OR entity — not counted. NE's
+`aksarbentitle.com/rate-calculator.html` embeds a generic third-party mortgage-rate widget
+(mortgagecalculator.org), not a title-fee calculator — ruled out. All 8 FNF harvests returned an
+Owner's Policy premium/Grand Total only — no
 Loan Policy premium appeared in any of them despite the standard $400,000 loan amount being
 entered, consistent with the behavior already documented for this tool's NV/AR entries elsewhere in
 this project. Two states hit an unsolved postback quirk and were **not** successfully harvested
@@ -1982,4 +1997,18 @@ still vary and matter).
   CALCULATORS.md for a future session to solve. No Loan Policy premium appeared in any of the 8
   successful harvests despite the $400,000 loan amount entered, consistent with prior NV/AR
   findings. Freshness and blocked-source-retry passes were skipped this session in favor of the
-  higher-yield breadth push. Committed and pushed as a single checkpoint (8 states).
+  higher-yield breadth push. Committed and pushed as a single checkpoint (8 states). A follow-up
+  web-search pass then found **Western Nevada Title Company** (NetSheetCalc/TitleTap, app_id 435,
+  a genuinely independent first-party NV agency, 10-line-item itemized breakdown) as NV's 3rd
+  provider — **NV also crosses the 3-provider calculator-quoted threshold**. Same pass ruled out 3
+  more leads found via web search: NM's `nmltco.com/rate-calc.html` embeds Old Republic's other
+  tool (`ortratecalculator.oldrepublictitle.com?Location=NM`, confirmed live/unblocked for NM but
+  not counted as a distinct provider — same underlying company as NM's existing `ortconline.com`
+  entry); OR's `principaltitle.com/net-sheet-calculator/` turned out to be the same Principal
+  Title, LLC already on file as a CO provider, not a genuine OR entity; NE's
+  `aksarbentitle.com/rate-calculator.html` embeds a generic third-party mortgage-rate widget
+  (mortgagecalculator.org), not a title-fee calculator. Committed and pushed as a 2nd checkpoint
+  (NV). **Next session**: NM/HI/OR/NE each still need exactly 1 more genuine (non-Old-Republic,
+  non-FNF, non-CO-Principal-Title) provider — try MyTitleRates.com/TRACcalculator/NetSheetCalc
+  searches targeting independent agencies in these states specifically, applying the same
+  web-search-first technique that found Western Nevada Title Company for NV.
