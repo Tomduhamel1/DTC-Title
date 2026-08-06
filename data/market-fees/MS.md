@@ -165,3 +165,22 @@ session — try direct-site searches for smaller independent MS agencies not yet
 survey, and a browser-driven pass on Armour's gated lead-gen form to confirm it's genuinely out of
 scope (it should be, per the hard rule against fabricated personal data, but worth double-checking
 whether a non-required-field submission is possible).
+
+## Calculator harvest addendum (2026-08-06) — FNF national rate calculator
+
+**1 of 3 calculator-basis providers** (prior: 0 — extensively searched across 2+ sessions, zero found). See MS.json's newest
+`basis: "calculator"` entry for full itemized figures and methodology.
+
+- **national FNF-family shared rate calculator** (`ratecalculator.fnf.com`) —
+  WORKING. Hinds County (state param confirmed supported in the tool's own county dropdown).
+  Driven via plain HTTP POST (Python `requests.Session()`, not WebFetch) replaying the classic
+  `__doPostBack`/`__VIEWSTATE` ASP.NET WebForms flow already documented in this project's
+  CALCULATORS.md and previously used for CT/CO/AR: select county + underwriter + Next → select
+  "Property Purchase" transaction type (own postback) → enter Purchase Amount $500,000 and Loan
+  Amount $400,000 together (own postback on the loan field, reveals any further conditional
+  questions) → auto-answer any newly-revealed required Yes/No question with its first listed
+  option → click Finish for the Rate Summary. Result at $500,000/Hinds County: **Grand Total
+  $2,250.00**. No Loan Policy premium appeared anywhere in the flow despite the $400,000 loan
+  amount entered (same behavior already documented for this tool's NV/AR entries) — recorded as-is.
+  Premium-only output is valid calculator-harvest evidence per the 2026-08-05 CT-session scoping
+  correction. MS's first calculator-basis provider after 2 prior sessions (2026-07-31) found nothing. Hinds County (Jackson, MS's capital and most-populous county) substituted since no independent MS agency calculator had been found.

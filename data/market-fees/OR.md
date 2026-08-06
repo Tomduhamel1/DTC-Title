@@ -231,3 +231,22 @@ escrow-rate-filing regulation (OAR 836-080-0365) confirmed to route filings
 to a private, non-public DFR submission process rather than a searchable
 directory -- OR meets the contract's scarce criterion. Marked
 **complete (scarce)**.
+
+## Calculator harvest addendum (2026-08-06) — FNF national rate calculator
+
+**2 of 3 calculator-basis providers** (prior: 1 (Old Republic — ortconline.com, Portland 97201/Multnomah County)). See OR.json's newest
+`basis: "calculator"` entry for full itemized figures and methodology.
+
+- **national FNF-family shared rate calculator** (`ratecalculator.fnf.com`) —
+  WORKING. Multnomah County (state param confirmed supported in the tool's own county dropdown).
+  Driven via plain HTTP POST (Python `requests.Session()`, not WebFetch) replaying the classic
+  `__doPostBack`/`__VIEWSTATE` ASP.NET WebForms flow already documented in this project's
+  CALCULATORS.md and previously used for CT/CO/AR: select county + underwriter + Next → select
+  "Property Purchase" transaction type (own postback) → enter Purchase Amount $500,000 and Loan
+  Amount $400,000 together (own postback on the loan field, reveals any further conditional
+  questions) → auto-answer any newly-revealed required Yes/No question with its first listed
+  option → click Finish for the Rate Summary. Result at $500,000/Multnomah County: **Grand Total
+  $1,350.00**. No Loan Policy premium appeared anywhere in the flow despite the $400,000 loan
+  amount entered (same behavior already documented for this tool's NV/AR entries) — recorded as-is.
+  Premium-only output is valid calculator-harvest evidence per the 2026-08-05 CT-session scoping
+  correction. Same Multnomah County used as Old Republic's existing entry.

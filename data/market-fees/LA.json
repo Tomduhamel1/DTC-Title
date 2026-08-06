@@ -1,8 +1,8 @@
 [
   {
-    "provider": "Louisiana Title Statistical Services Organization, Inc. (LATISSO) — rating bureau manual, all member insurers",
+    "provider": "Louisiana Title Statistical Services Organization, Inc. (LATISSO) \u2014 rating bureau manual, all member insurers",
     "sourceUrl": "https://www.stewart.com/-/media/files/stewartdotcom/pdfs/states/louisiana/lamanuaofratesandforms.pdf",
-    "asOf": "(06/01/2026) Edition — effective to orders received on or after June 1, 2026; filed with the Louisiana Department of Insurance (LIRC# Form Filing DEMT-134801757, Rate/Rule Filing DEMT-134802798)",
+    "asOf": "(06/01/2026) Edition \u2014 effective to orders received on or after June 1, 2026; filed with the Louisiana Department of Insurance (LIRC# Form Filing DEMT-134801757, Rate/Rule Filing DEMT-134802798)",
     "settlementFee": {
       "note": "Title insurance premium (and Closing Protection Coverage) only, NOT an escrow/settlement-service fee schedule. GP-3 explicitly excludes title search, examination, closing, and escrow charges from the rate.",
       "ownersOrLeaseholdOwnerPolicy_liabilityTiered": "Up to $12,000 = $100 flat; $12,001-$50,000 = $5.40/M; $50,001-$100,000 = $4.80/M; $100,001-$500,000 = $4.50/M; $500,001-$1,000,000 = $3.60/M; $1,000,001-$2,000,000 = $3.00/M; $2,000,001-$10,000,000 = $2.70/M; $10,000,001-$15,000,000 = $2.40/M; $15,000,001-$25,000,000 = $2.10/M; $25,000,001-$35,000,000 = $1.80/M; over $35,000,000 = $1.50/M (Rule PR-1).",
@@ -20,5 +20,23 @@
     },
     "bundlingNotes": "GP-3: 'The rates set forth herein do not include any charge made for title search, title examination, closing, or escrow services performed by the Insurer or any of its attorneys or agents. Similarly, corporate operating expenses and pre-tax profit provisions are excluded. Charges made for such services are in addition to the rates and charges set forth herein.' GP-4 further disclaims that the manual provides no indemnification against improper acts by a person performing escrow or settlement services. A municipal/local premium tax may also apply per parish (referenced in a companion WFG bulletin pattern seen in other states, not itself priced in this manual). LATISSO is Louisiana's private rating bureau under RS 22:1467/RS 22:1409.1 -- membership is voluntary but any properly licensed insurer cannot be denied membership, making this manual materially closer to a single-source-of-truth for the whole market's title premiums than a typical single-underwriter filing, analogous to NCTIRB (NC) or OTIRB (OH).",
     "transactionContext": "Statewide (no parish/metro breakout in the base rate tables; only the separately-published municipal premium tax schedule varies by parish). Owner's, Leasehold Owner's, Homeowner's, and Loan policies (original, simultaneous issue, reissue/substitution credits, mechanics'/materialmen's lien protection), Closing Protection Coverage, and a full schedule of ALTA/LATISSO endorsement rates (109 distinct endorsements priced). No purchase/refinance settlement-service-fee breakdown anywhere in the manual."
+  },
+  {
+    "provider": "Commonwealth Land Title Insurance Company (national FNF-family underwriter; ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine -- this tool's pre-selected default underwriter brand varies by request; prior sessions (CT, AR) confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=LA",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=LA (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-06",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, East Baton Rouge County (LA's most-populous county per the standard scenario), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions. No Loan Policy line appeared despite the $400,000 loan amount entered. East Baton Rouge Parish (LA's most populous parish) substituted for Orleans/Jefferson per the standard scenario's most-populous-county rule.",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback) against the classic __doPostBack/__VIEWSTATE WebForms flow, replaying the recipe already on file in this project's CALCULATORS.md (FNF family section) and previously used for CT/CO/AR: (1) GET ?ID=FNF&state=LA to capture hidden __VIEWSTATE/__EVENTVALIDATION fields and the county dropdown; (2) POST the county selection (own __EVENTTARGET); (3) POST the tool's own pre-selected default underwriter plus btnGeneralNext=Next to advance to the Amounts step; (4) POST TranType$ddl=PropertyPurchase (own __EVENTTARGET) to reveal the Purchase Amount field; (5) POST AmountPurchase$txt=500000 and AmountLoan1$txt=400000 together (own __EVENTTARGET on the loan field) to reveal any further conditional questions; (6) auto-answered any newly-revealed required Yes/No radio question with its first listed option, then POST btnFinish=Finish for the final Rate Summary. No personal data fields exist anywhere in this flow (only county/underwriter/transaction-type/dollar-amount fields).",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,345.20 (ALTA Standard/Homeowner's Coverage Owner's Policy, $500,000 liability amount)",
+      "loanPolicyPremium": null,
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence."
+    },
+    "sectionTotals": "Total Charges for the Policy: $2,345.20. Grand Total: $2,345.20.",
+    "bundlingNotes": "Part of this project's ongoing 2026-08-06 calculator-harvest pass applying the FNF national rate calculator (already confirmed in-scope for premium-only evidence as of the 2026-08-05 CT session) across every remaining below-threshold scarce state where the tool's own county dropdown confirms coverage.",
+    "transactionContext": "Owner's Policy premium for a $500,000 residential purchase, East Baton Rouge County, LA. No Loan Policy line appeared despite the $400,000 loan amount entered. East Baton Rouge Parish (LA's most populous parish) substituted for Orleans/Jefferson per the standard scenario's most-populous-county rule."
   }
 ]

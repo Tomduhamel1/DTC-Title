@@ -19,12 +19,12 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 |---|---|---|---|
 | OH | 3 (Old Republic — Cuyahoga County; Columbus Title Agency of Westerville — Franklin County/Columbus, own JS netsheet calculator; Owl Creek Title Agency — Knox County/statewide incl. Franklin, same shared JS netsheet template as Columbus Title but distinct fee constants) | **calculator-quoted (3 providers)** | 2026-07-27 |
 | AZ | 3 (Old Republic — Phoenix/Maricopa County; First Integrity Title Agency — Phoenix/Maricopa County, via TRACcalculator/comparetitlecompanies.com; Arizona Premier Title — Scottsdale/Maricopa County, via TitleTap's newer getNetSheetConfig backend) | **calculator-quoted (3 providers)** | 2026-08-02 |
-| NV | 1 (Old Republic — Las Vegas/Clark County) | below 3-provider threshold | 2026-07-22 |
-| NM | 1 (Old Republic — Albuquerque/Bernalillo County) | below 3-provider threshold | 2026-07-22 |
-| UT | 1 (Old Republic — Salt Lake City/Salt Lake County) | below 3-provider threshold | 2026-07-22 |
+| NV | 2 (Old Republic — Las Vegas/Clark County; FNF national rate calculator — Clark County, ratecalculator.fnf.com, Grand Total $2,211.00) | below 3-provider threshold | 2026-08-06 |
+| NM | 2 (Old Republic — Albuquerque/Bernalillo County; FNF national rate calculator — Bernalillo County, Grand Total $2,487.00) | below 3-provider threshold | 2026-08-06 |
+| UT | 1 (Old Republic — Salt Lake City/Salt Lake County) | below 3-provider threshold | 2026-08-06 (FNF calculator surfaced a solvable-but-unsolved AmountLoan1 postback quirk this session — see CALCULATORS.md) |
 | MO | 3 (Old Republic — Kansas City 64106/Jackson County; Elite Title Company — Des Peres/St. Louis County; Secured Title of Kansas City — Jackson County, via the Title Midwest platform) | **calculator-quoted (3 providers)** | 2026-08-02 |
-| HI | 1 (Old Republic — Honolulu/Honolulu County-Oahu) | below 3-provider threshold | 2026-07-23 |
-| OR | 1 (Old Republic — Portland 97201/Multnomah County) | below 3-provider threshold | 2026-07-23 |
+| HI | 2 (Old Republic — Honolulu/Honolulu County-Oahu; FNF national rate calculator — Honolulu County, Grand Total $2,384.80) | below 3-provider threshold | 2026-08-06 |
+| OR | 2 (Old Republic — Portland 97201/Multnomah County; FNF national rate calculator — Multnomah County, Grand Total $1,350.00) | below 3-provider threshold | 2026-08-06 |
 | MI | 3 (Modern Title Group — Ann Arbor/Washtenaw County, statewide formula; Knight Barry Title Group — statewide formula; Prestige Title Insurance Agency — Lenawee County, via TitleTap's newer getNetSheetConfig backend) | **calculator-quoted (3 providers)** | 2026-08-02 |
 | PA | 3 (ALT Title, TitleWorks, Trident Land Transfer — all Philadelphia County) | **calculator-quoted (3 providers)** | 2026-07-25 |
 | NJ | 3 (Trident Land Transfer — statewide, no county tiering; Allstates Title Service — statewide, via MyTitleRates.com `a=78`; The Closing Partner, LLC — statewide, NetSheetCalc/TitleTap `appid=638`) | **calculator-quoted (3 providers)** | 2026-08-03 |
@@ -33,15 +33,17 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | VA | 3 (Bon Air Title Agency + Appomattox, both TitleClose.com tenants, Fairfax; Independent Title & Escrow LLC, NetSheetCalc/TitleTap, Fairfax) | **calculator-quoted (3 providers)** | 2026-07-26 |
 | MD | 3 (Federal Title & Escrow Company — Montgomery County, own first-party ASP.NET tool; Allstates Title Service — Montgomery County, via MyTitleRates.com `a=78`; Tri-State Signature Settlements — Montgomery County, via MyTitleRates.com `a=40`) | **calculator-quoted (3 providers)** | 2026-08-03 |
 | CT | 2 (Old Republic — ortratecalculator.oldrepublictitle.com, statewide, a distinct tool from ortconline.com; Fidelity National Title — statewide, via FNF's shared ratecalculator.fnf.com) | below 3-provider threshold | 2026-08-05 |
-| MA | 2 (Absolute Title LLC, statewide; Law Office of David R. Rocheford Jr., Worcester County) | below 3-provider threshold | 2026-08-04 (retried, no new provider found) |
+| MA | 3 (Absolute Title LLC, statewide; Law Office of David R. Rocheford Jr., Worcester County; FNF national rate calculator — Middlesex County, Grand Total $2,125.00) | **calculator-quoted (3 providers)** | 2026-08-06 |
 | CO | 3 (First Integrity Title Company — Denver County, via comparetitlecompanies.com's multi-company comparison tool; FNF National Rate Calculator — Denver County, ratecalculator.fnf.com; Principal Title, LLC — Arvada/Denver-zone, via its WordPress "Residential Rate Quote" plugin's stateless GET endpoint) | **calculator-quoted (3 providers)** | 2026-08-05 |
 | TN | 3 (Tennessee Title Services, LLC — Davidson County, own first-party calculator; Signature Title Services — Davidson County, own ASP.NET WebForms calculator; Cornerstone Title of Tennessee, LLC — Davidson County scenario, via TitleTap) | **calculator-quoted (3 providers)** | 2026-08-02 |
 | IN | 3 (Agency Title, Inc. — New Albany/Louisville-metro Southern Indiana office, NetSheetCalc/TitleTap "Quick Quote" JSON API; Momentum Title Agency [formerly Hocker Title] — Indianapolis, NetSheetCalc/TitleTap `appid=1056`; Rounsavall Title Group, LLC — Louisville KY-headquartered, dedicated IN-approved tenant `appid=480`, formula-driven premium via `getNetSheetConfig`) | **calculator-quoted (3 providers)** | 2026-08-04 |
 | KY | 3 (Agency Title, Inc. — Louisville/Jefferson County, NetSheetCalc/TitleTap; Rounsavall Title Group, LLC — Louisville/Jefferson County, a distinct `app_id=479` tenant on the same platform; Old Republic — Louisville/Jefferson County, via `ortratecalculator.oldrepublictitle.com` Location=KY) | **calculator-quoted (3 providers)** | 2026-08-05 |
 | AL | 3 (Signature Title Services — Jefferson County, AL-specific ASP.NET WebForms portal distinct from the TN instance; Land Title Company of Alabama — Jefferson/Shelby Counties, first-party JS calculator; Alabama Land Title — statewide, first-party "ydwebpro" platform calculator) | **calculator-quoted (3 providers)** | 2026-07-30 |
 | AR | 4 (TitleTech of Arkansas, LLC — Rogers/Benton County-NWA; Hot Springs Title — Garland County, via the Title Midwest platform; Chicago Title Insurance Company — Pulaski County, via ratecalculator.fnf.com; All American Title & Abstract, LLC — Pulaski County/Little Rock, first-party static-page calculator) | **calculator-quoted (4 providers)** | 2026-08-05 |
-| MS | 0 — extensively searched, zero found | below 3-provider threshold | 2026-07-31 |
-| NE | 1 (Nebraska Title Company — statewide, Omaha/Douglas County scenario, via the Title Midwest platform's Vue.js client-side calculator) | below 3-provider threshold | 2026-08-02 |
+| MS | 1 (FNF national rate calculator — Hinds County, Grand Total $2,250.00) | below 3-provider threshold | 2026-08-06 |
+| NE | 2 (Nebraska Title Company — statewide, Omaha/Douglas County scenario, via the Title Midwest platform's Vue.js client-side calculator; FNF national rate calculator — Douglas County, Grand Total $1,282.50) | below 3-provider threshold | 2026-08-06 |
+| LA | 1 (FNF national rate calculator — East Baton Rouge Parish, Grand Total $2,345.20) | below 3-provider threshold | 2026-08-06 |
+| SC | 0 — extensively searched, zero found (FNF national rate calculator confirmed SC-supported but hits an unsolved AmountLoan1/CFPB-question postback quirk this session, no quote obtained — see CALCULATORS.md) | below 3-provider threshold | 2026-08-06 |
 
 FNF's ratecalculator.fnf.com **is drivable via plain HTTP POST, no browser needed** — confirmed
 2026-07-25 by replaying its ASP.NET WebForms `__doPostBack`/`__VIEWSTATE` protocol directly (the
@@ -567,6 +569,39 @@ worth a dedicated future pass now that this session's new techniques (state titl
 member directories as a discovery channel, PII-gate-bypass via a form's own underlying JS
 endpoint, ratecalculator.fnf.com confirmed in-scope and requiring raw HTTP not WebFetch) are
 available. Four checkpoints committed and pushed this session (KY+WI, CT, CO, AR).
+
+**2026-08-06 session — FNF national rate calculator systematically applied across every
+below-threshold scarce state where its county dropdown confirms coverage; MA crosses the
+3-provider threshold.** Per the 2026-08-05 recommendation, this session prioritized breadth: the
+FNF-family shared calculator (`ratecalculator.fnf.com`, already confirmed in-scope for
+premium-only evidence as of the CT/CO/AR sessions) was replayed via a reusable Python
+`requests.Session()` script against every remaining "complete (scarce)" state still below the
+3-provider calculator-quoted threshold whose county dropdown confirmed the state is served by this
+tool: **NV, NM, HI, OR, NE** (each gain a 2nd provider), **MS, LA** (each gain a 1st provider), and
+**MA** (gains a 3rd provider — **crosses the calculator-quoted threshold**, after 3 prior sessions
+found no 3rd MA provider). All 8 harvests returned an Owner's Policy premium/Grand Total only — no
+Loan Policy premium appeared in any of them despite the standard $400,000 loan amount being
+entered, consistent with the behavior already documented for this tool's NV/AR entries elsewhere in
+this project. Two states hit an unsolved postback quirk and were **not** successfully harvested
+this session: **UT** and **SC** both surface an extra required Amounts-panel question (UT:
+"Lender/Borrower" Yes/No radio; SC: "Does this transaction qualify under CFPB's TILA-RESPA
+Integrated Disclosure rule?") plus an `AmountLoan1` textbox whose typed value the server silently
+refuses to echo back/accept via plain postback (unlike every other state harvested this session,
+where the identical technique worked cleanly) — full technical detail and a recommendation for the
+next session logged in CALCULATORS.md. **SC remains at 0 calculator-basis providers** (tied
+highest-priority scarce-state target, now with a half-solved FNF lead to finish rather than a cold
+search) and **UT remains at 1** (also worth revisiting once the AmountLoan1 quirk is solved, since
+Old Republic already covers it and FNF would be a fast 2nd provider). Standing freshness-check and
+blocked-source-retry passes were not run this session (time was spent entirely on the
+calculator-harvest breadth push, which had the higher expected yield given 8 successful
+state-harvests in one session). **Next session priority**: (1) solve the UT/SC AmountLoan1 postback
+quirk (likely an UpdatePanel async-postback header requirement, `X-MicrosoftAjax`/
+`X-Requested-With`, not yet tried) to pick up 2 quick wins; (2) NV/NM/HI/OR/NE each need exactly 1
+more provider to cross threshold — try TRACcalculator/MyTitleRates.com/NetSheetCalc searches
+targeting these 5 states specifically, all of which are now closer to threshold than CT (CT's own
+FACC lead still requires a browser session, unchanged); (3) MS/LA each need 2 more providers,
+lowest priority of the below-threshold set by remaining-work despite LA's higher population, since
+both were already exhaustively searched for non-FNF options in prior sessions with nothing found.
 
 ## The completion contract
 
@@ -1937,3 +1972,14 @@ still vary and matter).
   should prioritize PowerSnap and Settlor first, since each could unlock multiple below-threshold
   states (CO, WI, AR, KY, IN for PowerSnap; CO, and possibly more, for Settlor) in one pass rather
   than searching for new plain-HTTP platforms one state at a time.
+- 2026-08-06: Calculator harvest breadth session. Built a reusable Python `requests.Session()`
+  script replaying the FNF national rate calculator's `__doPostBack`/`__VIEWSTATE` flow and ran it
+  against every below-threshold scarce state confirmed in the tool's own county dropdown: NV, NM,
+  HI, OR, NE (each +1 provider, now 2 of 3), MS, LA (each +1 provider, now 1 of 3), and **MA (+1
+  provider, crosses the 3-provider calculator-quoted threshold)**. UT and SC both hit an unsolved
+  postback quirk (an extra required Amounts-panel question plus an `AmountLoan1` textbox whose
+  value the server won't accept via plain postback) and were not harvested — logged in
+  CALCULATORS.md for a future session to solve. No Loan Policy premium appeared in any of the 8
+  successful harvests despite the $400,000 loan amount entered, consistent with prior NV/AR
+  findings. Freshness and blocked-source-retry passes were skipped this session in favor of the
+  higher-yield breadth push. Committed and pushed as a single checkpoint (8 states).

@@ -131,7 +131,7 @@
   {
     "provider": "Stewart Title Guaranty Company",
     "sourceUrl": "https://public.stewart.com/vu/rate-book-massachusetts.pdf",
-    "asOf": "vintage circa 2021 (document copyright \"© 2021 Stewart\"; superseded by a newer 2025-09-15 Stewart MA rate manual per a secondary law-firm citation, but that later document could not itself be located/verified this session -- see MA.md)",
+    "asOf": "vintage circa 2021 (document copyright \"\u00a9 2021 Stewart\"; superseded by a newer 2025-09-15 Stewart MA rate manual per a secondary law-firm citation, but that later document could not itself be located/verified this session -- see MA.md)",
     "settlementFee": null,
     "itemizedFees": {
       "docPrep": null,
@@ -224,5 +224,23 @@
     "sectionTotals": "Grand Total, Buyer Pays: $3,870.00 (= base buyer fee bucket $1,695.00 [sum of Settlement Fee $565 + Title Exam $300 + Survey $160 + MLC $50 + Overnight $50 + Wire $75 + Recording $370 + Homestead $40 + MLC(recording) $85] + Lender's Title Insurance $1,100.00 + Owner's Title Insurance $1,075.00). Grand Total, Seller Pays: $2,625.00 (= base seller fee bucket $345.00 [Discharge/Release $110 + Overnight $50 + Wire $75 + Discharge(recording) $110] + Transfer Tax $2,280.00).",
     "bundlingNotes": "The richest single itemization found in this MA calculator-harvest session -- a genuine first-party, non-platform calculator built by a Massachusetts closing attorney's own website (WordPress \"title-loan-calculator\" plugin, not a national platform), directly consistent with MA.md's market-structure finding that closing attorneys ARE the settlement-fee-charging party in this state. Unlike Absolute Title's calculator above, this tool breaks out title exam, survey, MLC (twice, in two different fee buckets), overnight/wire fees, and recording separately from a standalone Settlement Fee line, and separately discloses buyer-side vs. seller-side allocation for every line item (MA convention: buyer pays title insurance/recording, seller pays transfer tax/discharge). No county tiering -- statewide MA flat-fee schedule from a Worcester County (Leominster) firm.",
     "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k statewide MA purchase scenario, both buyer-side and seller-side fee allocations as displayed by the tool."
+  },
+  {
+    "provider": "Chicago Title Insurance Company (national FNF-family underwriter; ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine -- this tool's pre-selected default underwriter brand varies by request; prior sessions (CT, AR) confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=MA",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=MA (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-06",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Middlesex County (MA's most-populous county per the standard scenario), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions. No Loan Policy line appeared despite the $400,000 loan amount entered. Middlesex County (MA's most populous, Cambridge/Lowell area) used per the standard scenario's most-populous-county rule.",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback) against the classic __doPostBack/__VIEWSTATE WebForms flow, replaying the recipe already on file in this project's CALCULATORS.md (FNF family section) and previously used for CT/CO/AR: (1) GET ?ID=FNF&state=MA to capture hidden __VIEWSTATE/__EVENTVALIDATION fields and the county dropdown; (2) POST the county selection (own __EVENTTARGET); (3) POST the tool's own pre-selected default underwriter plus btnGeneralNext=Next to advance to the Amounts step; (4) POST TranType$ddl=PropertyPurchase (own __EVENTTARGET) to reveal the Purchase Amount field; (5) POST AmountPurchase$txt=500000 and AmountLoan1$txt=400000 together (own __EVENTTARGET on the loan field) to reveal any further conditional questions; (6) auto-answered any newly-revealed required Yes/No radio question with its first listed option, then POST btnFinish=Finish for the final Rate Summary. No personal data fields exist anywhere in this flow (only county/underwriter/transaction-type/dollar-amount fields).",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,125.00 (ALTA Standard/Homeowner's Coverage Owner's Policy, $500,000 liability amount)",
+      "loanPolicyPremium": null,
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence."
+    },
+    "sectionTotals": "Total Charges for the Policy: $2,125.00. Grand Total: $2,125.00.",
+    "bundlingNotes": "Part of this project's ongoing 2026-08-06 calculator-harvest pass applying the FNF national rate calculator (already confirmed in-scope for premium-only evidence as of the 2026-08-05 CT session) across every remaining below-threshold scarce state where the tool's own county dropdown confirms coverage.",
+    "transactionContext": "Owner's Policy premium for a $500,000 residential purchase, Middlesex County, MA. No Loan Policy line appeared despite the $400,000 loan amount entered. Middlesex County (MA's most populous, Cambridge/Lowell area) used per the standard scenario's most-populous-county rule."
   }
 ]

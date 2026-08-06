@@ -1873,3 +1873,55 @@ no discoverable endpoint — jsOnly. **Fort Dearborn Land Title** (appid=462) �
 non-AR-configured, no change from the 2026-07-31 finding. No working calculator found for
 MyTitleRates.com (no AR agency instance located), Western Arkansas Title Services, Commerce
 Title & Closing, Lenders Title Co., or Advantage Title & Escrow.
+
+## 2026-08-06 session — FNF national rate calculator harvested across 8 states via a reusable script; UT/SC quirk found
+
+Built a reusable Python `requests.Session()` script (`fnf_harvest.py`, not committed to the repo —
+scratch tooling only) implementing the FNF national rate calculator's `__doPostBack`/`__VIEWSTATE`
+flow already documented above, generalized across any state/county pair rather than hand-crafted
+per state. Ran it against every "complete (scarce)" state still below the 3-provider
+calculator-quoted threshold whose own county dropdown confirmed the state is served by this tool:
+**NV (Clark), NM (Bernalillo), HI (Honolulu), OR (Multnomah), MS (Hinds), NE (Douglas), LA (East
+Baton Rouge), MA (Middlesex)** — all 8 succeeded, each returning an Owner's Policy premium/Grand
+Total with no Loan Policy line (see each state's own `.json`/`.md` for the exact figures). This
+confirms the tool's county-dropdown coverage extends well beyond the previously-tried CT/CO/AR/PA —
+worth checking for any other state via its `?ID=FNF&state=<ST>` URL before assuming it's
+unsupported.
+
+**Working recipe refinement** (corrects/extends the original FNF recipe documented above): the
+Amounts-step field names are nested one level deeper than the original recipe assumed —
+`AmountPurchase`/`AmountLoan1` live under
+`pnlAmountsTransactionQuestions$0$AmountPurchase$txt` /
+`pnlAmountsTransactionQuestions$0$AmountLoan1$txt`, not directly under the `UcRateCalc1$` prefix as
+the original PA-derived recipe's field-name shorthand implied. Also: submitting the Purchase Amount
+and Loan Amount fields together in one POST (own `__EVENTTARGET` on the loan field) both reveals
+any further conditional questions AND advances the flow in one round-trip, faster than the
+original recipe's fully sequential price-then-loan-then-finish approach.
+
+### UT and SC — unsolved AmountLoan1 postback quirk, flagged for next session
+Both states surface an *extra* required Amounts-panel question beyond the ones every other
+harvested state asked (UT: a Yes/No radio labeled "Lender/Borrower",
+`CPLLenderBorrowerEligible$rc_CPLLenderBorrowerEligible`; SC: "Does this transaction qualify under
+CFPB's TILA-RESPA Integrated Disclosure rule?", `CFPB_IsQualified$rc_CFPB_IsQualified`) — these
+were successfully auto-answered (posting the radio's first/"Yes" `value` attribute directly, no
+`__EVENTTARGET` needed since a plain hidden hidden hidden hidden hidden hidden checked-value works
+for radios per HTML forms semantics — unlike textboxes). However **both states' `AmountLoan1$txt`
+value is silently dropped by the server**: the exact same POST technique that reliably worked for
+all 8 successful states above (and matches the original CT/CO/AR recipe) results in the response
+echoing the field with no `value` attribute at all, unlike `AmountPurchase$txt` (which is always
+correctly echoed back formatted, e.g. `value="$500,000.00"`) — confirmed reproducible across
+several variants tried this session: (a) loan amount as its own solo `__EVENTTARGET` postback
+immediately after price entry, (b) price+loan combined in one POST with loan as `__EVENTTARGET`,
+(c) retrying with the loan field omitted entirely once revealed (still doesn't unlock Finish — SC's
+`AmountLoan1` renders with `RequiredFieldValidator`, i.e. it cannot simply be skipped, unlike NV/AR
+where the field is present but apparently not actually required). The response is a full HTML page
+(not an AJAX delta), status 200, no server error text — just a silent value-drop, different from
+every validation-error case seen elsewhere in this project. **Working theory, untested this
+session**: `AmountLoan1` may be wired to the page's `ScriptManager`/`UpdatePanel` for genuine
+partial (`Content-Type: application/x-www-form-urlencoded` + `X-MicrosoftAjax: Delta=true` +
+`X-Requested-With: XMLHttpRequest` headers, plus a `__ASYNCPOST=true` field) rather than a
+classic synchronous postback, unlike `AmountPurchase`/`TranType`/`ddlCounty` which all worked fine
+as synchronous postbacks in this and every prior FNF harvest — worth trying the full async-postback
+header/field set specifically for this one control before falling back to a browser session. Until
+solved: **UT and SC are not counted as having a new provider from this tool this session** (UT
+stays at 1 of 3 via Old Republic only; SC stays at 0 of 3).

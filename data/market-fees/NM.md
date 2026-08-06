@@ -222,3 +222,22 @@ rather than saturated: the market for *published* NM settlement-fee schedules is
 independents overwhelmingly do not publish pricing, and the state's licensing structure actively
 routes the search toward a different (loan-servicing) business type — despite an exhaustive,
 far-past-threshold search effort.
+
+## Calculator harvest addendum (2026-08-06) — FNF national rate calculator
+
+**2 of 3 calculator-basis providers** (prior: 1 (Old Republic — ortconline.com, Albuquerque/Bernalillo County)). See NM.json's newest
+`basis: "calculator"` entry for full itemized figures and methodology.
+
+- **national FNF-family shared rate calculator** (`ratecalculator.fnf.com`) —
+  WORKING. Bernalillo County (state param confirmed supported in the tool's own county dropdown).
+  Driven via plain HTTP POST (Python `requests.Session()`, not WebFetch) replaying the classic
+  `__doPostBack`/`__VIEWSTATE` ASP.NET WebForms flow already documented in this project's
+  CALCULATORS.md and previously used for CT/CO/AR: select county + underwriter + Next → select
+  "Property Purchase" transaction type (own postback) → enter Purchase Amount $500,000 and Loan
+  Amount $400,000 together (own postback on the loan field, reveals any further conditional
+  questions) → auto-answer any newly-revealed required Yes/No question with its first listed
+  option → click Finish for the Rate Summary. Result at $500,000/Bernalillo County: **Grand Total
+  $2,487.00 (Owner's Policy Premium $2,387.00 + Title Commitment $100.00)**. No Loan Policy premium appeared anywhere in the flow despite the $400,000 loan
+  amount entered (same behavior already documented for this tool's NV/AR entries) — recorded as-is.
+  Premium-only output is valid calculator-harvest evidence per the 2026-08-05 CT-session scoping
+  correction. Same Bernalillo County used as Old Republic's existing entry. This tool's only non-premium line item found for NM is a flat $100.00 Title Commitment fee.

@@ -189,3 +189,22 @@ tiering in their published materials.
 
 With only 4 verified sources despite this exhaustive search, NE meets the
 contract's scarce criterion.
+
+## Calculator harvest addendum (2026-08-06) — FNF national rate calculator
+
+**2 of 3 calculator-basis providers** (prior: 1 (Nebraska Title Company — Title Midwest platform, Omaha/Douglas County)). See NE.json's newest
+`basis: "calculator"` entry for full itemized figures and methodology.
+
+- **national FNF-family shared rate calculator** (`ratecalculator.fnf.com`) —
+  WORKING. Douglas County (state param confirmed supported in the tool's own county dropdown).
+  Driven via plain HTTP POST (Python `requests.Session()`, not WebFetch) replaying the classic
+  `__doPostBack`/`__VIEWSTATE` ASP.NET WebForms flow already documented in this project's
+  CALCULATORS.md and previously used for CT/CO/AR: select county + underwriter + Next → select
+  "Property Purchase" transaction type (own postback) → enter Purchase Amount $500,000 and Loan
+  Amount $400,000 together (own postback on the loan field, reveals any further conditional
+  questions) → auto-answer any newly-revealed required Yes/No question with its first listed
+  option → click Finish for the Rate Summary. Result at $500,000/Douglas County: **Grand Total
+  $1,282.50 (Premium $1,257.50 + Closing Protection Letter $25.00)**. No Loan Policy premium appeared anywhere in the flow despite the $400,000 loan
+  amount entered (same behavior already documented for this tool's NV/AR entries) — recorded as-is.
+  Premium-only output is valid calculator-harvest evidence per the 2026-08-05 CT-session scoping
+  correction. Same Douglas County used as the existing Title Midwest/Nebraska Title Company entry.

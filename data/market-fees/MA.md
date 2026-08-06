@@ -335,3 +335,22 @@ already on file in this survey with a New England footprint; otherwise MA's next
 priority stands as previously recommended -- this remains a structurally thin market
 (mandatory-attorney-closing, no independent title/escrow layer) matching its published-schedule
 survey's own scarce classification.
+
+## Calculator harvest addendum (2026-08-06) — FNF national rate calculator
+
+**3 of 3 calculator-basis providers** (prior: 2 (Absolute Title, LLC — statewide; Law Office of David R. Rocheford Jr. — Worcester County)). See MA.json's newest
+`basis: "calculator"` entry for full itemized figures and methodology.
+
+- **national FNF-family shared rate calculator** (`ratecalculator.fnf.com`) —
+  WORKING. Middlesex County (state param confirmed supported in the tool's own county dropdown).
+  Driven via plain HTTP POST (Python `requests.Session()`, not WebFetch) replaying the classic
+  `__doPostBack`/`__VIEWSTATE` ASP.NET WebForms flow already documented in this project's
+  CALCULATORS.md and previously used for CT/CO/AR: select county + underwriter + Next → select
+  "Property Purchase" transaction type (own postback) → enter Purchase Amount $500,000 and Loan
+  Amount $400,000 together (own postback on the loan field, reveals any further conditional
+  questions) → auto-answer any newly-revealed required Yes/No question with its first listed
+  option → click Finish for the Rate Summary. Result at $500,000/Middlesex County: **Grand Total
+  $2,125.00**. No Loan Policy premium appeared anywhere in the flow despite the $400,000 loan
+  amount entered (same behavior already documented for this tool's NV/AR entries) — recorded as-is.
+  Premium-only output is valid calculator-harvest evidence per the 2026-08-05 CT-session scoping
+  correction. **Crosses MA to the 3-provider calculator-quoted threshold**, after 3 prior sessions (2026-07-27, 2026-08-02, 2026-08-04) found no 3rd provider. Middlesex County (MA's most populous, Cambridge/Lowell area) used per the standard scenario's most-populous-county rule — a deviation from the two existing MA entries' own county choices.

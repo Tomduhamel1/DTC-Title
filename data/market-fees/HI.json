@@ -223,5 +223,23 @@
     "sectionTotals": "C: Services You Can Shop For: $2,965.90; E: Taxes and Other Government Fees: $82.00; H: Other: $380.00",
     "bundlingNotes": "Selecting City=Honolulu auto-selected EscrowCountyComboList=Honolulu (Oahu is coextensive with Honolulu County, no zip disambiguation needed, unlike MO's Kansas City). Owner's Title Policy* (Total: $836.00) calculated from full Homeowner's Policy rate of $2,321... consistent with the tool's standard cross-state disclosure language (same wording pattern as OH/AZ/NV/NM/UT/MO harvests) that this total reflects the full Homeowner's Policy rate plus a concurrent lender's-issue charge, less the full lender's policy premium. This is the first HI-specific Old Republic figure in this survey; HI.json's existing sources (Title Guaranty, First American, Old Republic Title & Escrow's own manual) are all published-schedule (basis 'published'), so this calculator harvest is a genuine independent cross-check, not a duplicate.",
     "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k purchase scenario; property location Honolulu, HI (Honolulu County/Oahu, HI's most populous county)."
+  },
+  {
+    "provider": "Commonwealth Land Title Insurance Company (national FNF-family underwriter; ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine -- this tool's pre-selected default underwriter brand varies by request; prior sessions (CT, AR) confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=HI",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=HI (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-06",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Honolulu County (HI's most-populous county per the standard scenario), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions. No Loan Policy line appeared despite the $400,000 loan amount entered.",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback) against the classic __doPostBack/__VIEWSTATE WebForms flow, replaying the recipe already on file in this project's CALCULATORS.md (FNF family section) and previously used for CT/CO/AR: (1) GET ?ID=FNF&state=HI to capture hidden __VIEWSTATE/__EVENTVALIDATION fields and the county dropdown; (2) POST the county selection (own __EVENTTARGET); (3) POST the tool's own pre-selected default underwriter plus btnGeneralNext=Next to advance to the Amounts step; (4) POST TranType$ddl=PropertyPurchase (own __EVENTTARGET) to reveal the Purchase Amount field; (5) POST AmountPurchase$txt=500000 and AmountLoan1$txt=400000 together (own __EVENTTARGET on the loan field) to reveal any further conditional questions; (6) auto-answered any newly-revealed required Yes/No radio question with its first listed option, then POST btnFinish=Finish for the final Rate Summary. No personal data fields exist anywhere in this flow (only county/underwriter/transaction-type/dollar-amount fields).",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,384.80 (ALTA Standard/Homeowner's Coverage Owner's Policy, $500,000 liability amount; before-surcharge premium $2,168.00, surcharge $216.80 (Additional Coverage Surcharge))",
+      "loanPolicyPremium": null,
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence."
+    },
+    "sectionTotals": "Total Charges for the Policy: $2,384.80. Grand Total: $2,384.80.",
+    "bundlingNotes": "Part of this project's ongoing 2026-08-06 calculator-harvest pass applying the FNF national rate calculator (already confirmed in-scope for premium-only evidence as of the 2026-08-05 CT session) across every remaining below-threshold scarce state where the tool's own county dropdown confirms coverage.",
+    "transactionContext": "Owner's Policy premium for a $500,000 residential purchase, Honolulu County, HI. No Loan Policy line appeared despite the $400,000 loan amount entered."
   }
 ]
