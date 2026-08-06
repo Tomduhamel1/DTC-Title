@@ -420,6 +420,15 @@ returning real content — no `{stale: true}` flags needed this session.
 Jackson & Scott AL's domain still fails to resolve (connection failure, `curl` exit 56). No status
 change for any of the three.
 
+**2026-08-06 retry** (one quick check each): AZ DIFI still HTTP 403; CATIC CT
+(`catic.com/state-resources/connecticut`) HTTP 403 this run (still fluctuating 200/403 across
+sessions as previously noted, underlying FlippingBook-viewer blocker unchanged either way);
+Jackson & Scott AL (`realestatelclosings.com/closing-costs-calculator/`) HTTP 403, consistent with
+recent sessions' WAF-block finding. No status change for any of the three. Freshness
+re-verification pass was not run this session — time was spent entirely on the calculator-harvest
+breadth push (8 FNF states + Western Nevada Title Company, 2 states crossing threshold), which had
+the higher expected yield; due for a future session.
+
 **2026-08-04 freshness spot-check**: re-verified 5 oldest-retrieved published sources not
 previously re-checked in the prior freshness passes' rotating CA-heavy set — Stewart Title
 Guaranty's Georgia rate manual PDF, Campbell & Brannon's GA closing-attorney fee page, and 3 WA
