@@ -2036,13 +2036,20 @@ still vary and matter).
   not OR; Stewart's own OR agent-rates pages link only to the generic (still-unsolved)
   stewartratecalculator.com homepage with no pre-configured officeid; Deschutes Title (Bend, OR) is
   DNS-dead; WFG's own marketing pages (`wfgtitle.com/oregon/`, `/albuquerque-office/`) are
-  Cloudflare-WAF-blocked domain-wide. A significant new lead was found but not resolved: **WFG
-  National Title's own Angular rate-calculator app** (`rates.wfgnationaltitle.com`) ships a config
-  confirming real OR+NM coverage (`sellerNetStateList` includes both), but its bundle wires an
-  `/api/rates/auth/authenticate` login endpoint, reading as agent-portal-gated rather than public —
-  not confirmed either way since WebFetch cannot drive the Angular app; flagged as the
-  single highest-value target for a browser-driven follow-up (could resolve OR and NM
-  simultaneously if it has any no-login guest path). NE's Title Midwest tenants were spot-checked
+  Cloudflare-WAF-blocked domain-wide. A significant new lead was found and partially solved but not
+  completed: **WFG National Title's own Angular rate-calculator app**
+  (`rates.wfgnationaltitle.com`) ships a config confirming real OR+NM coverage (`sellerNetStateList`
+  includes both). Its `auth/authenticate` endpoint initially looked like an agent-portal login gate,
+  but this was a red herring — `GET /api/rates/State/GetCalculationEnabledStates` and `POST /api/
+  rates/sellernet/calculate` both work fully unauthenticated, and the latter's own validation
+  errors revealed its required fields (`SalesPrice`/`PropertyState`/`PropertyCounty`/
+  `PropertyCity`) by trial and error, returning a well-formed response — but `titleInsurance:0` and
+  `hudFees:null` every time regardless of which additional fields were guessed, because the
+  Angular component that builds the real full request payload lives in a lazy-loaded chunk not
+  present in the fetched bundle. Flagged as the single highest-value browser-driven-session target
+  (endpoint proven public and working; only the exact request shape for a non-zero fee figure is
+  missing — capture it via one devtools Network-tab pass) — could resolve OR and NM simultaneously.
+  NE's Title Midwest tenants were spot-checked
   for a 2nd NE-specific instance beyond the existing `nebtitlecoratecalc`; all others resolve to
   KS/MO, confirming no further NE reach on that platform. OR/NM/NE remain below threshold (2 of 3
   each). Freshness pass: 5 oldest not-yet-rechecked published sources (IL/Old Republic, MD/Stewart,

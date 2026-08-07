@@ -2012,24 +2012,44 @@ now been seen under at least 3 brand names: netsheetcalc.com, titleagentmarketin
 titlepremiumcalculator.com) as an additional discovery vector for OR/NM/NE and any other
 below-threshold state, since these domains don't surface under a `netsheetcalc.com`-scoped search.
 
-### WFG National Title's own rate calculator (`rates.wfgnationaltitle.com`) — likely gated, not harvested
+### WFG National Title's own rate calculator (`rates.wfgnationaltitle.com`) — partially solved, public API confirmed, full fee breakdown NOT yet obtained
 WFG is a genuine 5th major underwriter (distinct from the FNF/Old Republic/Stewart families already
-on file), so its own calculator would be a high-value multi-state find if public. Its Angular SPA
-(`rates.wfgnationaltitle.com/rate-calculator/step1`) ships a config object confirming real state
-coverage — `sellerNetStateList: "Arizona, California, Colorado, Nevada, Oregon, Washington, Texas,
-New Mexico"` (i.e. **this tool, if public, would directly cover both OR and NM** — two of this
-session's four target states) — but the same bundle's `AuthService` wires `/api/rates/auth/
-authenticate`, `/auth/validate`, and `/auth/refresh` endpoints requiring a username/password,
-consistent with an agent-portal login rather than a public consumer tool (a `dashboard.
-wfgnationaltitle.com/rates` URL surfaced in the same search, reinforcing this reading). Not
-confirmed gated by actually hitting a login wall in-browser (WebFetch cannot drive the Angular
-app), so logged here as **likely gated** rather than definitively jsOnly/gated, flagged for a
-browser-driven session to confirm one way or the other before writing it off — if it turns out to
-have a guest/no-login quote path, it would very likely resolve OR and NM in one shot. Separately,
-`wfg.titletap.com/calculators/title-premium/` (a TitleTap-platform marketing template branded for
-WFG) embeds `titleagentmarketing.com/company/title.php?appid=0` — `appid=0` is this platform's
-generic unconfigured demo placeholder (same signature already seen for other platforms' unclaimed
-template pages), not a real WFG agency instance — ruled out.
+on file), so its own calculator would be a high-value multi-state find if public — its Angular SPA
+config confirms `sellerNetStateList` includes both **Oregon and New Mexico** (this session's two
+remaining target states), so solving this tool would very likely resolve both at once. The bundle's
+`AuthService` (`/api/rates/auth/authenticate`, `/auth/validate`, `/auth/refresh`) initially read as
+an agent-portal login gate, but **this turned out to be a red herring**: `GET /api/rates/State/
+GetCalculationEnabledStates` works with no auth header at all and returns the full state list
+(confirmed `isCalculationEnabled:true` for both OR and NM), and `POST /api/rates/sellernet/
+calculate` also works fully unauthenticated — its ASP.NET model-binder even returns plain-text
+"X is not provided!" validation errors that let the required top-level fields be discovered by
+trial and error with no browser needed: `SalesPrice` (number), `PropertyState` (2-letter code),
+`PropertyCounty` (plain name, e.g. "Multnomah"), `PropertyCity` (plain name, e.g. "Portland") are
+all required; once supplied, the call returns HTTP 200 with a real (well-formed) JSON response
+shape — `{listingAgentCommission, sellingAgentCommission, titleInsurance, taxProration,
+sumOfCostsToClose, taxes, taxCredit, estimatedSellerNet, sumOfHudFees, hudFees}` — but every run
+this session returned `titleInsurance:0` and `hudFees:null` regardless of what additional fields
+were guessed and added (`Loans:[{LoanAmount:...}]` — found by reading the sibling `getFees()`
+method's own null-coalescing defaults in the bundle, `TransactionType`, `ClosingDate`,
+`OwnersPolicyAmount`, `IncludeTitleInsurance`, `Underwriter`, `PropertyType`, `RateType` — all
+silently accepted/ignored by the model binder, no effect on output). A second, richer-sounding
+endpoint, `POST /api/rates/fees/estimatefeesforsellernet` (whose Angular service method,
+`getFees()`, is confirmed in the bundle to expect a `Loans` array with a `LoanAmount` field) 500s
+with only a generic unhelpful ASP.NET ProblemDetails error (no field-name hints, unlike
+`sellernet/calculate`) for every payload shape tried. **Root cause, confirmed via static analysis**:
+the actual Angular *component* code that builds these two endpoints' full request payload (the
+real field list — almost certainly including a fee-type/coverage-selection structure that
+`sellernet/calculate` needs to populate `hudFees` instead of returning `null`) is **not present in
+the single `main.js` bundle fetched this session** — a lazy-loaded route chunk that a static
+`curl`/WebFetch of the `/rate-calculator/step1` shell page does not trigger. **This is a strong,
+concrete browser-driven-session target**: open devtools' Network tab, click through the real
+calculator UI once for any WFG-covered state, and capture the actual JSON body sent to
+`/sellernet/calculate` (or `/fees/estimatefeesforsellernet`) — the endpoint itself is proven public
+and working, only the exact request shape for a non-zero title insurance figure remains unknown.
+Separately, `wfg.titletap.com/calculators/title-premium/` (a TitleTap-platform marketing template
+branded for WFG) embeds `titleagentmarketing.com/company/title.php?appid=0` — `appid=0` is this
+platform's generic unconfigured demo placeholder (same signature already seen for other platforms'
+unclaimed template pages), not a real WFG agency instance — ruled out.
 
 ### OR and NM: extensively searched, no new provider found
 Oregon (~4.2M, highest-volume remaining target): Next Door Title Agency's `nextdoortitle.com/
