@@ -241,5 +241,47 @@
     "sectionTotals": "Total Charges for the Policy: $2,384.80. Grand Total: $2,384.80.",
     "bundlingNotes": "Part of this project's ongoing 2026-08-06 calculator-harvest pass applying the FNF national rate calculator (already confirmed in-scope for premium-only evidence as of the 2026-08-05 CT session) across every remaining below-threshold scarce state where the tool's own county dropdown confirms coverage.",
     "transactionContext": "Owner's Policy premium for a $500,000 residential purchase, Honolulu County, HI. No Loan Policy line appeared despite the $400,000 loan amount entered."
+  },
+  {
+    "provider": "Premier Title & Escrow (independent, locally-owned Hawaii agency; Honolulu/Kapolei/Kaneohe, Oahu -- HI's most populous island/county) -- via app.titlepremiumcalculator.com, a white-labeled NetSheetCalc/TitleTap-platform domain distinct from the netsheetcalc.com brand used elsewhere in this survey",
+    "basis": "calculator",
+    "sourceUrl": "https://premiertitlehawaii.com/",
+    "calculatorUrl": "https://app.titlepremiumcalculator.com/company/index.php?appid=198",
+    "endpointOrParams": "Config: GET app.titlepremiumcalculator.com/company/non-auth-ajax.php?action=getAppData&app_id=198 (no auth) returns the fee-form schema, including a property_address_section 'state' field with initial_val 'HI' -- confirming this is a genuine Hawaii tenant, not a misattribution (further corroborated by the 'Escrow Fee + GET' field label, GET being Hawaii's General Excise Tax, a state-specific term that would not appear in another state's config). Rate resolution: unlike the config/quote-page hosts (which live on the white-labeled app.titlepremiumcalculator.com domain), the formula-driven rate lookups resolve on the platform's canonical root host, GET app.netsheetcalc.com/api/index.php/rate/<amount>/<rate-key> (no auth) -- confirmed via rate/500000/Owner_St40 -> 858 (Owner's Title Insurance Premium, standard/non-extended coverage) and rate/500000/Escrow50 -> 1071.73 (Escrow Fee + GET, Hawaii's General Excise Tax bundled into the closing fee).",
+    "retrievalDate": "2026-08-07",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, 'Finance' (purchase with loan) estimate type, standard (non-extended-coverage) Owner's Title Insurance Policy (the tool's own default -- extended ALTA coverage is an opt-in radio, unchecked by default), Oahu/Honolulu -- HI's most populous county/island.",
+    "methodology": "Found via Premier Title & Escrow's own site (a lead surfaced by a direct web search for independent Hawaii title agencies, after First Hawaii Title's own calculator confirmed jsOnly/TitleCapture-platform). Harvested via plain unauthenticated HTTP GET against the same NetSheetCalc/TitleTap 'getAppData' config + 'api/index.php/rate' rate-resolution recipe already on file in this project (see AZ/IN/KY/AR entries in CALCULATORS.md), applied here to a newly-discovered white-labeled front-end domain for the same underlying platform. No personal data fields exist in the 'finance' estimate type's schema (buyer_first_name/buyer_last_name/address fields are present but optional labeling fields, not gates -- left blank per the standing rule). Flat (non-formula) constants read directly from the config JSON: Search Fees $100.00, Simultaneous Issue Fee (Lender's Title Insurance, compare formula: loan_amount <= $1,000,000 -> $250, else $500) $250.00 at the $400,000 loan amount, Lien Search $26.18 (labeled '$26.18/name' in the tool, one name assumed), Deed Recording Fee $41.00, Mortgage Recording Fee $41.00.",
+    "settlementFee": {
+      "note": "This tool has no single flat 'settlement fee' line; the closest analog is the formula-driven 'Escrow Fee + GET' (Hawaii General Excise Tax bundled into the escrow/closing charge), $1,071.73 at $500,000 purchase price."
+    },
+    "itemizedFees": {
+      "processing": "$1,071.73 (Escrow Fee + GET, formula-driven via rate/500000/Escrow50)",
+      "searchExam": "$100.00 (Search Fees, flat)",
+      "other": [
+        {
+          "name": "Owner's Title Insurance Premium (standard/non-extended coverage, formula-driven via rate/500000/Owner_St40)",
+          "amount": "$858.00"
+        },
+        {
+          "name": "Simultaneous Issue Fee (Lender's Title Insurance, loan amount $400,000 does not exceed $1,000,000 threshold)",
+          "amount": "$250.00"
+        },
+        {
+          "name": "Lien Search ($26.18/name, one name assumed)",
+          "amount": "$26.18"
+        },
+        {
+          "name": "Deed Recording Fee (flat)",
+          "amount": "$41.00"
+        },
+        {
+          "name": "Mortgage Recording Fee (flat)",
+          "amount": "$41.00"
+        }
+      ]
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "This is HI's 3rd calculator-basis provider -- crosses HI to calculator-quoted (3 providers) status, joining Old Republic (ortconline.com) and the FNF national rate calculator already on file. Notably the richest itemized breakdown of the three (7 distinct line items vs. Old Republic's 5 and FNF's premium-only single line), and the only one sourced from a genuinely independent (non-underwriter-operated) Hawaii agency. If extended ALTA coverage were elected instead (the tool's own opt-in toggle), the Owner's Title Insurance Premium formula multiplies by 1.25x ($1,072.50) -- not used here since standard coverage is the tool's own default.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k purchase scenario, Oahu/Honolulu, HI's most populous county/island."
   }
 ]

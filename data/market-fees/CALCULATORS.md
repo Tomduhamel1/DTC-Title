@@ -1976,3 +1976,84 @@ provider distinct from Old Republic/FNF/CO's Principal Title. Apply the same "we
 platform name + state" technique that found Western Nevada Title Company (which succeeded where
 generic `comparetitlecompanies.com`/`calculator.mytitlerates.com` state-list checks alone had not)
 to each of these 4 states specifically.
+
+## 2026-08-07 session — HI crosses the 3-provider threshold via a new white-labeled NetSheetCalc/TitleTap domain; OR/NM extensively searched with no new provider; WFG National Title's own rate calculator found but appears agent-login-gated
+
+Per the 2026-08-06 recommendation, worked NM/HI/OR/NE (each 1 provider short of threshold),
+highest-volume first (OR ~4.2M, NM ~2.1M, NE ~2.0M, HI ~1.4M).
+
+### Premier Title & Escrow (HI) — WORKING, new white-labeled platform domain: `app.titlepremiumcalculator.com`
+Found via a direct web search for independent Honolulu-area title agencies (after First Hawaii
+Title's own embed confirmed jsOnly/TitleCapture, the same platform already logged jsOnly
+elsewhere). Premier Title & Escrow's site (`premiertitlehawaii.com`) links to
+`app.titlepremiumcalculator.com/company/index.php?appid=198` — **a previously-uncatalogued
+front-end domain for the same NetSheetCalc/TitleTap platform already on file under its
+`app.netsheetcalc.com` brand elsewhere in this survey** (confirmed identical JSON schema shape via
+`getAppData`). **New host-split gotcha, generalizable to any future white-labeled-domain tenant
+found on this platform**: the config endpoint (`getAppData`) and the human-facing quote page both
+live on the white-labeled domain (`app.titlepremiumcalculator.com`), but the formula-driven
+rate-resolution endpoint (`api/index.php/rate/<amount>/<rate-key>`) only exists on the platform's
+canonical root host, `app.netsheetcalc.com` — the white-labeled domain 404s on that path. State
+attribution confirmed two ways (per the standing misattribution-guard rule): the config's own
+`property_address_section` → `state` field's `initial_val` is `HI` directly (a rare case where
+this normally-unreliable field is actually correctly configured — cross-checked anyway), and the
+`closing_fee` field's own label, "Escrow Fee + GET" (GET = Hawaii's General Excise Tax, a
+state-specific statutory term), independently corroborates. Result at $500,000 purchase/$400,000
+loan, 'Finance' estimate type, standard (non-extended) coverage: Owner's Title Insurance Premium
+$858.00 (`rate/500000/Owner_St40`), Escrow Fee + GET $1,071.73 (`rate/500000/Escrow50`),
+Simultaneous Issue Fee (Lender's Title Insurance) $250.00 (flat compare-formula, loan ≤ $1M),
+Search Fees $100.00 (flat), Lien Search $26.18 (flat, "$26.18/name"), Deed Recording Fee $41.00
+(flat), Mortgage Recording Fee $41.00 (flat) — 7 line items, the richest HI calculator breakdown on
+file. **Crosses HI to calculator-quoted (3 providers)** — Old Republic, FNF, Premier Title &
+Escrow. No personal data required (buyer name/address fields present but optional/unused for the
+rate lookups). **Recommendation**: search specifically for `"app.titlepremiumcalculator.com"` (and
+watch for other possible white-labeled front-end domains on this same platform family — it has
+now been seen under at least 3 brand names: netsheetcalc.com, titleagentmarketing.com,
+titlepremiumcalculator.com) as an additional discovery vector for OR/NM/NE and any other
+below-threshold state, since these domains don't surface under a `netsheetcalc.com`-scoped search.
+
+### WFG National Title's own rate calculator (`rates.wfgnationaltitle.com`) — likely gated, not harvested
+WFG is a genuine 5th major underwriter (distinct from the FNF/Old Republic/Stewart families already
+on file), so its own calculator would be a high-value multi-state find if public. Its Angular SPA
+(`rates.wfgnationaltitle.com/rate-calculator/step1`) ships a config object confirming real state
+coverage — `sellerNetStateList: "Arizona, California, Colorado, Nevada, Oregon, Washington, Texas,
+New Mexico"` (i.e. **this tool, if public, would directly cover both OR and NM** — two of this
+session's four target states) — but the same bundle's `AuthService` wires `/api/rates/auth/
+authenticate`, `/auth/validate`, and `/auth/refresh` endpoints requiring a username/password,
+consistent with an agent-portal login rather than a public consumer tool (a `dashboard.
+wfgnationaltitle.com/rates` URL surfaced in the same search, reinforcing this reading). Not
+confirmed gated by actually hitting a login wall in-browser (WebFetch cannot drive the Angular
+app), so logged here as **likely gated** rather than definitively jsOnly/gated, flagged for a
+browser-driven session to confirm one way or the other before writing it off — if it turns out to
+have a guest/no-login quote path, it would very likely resolve OR and NM in one shot. Separately,
+`wfg.titletap.com/calculators/title-premium/` (a TitleTap-platform marketing template branded for
+WFG) embeds `titleagentmarketing.com/company/title.php?appid=0` — `appid=0` is this platform's
+generic unconfigured demo placeholder (same signature already seen for other platforms' unclaimed
+template pages), not a real WFG agency instance — ruled out.
+
+### OR and NM: extensively searched, no new provider found
+Oregon (~4.2M, highest-volume remaining target): Next Door Title Agency's `nextdoortitle.com/
+rate-calculator/` page (surfaced in an Oregon-flavored search) confirmed via direct address lookup
+to be a Caledonia, Michigan company — a misattribution, not a genuine OR source (MI is already
+past threshold regardless). Stewart's own Oregon agent-rates page (`stewart.com/en/state-pages/
+oregon-agents/rates`) and its Portland STC office's "Seller's Net Sheet" calculator page both link
+only to the generic `stewartratecalculator.com` homepage with no pre-configured `officeid` — the
+underlying Knockout.js-templated quote endpoint remains unsolved from the 2026-07-26/2026-07-28
+sessions, not retried further this session. `deschutestitle.com` (Bend, OR) is DNS-dead. New
+Mexico: `nmltco.com`, `centrictitle.com`, and the WFG Albuquerque office page were all checked;
+WFG's page 403s at the network/WAF level directly (`wfgtitle.com` domain-wide Cloudflare block,
+consistent with the OR `wfgtitle.com/oregon/` page also 403ing this session) even though its
+Angular rate-calculator subdomain (`rates.wfgnationaltitle.com`, above) is reachable. No 3rd
+provider found for either state this session — both remain at 2 of 3. NE and its Title Midwest
+platform tenants (`Rochester`, `WalnutValley`, `TitleProfessionals`, etc.) were spot-checked for a
+possible 2nd NE-specific tenant beyond `nebtitlecoratecalc` but all resolve to other Midwest
+states (KS/MO), confirming the platform's footprint doesn't extend further into NE — NE remains at
+2 of 3 also.
+
+**Recommendation for next session**: (1) confirm or rule out `rates.wfgnationaltitle.com` via a
+browser-driven session — if it has any no-login quote path, it likely resolves OR and NM
+simultaneously, the single highest-value remaining lead for this cluster; (2) apply the
+`app.titlepremiumcalculator.com`-style "search for alternate white-labeled domain names on the
+NetSheetCalc/TitleTap platform" technique to OR/NM/NE specifically, the same technique that just
+worked for HI; (3) OR/NM/NE remain the next-highest-value scarce-state targets by population, each
+needing exactly 1 more provider.

@@ -1,6 +1,6 @@
 # Hawaii — Market Fee Evidence
 
-## Status: complete (scarce market) — 4 verified sources (3 genuine escrow-fee schedules + 1 timeshare-specific) + 1 calculator-basis provider (not yet at the 3-provider calculator threshold), 2026-07-23
+## Status: complete (scarce market) — 4 verified sources (3 genuine escrow-fee schedules + 1 timeshare-specific) + 3 calculator-basis providers (**calculator-quoted**, threshold reached 2026-08-07), 2026-07-23
 
 ## Calculator harvest (2026-07-23)
 Old Republic Title's public **Estimated Rate/Fee Calculator**
@@ -130,3 +130,27 @@ figures found), tghawaii.com alternate fee-schedule URL (returned HTML, not the 
   amount entered (same behavior already documented for this tool's NV/AR entries) — recorded as-is.
   Premium-only output is valid calculator-harvest evidence per the 2026-08-05 CT-session scoping
   correction. Same Honolulu County used as Old Republic's existing entry.
+
+## Calculator harvest addendum (2026-08-07) — Premier Title & Escrow crosses HI to calculator-quoted (3 providers)
+
+**3 of 3 calculator-basis providers reached** (prior: 2 — Old Republic, FNF). See HI.json's newest
+`basis: "calculator"` entry for full itemized figures and methodology.
+
+- **Premier Title & Escrow** (`premiertitlehawaii.com`, independent locally-owned Honolulu/
+  Kapolei/Kaneohe agency) — WORKING. Embeds a white-labeled NetSheetCalc/TitleTap-platform instance
+  at `app.titlepremiumcalculator.com` (a previously-uncatalogued front-end domain for the same
+  platform already on file elsewhere in this survey as `app.netsheetcalc.com`) — found via a direct
+  web search for independent Hawaii agencies after First Hawaii Title's own tool confirmed
+  jsOnly/TitleCapture. Config fetched via the already-known `getAppData?app_id=198` recipe; its
+  `state` field confirms `HI` directly, and the "Escrow Fee + GET" field label independently
+  corroborates via Hawaii's General Excise Tax terminology. **New host-split gotcha**: the config/
+  quote-page live on the white-labeled `app.titlepremiumcalculator.com` domain, but formula-driven
+  rate lookups (`api/index.php/rate/<amount>/<key>`) only resolve on the platform's canonical root
+  host `app.netsheetcalc.com` — the white-labeled domain 404s on that path. Result at $500k
+  purchase/$400k loan: Owner's Title Insurance Premium $858.00 (standard coverage), Escrow Fee + GET
+  $1,071.73, Simultaneous Issue Fee (Lender's Title Insurance) $250.00, Search Fees $100.00, Lien
+  Search $26.18, Deed Recording Fee $41.00, Mortgage Recording Fee $41.00 — the richest itemized HI
+  calculator breakdown on file (7 line items) and the only one from a genuinely independent
+  (non-underwriter-operated) agency. **This crosses HI to calculator-quoted (3 providers) status.**
+  No personal data was entered (buyer name/address fields are optional labeling fields in this
+  tenant's schema, left blank).

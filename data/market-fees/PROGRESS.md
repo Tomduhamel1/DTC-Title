@@ -23,7 +23,7 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | NM | 2 (Old Republic — Albuquerque/Bernalillo County; FNF national rate calculator — Bernalillo County, Grand Total $2,487.00) | below 3-provider threshold | 2026-08-06 |
 | UT | 1 (Old Republic — Salt Lake City/Salt Lake County) | below 3-provider threshold | 2026-08-06 (FNF calculator surfaced a solvable-but-unsolved AmountLoan1 postback quirk this session — see CALCULATORS.md) |
 | MO | 3 (Old Republic — Kansas City 64106/Jackson County; Elite Title Company — Des Peres/St. Louis County; Secured Title of Kansas City — Jackson County, via the Title Midwest platform) | **calculator-quoted (3 providers)** | 2026-08-02 |
-| HI | 2 (Old Republic — Honolulu/Honolulu County-Oahu; FNF national rate calculator — Honolulu County, Grand Total $2,384.80) | below 3-provider threshold | 2026-08-06 |
+| HI | 3 (Old Republic — Honolulu/Honolulu County-Oahu; FNF national rate calculator — Honolulu County, Grand Total $2,384.80; Premier Title & Escrow — Honolulu, via app.titlepremiumcalculator.com's white-labeled NetSheetCalc/TitleTap instance, appid 198) | **calculator-quoted (3 providers)** | 2026-08-07 |
 | OR | 2 (Old Republic — Portland 97201/Multnomah County; FNF national rate calculator — Multnomah County, Grand Total $1,350.00) | below 3-provider threshold | 2026-08-06 |
 | MI | 3 (Modern Title Group — Ann Arbor/Washtenaw County, statewide formula; Knight Barry Title Group — statewide formula; Prestige Title Insurance Agency — Lenawee County, via TitleTap's newer getNetSheetConfig backend) | **calculator-quoted (3 providers)** | 2026-08-02 |
 | PA | 3 (ALT Title, TitleWorks, Trident Land Transfer — all Philadelphia County) | **calculator-quoted (3 providers)** | 2026-07-25 |
@@ -2021,3 +2021,35 @@ still vary and matter).
   non-FNF, non-CO-Principal-Title) provider — try MyTitleRates.com/TRACcalculator/NetSheetCalc
   searches targeting independent agencies in these states specifically, applying the same
   web-search-first technique that found Western Nevada Title Company for NV.
+- 2026-08-07: Calculator harvest session, priority NM/HI/OR/NE (each 1 provider short of
+  threshold), highest-volume first. **HI crosses the 3-provider threshold**: found Premier Title &
+  Escrow (independent Honolulu agency) on a previously-uncatalogued white-labeled front-end domain
+  for the NetSheetCalc/TitleTap platform (`app.titlepremiumcalculator.com`, distinct from the
+  `app.netsheetcalc.com` brand already on file) — config confirms `state: HI` directly plus a
+  Hawaii-specific "Escrow Fee + GET" field label; formula-driven rates still resolve on the
+  platform's canonical `app.netsheetcalc.com` root host despite the white-labeled front end, a new
+  host-split gotcha. Result at $500k/$400k: Owner's Title Insurance Premium $858.00, Escrow Fee +
+  GET $1,071.73, Simultaneous Issue Fee $250.00, Search Fees $100.00, Lien Search $26.18, Deed
+  Recording Fee $41.00, Mortgage Recording Fee $41.00 (7 line items, richest HI calculator entry on
+  file). OR and NM were both searched extensively with no new provider found: Next Door Title
+  Agency (surfaced in an OR-flavored search) confirmed via address lookup to be a Michigan company,
+  not OR; Stewart's own OR agent-rates pages link only to the generic (still-unsolved)
+  stewartratecalculator.com homepage with no pre-configured officeid; Deschutes Title (Bend, OR) is
+  DNS-dead; WFG's own marketing pages (`wfgtitle.com/oregon/`, `/albuquerque-office/`) are
+  Cloudflare-WAF-blocked domain-wide. A significant new lead was found but not resolved: **WFG
+  National Title's own Angular rate-calculator app** (`rates.wfgnationaltitle.com`) ships a config
+  confirming real OR+NM coverage (`sellerNetStateList` includes both), but its bundle wires an
+  `/api/rates/auth/authenticate` login endpoint, reading as agent-portal-gated rather than public —
+  not confirmed either way since WebFetch cannot drive the Angular app; flagged as the
+  single highest-value target for a browser-driven follow-up (could resolve OR and NM
+  simultaneously if it has any no-login guest path). NE's Title Midwest tenants were spot-checked
+  for a 2nd NE-specific instance beyond the existing `nebtitlecoratecalc`; all others resolve to
+  KS/MO, confirming no further NE reach on that platform. OR/NM/NE remain below threshold (2 of 3
+  each). Freshness pass: 5 oldest not-yet-rechecked published sources (IL/Old Republic, MD/Stewart,
+  NC/Chicago Title, TN/Stewart, CO/Empire Title) all re-verified HTTP 200, no stale flags needed.
+  Blocked-source retries: AZ DIFI still HTTP 403; CATIC CT HTTP 200 this run (still fluctuating,
+  underlying FlippingBook-viewer blocker unchanged); Jackson & Scott AL still HTTP 403. No status
+  change on any of the three. **Next session priority**: browser-driven check of
+  `rates.wfgnationaltitle.com` first (highest expected yield, 2 states at once); otherwise continue
+  the `app.titlepremiumcalculator.com`-style "search for alternate NetSheetCalc/TitleTap
+  white-label domain names" technique against OR/NM/NE specifically.
