@@ -20,11 +20,11 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | OH | 3 (Old Republic — Cuyahoga County; Columbus Title Agency of Westerville — Franklin County/Columbus, own JS netsheet calculator; Owl Creek Title Agency — Knox County/statewide incl. Franklin, same shared JS netsheet template as Columbus Title but distinct fee constants) | **calculator-quoted (3 providers)** | 2026-07-27 |
 | AZ | 3 (Old Republic — Phoenix/Maricopa County; First Integrity Title Agency — Phoenix/Maricopa County, via TRACcalculator/comparetitlecompanies.com; Arizona Premier Title — Scottsdale/Maricopa County, via TitleTap's newer getNetSheetConfig backend) | **calculator-quoted (3 providers)** | 2026-08-02 |
 | NV | 3 (Old Republic — Las Vegas/Clark County; FNF national rate calculator — Clark County, Grand Total $2,211.00; Western Nevada Title Company — statewide, via NetSheetCalc/TitleTap app_id 435, richest single-source NV breakdown on file) | **calculator-quoted (3 providers)** | 2026-08-06 |
-| NM | 2 (Old Republic — Albuquerque/Bernalillo County; FNF national rate calculator — Bernalillo County, Grand Total $2,487.00) | below 3-provider threshold | 2026-08-06 |
-| UT | 1 (Old Republic — Salt Lake City/Salt Lake County) | below 3-provider threshold | 2026-08-06 (FNF calculator surfaced a solvable-but-unsolved AmountLoan1 postback quirk this session — see CALCULATORS.md) |
+| NM | 3 (Old Republic — Albuquerque/Bernalillo County; FNF national rate calculator — Bernalillo County, Grand Total $2,487.00; WFG National Title — Bernalillo County, Owner's Premium $2,387.00) | **calculator-quoted (3 providers)** | 2026-08-08 |
+| UT | 2 (Old Republic — Salt Lake City/Salt Lake County; WFG National Title — Salt Lake County, Owner's Premium $2,519.00) | below 3-provider threshold | 2026-08-08 (FNF calculator's AmountLoan1 postback quirk from 2026-08-06 remains unsolved — see CALCULATORS.md) |
 | MO | 3 (Old Republic — Kansas City 64106/Jackson County; Elite Title Company — Des Peres/St. Louis County; Secured Title of Kansas City — Jackson County, via the Title Midwest platform) | **calculator-quoted (3 providers)** | 2026-08-02 |
 | HI | 3 (Old Republic — Honolulu/Honolulu County-Oahu; FNF national rate calculator — Honolulu County, Grand Total $2,384.80; Premier Title & Escrow — Honolulu, via app.titlepremiumcalculator.com's white-labeled NetSheetCalc/TitleTap instance, appid 198) | **calculator-quoted (3 providers)** | 2026-08-07 |
-| OR | 2 (Old Republic — Portland 97201/Multnomah County; FNF national rate calculator — Multnomah County, Grand Total $1,350.00) | below 3-provider threshold | 2026-08-06 |
+| OR | 3 (Old Republic — Portland 97201/Multnomah County; FNF national rate calculator — Multnomah County, Grand Total $1,350.00; WFG National Title — Multnomah County, Owner's Premium $1,350.00 + 3 itemized HUD fees, byte-identical premium to FNF/OTIRO's bureau rate) | **calculator-quoted (3 providers)** | 2026-08-08 |
 | MI | 3 (Modern Title Group — Ann Arbor/Washtenaw County, statewide formula; Knight Barry Title Group — statewide formula; Prestige Title Insurance Agency — Lenawee County, via TitleTap's newer getNetSheetConfig backend) | **calculator-quoted (3 providers)** | 2026-08-02 |
 | PA | 3 (ALT Title, TitleWorks, Trident Land Transfer — all Philadelphia County) | **calculator-quoted (3 providers)** | 2026-07-25 |
 | NJ | 3 (Trident Land Transfer — statewide, no county tiering; Allstates Title Service — statewide, via MyTitleRates.com `a=78`; The Closing Partner, LLC — statewide, NetSheetCalc/TitleTap `appid=638`) | **calculator-quoted (3 providers)** | 2026-08-03 |
@@ -32,7 +32,7 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | WI | 3 (Knight Barry Title Group — Milwaukee County; Homestead Title Company LLC — Dane County/Madison, formula read directly from the page's own client-side JS; Avenue Title — Wausau/Marathon County, via NetSheetCalc/TitleTap app_id 235) | **calculator-quoted (3 providers)** | 2026-08-05 |
 | VA | 3 (Bon Air Title Agency + Appomattox, both TitleClose.com tenants, Fairfax; Independent Title & Escrow LLC, NetSheetCalc/TitleTap, Fairfax) | **calculator-quoted (3 providers)** | 2026-07-26 |
 | MD | 3 (Federal Title & Escrow Company — Montgomery County, own first-party ASP.NET tool; Allstates Title Service — Montgomery County, via MyTitleRates.com `a=78`; Tri-State Signature Settlements — Montgomery County, via MyTitleRates.com `a=40`) | **calculator-quoted (3 providers)** | 2026-08-03 |
-| CT | 2 (Old Republic — ortratecalculator.oldrepublictitle.com, statewide, a distinct tool from ortconline.com; Fidelity National Title — statewide, via FNF's shared ratecalculator.fnf.com) | below 3-provider threshold | 2026-08-05 |
+| CT | 3 (Old Republic — ortratecalculator.oldrepublictitle.com, statewide, a distinct tool from ortconline.com; Fidelity National Title — statewide, via FNF's shared ratecalculator.fnf.com; WFG National Title — Fairfield County, Owner's Premium $2,122.00) | **calculator-quoted (3 providers)** | 2026-08-08 |
 | MA | 3 (Absolute Title LLC, statewide; Law Office of David R. Rocheford Jr., Worcester County; FNF national rate calculator — Middlesex County, Grand Total $2,125.00) | **calculator-quoted (3 providers)** | 2026-08-06 |
 | CO | 3 (First Integrity Title Company — Denver County, via comparetitlecompanies.com's multi-company comparison tool; FNF National Rate Calculator — Denver County, ratecalculator.fnf.com; Principal Title, LLC — Arvada/Denver-zone, via its WordPress "Residential Rate Quote" plugin's stateless GET endpoint) | **calculator-quoted (3 providers)** | 2026-08-05 |
 | TN | 3 (Tennessee Title Services, LLC — Davidson County, own first-party calculator; Signature Title Services — Davidson County, own ASP.NET WebForms calculator; Cornerstone Title of Tennessee, LLC — Davidson County scenario, via TitleTap) | **calculator-quoted (3 providers)** | 2026-08-02 |
@@ -40,10 +40,10 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | KY | 3 (Agency Title, Inc. — Louisville/Jefferson County, NetSheetCalc/TitleTap; Rounsavall Title Group, LLC — Louisville/Jefferson County, a distinct `app_id=479` tenant on the same platform; Old Republic — Louisville/Jefferson County, via `ortratecalculator.oldrepublictitle.com` Location=KY) | **calculator-quoted (3 providers)** | 2026-08-05 |
 | AL | 3 (Signature Title Services — Jefferson County, AL-specific ASP.NET WebForms portal distinct from the TN instance; Land Title Company of Alabama — Jefferson/Shelby Counties, first-party JS calculator; Alabama Land Title — statewide, first-party "ydwebpro" platform calculator) | **calculator-quoted (3 providers)** | 2026-07-30 |
 | AR | 4 (TitleTech of Arkansas, LLC — Rogers/Benton County-NWA; Hot Springs Title — Garland County, via the Title Midwest platform; Chicago Title Insurance Company — Pulaski County, via ratecalculator.fnf.com; All American Title & Abstract, LLC — Pulaski County/Little Rock, first-party static-page calculator) | **calculator-quoted (4 providers)** | 2026-08-05 |
-| MS | 1 (FNF national rate calculator — Hinds County, Grand Total $2,250.00) | below 3-provider threshold | 2026-08-06 |
-| NE | 2 (Nebraska Title Company — statewide, Omaha/Douglas County scenario, via the Title Midwest platform's Vue.js client-side calculator; FNF national rate calculator — Douglas County, Grand Total $1,282.50) | below 3-provider threshold | 2026-08-06 |
-| LA | 1 (FNF national rate calculator — East Baton Rouge Parish, Grand Total $2,345.20) | below 3-provider threshold | 2026-08-06 |
-| SC | 0 — extensively searched, zero found (FNF national rate calculator confirmed SC-supported but hits an unsolved AmountLoan1/CFPB-question postback quirk this session, no quote obtained — see CALCULATORS.md) | below 3-provider threshold | 2026-08-06 |
+| MS | 2 (FNF national rate calculator — Hinds County, Grand Total $2,250.00; WFG National Title — Hinds County, Owner's Premium $2,200.00) | below 3-provider threshold | 2026-08-08 |
+| NE | 3 (Nebraska Title Company — statewide, Omaha/Douglas County scenario, via the Title Midwest platform's Vue.js client-side calculator; FNF national rate calculator — Douglas County, Grand Total $1,282.50; WFG National Title — Douglas County, Owner's Premium $1,573.00) | **calculator-quoted (3 providers)** | 2026-08-08 |
+| LA | 2 (FNF national rate calculator — East Baton Rouge Parish, Grand Total $2,345.20; WFG National Title — East Baton Rouge Parish, Owner's Premium $2,579.72) | below 3-provider threshold | 2026-08-08 |
+| SC | 1 — WFG National Title, Greenville County, Owner's Premium $1,404.00 (SC's first calculator-basis provider of any kind; FNF national rate calculator still hits an unsolved AmountLoan1/CFPB-question postback quirk — see CALCULATORS.md) | below 3-provider threshold | 2026-08-08 |
 
 FNF's ratecalculator.fnf.com **is drivable via plain HTTP POST, no browser needed** — confirmed
 2026-07-25 by replaying its ASP.NET WebForms `__doPostBack`/`__VIEWSTATE` protocol directly (the
@@ -2060,3 +2060,36 @@ still vary and matter).
   `rates.wfgnationaltitle.com` first (highest expected yield, 2 states at once); otherwise continue
   the `app.titlepremiumcalculator.com`-style "search for alternate NetSheetCalc/TitleTap
   white-label domain names" technique against OR/NM/NE specifically.
+- 2026-08-08: **WFG National Title's `rates.wfgnationaltitle.com` fully solved without a browser
+  session** — the 2026-08-07 recommendation's top target. Fetched the calculator's own lazy-loaded
+  Angular route chunk directly (by replaying the webpack runtime's chunk-hash map rather than
+  waiting for a browser to trigger it) and read `prepareCalculateFeeRequest()`'s source, which
+  reveals the real `POST /api/rates/fees/estimatefeesforsellernet` body: a nested `Properties:
+  [{City, County, IsPrimary, State}]` array, not the flat `PropertyState`/`PropertyCounty`/
+  `PropertyCity` fields the 2026-08-07 session had guessed (from the differently-shaped sibling
+  `sellernet/calculate` endpoint's own validation errors), plus `Loans: [{LienPosition: 0,
+  LoanAmount}]`, `TransactionProductType: {ProductTypeId: 0, TransactionTypeId: 0}`,
+  `calculateTaxRequest: {}`, `SettlementStatementVersion: "CD"`, and empty
+  `premiumDiscounts`/`Endorsements`/`PriorLenderPolicy`/`PriorOwnerPolicy`. Confirmed via `GET
+  /api/rates/State/GetCalculationEnabledStates` (also public, no auth) that WFG — a genuine 5th
+  major underwriter distinct from the FNF/Old Republic/Stewart/First American families already on
+  file — covers 47 states + DC. Ran the standard $500k/$400k scenario against every remaining
+  below-threshold scarce state's most-populous county in one pass: **OR, NM, CT, and NE all cross
+  the 3-provider calculator-quoted threshold** (each gained WFG as their 3rd provider); **MS, LA,
+  and UT each gain a 2nd provider** (still below threshold); **SC gains its first calculator-basis
+  provider of any kind** (Owner's Premium $1,404.00, Greenville County) after 3+ prior sessions
+  found zero. Notable corroboration: OR's WFG Owner's Premium ($1,350.00) is byte-identical to both
+  the existing FNF entry and OTIRO's own bureau-set rate-schedule tier for $500,000 liability,
+  confirming WFG adopts Oregon's bureau rate unchanged, same as FNF. Static inspection of the same
+  chunk's `feesConfiguration` table shows WFG only itemizes settlement/closing HUD-fee line items
+  for 7 states (WA, CA, TX, OR, AZ, NV, CO) — OR's entry is the only one of this session's 8 with a
+  full itemized breakdown; the other 7 states returned premium-only results (Owner's Title
+  Insurance Premium only), valid evidence per the existing FNF premium-only precedent. Loan Policy
+  premium returned $0/null in every state, consistent with this being a seller-net-sheet
+  (seller-side) tool — not pursued further. See CALCULATORS.md's 2026-08-08 entry for the full
+  technical recipe. **Net this session: OR, NM, CT, NE cross the 3-provider threshold (4 states in
+  one pass); MS, LA, UT gain a 2nd provider; SC gains its 1st.** Remaining below-threshold states
+  after this session, in priority order by population: **SC** (~5.3M, 1 of 3), **LA** (~4.6M, 2 of
+  3), **UT** (~3.4M, 2 of 3), **MS** (~2.9M, 2 of 3). Freshness and blocked-source-retry passes were
+  not run this session — the WFG breadth push was judged far higher-yield; both remain due for a
+  future session.

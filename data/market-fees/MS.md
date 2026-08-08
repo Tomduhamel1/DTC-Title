@@ -184,3 +184,11 @@ whether a non-required-field submission is possible).
   amount entered (same behavior already documented for this tool's NV/AR entries) — recorded as-is.
   Premium-only output is valid calculator-harvest evidence per the 2026-08-05 CT-session scoping
   correction. MS's first calculator-basis provider after 2 prior sessions (2026-07-31) found nothing. Hinds County (Jackson, MS's capital and most-populous county) substituted since no independent MS agency calculator had been found.
+
+## Calculator harvest addendum (2026-08-08) — WFG National Title
+
+**2 of 3 calculator-basis providers — still below 3-provider threshold** (prior: 1 (FNF national rate calculator — Hinds County, Grand Total $2,250.00)). See MS.json's newest `basis: "calculator"` entry for full itemized figures and methodology.
+
+This session solved `rates.wfgnationaltitle.com`'s `POST /api/rates/fees/estimatefeesforsellernet` endpoint, flagged since 2026-08-07 as the single highest-value remaining lead (a genuine 5th major underwriter, separate from the FNF/Old Republic/Stewart/First American families already on file, confirmed via `GET /api/rates/State/GetCalculationEnabledStates` to cover 47 states + DC). The prior session's blocker was a payload-shape guess — this session extracted the real request schema directly from the calculator's own lazy-loaded Angular route chunk (`prepareCalculateFeeRequest()` in webpack chunk 7, hash `8a01902021d264bdb338`): a nested `Properties: [{City, County, IsPrimary, State}]` array, not the flat `PropertyState`/`PropertyCounty`/`PropertyCity` fields tried previously. Full technical recipe in CALCULATORS.md's 2026-08-08 entry. No personal data required.
+
+- **WFG National Title Insurance Company** (`rates.wfgnationaltitle.com`) — WORKING. Hinds County (MS's most-populous/standard-scenario county), Jackson, MS, $500,000 purchase / $400,000 loan, SettlementStatementVersion `CD`. Result: Owner's Title Insurance Premium **$2,200.00**, premium-only. Loan Policy premium returned $0/null in every state tried this session, consistent with this tool's seller-net-sheet (seller-side) design — not pursued further as out of scope.

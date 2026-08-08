@@ -371,3 +371,13 @@ market noted throughout this file. A future session's best remaining leads, in p
 (2) retry Title Resources Guaranty's `getQuote` for a recovered backend; (3) revisit
 `app.titleclose.com`'s generic ZIP-driven flow with a browser session to see if it surfaces CT
 companies the `ortris` tenant doesn't have.
+
+## Calculator harvest addendum (2026-08-08) — WFG National Title
+
+**3 of 3 calculator-basis providers — crosses the 3-provider threshold** (prior: 2 (Old Republic — ortratecalculator.oldrepublictitle.com, statewide; Fidelity National Title — statewide, via FNF's shared ratecalculator.fnf.com)). See CT.json's newest `basis: "calculator"` entry for full itemized figures and methodology.
+
+This session solved `rates.wfgnationaltitle.com`'s `POST /api/rates/fees/estimatefeesforsellernet` endpoint, flagged since 2026-08-07 as the single highest-value remaining lead (a genuine 5th major underwriter, separate from the FNF/Old Republic/Stewart/First American families already on file, confirmed via `GET /api/rates/State/GetCalculationEnabledStates` to cover 47 states + DC). The prior session's blocker was a payload-shape guess — this session extracted the real request schema directly from the calculator's own lazy-loaded Angular route chunk (`prepareCalculateFeeRequest()` in webpack chunk 7, hash `8a01902021d264bdb338`): a nested `Properties: [{City, County, IsPrimary, State}]` array, not the flat `PropertyState`/`PropertyCounty`/`PropertyCity` fields tried previously. Full technical recipe in CALCULATORS.md's 2026-08-08 entry. No personal data required.
+
+- **WFG National Title Insurance Company** (`rates.wfgnationaltitle.com`) — WORKING. Fairfield County (CT's most-populous/standard-scenario county), Bridgeport, CT, $500,000 purchase / $400,000 loan, SettlementStatementVersion `CD`. Result: Owner's Title Insurance Premium **$2,122.00**, premium-only. A third independent premium figure for CT's uncoordinated (non-rating-bureau) market, falling between the existing Old Republic ($1,979.00) and FNF ($2,080.00 + $50 CPL) entries. Loan Policy premium returned $0/null in every state tried this session, consistent with this tool's seller-net-sheet (seller-side) design — not pursued further as out of scope.
+
+**CT now calculator-quoted (3 providers)** — WFG National Title crosses the threshold.

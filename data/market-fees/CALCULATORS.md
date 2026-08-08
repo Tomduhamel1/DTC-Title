@@ -2077,3 +2077,98 @@ simultaneously, the single highest-value remaining lead for this cluster; (2) ap
 NetSheetCalc/TitleTap platform" technique to OR/NM/NE specifically, the same technique that just
 worked for HI; (3) OR/NM/NE remain the next-highest-value scarce-state targets by population, each
 needing exactly 1 more provider.
+
+## 2026-08-08 session — WFG National Title's `rates.wfgnationaltitle.com` fully solved (no browser needed); 8-state breadth harvest, 4 states cross the 3-provider threshold
+
+Per the 2026-08-07 recommendation, this was the top-priority target. **Fully solved without a
+browser session** by fetching the calculator's own lazy-loaded Angular route chunk directly
+rather than waiting for a real click-through to trigger it: the shell page's `runtime.js` exposes
+webpack's own chunk-hash map (`{1:"common"}[e]||e)+"."+{1:"abf1092dc40e1f27e319",
+6:"87e153fcb416054250fb",7:"8a01902021d264bdb338"}[e]`), so every lazy chunk (`common.<hash>.js`,
+`6.<hash>.js`, `7.<hash>.js`) can be fetched by plain `curl`/`requests` with no JS execution —
+**a generalizable technique for any other Angular/webpack SPA calculator blocked the same way**
+(flagged for LA's Pulsar Title "Modiphy Flux" Aurelia bundle and any future SPA target).
+
+### The real request schema (from `n.prototype.prepareCalculateFeeRequest` in chunk 7)
+The 2026-08-07 session's blocker — `POST /api/rates/fees/estimatefeesforsellernet` 500ing with
+generic ProblemDetails errors — was a payload-shape mismatch, not a gate. That session had
+borrowed field names (`SalesPrice`/`PropertyState`/`PropertyCounty`/`PropertyCity`, all flat) from
+the *sibling* `sellernet/calculate` endpoint's own validation-error text, but `estimatefeesforsellernet`
+expects a differently-shaped body entirely. The real shape, read directly from the seller-net-sheet
+component's own request-builder method:
+```json
+{
+  "SalesPrice": 500000,
+  "Loans": [{"LienPosition": 0, "LoanAmount": 400000}],
+  "TransactionProductType": {"ProductTypeId": 0, "TransactionTypeId": 0},
+  "Properties": [{"City": "Portland", "County": "Multnomah", "IsPrimary": true, "State": "OR"}],
+  "premiumDiscounts": [],
+  "transactionProductTypeId": 0,
+  "calculateTaxRequest": {},
+  "IsReissue": false,
+  "SettlementStatementVersion": "CD",
+  "Endorsements": [],
+  "PriorLenderPolicy": {},
+  "PriorOwnerPolicy": {}
+}
+```
+Notes: `Properties` is a nested array (not flat top-level fields) — this alone was the fix.
+`ProductTypeId`/`TransactionTypeId` of `0`/`0` are confirmed correct for this flow (verified
+against the component's own hardcoded literal, not a guess). `calculateTaxRequest` is an
+instance of an empty class (`Vn = function(){return function(){}}()`), so `{}` suffices.
+`SettlementStatementVersion` must be the literal string `"CD"` (from the bundle's own enum,
+`+DyJ` module: `{Hud:"HUD2010", Cd:"CD"}`) — `"HUD2010"` is the alternate value for a HUD-1-style
+output, untested this session. Plain `Content-Type: application/json` POST, no cookies/auth
+headers/personal-data fields required or present anywhere in this shape. Response shape:
+`{closingFeeEstimate: {hudFees: [...], premiums: {lendersPremium, fullLendersPremium,
+ownersPremium}}}`.
+
+### Confirmed 47-state + DC coverage
+`GET /api/rates/State/GetCalculationEnabledStates` (public, no auth, already known working since
+2026-08-07) returns `isCalculationEnabled: true` for every state this session's target list needed:
+OR, NM, CT, NE, MS, LA, UT, SC (plus dozens of already-past-threshold states, not re-queried).
+This makes WFG a genuine 5th major-underwriter calculator source — distinct corporate family from
+FNF/Old Republic/Stewart/First American, all already represented elsewhere in this survey.
+
+### HUD-fee itemization is state-limited; most states are premium-only
+Static inspection of the same chunk's hardcoded `feesConfiguration` array (`kn` in the minified
+bundle — a flat list of `{state, description, sortWeight}` records used only for *display sort
+order*, not gating) shows configured entries for only 7 states: **WA (6), CA (5), TX (5), OR (5),
+AZ (3), NV (2), CO (1)**. For every other state, `hudFees` returns an empty array and the response
+carries only the seller's-side `ownersPremium` figure — a premium-only result, exactly analogous
+to the FNF national rate calculator's own scoping (accepted as valid calculator-harvest evidence
+per the 2026-08-05 CT-session correction). `lendersPremium`/`fullLendersPremium` returned `0` in
+every state tried this session despite the standard $400,000 loan amount — consistent with this
+being a **seller**-net-sheet tool (buyer/lender-side fields exist in the broader app but aren't
+part of this specific request/response pair) — not pursued further, out of scope for this flow.
+
+### Results harvested this session (standard scenario, most-populous/standard county per state)
+| State | County | Owner's Premium | Itemized fees | Threshold effect |
+|---|---|---|---|---|
+| OR | Multnomah (Portland) | $1,350.00 | Government Service Fee $30.00 (seller), Reconveyance Fee $200.00 (seller), Settlement or Closing Fee $2,300.00 ($1,150/$1,150 buyer/seller) | **crosses to 3** |
+| NM | Bernalillo (Albuquerque) | $2,387.00 | none (premium-only) | **crosses to 3** |
+| CT | Fairfield (Bridgeport) | $2,122.00 | none (premium-only) | **crosses to 3** |
+| NE | Douglas (Omaha) | $1,573.00 | none (premium-only) | **crosses to 3** |
+| MS | Hinds (Jackson) | $2,200.00 | none (premium-only) | 2 of 3 |
+| LA | East Baton Rouge (Baton Rouge) | $2,579.72 | none (premium-only) | 2 of 3 |
+| UT | Salt Lake (Salt Lake City) | $2,519.00 | none (premium-only) | 2 of 3 |
+| SC | Greenville (Greenville) | $1,404.00 | none (premium-only) | 1 of 3 (SC's first calculator-basis provider of any kind) |
+
+OR's Owner's Premium ($1,350.00) is byte-identical to the existing FNF entry's Grand Total *and*
+to OTIRO's own bureau-set Basic Insurance Rate Schedule tier for $500,000 liability ($950 +
+$2.00/$1,000 above $300,000 = $1,350) — strong independent corroboration that WFG, like FNF,
+adopts Oregon's OTIRO bureau rate unchanged (see OR.json's own OTIRO entry for the underlying
+schedule).
+
+### `SettlementStatementVersion: "HUD2010"` — not tried this session
+The alternate enum value would presumably surface a GFE/HUD-1-style `gfe` object (currently
+`null`) instead of/in addition to `hudFees` — flagged as a quick, low-effort follow-up for a
+future session (same endpoint, same auth-free access, just swap one string field) in case it
+reveals itemized fees for the 41 states where `hudFees` is currently empty.
+
+**Recommendation for next session**: SC (1 of 3), LA/UT/MS (2 of 3 each) are the remaining
+below-threshold scarce states, in that priority order by population. Apply the existing
+NetSheetCalc/TitleTap, MyTitleRates.com, and Title Midwest independent-agency search techniques
+to find each state's next provider; also worth a quick try of
+`SettlementStatementVersion: "HUD2010"` against these same 4 states in case it surfaces
+itemized/additional fee data beyond the premium-only figures already on file.

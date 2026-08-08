@@ -220,3 +220,11 @@ providers after a second session's retry with a different search technique:
   session try a browser-driven capture of the newly-discovered Modiphy/Flux platform
   (`flux.modiphy.com`, found via Louisiana's Pulsar Title Insurance) first, since a working recipe
   there could plausibly also unlock an SC agency instance if the platform serves this region.
+
+## Calculator harvest addendum (2026-08-08) — WFG National Title
+
+**1 of 3 calculator-basis providers — still below 3-provider threshold** (prior: 0 — extensively searched, zero found). See SC.json's newest `basis: "calculator"` entry for full itemized figures and methodology.
+
+This session solved `rates.wfgnationaltitle.com`'s `POST /api/rates/fees/estimatefeesforsellernet` endpoint, flagged since 2026-08-07 as the single highest-value remaining lead (a genuine 5th major underwriter, separate from the FNF/Old Republic/Stewart/First American families already on file, confirmed via `GET /api/rates/State/GetCalculationEnabledStates` to cover 47 states + DC). The prior session's blocker was a payload-shape guess — this session extracted the real request schema directly from the calculator's own lazy-loaded Angular route chunk (`prepareCalculateFeeRequest()` in webpack chunk 7, hash `8a01902021d264bdb338`): a nested `Properties: [{City, County, IsPrimary, State}]` array, not the flat `PropertyState`/`PropertyCounty`/`PropertyCity` fields tried previously. Full technical recipe in CALCULATORS.md's 2026-08-08 entry. No personal data required.
+
+- **WFG National Title Insurance Company** (`rates.wfgnationaltitle.com`) — WORKING. Greenville County (SC's most-populous/standard-scenario county), Greenville, SC, $500,000 purchase / $400,000 loan, SettlementStatementVersion `CD`. Result: Owner's Title Insurance Premium **$1,404.00**, premium-only. SC's first calculator-basis provider of any kind after 3+ prior sessions' extensive searches found none. Loan Policy premium returned $0/null in every state tried this session, consistent with this tool's seller-net-sheet (seller-side) design — not pursued further as out of scope.
