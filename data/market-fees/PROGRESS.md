@@ -2090,6 +2090,51 @@ still vary and matter).
   technical recipe. **Net this session: OR, NM, CT, NE cross the 3-provider threshold (4 states in
   one pass); MS, LA, UT gain a 2nd provider; SC gains its 1st.** Remaining below-threshold states
   after this session, in priority order by population: **SC** (~5.3M, 1 of 3), **LA** (~4.6M, 2 of
-  3), **UT** (~3.4M, 2 of 3), **MS** (~2.9M, 2 of 3). Freshness and blocked-source-retry passes were
-  not run this session — the WFG breadth push was judged far higher-yield; both remain due for a
-  future session.
+  3), **UT** (~3.4M, 2 of 3), **MS** (~2.9M, 2 of 3).
+
+  **Same session, continued — a bounded follow-up search for a 3rd/4th provider in SC/LA/UT/MS
+  found no new genuine sources.** Applied the standard NetSheetCalc/TitleTap "quick quote"
+  web-search technique: 7 candidate appids surfaced for these 4 states (One Key Title `495`,
+  Capital Title and Escrow `467`, The Title Firm `444`, Elite Title Company `438`, TitleTech Title
+  & Closing `393`, Attorneys' Title Services `568`, Title America `146`) — verified each via its
+  own `getAppData` config (`company_name`/`address`/`approved_states` fields, per the standing
+  misattribution-guard rule) and all resolved to FL, MO, or AR (appid `393` is confirmed the same
+  TitleTech of Arkansas tenant already on file for AR, not a distinct LA instance despite surfacing
+  in an LA-flavored search). Also checked Integrity Title Solutions' short-code tenant
+  (`app.netsheetcalc.com/c/ITS` → `appid=441`) for UT — resolved to Missouri, not Utah. Investors
+  Title's own calculator page (`invtitle.com/calculator`, a genuine multi-state NC/SC underwriter)
+  embeds the already-known-jsOnly TitleCapture platform — ruled out, not a new working source.
+  Pioneer Title Agency's `tools.pioneertitleco.com` (a genuine Idaho/Utah company, "Buyer/Seller
+  Netsheet" routes) is a Nuxt SPA whose main entry bundle exposes only auth-related API routes; the
+  actual netsheet-computation endpoint lives in a route-specific lazy chunk not fetched this
+  session — logged **jsOnly** rather than pursued further (a bounded-effort stopping point, not a
+  dead end; a future session could apply the same "fetch the chunk-hash map, pull the lazy chunk
+  directly" technique that solved WFG above). First American's own marketing page
+  (`firstam.com/title-fee-calculator/`) confirmed to link only to the already-known-jsOnly
+  `facc.firstam.com` agent portal — no new First American access point found. No new
+  calculator-basis provider found for SC/LA/UT/MS this session beyond WFG.
+
+  **Blocked-source retries** (one quick check each): AZ DIFI still HTTP 403; CATIC CT
+  (`catic.com/state-resources/connecticut`) HTTP 403 this run (still fluctuating 200/403 across
+  sessions, underlying FlippingBook-viewer blocker unchanged either way); Jackson & Scott AL
+  (`realestatelclosings.com/closing-costs-calculator/`) HTTP 403, consistent with recent sessions'
+  WAF-block finding. No status change on any of the three.
+
+  **Freshness spot-check** (5 sources not previously re-checked in prior rotations: AZ/Pioneer
+  Title Agency's First American-Maricopa PDF, DC/Federal Title, DC/Avenue Settlements, DE/Lem &
+  Associates, CT/Yona Law): 4 of 5 returned HTTP 200 (federaltitle.com resolves cleanly after its
+  normal http→https/www redirect, not a staleness issue). The AZ/Pioneer Title Agency PDF now
+  returns HTTP 202 with a same-origin redirect to `/.well-known/sgcaptcha/` — a bot-challenge
+  interstitial (SG-Firewall) that blocks plain-HTTP retrieval, a new finding for this specific URL
+  (previously fetched cleanly). Not marked `{stale: true}` in AZ.json since this is a bot-gate, not
+  a confirmed-dead link (matching this project's existing CATIC CT precedent of not flagging
+  fluctuating WAF blocks as stale) — flagged here for a future session's retry/monitoring instead.
+
+  **Next session priority**: SC (1 of 3, ~5.3M) is the single highest-value remaining
+  below-threshold scarce state; LA/UT/MS (2 of 3 each) need exactly 1 more provider each. Try (1)
+  `SettlementStatementVersion: "HUD2010"` against WFG's own endpoint for these 4 states (same
+  auth-free access already solved, untried variant, could surface itemized/GFE-style fee data
+  beyond the premium-only figures on file); (2) a browser-driven or lazy-chunk-fetch pass on Pioneer
+  Title Agency's Nuxt netsheet tool for UT; (3) continue independent-agency-domain web searches for
+  SC/LA/MS specifically, since the generic NetSheetCalc/TitleTap directory search has now produced
+  misattribution false positives in 3 consecutive sessions for this exact state cluster.

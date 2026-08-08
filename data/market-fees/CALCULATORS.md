@@ -2172,3 +2172,30 @@ NetSheetCalc/TitleTap, MyTitleRates.com, and Title Midwest independent-agency se
 to find each state's next provider; also worth a quick try of
 `SettlementStatementVersion: "HUD2010"` against these same 4 states in case it surfaces
 itemized/additional fee data beyond the premium-only figures already on file.
+
+### Same session, continued — bounded follow-up search for SC/LA/UT/MS's next provider, no new working source found
+7 NetSheetCalc/TitleTap appid candidates surfaced via web search for this state cluster (One Key
+Title `495`, Capital Title and Escrow `467`, The Title Firm `444`, Elite Title Company `438`,
+TitleTech Title & Closing `393`, Attorneys' Title Services `568`, Title America `146`) — verified
+each via its own `getAppData` config's `company_name`/`address`/`approved_states` fields (the
+standing misattribution-guard technique) and all resolved to FL, MO, or AR; `393` is confirmed the
+*same* TitleTech of Arkansas tenant already on file for AR (`approved_states: ["AR"]`), not a
+distinct Louisiana instance despite surfacing in an LA-flavored search. Integrity Title Solutions'
+short-code UT-flavored tenant (`app.netsheetcalc.com/c/ITS` → `appid=441`) resolved to Missouri.
+**Investors Title** (`invtitle.com/calculator`, a genuine multi-state NC/SC underwriter — a real
+lead worth re-trying if TitleCapture is ever solved) embeds the already-known-jsOnly TitleCapture
+platform. **Pioneer Title Agency** (`tools.pioneertitleco.com`, a genuine Idaho/Utah title company)
+— NEW jsOnly lead: a Nuxt SPA at `/netsheet/buyer` and `/netsheet/seller`; its main entry bundle
+(`_nuxt/tpYJNdbc.js`) exposes only `/api/auth/*`/`/api/user/*` routes, no netsheet-computation
+endpoint — the real API almost certainly lives in a route-specific lazy chunk not fetched this
+session (same class of blocker WFG had, above, but not pursued further this session — flagged for
+a future session to apply the identical "fetch the chunk-hash map, pull the lazy chunk directly"
+technique). First American's own marketing page (`firstam.com/title-fee-calculator/`) confirmed to
+link only to the already-known-jsOnly `facc.firstam.com` agent portal.
+
+**Recommendation for next session**: (1) try `SettlementStatementVersion: "HUD2010"` against WFG's
+already-solved endpoint for SC/LA/UT/MS — untried variant, same auth-free access, could surface
+itemized/GFE-style fees beyond the premium-only figures on file; (2) apply WFG's lazy-chunk-fetch
+technique to Pioneer Title Agency's Nuxt bundle for UT; (3) Investors Title (SC) is worth
+revisiting the moment TitleCapture's own API is ever cracked, since it's a genuine multi-state
+underwriter, not a shared-platform reseller.
