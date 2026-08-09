@@ -21,7 +21,7 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | AZ | 3 (Old Republic — Phoenix/Maricopa County; First Integrity Title Agency — Phoenix/Maricopa County, via TRACcalculator/comparetitlecompanies.com; Arizona Premier Title — Scottsdale/Maricopa County, via TitleTap's newer getNetSheetConfig backend) | **calculator-quoted (3 providers)** | 2026-08-02 |
 | NV | 3 (Old Republic — Las Vegas/Clark County; FNF national rate calculator — Clark County, Grand Total $2,211.00; Western Nevada Title Company — statewide, via NetSheetCalc/TitleTap app_id 435, richest single-source NV breakdown on file) | **calculator-quoted (3 providers)** | 2026-08-06 |
 | NM | 3 (Old Republic — Albuquerque/Bernalillo County; FNF national rate calculator — Bernalillo County, Grand Total $2,487.00; WFG National Title — Bernalillo County, Owner's Premium $2,387.00) | **calculator-quoted (3 providers)** | 2026-08-08 |
-| UT | 2 (Old Republic — Salt Lake City/Salt Lake County; WFG National Title — Salt Lake County, Owner's Premium $2,519.00) | below 3-provider threshold | 2026-08-08 (FNF calculator's AmountLoan1 postback quirk from 2026-08-06 remains unsolved — see CALCULATORS.md) |
+| UT | 3 (Old Republic — Salt Lake City/Salt Lake County; WFG National Title — Salt Lake County, Owner's Premium $2,519.00; FNF national rate calculator — Salt Lake County, Owner's Policy Premium $2,262.00/Loan Policy $1,225.00) | **calculator-quoted (3 providers)** | 2026-08-09 |
 | MO | 3 (Old Republic — Kansas City 64106/Jackson County; Elite Title Company — Des Peres/St. Louis County; Secured Title of Kansas City — Jackson County, via the Title Midwest platform) | **calculator-quoted (3 providers)** | 2026-08-02 |
 | HI | 3 (Old Republic — Honolulu/Honolulu County-Oahu; FNF national rate calculator — Honolulu County, Grand Total $2,384.80; Premier Title & Escrow — Honolulu, via app.titlepremiumcalculator.com's white-labeled NetSheetCalc/TitleTap instance, appid 198) | **calculator-quoted (3 providers)** | 2026-08-07 |
 | OR | 3 (Old Republic — Portland 97201/Multnomah County; FNF national rate calculator — Multnomah County, Grand Total $1,350.00; WFG National Title — Multnomah County, Owner's Premium $1,350.00 + 3 itemized HUD fees, byte-identical premium to FNF/OTIRO's bureau rate) | **calculator-quoted (3 providers)** | 2026-08-08 |
@@ -40,10 +40,10 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | KY | 3 (Agency Title, Inc. — Louisville/Jefferson County, NetSheetCalc/TitleTap; Rounsavall Title Group, LLC — Louisville/Jefferson County, a distinct `app_id=479` tenant on the same platform; Old Republic — Louisville/Jefferson County, via `ortratecalculator.oldrepublictitle.com` Location=KY) | **calculator-quoted (3 providers)** | 2026-08-05 |
 | AL | 3 (Signature Title Services — Jefferson County, AL-specific ASP.NET WebForms portal distinct from the TN instance; Land Title Company of Alabama — Jefferson/Shelby Counties, first-party JS calculator; Alabama Land Title — statewide, first-party "ydwebpro" platform calculator) | **calculator-quoted (3 providers)** | 2026-07-30 |
 | AR | 4 (TitleTech of Arkansas, LLC — Rogers/Benton County-NWA; Hot Springs Title — Garland County, via the Title Midwest platform; Chicago Title Insurance Company — Pulaski County, via ratecalculator.fnf.com; All American Title & Abstract, LLC — Pulaski County/Little Rock, first-party static-page calculator) | **calculator-quoted (4 providers)** | 2026-08-05 |
-| MS | 2 (FNF national rate calculator — Hinds County, Grand Total $2,250.00; WFG National Title — Hinds County, Owner's Premium $2,200.00) | below 3-provider threshold | 2026-08-08 |
+| MS | 3 (FNF national rate calculator — Hinds County, Grand Total $2,250.00; WFG National Title — Hinds County, Owner's Premium $2,200.00; Old Republic's 2nd tool — statewide, Owner's Premium $2,000.00/Loan Premium $1,200.00 standalone) | **calculator-quoted (3 providers)** | 2026-08-09 |
 | NE | 3 (Nebraska Title Company — statewide, Omaha/Douglas County scenario, via the Title Midwest platform's Vue.js client-side calculator; FNF national rate calculator — Douglas County, Grand Total $1,282.50; WFG National Title — Douglas County, Owner's Premium $1,573.00) | **calculator-quoted (3 providers)** | 2026-08-08 |
-| LA | 2 (FNF national rate calculator — East Baton Rouge Parish, Grand Total $2,345.20; WFG National Title — East Baton Rouge Parish, Owner's Premium $2,579.72) | below 3-provider threshold | 2026-08-08 |
-| SC | 1 — WFG National Title, Greenville County, Owner's Premium $1,404.00 (SC's first calculator-basis provider of any kind; FNF national rate calculator still hits an unsolved AmountLoan1/CFPB-question postback quirk — see CALCULATORS.md) | below 3-provider threshold | 2026-08-08 |
+| LA | 3 (FNF national rate calculator — East Baton Rouge Parish, Grand Total $2,345.20; WFG National Title — East Baton Rouge Parish, Owner's Premium $2,579.72; Old Republic's 2nd tool — statewide, Owner's Premium $2,345.20 [byte-identical to FNF]) | **calculator-quoted (3 providers)** | 2026-08-09 |
+| SC | 3 (WFG National Title — Greenville County, Owner's Premium $1,404.00; FNF national rate calculator — Greenville County, Owner's Policy Premium $1,404.00 [byte-identical to WFG]/Loan Policy $100.00; Old Republic's 2nd tool — statewide, Owner's Premium $1,170.00/simultaneous Grand Total $1,270.00) | **calculator-quoted (3 providers)** | 2026-08-09 |
 
 FNF's ratecalculator.fnf.com **is drivable via plain HTTP POST, no browser needed** — confirmed
 2026-07-25 by replaying its ASP.NET WebForms `__doPostBack`/`__VIEWSTATE` protocol directly (the
@@ -2138,3 +2138,59 @@ still vary and matter).
   Title Agency's Nuxt netsheet tool for UT; (3) continue independent-agency-domain web searches for
   SC/LA/MS specifically, since the generic NetSheetCalc/TitleTap directory search has now produced
   misattribution false positives in 3 consecutive sessions for this exact state cluster.
+
+- **2026-08-09: All 4 remaining below-threshold scarce states (SC, LA, UT, MS) cross the
+  3-provider calculator-quoted threshold in one session** — the calculator-harvest tracker's
+  original 38-state target list is now fully cleared of below-threshold states. Two findings
+  drove this: (1) the FNF national rate calculator's "unsolved AmountLoan1 postback quirk" logged
+  against UT/SC since 2026-08-06 turned out to be a bug in that prior session's own replay script,
+  not a real server-side block — every extracted ASP.NET hidden-field dict was carrying forward
+  `<input type="submit">` button name/value pairs (e.g. `btnGeneralNext=Next`) into every
+  subsequent POST, causing the server to treat each later postback as an implicit re-click of that
+  button and silently desync the wizard state in a way indistinguishable from a dropped field.
+  Fixing the replay script to only send a submit button's name/value on the request actually
+  "clicking" it resolved this immediately for both states: **UT** gained FNF as a 3rd provider
+  (Owner's Policy Premium $2,262.00, Loan Policy $1,225.00, Salt Lake County — after solving a
+  genuinely real, previously-unseen 3-question CPL-eligibility radio cascade with no default
+  answer) and **SC** gained FNF as a 2nd provider (Owner's Policy Premium $1,404.00 — byte-identical
+  to the existing WFG figure — plus Loan Policy $100.00, Greenville County). Tried
+  `SettlementStatementVersion: "HUD2010"` against WFG's endpoint for SC/LA per the prior session's
+  recommendation first — confirmed a dead end (all 4 GFE boxes return $0, no richer data than the
+  existing `"CD"` results already on file). (2) Old Republic's *second* calculator tool
+  (`ortratecalculator.oldrepublictitle.com`, distinct from `ortconline.com/Web2`) had `Location=SC`/
+  `Location=LA` logged as hard-blocked by a NoBot anti-bot control since 2026-07-29/2026-08-01 —
+  retried per the standing blocked-source-retry protocol (extended here to a calculator-specific
+  block, following the 2026-08-08 NM session's own finding that this same NoBot block had already
+  loosened for at least one state) and found the block has lifted entirely for both states, plus
+  MS (not previously tried on this tool). This crossed all three remaining states at once: **SC**
+  (Owner's Policy Premium $1,170.00, simultaneous Grand Total $1,270.00, plus a genuinely new kind
+  of data point — a Closing-Disclosure-formatted marginal owner's-policy line, $310.00), **LA**
+  (Owner's Policy Premium $2,345.20 — byte-identical to the existing FNF entry, the strongest
+  cross-underwriter premium convergence found anywhere in this survey — Grand Total $2,445.20), and
+  **MS** (no simultaneous-issue category exists on this tool for MS, so Owner's ($2,000.00) and
+  Lender's ($1,200.00) premiums were harvested as two separate standalone quotes rather than one
+  combined total — also surfaced a new gotcha: posting the loan-liability field while the OWNERS
+  category is still selected throws a hard HTTP 500, the same "field not in the DOM" failure mode
+  already catalogued for `ortconline.com`'s ReoList/OR-county controls). Full technical recipes for
+  both fixes in CALCULATORS.md's 2026-08-09 entry. Also searched for independent-agency SC providers
+  before finding the above (TitleTap appids 448/`Signature Title & Escrow Services`/599/`Title
+  Insights LLC` both resolved to Florida via the misattribution-guard check, not SC; Trident Land
+  Transfer's own calculator now 403s directly — Cloudflare-blocked; The Title Resource Network and
+  Key Title LLC are Squarespace/Wix marketing sites with no discoverable calculator backend) — moot
+  once the Old Republic retry succeeded, but logged in CALCULATORS.md to save a future session the
+  same dead-end search. Separately confirmed Pioneer Title Agency's Nuxt netsheet tool
+  (`tools.pioneertitleco.com`) for UT is genuinely auth-gated, not merely an unfetched lazy chunk as
+  the 2026-08-08 session's `jsOnly` classification implied — its route table explicitly carries
+  `middleware:"auth"` on both `/netsheet/buyer` and `/netsheet/seller`, and a plain fetch now
+  redirects straight to `/login`; reclassified from a promising jsOnly lead to a confirmed dead end,
+  moot regardless since UT crossed its threshold via FNF instead. **All four states this session's
+  brief flagged as remaining priorities are now resolved; the calculator-harvest tracker has no
+  below-threshold "complete (scarce)" states left on its original target list** — a future session
+  should either (a) push already-quoted states toward richer, more-itemized entries (many are still
+  premium-only), (b) revisit the jsOnly queue (TitleCapture, Qualia Connect, Stewart's `/api/SRC/
+  quote`, First American's FACC) with a browser-driven session now that the plain-HTTP techniques
+  in this catalog are largely exhausted, or (c) apply the newly-reconfirmed "NoBot blocks can
+  loosen over time" finding to retry Old Republic's second tool (`Location=<code>`) against IN,
+  which was blocked in the same original 2026-07-29 finding as SC and has not been retried since.
+  Freshness and blocked-source-retry passes were not run this session — time was spent entirely on
+  the calculator-harvest breadth push (4 states crossing threshold); due for a future session.

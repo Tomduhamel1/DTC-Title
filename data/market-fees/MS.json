@@ -94,5 +94,24 @@
     "sectionTotals": null,
     "bundlingNotes": "Property location for this request: Jackson, MS (Hinds County). Discovered and harvested in the same 2026-08-08 session across 8 below-threshold scarce states at once (OR, NM, CT, NE, MS, LA, UT, SC) using one newly-solved API -- see CALCULATORS.md's 2026-08-08 entry for the full technical recipe and the complete list of states affected.",
     "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Hinds County, MS."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company — Rate Calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.oldrepublictitle.com/rate-calculator/mississippi",
+    "calculatorUrl": "https://ortratecalculator.oldrepublictitle.com/EmbedRateCalc.aspx?Location=MS (ASP.NET WebForms __doPostBack/__VIEWSTATE flow)",
+    "retrievalDate": "2026-08-09",
+    "scenario": "$500,000 purchase price (OWNERS category) and $400,000 loan amount (LOAN category), statewide, computed as two separate standalone quotes -- see methodology.",
+    "methodology": "This is Old Republic's *second* calculator tool (distinct from `ortconline.com/Web2`, whose own footprint does not include MS -- see CALCULATORS.md's state-coverage note). This state was not previously known to be NoBot-blocked or otherwise tried on this tool; harvested for the first time this session as part of the same NoBot-loosening follow-up that unlocked SC/LA (see those states' parallel entries). MS's `RadPolicyCategory` radio group offers only 4 categories (OWNERS, LOAN, HOME EQUITY, MISCELLANEOUS) -- unlike SC's dedicated \"SIMULTANEOUS LOAN & OWNERS\" option or LA's combined \"PURCHASE/SALE\" category, MS has no simultaneous-issue category, so Owner's and Lender's premiums had to be queried as two separate single-category calculations rather than one combined quote: (1) OWNERS category (default-checked), POST `txtLiabilityAmt=500000` (own __EVENTTARGET) then `btnCalculate=Calculate`; (2) fresh POST selecting `RadPolicyCategory=2` (LOAN, own __EVENTTARGET, which swaps the visible liability field from `txtLiabilityAmt` to `txtCrLiabilityAmt`), POST `txtCrLiabilityAmt=400000` (own __EVENTTARGET) then `btnCalculate=Calculate`. **Gotcha**: posting `txtCrLiabilityAmt` while the OWNERS category is still selected (i.e. without first switching to LOAN) throws a hard HTTP 500 (`ErrorPage500.aspx`) -- the field genuinely does not exist in that category's rendered DOM, the same 'posting a field not in the DOM breaks the postback' failure mode already documented elsewhere in this project (Old Republic's `ortconline.com` ReoList/OR-county gotchas). No county selector was required or offered by this tool for MS (statewide pricing). No personal-data fields anywhere in this flow.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,000.00 (OWNERS POLICY, Insurance Amount $500,000.00, Grand Total Policy & Endorsement Premium, standalone -- not a simultaneous-issue quote, this tool has no combined category for MS)",
+      "loanPolicyPremium": "$1,200.00 (LOAN - BASIC, Insurance Amount $400,000.00, Grand Total Policy & Endorsement Premium, standalone)",
+      "other": [],
+      "note": "Premium-only result (no settlement/search/doc-prep line items), consistent with this tool's other state entries already on file (e.g. CT, KY, NM, SC, LA) elsewhere in this survey. Unlike SC/LA, these two figures are NOT additively combinable into one simultaneous-issue total -- MS's category structure on this tool does not expose a simultaneous-discount rate, so no Grand Total or Closing-Disclosure-allocation figure is available here (contrast with SC/LA's richer output)."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "Crosses MS to 3 calculator-basis providers (FNF, WFG, Old Republic) -- calculator-quoted status. MS's $2,000.00 Owner's Premium sits below both the existing FNF ($2,250.00 Total Policy Premium) and WFG ($2,200.00 Owner's Premium) figures already on file for Hinds County -- a plausible, moderate spread across 3 independently-operated calculator sources for a state with no rating bureau.",
+    "transactionContext": "Old Republic's rate-calculator standalone Owner's Policy quote ($500,000 purchase) and standalone Lender's Policy quote ($400,000 loan), statewide Mississippi (no county tiering in this tool)."
   }
 ]

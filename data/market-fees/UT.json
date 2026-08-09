@@ -271,5 +271,24 @@
     "sectionTotals": null,
     "bundlingNotes": "Property location for this request: Salt Lake City, UT (Salt Lake County). Discovered and harvested in the same 2026-08-08 session across 8 below-threshold scarce states at once (OR, NM, CT, NE, MS, LA, UT, SC) using one newly-solved API -- see CALCULATORS.md's 2026-08-08 entry for the full technical recipe and the complete list of states affected.",
     "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Salt Lake County, UT."
+  },
+  {
+    "provider": "Fidelity National Title Insurance Company — FNF National Rate Calculator (ratecalculator.fnf.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=UT",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=UT (ASP.NET WebForms __doPostBack/__VIEWSTATE flow)",
+    "retrievalDate": "2026-08-09",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Salt Lake County (UT's most-populous county), residential resale, Fidelity National Title underwriter selected.",
+    "methodology": "Solves the 2026-08-06 session's logged 'unsolved AmountLoan1 postback quirk' for UT (and separately SC, see SC.json) -- the quirk was never a real server-side block, it was a bug in that session's own replay script: every extracted hidden-field dict included the page's <input type=\"submit\"> button name=value pairs (e.g. btnGeneralNext=\"Next\") carried forward unchanged into later POSTs, causing the server to treat every subsequent postback as an implicit re-click of that button and silently fast-forward/desync the wizard state (masquerading as a 'silently dropped AmountLoan1 value'). Fixed by excluding submit/button/image/reset <input> types from the carried-forward field set and only including a given button's name=value on the specific POST that is actually 'clicking' it. Once fixed, UT's real (and previously undocumented) blocker turned out to be a genuinely required 3-question CPL-eligibility radio cascade with no default selection (Lender/Borrower -> Buyer -> Seller, each field `rc_CPL*Eligible` only appearing in the response once the prior one is answered) -- answered each as 'Yes' (value=1, the first/default-oriented option) via its own dedicated postback, matching how a real user would click through the wizard. Recipe otherwise unchanged from the documented FNF flow: GET with ?ID=FNF&state=UT, POST ddlCounty='salt lake' (own __EVENTTARGET), POST ddlUnderwriters='fnt' (own __EVENTTARGET, Fidelity National Title), POST btnGeneralNext='Next' to reach the Amounts panel, POST TranType$ddl='PropertyPurchase' (own __EVENTTARGET), POST AmountPurchase$txt='$500,000.00' (own __EVENTTARGET), POST AmountLoan1$txt='$400,000.00' (own __EVENTTARGET) -- now echoed correctly, POST the 3-question CPL cascade, then POST btnFinish='Finish' for the final quote. No personal-data fields required at any step.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,262.00 (ALTA Standard Coverage Owner's Policy; Owner's Policy Disclosure Amount $2,262.00, Adjustment $0.00)",
+      "loanPolicyPremium": "$1,225.00 (ALTA Extended Coverage Loan Policy, Loan #1, Liability $400,000.00; Loan Policy Disclosure Amount $1,225.00)",
+      "other": [],
+      "note": "Premium-only result per this tool's standard disclaimer (totals exclude title search, examination, additional work charges, certification, or closing fees) -- same scoping as every other FNF entry in this survey, accepted as valid calculator-harvest evidence per the 2026-08-05 CT-session scoping correction."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "Crosses UT to 3 calculator-basis providers (Old Republic, WFG, FNF) -- calculator-quoted status. FNF's Owner's Premium ($2,262.00) sits between Old Republic's and WFG's own already-filed-rate-manual figures on file for UT, a plausible mid-range point in a state with no rating bureau. Fidelity National Title was selected from the underwriter dropdown (also offered: Chicago Title, Commonwealth Land Title, National Title Insurance of NY, all sharing one calculation engine per the CT-session's already-documented byte-identical-output finding).",
+    "transactionContext": "FNF National Rate Calculator's Owner's and Loan title insurance premium quote for a $500,000 residential purchase with a $400,000 loan, Salt Lake County, UT."
   }
 ]

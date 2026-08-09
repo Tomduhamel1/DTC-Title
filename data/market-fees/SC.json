@@ -125,5 +125,52 @@
     "sectionTotals": null,
     "bundlingNotes": "Property location for this request: Greenville, SC (Greenville County). Discovered and harvested in the same 2026-08-08 session across 8 below-threshold scarce states at once (OR, NM, CT, NE, MS, LA, UT, SC) using one newly-solved API -- see CALCULATORS.md's 2026-08-08 entry for the full technical recipe and the complete list of states affected.",
     "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Greenville County, SC."
+  },
+  {
+    "provider": "Fidelity National Title Insurance Company — FNF National Rate Calculator (ratecalculator.fnf.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=SC",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=SC (ASP.NET WebForms __doPostBack/__VIEWSTATE flow)",
+    "retrievalDate": "2026-08-09",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Greenville County (SC's most-populous county), residential resale, Fidelity National Title underwriter selected.",
+    "methodology": "Solves the 2026-08-06 session's logged 'unsolved AmountLoan1 postback quirk' for SC (and separately UT, see UT.json) -- the quirk was never a real server-side block, it was a bug in that session's own replay script: every extracted hidden-field dict included the page's <input type=\"submit\"> button name=value pairs (e.g. btnGeneralNext=\"Next\") carried forward unchanged into later POSTs, causing the server to treat every subsequent postback as an implicit re-click of that button and silently fast-forward/desync the wizard state (masquerading as a 'silently dropped AmountLoan1 value'). Fixed by excluding submit/button/image/reset <input> types from the carried-forward field set and only including a given button's name=value on the specific POST that is actually 'clicking' it. SC's one extra required question (\"Does this transaction qualify under CFPB's TILA-RESPA Integrated Disclosure rule?\", CFPB_IsQualified) already defaults to 'Yes' (value=1) with no cascade, unlike UT's 3-question CPL-eligibility chain. Recipe: GET with ?ID=FNF&state=SC, POST ddlCounty='greenville' (own __EVENTTARGET), POST ddlUnderwriters='fnt' (own __EVENTTARGET, Fidelity National Title), POST btnGeneralNext='Next' to reach the Amounts panel, POST TranType$ddl='PropertyPurchase' (own __EVENTTARGET), POST AmountPurchase$txt='$500,000.00' (own __EVENTTARGET), POST AmountLoan1$txt='$400,000.00' (own __EVENTTARGET) -- now echoed correctly, POST btnFinish='Finish' (CFPB_IsQualified's default 'Yes' carried through) for the final quote. No personal-data fields required at any step.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1,404.00 (ALTA Homeowner's Policy of Title Insurance; Owner's Policy Disclosure Amount $544.00, Adjustment $860.00)",
+      "loanPolicyPremium": "$100.00 (ALTA Standard Coverage Loan Policy, Loan #1, Liability $400,000.00, concurrent with Owner's Policy; Loan Policy Disclosure Amount $960.00)",
+      "other": [],
+      "note": "Premium-only result per this tool's standard disclaimer (totals exclude title search, examination, additional work charges, certification, or closing fees) -- same scoping as every other FNF entry in this survey, accepted as valid calculator-harvest evidence per the 2026-08-05 CT-session scoping correction."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "SC's 2nd calculator-basis provider (WFG remains 1st; still below the 3-provider threshold). Notable cross-provider corroboration: FNF's Owner's Premium ($1,404.00) is byte-identical to the existing WFG entry's own Owner's Premium for the same county/scenario -- the second state (after OR) in this survey where FNF and WFG independently return an identical dollar figure, consistent with both underwriters adopting the same filed/bureau-equivalent rate in states with thin independent-agency competition. Fidelity National Title was selected from the underwriter dropdown (also offered: Chicago Title, Commonwealth Land Title, National Title Insurance of NY, all sharing one calculation engine per the CT-session's already-documented byte-identical-output finding).",
+    "transactionContext": "FNF National Rate Calculator's Owner's and Loan title insurance premium quote for a $500,000 residential purchase with a $400,000 loan, Greenville County, SC."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company — Rate Calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.oldrepublictitle.com/rate-calculator/south-carolina",
+    "calculatorUrl": "https://ortratecalculator.oldrepublictitle.com/EmbedRateCalc.aspx?Location=SC (ASP.NET WebForms __doPostBack/__VIEWSTATE flow)",
+    "retrievalDate": "2026-08-09",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, statewide (this tool is not county-tiered for SC), SIMULTANEOUS LOAN & OWNERS policy category, OWNERS - BASIC / SIMUL LOAN policy forms.",
+    "methodology": "This is Old Republic's *second* calculator tool (distinct from `ortconline.com/Web2`, whose own footprint does not include SC/LA/MS -- see CALCULATORS.md's state-coverage note). Prior sessions (2026-07-29, 2026-08-01) found `Location=SC` hard-rejected by this tool's NoBot anti-bot control (\"You are not authorized to access the site. Code: 2\") even with a realistic Referer/User-Agent -- logged as blocked. This session retried it (per the standing blocked-source-retry protocol, and because the 2026-08-08 NM harvest already found the same NoBot block had loosened for at least one other state) and it now works cleanly: GET `EmbedRateCalc.aspx?Location=SC&cms=https://www.oldrepublictitle.com/` 302-redirects through a session-establishing URL (`/(S(...))/RateCalc.aspx?...`) to a real form, no login/credentials needed. Confirms the 2026-08-08 NM finding that this NoBot block is intermittent/agent-or-session-reputation-based, not a permanent state-level block -- worth retrying for any state still logged NoBot-blocked. Recipe once past the redirect: POST `ddlPolicyCategory=5` (SIMULTANEOUS LOAN & OWNERS, own __EVENTTARGET) to reveal the Owner's/Loan policy-type dropdowns and liability-amount fields; POST `ddlPolicyType1=11528` (OWNERS - BASIC, own __EVENTTARGET); POST `ddlPolicyType2=11535` (SIMUL LOAN, own __EVENTTARGET); POST `txtLiabilityAmt=500000` (Purchase Price, own __EVENTTARGET); POST `txtCrLiabilityAmt=400000` (Loan Amount, own __EVENTTARGET); POST `btnCalculate=Calculate` for the final quote, rendered inline as an HTML results table (`gvwResults`). No personal-data fields anywhere in this flow.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1,170.00 (OWNERS - BASIC, Insurance Amount $500,000.00, standalone Owner's Policy premium before simultaneous-issue allocation)",
+      "loanPolicyPremium": "$960.00 standalone (Lender's Only Policy Premium if purchased alone) / $100.00 simultaneous surcharge (SIMUL LOAN, Insurance Amount $400,000.00, additional charge when issued concurrently with the Owner's Policy)",
+      "other": [
+        {
+          "name": "Grand Total (Owner's + Lender's Policies, issued simultaneously)",
+          "amount": "$1,270.00"
+        },
+        {
+          "name": "Closing Disclosure Formulated Cost Of Owners (the tool's own TRID/CD-line-item allocation: Grand Total minus standalone Lender's-Only premium, i.e. $1,270.00 - $960.00)",
+          "amount": "$310.00"
+        }
+      ],
+      "note": "Premium-only result (no settlement/search/doc-prep line items), consistent with this tool's other state entries already on file (e.g. CT, KY, NM) elsewhere in this survey."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "Crosses SC to 3 calculator-basis providers (WFG, FNF, Old Republic) -- calculator-quoted status. Notable cross-provider convergence: while SC's premium figures differ across all 3 calculator sources (unlike OR's/this same session's SC-FNF-vs-WFG byte-identical match), the presence of 3 independently-operated tools all returning coherent, internally-consistent Owner's/Lender's premium breakdowns for the identical $500k/$400k scenario is itself useful triangulating evidence for a state with a historically thin published-schedule footprint (attorney-closing state, few filed-rate manuals on file). This tool's Closing-Disclosure-formatted Owner's-Policy-line figure ($310.00) is a genuinely new kind of data point not present in any of SC's other calculator or published-schedule sources -- the TRID-convention marginal owner's-policy charge when a lender's policy is issued simultaneously (as opposed to the standalone $1,170.00 Owner's premium if no loan policy were purchased).",
+    "transactionContext": "Old Republic's rate-calculator quote for Owner's and Lender's simultaneous title insurance policies, $500,000 purchase price with a $400,000 loan, statewide South Carolina (no county tiering in this tool)."
   }
 ]

@@ -1926,6 +1926,46 @@ header/field set specifically for this one control before falling back to a brow
 solved: **UT and SC are not counted as having a new provider from this tool this session** (UT
 stays at 1 of 3 via Old Republic only; SC stays at 0 of 3).
 
+**2026-08-09 update — solved. The "silent value-drop" was a replay-script bug, not a server
+behavior.** The root cause was much simpler than the async-postback theory above: the replay
+script's hidden-field extraction was pulling *every* `<input>` tag's name/value, including
+`<input type="submit">` buttons like `btnGeneralNext="Next"`, and carrying that pair forward
+unchanged into every subsequent POST via `dict(hidden)`. A real browser only ever sends the
+name/value of the *specific* submit button that was actually clicked — sending a stale button
+value on every request causes the ASP.NET server to treat each later postback as an implicit
+re-click of that button, which silently fast-forwards/desyncs the wizard state (the page
+advances further than the posted fields alone would justify, so a field entered "too early"
+relative to where the server thinks the flow is gets dropped on the floor — indistinguishable
+from a genuine silent value-drop by symptom alone). Fix: exclude `type="submit"`/`"button"`/
+`"image"`/`"reset"` inputs from the base hidden-field dict entirely, and only add a given
+button's name/value on the one POST that is deliberately "clicking" it. Once fixed, `AmountLoan1`
+echoes back correctly (`value="$400,000.00"`) exactly like `AmountPurchase` always did, with no
+async/UpdatePanel machinery needed at all — a plain synchronous postback, same as every other
+control in this recipe.
+
+With the script fixed, UT and SC's real (previously-unreachable, because the wizard desync never
+let the flow get far enough to expose them) requirements turned out to be ordinary required-field
+questions, not protocol quirks:
+- **SC**: only the already-known `CFPB_IsQualified` question, defaults to "Yes" with no cascade.
+  Result: Owner's Policy Premium (ALTA Homeowner's Policy) **$1,404.00** — byte-identical to the
+  existing WFG entry for the same county/scenario; Loan Policy (concurrent) **$100.00**.
+- **UT**: a genuinely new 3-question CPL-eligibility radio cascade with *no default answer*
+  (`CPLLenderBorrowerEligible` → `CPLBuyerEligible` → `CPLSellerEligible`, each question only
+  appearing in the response once the prior one is answered — a real sequential reveal, not a
+  batch of fields present all at once). Answered each "Yes" (value=1) via its own dedicated
+  postback, mirroring a real user's click-through. Result: Owner's Policy Premium (ALTA Standard
+  Coverage) **$2,262.00**, Loan Policy Premium (ALTA Extended Coverage) **$1,225.00**, Salt Lake
+  County. **Crosses UT to the 3-provider calculator-quoted threshold.**
+
+**Generalizable lesson for any future ASP.NET WebForms replay recipe in this project** (FNF,
+Old Republic's both tools, Knight Barry, Federal Title, Old Republic's second calculator, etc.):
+never blindly carry forward a full `dict(hidden)` extraction that includes submit-type buttons
+across multiple POSTs in a sequence — always strip button/submit/image/reset inputs from the
+"ambient" field set and add a button's name/value explicitly only on the request meant to invoke
+it. This bug likely explains some of this project's other "the server silently ignores/drops
+field X" write-ups elsewhere in this catalog and may be worth a quick audit if any of those are
+revisited.
+
 ## 2026-08-06 session, continued — Western Nevada Title Company (NV) crosses NV's threshold; 3 leads ruled out
 
 Follow-up web-search pass after the FNF breadth harvest above, targeting the 5 states now closest
@@ -2199,3 +2239,116 @@ itemized/GFE-style fees beyond the premium-only figures on file; (2) apply WFG's
 technique to Pioneer Title Agency's Nuxt bundle for UT; (3) Investors Title (SC) is worth
 revisiting the moment TitleCapture's own API is ever cracked, since it's a genuine multi-state
 underwriter, not a shared-platform reseller.
+
+## 2026-08-09 session — all 4 remaining below-threshold states (SC, LA, UT, MS) cross the 3-provider threshold; FNF postback-quirk bug fixed; Old Republic's second tool's NoBot block found to have lifted for SC/LA/MS
+
+### `SettlementStatementVersion: "HUD2010"` — tried, dead end (as flagged above)
+Tested against WFG's `estimatefeesforsellernet` endpoint for SC and LA. Both returned `hudFees: []`
+and all 4 `gfe` boxes at `$0` (`GFE Box 4/5/7/8`), with `premiums.ownersPremium` unchanged from the
+existing `"CD"`-mode figures already on file. No richer data than what's already recorded — this
+variant is a dead end, not worth trying for UT/MS or any other state.
+
+### FNF postback-quirk bug — root cause and fix (see PROGRESS.md's parallel writeup for the summary)
+The "UT and SC — unsolved AmountLoan1 postback quirk" section above (originally logged
+2026-08-06) is now solved — full technical detail moved into that section directly rather than
+duplicated here. One-line summary: it was a replay-script bug (submit buttons leaking into every
+POST as if re-clicked), not a real server-side block. Fixing it unlocked **UT's 3rd FNF-sourced
+provider** (crosses UT to threshold) and **SC's 2nd** (still below threshold at that point, until
+the Old Republic find below crossed it too).
+
+### Old Republic's second tool (`ortratecalculator.oldrepublictitle.com`) — the IN/SC/LA NoBot block has (at least partially) lifted
+The 2026-07-29/2026-08-01 sessions logged `Location=IN`/`Location=SC`/`Location=LA` as hard-blocked
+by this tool's NoBot anti-bot control ("You are not authorized to access the site. Code: 2"), and
+the 2026-08-08 NM session separately found `Location=NM` was **not** blocked, flagging this as
+possibly agent/session-reputation-based rather than a blanket per-state policy. This session
+retried SC and LA (per the standing blocked-source-retry protocol, extended here to cover this
+calculator-specific block) and found **both now work cleanly** — a plain GET with a realistic
+`User-Agent` and `Referer` header, no special cookie priming needed, 302-redirects through a
+session-establishing URL straight to a real, working form. Also tried MS for the first time (not
+previously attempted on this tool) and it worked immediately too. **IN itself was not retried this
+session** (UT crossed its threshold via FNF instead, making an IN retry lower-priority than it
+would otherwise be) — flagged as the next thing to try given this same loosened-block finding.
+
+#### SC/LA: statewide, has a combined "simultaneous" category — richest output
+Unlike `ortconline.com/Web2`'s county-list-driven UI, this tool's per-state form varies
+structurally by state — SC uses a `ddlPolicyCategory` `<select>` (values: `1`=OWNERS, `4`=LOAN,
+`5`=SIMULTANEOUS LOAN & OWNERS) that, once set to `5`, reveals `ddlPolicyType1`/`ddlPolicyType2`
+policy-form dropdowns (`11528`=OWNERS-BASIC, `11535`=SIMUL LOAN for SC) plus `txtLiabilityAmt`
+(Purchase Price) and `txtCrLiabilityAmt` (Loan Amount) fields. LA instead uses a `RadPolicyCategory`
+radio group (`49`=PURCHASE/SALE, already checked by default) whose selected category *already*
+exposes both liability fields directly with no separate category-then-dropdown two-step needed —
+each state's own form must be inspected fresh rather than assuming one fixed field set, the same
+lesson already learned for `ortconline.com`'s per-state OR/HI/MO county-list quirks. Recipe (SC):
+GET `EmbedRateCalc.aspx?Location=SC&cms=<referer>` → POST `ddlPolicyCategory=5` (own
+`__EVENTTARGET`) → POST `ddlPolicyType1=11528` (own `__EVENTTARGET`) → POST `ddlPolicyType2=11535`
+(own `__EVENTTARGET`) → POST `txtLiabilityAmt=500000` (own `__EVENTTARGET`) → POST
+`txtCrLiabilityAmt=400000` (own `__EVENTTARGET`) → POST `btnCalculate=Calculate`. Recipe (LA):
+GET → POST `txtLiabilityAmt=500000` (own `__EVENTTARGET`) → POST `txtCrLiabilityAmt=400000` (own
+`__EVENTTARGET`) → POST `btnCalculate=Calculate` — no category-selection step needed at all. Both
+states' result table (`gvwResults`) returns a 3-column breakdown (Insurance Amount / Lenders Only
+Policy / Owners + Lenders Policies) plus a `lblAdditionOwners`-labeled "Closing Disclosure
+Formulated Cost Of Owners" figure — a genuinely new kind of data point not seen from any other
+calculator source in this survey: the TRID-convention marginal Owner's-Policy-line charge when a
+Lender's Policy is issued simultaneously (computed by the tool itself as Grand-Total-minus-
+standalone-Lender's-premium). Results: **SC** — Owner's standalone $1,170.00, Lender's standalone
+$960.00, simultaneous surcharge $100.00, Grand Total $1,270.00, CD-line Owner's figure $310.00.
+**LA** — Owner's standalone $2,345.20 (byte-identical to the existing FNF entry — the strongest
+cross-underwriter convergence found anywhere in this survey), Lender's standalone $1,429.60,
+simultaneous surcharge $100.00, Grand Total $2,445.20, CD-line Owner's figure $1,015.60.
+
+#### MS: no simultaneous category — two standalone quotes instead of one combined
+MS's `RadPolicyCategory` only offers OWNERS/LOAN/HOME EQUITY/MISCELLANEOUS — no combined
+simultaneous-issue option exists for this state on this tool. Harvested as two independent
+single-category calculations: OWNERS (default-checked) with `txtLiabilityAmt=500000` →
+`btnCalculate` gives a 2-column result table (Insurance Amount / Owners Only Policy) → Owner's
+Grand Total **$2,000.00**; separately, POST `RadPolicyCategory=2` (LOAN, own `__EVENTTARGET`) to
+swap the visible field from `txtLiabilityAmt` to `txtCrLiabilityAmt`, then `txtCrLiabilityAmt=
+400000` → `btnCalculate` gives Lender's Grand Total **$1,200.00**. **New gotcha**: posting
+`txtCrLiabilityAmt` while still on the OWNERS category (i.e. without first switching to LOAN)
+throws a hard, uninformative HTTP 500 (`ErrorPage500.aspx`) — the field genuinely isn't present in
+that category's rendered DOM, the identical "posting a field not in the DOM breaks the postback"
+failure mode already catalogued for `ortconline.com`'s `ReoList`/OR's `LienPayoffTextbox` controls
+elsewhere in this project. Always re-derive which fields actually exist in the current response
+before posting to them, per that same standing lesson — don't assume a fixed field set carries
+across categories any more than it carries across states.
+
+### Independent-agency search for SC's 3rd provider — dead ends, moot once Old Republic worked
+Before finding the Old Republic loosened-block fix above, this session also tried the standard
+web-search technique for an independent SC agency provider: TitleTap appids `448` ("Signature
+Title & Escrow Services") and `599` ("Title Insights LLC") both surfaced in SC-flavored search
+results but resolved to Florida via their own `getNetSheetConfig` config (`"state":"FL"`) — the
+same misattribution pattern logged for this state cluster in 3 prior sessions. Trident Land
+Transfer's own `tridentland.com/title-rate-calculator/` (previously an `a=15` MyTitleRates.com
+tenant known to serve NJ/PA) now returns a bare HTTP 403 on direct fetch — Cloudflare-blocked,
+worth a browser-driven retry if this agency's SC coverage is ever worth confirming. "The Title
+Resource Network" (`thetitleresourcenetwork.com`) and "Key Title LLC" (`keytitlellc.com/
+calculator`) both surfaced as SC-search leads but are respectively a Squarespace marketing page
+(no calculator, just a generic country-code `<select>` that happened to false-positive-match "SC"
+as the ISO code for Seychelles) and a Wix SPA with no static calculator markup — neither pursued
+further. None of this was ultimately needed once the Old Republic retry succeeded, but logged here
+so a future session doesn't repeat the same search.
+
+### Pioneer Title Agency's Nuxt netsheet tool (UT) — reclassified from promising-jsOnly to confirmed-gated
+The 2026-08-08 session logged this as a jsOnly lead worth a future lazy-chunk-fetch attempt (its
+main bundle exposed only `/api/auth/*` routes, implying the real netsheet-computation endpoint
+might live in an unfetched route-specific chunk). This session fetched all 38 of the site's
+`_nuxt/*.js` chunks directly and found the real answer: the route table (in `tpYJNdbc.js`)
+explicitly marks both `/netsheet/buyer` and `/netsheet/seller` (and their `/:id()` detail variants)
+with `middleware:"auth"`, and a plain fetch of either path now server-side-redirects straight to
+`/login` (HTTP 302) rather than serving the SPA shell at all — a hard auth gate, not merely an
+unfetched lazy chunk. Reclassified from jsOnly to **gated**; no further pursuit recommended for
+this specific tool. Moot for this session's purposes since UT crossed its threshold via the fixed
+FNF calculator instead.
+
+### Recommendation for next session
+The calculator-harvest tracker's original "complete (scarce)" target list has no below-threshold
+states left as of this session. Priorities going forward: (1) retry Old Republic's second tool for
+**Indiana** (`Location=IN`), the one remaining state from the original 2026-07-29 NoBot-block
+finding not yet retried under the new loosened-block discovery; (2) a browser-driven session to
+finally crack TitleCapture and/or Qualia Connect, both confirmed to recur across many independent
+agencies nationwide (would likely unlock several states at once, more than any single-agency find);
+(3) revisit Stewart's `/api/SRC/quote` and First American's FACC `Calculator/Next` endpoint with a
+real browser network-tab capture, both individually-mapped-but-unsolved since 2026-07-23/2026-07-24;
+(4) for states already past threshold, consider a "richness" pass — many entries (especially WFG's)
+are premium-only, and a state with a full itemized settlement/closing/doc-prep breakdown from a
+4th+ provider would meaningfully improve evidence quality even without moving the threshold needle.
