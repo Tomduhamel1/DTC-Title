@@ -2192,5 +2192,26 @@ still vary and matter).
   in this catalog are largely exhausted, or (c) apply the newly-reconfirmed "NoBot blocks can
   loosen over time" finding to retry Old Republic's second tool (`Location=<code>`) against IN,
   which was blocked in the same original 2026-07-29 finding as SC and has not been retried since.
-  Freshness and blocked-source-retry passes were not run this session — time was spent entirely on
-  the calculator-harvest breadth push (4 states crossing threshold); due for a future session.
+  **Blocked-source retries** (one quick check each): AZ DIFI still HTTP 403; CATIC CT
+  (`catic.com/state-resources/connecticut`) HTTP 403 this run (still fluctuating 200/403 across
+  sessions, underlying FlippingBook-viewer blocker unchanged either way); Jackson & Scott AL
+  (`realestatelclosings.com/closing-costs-calculator/`) HTTP 403, consistent with recent sessions'
+  WAF-block finding. No status change on any of the three. Also spot-checked whether Old
+  Republic's second calculator tool's NoBot block (see above) has lifted for **Indiana**
+  (`Location=IN`, the one state from the original 2026-07-29 finding not yet retried) — confirmed
+  it has (clean 200 through the session-establishing redirect, same as SC/LA/MS above) — but IN
+  is already calculator-quoted (3 providers) so this isn't pursued as a 4th-provider harvest this
+  session; flagged as a quick, already-confirmed-working pickup for a future richness pass.
+
+  **Freshness spot-check** (5 oldest-retrieved VA published sources, not previously re-checked in
+  any prior rotation — Republic Title Inc's fees page, Federal Title's homebuying/fees page,
+  Lighthouse Title's Seller PDF via federaltitle.com, WFG's VA rate manual PDF, Stewart's VA rate
+  manual PDF via virtualunderwriter.com): 3 of 5 returned a clean HTTP 200. The Stewart/
+  virtualunderwriter.com PDF 403'd on a plain fetch but returned HTTP 200 with a browser-style
+  `User-Agent` header — a WAF/bot-gate, not a dead link (matching this project's existing CATIC
+  CT/AZ-Pioneer-Title precedent of not flagging fluctuating WAF blocks as stale). The Lighthouse
+  Title PDF (`federaltitle.com/wp-content/uploads/2011/02/Seller.Lighthouse-Title.VA_.pdf`) 403'd
+  even with a browser `User-Agent` — response headers show `x-vercel-mitigated: deny` (a Vercel
+  bot-mitigation block on the hosting platform itself, not a 404/removed-file signal) — same
+  category as the CATIC/AZ WAF blocks, so also **not** marked `{stale: true}` per the existing
+  convention, but flagged here for monitoring in case it hardens into a permanent block.
