@@ -313,12 +313,13 @@ export function getSampleFeeReport(): FeeReport {
     isSample: true,
     lineItems: [
       {
+        // Premiums are never compared — roughly equal across providers in
+        // every state (policy note in marketBaseline.ts).
         id: 'lenders-title',
         label: "Lender's Title Insurance",
         category: 'title-settlement',
         ourCost: 760,
-        isFixed: false,
-        typicalRange: { low: 950, high: 1444 },
+        isFixed: true,
         feeSource: 'underwriter',
         savingsSource: 'title_related',
         description: 'A-rated underwriter coverage',
@@ -378,9 +379,9 @@ export function getSampleFeeReport(): FeeReport {
 
 // Mock generator used in dev/preview before the API is wired in.
 // Scales numbers off home value so different inputs produce different
-// outputs. Comparison ranges track marketBaseline: premium ×1.25–1.9
-// (interim filed-state multipliers) and GA's evidence-derived service band
-// (1.09–1.2); callers should pass 'GA' (see getSampleFeeReport).
+// outputs. Comparison ranges track marketBaseline: premiums carry no
+// comparison (roughly equal across providers everywhere) and service lines
+// follow GA's evidence-derived band; callers should pass 'GA'.
 export function getMockFeeReport(input: {
   state: string
   homeValue: number
@@ -388,10 +389,9 @@ export function getMockFeeReport(input: {
   transactionType: 'purchase' | 'refinance'
 }): FeeReport {
   const loan = input.loanAmount ?? Math.round(input.homeValue * 0.8)
-  // Title insurance scales loosely with loan size.
+  // Title insurance scales loosely with loan size. Premiums are never
+  // compared (roughly equal across providers — see marketBaseline.ts).
   const lenderTitleOurs = Math.round(loan * 0.0019)
-  const lenderTitleMarketLow = Math.round(lenderTitleOurs * 1.25)
-  const lenderTitleMarketHigh = Math.round(lenderTitleOurs * 1.9)
 
   const items: FeeLineItem[] = [
     {
@@ -399,8 +399,7 @@ export function getMockFeeReport(input: {
       label: "Lender's Title Insurance",
       category: 'title-settlement',
       ourCost: lenderTitleOurs,
-      isFixed: false,
-      typicalRange: { low: lenderTitleMarketLow, high: lenderTitleMarketHigh },
+      isFixed: true,
       feeSource: 'underwriter',
       savingsSource: 'title_related',
       description: 'A-rated underwriter coverage',
@@ -479,11 +478,7 @@ export function getMockFeeReport(input: {
       label: "Owner's Title Insurance",
       category: 'title-settlement',
       ourCost: Math.round(input.homeValue * 0.0024),
-      isFixed: false,
-      typicalRange: {
-        low: Math.round(input.homeValue * 0.0024 * 1.25),
-        high: Math.round(input.homeValue * 0.0024 * 1.9),
-      },
+      isFixed: true,
       feeSource: 'underwriter',
       savingsSource: 'title_related',
       description: 'Optional but strongly recommended',

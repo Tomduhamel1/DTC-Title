@@ -11,7 +11,6 @@ import { betterCloseServiceFee } from './betterCloseFees'
 import type { FeeCategory, FeeLineItem, FeeReport, FeeSource } from './feeReport'
 import {
   ABSTRACT_ONLY_PASSTHROUGH_STATES,
-  PREMIUM_RANGE_FILED,
   SEARCH_PASSTHROUGH_STATES,
   premiumsAreUniform,
   serviceBandFor,
@@ -155,8 +154,11 @@ function withTypicalRange(
   if (category === 'recording' || category === 'taxes') {
     return { isFixed: true }
   }
-  const isPremiumLine = isPremiumLabel(label)
-  if (isPremiumLine && premiumsAreUniform(stateCode)) {
+  // Premiums & CPL: roughly equal across providers in EVERY state (policy
+  // note in marketBaseline.ts, Tom 2026-08-10) — never compared, never
+  // counted toward savings. Uniform-rate states additionally get the
+  // "Set by {state}" label via the caller's feeSource handling.
+  if (isPremiumLabel(label)) {
     return { isFixed: true }
   }
   // Boundary symmetry (July 24 audit): where the state's market bills
@@ -165,7 +167,7 @@ function withTypicalRange(
   // both sides, and claiming savings on a line the market treats as
   // pass-through would break the symmetric-stack convention.
   const st = stateCode?.toUpperCase()
-  const isSearchLine = /search|abstract|exam|opinion|title cert/i.test(label) && !isPremiumLine
+  const isSearchLine = /search|abstract|exam|opinion|title cert/i.test(label)
   if (isSearchLine && st) {
     if (SEARCH_PASSTHROUGH_STATES.has(st)) return { isFixed: true }
     if (ABSTRACT_ONLY_PASSTHROUGH_STATES.has(st) && /abstract/i.test(label)) return { isFixed: true }
@@ -173,9 +175,7 @@ function withTypicalRange(
   // Service lines all use the state's evidence-derived band (published or
   // inferred — see marketBaseline). Applying the same band to every service
   // line keeps the package-level sums equal to band × our service total.
-  const range = isPremiumLine
-    ? PREMIUM_RANGE_FILED
-    : serviceBandFor(stateCode, transactionType, zip)
+  const range = serviceBandFor(stateCode, transactionType, zip)
   return {
     isFixed: false,
     typicalRange: {

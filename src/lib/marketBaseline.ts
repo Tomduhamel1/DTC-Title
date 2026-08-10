@@ -21,12 +21,13 @@
 // Verified July 2026. Sources: tdi.texas.gov, patitleratingbureau.org,
 // tirsa.org, netsheetcalc.com/articles/promulgated-rate-title-insurance.
 //
-// For 'filed' states the comparison ranges below are CONSERVATIVE INTERIM
-// multipliers on our own price — a placeholder until per-state published rate
-// cards are curated into this module (follow-up to the July 2026 pricing
-// audit). They are deliberately tighter than the ranges they replaced, and
-// identical for purchase and refinance (the old refi ranges were inflated
-// for effect — see the audit).
+// PREMIUM COMPARISON POLICY (Tom, 2026-08-10): title insurance premiums are
+// roughly equal across competitors in EVERY state — filed states included —
+// so premium lines are never compared and never counted toward savings,
+// anywhere. (The former PREMIUM_RANGE_FILED ×1.25–1.9 interim multiplier is
+// retired; it had no evidence behind it.) The regime map below now serves
+// one purpose: uniform-rate states label premiums "Set by {state}" in the
+// UI, while filed states simply show no comparison.
 
 import { resolveStateCode } from './stateSavings'
 
@@ -50,9 +51,10 @@ export function premiumRegimeFor(stateCode: string | undefined | null): PremiumR
 }
 
 /**
- * True when title insurance premiums in this state are identical across
- * providers (promulgated or bureau-uniform) — no premium savings may be
- * claimed there; only service fees are comparable.
+ * True when title insurance premiums in this state are set identically by
+ * statute/bureau (promulgated or bureau-uniform). Premiums are never compared
+ * or counted toward savings in ANY state (see policy note at top of file) —
+ * this now only drives the "Set by {state}" premium label in the UI.
  */
 export function premiumsAreUniform(stateCode: string | undefined | null): boolean {
   return premiumRegimeFor(stateCode) !== 'filed'
@@ -62,12 +64,6 @@ export interface ComparisonRange {
   low: number
   high: number
 }
-
-// Interim comparison multipliers for PREMIUM lines in filed-rate states.
-// Applied to our cost; the LOW end drives every claimed savings number
-// (see feeReport.conservativeLineSavings). Premium-manual evidence exists in
-// data/market-fees (research branch) for a future per-state premium fold-in.
-export const PREMIUM_RANGE_FILED: ComparisonRange = { low: 1.25, high: 1.9 }
 
 // ── Service-fee comparison bands (July 2026 market-fee survey) ────────────
 //

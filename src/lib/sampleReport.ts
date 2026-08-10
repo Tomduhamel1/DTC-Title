@@ -5,20 +5,14 @@
 //
 // The line items and our-cost dollars are ILLUSTRATIVE (labeled "Sample
 // report" in the UI); what IS state-accurate is the comparison logic:
-//  - premium lines follow the state's rate regime — state-set (no
-//    comparison) in promulgated/bureau states, interim filed-state
-//    multipliers elsewhere;
+//  - premium lines are never compared in any state (roughly equal across
+//    providers — policy note in marketBaseline.ts); uniform-rate states
+//    additionally show "Set by {state}";
 //  - service lines use the state's evidence-derived service band
 //    (published / calculator / inferred — same bands as real quotes).
-// So a CA visitor sees a CA-shaped sample and a TX visitor correctly sees
-// premiums marked "Set by TX" instead of a fabricated premium saving.
 
 import type { FeeLineItem, FeeReport } from './feeReport'
-import {
-  PREMIUM_RANGE_FILED,
-  premiumsAreUniform,
-  serviceBandFor,
-} from './marketBaseline'
+import { premiumsAreUniform, serviceBandFor } from './marketBaseline'
 import { resolveStateCode } from './stateSavings'
 
 const round = Math.round
@@ -28,6 +22,8 @@ export function buildSampleFeeReport(state?: string | null): FeeReport {
   const uniform = premiumsAreUniform(code)
   const band = serviceBandFor(code)
 
+  // Premiums are never compared (roughly equal across providers everywhere);
+  // uniform-rate states get the "Set by {state}" label.
   const premium = (id: string, label: string, ourCost: number): FeeLineItem =>
     uniform
       ? {
@@ -44,11 +40,7 @@ export function buildSampleFeeReport(state?: string | null): FeeReport {
           label,
           category: 'title-settlement',
           ourCost,
-          isFixed: false,
-          typicalRange: {
-            low: round(ourCost * PREMIUM_RANGE_FILED.low),
-            high: round(ourCost * PREMIUM_RANGE_FILED.high),
-          },
+          isFixed: true,
           feeSource: 'underwriter',
           savingsSource: 'title_related',
           description: 'A-rated underwriter coverage',
