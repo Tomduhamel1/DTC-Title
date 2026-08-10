@@ -192,14 +192,14 @@ export default function FeeReportTable({
       </div>
 
       <div className="px-7 py-3 text-[11px] text-gray-400 italic text-center border-t border-gray-100">
-        Estimate. Recording fees — and, in states with promulgated or uniform
-        rates, title insurance premiums — are set by the state and the same
-        regardless of provider; we never count those toward savings. Service
-        charges are compared as a complete package, since providers itemize
-        the same work differently. &ldquo;Typical&rdquo; ranges reflect our
-        estimate of local market pricing, and savings are measured against
-        the low end of that range. BetterClose Bucks is an introductory
-        promotional credit from BetterClose, applied at closing.
+        Estimate. Title insurance premiums are essentially the same across
+        providers, and recording fees and taxes are set by the government —
+        we never count any of those toward savings. Service charges are
+        compared as a complete package, since providers itemize the same
+        work differently. &ldquo;Typical&rdquo; ranges reflect our estimate
+        of local market pricing, and savings are measured against the low
+        end of that range. BetterClose Bucks is an introductory promotional
+        credit from BetterClose, applied at closing.
       </div>
     </div>
   )
