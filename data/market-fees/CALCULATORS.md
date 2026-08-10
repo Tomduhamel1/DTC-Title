@@ -2397,14 +2397,19 @@ per-tenant-independence pattern already established for MyTitleRates.com/TitleCa
 this catalog. See MN.json/MN.md for the full harvested entry — MN's 4th calculator-basis provider
 (richness addition; MN crossed the 3-provider threshold back on 2026-08-02).
 
-**Unresolved lead**: a second, previously-unlisted slug on the same platform, `RateCalculator/
-titleprofessionals/rate-Calculator.htm`, was also found in the directory listing but its static HTML
-carries no county dropdown, state name, company name, or logo filename anywhere in the fetched markup
-(page `<title>` is the generic "RESPA-Rate-Calculator") — company/state attribution was not possible
-from a plain fetch this session. Flagged for a future session: either fetch its companion `ajax`/
-config endpoint directly (by analogy to `RteCalc`'s `ajax.asp`, likely a sibling script in the same
-directory not yet located) or grep its full JS bundle for a hardcoded company name/address the way
-Modern Title Group's constants were found in the 2026-07-24 session.
+**Resolved as a duplicate, not a new provider**: a second, previously-unlisted slug on the same
+platform, `RateCalculator/titleprofessionals/Rate-Calculator.htm`, was also found in the directory
+listing. Its static HTML carries no county dropdown, state name, or company name (page `<title>` is
+the generic "RESPA-Rate-Calculator"), but its companion JS bundle
+(`RESPA-Rate-Calculator_files/resparc.js`) contains the literal string `"Title Professionals' RESPA
+Calculator"` and directs users to `www.TitleProfessionals.com`. That domain 200-redirects straight to
+`mnsecuredtitle.com` — i.e. **Title Professionals is a former/alternate brand name for Minnesota
+Secured Title**, already on file as MN's 3rd calculator-basis provider (and itself the `mnsecured`
+Title Midwest tenant). This tool is also a legacy 2008-era pre-2010-RESPA-reform GFE-line-item
+calculator (`g_offln_msg` references "GFE #4", not the modern Loan Estimate/Closing Disclosure
+format used elsewhere in this catalog) — likely dead/superseded by the same company's newer
+`mnsecured` tenant already harvested. Not a distinct provider; not re-harvested. No further pursuit
+needed.
 
 ### Recommendation for next session
 Unchanged in substance from the 2026-08-09 session's own recommendation: (1) a browser-driven session
@@ -2413,7 +2418,8 @@ target; (2) continue the richness pass on already-quoted-but-thin/premium-only s
 NM, NV, HI, OR, NE, SC, LA, MS, UT) using the same "re-scan already-catalogued shared platforms'
 directory listings for uncatalogued tenant slugs" technique that found `RteCalc` this session — Title
 Midwest, MyTitleRates.com, and NetSheetCalc/TitleTap have all shown this pattern (new tenants appear
-over time on platforms already fully catalogued in a prior pass); (3) identify the `titleprofessionals`
-tenant's state/company before attempting to harvest it. Drop Old Republic's `Location=IN` from the
+over time on platforms already fully catalogued in a prior pass), though always cross-check a "new"
+slug's actual company/domain before harvesting (`titleprofessionals` above looked new but turned out
+to be a legacy rebrand of an already-on-file provider). Drop Old Republic's `Location=IN` from the
 standing blocked-source-retry rotation (see above — now a confirmed durable block, not a
 loosening-over-time candidate like SC/LA/MS turned out to be).

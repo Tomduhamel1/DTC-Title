@@ -2247,11 +2247,12 @@ still vary and matter).
   standard scenario's Hennepin default to Olmsted per the scenario's own footprint-substitution
   allowance, since this specific tenant's priced service area is evidently southeastern MN rather than
   the Twin Cities metro. This is MN's 4th calculator-basis provider (already past the 3-provider
-  threshold since 2026-08-02) — see MN.json/MN.md for full detail. A second, unidentified tenant slug
-  on the same platform (`titleprofessionals`) was found but could not be attributed to any specific
-  state/company from its static markup (no county dropdown, state name, or company name present in the
-  fetched HTML) — not pursued further this session, flagged in CALCULATORS.md for a future session to
-  identify via a deeper page-source read.
+  threshold since 2026-08-02) — see MN.json/MN.md for full detail. A second tenant slug on the same
+  platform (`titleprofessionals`) was also found and investigated, but resolved to a dead end: its JS
+  bundle identifies it as "Title Professionals' RESPA Calculator," and `titleprofessionals.com`
+  redirects straight to `mnsecuredtitle.com` — a legacy/rebrand alias of Minnesota Secured Title,
+  already on file as MN's 3rd calculator-basis provider — not a distinct 5th provider. See
+  CALCULATORS.md for the full resolution.
 
   **Freshness spot-check** (5 oldest-retrieved published sources, all from states never previously
   included in any prior freshness-pass rotation — ID/Idaho DOI short-term escrow rates, IA/Iowa
@@ -2270,5 +2271,7 @@ still vary and matter).
   session to finally crack TitleCapture and/or Qualia Connect (both confirmed to recur across many
   independent agencies nationwide, likely a multi-state unlock); (b) continue the "richness pass" on
   already-quoted states, especially the many still-premium-only entries (WFG/FNF-heavy states like NM,
-  NV, HI, OR, NE, SC, LA, MS, UT); (c) identify the unattributed `titleprofessionals` Title Midwest
-  tenant slug found this session.
+  NV, HI, OR, NE, SC, LA, MS, UT), applying the same "re-scan already-catalogued shared platforms for
+  new tenant slugs" technique that found `RteCalc` this session — but cross-check each "new" slug's
+  actual company/domain before harvesting, since `titleprofessionals` looked new but turned out to be
+  a legacy rebrand of an already-on-file provider (Minnesota Secured Title).
