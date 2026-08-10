@@ -28,7 +28,7 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | MI | 3 (Modern Title Group — Ann Arbor/Washtenaw County, statewide formula; Knight Barry Title Group — statewide formula; Prestige Title Insurance Agency — Lenawee County, via TitleTap's newer getNetSheetConfig backend) | **calculator-quoted (3 providers)** | 2026-08-02 |
 | PA | 3 (ALT Title, TitleWorks, Trident Land Transfer — all Philadelphia County) | **calculator-quoted (3 providers)** | 2026-07-25 |
 | NJ | 3 (Trident Land Transfer — statewide, no county tiering; Allstates Title Service — statewide, via MyTitleRates.com `a=78`; The Closing Partner, LLC — statewide, NetSheetCalc/TitleTap `appid=638`) | **calculator-quoted (3 providers)** | 2026-08-03 |
-| MN | 3 (DCA Title, Knight Barry Title Group — both Hennepin County/Minneapolis; Minnesota Secured Title — Hennepin County, via the newly-discovered Title Midwest platform) | **calculator-quoted (3 providers)** | 2026-08-02 |
+| MN | 4 (DCA Title, Knight Barry Title Group — both Hennepin County/Minneapolis; Minnesota Secured Title — Hennepin County, via the Title Midwest platform; Rochester Title & Escrow — Olmsted County, via a distinct Title Midwest tenant with its own independently-configured fee table) | **calculator-quoted (4 providers)** | 2026-08-10 |
 | WI | 3 (Knight Barry Title Group — Milwaukee County; Homestead Title Company LLC — Dane County/Madison, formula read directly from the page's own client-side JS; Avenue Title — Wausau/Marathon County, via NetSheetCalc/TitleTap app_id 235) | **calculator-quoted (3 providers)** | 2026-08-05 |
 | VA | 3 (Bon Air Title Agency + Appomattox, both TitleClose.com tenants, Fairfax; Independent Title & Escrow LLC, NetSheetCalc/TitleTap, Fairfax) | **calculator-quoted (3 providers)** | 2026-07-26 |
 | MD | 3 (Federal Title & Escrow Company — Montgomery County, own first-party ASP.NET tool; Allstates Title Service — Montgomery County, via MyTitleRates.com `a=78`; Tri-State Signature Settlements — Montgomery County, via MyTitleRates.com `a=40`) | **calculator-quoted (3 providers)** | 2026-08-03 |
@@ -2215,3 +2215,60 @@ still vary and matter).
   bot-mitigation block on the hosting platform itself, not a 404/removed-file signal) — same
   category as the CATIC/AZ WAF blocks, so also **not** marked `{stale: true}` per the existing
   convention, but flagged here for monitoring in case it hardens into a permanent block.
+
+- **2026-08-10: Old Republic's `Location=IN` retry, MN gains a 4th (richness) calculator provider,
+  standard freshness/blocked-source passes.** Per the 2026-08-09 session's own recommendation, retried
+  Old Republic's second calculator tool (`ortratecalculator.oldrepublictitle.com`) against
+  `Location=IN` — the one state from the original 2026-07-29 NoBot-anti-bot-block finding not yet
+  retried under the newer "the block loosens over time/per-state" discovery that unlocked SC/LA/MS
+  the prior session. **Result: still hard-blocked** — `EmbedRateCalc.aspx?CallingApp=PUBLIC&Location=IN`
+  returns the identical "You are not authorized to access the site. Code: 2" NoBot error, byte-for-byte
+  the same as the original 2026-07-29 finding, tried with a realistic browser `User-Agent` and a
+  `Referer` pointing at the tool's own landing page. IN remains at its existing 3 calculator-basis
+  providers (Agency Title, Momentum Title Agency, Rounsavall Title Group) — no status change; this
+  specific state/tool combination should be considered durably blocked rather than retried again
+  absent a new technique (e.g. a browser-driven session establishing a longer-lived session/cookie
+  history first).
+
+  With the original 38-state below-threshold target list fully cleared as of 2026-08-09, this
+  session's calculator-harvest time was redirected to the "richness pass" the prior session
+  recommended (already-quoted states whose entries are thin or premium-only). Re-examined
+  `forms.titlemidwest.com`'s ("Title Midwest") open directory listing for tenant slugs not harvested
+  in the 2026-08-02 session that discovered the platform, and found a previously-uncatalogued one,
+  **`RteCalc`** — **Rochester Title & Escrow** (Rochester, MN, Olmsted County). Same plain
+  unauthenticated JSON-GET recipe as the existing Minnesota Secured Title (`mnsecured`) tenant, but a
+  distinct, independently-configured fee table: querying this tenant with Hennepin/Dakota/Ramsey
+  County codes (MN's 3 largest metro counties) all returned a generic "Call For Rates" fallback tier,
+  while Olmsted County (this agency's own home county) returned a fully-priced, richly itemized quote
+  — Closing Fee $175, Title Evidence $220, Title Examination $175, Name & Assessment Search $50, Plat
+  Services $80, Recording Services Fee $25, Courier Fee $40, Delivery Service Fee $40, Lender's Title
+  Insurance Premium $1,125, Owner's Title Insurance Premium $587.50 (7 non-premium line items, the
+  richest single-tenant breakdown found on this platform to date). County substituted from the
+  standard scenario's Hennepin default to Olmsted per the scenario's own footprint-substitution
+  allowance, since this specific tenant's priced service area is evidently southeastern MN rather than
+  the Twin Cities metro. This is MN's 4th calculator-basis provider (already past the 3-provider
+  threshold since 2026-08-02) — see MN.json/MN.md for full detail. A second, unidentified tenant slug
+  on the same platform (`titleprofessionals`) was found but could not be attributed to any specific
+  state/company from its static markup (no county dropdown, state name, or company name present in the
+  fetched HTML) — not pursued further this session, flagged in CALCULATORS.md for a future session to
+  identify via a deeper page-source read.
+
+  **Freshness spot-check** (5 oldest-retrieved published sources, all from states never previously
+  included in any prior freshness-pass rotation — ID/Idaho DOI short-term escrow rates, IA/Iowa
+  Opportunity portal rate schedule, ME/WFG Maine rate manual PDF, MT/Stewart Montana rate manual PDF
+  via virtualunderwriter.com, ND/Stewart North Dakota rate manual PDF via virtualunderwriter.com, all
+  originally retrieved 2026-07-22): all 5 returned a clean HTTP 200 with a standard browser
+  `User-Agent` — no `{stale: true}` flags needed this session.
+
+  **Blocked-source retries** (one quick check each): AZ DIFI (`difi.az.gov/title-insurance-rate-filings`)
+  still HTTP 403; CATIC CT (`catic.com/state-resources/connecticut`) HTTP 403 this run (still
+  fluctuating 200/403 across sessions, underlying FlippingBook-viewer blocker unchanged either way);
+  Jackson & Scott AL (`realestatelclosings.com/closing-costs-calculator/`) HTTP 403, consistent with
+  recent sessions' WAF-block finding. No status change on any of the three.
+
+  **Next session priority**: unchanged from 2026-08-09's own recommendation — (a) a browser-driven
+  session to finally crack TitleCapture and/or Qualia Connect (both confirmed to recur across many
+  independent agencies nationwide, likely a multi-state unlock); (b) continue the "richness pass" on
+  already-quoted states, especially the many still-premium-only entries (WFG/FNF-heavy states like NM,
+  NV, HI, OR, NE, SC, LA, MS, UT); (c) identify the unattributed `titleprofessionals` Title Midwest
+  tenant slug found this session.

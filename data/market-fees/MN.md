@@ -188,3 +188,23 @@ crosses MN to 3 calculator-basis providers (DCA Title, Knight Barry, Minnesota S
 multi-state find — see CALCULATORS.md's 2026-08-02 entry: its open directory listing exposes 25+
 tenant slugs across MN, MO, KS, NE, and TX, several of which were harvested the same session for
 other states (see MO.json's Secured Title of Kansas City entry).
+
+**Update 2026-08-10 — 4th provider (richness pass, MN already above threshold).** Re-checked
+`forms.titlemidwest.com`'s open directory listing for previously-uncatalogued tenant slugs and found
+**Rochester Title & Escrow** (`RteCalc`), not seen in the 2026-08-02 session's harvest pass. Same
+plain-JSON-GET recipe as Minnesota Secured Title's `mnsecured` tenant, but a distinct fee table:
+querying this tenant with Hennepin/Dakota/Ramsey County codes all returned its generic "Call For
+Rates" fallback tier (this agency's own priced footprint is evidently southeastern MN, not the Twin
+Cities), so Olmsted County (Rochester, this agency's home county) was substituted per the standard
+scenario's footprint-substitution allowance. Result at $500k/$400k, Olmsted County: Closing Fee
+$175.00, Title Evidence $220.00, Title Examination $175.00, Name & Assessment Search $50.00, Plat
+Services $80.00, Recording Services Fee $25.00, Courier Fee $40.00, Delivery Service Fee $40.00,
+Lender's Title Insurance Premium $1,125.00, Owner's Title Insurance Premium $587.50 (combined Tier-1
+title insurance total $1,712.50) — the richest single-tenant breakdown found on this platform to
+date (7 non-premium line items vs. Minnesota Secured Title's 5). Confirms the Title Midwest platform
+carries independently-configured fee tables per tenant even for the identical county code (Hennepin
+returns a full quote for `mnsecured` but "Call For Rates" for `RteCalc`), consistent with the
+per-tenant-independence pattern already established for MyTitleRates.com/TitleCapture elsewhere in
+this survey. MN now has 4 calculator-basis providers — still reported as **calculator-quoted (3
+providers)** in PROGRESS.md's tracker per that table's minimum-threshold convention, with this 4th
+entry noted separately as a richness addition.

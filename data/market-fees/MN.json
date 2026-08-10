@@ -237,5 +237,34 @@
     "sectionTotals": "pTotal (combined Lender's + Owner's Title Insurance premium): $1,625.00 (Tier 4 rate bracket, per the API's own 'Tier' field).",
     "bundlingNotes": "This tenant's fee structure separates 'Title Evidence' ($645) from 'Title Examination' ($0 at this tier) -- the reverse of most other calculator-basis sources on file, where search/exam work is either bundled into a single line or zeroed with the cost folded into the evidence/abstract fee. Two optional endorsement line items (ARM $50, Manufactured Home $50) exist but are not applicable to the standard scenario (a plain single-family purchase) and were excluded. The platform itself ('Title Midwest', forms.titlemidwest.com/RateCalculator/<tenant-slug>/) is a shared multi-tenant calculator SaaS analogous to MyTitleRates.com/TitleTap -- worth checking for other MN or neighboring-state tenant slugs in a future session.",
     "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Hennepin County -- MN's most populous county. This is MN's 3rd calculator-basis provider, crossing the 3-provider threshold."
+  },
+  {
+    "provider": "Rochester Title & Escrow (independent title agency; Rochester, MN, Olmsted County) - via forms.titlemidwest.com's RateCalculator platform, tenant slug 'RteCalc'",
+    "basis": "calculator",
+    "sourceUrl": "https://forms.titlemidwest.com/RateCalculator/RteCalc/Calculator.asp",
+    "calculatorUrl": "https://forms.titlemidwest.com/RateCalculator/RteCalc/Calculator.asp",
+    "endpointOrParams": "Plain unauthenticated JSON GET: https://forms.titlemidwest.com/RateCalculator/RteCalc/ajax.asp?loantype=p&purchamt=500000&loanamt=400000&payoff=n&county=<id> (loantype=p for Purchase, payoff=n for no prior-loan payoff). No personal data fields exist anywhere in the calculator's HTML form.",
+    "retrievalDate": "2026-08-10",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Purchase transaction. Hennepin County (MN's most populous, county=27) and two other large-metro counties (Dakota=19, Ramsey=62) all returned this tenant's 'Call For Rates' state (TitleEvidence: -1, Tier 4 -- the same generic fallback bracket) -- this tenant's own service footprint is evidently centered on southeastern MN, not the Twin Cities metro. Olmsted County (county=55, Rochester -- this agency's own home county) returned a fully-priced Tier 1 quote instead, substituted per the standard scenario's own 'largest county/city available in a given calculator's own service footprint' allowance.",
+    "methodology": "Found via forms.titlemidwest.com's open directory listing (the same platform already on file for Minnesota Secured Title and Missouri's Secured Title of Kansas City/Elite Title), under a previously-uncatalogued tenant slug 'RteCalc'. The page's own calculator.js file was read directly (same technique as the existing Minnesota Secured Title entry) to find its plain jQuery $.ajax GET call (url: 'ajax.asp') and exact parameter names -- no form submission or JS execution needed. Distinct from Minnesota Secured Title's 'mnsecured' tenant: querying the identical Hennepin County code (27) against this tenant returns 'Call For Rates' rather than a priced quote, confirming each tenant carries its own independently-configured county-tier fee table on this shared platform rather than a shared template.",
+    "itemizedFees": {
+      "cpl": null,
+      "processing": null,
+      "notarySigning": null,
+      "docPrep": null,
+      "searchExam": "Title Examination: $175.00; Name & Assessment Search: $50.00; Plat Services: $80.00 (all separately itemized, unlike the Minnesota Secured Title tenant which zeroes Title Examination for its own tier)",
+      "other": [
+        { "name": "Title Evidence", "amount": "$220.00" },
+        { "name": "Closing Fee", "amount": "$175.00" },
+        { "name": "Recording Services Fee", "amount": "$25.00" },
+        { "name": "Courier Fee", "amount": "$40.00" },
+        { "name": "Delivery Service Fee", "amount": "$40.00" },
+        { "name": "Lender's Title Insurance Premium ($400,000 loan, simultaneous issue)", "amount": "$1,125.00" },
+        { "name": "Owner's Title Insurance Premium ($500,000, simultaneous-issue tier)", "amount": "$587.50" }
+      ]
+    },
+    "sectionTotals": "pTotal (combined Lender's + Owner's Title Insurance premium): $1,712.50 (Tier 1 rate bracket, per the API's own 'Tier' field).",
+    "bundlingNotes": "4th MN calculator-basis provider (MN was already calculator-quoted at 3 -- this is a richness addition, not a threshold crossing). County substituted from the standard scenario's default (Hennepin) to Olmsted per the calculator's own footprint, since Hennepin/Dakota/Ramsey all fell back to a generic 'Call For Rates' tier on this specific tenant. Fee split is broadly comparable to Minnesota Secured Title's ($1,712.50 vs. $1,625.00 combined premium; $220 Title Evidence here vs. $645 there), a useful cross-tenant variance data point on the same shared platform.",
+    "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Olmsted County (Rochester) -- this tenant's own priced service area, substituted for Hennepin per the standard scenario's footprint-substitution allowance."
   }
 ]

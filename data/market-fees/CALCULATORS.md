@@ -2352,3 +2352,68 @@ real browser network-tab capture, both individually-mapped-but-unsolved since 20
 (4) for states already past threshold, consider a "richness" pass — many entries (especially WFG's)
 are premium-only, and a state with a full itemized settlement/closing/doc-prep breakdown from a
 4th+ provider would meaningfully improve evidence quality even without moving the threshold needle.
+
+## 2026-08-10 session — Location=IN durably confirmed blocked; Title Midwest's `RteCalc` tenant found (MN richness)
+
+Retried recommendation (1) above first: `ortratecalculator.oldrepublictitle.com/EmbedRateCalc.aspx
+?CallingApp=PUBLIC&Location=IN`, with a realistic `User-Agent` and a `Referer` of
+`https://oldrepublictitle.com/rate-calculator/?location=in`, still returns the exact NoBot block
+message ("You are not authorized to access the site. Code: 2") first logged 2026-07-29 — unchanged
+even though the same block loosened for SC/LA/MS the prior session. Since IN is already
+calculator-quoted (3 providers, all via the unrelated NetSheetCalc/TitleTap platform), this tool
+should now be considered a durable dead end for IN specifically rather than a standing retry
+candidate — drop it from the routine blocked-source-retry rotation unless a browser-driven session
+wants to try establishing a longer cookie/session history first.
+
+No browser access this session, so recommendations (2) and (3) (TitleCapture/Qualia Connect,
+Stewart's `/api/SRC/quote`, First American FACC) were not attempted — still queued for a
+browser-driven session. Instead pursued (4), the richness pass, applied to `forms.titlemidwest.com`
+("Title Midwest"), the multi-tenant classic-ASP platform first catalogued 2026-08-02. Re-listed its
+open root directory and diffed against the tenant slugs already harvested (`mnsecured` for MN,
+`SecuredTitleKC`/`MstCalc` for MO, several `KST*`/Kansas slugs not relevant here since KS isn't a
+"complete (scarce)" state) — found one previously-unharvested slug, **`RteCalc`**, whose page
+`<title>` reads "Rochester Title Rate Calculator" and whose print-only footer gives the address
+"2870 Superior Drive NW, Rochester MN 55901" (Rochester Title & Escrow, Olmsted County MN). Same
+recipe as the existing `mnsecured` entry — read `calculator.js`'s `ajaxUpdate()` function to find its
+plain jQuery `$.ajax` GET target (`ajax.asp?loantype=p&purchamt=<amt>&loanamt=<amt>&payoff=n&county=
+<id>`, `county` id resolved from the page's own `<select id="loc_county">` dropdown) — no form
+submission, cookies, or JS execution needed to reproduce.
+
+**Key finding — this tenant's priced footprint does not include the Twin Cities metro.** Querying
+`county=27` (Hennepin, MN's most populous, and the code that returns a full quote for the
+`mnsecured` tenant) against `RteCalc` returns `{"TitleEvidence":-1,...,"Tier":4}` — the tool's own
+"Call For Rates" fallback state (confirmed by the front-end JS: `mTitleEvidence <= 0` triggers a
+red "Call For Rates" label instead of a dollar figure). The same fallback occurs for Dakota (`county=
+19`) and Ramsey (`county=62`), MN's 2nd/3rd most populous counties. Olmsted (`county=55`, this
+agency's own home county) returns a fully-priced Tier-1 quote instead — substituted per the standard
+scenario's "largest county/city available in a given calculator's own service footprint" allowance.
+Result at $500k/$400k, Olmsted County: `pTotal: $1,712.50` (`pLender: $1,125.00` + `pOwner: $587.50`),
+`TitleEvidence: $220.00`, `ClosingFee: $175.00`, `TitleExam: $175.00`, `PlatServices: $80.00`,
+`RecordingServicesFee: $25.00`, `CourierFee: $40.00`, `DeliveryServiceFee: $40.00`,
+`NameAssessSearch: $50.00`. This confirms the Title Midwest platform's per-tenant independence
+extends even to identical county codes returning materially different responses (a fully-priced
+quote for one tenant, a fallback non-answer for another) — the strongest version yet of the
+per-tenant-independence pattern already established for MyTitleRates.com/TitleCapture elsewhere in
+this catalog. See MN.json/MN.md for the full harvested entry — MN's 4th calculator-basis provider
+(richness addition; MN crossed the 3-provider threshold back on 2026-08-02).
+
+**Unresolved lead**: a second, previously-unlisted slug on the same platform, `RateCalculator/
+titleprofessionals/rate-Calculator.htm`, was also found in the directory listing but its static HTML
+carries no county dropdown, state name, company name, or logo filename anywhere in the fetched markup
+(page `<title>` is the generic "RESPA-Rate-Calculator") — company/state attribution was not possible
+from a plain fetch this session. Flagged for a future session: either fetch its companion `ajax`/
+config endpoint directly (by analogy to `RteCalc`'s `ajax.asp`, likely a sibling script in the same
+directory not yet located) or grep its full JS bundle for a hardcoded company name/address the way
+Modern Title Group's constants were found in the 2026-07-24 session.
+
+### Recommendation for next session
+Unchanged in substance from the 2026-08-09 session's own recommendation: (1) a browser-driven session
+to crack TitleCapture and/or Qualia Connect remains the single highest-expected-yield remaining
+target; (2) continue the richness pass on already-quoted-but-thin/premium-only states (WFG/FNF-heavy:
+NM, NV, HI, OR, NE, SC, LA, MS, UT) using the same "re-scan already-catalogued shared platforms'
+directory listings for uncatalogued tenant slugs" technique that found `RteCalc` this session — Title
+Midwest, MyTitleRates.com, and NetSheetCalc/TitleTap have all shown this pattern (new tenants appear
+over time on platforms already fully catalogued in a prior pass); (3) identify the `titleprofessionals`
+tenant's state/company before attempting to harvest it. Drop Old Republic's `Location=IN` from the
+standing blocked-source-retry rotation (see above — now a confirmed durable block, not a
+loosening-over-time candidate like SC/LA/MS turned out to be).
