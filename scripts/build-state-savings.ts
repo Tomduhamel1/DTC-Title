@@ -45,12 +45,18 @@ async function savingsFor(
   zip: string,
   transactionType: 'purchase' | 'refinance',
 ): Promise<ModeAnchor> {
-  const report = await fetchElendFeeEstimate({
-    transactionType,
-    zip,
-    homeValue: transactionType === 'purchase' ? ANCHOR_HOME_VALUE : 0,
-    loanAmount: ANCHOR_LOAN_AMOUNT,
-  })
+  // skipAvailabilityCheck: OFF states still need fresh analysis anchors —
+  // the runtime marketing fallback for OFF states is handled by
+  // stateOffered(), not by data absence.
+  const report = await fetchElendFeeEstimate(
+    {
+      transactionType,
+      zip,
+      homeValue: transactionType === 'purchase' ? ANCHOR_HOME_VALUE : 0,
+      loanAmount: ANCHOR_LOAN_AMOUNT,
+    },
+    { skipAvailabilityCheck: true },
+  )
   const totals = computeTotals(report)
   return { save: Math.round(totals.estimatedSavings), ourTotal: Math.round(totals.ourTotal) }
 }

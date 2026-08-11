@@ -10,7 +10,6 @@ import {
   formatRange,
   formatSavings,
   groupByCategory,
-  savingsSourceOf,
 } from '@/lib/feeReport'
 import { serviceBandFor } from '@/lib/marketBaseline'
 
@@ -22,6 +21,12 @@ interface FeeReportTableProps {
   title?: string
 }
 
+// Column grid shared by the header row, fee rows, and the totals row so the
+// four columns stay aligned: Item | Typical | BetterClose | Savings.
+// (Typical collapses on very small screens; savings never does.)
+const COLS =
+  'grid grid-cols-[minmax(0,1fr)_4.5rem_4.5rem] sm:grid-cols-[minmax(0,1fr)_7.5rem_5rem_5rem] gap-x-3 items-baseline'
+
 export default function FeeReportTable({
   report,
   variant = 'full',
@@ -31,16 +36,23 @@ export default function FeeReportTable({
   const grouped = groupByCategory(report.lineItems)
   const isPreview = variant === 'preview'
 
-  // Service charges are compared as one package (see ServiceStackTotals in
-  // feeReport) — per-line comparison invites the itemization shell game.
-  // Totals frozen before serviceStack existed fall back to per-line badges.
-  const svc = totals.serviceStack
-  const packageMode = !!svc && svc.comparableCount > 0
-  const isPackagedLine = (item: FeeLineItem) => {
-    if (!packageMode || item.isFixed || !item.typicalRange) return false
-    const source = savingsSourceOf(item)
-    return source === 'settlement_fee' || source === 'other_controllable'
-  }
+  // Market-comparison model (2026-08-11): the whole verified package delta is
+  // attributed to the settlement line; other service lines sit at parity
+  // (typical low = our price → no claimed savings on them). Identify the
+  // anchor line so its row can say where the comparison comes from.
+  const stack = report.lineItems.filter((li) => !li.isCredit && !li.isFixed && li.typicalRange)
+  const stackTotal = stack.reduce((s, li) => s + li.ourCost, 0)
+  const anchor = stack.find((li) => conservativeLineSavings(li) > 0) ?? null
+  const stackLow = anchor ? stackTotal + conservativeLineSavings(anchor) : stackTotal
+  const band = serviceBandFor(report.state, report.transactionType, report.zip)
+  const basisPhrase =
+    band.basis === 'quoted'
+      ? `the lowest competing ${report.state} provider quote we've verified`
+      : band.basis === 'published'
+      ? `the lowest of ${band.providers ?? 'several'} published ${report.state} fee schedules`
+      : band.basis === 'calculator'
+      ? `the lowest of ${band.providers ?? 'several'} ${report.state} provider quotes`
+      : `a conservative estimate (no published ${report.state} competitor fees yet)`
 
   return (
     <div
@@ -50,7 +62,7 @@ export default function FeeReportTable({
     >
       {/* Header (skipped in preview — caller provides its own) */}
       {!isPreview && (
-        <div className="px-7 pt-7 pb-6 border-b border-gray-100">
+        <div className="px-6 pt-7 pb-6 border-b border-gray-100">
           <h3 className="text-2xl font-black text-dark-900 leading-tight tracking-tight">
             {title}
           </h3>
@@ -61,109 +73,77 @@ export default function FeeReportTable({
       )}
 
       {/* Column headers */}
-      <div className="px-7 pt-5 pb-3 flex items-baseline justify-between border-b border-gray-100">
-        <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-gray-400 pl-9">
-          Item
+      <div className={`${COLS} px-6 pt-5 pb-3 border-b border-gray-100`}>
+        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">Item</span>
+        <span className="hidden sm:block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 text-right">
+          Typical
         </span>
-        <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-emerald-700">
+        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-dark-900 text-right">
           BetterClose
         </span>
+        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-700 text-right">
+          Savings
+        </span>
       </div>
 
-      {/* Timeline */}
-      <div className="px-7 py-7">
-        <div className="relative">
-          <div className="absolute left-[7px] top-2 bottom-2 w-px bg-gray-200" />
-
-          {Array.from(grouped.entries()).map(([cat, items], catIdx) => (
-            <div key={cat} className={catIdx === 0 ? '' : 'mt-7'}>
-              <div className="pl-9 mb-4">
-                <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-gray-400">
-                  {CATEGORY_LABELS[cat]}
-                </div>
-              </div>
-              <div className="space-y-5">
-                {items.map((item) => (
-                  <FeeRow
-                    key={item.id}
-                    item={item}
-                    state={report.state}
-                    comparedInPackage={isPackagedLine(item)}
-                  />
-                ))}
-              </div>
+      {/* Fee rows */}
+      <div className="px-6 py-5">
+        {Array.from(grouped.entries()).map(([cat, items], catIdx) => (
+          <div key={cat} className={catIdx === 0 ? '' : 'mt-5'}>
+            <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-2">
+              {CATEGORY_LABELS[cat]}
             </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Service-package comparison — all our service charges vs the typical
-          all-in cost of the same services. Other providers often split these
-          across several separate line items, so a line-by-line comparison
-          would understate (or game) the difference. */}
-      {packageMode && svc && (
-        <div className="mx-7 mb-7 rounded-2xl border border-emerald-200 bg-emerald-50/50 px-5 py-4">
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex-1 min-w-0">
-              <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-700">
-                Title services, compared as a package
-              </div>
-              <div className="text-[11px] text-gray-500 mt-1 leading-snug">
-                Every service charge we bill is itemized above — nothing extra
-                at the table. Other providers often spread the same work across
-                separate document-prep, processing, courier, and e-doc fees.
-              </div>
-              <div className="text-[10px] text-gray-400 mt-1.5 leading-snug">
-                {(() => {
-                  const band = serviceBandFor(report.state, report.transactionType, report.zip)
-                  if (band.basis === 'published')
-                    return `Typical range from ${band.providers} published ${report.state} fee schedules (July 2026 survey).`
-                  if (band.basis === 'calculator')
-                    return `Typical range from ${band.providers} ${report.state} providers' own quote calculators (standard scenario, July 2026 survey).`
-                  if (band.basis === 'quoted')
-                    return `Typical range anchored to a competing ${report.state} provider's actual quoted fees (2026).`
-                  return 'Typical range estimated from provider fee schedules in 12 surveyed states.'
-                })()}
-              </div>
-            </div>
-            <div className="text-right whitespace-nowrap">
-              <div className="text-[17px] font-black text-dark-900 tabular-nums leading-none tracking-tight">
-                {formatCurrency(svc.ourTotal)}
-              </div>
-              <div className="text-[11px] text-gray-400 mt-1">
-                Typical{' '}
-                <span className="line-through">
-                  {formatRange(svc.typicalLow, svc.typicalHigh)}
-                </span>
-              </div>
-              {svc.savings > 0 && (
-                <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-600 mt-1">
-                  save {formatSavings(svc.savings)}
-                </div>
-              )}
+            <div className="space-y-2.5">
+              {items.map((item) => (
+                <FeeRow
+                  key={item.id}
+                  item={item}
+                  state={report.state}
+                  isAnchor={item === anchor}
+                  anchorNote={
+                    item === anchor
+                      ? `Compared against ${basisPhrase}: ${formatCurrency(stackLow)} all-in for the same services we bill ${formatCurrency(stackTotal)} for.`
+                      : undefined
+                  }
+                />
+              ))}
             </div>
           </div>
-        </div>
-      )}
+        ))}
 
-      {/* Summary */}
-      <div className="bg-gray-50 border-t border-gray-100 px-7 py-6">
-        <div className="flex items-baseline justify-between mb-2">
-          <span className="text-sm text-gray-500">You pay</span>
-          <span className="text-base font-bold text-dark-900 tabular-nums">
-            {formatCurrency(totals.ourTotal)}
-          </span>
-        </div>
-        <div className="flex items-baseline justify-between mb-4">
-          <span className="text-sm text-gray-500">Typical {report.state}</span>
-          <span className="text-base text-gray-400 line-through tabular-nums">
+        {/* Totals row — the savings column sums right here, in the open. */}
+        <div className={`${COLS} mt-5 pt-4 border-t-2 border-gray-200`}>
+          <span className="text-sm font-bold text-dark-900">Total</span>
+          <span className="hidden sm:block text-xs text-gray-400 line-through text-right tabular-nums whitespace-nowrap">
             {formatRange(totals.marketLow, totals.marketHigh)}
           </span>
+          <span className="text-sm font-black text-dark-900 text-right tabular-nums whitespace-nowrap">
+            {formatCurrency(totals.ourTotal)}
+          </span>
+          <span className="text-sm font-black text-emerald-700 text-right tabular-nums whitespace-nowrap">
+            {formatSavings(totals.estimatedSavings)}
+          </span>
         </div>
-        {/* Two savings buckets, visually separated. Single conservative
-            number (no low–high range) — compared against the LOW end of
-            typical local pricing only. */}
-        <div className="border-t border-gray-200 pt-4 grid grid-cols-2 gap-3">
+      </div>
+
+      {/* The savings, called out. */}
+      <div className="mx-6 mb-6 rounded-2xl bg-emerald-600 px-5 py-4 flex items-center justify-between gap-4">
+        <div className="min-w-0">
+          <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-100">
+            Your total savings
+          </div>
+          <div className="text-[11px] text-emerald-100 mt-0.5 leading-snug">
+            Itemized above — the settlement comparison plus BetterClose Bucks
+          </div>
+        </div>
+        <div className="text-3xl font-black text-white tabular-nums whitespace-nowrap">
+          {formatSavings(totals.estimatedSavings)}
+        </div>
+      </div>
+
+      {/* Two savings buckets */}
+      <div className="px-6 pb-6">
+        <div className="grid grid-cols-2 gap-3">
           <div className="bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3">
             <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 mb-1">
               Save at closing
@@ -194,15 +174,15 @@ export default function FeeReportTable({
         )}
       </div>
 
-      <div className="px-7 py-3 text-[11px] text-gray-400 italic text-center border-t border-gray-100">
-        Estimate. Title insurance premiums are essentially the same across
+      <div className="px-6 py-3 text-[11px] text-gray-400 italic text-center border-t border-gray-100">
+        Estimate. Our settlement charge is compared against the lowest
+        competing service package we&apos;ve verified for your state (or a
+        conservative estimate where competitors publish nothing); other
+        service fees are shown from our price up — we claim no savings on
+        them. Title insurance premiums are essentially the same across
         providers, and recording fees and taxes are set by the government —
-        we never count any of those toward savings. Service charges are
-        compared as a complete package, since providers itemize the same
-        work differently. &ldquo;Typical&rdquo; ranges reflect our estimate
-        of local market pricing, and savings are measured against the low
-        end of that range. BetterClose Bucks is an introductory promotional
-        credit from BetterClose, applied at closing.
+        never counted toward savings. BetterClose Bucks is an introductory
+        promotional credit from BetterClose, applied at closing.
       </div>
     </div>
   )
@@ -211,90 +191,81 @@ export default function FeeReportTable({
 function FeeRow({
   item,
   state,
-  comparedInPackage = false,
+  isAnchor = false,
+  anchorNote,
 }: {
   item: FeeLineItem
   state: string
-  // Service lines carry no per-line comparison — the package band below the
-  // timeline holds it (bucket savings + premium badges sum to the headline).
-  comparedInPackage?: boolean
+  isAnchor?: boolean
+  anchorNote?: string
 }) {
-  const setBy =
-    item.feeSource === 'state'
-      ? `Set by ${state}`
-      : item.feeSource === 'county'
-      ? 'Set by county'
-      : null
+  const lineSavings = item.isCredit ? -item.ourCost : conservativeLineSavings(item)
 
-  // Same conservative definition computeTotals sums — premium badges plus the
-  // service-package badge must add up to the headline "Save at closing".
-  const lineSavings = comparedInPackage ? 0 : conservativeLineSavings(item)
+  const subLabel = item.isCredit
+    ? item.description ?? 'Promotional credit, applied at closing.'
+    : isAnchor
+    ? anchorNote
+    : item.feeSource === 'state'
+    ? `Set by ${state} — same everywhere`
+    : item.feeSource === 'county'
+    ? 'Set by county — same everywhere'
+    : item.feeSource === 'underwriter' || /closing protection letter/i.test(item.label)
+    ? 'Same across providers'
+    : item.isFixed
+    ? 'Same everywhere'
+    : undefined
 
-  // Promotional credit (BetterClose Bucks): its own treatment — emerald
-  // negative amount, no market comparison column.
-  if (item.isCredit) {
-    return (
-      <div className="relative pl-9">
-        <div className="absolute top-1 left-0 w-3.5 h-3.5 rounded-full bg-emerald-500 ring-2 ring-emerald-100" />
-        <div className="flex items-start justify-between gap-3">
-          <div className="flex-1 min-w-0">
-            <div className="text-[15px] font-semibold text-dark-900 leading-tight tracking-tight">
-              {item.label}
-              <span className="ml-2 align-middle inline-block text-[9px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-2 py-0.5">
-                New
-              </span>
-            </div>
-            {item.description && (
-              <div className="text-[11px] text-gray-400 mt-1">{item.description}</div>
-            )}
-          </div>
-          <div className="text-right whitespace-nowrap">
-            <div className="text-[17px] font-black text-emerald-700 tabular-nums leading-none tracking-tight">
-              −{formatCurrency(-item.ourCost)}
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
+  // Typical column: the market's number for this line. Fixed/pass-through
+  // lines cost the same everywhere, so the typical IS our number (gray);
+  // parity service lines show a from-our-price range; the credit has no
+  // market equivalent.
+  const typical = item.isCredit ? (
+    <span className="text-gray-300">—</span>
+  ) : item.typicalRange ? (
+    <span className="text-gray-500">
+      {formatRange(item.typicalRange.low, item.typicalRange.high)}
+    </span>
+  ) : (
+    <span className="text-gray-400">{formatCurrency(item.ourCost)}</span>
+  )
 
   return (
-    <div className="relative pl-9">
-      <div
-        className={`absolute top-1 ${
-          item.isFixed
-            ? 'left-[1px] w-3 h-3 rounded-full bg-white border border-gray-300'
-            : 'left-0 w-3.5 h-3.5 rounded-full bg-emerald-500 ring-2 ring-emerald-100'
-        }`}
-      />
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex-1 min-w-0">
-          <div className="text-[15px] font-semibold text-dark-900 leading-tight tracking-tight">
-            {item.label}
-          </div>
-          {setBy ? (
-            <div className="text-[11px] text-gray-400 mt-1">{setBy}</div>
-          ) : comparedInPackage && item.typicalRange ? (
-            <div className="text-[11px] text-gray-400 mt-1">
-              Typical {formatRange(item.typicalRange.low, item.typicalRange.high)} ·
-              compared as a package below
-            </div>
-          ) : item.typicalRange ? (
-            <div className="text-[11px] text-gray-400 mt-1">
-              Typical {formatRange(item.typicalRange.low, item.typicalRange.high)}
-            </div>
-          ) : null}
-        </div>
-        <div className="text-right whitespace-nowrap">
-          <div className="text-[17px] font-black text-dark-900 tabular-nums leading-none tracking-tight">
-            {formatCurrency(item.ourCost)}
-          </div>
-          {lineSavings > 0 && (
-            <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-600 mt-1">
-              save {formatSavings(lineSavings)}
-            </div>
+    <div className={COLS}>
+      <div className="min-w-0">
+        <div className="text-[13px] font-semibold text-dark-900 leading-tight">
+          {item.label}
+          {item.isCredit && (
+            <span className="ml-2 align-middle inline-block text-[9px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-1.5 py-0.5">
+              New
+            </span>
           )}
         </div>
+        {subLabel && (
+          <div
+            className={`text-[10.5px] mt-0.5 leading-snug ${
+              isAnchor ? 'text-emerald-700' : 'text-gray-400'
+            }`}
+          >
+            {subLabel}
+          </div>
+        )}
+      </div>
+      <div className="hidden sm:block text-xs text-right tabular-nums whitespace-nowrap">
+        {typical}
+      </div>
+      <div
+        className={`text-[13px] font-bold text-right tabular-nums whitespace-nowrap ${
+          item.isCredit ? 'text-emerald-700' : 'text-dark-900'
+        }`}
+      >
+        {item.isCredit ? formatSavings(item.ourCost) : formatCurrency(item.ourCost)}
+      </div>
+      <div className="text-[13px] font-bold text-right tabular-nums whitespace-nowrap">
+        {lineSavings > 0 ? (
+          <span className="text-emerald-700">{formatSavings(lineSavings)}</span>
+        ) : (
+          <span className="text-gray-300">—</span>
+        )}
       </div>
     </div>
   )

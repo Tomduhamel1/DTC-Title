@@ -197,7 +197,8 @@ const SERVICE_BANDS: Record<string, ServiceBand> = {
   // Single evidence point → pooled high, providers: 1. Basis stays
   // 'inferred' until the Liberty Title quote documents are archived under
   // data/market-fees/ (then 'calculator', providers: 1).
-  RI: { low: 1.25, high: 1.4, basis: 'quoted', providers: 1, lowSource: 'Liberty Title (RI) purchase quote: $690 full buyer-side stack ÷ our $550 anchor stack = 1.25 (supplied by Tom, 2026-07-30)' },
+  // Full-precision ratio so the quote shows Tom's exact delta: $690 − $550 = $140.
+  RI: { low: 690 / 550, high: 1.4, basis: 'quoted', providers: 1, lowSource: 'Liberty Title (RI) purchase quote: $690 full buyer-side stack vs our $550 anchor stack — exact $140 delta (supplied by Tom, 2026-07-30)' },
 }
 
 // Refinance-specific overrides. Refi service fees are a different market
@@ -218,7 +219,8 @@ const SERVICE_BANDS_REFI: Record<string, ServiceBand> = {
   // RI: owner-supplied market low $590 refi full stack (Liberty Title — see
   // purchase note): $590 / $450 refi stack = 1.31; high bounded at the
   // purchase high.
-  RI: { low: 1.31, high: 1.4, basis: 'quoted', providers: 1, lowSource: 'Liberty Title (RI) refinance quote: $590 full buyer-side stack ÷ our $450 anchor stack = 1.31 (supplied by Tom, 2026-07-30)' },
+  // Full-precision ratio: $590 − $450 = $140 exact.
+  RI: { low: 590 / 450, high: 1.4, basis: 'quoted', providers: 1, lowSource: 'Liberty Title (RI) refinance quote: $590 full buyer-side stack vs our $450 anchor stack — exact $140 delta (supplied by Tom, 2026-07-30)' },
   CA: { low: 1.37, high: 2.19, basis: 'calculator', providers: 1, lowSource: 'REAL: First American (API) refi $685' },
   GA: { low: 1.0, high: 1.2, basis: 'published', providers: 1, lowSource: 'REAL: Campbell & Brannon refi $475 + exam 75' },
   IL: { low: 0.57, high: 0.91, basis: 'calculator', providers: 1, lowSource: 'REAL: First American (API) refi $325' },
