@@ -131,7 +131,7 @@ export default async function TeammateQuoteDetailPage({
               <Field label="Expires" value={new Date(quote.expiresAt).toLocaleDateString()} />
               <Field
                 label="Estimated savings (avg)"
-                value={savingsAvg !== null ? formatCurrency(savingsAvg) : '—'}
+                value={savingsAvg !== null ? `−${formatCurrency(savingsAvg)}` : '—'}
               />
               <Field
                 label="Verified company"

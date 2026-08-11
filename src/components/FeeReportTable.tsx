@@ -8,6 +8,7 @@ import {
   conservativeLineSavings,
   formatCurrency,
   formatRange,
+  formatSavings,
   groupByCategory,
   savingsSourceOf,
 } from '@/lib/feeReport'
@@ -135,7 +136,7 @@ export default function FeeReportTable({
               </div>
               {svc.savings > 0 && (
                 <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-600 mt-1">
-                  save {formatCurrency(svc.savings)}
+                  save {formatSavings(svc.savings)}
                 </div>
               )}
             </div>
@@ -166,7 +167,7 @@ export default function FeeReportTable({
               Save at closing
             </div>
             <div className="text-2xl font-black text-emerald-700 tabular-nums leading-none">
-              {formatCurrency(totals.estimatedSavings)}
+              {formatSavings(totals.estimatedSavings)}
             </div>
             <div className="text-[11px] text-gray-500 mt-1.5">Title &amp; settlement</div>
           </div>
@@ -176,7 +177,7 @@ export default function FeeReportTable({
                 Save over the loan
               </div>
               <div className="text-2xl font-black text-emerald-700 tabular-nums leading-none">
-                {formatCurrency(totals.lifetimeSavings)}
+                {formatSavings(totals.lifetimeSavings)}
               </div>
               <div className="text-[11px] text-gray-500 mt-1.5">Long-term savings</div>
             </div>
@@ -288,7 +289,7 @@ function FeeRow({
           </div>
           {lineSavings > 0 && (
             <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-600 mt-1">
-              save {formatCurrency(lineSavings)}
+              save {formatSavings(lineSavings)}
             </div>
           )}
         </div>

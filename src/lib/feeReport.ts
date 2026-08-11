@@ -535,6 +535,15 @@ export function groupByCategory(items: FeeLineItem[]): Map<FeeCategory, FeeLineI
   return map
 }
 
+/**
+ * Display formatter for SAVINGS amounts: −$X (true minus sign). A bare green
+ * number reads as a price; the minus makes "money off vs the competition"
+ * unmistakable. Use for every rendered savings figure (site + collateral).
+ */
+export function formatSavings(n: number): string {
+  return `−${formatCurrency(Math.abs(n))}`
+}
+
 export function formatCurrency(n: number): string {
   return n.toLocaleString('en-US', {
     style: 'currency',

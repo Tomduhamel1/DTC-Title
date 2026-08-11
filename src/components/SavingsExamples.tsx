@@ -68,7 +68,7 @@ export default function SavingsExamples() {
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-600">Total Savings</span>
                   <span className="text-xl font-bold text-primary-600">
-                    {formatCurrency(example.savings)}
+                    −{formatCurrency(example.savings)}
                   </span>
                 </div>
               </div>

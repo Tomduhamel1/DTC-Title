@@ -167,7 +167,7 @@ function StateLevelSummary({
             Save at closing
           </div>
           <div className="text-3xl font-black text-emerald-600 tabular-nums leading-none">
-            {formatCurrency(totals.estimatedSavings)}
+            −{formatCurrency(totals.estimatedSavings)}
           </div>
           <div className="text-[11px] text-gray-500 mt-1.5">Title &amp; settlement</div>
         </div>
@@ -176,7 +176,7 @@ function StateLevelSummary({
             Save over the loan
           </div>
           <div className="text-3xl font-black text-emerald-600 tabular-nums leading-none">
-            {formatCurrency(totals.lifetimeSavings)}
+            −{formatCurrency(totals.lifetimeSavings)}
           </div>
           <div className="text-[11px] text-gray-500 mt-1.5">Long-term savings</div>
         </div>
