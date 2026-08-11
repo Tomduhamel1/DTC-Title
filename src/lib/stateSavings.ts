@@ -15,6 +15,7 @@
 // for a "typically save" teaser; the /quote flow is the precise answer.
 
 import { loanInterestAvoided } from './feeReport'
+import { stateOffered } from './stateMaster'
 import {
   ANCHOR_HOME_VALUE,
   NATIONAL_ANCHOR,
@@ -56,6 +57,12 @@ const resolveCode = resolveStateCode
 function anchorFor(state: string | null | undefined): StateAnchor {
   const code = resolveCode(state)
   if (!code) return NATIONAL_ANCHOR
+  // Marketing surfaces never advertise state-specific numbers for a state we
+  // don't serve (stateMaster) — geo-detected visitors there see the national
+  // example instead.
+  if (!stateOffered(code, 'purchase') && !stateOffered(code, 'refinance')) {
+    return NATIONAL_ANCHOR
+  }
   return STATE_ANCHORS[code] ?? NATIONAL_ANCHOR
 }
 

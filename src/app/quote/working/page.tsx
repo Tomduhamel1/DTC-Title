@@ -56,7 +56,8 @@ export default function QuoteWorkingPage() {
         // from the status instead.
         const raw = await res.text()
         if (cancelled) return
-        let json: { ok?: boolean; error?: string; report?: unknown } | null = null
+        let json: { ok?: boolean; error?: string; notOffered?: boolean; report?: unknown } | null =
+          null
         if (raw) {
           try {
             json = JSON.parse(raw)
@@ -65,6 +66,14 @@ export default function QuoteWorkingPage() {
           }
         }
         if (!res.ok || !json || !json.ok) {
+          // Service-availability refusal (stateMaster): informational, not an
+          // error — tag the kind so the form renders an amber notice.
+          if (json?.notOffered && json.error) {
+            sessionStorage.setItem('feeReportError', json.error)
+            sessionStorage.setItem('feeReportErrorKind', 'unavailable')
+            router.replace(failureHref)
+            return
+          }
           throw new Error(
             json?.error ||
               (res.status === 504 || res.status === 502

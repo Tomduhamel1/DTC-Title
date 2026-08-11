@@ -44,7 +44,12 @@ async function buildSnapshotFeeReport(input: {
   if (txType === 'purchase' && !loanAmount && homeValue) loanAmount = Math.round(homeValue * 0.8)
   if (!loanAmount) return null
   try {
-    return await fetchElendFeeEstimate({ transactionType: txType, zip, homeValue, loanAmount })
+    // skipAvailabilityCheck: existing closings must snapshot even in states
+    // that have since been switched OFF in stateMaster.
+    return await fetchElendFeeEstimate(
+      { transactionType: txType, zip, homeValue, loanAmount },
+      { skipAvailabilityCheck: true },
+    )
   } catch (err) {
     // eslint-disable-next-line no-console
     console.error('[closing-milestone] snapshot fee-estimate failed:', err)

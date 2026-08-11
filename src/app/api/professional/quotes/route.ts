@@ -11,6 +11,8 @@ import {
   resolveAmounts,
 } from '@/lib/feeQuote'
 import { rateLimit } from '@/lib/rate-limit'
+import { ServiceNotOfferedError, stateOffered } from '@/lib/stateMaster'
+import { stateForZip } from '@/lib/zipToState'
 
 // POST /api/professional/quotes — create a durable, shareable FeeQuote for a
 // professional using /for-my-team/quote.
@@ -89,6 +91,17 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: resolved.error }, { status: 400 })
   }
 
+  // Pre-flight availability gate (stateMaster) — advisory ZIP-prefix check;
+  // the elendCalc backstop re-verifies against the upstream's own state.
+  const preflightState = stateForZip(data.zip)
+  if (preflightState && !stateOffered(preflightState, data.transactionType)) {
+    const gateErr = new ServiceNotOfferedError(preflightState, data.transactionType)
+    return NextResponse.json(
+      { ok: false, notOffered: true, state: preflightState, error: gateErr.message },
+      { status: 422 },
+    )
+  }
+
   // Single upstream fee-estimate call.
   let report
   try {
@@ -99,6 +112,12 @@ export async function POST(req: Request) {
       loanAmount: resolved.loanAmount,
     })
   } catch (err) {
+    if (err instanceof ServiceNotOfferedError) {
+      return NextResponse.json(
+        { ok: false, notOffered: true, state: err.stateCode, error: err.message },
+        { status: 422 },
+      )
+    }
     console.error('[professional/quotes] fee estimate failed:', err)
     const message = err instanceof Error ? err.message : 'unknown error'
     return NextResponse.json({ ok: false, error: `fee estimate failed: ${message}` }, { status: 502 })

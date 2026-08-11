@@ -57,13 +57,17 @@ export default function BrokerEstimateForm() {
 
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  // 'unavailable' renders as an amber informational notice (service-area), not a red error.
+  const [errorKind, setErrorKind] = useState<'error' | 'unavailable'>('error')
 
   useEffect(() => {
     if (typeof window === 'undefined') return
     const stashed = sessionStorage.getItem('feeReportError')
     if (stashed) {
       setError(stashed)
+      setErrorKind(sessionStorage.getItem('feeReportErrorKind') === 'unavailable' ? 'unavailable' : 'error')
       sessionStorage.removeItem('feeReportError')
+      sessionStorage.removeItem('feeReportErrorKind')
     }
     sessionStorage.setItem('quoteSource', 'broker')
   }, [])
@@ -226,7 +230,13 @@ export default function BrokerEstimateForm() {
           </div>
 
           {error && (
-            <div className="mt-4 bg-red-50 border border-red-200 rounded-md px-3.5 py-2.5 text-sm text-red-800">
+            <div
+              className={
+                errorKind === 'unavailable'
+                  ? 'mt-4 bg-amber-50 border border-amber-200 rounded-md px-3.5 py-2.5 text-sm text-amber-900'
+                  : 'mt-4 bg-red-50 border border-red-200 rounded-md px-3.5 py-2.5 text-sm text-red-800'
+              }
+            >
               {error}
             </div>
           )}
