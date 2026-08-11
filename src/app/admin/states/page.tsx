@@ -3,7 +3,7 @@ import { AdminHeader, Stat } from '@/components/admin/AdminChrome'
 import { STATE_MASTER, STATE_NAMES, StateMasterEntry } from '@/lib/stateMaster'
 import { premiumRegimeFor, serviceBandFor } from '@/lib/marketBaseline'
 import { BETTERCLOSE_SERVICE_FEES, FeeAmount } from '@/lib/betterCloseFees'
-import { BUCKS_EXCLUDED_STATES, BUCKS_RATE } from '@/lib/betterCloseBucks'
+import { BUCKS_EXCLUDED_STATES, BUCKS_RATE, BUCKS_RATE_BY_STATE, bucksRateFor } from '@/lib/betterCloseBucks'
 import { splitsForState } from '@/lib/underwriterSplits'
 import { GENERATED_AT, NATIONAL_ANCHOR, STATE_ANCHORS } from '@/lib/stateSavings.generated'
 import {
@@ -74,10 +74,13 @@ export default async function AdminStatesPage() {
           <div className="bg-white rounded-2xl border border-gray-200 p-4">
             <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Levers in force</div>
             <div className="text-sm font-semibold text-dark-900 mt-1">
-              Bucks {Math.round(BUCKS_RATE * 100)}% of policies
+              Bucks {Math.round(BUCKS_RATE * 100)}% of policies default
+              {Object.keys(BUCKS_RATE_BY_STATE).length > 0
+                ? ` · ${Object.keys(BUCKS_RATE_BY_STATE).length} state override(s)`
+                : ''}
               {BUCKS_EXCLUDED_STATES.size > 0
-                ? ` (off in ${Array.from(BUCKS_EXCLUDED_STATES).join(', ')})`
-                : ' (all states)'}
+                ? ` · off in ${Array.from(BUCKS_EXCLUDED_STATES).join(', ')}`
+                : ''}
             </div>
             <div className="text-[11px] text-gray-400 mt-0.5">
               National anchor: save {formatCurrency(NATIONAL_ANCHOR.purchase.save)} P / {formatCurrency(NATIONAL_ANCHOR.refinance.save)} R
@@ -117,7 +120,7 @@ function StateRow({ code, entry }: { code: string; entry: StateMasterEntry }) {
   const anyOn = entry.offer.purchase || entry.offer.refinance
   const flags: string[] = []
   if (anyOn && matrix && matrix.purchase['500000']?.pkg === 0) flags.push('no package savings @500k')
-  if (anyOn && !entry.marketLowSource) flags.push('no comp source recorded')
+  if (anyOn && !bandP.lowSource) flags.push('pooled band — no in-state comp evidence')
 
   return (
     <details className={`bg-white rounded-2xl border ${anyOn ? 'border-gray-200' : 'border-gray-200 opacity-70'}`}>
@@ -128,6 +131,15 @@ function StateRow({ code, entry }: { code: string; entry: StateMasterEntry }) {
         <span className="flex gap-1">
           <OfferBadge on={entry.offer.purchase} label="P" />
           <OfferBadge on={entry.offer.refinance} label="R" />
+        </span>
+        <span
+          className={`text-[10px] font-bold uppercase tracking-wider rounded-full px-2 py-0.5 tabular-nums ${
+            bucksRateFor(code) > 0
+              ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+              : 'bg-gray-100 text-gray-500 border border-gray-200'
+          }`}
+        >
+          Bucks {Math.round(bucksRateFor(code) * 100)}%
         </span>
         <span className="text-xs text-gray-500 tabular-nums">
           band {bandP.low}–{bandP.high}× <span className="text-gray-400">({bandP.basis}{bandP.providers ? ` · ${bandP.providers}` : ''})</span>
@@ -167,9 +179,25 @@ function StateRow({ code, entry }: { code: string; entry: StateMasterEntry }) {
               Premium regime: {regime} (premiums never counted toward savings). Purchase band {bandP.low}–{bandP.high}× ({bandP.basis}
               {bandP.providers ? `, ${bandP.providers} providers` : ''}); refi band {bandR.low}–{bandR.high}× ({bandR.basis}).
             </div>
-            {entry.marketLowSource && (
-              <div className="text-gray-500 text-xs mt-1">Source: {entry.marketLowSource}</div>
-            )}
+
+          </div>
+        </div>
+
+        <div>
+          <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1">
+            How the low stack is derived
+          </div>
+          <div className="text-xs text-gray-700">
+            <span className="font-semibold">Purchase ({bandP.basis}):</span>{' '}
+            {bandP.lowSource ??
+              `Pooled inferred band ${bandP.low}× — no in-state competitor evidence yet; savings claims use the pooled low.`}
+          </div>
+          <div className="text-xs text-gray-700 mt-0.5">
+            <span className="font-semibold">Refinance ({bandR.basis}):</span>{' '}
+            {bandR.lowSource ??
+              (bandR === bandP
+                ? 'Purchase band applied to the refi stack (no refi-specific evidence).'
+                : `Pooled inferred band ${bandR.low}× — no in-state competitor evidence yet.`)}
           </div>
         </div>
 
@@ -220,7 +248,7 @@ function StateRow({ code, entry }: { code: string; entry: StateMasterEntry }) {
         <div className="text-xs text-gray-500">
           <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500 mr-2">Underwriter splits</span>
           {splits.map((s) => `${s.underwriter.split(' ')[0]} ${Math.round(s.companyShare * 100)}%${s.fallback ? ' (fallback)' : ''}`).join(' · ')}
-          {BUCKS_EXCLUDED_STATES.has(code) && <span className="ml-2 text-amber-700 font-semibold">Bucks excluded here</span>}
+          <span className="ml-2">· Bucks {Math.round(bucksRateFor(code) * 100)}% of policies{BUCKS_RATE_BY_STATE[code] !== undefined ? ' (state override)' : bucksRateFor(code) === 0 ? ' (excluded)' : ' (default)'}</span>
         </div>
 
         {entry.notes && <div className="text-xs text-gray-500">Notes: {entry.notes}</div>}

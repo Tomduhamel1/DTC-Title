@@ -21,8 +21,21 @@ export const BUCKS_RATE = 0.15
 export const BUCKS_LABEL = 'BetterClose Bucks'
 export const BUCKS_LINE_ID = 'betterclose-bucks'
 
+// Per-state rate overrides (fraction of combined policy premium). A state
+// not listed here uses BUCKS_RATE. Shown per state on /admin/states.
+// Example: { FL: 0.10, SC: 0.05 }
+export const BUCKS_RATE_BY_STATE: Record<string, number> = {}
+
 // Compliance gate — states where the credit is withheld. Empty = everywhere.
 export const BUCKS_EXCLUDED_STATES: Set<string> = new Set()
+
+/** Effective Bucks rate in a state (0 when excluded). */
+export function bucksRateFor(stateCode?: string): number {
+  const st = stateCode?.toUpperCase()
+  if (st && BUCKS_EXCLUDED_STATES.has(st)) return 0
+  if (st && BUCKS_RATE_BY_STATE[st] !== undefined) return BUCKS_RATE_BY_STATE[st]
+  return BUCKS_RATE
+}
 
 // Owner's + lender's policies. Deliberately does NOT match CPL
 // ("Closing Protection Letter") or endorsements.
@@ -32,11 +45,12 @@ export function betterCloseBucksLine(
   lineItems: FeeLineItem[],
   stateCode?: string,
 ): FeeLineItem | null {
-  if (stateCode && BUCKS_EXCLUDED_STATES.has(stateCode.toUpperCase())) return null
+  const rate = bucksRateFor(stateCode)
+  if (rate <= 0) return null
   const policyTotal = lineItems
     .filter((li) => !li.isCredit && POLICY_LINE.test(li.label))
     .reduce((sum, li) => sum + li.ourCost, 0)
-  const amount = Math.round(policyTotal * BUCKS_RATE)
+  const amount = Math.round(policyTotal * rate)
   if (amount <= 0) return null
   return {
     id: BUCKS_LINE_ID,

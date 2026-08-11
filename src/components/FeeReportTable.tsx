@@ -120,6 +120,8 @@ export default function FeeReportTable({
                     return `Typical range from ${band.providers} published ${report.state} fee schedules (July 2026 survey).`
                   if (band.basis === 'calculator')
                     return `Typical range from ${band.providers} ${report.state} providers' own quote calculators (standard scenario, July 2026 survey).`
+                  if (band.basis === 'quoted')
+                    return `Typical range anchored to a competing ${report.state} provider's actual quoted fees (2026).`
                   return 'Typical range estimated from provider fee schedules in 12 surveyed states.'
                 })()}
               </div>
