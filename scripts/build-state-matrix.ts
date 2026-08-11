@@ -198,6 +198,55 @@ ${done.map((s) => `  ${s}: ${JSON.stringify(matrix[s])},`).join('\n')}
   console.log(
     `\nWrote ${target} (${done.length} states${failed.length ? `, ${failed.length} failed: ${failed.join(', ')}` : ''})`,
   )
+
+  // ── Public curve subset ───────────────────────────────────────────────────
+  // Marketing surfaces interpolate savings across the three anchor values
+  // (stateSavings.ts). This file carries ONLY save/pay — no margin fields —
+  // so it is safe for client bundles, unlike the matrix above.
+  const curvePts = (m: StateMatrix, mode: (typeof MODES)[number]) =>
+    HOME_VALUES.map((hv) => {
+      const s = m[mode][String(hv)]
+      return { save: s.save, pay: s.pay }
+    })
+  const curves: Record<string, { purchase: { save: number; pay: number }[]; refinance: { save: number; pay: number }[] }> = {}
+  for (const s of done) {
+    curves[s] = { purchase: curvePts(matrix[s], 'purchase'), refinance: curvePts(matrix[s], 'refinance') }
+  }
+  const meanAt = (mode: (typeof MODES)[number], i: number, k: 'save' | 'pay') =>
+    Math.round(done.reduce((sum, s) => sum + curves[s][mode][i][k], 0) / done.length)
+  const nationalCurve = {
+    purchase: HOME_VALUES.map((_, i) => ({ save: meanAt('purchase', i, 'save'), pay: meanAt('purchase', i, 'pay') })),
+    refinance: HOME_VALUES.map((_, i) => ({ save: meanAt('refinance', i, 'save'), pay: meanAt('refinance', i, 'pay') })),
+  }
+  const curveOut = `// GENERATED FILE — do not edit by hand.
+// Rebuild with: npx tsx scripts/build-state-matrix.ts
+//
+// PUBLIC subset of the state economics matrix: engine-computed savings and
+// borrower totals at the three anchor home values, for marketing-surface
+// interpolation (src/lib/stateSavings.ts). Contains NO margin fields —
+// safe for client bundles (unlike stateMatrix.generated.ts).
+
+export const CURVE_GENERATED_AT = '${new Date().toISOString()}'
+export const CURVE_HOME_VALUES = ${JSON.stringify([...HOME_VALUES])}
+
+export interface CurvePoint { save: number; pay: number }
+export interface StateCurve { purchase: CurvePoint[]; refinance: CurvePoint[] }
+
+export const NATIONAL_CURVE: StateCurve = ${JSON.stringify(nationalCurve)}
+
+export const STATE_CURVES: Record<string, StateCurve> = {
+${done.map((s) => `  ${s}: ${JSON.stringify(curves[s])},`).join('\n')}
+}
+`
+  const curveTarget = join(
+    dirname(fileURLToPath(import.meta.url)),
+    '..',
+    'src',
+    'lib',
+    'stateSavingsCurve.generated.ts',
+  )
+  writeFileSync(curveTarget, curveOut)
+  console.log(`Wrote ${curveTarget}`)
 }
 
 main().catch((err) => {
