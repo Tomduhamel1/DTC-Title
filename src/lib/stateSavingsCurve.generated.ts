@@ -51,7 +51,7 @@ export const STATE_CURVES: Record<string, StateCurve> = {
   OK: {"purchase":[{"save":296,"pay":4539},{"save":461,"pay":5874},{"save":791,"pay":8544}],"refinance":[{"save":139,"pay":2723},{"save":210,"pay":3521},{"save":377,"pay":5267}]},
   OR: {"purchase":[{"save":224,"pay":3103},{"save":351,"pay":3821},{"save":585,"pay":5147}],"refinance":[{"save":254,"pay":2258},{"save":381,"pay":2976},{"save":615,"pay":4302}]},
   PA: {"purchase":[{"save":545,"pay":15882},{"save":887,"pay":29265},{"save":1400,"pay":55062}],"refinance":[{"save":446,"pay":3656},{"save":737,"pay":5303},{"save":1182,"pay":7822}]},
-  RI: {"purchase":[{"save":409,"pay":2315},{"save":672,"pay":3802},{"save":1197,"pay":6777}],"refinance":[{"save":231,"pay":1157},{"save":321,"pay":1667},{"save":501,"pay":2687}]},
+  RI: {"purchase": [{"save": 500, "pay": 2225}, {"save": 850, "pay": 3625}, {"save": 1550, "pay": 6425}], "refinance": [{"save": 260, "pay": 1127}, {"save": 380, "pay": 1607}, {"save": 620, "pay": 2567}]},
   SC: {"purchase":[{"save":247,"pay":2229},{"save":382,"pay":2994},{"save":652,"pay":4524}],"refinance":[{"save":100,"pay":1003},{"save":156,"pay":1322},{"save":264,"pay":1934}]},
   SD: {"purchase":[{"save":355,"pay":3829},{"save":517,"pay":4747},{"save":841,"pay":6583}],"refinance":[{"save":191,"pay":2743},{"save":225,"pay":2939},{"save":251,"pay":3085}]},
   TN: {"purchase":[{"save":54,"pay":3534},{"save":54,"pay":5844},{"save":54,"pay":10464}],"refinance":[{"save":100,"pay":1532},{"save":133,"pay":2179},{"save":158,"pay":3239}]},

@@ -46,16 +46,29 @@ export function buildSampleFeeReport(state?: string | null): FeeReport {
           description: 'A-rated underwriter coverage',
         }
 
-  const service = (id: string, label: string, ourCost: number): FeeLineItem => ({
+  // Market-comparison model (2026-08-11): the whole verified package delta
+  // sits on the settlement line; other service lines are shown at parity
+  // (typical low = our price, no claimed savings). Mirrors elendCalc's
+  // applyMarketComparison for the sample's two service lines.
+  const SETTLEMENT = 350
+  const NOTARY = 150
+  const stackTotal = SETTLEMENT + NOTARY
+  const lowExtra = Math.max(0, round(stackTotal * band.low) - stackTotal)
+  const highExtra = Math.max(0, round(stackTotal * band.high) - stackTotal)
+  const service = (
+    id: string,
+    label: string,
+    ourCost: number,
+    isAnchor: boolean,
+  ): FeeLineItem => ({
     id,
     label,
     category: 'title-settlement',
     ourCost,
     isFixed: false,
-    typicalRange: {
-      low: round(ourCost * band.low),
-      high: round(ourCost * band.high),
-    },
+    typicalRange: isAnchor
+      ? { low: ourCost + lowExtra, high: ourCost + highExtra }
+      : { low: ourCost, high: round(ourCost * band.high) },
     feeSource: 'service',
     savingsSource: 'settlement_fee',
   })
@@ -69,8 +82,8 @@ export function buildSampleFeeReport(state?: string | null): FeeReport {
     isSample: true,
     lineItems: [
       premium('lenders-title', "Lender's Title Insurance", 760),
-      service('settlement-fee', 'Settlement Fee', 350),
-      service('notary-fee', 'Notary Fee', 150),
+      service('settlement-fee', 'Settlement Fee', SETTLEMENT, true),
+      service('notary-fee', 'Notary Fee', NOTARY, false),
       {
         id: 'mortgage-recording',
         label: 'Mortgage Recording Fee',

@@ -23,8 +23,10 @@ export const BUCKS_LINE_ID = 'betterclose-bucks'
 
 // Per-state rate overrides (fraction of combined policy premium). A state
 // not listed here uses BUCKS_RATE. Shown per state on /admin/states.
-// Example: { FL: 0.10, SC: 0.05 }
-export const BUCKS_RATE_BY_STATE: Record<string, number> = {}
+export const BUCKS_RATE_BY_STATE: Record<string, number> = {
+  // Tom, 2026-08-11: RI rebate raised to 20%.
+  RI: 0.2,
+}
 
 // Compliance gate — states where the credit is withheld. Empty = everywhere.
 export const BUCKS_EXCLUDED_STATES: Set<string> = new Set()

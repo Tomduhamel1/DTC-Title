@@ -135,54 +135,62 @@ function inferFeeSource(rawDescription: string, category: FeeCategory): FeeSourc
   return undefined
 }
 
-// Comparison column ("typical [state]" range) for a fee line, based on the
-// state's premium-rate regime (src/lib/marketBaseline.ts):
-//  - recording/taxes: always isFixed (set by government, same everywhere).
-//  - title premiums & CPL in promulgated/bureau-uniform states: isFixed —
-//    every provider charges the identical state/bureau rate, so claiming
-//    savings on them would be false. Marked feeSource 'state' by the caller
-//    so the UI says "Set by <state>".
-//  - everything else: conservative interim multipliers (see marketBaseline
-//    for sourcing status); the LOW end drives every savings claim.
-function withTypicalRange(
+// Whether a line carries NO market comparison at all:
+//  - recording/taxes: set by government, same everywhere.
+//  - title premiums & CPL: roughly equal across providers in EVERY state
+//    (policy note in marketBaseline.ts, Tom 2026-08-10).
+//  - search/abstract lines in pass-through states (July 24 boundary audit).
+function isComparisonFixed(
   label: string,
-  ourCost: number,
   category: FeeCategory,
   stateCode: string | undefined,
-  transactionType: 'purchase' | 'refinance',
-  zip?: string,
-): Pick<FeeLineItem, 'isFixed' | 'typicalRange'> {
-  if (category === 'recording' || category === 'taxes') {
-    return { isFixed: true }
-  }
-  // Premiums & CPL: roughly equal across providers in EVERY state (policy
-  // note in marketBaseline.ts, Tom 2026-08-10) — never compared, never
-  // counted toward savings. Uniform-rate states additionally get the
-  // "Set by {state}" label via the caller's feeSource handling.
-  if (isPremiumLabel(label)) {
-    return { isFixed: true }
-  }
-  // Boundary symmetry (July 24 audit): where the state's market bills
-  // search/abstract as a third-party pass-through, our own search-type
-  // lines carry no comparison — the bands were derived excluding them on
-  // both sides, and claiming savings on a line the market treats as
-  // pass-through would break the symmetric-stack convention.
+): boolean {
+  if (category === 'recording' || category === 'taxes') return true
+  if (isPremiumLabel(label)) return true
   const st = stateCode?.toUpperCase()
   const isSearchLine = /search|abstract|exam|opinion|title cert/i.test(label)
   if (isSearchLine && st) {
-    if (SEARCH_PASSTHROUGH_STATES.has(st)) return { isFixed: true }
-    if (ABSTRACT_ONLY_PASSTHROUGH_STATES.has(st) && /abstract/i.test(label)) return { isFixed: true }
+    if (SEARCH_PASSTHROUGH_STATES.has(st)) return true
+    if (ABSTRACT_ONLY_PASSTHROUGH_STATES.has(st) && /abstract/i.test(label)) return true
   }
-  // Service lines all use the state's evidence-derived band (published or
-  // inferred — see marketBaseline). Applying the same band to every service
-  // line keeps the package-level sums equal to band × our service total.
-  const range = serviceBandFor(stateCode, transactionType, zip)
-  return {
-    isFixed: false,
-    typicalRange: {
-      low: Math.round(ourCost * range.low),
-      high: Math.round(ourCost * range.high),
-    },
+  return false
+}
+
+// Market-comparison model (Tom, 2026-08-11): the ENTIRE verified package
+// delta is attributed to the Settlement Fee line, and every other service
+// line is shown at parity — its typical LOW equals our own price, so no
+// savings are claimed on it. This replaces the old scheme that multiplied
+// every line by the band (which read as invented per-line "typical" prices)
+// and the "compared as a package" presentation (too confusing).
+//
+// The settlement line's typical low = our settlement + (lowest verified
+// competitor package − our package), where the competitor package low comes
+// from the state's evidence band (marketBaseline: quoted/published/
+// calculator/inferred, provenance in ServiceBand.lowSource). Totals are
+// IDENTICAL to the old package math — only the attribution changed.
+// Falls back to the largest service line when upstream returns no
+// settlement line.
+function applyMarketComparison(
+  lineItems: FeeLineItem[],
+  stateCode: string | undefined,
+  transactionType: 'purchase' | 'refinance',
+  zip?: string,
+): void {
+  const band = serviceBandFor(stateCode, transactionType, zip)
+  const stack = lineItems.filter((li) => !li.isCredit && !li.isFixed)
+  if (stack.length === 0) return
+  const stackTotal = stack.reduce((s, li) => s + li.ourCost, 0)
+  const lowExtra = Math.max(0, Math.round(stackTotal * band.low) - stackTotal)
+  const highExtra = Math.max(0, Math.round(stackTotal * band.high) - stackTotal)
+  const anchor =
+    stack.find((li) => /settlement fee/i.test(li.label)) ??
+    stack.reduce((a, b) => (b.ourCost > a.ourCost ? b : a))
+  for (const li of stack) {
+    if (li === anchor) {
+      li.typicalRange = { low: li.ourCost + lowExtra, high: li.ourCost + highExtra }
+    } else {
+      li.typicalRange = { low: li.ourCost, high: Math.round(li.ourCost * band.high) }
+    }
   }
 }
 
@@ -276,13 +284,11 @@ export async function fetchElendFeeEstimate(
     if (override === 0) return // 0 = BetterClose doesn't charge this fee
     const ourCost = override ?? buyer
 
-    const variability = withTypicalRange(label, ourCost, category, data.stateCode, req.transactionType, req.zip)
+    const isFixed = isComparisonFixed(label, category, data.stateCode)
     // Uniform-premium states (promulgated/bureau rates): surface the premium
     // as state-set so the UI explains why there's no comparison on that line.
     const uniformPremium =
-      variability.isFixed &&
-      category === 'title-settlement' &&
-      premiumsAreUniform(data.stateCode)
+      isFixed && category === 'title-settlement' && premiumsAreUniform(data.stateCode)
     const feeSource = uniformPremium ? 'state' : inferFeeSource(rawForCategorize, category)
 
     lineItems.push({
@@ -290,10 +296,14 @@ export async function fetchElendFeeEstimate(
       label,
       category,
       ourCost,
-      ...variability,
+      isFixed,
       ...(feeSource ? { feeSource } : {}),
     })
   })
+
+  // Assign market comparisons: full verified delta on the settlement line,
+  // every other service line at parity (see applyMarketComparison).
+  applyMarketComparison(lineItems, data.stateCode, req.transactionType, req.zip)
 
   // BetterClose Bucks — introductory credit on every quote (betterCloseBucks.ts).
   const bucks = betterCloseBucksLine(lineItems, data.stateCode)
