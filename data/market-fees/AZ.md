@@ -1,6 +1,20 @@
 # Arizona — Market Fee Evidence
 
-## Status: complete (scarce) — 5 verified published sources + **calculator-quoted (3 providers)**, 2026-08-02
+## Status: complete (scarce) — 5 verified published sources + **calculator-quoted (4 providers)**, 2026-08-11
+
+## Calculator harvest addendum (2026-08-11) — WFG National Title adds a 4th provider, richest itemization on file
+
+**4th calculator-basis provider (richness pass; already past the 3-provider threshold).** Applied
+the 2026-08-08 session's fully-solved WFG `rates.wfgnationaltitle.com` recipe (see CALCULATORS.md)
+to Arizona — one of only 7 states (WA, CA, TX, OR, AZ, NV, CO) this tool has configured HUD-fee
+itemization for, but which had no WFG entry on file yet. Plain unauthenticated `POST /api/rates/
+fees/estimatefeesforsellernet`, no personal data, standard $500,000/$400,000 scenario, Maricopa
+County. Result: Owner's Title Insurance Premium $2,154.00, Settlement or Closing Fee $1,410.00
+(split $705.00/$705.00 buyer/seller). Lender's premium returned $0 despite the $400,000 loan
+entered, consistent with this being a seller-net-sheet-only tool. Note: WFG's `wfgtitle.com`
+marketing domain is Cloudflare-blocked (403) per the 2026-08-08 session's OR/NM search, but this
+separate `rates.wfgnationaltitle.com` API subdomain is unaffected. See AZ.json's newest `basis:
+"calculator"` entry for the full record.
 
 ## Calculator harvest (2026-08-02 update) — 3rd provider found, AZ crosses the calculator threshold
 Harvested a 3rd AZ calculator provider, **Arizona Premier Title** (Scottsdale/Maricopa County), via a

@@ -2423,3 +2423,50 @@ slug's actual company/domain before harvesting (`titleprofessionals` above looke
 to be a legacy rebrand of an already-on-file provider). Drop Old Republic's `Location=IN` from the
 standing blocked-source-retry rotation (see above — now a confirmed durable block, not a
 loosening-over-time candidate like SC/LA/MS turned out to be).
+
+## 2026-08-11 session — WFG's HUD-fee-itemization coverage list (AZ, NV, CO) fully harvested
+
+The 2026-08-08 session solved WFG's `POST https://rates.wfgnationaltitle.com/api/rates/fees/
+estimatefeesforsellernet` endpoint and found (via static inspection of the bundle's hardcoded
+`feesConfiguration` sort-weight table) that only 7 states have configured HUD-fee line-item
+itemization: **WA, CA, TX, OR, AZ, NV, CO**. That session harvested OR (part of its 8-state
+below-threshold batch) but did not check the other 6. This session checked the remaining 3 that
+are in-scope for this tracker (WA/CA/TX are non-scarce, published-schedule-rich states, out of
+the calculator-harvest tracker's core scope — not checked this session, flagged below as a fast
+optional follow-up) and confirmed **none of AZ, NV, or CO had a WFG entry on file yet**.
+
+Queried the endpoint directly via plain `curl -X POST` (no browser, no session cookie, no personal
+data — same exact request shape as the 2026-08-08 session's OR entry, just swapping `Properties`):
+```json
+{
+  "SalesPrice": 500000,
+  "Loans": [{"LienPosition": 0, "LoanAmount": 400000}],
+  "TransactionProductType": {"ProductTypeId": 0, "TransactionTypeId": 0},
+  "Properties": [{"City": "<city>", "County": "<county>", "IsPrimary": true, "State": "<ST>"}],
+  "premiumDiscounts": [],
+  "transactionProductTypeId": 0,
+  "calculateTaxRequest": {},
+  "IsReissue": false,
+  "SettlementStatementVersion": "CD",
+  "Endorsements": [],
+  "PriorLenderPolicy": {},
+  "PriorOwnerPolicy": {}
+}
+```
+All 3 returned clean HTTP 200 with a live server `timestamp` field (2026-08-11, confirming these
+are fresh dated quotes, not cached):
+
+| State | County | Owner's Premium | Itemized HUD fees | Threshold effect |
+|---|---|---|---|---|
+| AZ | Maricopa (Phoenix) | $2,154.00 | Settlement or Closing Fee $1,410.00 (split $705/$705 buyer/seller) | 3→**4 providers** |
+| NV | Clark (Las Vegas) | $2,059.00 | County of Nevada Estimated Recording Fees (Transfer Tax) $2,550.00 (seller-paid); Settlement or Closing Fee $1,580.00 (split $790/$790) | 3→**4 providers** |
+| CO | Denver | $1,990.00 | Mobile Notary Fee $150.00 (seller-paid); Settlement or Closing Fee $400.00 (split $200/$200); Tax Certificate Fee $30.00 (seller-paid, mismoType TitleExaminationFee) | 3→**4 providers** |
+
+`lendersPremium`/`fullLendersPremium` returned $0 in all 3, same seller-net-sheet-only limitation
+already documented for OR. Full entries recorded in AZ.json/NV.json/CO.json; narrative addenda in
+AZ.md/NV.md/CO.md; PROGRESS.md's calculator-harvest tracker table updated to 4 providers for all 3.
+
+**Not yet checked**: WA, CA, TX (the remaining 3 states on WFG's itemization list) — out of scope
+for this tracker since they're non-scarce published-schedule states, but the same 3-line curl
+request (just swap `Properties`) would be a near-zero-effort richness add if a future session has
+spare time and wants completeness on this one platform's full itemization footprint.

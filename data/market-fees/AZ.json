@@ -247,5 +247,30 @@
     "sectionTotals": null,
     "bundlingNotes": "This tenant's config confirms the total Escrow/Closing Fee at $500,000 purchase price is $1,777.00 combined (retrieved via the ClosingFee546 rate-table key), split 50/50 buyer/seller ($888.50 each) -- both the buyer-side 'finance' and 'cash' scenario configs and the seller-side scenario config share the identical formula and rate-table key, confirming this is a single combined fee, not two independently-priced halves. Distinct fee structure from First Integrity Title Agency (TRACcalculator, also on file for AZ): Arizona Premier's endorsements (8.1, 9) are flat $100 each rather than a single bundled 'Estimated Endorsement Fee'; no separate Transaction/Loan Tie-in/Notary fee line items exist in this tenant's schema at all (TitleTap's config format is a simpler flat-fee + tiered-rate model than TRACcalculator's fully-itemized settlement statement).",
     "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Maricopa County (Scottsdale/Phoenix metro) -- AZ's most populous county tier, matching the county used for the Old Republic and First Integrity entries above. This is AZ's 3rd calculator-basis provider, crossing the 3-provider threshold."
+  },
+  {
+    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-11",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Maricopa County (AZ's most-populous/standard-scenario county), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Richness-pass application of the 2026-08-08 session's fully-solved WFG recipe (see CALCULATORS.md) to Arizona, one of only 7 states (WA, CA, TX, OR, AZ, NV, CO) this tool has configured HUD-fee itemization for per its own hardcoded feesConfiguration sort-weight table, but which had no WFG entry on file yet. Driven via a plain `Content-Type: application/json` HTTP POST to the public, unauthenticated endpoint with body `{SalesPrice, Loans: [{LienPosition: 0, LoanAmount}], TransactionProductType: {ProductTypeId: 0, TransactionTypeId: 0}, Properties: [{City, County, IsPrimary: true, State}], calculateTaxRequest: {}, SettlementStatementVersion: \"CD\", premiumDiscounts: [], Endorsements: [], PriorLenderPolicy: {}, PriorOwnerPolicy: {}}` — no personal-data field anywhere in the request shape. Note: WFG's own `wfgtitle.com` marketing domain is Cloudflare-blocked (403) per the 2026-08-08 session's OR/NM search, but this separate `rates.wfgnationaltitle.com` API subdomain is unaffected. Response returned HTTP 200 with a live server timestamp (2026-08-11T16:14:57Z) confirming this is a fresh, dated calculator quote.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,154.00",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's sellernet/seller-side-only design; not pursued further as out of scope for the seller-net flow)",
+      "other": [
+        {
+          "name": "Settlement or Closing Fee",
+          "amount": "$1,410.00",
+          "note": "split $705.00 buyer / $705.00 seller"
+        }
+      ],
+      "note": "Full itemized breakdown available for AZ (one of the 7 states -- WA, CA, TX, OR, AZ, NV, CO -- with configured HUD-fee sort weights in this tool)."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "Property location for this request: Phoenix, AZ (Maricopa County). Adds WFG as AZ's 4th calculator-basis provider (already past the 3-provider threshold via Old Republic + Arizona Premier Title/TitleTap + First Integrity/TRACcalculator); harvested for richness (itemized HUD fees, not just a premium figure) per the standing next-session recommendation to push already-quoted states toward richer entries.",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium plus itemized settlement fees for a $500,000 residential purchase, Maricopa County, AZ."
   }
 ]

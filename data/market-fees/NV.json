@@ -178,5 +178,35 @@
     "sectionTotals": "No single combined grand-total field in this tenant's config (a live net sheet, not a single-total quote) -- the itemized lines above sum to $785.00 (seller's half of Settlement Agent Fee) + $2,144.00 (Owner's Premium) + $1,025.00 (seller's half of Transfer Tax) = $3,954.00 on the seller side alone at this scenario, before commissions; buyer/lender-side adds the $940.00 Lender's Premium plus the flat finance-transaction fees ($150 + $25 + $50 + $100 + $43 + $43 + $10 = $421.00).",
     "bundlingNotes": "A genuinely first-party independent Nevada agency (not a big-four brand, not a shared-engine dedup case like this project's FNF entries) -- Nevada's 1st non-Old-Republic, non-FNF calculator-basis provider, and the richest single-source itemized breakdown found for NV to date (10 distinct line items across settlement/premium/recording/wire/courier categories). Crosses NV to the 3-provider calculator-quoted threshold (Old Republic + FNF national rate calculator + Western Nevada Title Company).",
     "transactionContext": "Full buyer+seller itemized closing-cost breakdown for a $500,000 residential purchase with $400,000 financing, statewide Nevada pricing (this agency's own config has no county-tiered dropdown). This is NV's 3rd calculator-basis provider."
+  },
+  {
+    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-11",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Clark County (NV's most-populous county, Las Vegas), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Richness-pass application of the 2026-08-08 session's fully-solved WFG recipe (see CALCULATORS.md) to Nevada, one of only 7 states (WA, CA, TX, OR, AZ, NV, CO) this tool has configured HUD-fee itemization for per its own hardcoded feesConfiguration sort-weight table, but which had no WFG entry on file yet (not part of the 2026-08-08 session's 8-state batch). Driven via a plain `Content-Type: application/json` HTTP POST to the public, unauthenticated endpoint with body `{SalesPrice, Loans: [{LienPosition: 0, LoanAmount}], TransactionProductType: {ProductTypeId: 0, TransactionTypeId: 0}, Properties: [{City, County, IsPrimary: true, State}], calculateTaxRequest: {}, SettlementStatementVersion: \"CD\", premiumDiscounts: [], Endorsements: [], PriorLenderPolicy: {}, PriorOwnerPolicy: {}}` — no personal-data field anywhere in the request shape. Response returned HTTP 200 with a live server timestamp (2026-08-11T16:14:28Z) confirming this is a fresh, dated calculator quote, not a cached/static figure.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,059.00",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's sellernet/seller-side-only design; not pursued further as out of scope for the seller-net flow)",
+      "other": [
+        {
+          "name": "County - Nevada Estimated Recording Fees (Transfer Tax - County)",
+          "amount": "$2,550.00",
+          "note": "seller-paid; tool's own mismoType is TaxStampForCountyDeed (Nevada real property transfer tax)"
+        },
+        {
+          "name": "Settlement or Closing Fee",
+          "amount": "$1,580.00",
+          "note": "split $790.00 buyer / $790.00 seller"
+        }
+      ],
+      "note": "Full itemized breakdown available for NV (one of the 7 states -- WA, CA, TX, OR, AZ, NV, CO -- with configured HUD-fee sort weights in this tool)."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "Property location for this request: Las Vegas, NV (Clark County). Adds WFG as NV's 4th calculator-basis provider (already past the 3-provider threshold via Old Republic + FNF + Western Nevada Title); harvested for richness (itemized HUD fees, not just a premium figure) per the standing next-session recommendation to push already-quoted states toward richer entries.",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium plus itemized settlement fees for a $500,000 residential purchase, Clark County, NV."
   }
 ]

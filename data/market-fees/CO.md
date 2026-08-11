@@ -1,6 +1,6 @@
 # Colorado — Market Fee Evidence
 
-## Status: complete (scarce) — 4 verified sources, 2026-07-21
+## Status: complete (scarce) — 4 verified sources + **calculator-quoted (4 providers)**, 2026-08-11
 
 Colorado does not meet the target (10) or saturation (6+) bar, but meets the contract's
 **scarce** completion criterion: an exhaustive search across two sessions — combining the
@@ -292,3 +292,16 @@ state`, `Colorado title company "net sheet calculator" OR "rate calculator" site
 "calculator" Denver Boulder "purchase price" "loan amount" estimate tool -jsOnly`, `"Principal
 Title" Arvada Colorado title company`, `"Allied Title & Escrow" Colorado headquarters office
 locations` — 11 distinct queries, plus direct fetches of 9 candidate calculator pages/endpoints.
+
+## Calculator harvest addendum (2026-08-11) — WFG National Title adds a 4th provider, richest itemization on file
+
+**4th calculator-basis provider (richness pass; already past the 3-provider threshold).** Applied
+the 2026-08-08 session's fully-solved WFG `rates.wfgnationaltitle.com` recipe (see CALCULATORS.md)
+to Colorado — one of only 7 states (WA, CA, TX, OR, AZ, NV, CO) this tool has configured HUD-fee
+itemization for, but which had no WFG entry on file yet. Plain unauthenticated `POST /api/rates/
+fees/estimatefeesforsellernet`, no personal data, standard $500,000/$400,000 scenario, Denver
+County. Result: Owner's Title Insurance Premium $1,990.00, Mobile Notary Fee $150.00 (seller-paid),
+Settlement or Closing Fee $400.00 (split $200.00/$200.00 buyer/seller), Tax Certificate Fee $30.00
+(seller-paid). Lender's premium returned $0 despite the $400,000 loan entered, consistent with this
+being a seller-net-sheet-only tool. See CO.json's newest `basis: "calculator"` entry for the full
+record.

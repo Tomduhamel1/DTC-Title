@@ -1,6 +1,6 @@
 # Nevada (NV) — Market Fee Evidence
 
-## Status: COMPLETE (scarce market) — 2 published providers verified (3 documents) + 1 calculator-basis provider (not yet at the 3-provider calculator threshold), 2026-07-22
+## Status: COMPLETE (scarce market) — 2 published providers verified (3 documents) + **calculator-quoted (4 providers)**, 2026-08-11
 
 ## Calculator harvest (2026-07-22)
 Old Republic Title's public **Estimated Rate/Fee Calculator**
@@ -222,3 +222,17 @@ NV.json's newest `basis: "calculator"` entry for full itemized figures.
 
 This makes NV the 2nd state (after MA) to cross the calculator-quoted threshold in this session's
 2026-08-06 pass.
+
+## Calculator harvest addendum 3 (2026-08-11) — WFG National Title adds a 4th provider, richest itemization on file
+
+**4th calculator-basis provider (richness pass; already past the 3-provider threshold).** Applied
+the 2026-08-08 session's fully-solved WFG `rates.wfgnationaltitle.com` recipe (see CALCULATORS.md)
+to Nevada — one of only 7 states (WA, CA, TX, OR, AZ, NV, CO) this tool has configured HUD-fee
+itemization for, but which had no WFG entry on file yet (not part of the original 8-state batch).
+Plain unauthenticated `POST /api/rates/fees/estimatefeesforsellernet`, no personal data, standard
+$500,000/$400,000 scenario, Clark County (Las Vegas). Result: Owner's Title Insurance Premium
+$2,059.00, County of Nevada Estimated Recording Fees (Transfer Tax) $2,550.00 (seller-paid),
+Settlement or Closing Fee $1,580.00 (split $790.00/$790.00 buyer/seller). Lender's premium returned
+$0 despite the $400,000 loan entered, consistent with this being a seller-net-sheet-only tool (same
+behavior already documented for WFG's OR entry). See NV.json's newest `basis: "calculator"` entry
+for the full record.

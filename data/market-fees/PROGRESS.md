@@ -18,8 +18,8 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | State | Calculator-basis providers | Status | Last run |
 |---|---|---|---|
 | OH | 3 (Old Republic — Cuyahoga County; Columbus Title Agency of Westerville — Franklin County/Columbus, own JS netsheet calculator; Owl Creek Title Agency — Knox County/statewide incl. Franklin, same shared JS netsheet template as Columbus Title but distinct fee constants) | **calculator-quoted (3 providers)** | 2026-07-27 |
-| AZ | 3 (Old Republic — Phoenix/Maricopa County; First Integrity Title Agency — Phoenix/Maricopa County, via TRACcalculator/comparetitlecompanies.com; Arizona Premier Title — Scottsdale/Maricopa County, via TitleTap's newer getNetSheetConfig backend) | **calculator-quoted (3 providers)** | 2026-08-02 |
-| NV | 3 (Old Republic — Las Vegas/Clark County; FNF national rate calculator — Clark County, Grand Total $2,211.00; Western Nevada Title Company — statewide, via NetSheetCalc/TitleTap app_id 435, richest single-source NV breakdown on file) | **calculator-quoted (3 providers)** | 2026-08-06 |
+| AZ | 4 (Old Republic — Phoenix/Maricopa County; First Integrity Title Agency — Phoenix/Maricopa County, via TRACcalculator/comparetitlecompanies.com; Arizona Premier Title — Scottsdale/Maricopa County, via TitleTap's newer getNetSheetConfig backend; WFG National Title — Maricopa County, Owner's Premium $2,154.00 + itemized Settlement/Closing Fee $1,410.00) | **calculator-quoted (4 providers)** | 2026-08-11 |
+| NV | 4 (Old Republic — Las Vegas/Clark County; FNF national rate calculator — Clark County, Grand Total $2,211.00; Western Nevada Title Company — statewide, via NetSheetCalc/TitleTap app_id 435, richest single-source NV breakdown on file; WFG National Title — Clark County, Owner's Premium $2,059.00 + itemized Transfer Tax $2,550.00/Settlement Fee $1,580.00) | **calculator-quoted (4 providers)** | 2026-08-11 |
 | NM | 3 (Old Republic — Albuquerque/Bernalillo County; FNF national rate calculator — Bernalillo County, Grand Total $2,487.00; WFG National Title — Bernalillo County, Owner's Premium $2,387.00) | **calculator-quoted (3 providers)** | 2026-08-08 |
 | UT | 3 (Old Republic — Salt Lake City/Salt Lake County; WFG National Title — Salt Lake County, Owner's Premium $2,519.00; FNF national rate calculator — Salt Lake County, Owner's Policy Premium $2,262.00/Loan Policy $1,225.00) | **calculator-quoted (3 providers)** | 2026-08-09 |
 | MO | 3 (Old Republic — Kansas City 64106/Jackson County; Elite Title Company — Des Peres/St. Louis County; Secured Title of Kansas City — Jackson County, via the Title Midwest platform) | **calculator-quoted (3 providers)** | 2026-08-02 |
@@ -34,7 +34,7 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | MD | 3 (Federal Title & Escrow Company — Montgomery County, own first-party ASP.NET tool; Allstates Title Service — Montgomery County, via MyTitleRates.com `a=78`; Tri-State Signature Settlements — Montgomery County, via MyTitleRates.com `a=40`) | **calculator-quoted (3 providers)** | 2026-08-03 |
 | CT | 3 (Old Republic — ortratecalculator.oldrepublictitle.com, statewide, a distinct tool from ortconline.com; Fidelity National Title — statewide, via FNF's shared ratecalculator.fnf.com; WFG National Title — Fairfield County, Owner's Premium $2,122.00) | **calculator-quoted (3 providers)** | 2026-08-08 |
 | MA | 3 (Absolute Title LLC, statewide; Law Office of David R. Rocheford Jr., Worcester County; FNF national rate calculator — Middlesex County, Grand Total $2,125.00) | **calculator-quoted (3 providers)** | 2026-08-06 |
-| CO | 3 (First Integrity Title Company — Denver County, via comparetitlecompanies.com's multi-company comparison tool; FNF National Rate Calculator — Denver County, ratecalculator.fnf.com; Principal Title, LLC — Arvada/Denver-zone, via its WordPress "Residential Rate Quote" plugin's stateless GET endpoint) | **calculator-quoted (3 providers)** | 2026-08-05 |
+| CO | 4 (First Integrity Title Company — Denver County, via comparetitlecompanies.com's multi-company comparison tool; FNF National Rate Calculator — Denver County, ratecalculator.fnf.com; Principal Title, LLC — Arvada/Denver-zone, via its WordPress "Residential Rate Quote" plugin's stateless GET endpoint; WFG National Title — Denver County, Owner's Premium $1,990.00 + itemized Notary/Closing/Tax-Certificate fees) | **calculator-quoted (4 providers)** | 2026-08-11 |
 | TN | 3 (Tennessee Title Services, LLC — Davidson County, own first-party calculator; Signature Title Services — Davidson County, own ASP.NET WebForms calculator; Cornerstone Title of Tennessee, LLC — Davidson County scenario, via TitleTap) | **calculator-quoted (3 providers)** | 2026-08-02 |
 | IN | 3 (Agency Title, Inc. — New Albany/Louisville-metro Southern Indiana office, NetSheetCalc/TitleTap "Quick Quote" JSON API; Momentum Title Agency [formerly Hocker Title] — Indianapolis, NetSheetCalc/TitleTap `appid=1056`; Rounsavall Title Group, LLC — Louisville KY-headquartered, dedicated IN-approved tenant `appid=480`, formula-driven premium via `getNetSheetConfig`) | **calculator-quoted (3 providers)** | 2026-08-04 |
 | KY | 3 (Agency Title, Inc. — Louisville/Jefferson County, NetSheetCalc/TitleTap; Rounsavall Title Group, LLC — Louisville/Jefferson County, a distinct `app_id=479` tenant on the same platform; Old Republic — Louisville/Jefferson County, via `ortratecalculator.oldrepublictitle.com` Location=KY) | **calculator-quoted (3 providers)** | 2026-08-05 |
@@ -2275,3 +2275,50 @@ still vary and matter).
   new tenant slugs" technique that found `RteCalc` this session — but cross-check each "new" slug's
   actual company/domain before harvesting, since `titleprofessionals` looked new but turned out to be
   a legacy rebrand of an already-on-file provider (Minnesota Secured Title).
+
+- **2026-08-11: WFG's `estimatefeesforsellernet` applied to AZ/NV/CO — its 3 states with configured
+  HUD-fee itemization that had no WFG entry on file yet — all 3 gain a 4th calculator-basis
+  provider; standard freshness/blocked-source passes; no below-threshold states remain.** With the
+  original 38-state target list still fully cleared (unchanged since 2026-08-09), this session's
+  calculator-harvest time went to the richness pass the 2026-08-08/09/10 sessions recommended.
+  Per CALCULATORS.md's 2026-08-08 entry, WFG's own hardcoded `feesConfiguration` sort-weight table
+  only itemizes settlement/closing HUD fees for 7 states: WA, CA, TX, OR, AZ, NV, CO. OR already had
+  a WFG entry (harvested 2026-08-08); this session checked the other 6 and found **AZ, NV, and CO
+  had no WFG entry at all** (WA/CA/TX are non-scarce published-schedule states, out of this
+  tracker's scope). Queried WFG's already-solved public, unauthenticated `POST /api/rates/fees/
+  estimatefeesforsellernet` endpoint (no personal data, standard $500,000/$400,000 scenario, each
+  state's most-populous county) via plain `curl` — all 3 returned live HTTP 200 responses with
+  genuine itemized HUD-fee line items (not just a premium figure, unlike most of this tool's other
+  state coverage): **AZ** (Maricopa County) — Owner's Premium $2,154.00, Settlement/Closing Fee
+  $1,410.00 (split $705/$705); **NV** (Clark County) — Owner's Premium $2,059.00, Nevada County
+  Transfer Tax $2,550.00 (seller-paid), Settlement/Closing Fee $1,580.00 (split $790/$790); **CO**
+  (Denver County) — Owner's Premium $1,990.00, Mobile Notary Fee $150.00 (seller-paid), Settlement/
+  Closing Fee $400.00 (split $200/$200), Tax Certificate Fee $30.00 (seller-paid). All 3 states move
+  from 3 to **4 calculator-basis providers**; lender's premium returned $0 in all 3, consistent with
+  the tool's confirmed seller-net-sheet-only scope. Full entries in AZ.json/NV.json/CO.json and
+  narrative addenda in AZ.md/NV.md/CO.md.
+
+  **Freshness spot-check** (5 oldest-retrieved published sources from states never previously
+  included in any prior freshness-pass rotation — CO/Empire Title of Colorado Springs rate flyer,
+  TN/Stewart Title rate manual PDF, WI/Advocus National Title (ATGF) rate filing PDF, AL/WFG
+  Alabama premium manual PDF, AR/Stewart Title rate manual PDF): all 5 returned successfully
+  fetched, readable PDF content this session — no `{stale: true}` flags needed.
+
+  **Blocked-source retries** (one quick check each): AZ DIFI (`difi.az.gov/title-insurance-rate-
+  filings`) still HTTP 403 (the `www.` subdomain variant fails to resolve/tunnel entirely, but the
+  canonical bare-domain URL on file is unambiguously still 403'd, no status change); CATIC CT
+  (`catic.com/state-resources/connecticut`) HTTP 403 this run (still fluctuating 200/403 across
+  sessions, underlying FlippingBook-viewer blocker unchanged either way); Jackson & Scott AL
+  (`realestatelclosings.com/closing-costs-calculator/`) HTTP 403, consistent with recent sessions'
+  WAF-block finding. No status change on any of the three.
+
+  **Next session priority**: the WA/CA/TX slice of WFG's 7-state itemization list was not checked
+  this session (those 3 are non-scarce, published-schedule-rich states out of this tracker's core
+  scope, but a quick WFG query for each would still be a fast, genuinely free richness add if a
+  future session has spare time). Otherwise unchanged from prior sessions' own recommendation: (a)
+  a browser-driven session to finally crack TitleCapture and/or Qualia Connect (both confirmed to
+  recur across many independent agencies nationwide); (b) continue the richness pass on remaining
+  premium-only-heavy states (NM, HI, NE, SC, LA, MS, UT all still have thin/premium-only entries
+  outside of their one WFG line); (c) continue re-scanning already-catalogued shared platforms
+  (NetSheetCalc/TitleTap, Title Midwest, MyTitleRates.com) for new tenant slugs not yet harvested,
+  applying the standing misattribution-guard verification step before recording any "new" find.

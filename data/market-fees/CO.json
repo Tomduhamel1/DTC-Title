@@ -181,5 +181,40 @@
     "sectionTotals": null,
     "bundlingNotes": "This is a seller net-sheet tool, not a full itemized buyer+seller closing statement; only the Owner's Title Policy premium is genuinely server-computed (zone + price -based), which is the item recorded here as the calculator-basis dollar figure. All other net-sheet line items (commissions, HOA fees, closing fee, mortgage payoffs, misc credits/debits) are plain user-entry fields with generic non-company-specific $0.00 defaults and were excluded. whoPaysOTP/whoPaysOEC/whoPaysCSF (buyer/seller/split allocation dropdowns) default to unselected on page load.",
     "transactionContext": "County-zone-tiered pricing across all 64 CO counties (3 zones); Zone 1 (Denver and 12 other Front Range/urban counties) is the highest-priced zone of the three observed ($1,790 vs. $1,590 Zone 2 vs. $1,540 Zone 3 at $500k), consistent with the general Denver-metro premium pattern already seen in this file's other CO sources."
+  },
+  {
+    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-11",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Denver County (CO's most-populous/standard-scenario county), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Richness-pass application of the 2026-08-08 session's fully-solved WFG recipe (see CALCULATORS.md) to Colorado, one of only 7 states (WA, CA, TX, OR, AZ, NV, CO) this tool has configured HUD-fee itemization for per its own hardcoded feesConfiguration sort-weight table, but which had no WFG entry on file yet. Driven via a plain `Content-Type: application/json` HTTP POST to the public, unauthenticated endpoint with body `{SalesPrice, Loans: [{LienPosition: 0, LoanAmount}], TransactionProductType: {ProductTypeId: 0, TransactionTypeId: 0}, Properties: [{City, County, IsPrimary: true, State}], calculateTaxRequest: {}, SettlementStatementVersion: \"CD\", premiumDiscounts: [], Endorsements: [], PriorLenderPolicy: {}, PriorOwnerPolicy: {}}` — no personal-data field anywhere in the request shape. Response returned HTTP 200 with a live server timestamp (2026-08-11T16:14:36Z) confirming this is a fresh, dated calculator quote.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1,990.00",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's sellernet/seller-side-only design; not pursued further as out of scope for the seller-net flow)",
+      "other": [
+        {
+          "name": "Mobile Notary Fee",
+          "amount": "$150.00",
+          "note": "seller-paid"
+        },
+        {
+          "name": "Settlement or Closing Fee",
+          "amount": "$400.00",
+          "note": "split $200.00 buyer / $200.00 seller"
+        },
+        {
+          "name": "Tax Certificate Fee",
+          "amount": "$30.00",
+          "note": "seller-paid; tool's own mismoType is TitleExaminationFee"
+        }
+      ],
+      "note": "Full itemized breakdown available for CO (one of the 7 states -- WA, CA, TX, OR, AZ, NV, CO -- with configured HUD-fee sort weights in this tool)."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "Property location for this request: Denver, CO (Denver County). Adds WFG as CO's 4th calculator-basis provider (already past the 3-provider threshold via First Integrity/TRACcalculator + FNF + Principal Title); harvested for richness (itemized HUD fees, not just a premium figure) per the standing next-session recommendation to push already-quoted states toward richer entries.",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium plus itemized settlement fees for a $500,000 residential purchase, Denver County, CO."
   }
 ]
