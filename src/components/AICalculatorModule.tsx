@@ -361,7 +361,7 @@ export default function AICalculatorModule({ compact = false }: AICalculatorModu
             <div className={`font-black text-emerald-600 leading-none transition-all ${compact ? 'text-3xl' : 'text-5xl'} ${
               isLoading ? 'scale-110' : ''
             }`}>
-              ${savings.totalSavings.toLocaleString()}
+              −${savings.totalSavings.toLocaleString()}
             </div>
           </div>
 
@@ -382,7 +382,7 @@ export default function AICalculatorModule({ compact = false }: AICalculatorModu
             </div>
             <div className="flex items-center gap-2 whitespace-nowrap">
               <span className="font-semibold text-gray-700">Lifetime:</span>
-              <span className="font-bold text-emerald-600">${savings.lifetimeSavings.toLocaleString()} saved over loan</span>
+              <span className="font-bold text-emerald-600">−${savings.lifetimeSavings.toLocaleString()} saved over loan</span>
             </div>
           </div>
         </div>

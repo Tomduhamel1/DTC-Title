@@ -410,7 +410,7 @@ function ResultPanel({
             Estimated savings at closing
           </div>
           <div className="text-4xl md:text-5xl font-black text-emerald-800 tabular-nums">
-            {formatCurrency(avgSavings)}
+            −{formatCurrency(avgSavings)}
           </div>
           <div className="text-xs text-emerald-800/80 mt-1">
             vs. the typical market range — for your client&apos;s closing

@@ -157,7 +157,7 @@ export default async function PublicQuoteViewPage({ searchParams }: PageProps) {
               Estimated savings
             </div>
             <div className="text-4xl font-black text-emerald-900 tabular-nums">
-              {formatCurrency(savingsAvg)}
+              −{formatCurrency(savingsAvg)}
             </div>
             <div className="text-xs text-emerald-800 mt-1">
               at closing, vs. the typical market range

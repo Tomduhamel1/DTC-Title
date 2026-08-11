@@ -17,7 +17,7 @@ export default function TeamTrustSection() {
             <p className="text-xl text-gray-600">
               Same people. Same protection.{' '}
               <span className="font-bold text-emerald-600">
-                ${savings.totalSavings.toLocaleString()} saved
+                −${savings.totalSavings.toLocaleString()} saved
               </span>{' '}
               over the life of your loan.
             </p>

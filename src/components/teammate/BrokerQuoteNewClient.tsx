@@ -186,7 +186,7 @@ function ImportSuccessBanner({
                   Save at closing
                 </div>
                 <div className="text-lg font-black text-emerald-700 tabular-nums leading-none mt-1">
-                  {formatCurrency(totals.estimatedSavings)}
+                  −{formatCurrency(totals.estimatedSavings)}
                 </div>
               </div>
               <div className="bg-white border border-emerald-200 rounded-lg px-3 py-2">
@@ -194,7 +194,7 @@ function ImportSuccessBanner({
                   Save over the loan
                 </div>
                 <div className="text-lg font-black text-emerald-700 tabular-nums leading-none mt-1">
-                  {formatCurrency(totals.lifetimeSavings)}
+                  −{formatCurrency(totals.lifetimeSavings)}
                 </div>
               </div>
             </div>

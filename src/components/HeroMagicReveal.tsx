@@ -112,7 +112,7 @@ export default function HeroMagicReveal() {
                   Save at closing
                 </div>
                 <div className="text-3xl md:text-4xl font-black text-emerald-600 tabular-nums leading-none">
-                  ${saveAtClosing.toLocaleString()}
+                  −${saveAtClosing.toLocaleString()}
                 </div>
                 <div className="text-[11px] text-gray-500 mt-1.5">Title &amp; settlement</div>
               </div>
@@ -121,7 +121,7 @@ export default function HeroMagicReveal() {
                   Save over the loan
                 </div>
                 <div className="text-3xl md:text-4xl font-black text-emerald-600 tabular-nums leading-none">
-                  ${saveOverLoan.toLocaleString()}
+                  −${saveOverLoan.toLocaleString()}
                 </div>
                 <div className="text-[11px] text-gray-500 mt-1.5">Long-term savings</div>
               </div>
