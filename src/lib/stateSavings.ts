@@ -10,18 +10,22 @@
 //
 //   npx tsx scripts/build-state-savings.ts
 //
-// Estimates for other home values scale linearly from the anchor scenario.
-// That's an approximation (title premiums are tiered, not linear), acceptable
-// for a "typically save" teaser; the /quote flow is the precise answer.
+// Estimates for other home values interpolate across the engine-generated
+// curve (stateSavingsCurve.generated.ts: real quotes at $500k/$1MM/$2MM) —
+// savings are not linear in price (flat package gap + premium-scaled Bucks),
+// so linear anchor scaling would overstate. The /quote flow stays the
+// precise answer.
 
 import { loanInterestAvoided } from './feeReport'
 import { stateOffered } from './stateMaster'
 import {
-  ANCHOR_HOME_VALUE,
-  NATIONAL_ANCHOR,
-  STATE_ANCHORS,
-  type StateAnchor,
-} from './stateSavings.generated'
+  CURVE_HOME_VALUES,
+  CurvePoint,
+  NATIONAL_CURVE,
+  STATE_CURVES,
+  StateCurve,
+} from './stateSavingsCurve.generated'
+
 
 export interface RegionSavings {
   /** Direct title + settlement savings paid at the closing table. */
@@ -54,19 +58,38 @@ export function resolveStateCode(state: string | null | undefined): string | und
 
 const resolveCode = resolveStateCode
 
-function anchorFor(state: string | null | undefined): StateAnchor {
-  const code = resolveCode(state)
-  if (!code) return NATIONAL_ANCHOR
-  // Marketing surfaces never advertise state-specific numbers for a state we
-  // don't serve (stateMaster) — geo-detected visitors there see the national
-  // example instead.
-  if (!stateOffered(code, 'purchase') && !stateOffered(code, 'refinance')) {
-    return NATIONAL_ANCHOR
+const round10 = (n: number) => Math.round(n / 10) * 10
+
+// ── Curve interpolation ─────────────────────────────────────────────────────
+// Savings are NOT linear in home value: the service-package gap is flat while
+// BetterClose Bucks scales with premiums. Linear scaling from the $500k
+// anchor OVERSTATES savings at higher prices (RI: linear $1,227 @ $1.5M vs
+// engine ~$935). Where the engine-generated curve exists
+// (stateSavingsCurve.generated.ts: real quotes at $500k/$1MM/$2MM) we
+// piecewise-linearly interpolate between its points; below the first point we
+// scale it down linearly (conservative — Bucks shrinks roughly with value,
+// the flat package gap makes true savings higher); above the last point we
+// extend the final segment's slope (tracks Bucks growth).
+function interpolate(points: CurvePoint[], homeValue: number, key: 'save' | 'pay'): number {
+  const xs = CURVE_HOME_VALUES
+  if (homeValue <= xs[0]) return (points[0][key] * homeValue) / xs[0]
+  const last = xs.length - 1
+  for (let i = 1; i <= last; i++) {
+    if (homeValue <= xs[i]) {
+      const t = (homeValue - xs[i - 1]) / (xs[i] - xs[i - 1])
+      return points[i - 1][key] + t * (points[i][key] - points[i - 1][key])
+    }
   }
-  return STATE_ANCHORS[code] ?? NATIONAL_ANCHOR
+  const slope = (points[last][key] - points[last - 1][key]) / (xs[last] - xs[last - 1])
+  return points[last][key] + slope * (homeValue - xs[last])
 }
 
-const round10 = (n: number) => Math.round(n / 10) * 10
+function curveFor(state: string | null | undefined): StateCurve {
+  const code = resolveCode(state)
+  if (!code) return NATIONAL_CURVE
+  if (!stateOffered(code, 'purchase') && !stateOffered(code, 'refinance')) return NATIONAL_CURVE
+  return STATE_CURVES[code] ?? NATIONAL_CURVE
+}
 
 /**
  * Two-bucket savings estimate for marketing surfaces.
@@ -80,9 +103,9 @@ export function estimateSavings(
   mode: 'purchase' | 'refinance',
   state: string | null | undefined,
 ): RegionSavings {
-  const anchor = anchorFor(state)
-  const base = mode === 'refinance' ? anchor.refinance.save : anchor.purchase.save
-  const saveAtClosing = Math.max(0, round10(base * (homeValue / ANCHOR_HOME_VALUE)))
+  const curve = curveFor(state)
+  const points = mode === 'refinance' ? curve.refinance : curve.purchase
+  const saveAtClosing = Math.max(0, round10(interpolate(points, homeValue, 'save')))
   return {
     saveAtClosing,
     saveOverLoan: saveAtClosing + loanInterestAvoided(saveAtClosing),
@@ -107,10 +130,9 @@ export function estimateCostBasis(
   mode: 'purchase' | 'refinance',
   state: string | null | undefined,
 ): RegionCostBasis {
-  const anchor = anchorFor(state)
-  const m = mode === 'refinance' ? anchor.refinance : anchor.purchase
-  const scale = homeValue / ANCHOR_HOME_VALUE
-  const saveAtClosing = Math.max(0, round10(m.save * scale))
-  const ourTotal = Math.max(0, round10(m.ourTotal * scale))
+  const curve = curveFor(state)
+  const points = mode === 'refinance' ? curve.refinance : curve.purchase
+  const saveAtClosing = Math.max(0, round10(interpolate(points, homeValue, 'save')))
+  const ourTotal = Math.max(0, round10(interpolate(points, homeValue, 'pay')))
   return { saveAtClosing, ourTotal, typicalTotal: ourTotal + saveAtClosing }
 }

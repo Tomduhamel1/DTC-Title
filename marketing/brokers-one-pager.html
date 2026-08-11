@@ -79,8 +79,9 @@
   .save {
     display: flex;
     align-items: center;
-    gap: 16px;
-    margin-top: 0.28in;
+    justify-content: space-between;
+    gap: 0.45in;
+    margin-top: 0.26in;
   }
   .save .amt {
     font-size: 44px;
@@ -92,7 +93,37 @@
   .save .desc {
     font-size: 11px;
     color: var(--slate);
-    max-width: 4.4in;
+    max-width: 3.1in;
+    margin-top: 4px;
+  }
+  .stbl {
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .stbl th {
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--slate-soft);
+    text-align: right;
+    padding: 0 0 5px 22px;
+  }
+  .stbl th:first-child { text-align: left; padding-left: 0; }
+  .stbl td {
+    font-size: 11px;
+    text-align: right;
+    padding: 3.5px 0 3.5px 22px;
+    border-top: 1px solid var(--line);
+    color: var(--emerald-deep);
+    font-weight: 700;
+  }
+  .stbl td:first-child {
+    text-align: left;
+    padding-left: 0;
+    color: var(--slate);
+    font-weight: 400;
   }
 
   .lab {
@@ -156,8 +187,16 @@
     <h1>Lower cash to close.<br><em>A closing desk that answers.</em></h1>
     <p class="sub">BetterClose handles title and settlement for less — same A-rated underwriters, every fee itemized, and no extra work on your file.</p>
     <div class="save">
-      <div class="amt">$216</div>
-      <div class="desc">Typical savings at closing on a $500k purchase; $194 on a $400k refinance — national examples.* Financed over a 30-year loan, that purchase saving is worth about $490.**</div>
+      <div>
+        <div class="amt">$409</div>
+        <div class="desc">Typical savings at closing on a $500,000 Rhode Island purchase.* Financed over a 30-year loan, that saving is worth about $930.**</div>
+      </div>
+      <table class="stbl">
+        <tr><th>Transaction*</th><th>Purchase</th><th>Refinance</th></tr>
+        <tr><td>$500,000</td><td>$409</td><td>$231</td></tr>
+        <tr><td>$1,000,000</td><td>$672</td><td>$321</td></tr>
+        <tr><td>$2,000,000</td><td>$1,197</td><td>$501</td></tr>
+      </table>
     </div>
   </div>
 
@@ -207,7 +246,7 @@
     <div class="uwline">Underwriters include First American, AmTrust Title, Westcor, and CATIC — A.M. Best rated A or higher.</div>
     <div class="contactline"><b>partners@betterclose.co</b> &nbsp;·&nbsp; orders@betterclose.co &nbsp;·&nbsp; 1-800-316-9508 &nbsp;·&nbsp; betterclose.co/for-brokers</div>
     <div class="fine">
-      *Examples only — not a quote or guarantee. Actual savings depend on the borrower's loan, property, and location. "Typical" market ranges reflect our estimate of local pricing; savings are measured against the low end of that range. Recording fees — and, in states with promulgated or uniform rates, title insurance premiums — are set by the state and the same regardless of provider; we never count those toward savings. **Loan savings assumes you borrow less or get better loan pricing because your closing costs are lower. Based on 6.5% over 30 years. Final terms may vary. Directly licensed in 34 states; closings in the remaining states are completed via licensed workshare partners with the same BetterClose pricing and digital experience. BetterClose is a division of First National Title &amp; Escrow.
+      *Rhode Island examples (Providence-area pricing at 80% LTV; refinance of a loan at 80% of the value shown) — not a quote or guarantee. Actual savings depend on the borrower's loan, property, and location. "Typical" market ranges reflect our estimate of local pricing; savings are measured against the low end of that range. Recording fees — and, in states with promulgated or uniform rates, title insurance premiums — are set by the state and the same regardless of provider; we never count those toward savings. **Loan savings assumes you borrow less or get better loan pricing because your closing costs are lower. Based on 6.5% over 30 years. Final terms may vary. Directly licensed in 34 states; closings in the remaining states are completed via licensed workshare partners with the same BetterClose pricing and digital experience. BetterClose is a division of First National Title &amp; Escrow.
     </div>
   </div>
 </div>
