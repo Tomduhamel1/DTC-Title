@@ -66,6 +66,9 @@ export default function ProfessionalQuoteFlow({
   const [loanAmount, setLoanAmount] = useState(initialInputs.loanAmount)
   const [report, setReport] = useState<FeeReport | null>(null)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  // Service-area refusal (stateMaster): rendered as informational, without the
+  // "Couldn't build the estimate right now" transient-failure prefix.
+  const [notOffered, setNotOffered] = useState(false)
   // Relative /quote/view?token=... path returned by the persist route. Null
   // when persistence failed — the result still renders (ephemeral fallback),
   // just without a shareable link.
@@ -102,8 +105,15 @@ export default function ProfessionalQuoteFlow({
       })
       const json = await res.json().catch(() => ({}))
       if (!res.ok || !json.ok || !json.report) {
+        if (json.notOffered && json.error) {
+          setNotOffered(true)
+          setErrorMessage(json.error)
+          setState('error')
+          return
+        }
         throw new Error(json.error || `Request failed (${res.status})`)
       }
+      setNotOffered(false)
       setReport(json.report as FeeReport)
       setViewUrl(typeof json.viewUrl === 'string' ? json.viewUrl : null)
       setState('result')
@@ -116,6 +126,7 @@ export default function ProfessionalQuoteFlow({
   function onEditEstimate() {
     setState('form')
     setErrorMessage(null)
+    setNotOffered(false)
     // Keep current form values + last report — user can resubmit or change inputs.
   }
 
@@ -164,6 +175,7 @@ export default function ProfessionalQuoteFlow({
                 setLoanAmount={setLoanAmount}
                 valid={valid}
                 errorMessage={state === 'error' ? errorMessage : null}
+                notOffered={notOffered}
                 onSubmit={onSubmit}
               />
             ) : state === 'loading' ? (
@@ -201,6 +213,7 @@ interface FormCardProps {
   setLoanAmount: (v: string) => void
   valid: boolean
   errorMessage: string | null
+  notOffered?: boolean
   onSubmit: (e: React.FormEvent) => void
 }
 
@@ -215,6 +228,7 @@ function FormCard({
   setLoanAmount,
   valid,
   errorMessage,
+  notOffered = false,
   onSubmit,
 }: FormCardProps) {
   const isPurchase = transactionType === 'purchase'
@@ -299,7 +313,12 @@ function FormCard({
         </div>
       </div>
 
-      {errorMessage && (
+      {errorMessage && notOffered && (
+        <div className="bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 text-sm text-amber-900">
+          {errorMessage}
+        </div>
+      )}
+      {errorMessage && !notOffered && (
         <div className="bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-800">
           Couldn&apos;t build the estimate right now. {errorMessage}
         </div>

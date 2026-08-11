@@ -8,6 +8,7 @@
 
 import { betterCloseBucksLine } from './betterCloseBucks'
 import { betterCloseServiceFee } from './betterCloseFees'
+import { assertServiceOffered } from './stateMaster'
 import type { FeeCategory, FeeLineItem, FeeReport, FeeSource } from './feeReport'
 import {
   ABSTRACT_ONLY_PASSTHROUGH_STATES,
@@ -185,7 +186,16 @@ function withTypicalRange(
   }
 }
 
-export async function fetchElendFeeEstimate(req: ElendRequest): Promise<FeeReport> {
+export interface FetchOptions {
+  // Used by closing-milestone snapshots: existing closings in a state that
+  // has since been switched OFF must still be serviceable.
+  skipAvailabilityCheck?: boolean
+}
+
+export async function fetchElendFeeEstimate(
+  req: ElendRequest,
+  opts: FetchOptions = {},
+): Promise<FeeReport> {
   const body = buildBody(req)
 
   const controller = new AbortController()
@@ -232,6 +242,14 @@ export async function fetchElendFeeEstimate(req: ElendRequest): Promise<FeeRepor
   }
   if (!Array.isArray(data.rateCalcGuideResponse)) {
     throw new Error('fee calculator returned no fee data')
+  }
+
+  // Availability backstop (src/lib/stateMaster.ts): authoritative check on
+  // the upstream's own state/county. Throws ServiceNotOfferedError, which
+  // the quote routes surface as a clean "not offered" response. Pre-flight
+  // ZIP gates in the routes avoid this round-trip for known-OFF states.
+  if (!opts.skipAvailabilityCheck) {
+    assertServiceOffered(data.stateCode, req.transactionType, data.county)
   }
 
   const lineItems: FeeLineItem[] = []

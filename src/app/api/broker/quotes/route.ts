@@ -3,6 +3,8 @@ import { z } from 'zod'
 import { prisma } from '@/lib/db'
 import { requireBrokerMember } from '@/lib/auth/session'
 import { fetchElendFeeEstimate } from '@/lib/elendCalc'
+import { ServiceNotOfferedError, stateOffered } from '@/lib/stateMaster'
+import { stateForZip } from '@/lib/zipToState'
 import { computeTotals } from '@/lib/feeReport'
 import {
   computeInputHash,
@@ -89,6 +91,21 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: resolved.error }, { status: 400 })
   }
 
+  // Pre-flight availability gate (stateMaster): the broker form supplies
+  // propertyState explicitly; fall back to the ZIP-prefix map. The elendCalc
+  // backstop re-verifies against the upstream's own state either way.
+  const preflightState =
+    (typeof data.propertyState === 'string' && data.propertyState.length === 2
+      ? data.propertyState.toUpperCase()
+      : undefined) || stateForZip(data.zip)
+  if (preflightState && !stateOffered(preflightState, data.transactionType)) {
+    const gateErr = new ServiceNotOfferedError(preflightState, data.transactionType)
+    return NextResponse.json(
+      { notOffered: true, state: preflightState, error: gateErr.message },
+      { status: 422 },
+    )
+  }
+
   // ── Live fee estimate (same upstream as the public quote flow) ───────────
   let report
   try {
@@ -99,6 +116,12 @@ export async function POST(req: Request) {
       loanAmount: resolved.loanAmount,
     })
   } catch (err) {
+    if (err instanceof ServiceNotOfferedError) {
+      return NextResponse.json(
+        { notOffered: true, state: err.stateCode, error: err.message },
+        { status: 422 },
+      )
+    }
     // eslint-disable-next-line no-console
     console.error('[broker/quotes] fee estimate failed:', err)
     const message = err instanceof Error ? err.message : 'unknown error'

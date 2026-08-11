@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server'
 import { z } from 'zod'
 import { fetchElendFeeEstimate } from '@/lib/elendCalc'
 import { rateLimit } from '@/lib/rate-limit'
+import { ServiceNotOfferedError, stateOffered } from '@/lib/stateMaster'
+import { stateForZip } from '@/lib/zipToState'
 
 const Body = z.object({
   transactionType: z.enum(['purchase', 'refinance']),
@@ -61,6 +63,19 @@ export async function POST(req: Request) {
     if (!loanAmount) loanAmount = Math.round(homeValue * 0.8)
   }
 
+  // Pre-flight availability gate (stateMaster): refuse known-OFF states
+  // before the slow upstream call. The explicit stateCode (broker form) wins;
+  // otherwise the ZIP-prefix map is advisory — unknown ZIP prefixes proceed
+  // and the elendCalc backstop re-checks against the upstream's own state.
+  const preflightState = data.stateCode?.toUpperCase() || stateForZip(data.zip)
+  if (preflightState && !stateOffered(preflightState, data.transactionType)) {
+    const err = new ServiceNotOfferedError(preflightState, data.transactionType)
+    return NextResponse.json(
+      { ok: false, notOffered: true, state: preflightState, error: err.message },
+      { status: 422 },
+    )
+  }
+
   try {
     const report = await fetchElendFeeEstimate({
       transactionType: data.transactionType,
@@ -80,6 +95,12 @@ export async function POST(req: Request) {
     }
     return NextResponse.json({ ok: true, report })
   } catch (err) {
+    if (err instanceof ServiceNotOfferedError) {
+      return NextResponse.json(
+        { ok: false, notOffered: true, state: err.stateCode, error: err.message },
+        { status: 422 },
+      )
+    }
     const message = err instanceof Error ? err.message : 'unknown error'
     console.error('[fee-estimate] failed:', message)
     return NextResponse.json({ ok: false, error: message }, { status: 502 })

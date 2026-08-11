@@ -15,13 +15,17 @@ export default function BorrowerQuoteForm() {
   const [loanAmount, setLoanAmount] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  // 'unavailable' renders as an amber informational notice (service-area), not a red error.
+  const [errorKind, setErrorKind] = useState<'error' | 'unavailable'>('error')
 
   useEffect(() => {
     if (typeof window === 'undefined') return
     const stashed = sessionStorage.getItem('feeReportError')
     if (stashed) {
       setError(stashed)
+      setErrorKind(sessionStorage.getItem('feeReportErrorKind') === 'unavailable' ? 'unavailable' : 'error')
       sessionStorage.removeItem('feeReportError')
+      sessionStorage.removeItem('feeReportErrorKind')
     }
   }, [])
 
@@ -142,7 +146,13 @@ export default function BorrowerQuoteForm() {
           </div>
 
           {error && (
-            <div className="bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-800">
+            <div
+              className={
+                errorKind === 'unavailable'
+                  ? 'bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 text-sm text-amber-900'
+                  : 'bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-800'
+              }
+            >
               {error}
             </div>
           )}
