@@ -33,6 +33,10 @@ const CONCURRENCY = 2
 
 interface ScenarioEcon {
   premiums: number
+  // Rate-engine premium split, so the console can show the numbers aren't
+  // generalizations: owner's + lender's exactly as upstream priced them.
+  owners: number
+  lenders: number
   settlement: number
   bucks: number
   pkg: number
@@ -67,6 +71,12 @@ async function scenarioFor(
   const premiums = report.lineItems
     .filter((li) => !li.isCredit && /title insurance/i.test(li.label))
     .reduce((s, li) => s + li.ourCost, 0)
+  const owners = report.lineItems
+    .filter((li) => !li.isCredit && /owner's title insurance/i.test(li.label))
+    .reduce((s, li) => s + li.ourCost, 0)
+  const lenders = report.lineItems
+    .filter((li) => !li.isCredit && /lender's title insurance/i.test(li.label))
+    .reduce((s, li) => s + li.ourCost, 0)
   const settlement = report.lineItems
     .filter((li) => !li.isCredit && /settlement fee/i.test(li.label))
     .reduce((s, li) => s + li.ourCost, 0)
@@ -74,6 +84,8 @@ async function scenarioFor(
   const split = conservativeSplitFor(state)
   return {
     premiums,
+    owners,
+    lenders,
     settlement,
     bucks,
     pkg: totals.serviceStack?.savings ?? 0,
@@ -166,6 +178,8 @@ export const MATRIX_GENERATED_AT = '${new Date().toISOString()}'
 
 export interface ScenarioEcon {
   premiums: number
+  owners: number
+  lenders: number
   settlement: number
   bucks: number
   pkg: number
