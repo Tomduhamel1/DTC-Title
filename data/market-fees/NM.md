@@ -251,3 +251,27 @@ This session solved `rates.wfgnationaltitle.com`'s `POST /api/rates/fees/estimat
 - **WFG National Title Insurance Company** (`rates.wfgnationaltitle.com`) — WORKING. Bernalillo County (NM's most-populous/standard-scenario county), Albuquerque, NM, $500,000 purchase / $400,000 loan, SettlementStatementVersion `CD`. Result: Owner's Title Insurance Premium **$2,387.00**, premium-only (no itemized HUD-fee lines configured for NM in this tool). Loan Policy premium returned $0/null in every state tried this session, consistent with this tool's seller-net-sheet (seller-side) design — not pursued further as out of scope.
 
 **NM now calculator-quoted (3 providers)** — WFG National Title crosses the threshold.
+
+## Calculator harvest addendum (2026-08-12) — richness pass: Old Republic's 2nd tool, supplementary (not a new provider count)
+
+Already at 3 of 3 (threshold crossed 2026-08-08); this session's harvest is corroborating richness,
+not a 4th distinct provider. See NM.json's newest `basis: "calculator"` entry for full figures and
+methodology.
+
+The 2026-08-06 NV session had found — but not yet harvested — that New Mexico Land & Title
+Company's own site (`nmltco.com/rate-calc.html`) embeds Old Republic's *second* calculator tool
+(`ortratecalculator.oldrepublictitle.com`, distinct from the `ortconline.com` engine already on
+file as NM's 1st provider) via a pre-set `Agent=A30088&Location=NM` URL, confirmed live and not
+NoBot-blocked. This session drove it to a full quote: statewide PURCHASE/SALE form (no county
+selector), `txtLiabilityAmt=500000`/`txtCrLiabilityAmt=400000` POST, then Calculate. Result:
+**Owner's Basic premium $2,387.00, standalone Lender's Policy premium $1,770.00, simultaneous
+surcharge $100.00, Grand Total (Owner's + Lender's + 2 endorsements) $2,562.00.**
+
+This is not counted as a 4th distinct provider (same Old Republic corporate entity as the existing
+`ortconline.com` entry, per this project's brand/engine dedup rule), but it produces the single
+strongest premium-convergence data point found anywhere in this survey to date: the $2,387.00
+Owner's premium and $1,770.00 Lender's premium are byte-identical across **four** independent
+sources — this tool, the existing `ortconline.com` Old Republic entry, the existing WFG
+seller-net-sheet entry, and the OSI promulgated-rate table itself. Confirms New Mexico's title
+premium is genuinely fixed/promulgated regardless of agent or platform, and that settlement/escrow
+fees (not premiums) are where NM's real market variation lives.

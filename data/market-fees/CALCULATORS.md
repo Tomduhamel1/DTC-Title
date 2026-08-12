@@ -2470,3 +2470,102 @@ AZ.md/NV.md/CO.md; PROGRESS.md's calculator-harvest tracker table updated to 4 p
 for this tracker since they're non-scarce published-schedule states, but the same 3-line curl
 request (just swap `Properties`) would be a near-zero-effort richness add if a future session has
 spare time and wants completeness on this one platform's full itemization footprint.
+
+## 2026-08-12 session — richness pass: NM gains a corroborating Old Republic 2nd-tool entry; HI/Title Midwest re-scans confirm no new provider; `SettlementStatementVersion: "HUD2010"` lead retired (already dead-lettered 2026-08-09)
+
+**Correction to the incoming task brief**: the brief's priority #1 (try WFG's
+`SettlementStatementVersion: "HUD2010"` against NM/HI/NE/SC/LA/MS/UT) was already tried and logged
+as a dead end in the **2026-08-09** session's own CALCULATORS.md entry ("Tested against WFG's
+`estimatefeesforsellernet` endpoint for SC and LA. Both returned `hudFees: []` and all 4 `gfe`
+boxes at $0... this variant is a dead end, not worth trying for UT/MS or any other state"). Not
+re-tried this session — re-confirmed by re-reading that entry rather than re-querying the API, to
+avoid burning session time on an already-closed lead. Flagging clearly here since the task brief
+presented it as untried; future sessions should treat this as permanently closed unless WFG's own
+`feesConfiguration` table is later observed to have changed.
+
+### New Mexico: Old Republic's 2nd tool (`ortratecalculator.oldrepublictitle.com`) harvested — corroborating richness, not a new provider count
+The 2026-08-06 NV session found (but did not harvest) that New Mexico Land & Title Company's own
+site (`nmltco.com/rate-calc.html`) iframes this exact tool via `EmbedRateCalc.aspx?Agent=A30088&
+Location=NM`, confirmed live/not-NoBot-blocked at the time. This session drove it to a full quote:
+same statewide PURCHASE/SALE form pattern already on file for LA (radio value 49 pre-checked,
+`txtLiabilityAmt`/`txtCrLiabilityAmt` exposed directly, no county selector). Result: Owner's Basic
+premium **$2,387.00**, standalone Lender's Policy premium **$1,770.00**, $100.00 simultaneous
+surcharge, Grand Total (Owner's + Lender's + 2 endorsements) **$2,562.00**. Not counted as a 4th
+distinct NM provider (same Old Republic corporate entity as the existing `ortconline.com` entry,
+per the standing brand/engine dedup rule) but recorded as richness: this figure is byte-identical
+to the existing `ortconline.com` Old Republic entry, the existing WFG seller-net-sheet entry, AND
+the OSI promulgated-rate table already on file — a 4-way convergence, the strongest found anywhere
+in this survey, confirming NM's title premium is genuinely fixed/promulgated regardless of tool or
+agent. Full entry in NM.json/NM.md.
+
+**Retried the same `Location=<state>` pattern (no Agent param) for NE/UT/HI** — all three returned
+the identical "not authorized... Code: 2" NoBot block, both with and without `CallingApp=PUBLIC`.
+Confirms the NM/LA/SC/MS unlocks are agent-code- or referer-specific, not a general per-state
+loosening — a plain `Location=<ST>` hit with no matching `Agent=` parameter and no matching
+third-party embed page as Referer should not be expected to work going forward without first
+finding another company's site that iframes a working `Agent=` code for that state (the same
+technique that worked here for NM via nmltco.com).
+
+### Hawaii: 2 web-search leads ("Island Title & Escrow Agency", "SUPREME Title Company, LLC") ruled out via the standing misattribution-guard technique
+A search for HI-flavored NetSheetCalc/TitleTap tenants surfaced `app.netsheetcalc.com/company/
+index.php?appid=396` ("Island Title & Escrow Agency") and `appid=399` ("SUPREME Title Company,
+LLC"). Both looked promising by name but resolved, via their own `getAppData` config's
+`address1`/`city`/`state`/`approved_states` fields, to **Merritt Island, FL** and **Katy, TX**
+respectively — neither is a genuine Hawaii tenant. Classic name-based misattribution ("Island" ≠
+Hawaii), consistent with this project's standing lesson to always verify company/address before
+counting a "new" tenant slug. Also checked First Hawaii Title's own "Net Sheet Tools" page
+(`firsthawaii.com/net-sheet-tools/`) — all 4 of its calculator links resolve to
+`firsthawaiititle.titlecapture.com/login`, the same already-catalogued jsOnly TitleCapture
+platform flagged repeatedly as the top browser-driven-session target. Checked Title Guaranty of
+Hawaii's own "TG Estimator" (`express.tghawaii.com/estimator`, `tghawaii.com/tg-estimator/`) —
+its published fee-schedule PDF backing this tool (`Escrow-Fees-Online-2025-8.5x11-current.pdf`,
+"Effective January 2026") turned out to already be on file verbatim as HI.json's 1st entry
+(byte-identical dollar figures at every tier, e.g. $2,250.00 escrow fee / $2,168.00 title premium
+at $500,000) — not a new find, just independent confirmation the existing published-schedule entry
+is still current. No new HI provider found this session; HI remains at 3 calculator-basis
+providers.
+
+### Title Midwest (`forms.titlemidwest.com`) re-scan: all previously-unidentified tenant slugs now resolved, none serve NM/HI/NE/SC/LA/MS/UT
+Re-listed the platform's open directory and resolved every remaining previously-uncatalogued slug
+via its own `Calculator.asp`/config: **BeachCalc** = Beach Abstract (unidentified state, East
+Coast-flavored branding, GFE-style calculator), **Coffeyville** = Kansas Secured Title Southeast
+(KS), **HstCalc** = Hot Springs Title (AR), **mainstreettitleco** = a static HTML page (no live
+ajax backend), **MstCalc** = Missouri Secured Title (MO, duplicate of the already-catalogued
+family), **NtcCalc** = **Nebraska Title Company** — confirmed the *same* company already on file
+as NE's 1st calculator-basis provider (`nebtitlecoratecalc`, a Vue.js SPA), not a distinct 4th
+entity: this classic-ASP/`ajax.asp` twin's live `GET ajax.asp?loantype=p&policytype=e&
+purchamt=500000&loanamt=400000&underwriter=old_republic` returned `{"pOwner":1632.5,...}`,
+byte-identical to the $1,632.50 already recorded from the Vue SPA's hand-extracted formula — a
+clean independent HTTP-confirmed corroboration of the existing figure, but not a new provider (and
+the page's own `feeOtherPurchase`/`feeOtherRefinance` JS constants, which looked like they might
+finally disclose NE's missing settlement fee, are dead/unwired code — never referenced by the
+current `calculator.js`, confirmed by full read of both files). **TcrCalc** = Title Company of the
+Rockies (CO, already past threshold). No slug on this platform serves NM/HI/SC/LA/MS/UT — this
+platform's footprint is confirmed Midwest/mountain-region only (MN/MO/KS/NE/TX/CO), a dead end for
+those 6 states specifically; no further re-scans of this platform needed for that state cluster.
+
+### Freshness spot-check (5 oldest-retrieved published sources, all from states never previously included in any prior freshness-pass rotation — UT/Sutherland Title fees page, SC/Mogill Law real-estate page, MS/Stewart's virtualunderwriter.com rate manual PDF, NE/FNTI Nebraska rate manual PDF, HI/oahure.com First American rate sheet PDF)
+4 of 5 returned a clean HTTP 200. The oahure.com PDF 403'd with response headers showing
+`cf-mitigated: challenge` (a Cloudflare bot-mitigation challenge page, not a 404/removed-file
+signal) — same category as the existing CATIC CT/AZ Pioneer Title/Lighthouse Title WAF-block
+precedent, so **not** marked `{stale: true}`, flagged for monitoring only.
+
+### Blocked-source retries (one quick check each): no status change
+AZ DIFI (`difi.az.gov/title-insurance-rate-filings`) still HTTP 403; CATIC CT
+(`catic.com/state-resources/connecticut`) HTTP 200 this run with genuine readable content (still
+fluctuating 200/403 across sessions, underlying FlippingBook-viewer situation unchanged either
+way); Jackson & Scott AL (`realestatelclosings.com/closing-costs-calculator/`) HTTP 403, consistent
+with recent sessions' WAF-block finding.
+
+**Recommendation for next session**: (1) a browser-driven session to finally crack TitleCapture
+and/or Qualia Connect remains the single highest-value remaining lead (recurs across dozens of
+independent agencies nationwide, including First Hawaii Title found again this session); (2) the
+`Location=<ST>` NoBot block on Old Republic's 2nd tool is now confirmed agent/referer-specific, not
+a loosening-over-time phenomenon — the productive technique going forward is searching for
+*other companies' sites* that iframe this tool with their own working `Agent=` code for a given
+state (the technique that worked for NM this session), not retrying bare `Location=<ST>` URLs;
+(3) WA/CA/TX remain the only unchecked states on WFG's HUD-fee-itemization list, still a
+near-zero-effort richness add if ever prioritized; (4) NM/HI's remaining richness headroom is now
+thin after this session and the 2026-08-08/11 sessions — SC/LA/MS/UT are comparatively less
+explored for a genuine 4th (non-dedup) provider and worth a fresh look with a new technique next
+time.

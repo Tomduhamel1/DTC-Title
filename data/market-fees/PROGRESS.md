@@ -20,7 +20,7 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | OH | 3 (Old Republic — Cuyahoga County; Columbus Title Agency of Westerville — Franklin County/Columbus, own JS netsheet calculator; Owl Creek Title Agency — Knox County/statewide incl. Franklin, same shared JS netsheet template as Columbus Title but distinct fee constants) | **calculator-quoted (3 providers)** | 2026-07-27 |
 | AZ | 4 (Old Republic — Phoenix/Maricopa County; First Integrity Title Agency — Phoenix/Maricopa County, via TRACcalculator/comparetitlecompanies.com; Arizona Premier Title — Scottsdale/Maricopa County, via TitleTap's newer getNetSheetConfig backend; WFG National Title — Maricopa County, Owner's Premium $2,154.00 + itemized Settlement/Closing Fee $1,410.00) | **calculator-quoted (4 providers)** | 2026-08-11 |
 | NV | 4 (Old Republic — Las Vegas/Clark County; FNF national rate calculator — Clark County, Grand Total $2,211.00; Western Nevada Title Company — statewide, via NetSheetCalc/TitleTap app_id 435, richest single-source NV breakdown on file; WFG National Title — Clark County, Owner's Premium $2,059.00 + itemized Transfer Tax $2,550.00/Settlement Fee $1,580.00) | **calculator-quoted (4 providers)** | 2026-08-11 |
-| NM | 3 (Old Republic — Albuquerque/Bernalillo County; FNF national rate calculator — Bernalillo County, Grand Total $2,487.00; WFG National Title — Bernalillo County, Owner's Premium $2,387.00) | **calculator-quoted (3 providers)** | 2026-08-08 |
+| NM | 3 (Old Republic — Albuquerque/Bernalillo County; FNF national rate calculator — Bernalillo County, Grand Total $2,487.00; WFG National Title — Bernalillo County, Owner's Premium $2,387.00) + 1 corroborating richness entry (Old Republic's 2nd tool, ortratecalculator.oldrepublictitle.com — same corporate entity as the existing Old Republic entry, not counted toward the provider count — Owner's Basic $2,387.00/Lender's $1,770.00, byte-identical to the ortconline.com, WFG, and OSI-promulgated figures already on file, a 4-way convergence) | **calculator-quoted (3 providers)** | 2026-08-12 |
 | UT | 3 (Old Republic — Salt Lake City/Salt Lake County; WFG National Title — Salt Lake County, Owner's Premium $2,519.00; FNF national rate calculator — Salt Lake County, Owner's Policy Premium $2,262.00/Loan Policy $1,225.00) | **calculator-quoted (3 providers)** | 2026-08-09 |
 | MO | 3 (Old Republic — Kansas City 64106/Jackson County; Elite Title Company — Des Peres/St. Louis County; Secured Title of Kansas City — Jackson County, via the Title Midwest platform) | **calculator-quoted (3 providers)** | 2026-08-02 |
 | HI | 3 (Old Republic — Honolulu/Honolulu County-Oahu; FNF national rate calculator — Honolulu County, Grand Total $2,384.80; Premier Title & Escrow — Honolulu, via app.titlepremiumcalculator.com's white-labeled NetSheetCalc/TitleTap instance, appid 198) | **calculator-quoted (3 providers)** | 2026-08-07 |
@@ -2322,3 +2322,78 @@ still vary and matter).
   outside of their one WFG line); (c) continue re-scanning already-catalogued shared platforms
   (NetSheetCalc/TitleTap, Title Midwest, MyTitleRates.com) for new tenant slugs not yet harvested,
   applying the standing misattribution-guard verification step before recording any "new" find.
+
+- **2026-08-12: NM gains a corroborating (non-threshold) Old Republic 2nd-tool richness entry; two
+  HI web-search leads and 6 previously-unidentified Title Midwest tenant slugs all resolve to
+  dead ends via the misattribution guard; WFG's `SettlementStatementVersion: "HUD2010"` lead
+  identified as already dead-lettered by the 2026-08-09 session rather than re-tried.** Opened by
+  re-reading CALCULATORS.md's 2026-08-09 entry before acting on the incoming task brief's top
+  priority (retrying `HUD2010` against NM/HI/NE/SC/LA/MS/UT) — confirmed that variant was already
+  tested against SC/LA that session and explicitly logged as "a dead end, not worth trying for
+  UT/MS or any other state," so it was not repeated here; time was redirected to the richness-pass
+  leads instead.
+
+  Harvested New Mexico Land & Title Company's `nmltco.com/rate-calc.html` embed of Old Republic's
+  *second* calculator tool (`ortratecalculator.oldrepublictitle.com`, `Agent=A30088&Location=NM`)
+  — a lead the 2026-08-06 NV session had found live/unblocked but never actually driven to a
+  quote. Statewide PURCHASE/SALE form, same structural pattern already on file for LA: Owner's
+  Basic premium **$2,387.00**, standalone Lender's Policy premium **$1,770.00**, $100.00
+  simultaneous surcharge, Grand Total (Owner's + Lender's + 2 endorsements) **$2,562.00**. Not
+  counted as a 4th distinct NM provider (same Old Republic corporate entity as the existing
+  `ortconline.com` entry, per the standing dedup rule), but it produces the strongest premium
+  convergence found anywhere in this survey: byte-identical to the existing `ortconline.com` Old
+  Republic entry, the existing WFG entry, AND the OSI promulgated-rate table already on file — a
+  4-way cross-platform confirmation that NM's title premium is genuinely fixed/promulgated. Also
+  confirmed the `Location=<ST>` NoBot block is agent/referer-specific, not loosening generally:
+  retried plain `Location=NE`/`Location=UT`/`Location=HI` (no matching `Agent=` param, no matching
+  third-party Referer) and all three still hard-block with the same "not authorized" error —
+  clarifying that this tool's productive technique going forward is finding *other companies'*
+  sites that iframe it with their own working `Agent=` code, not retrying bare state-code URLs.
+
+  Searched for a genuine 4th HI provider: two NetSheetCalc/TitleTap tenants surfaced by name
+  (`appid=396` "Island Title & Escrow Agency", `appid=399` "SUPREME Title Company, LLC") both
+  resolved via their own config's address/state fields to Merritt Island, FL and Katy, TX
+  respectively — not Hawaii, a clean catch by the standing misattribution guard. First Hawaii
+  Title's "Net Sheet Tools" page again resolves to the already-catalogued jsOnly TitleCapture
+  platform. Title Guaranty of Hawaii's "TG Estimator" traces back to a fee-schedule PDF already on
+  file verbatim in HI.json (byte-identical figures) — independent confirmation, not a new find. No
+  new HI provider this session; HI remains at 3.
+
+  Re-scanned `forms.titlemidwest.com`'s open directory and resolved every remaining
+  previously-unidentified tenant slug (`BeachCalc`, `Coffeyville`, `HstCalc`, `mainstreettitleco`,
+  `MstCalc`, `NtcCalc`, `TcrCalc`): all are either duplicates of already-catalogued companies
+  (Missouri Secured Title, Nebraska Title Company, Title Company of the Rockies/CO) or serve
+  states this platform already covers (KS, AR). `NtcCalc`'s live `ajax.asp` query independently
+  confirmed NE's existing $1,632.50 Old Republic-branded premium figure byte-for-byte via a genuine
+  HTTP round-trip (vs. the original hand-extracted-JS-formula methodology), but is the same company
+  as the existing NE entry, not a new provider; its page also contains dead/unwired
+  `feeOtherPurchase`/`feeOtherRefinance` JS constants that looked like they might finally disclose
+  NE's still-missing settlement fee but are confirmed never referenced by the live calculator
+  code. Confirms this platform's footprint is Midwest/mountain-region only (MN/MO/KS/NE/TX/CO) —
+  a dead end for the NM/HI/SC/LA/MS/UT richness-pass cluster specifically; no further re-scans of
+  this platform needed for those 6 states.
+
+  **Freshness spot-check** (5 oldest-retrieved published sources, all from states never previously
+  included in any prior freshness-pass rotation — UT/Sutherland Title fees page, SC/Mogill Law
+  real-estate page, MS/Stewart virtualunderwriter.com rate manual PDF, NE/FNTI Nebraska rate manual
+  PDF, HI/oahure.com First American rate sheet PDF): 4 of 5 returned a clean HTTP 200. The
+  oahure.com PDF 403'd with `cf-mitigated: challenge` in its response headers — a Cloudflare
+  bot-mitigation challenge, not a dead-link signal, matching the existing CATIC CT/AZ Pioneer
+  Title precedent — **not** flagged `{stale: true}`.
+
+  **Blocked-source retries** (one quick check each): AZ DIFI (`difi.az.gov/title-insurance-rate-
+  filings`) still HTTP 403; CATIC CT (`catic.com/state-resources/connecticut`) HTTP 200 this run
+  with genuine readable content (still fluctuating 200/403 across sessions, no underlying change);
+  Jackson & Scott AL (`realestatelclosings.com/closing-costs-calculator/`) HTTP 403, consistent
+  with recent sessions' WAF-block finding. No status change on any of the three.
+
+  **Next session priority**: NM/HI's remaining richness headroom is now thin after this session and
+  the 2026-08-08/11 sessions; SC/LA/MS/UT are comparatively less explored for a genuine 4th
+  (non-dedup) provider and worth a fresh look with a new technique. Otherwise unchanged: (a) a
+  browser-driven session to finally crack TitleCapture and/or Qualia Connect remains the single
+  highest-value lead by far (recurs across dozens of independent agencies nationwide, including
+  First Hawaii Title again this session); (b) WA/CA/TX remain the only unchecked states on WFG's
+  HUD-fee-itemization list, a near-zero-effort richness add if ever prioritized; (c) the
+  `SettlementStatementVersion: "HUD2010"` WFG lead is now confirmed closed twice over (2026-08-09
+  and re-confirmed this session) — future sessions should not re-test it absent evidence WFG's own
+  `feesConfiguration` table has changed.
