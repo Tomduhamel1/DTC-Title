@@ -6,7 +6,7 @@ import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import FeeReportTable from '@/components/FeeReportTable'
 import NextStepsPanel from '@/components/lender-request/NextStepsPanel'
-import { FeeReport, computeTotals, formatCurrency, getMockFeeReport } from '@/lib/feeReport'
+import { FeeReport, REPORT_MODEL_VERSION, computeTotals, formatCurrency, getMockFeeReport } from '@/lib/feeReport'
 
 // Where post-login the broker should land. The broker builder reads
 // ?prefillFromPublic=1 to hydrate inputs from the public sessionStorage quote.
@@ -42,8 +42,20 @@ export default function QuoteResultsPage() {
     const stored = sessionStorage.getItem('feeReport')
     if (stored) {
       try {
-        setReport(JSON.parse(stored))
-        return
+        const parsed = JSON.parse(stored)
+        // Reports priced under an older comparison model must never render —
+        // reprice them. /quote/working re-runs from the stashed inputs; with
+        // no inputs, fall through to the sample (which is current-model).
+        if (parsed?.modelVersion !== REPORT_MODEL_VERSION) {
+          sessionStorage.removeItem('feeReport')
+          if (sessionStorage.getItem('feeReportInputs')) {
+            router.replace('/quote/working')
+            return
+          }
+        } else {
+          setReport(parsed)
+          return
+        }
       } catch {}
     }
     setReport(
