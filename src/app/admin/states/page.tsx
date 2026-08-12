@@ -228,7 +228,14 @@ function StateRow({ code, entry }: { code: string; entry: StateMasterEntry }) {
                         <td className="py-1 pr-3 font-semibold text-gray-700">
                           {mode === 'purchase' ? 'P' : 'R'} {formatCurrency(hv)}
                         </td>
-                        <td className="py-1 pr-3 text-right">{formatCurrency(s.premiums)}</td>
+                        <td className="py-1 pr-3 text-right">
+                          {formatCurrency(s.premiums)}
+                          <div className="text-[10px] text-gray-400">
+                            {s.owners > 0
+                              ? `${formatCurrency(s.owners)} O + ${formatCurrency(s.lenders)} L`
+                              : `lender's policy only`}
+                          </div>
+                        </td>
                         <td className="py-1 pr-3 text-right text-emerald-700">−{formatCurrency(s.bucks)}</td>
                         <td className="py-1 pr-3 text-right">{formatCurrency(s.pkg)}</td>
                         <td className="py-1 pr-3 text-right font-semibold">{formatCurrency(s.pay)}</td>
@@ -240,6 +247,12 @@ function StateRow({ code, entry }: { code: string; entry: StateMasterEntry }) {
                 )}
               </tbody>
             </table>
+            <div className="text-[10px] text-gray-400 mt-1.5 leading-snug">
+              Save = settlement delta (&ldquo;Pkg save&rdquo;) + Bucks ({Math.round(bucksRateFor(code) * 100)}% × policies).
+              Policies are the underwriter rate engine&apos;s exact output at the scenario amounts —
+              round scenarios × per-$1,000 filed rates produce round premiums; real quotes at odd
+              prices produce odd, exact figures (verified: RI @ $487,300 → $783 O + $975 L).
+            </div>
           </div>
         ) : (
           <div className="text-xs text-gray-400">No matrix data yet — rerun scripts/build-state-matrix.ts.</div>
