@@ -9,6 +9,7 @@
 import { betterCloseBucksLine } from './betterCloseBucks'
 import { betterCloseServiceFee } from './betterCloseFees'
 import { assertServiceOffered } from './stateMaster'
+import { REPORT_MODEL_VERSION } from './feeReport'
 import type { FeeCategory, FeeLineItem, FeeReport, FeeSource } from './feeReport'
 import {
   ABSTRACT_ONLY_PASSTHROUGH_STATES,
@@ -310,6 +311,7 @@ export async function fetchElendFeeEstimate(
   if (bucks) lineItems.push(bucks)
 
   return {
+    modelVersion: REPORT_MODEL_VERSION,
     state: data.stateCode || '',
     zip: req.zip,
     county: data.county,
