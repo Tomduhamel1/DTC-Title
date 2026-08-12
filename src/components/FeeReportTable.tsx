@@ -44,6 +44,14 @@ export default function FeeReportTable({
   const stackTotal = stack.reduce((s, li) => s + li.ourCost, 0)
   const anchor = stack.find((li) => conservativeLineSavings(li) > 0) ?? null
   const stackLow = anchor ? stackTotal + conservativeLineSavings(anchor) : stackTotal
+  // Legacy guard: reports generated under the OLD model (pre-2026-08-11)
+  // carry per-line multiplied ranges, so more than one line claims savings
+  // and parity lines have low > ourCost. The derivation sentence would then
+  // fabricate a "verified competitor quote" figure that never existed —
+  // suppress it for that data. (Frozen totals still display verbatim.)
+  const isNewModelData =
+    anchor !== null &&
+    stack.every((li) => li === anchor || (li.typicalRange && li.typicalRange.low === li.ourCost))
   const band = serviceBandFor(report.state, report.transactionType, report.zip)
   const basisPhrase =
     band.basis === 'quoted'
@@ -101,7 +109,7 @@ export default function FeeReportTable({
                   state={report.state}
                   isAnchor={item === anchor}
                   anchorNote={
-                    item === anchor
+                    item === anchor && isNewModelData
                       ? `Compared against ${basisPhrase}: ${formatCurrency(stackLow)} all-in for the same services we bill ${formatCurrency(stackTotal)} for.`
                       : undefined
                   }
