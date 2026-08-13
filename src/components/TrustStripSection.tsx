@@ -1,3 +1,4 @@
+import { offeredStateCount } from '@/lib/stateMaster'
 const PILLARS = [
   {
     title: 'Save at closing',
@@ -17,7 +18,7 @@ const STATS = [
   { value: '30,000+', label: 'Closings completed' },
   { value: '100%', label: 'Fees published up front' },
   { value: 'A-rated', label: 'Underwriters only' },
-  { value: '50 states', label: 'Licensed nationally' },
+  { value: `${offeredStateCount()} states`, label: 'Closing coverage' },
 ] as const
 
 export default function TrustStripSection() {

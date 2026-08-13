@@ -48,7 +48,7 @@ export default function ComingSoonPage() {
           <span>·</span>
           <span>Every fee published</span>
           <span>·</span>
-          <span>50 states</span>
+          <span>34 states</span>
         </div>
       </div>
     </main>

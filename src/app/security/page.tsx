@@ -195,7 +195,7 @@ export default function SecurityPage() {
             <div className="text-center">
               <div className="text-5xl mb-4">🏛️</div>
               <h3 className="font-bold text-lg mb-2">State Licensed</h3>
-              <p className="text-gray-600 text-sm">Licensed and regulated in all 50 states</p>
+              <p className="text-gray-600 text-sm">Licensed and regulated in every state we serve</p>
             </div>
           </div>
         </div>

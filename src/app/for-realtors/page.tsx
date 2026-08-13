@@ -1,3 +1,4 @@
+import { offeredStateCount } from '@/lib/stateMaster'
 import Link from 'next/link'
 import NavigationCredible from '@/components/NavigationCredible'
 import FooterComprehensive from '@/components/FooterComprehensive'
@@ -33,7 +34,7 @@ const SIGN_IN_HREF = '/login?callbackUrl=/teammate/dashboard'
 const AGENT_TRUST_STATS = [
   { value: '30,000+', label: 'Closings completed' },
   { value: 'A-rated', label: 'Underwriters only' },
-  { value: '50 states', label: 'Closing coverage' },
+  { value: `${offeredStateCount()} states`, label: 'Closing coverage' },
 ] as const
 
 // Outline-style icons (w-6) for the reason cards. Inline SVGs keep parity with
@@ -122,12 +123,6 @@ export default function RealtorsPage() {
                 >
                   Sign in
                 </Link>
-                <a
-                  href="/pdfs/betterclose-for-agents.pdf"
-                  className="text-base font-semibold text-primary-700 hover:underline whitespace-nowrap"
-                >
-                  Download one-pager (PDF)
-                </a>
               </div>
               <p className="text-sm text-gray-500 mt-4">
                 No login required. See your buyer&apos;s estimate in under a minute.
@@ -175,7 +170,7 @@ export default function RealtorsPage() {
                   <span className="text-sm font-bold text-dark-900">{formatCurrency(EXAMPLE_BASIS.ourTotal)}</span>
                 </div>
                 <div className="flex items-baseline justify-between">
-                  <span className="text-xs text-gray-400">Comparable option</span>
+                  <span className="text-xs text-gray-400">Typical rates in this area</span>
                   <span className="text-sm font-semibold text-gray-400 line-through decoration-gray-300">{formatCurrency(EXAMPLE_BASIS.typicalTotal)}</span>
                 </div>
               </div>

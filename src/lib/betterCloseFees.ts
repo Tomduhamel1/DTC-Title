@@ -76,10 +76,66 @@ export const ENSURE_LINES: Record<
   string,
   Partial<Record<'purchase' | 'refinance', EnsuredLine[]>>
 > = {
-  // RI refi search $100 — same as the purchase-quote line the upstream
-  // already returns (assumption flagged to Tom; correct here if the master
-  // schedule prices refi search differently).
+  // Filled 2026-08-12 from the master schedule itself (DynamoDB table
+  // eLEND_public_calc, scanned read-only): AbstractorTitleSearchREFI is
+  // unpopulated for EVERY state, and the Lambda suppresses the purchase-side
+  // AbstractorTitleSearch on refis with no fallback — so each state's refi
+  // search line is restored here at the schedule's own purchase amount
+  // (pattern confirmed by Tom for RI: refi search = purchase search = $100).
+  // Empty entries mean VERIFIED: the schedule defines no search-type fee for
+  // that state, nothing is missing. When FNTE populates the REFI column
+  // upstream, the dedupe in elendCalc makes these entries harmless no-ops.
+  AK: { refinance: [{ label: 'Abstractor Title Search', amount: 180 }] },
+  AL: { refinance: [{ label: 'Abstractor Title Search', amount: 295 }] },
+  AR: { refinance: [{ label: 'Abstractor Title Search', amount: 295 }] },
+  AZ: { refinance: [{ label: 'Abstractor Title Search', amount: 250 }] },
+  CA: { refinance: [] }, // schedule has no search-type refi gap — verified vs eLEND_public_calc 2026-08-12
+  CO: { refinance: [] }, // schedule has no search-type refi gap — verified vs eLEND_public_calc 2026-08-12
+  CT: { refinance: [{ label: 'Abstractor Title Search', amount: 350 }] },
+  DC: { refinance: [{ label: 'Abstractor Title Search', amount: 250 }] },
+  DE: { refinance: [{ label: 'Abstractor Title Search', amount: 150 }] },
+  FL: { refinance: [] }, // schedule has no search-type refi gap — verified vs eLEND_public_calc 2026-08-12
+  GA: { refinance: [{ label: 'Abstractor Title Search', amount: 350 }] },
+  HI: { refinance: [] }, // schedule has no search-type refi gap — verified vs eLEND_public_calc 2026-08-12
+  IA: { refinance: [{ label: 'Abstractor Title Search', amount: 350 }] },
+  ID: { refinance: [{ label: 'Abstractor Title Search', amount: 375 }] },
+  IL: { refinance: [] }, // schedule has no search-type refi gap — verified vs eLEND_public_calc 2026-08-12
+  IN: { refinance: [{ label: 'Abstractor Title Search', amount: 150 }] },
+  KS: { refinance: [] }, // schedule has no search-type refi gap — verified vs eLEND_public_calc 2026-08-12
+  KY: { refinance: [] }, // schedule has no search-type refi gap — verified vs eLEND_public_calc 2026-08-12
+  LA: { refinance: [] }, // schedule has no search-type refi gap — verified vs eLEND_public_calc 2026-08-12
+  MA: { refinance: [{ label: 'Abstractor Title Search', amount: 300 }] },
+  MD: { refinance: [{ label: 'Abstractor Title Search', amount: 100 }] },
+  ME: { refinance: [{ label: 'Abstractor Title Search', amount: 100 }] },
+  MI: { refinance: [] }, // schedule has no search-type refi gap — verified vs eLEND_public_calc 2026-08-12
+  MN: { refinance: [] }, // schedule has no search-type refi gap — verified vs eLEND_public_calc 2026-08-12
+  MO: { refinance: [] }, // schedule has no search-type refi gap — verified vs eLEND_public_calc 2026-08-12
+  MS: { refinance: [] }, // schedule has no search-type refi gap — verified vs eLEND_public_calc 2026-08-12
+  MT: { refinance: [] }, // schedule has no search-type refi gap — verified vs eLEND_public_calc 2026-08-12
+  NC: { refinance: [{ label: 'Abstractor Title Search', amount: 50 }] },
+  ND: { refinance: [] }, // schedule has no search-type refi gap — verified vs eLEND_public_calc 2026-08-12
+  NE: { refinance: [] }, // schedule has no search-type refi gap — verified vs eLEND_public_calc 2026-08-12
+  NH: { refinance: [] }, // schedule has no search-type refi gap — verified vs eLEND_public_calc 2026-08-12
+  NJ: { refinance: [{ label: 'Abstractor Title Search', amount: 250 }] },
+  NM: { refinance: [{ label: 'Abstractor Title Search', amount: 30 }] },
+  NV: { refinance: [] }, // schedule has no search-type refi gap — verified vs eLEND_public_calc 2026-08-12
+  NY: { refinance: [{ label: 'Abstractor Title Search', amount: 350 }] },
+  OH: { refinance: [] }, // schedule has no search-type refi gap — verified vs eLEND_public_calc 2026-08-12
+  OK: { refinance: [{ label: 'Abstractor Title Search', amount: 725 }] },
+  OR: { refinance: [{ label: 'Abstractor Title Search', amount: 150 }] },
+  PA: { refinance: [{ label: 'Abstractor Title Search', amount: 50 }] },
   RI: { refinance: [{ label: 'Abstractor Title Search', amount: 100 }] },
+  SC: { refinance: [{ label: 'Abstractor Title Search', amount: 350 }] },
+  SD: { refinance: [{ label: 'Abstractor Title Search', amount: 18 }] },
+  TN: { refinance: [{ label: 'Abstractor Title Search', amount: 350 }] },
+  TX: { refinance: [{ label: 'Abstractor Title Search', amount: 150 }] },
+  UT: { refinance: [] }, // schedule has no search-type refi gap — verified vs eLEND_public_calc 2026-08-12
+  VA: { refinance: [{ label: 'Abstractor Title Search', amount: 100 }] },
+  VT: { refinance: [] }, // schedule has no search-type refi gap — verified vs eLEND_public_calc 2026-08-12
+  WA: { refinance: [{ label: 'Abstractor Title Search', amount: 50 }] },
+  WI: { refinance: [] }, // schedule has no search-type refi gap — verified vs eLEND_public_calc 2026-08-12
+  WV: { refinance: [{ label: 'Abstractor Title Search', amount: 100 }] },
+  WY: { refinance: [] }, // schedule has no search-type refi gap — verified vs eLEND_public_calc 2026-08-12
 }
 
 export function ensuredLinesFor(

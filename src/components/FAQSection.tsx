@@ -1,5 +1,7 @@
 'use client'
 
+import { offeredStateCount } from '@/lib/stateMaster'
+
 import { useState } from 'react'
 
 export default function FAQSection() {
@@ -16,7 +18,7 @@ export default function FAQSection() {
     },
     {
       question: "Will my lender accept BetterClose?",
-      answer: "Yes. We're licensed in all 50 states and meet all lender requirements. In fact, many lenders actively refer their borrowers to us because it helps reduce closing costs and improves customer satisfaction. We work seamlessly with any mortgage lender, and our policies are accepted nationwide."
+      answer: "Yes. We meet all lender requirements in every state we serve. In fact, many lenders actively refer their borrowers to us because it helps reduce closing costs and improves customer satisfaction. We work seamlessly with any mortgage lender, and our policies are accepted nationwide."
     },
     {
       question: "What if there's a problem with the title?",
@@ -40,7 +42,7 @@ export default function FAQSection() {
     },
     {
       question: "What states do you operate in?",
-      answer: "We're licensed and operating in all 50 states. Whether you're buying in California, Texas, Florida, New York, or anywhere else in the US, we can provide you with title insurance at transparent, fair pricing."
+      answer: `We currently close in ${offeredStateCount()} states and are expanding. If we\'re not in your state yet, get a quote anyway — we\'ll let you know the moment we open there.`
     }
   ]
 

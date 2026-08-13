@@ -56,8 +56,13 @@ export default function QuoteWorkingPage() {
         // from the status instead.
         const raw = await res.text()
         if (cancelled) return
-        let json: { ok?: boolean; error?: string; notOffered?: boolean; report?: unknown } | null =
-          null
+        let json: {
+          ok?: boolean
+          error?: string
+          notOffered?: boolean
+          state?: string
+          report?: unknown
+        } | null = null
         if (raw) {
           try {
             json = JSON.parse(raw)
@@ -66,12 +71,19 @@ export default function QuoteWorkingPage() {
           }
         }
         if (!res.ok || !json || !json.ok) {
-          // Service-availability refusal (stateMaster): informational, not an
-          // error — tag the kind so the form renders an amber notice.
-          if (json?.notOffered && json.error) {
-            sessionStorage.setItem('feeReportError', json.error)
-            sessionStorage.setItem('feeReportErrorKind', 'unavailable')
-            router.replace(failureHref)
+          // Service-availability refusal (stateMaster): not an error — send
+          // them to the "coming soon" page, which offers a waitlist signup.
+          if (json?.notOffered) {
+            let inputs: { transactionType?: string; zip?: string } = {}
+            try {
+              inputs = JSON.parse(inputsRaw)
+            } catch {}
+            const q = new URLSearchParams()
+            if (json.state) q.set('state', json.state)
+            if (inputs.transactionType) q.set('type', inputs.transactionType)
+            if (inputs.zip) q.set('zip', inputs.zip)
+            if (source === 'broker') q.set('source', 'broker')
+            router.replace(`/quote/unavailable?${q.toString()}`)
             return
           }
           throw new Error(

@@ -272,7 +272,7 @@ Thanks,`,
               <OrderTile
                 emoji="🔧"
                 title="Your existing workflow"
-                body="Use the LOS, pricing engine, or platform your team already runs on — SmartFees, Encompass, Qualia, ResWare, or email — and send the order to BetterClose."
+                body="Work from Encompass or plain email today — SmartFees, Qualia, and ResWare integrations are coming soon."
               />
               <OrderTile
                 emoji="📋"

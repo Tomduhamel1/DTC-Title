@@ -121,14 +121,11 @@ function StateRow({ code, entry }: { code: string; entry: StateMasterEntry }) {
   const flags: string[] = []
   if (anyOn && matrix && matrix.purchase['500000']?.pkg === 0) flags.push('no package savings @500k')
   if (anyOn && !bandP.lowSource) flags.push('pooled band — no in-state comp evidence')
-  // Upstream drops the title-search line on refi quotes (2026-08-12 finding);
-  // until the state's refi search fee is confirmed and added via ENSURE_LINES,
-  // its refi estimates understate the borrower's real cost.
-  if (
-    entry.offer.refinance &&
-    !ENSURE_LINES[code]?.refinance?.some((l) => /search|abstract/i.test(l.label))
-  )
-    flags.push('refi search fee pending — upstream omits it')
+  // Upstream drops the title-search line on refi quotes (2026-08-12 finding).
+  // Every state now has an ENSURE_LINES verdict from the master schedule scan;
+  // an absent entry means a state was added without verification — flag it.
+  if (entry.offer.refinance && ENSURE_LINES[code]?.refinance === undefined)
+    flags.push('refi lines unverified vs master schedule')
 
   return (
     <details className={`bg-white rounded-2xl border ${anyOn ? 'border-gray-200' : 'border-gray-200 opacity-70'}`}>

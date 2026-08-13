@@ -48,7 +48,7 @@ export default function LenderEmailPreview({
           <strong>{client} is using BetterClose for title and settlement on their upcoming closing</strong> and asked us to send you everything you need to place the order.
         </p>
         <p>
-          BetterClose uses the same A-rated underwriters you already work with (First American, AmTrust, Westcor, Old Republic) and integrates with SmartFees, Encompass, Qualia, and ResWare. Same coverage, transparent flat-rate pricing.
+          BetterClose uses the same A-rated underwriters you already work with (First American, AmTrust, Westcor, Old Republic) and integrates with Encompass (SmartFees, Qualia, and ResWare coming soon). Same coverage, transparent flat-rate pricing.
         </p>
         {savingsEstimate ? (
           <p>
