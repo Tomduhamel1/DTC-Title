@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import CalculatorUnresponsiveNotice from '@/components/quote/CalculatorUnresponsiveNotice'
+import { STATE_NAMES } from '@/lib/stateMaster'
 import { representativeZipForState } from '@/lib/representativeZip'
 import {
   writeBrokerEstimateContext,
@@ -57,17 +59,22 @@ export default function BrokerEstimateForm() {
 
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  // 'unavailable' renders as an amber informational notice (service-area), not a red error.
-  const [errorKind, setErrorKind] = useState<'error' | 'unavailable'>('error')
+  // 'unavailable' renders as an amber informational notice (service-area);
+  // 'upstream' renders the friendly "rates system was unresponsive" panel.
+  const [errorKind, setErrorKind] = useState<'error' | 'unavailable' | 'upstream'>('error')
+  const [errorState, setErrorState] = useState<string | null>(null)
 
   useEffect(() => {
     if (typeof window === 'undefined') return
     const stashed = sessionStorage.getItem('feeReportError')
     if (stashed) {
+      const kind = sessionStorage.getItem('feeReportErrorKind')
       setError(stashed)
-      setErrorKind(sessionStorage.getItem('feeReportErrorKind') === 'unavailable' ? 'unavailable' : 'error')
+      setErrorKind(kind === 'unavailable' ? 'unavailable' : kind === 'upstream' ? 'upstream' : 'error')
+      setErrorState(sessionStorage.getItem('feeReportErrorState'))
       sessionStorage.removeItem('feeReportError')
       sessionStorage.removeItem('feeReportErrorKind')
+      sessionStorage.removeItem('feeReportErrorState')
     }
     sessionStorage.setItem('quoteSource', 'broker')
   }, [])
@@ -229,17 +236,24 @@ export default function BrokerEstimateForm() {
             </button>
           </div>
 
-          {error && (
-            <div
-              className={
-                errorKind === 'unavailable'
-                  ? 'mt-4 bg-amber-50 border border-amber-200 rounded-md px-3.5 py-2.5 text-sm text-amber-900'
-                  : 'mt-4 bg-red-50 border border-red-200 rounded-md px-3.5 py-2.5 text-sm text-red-800'
-              }
-            >
-              {error}
-            </div>
-          )}
+          {error &&
+            (errorKind === 'upstream' ? (
+              <div className="mt-4">
+                <CalculatorUnresponsiveNotice
+                  stateName={errorState ? STATE_NAMES[errorState] : undefined}
+                />
+              </div>
+            ) : (
+              <div
+                className={
+                  errorKind === 'unavailable'
+                    ? 'mt-4 bg-amber-50 border border-amber-200 rounded-md px-3.5 py-2.5 text-sm text-amber-900'
+                    : 'mt-4 bg-red-50 border border-red-200 rounded-md px-3.5 py-2.5 text-sm text-red-800'
+                }
+              >
+                {error}
+              </div>
+            ))}
 
           {/* ───── Optional file details — open by default ───── */}
           <div className="mt-6 pt-5 border-t border-gray-100">
