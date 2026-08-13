@@ -2651,3 +2651,17 @@ solving it could unlock both TN and UT tenants (and possibly more, unsurveyed) a
 promote FL's/MO's citations of it to `{stale: true}`; (4) SC/LA/MS remain the least-explored
 below-4-provider states for a genuine 4th provider — worth applying the same platform-keyword +
 county-name search angle that surfaced this session's two (dead-end) UT leads.
+
+### Same session, continued — South Carolina (SC) also retried with the same search technique, 0 new providers, platform-search well now confirmed dry
+Applied the same platform-keyword + county-name search angle to SC (the next-priority
+below-4-provider state by population). All results were appids already ruled out in prior sessions,
+plus two not previously individually confirmed: **appid=351** ("1845 Title") and **appid=47**
+("Community First Title Agency") — verified via each's own `getAppData` config
+(`address1`/`city`/`state`/`approved_states`) to be **Austin, TX** and **Sandusky, MI**
+respectively, neither South Carolina. Every NetSheetCalc/TitleTap appid surfaced by search for SC
+across this and all prior sessions (444, 438, 467, 495, 1056, 351, 507, 399, 47, plus the ~7 more
+logged 2026-08-08) has now been individually verified and resolved to FL, MO, TX, MI, or an
+unconfigured placeholder — none genuine SC. The generic-search well for this platform is confirmed
+fully dry for SC; a 4th SC provider will require either a genuinely new platform (not
+NetSheetCalc/TitleTap) or a browser-driven TitleCapture/Qualia Connect breakthrough, not further
+appid searching on this one.
