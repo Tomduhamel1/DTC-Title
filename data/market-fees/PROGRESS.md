@@ -21,7 +21,7 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | AZ | 4 (Old Republic — Phoenix/Maricopa County; First Integrity Title Agency — Phoenix/Maricopa County, via TRACcalculator/comparetitlecompanies.com; Arizona Premier Title — Scottsdale/Maricopa County, via TitleTap's newer getNetSheetConfig backend; WFG National Title — Maricopa County, Owner's Premium $2,154.00 + itemized Settlement/Closing Fee $1,410.00) | **calculator-quoted (4 providers)** | 2026-08-11 |
 | NV | 4 (Old Republic — Las Vegas/Clark County; FNF national rate calculator — Clark County, Grand Total $2,211.00; Western Nevada Title Company — statewide, via NetSheetCalc/TitleTap app_id 435, richest single-source NV breakdown on file; WFG National Title — Clark County, Owner's Premium $2,059.00 + itemized Transfer Tax $2,550.00/Settlement Fee $1,580.00) | **calculator-quoted (4 providers)** | 2026-08-11 |
 | NM | 3 (Old Republic — Albuquerque/Bernalillo County; FNF national rate calculator — Bernalillo County, Grand Total $2,487.00; WFG National Title — Bernalillo County, Owner's Premium $2,387.00) + 1 corroborating richness entry (Old Republic's 2nd tool, ortratecalculator.oldrepublictitle.com — same corporate entity as the existing Old Republic entry, not counted toward the provider count — Owner's Basic $2,387.00/Lender's $1,770.00, byte-identical to the ortconline.com, WFG, and OSI-promulgated figures already on file, a 4-way convergence) | **calculator-quoted (3 providers)** | 2026-08-12 |
-| UT | 3 (Old Republic — Salt Lake City/Salt Lake County; WFG National Title — Salt Lake County, Owner's Premium $2,519.00; FNF national rate calculator — Salt Lake County, Owner's Policy Premium $2,262.00/Loan Policy $1,225.00) | **calculator-quoted (3 providers)** | 2026-08-09 |
+| UT | 3 (Old Republic — Salt Lake City/Salt Lake County; WFG National Title — Salt Lake County, Owner's Premium $2,519.00; FNF national rate calculator — Salt Lake County, Owner's Policy Premium $2,262.00/Loan Policy $1,225.00) | **calculator-quoted (3 providers)** | 2026-08-13 |
 | MO | 3 (Old Republic — Kansas City 64106/Jackson County; Elite Title Company — Des Peres/St. Louis County; Secured Title of Kansas City — Jackson County, via the Title Midwest platform) | **calculator-quoted (3 providers)** | 2026-08-02 |
 | HI | 3 (Old Republic — Honolulu/Honolulu County-Oahu; FNF national rate calculator — Honolulu County, Grand Total $2,384.80; Premier Title & Escrow — Honolulu, via app.titlepremiumcalculator.com's white-labeled NetSheetCalc/TitleTap instance, appid 198) | **calculator-quoted (3 providers)** | 2026-08-07 |
 | OR | 3 (Old Republic — Portland 97201/Multnomah County; FNF national rate calculator — Multnomah County, Grand Total $1,350.00; WFG National Title — Multnomah County, Owner's Premium $1,350.00 + 3 itemized HUD fees, byte-identical premium to FNF/OTIRO's bureau rate) | **calculator-quoted (3 providers)** | 2026-08-08 |
@@ -2397,3 +2397,48 @@ still vary and matter).
   `SettlementStatementVersion: "HUD2010"` WFG lead is now confirmed closed twice over (2026-08-09
   and re-confirmed this session) — future sessions should not re-test it absent evidence WFG's own
   `feesConfiguration` table has changed.
+
+- **2026-08-13: UT richness pass finds 2 new leads, both dead ends; freshness spot-check surfaces a
+  domain-wide TLS break on documentpub.fnti.com (MO's secondary source); standard blocked-source
+  retries, no change.** With the original 38-state target list still fully cleared and no below-
+  threshold scarce states remaining, worked UT (per the 2026-08-12 recommendation) for a genuine 4th
+  calculator-basis provider using a new search angle (platform-keyword + county-name search rather
+  than generic state-name search). Found and investigated two genuinely Utah-named leads never
+  surfaced by any prior session: **Inwest Title Utah**'s `NetSheetCalculator` — confirmed
+  **login-gated** via a plain unauthenticated POST containing only numeric fields (no personal data
+  sent), which returned a clean "You need to login before accessing that page" JSON error; and
+  **Novation Title**, which embeds First American's white-label "AgentNet/PrismPowered" Angular SPA
+  (`marketing.agentnetsolutions.com`) — the same platform already logged jsOnly for TN's Title Group
+  of Tennessee (2026-07-29). Pushed the static-bundle-analysis technique that solved WFG further for
+  this platform than the prior TN session did: confirmed the API is same-origin (not a separate
+  `api.*` host) via a diagnostic HTTP 405 on a direct probe, and catalogued its real route names
+  (`/api/Quote/calculate/customfees`, `/api/Bundle/quote`, etc.) — but found no guest/no-login quote
+  route and did not attempt a blind-guess POST body, so it remains **jsOnly** pending a browser-
+  devtools session to capture the real request shape (flagged as the next concrete, well-scoped
+  target after TitleCapture/Qualia Connect, since solving it could unlock both TN and UT tenants at
+  once). Neither lead added a provider; **UT remains at 3 calculator-basis providers**. See
+  CALCULATORS.md's 2026-08-13 entry for the full technical detail.
+
+  **Freshness spot-check** (5 oldest-retrieved published sources, all from states never previously
+  included in any prior freshness-pass rotation — FL/Florida OIR Rule 69O-186.003, KS/First American
+  Kansas escrow-fee schedule PDF, MO/First National Title Insurance Co. rate manual PDF, OK/American
+  Eagle Title Group fee sheet PDF, RI/WFG Rhode Island rate manual PDF): 4 of 5 returned a clean HTTP
+  200. **New finding**: MO's secondary `documentpub.fnti.com` source now fails TLS certificate
+  verification — confirmed domain-wide (FL's own separate `documentpub.fnti.com` citation fails
+  identically) rather than a single dead link, and distinct from this project's existing WAF/bot-gate
+  precedent (a broken cert chain, not a challenge page). Not marked `{stale: true}` this session
+  (FL's primary source and MO's 4 other independent sources are unaffected), but flagged for a
+  retry next session — if the break persists, promote to `{stale: true}` on the affected citations.
+
+  **Blocked-source retries** (one quick check each): AZ DIFI still HTTP 403; CATIC CT
+  (`catic.com/state-resources/connecticut`) HTTP 200 this run (still fluctuating 200/403 across
+  sessions, underlying FlippingBook-viewer blocker unchanged either way); Jackson & Scott AL
+  (`realestatelclosings.com/closing-costs-calculator/`) HTTP 403, consistent with recent sessions'
+  WAF-block finding. No status change on any of the three.
+
+  **Next session priority**: (1) a browser-driven session to crack TitleCapture/Qualia Connect
+  remains the single highest-value lead; (2) a browser-devtools capture of First American's
+  AgentNet/PrismPowered platform (`marketing.agentnetsolutions.com`) is now a concrete 2nd target —
+  same-origin API host and route names confirmed, only the POST body shape is missing; (3) retry
+  `documentpub.fnti.com` — promote to `{stale: true}` if the TLS break persists across 2+ sessions;
+  (4) SC/LA/MS remain the least-explored below-4-provider states for a genuine 4th provider.

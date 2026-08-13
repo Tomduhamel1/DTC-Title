@@ -2569,3 +2569,85 @@ near-zero-effort richness add if ever prioritized; (4) NM/HI's remaining richnes
 thin after this session and the 2026-08-08/11 sessions — SC/LA/MS/UT are comparatively less
 explored for a genuine 4th (non-dedup) provider and worth a fresh look with a new technique next
 time.
+
+## 2026-08-13 session — UT richness pass finds 2 new leads, both dead ends (Inwest Title gated, Novation Title's First American AgentNet/PrismPowered platform partially re-mapped); freshness spot-check surfaces a domain-wide TLS break on documentpub.fnti.com; standard blocked-source retries, no change
+
+Per the 2026-08-12 recommendation, targeted UT for a genuine 4th (non-dedup) calculator provider
+using a fresh web-search angle (searching by platform-name keywords — "netsheetcalc"/"titletap"/
+"quick quote" — combined with "Salt Lake County" rather than generic state-name searches, which had
+previously surfaced only already-ruled-out misattributed appids). Two new, genuinely UT-named leads
+surfaced that had not appeared in any prior session's search results.
+
+### Inwest Title Utah (`inwesttitle.com/NetSheetCalculator`) — confirmed login-gated, not pursued
+A genuine Utah company (West Haven, 29-county coverage) running its own first-party Angular
+"Inwest-Online" agent portal at `www.inwesttitle.com/Inwest-Online/api/1.1/`. Static analysis of the
+site's `main.*.js` bundle found the calculator's route (`/CalculateSellerProceeds`) posts to
+`ratecalc.php` via a form-model class (`Ah`) whose fields include not just `SALESPRICE`/`COUNTY`/
+`LOANAMOUNT` but also `Buyer1SSN`/`Seller1SSN` and other personal-data fields — flagging this as
+likely an internal order-entry tool, not a public calculator, despite being linked from the public
+marketing site. Confirmed via a plain unauthenticated POST containing only numeric/non-personal
+fields (`ordertype=BS&SALESPRICE=500000&COUNTY=Salt+Lake&LOANAMOUNT=400000&LENDERS=true&
+OWNERS=true&CLOSING=true`, no name/SSN/contact fields sent) — the endpoint returned clean JSON
+`{"error":true,"err_text":["You need to login before accessing that page."],"login":false}`,
+i.e. the whole `Inwest-Online` API family is session/cookie-gated regardless of the requested
+sub-resource. Logged **gated** (agent login required) per the hard rule against entering personal
+data — no SSN/contact fields were ever sent. Not a new UT provider.
+
+### Novation Title (`novationtitle.com/calculators`) — embeds First American's AgentNet/PrismPowered platform (same one already jsOnly-logged for TN's Title Group of Tennessee); same-origin API host now confirmed, still no public quote path found
+The page iframes `prismpowered.com/NovationTitle/guest-home`, which redirects to
+`marketing.agentnetsolutions.com/NovationTitle/guest-home` — First American's white-label
+"AgentNet Marketing" Angular SPA, the identical platform the 2026-08-07 TN session already logged
+jsOnly via a different tenant. Pushed the static-analysis technique that solved WFG (fetch the
+lazy/main bundle directly, read the Angular service classes for the real endpoint) further than the
+prior session did: the bundle's `main.*.js` (7.6MB, fetched from the site root — note the app's
+`<base href="/">` means bundle URLs are root-relative, *not* under the `/NovationTitle/` tenant
+path, a gotcha that 404s a naive fetch) contains real API route strings — `/api/Bundle/quote`,
+`/api/Quote/calculate/customfees`, `/api/Quote/settings/update`, `/api/Quote/email`,
+`/api/Quote/track`, `/api/CustomFees/user/create` — served through an Angular service whose
+`baseUrl` is a same-origin path built from a minified local variable, not a hardcoded external host.
+Confirmed the API is genuinely same-origin (not a separate `api.*` subdomain) by probing
+`marketing.agentnetsolutions.com/api/Quote/settings/update` directly with a plain GET: **HTTP 405**
+(Method Not Allowed) rather than a generic 404, confirming the route exists and is reachable, just
+not via GET. No `/api/*Guest*` or `/api/*NetSheet*` route name was found anywhere in the bundle —
+the "guest-home" page name appears to be marketing terminology, not a signal that a no-login quote
+flow exists. Did not attempt a blind POST against `/api/Quote/calculate/customfees` (its request
+body shape is unknown and, per the WFG lesson, guessing field names risks hours of dead-end
+iteration better spent elsewhere this session) — logged **jsOnly**, with these concrete new
+findings (root-relative bundle path, same-origin API host, exact route list) left for a future
+session with more time or browser devtools to finish. Not a new UT provider; **UT remains at 3
+calculator-basis providers**, both new leads this session ruled out.
+
+### Freshness spot-check (5 oldest-retrieved published sources from states never previously included in any prior freshness-pass rotation — FL/Florida OIR Rule 69O-186.003, KS/First American Kansas escrow-fee schedule PDF, MO/First National Title Insurance Co. rate manual PDF, OK/American Eagle Title Group fee sheet PDF, RI/WFG Rhode Island rate manual PDF)
+4 of 5 (FL's primary `flrules.elaws.us` source, KS, OK, RI) returned a clean HTTP 200. **New
+finding**: MO's secondary/cross-verification source, hosted on `documentpub.fnti.com` (First
+National Title Insurance Company's document-hosting domain), now fails with a TLS handshake error
+(`SSL certificate problem: unable to get local issuer certificate`) via both `curl` and WebFetch
+(which separately reported HTTP 503) — confirmed this is domain-wide, not a single dead link, by
+also testing FL's own `documentpub.fnti.com` cross-verification PDF (already on file, different
+state, different path), which fails identically. This is a different failure mode from this
+project's existing WAF/bot-gate precedent (CATIC CT, AZ DIFI, Lighthouse Title, oahure.com) — a
+broken certificate chain rather than a challenge page — so it's ambiguous whether the underlying
+documents are still being served at all. **Not** marked `{stale: true}` in either FL.json or
+MO.json this session (FL's primary source, `flrules.elaws.us`, is unaffected and still the
+controlling evidence; MO has 4 other independent sources on file besides this one), but flagged
+here for a future session to retry and, if the TLS break persists or the domain goes fully dark,
+promote to a `{stale: true}` flag on the affected `documentpub.fnti.com` citations specifically.
+
+### Blocked-source retries (one quick check each): no status change
+AZ DIFI (`difi.az.gov/title-insurance-rate-filings`) still HTTP 403; CATIC CT
+(`catic.com/state-resources/connecticut`) HTTP 200 this run (still fluctuating 200/403 across
+sessions, underlying FlippingBook-viewer content-extraction blocker unchanged either way); Jackson &
+Scott AL (`realestatelclosings.com/closing-costs-calculator/`) HTTP 403, consistent with recent
+sessions' WAF-block finding. No status change on any of the three.
+
+**Recommendation for next session**: (1) unchanged — a browser-driven session to finally crack
+TitleCapture and/or Qualia Connect remains the single highest-value remaining lead; (2) a
+browser-driven or devtools-network-capture pass on First American's AgentNet/PrismPowered platform
+(`marketing.agentnetsolutions.com`) is now a concrete, well-scoped 2nd target — the same-origin API
+host and exact route names are confirmed (`/api/Quote/calculate/customfees`), only the POST body
+shape is missing, the same class of problem the 2026-08-08 WFG session solved without a browser;
+solving it could unlock both TN and UT tenants (and possibly more, unsurveyed) at once; (3) retry
+`documentpub.fnti.com` next session — if the TLS certificate break persists across 2+ sessions,
+promote FL's/MO's citations of it to `{stale: true}`; (4) SC/LA/MS remain the least-explored
+below-4-provider states for a genuine 4th provider — worth applying the same platform-keyword +
+county-name search angle that surfaced this session's two (dead-end) UT leads.
