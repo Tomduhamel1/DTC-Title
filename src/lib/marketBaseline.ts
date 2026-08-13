@@ -158,7 +158,12 @@ const SERVICE_BANDS: Record<string, ServiceBand> = {
   MT: { low: 1.14, high: 1.43, basis: 'published', providers: 2, lowSource: 'REAL: First Montana Title $800 explicit buyer side' },
   OK: { low: 0.24, high: 0.94, basis: 'published', providers: 3, lowSource: 'REAL: First American (API) $395 buyer-side (their exam/search treated as included — conservative)' },
   TX: { low: 0.66, high: 1.14, basis: 'published', providers: 5, lowSource: 'SYNTHETIC P25 of 5; nearest real: Texas National Title $450 escrow (per-side proxy from seller worksheet)' },
-  FL: { low: 0.88, high: 1.12, basis: 'published', providers: 6, lowSource: 'SYNTHETIC P25 of 6; nearest real: First American $595 bundled closing-services fee' },
+  // FL re-based 2026-08-13 after the BetterClose $195 settlement fee
+  // (betterCloseFees.ts): our FL stack is now $345 (settlement 195 +
+  // notary 150). Market evidence dollars unchanged (P25 $615 / P75 $787.50
+  // of 6 published providers) — stored full-precision against the new
+  // stack so quotes show exact dollar deltas ($615 − $345 = $270).
+  FL: { low: 615 / 345, high: 787.5 / 345, basis: 'published', providers: 6, lowSource: 'SYNTHETIC P25 of 6; nearest real: First American $595 bundled closing-services fee' },
   NY: { low: 0.82, high: 2.14, basis: 'published', providers: 2, lowSource: 'REAL: Tier One Settlement $574 = settlement 500 + admin 50 + Encompass 24' },
 
   // ── July 24 second wave: calculator/API evidence (FA direct API + Old
@@ -223,6 +228,11 @@ const SERVICE_BANDS_REFI: Record<string, ServiceBand> = {
   // quote 2026-08-12): $690 − $550 = $140 exact.
   RI: { low: 690 / 550, high: 1.4, basis: 'quoted', providers: 1, lowSource: 'Liberty Title (RI) refi quote 2026-08-12: $495 settlement + $195 itemized search = $690, vs our full $550 stack (settlement $250 + search $100 + notary $150 + attorney $50) — exact $140 delta' },
   CA: { low: 1.37, high: 2.19, basis: 'calculator', providers: 1, lowSource: 'REAL: First American (API) refi $685' },
+  // FL refi anchored 2026-08-13: real published refi point vs our new $345
+  // refi stack ($195 settlement + $150 notary; FL upstream has no refi
+  // search line). $595 − $345 = $250 exact. High bounded at the re-based
+  // purchase high (787.5/345).
+  FL: { low: 595 / 345, high: 787.5 / 345, basis: 'published', providers: 1, lowSource: 'REAL: Full Service Title & Escrow (Miami Lakes) published refinance settlement fee $595 (search/exam/wires bundled per their sheet)' },
   GA: { low: 1.0, high: 1.2, basis: 'published', providers: 1, lowSource: 'REAL: Campbell & Brannon refi $475 + exam 75' },
   IL: { low: 0.57, high: 0.91, basis: 'calculator', providers: 1, lowSource: 'REAL: First American (API) refi $325' },
   MI: { low: 0.39, high: 0.62, basis: 'calculator', providers: 1, lowSource: 'REAL: First American (API) refi $195' },

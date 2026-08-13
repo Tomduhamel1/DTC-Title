@@ -6,13 +6,13 @@
 // interpolation (src/lib/stateSavings.ts). Contains NO margin fields —
 // safe for client bundles (unlike stateMatrix.generated.ts).
 
-export const CURVE_GENERATED_AT = '2026-08-13T05:22:50.734Z'
+export const CURVE_GENERATED_AT = '2026-08-13T23:10:44.620Z'
 export const CURVE_HOME_VALUES = [500000,1000000,2000000]
 
 export interface CurvePoint { save: number; pay: number }
 export interface StateCurve { purchase: CurvePoint[]; refinance: CurvePoint[] }
 
-export const NATIONAL_CURVE: StateCurve = {"purchase":[{"save":366,"pay":4230},{"save":568,"pay":7099},{"save":912,"pay":13049}],"refinance":[{"save":168,"pay":2035},{"save":252,"pay":2884},{"save":379,"pay":4320}]}
+export const NATIONAL_CURVE: StateCurve = {"purchase":[{"save":360,"pay":4172},{"save":554,"pay":6973},{"save":891,"pay":12773}],"refinance":[{"save":167,"pay":2016},{"save":247,"pay":2849},{"save":367,"pay":4253}]}
 
 export const STATE_CURVES: Record<string, StateCurve> = {
   AK: {"purchase":[{"save":276,"pay":3229},{"save":459,"pay":4271},{"save":737,"pay":5841}],"refinance":[{"save":266,"pay":2449},{"save":576,"pay":4202},{"save":903,"pay":6058}]},
@@ -24,14 +24,16 @@ export const STATE_CURVES: Record<string, StateCurve> = {
   CT: {"purchase":[{"save":318,"pay":3206},{"save":566,"pay":4608},{"save":1061,"pay":7413}],"refinance":[{"save":221,"pay":2437},{"save":393,"pay":3411},{"save":720,"pay":5268}]},
   DC: {"purchase":[{"save":509,"pay":11556},{"save":914,"pay":21101},{"save":1616,"pay":39579}],"refinance":[{"save":74,"pay":1446},{"save":107,"pay":1633},{"save":132,"pay":1773}]},
   DE: {"purchase":[{"save":384,"pay":13384},{"save":714,"pay":25254},{"save":1262,"pay":48356}],"refinance":[{"save":218,"pay":2265},{"save":392,"pay":3251},{"save":704,"pay":5019}]},
-  FL: {"purchase":[{"save":390,"pay":5385},{"save":765,"pay":9710},{"save":1140,"pay":16235}],"refinance":[{"save":185,"pay":3994},{"save":365,"pay":7214},{"save":635,"pay":13144}]},
+  FL: {"purchase":[{"save":270,"pay":5420},{"save":270,"pay":10120},{"save":270,"pay":17020}],"refinance":[{"save":250,"pay":4024},{"save":250,"pay":7424},{"save":250,"pay":13624}]},
   GA: {"purchase":[{"save":471,"pay":5048},{"save":816,"pay":8203},{"save":1506,"pay":14513}],"refinance":[{"save":74,"pay":2600},{"save":109,"pay":3996},{"save":163,"pay":6700}]},
   HI: {"purchase":[{"save":916,"pay":2891},{"save":1169,"pay":4325},{"save":1465,"pay":6003}],"refinance":[{"save":599,"pay":2081},{"save":824,"pay":3358},{"save":1107,"pay":4960}]},
   IA: {"purchase":[{"save":200,"pay":2468},{"save":350,"pay":3318},{"save":575,"pay":4593}],"refinance":[{"save":148,"pay":2252},{"save":213,"pay":2624},{"save":362,"pay":3469}]},
   ID: {"purchase":[{"save":317,"pay":2853},{"save":515,"pay":3981},{"save":878,"pay":6036}],"refinance":[{"save":323,"pay":2787},{"save":521,"pay":3915},{"save":884,"pay":5970}]},
   IL: {"purchase":[{"save":1440,"pay":5245},{"save":1440,"pay":8995},{"save":1440,"pay":16495}],"refinance":[{"save":60,"pay":1154},{"save":60,"pay":1154},{"save":144,"pay":1630}]},
+  IN: {"purchase":[{"save":105,"pay":1408},{"save":167,"pay":1756},{"save":377,"pay":2946}],"refinance":[{"save":93,"pay":1165},{"save":131,"pay":1377},{"save":153,"pay":1505}]},
   KS: {"purchase":[{"save":0,"pay":1241},{"save":0,"pay":1241},{"save":0,"pay":1241}],"refinance":[{"save":88,"pay":1486},{"save":127,"pay":1707},{"save":156,"pay":1873}]},
   KY: {"purchase":[{"save":397,"pay":2961},{"save":657,"pay":4433},{"save":1177,"pay":7378}],"refinance":[{"save":180,"pay":1584},{"save":219,"pay":1805},{"save":249,"pay":1970}]},
+  LA: {"purchase":[{"save":444,"pay":4094},{"save":741,"pay":5777},{"save":1236,"pay":8582}],"refinance":[{"save":153,"pay":1895},{"save":239,"pay":2384},{"save":394,"pay":3264}]},
   MA: {"purchase":[{"save":433,"pay":3552},{"save":789,"pay":5571},{"save":1501,"pay":9609}],"refinance":[{"save":128,"pay":1632},{"save":165,"pay":1842},{"save":196,"pay":2019}]},
   MD: {"purchase":[{"save":529,"pay":11053},{"save":884,"pay":20313},{"save":1443,"pay":37984}],"refinance":[{"save":104,"pay":3211},{"save":137,"pay":5398},{"save":178,"pay":9627}]},
   ME: {"purchase":[{"save":336,"pay":3709},{"save":599,"pay":6296},{"save":1124,"pay":15271}],"refinance":[{"save":104,"pay":1151},{"save":137,"pay":1338},{"save":162,"pay":1478}]},
@@ -54,7 +56,7 @@ export const STATE_CURVES: Record<string, StateCurve> = {
   RI: {"purchase":[{"save":500,"pay":2225},{"save":850,"pay":3625},{"save":1550,"pay":6425}],"refinance":[{"save":260,"pay":1227},{"save":380,"pay":1707},{"save":620,"pay":2667}]},
   SC: {"purchase":[{"save":245,"pay":2229},{"save":380,"pay":2994},{"save":650,"pay":4524}],"refinance":[{"save":116,"pay":1353},{"save":172,"pay":1672},{"save":280,"pay":2284}]},
   SD: {"purchase":[{"save":353,"pay":3829},{"save":515,"pay":4747},{"save":839,"pay":6583}],"refinance":[{"save":190,"pay":2761},{"save":224,"pay":2957},{"save":250,"pay":3103}]},
-  TN: {"purchase":[{"save":53,"pay":3534},{"save":53,"pay":5844},{"save":53,"pay":10464}],"refinance":[{"save":117,"pay":1882},{"save":150,"pay":2529},{"save":175,"pay":3589}]},
+  TN: {"purchase":[{"save":53,"pay":3534},{"save":53,"pay":5844},{"save":53,"pay":10464}],"refinance":[{"save":117,"pay":1894},{"save":150,"pay":2541},{"save":175,"pay":3601}]},
   TX: {"purchase":[{"save":428,"pay":3461},{"save":799,"pay":5560},{"save":1408,"pay":9011}],"refinance":[{"save":170,"pay":1782},{"save":318,"pay":2622},{"save":575,"pay":4077}]},
   UT: {"purchase":[{"save":210,"pay":1996},{"save":315,"pay":2593},{"save":484,"pay":3546}],"refinance":[{"save":126,"pay":1320},{"save":189,"pay":1677},{"save":290,"pay":2250}]},
   VA: {"purchase":[{"save":448,"pay":6283},{"save":785,"pay":11196},{"save":1231,"pay":19720}],"refinance":[{"save":98,"pay":2114},{"save":129,"pay":3253},{"save":178,"pay":5449}]},
