@@ -2,7 +2,7 @@ import { requireAdmin } from '@/lib/auth/admin'
 import { AdminHeader, Stat } from '@/components/admin/AdminChrome'
 import { STATE_MASTER, STATE_NAMES, StateMasterEntry } from '@/lib/stateMaster'
 import { premiumRegimeFor, serviceBandFor } from '@/lib/marketBaseline'
-import { BETTERCLOSE_SERVICE_FEES, FeeAmount } from '@/lib/betterCloseFees'
+import { BETTERCLOSE_SERVICE_FEES, ENSURE_LINES, FeeAmount } from '@/lib/betterCloseFees'
 import { BUCKS_EXCLUDED_STATES, BUCKS_RATE, BUCKS_RATE_BY_STATE, bucksRateFor } from '@/lib/betterCloseBucks'
 import { splitsForState } from '@/lib/underwriterSplits'
 import { GENERATED_AT, NATIONAL_ANCHOR, STATE_ANCHORS } from '@/lib/stateSavings.generated'
@@ -121,6 +121,14 @@ function StateRow({ code, entry }: { code: string; entry: StateMasterEntry }) {
   const flags: string[] = []
   if (anyOn && matrix && matrix.purchase['500000']?.pkg === 0) flags.push('no package savings @500k')
   if (anyOn && !bandP.lowSource) flags.push('pooled band — no in-state comp evidence')
+  // Upstream drops the title-search line on refi quotes (2026-08-12 finding);
+  // until the state's refi search fee is confirmed and added via ENSURE_LINES,
+  // its refi estimates understate the borrower's real cost.
+  if (
+    entry.offer.refinance &&
+    !ENSURE_LINES[code]?.refinance?.some((l) => /search|abstract/i.test(l.label))
+  )
+    flags.push('refi search fee pending — upstream omits it')
 
   return (
     <details className={`bg-white rounded-2xl border ${anyOn ? 'border-gray-200' : 'border-gray-200 opacity-70'}`}>
@@ -142,7 +150,7 @@ function StateRow({ code, entry }: { code: string; entry: StateMasterEntry }) {
           Bucks {Math.round(bucksRateFor(code) * 100)}%
         </span>
         <span className="text-xs text-gray-500 tabular-nums">
-          band {bandP.low}–{bandP.high}× <span className="text-gray-400">({bandP.basis}{bandP.providers ? ` · ${bandP.providers}` : ''})</span>
+          band {Number(bandP.low.toFixed(2))}–{Number(bandP.high.toFixed(2))}× <span className="text-gray-400">({bandP.basis}{bandP.providers ? ` · ${bandP.providers}` : ''})</span>
         </span>
         <span className="text-xs text-gray-500">
           {overrides ? `fees: ${Object.entries(overrides).map(([k, v]) => `${k} ${fmtFee(v)}`).join(', ')}` : 'fees: FNTE'}
@@ -176,8 +184,8 @@ function StateRow({ code, entry }: { code: string; entry: StateMasterEntry }) {
               Comparison & premiums
             </div>
             <div className="text-gray-700 text-xs">
-              Premium regime: {regime} (premiums never counted toward savings). Purchase band {bandP.low}–{bandP.high}× ({bandP.basis}
-              {bandP.providers ? `, ${bandP.providers} providers` : ''}); refi band {bandR.low}–{bandR.high}× ({bandR.basis}).
+              Premium regime: {regime} (premiums never counted toward savings). Purchase band {Number(bandP.low.toFixed(2))}–{Number(bandP.high.toFixed(2))}× ({bandP.basis}
+              {bandP.providers ? `, ${bandP.providers} providers` : ''}); refi band {Number(bandR.low.toFixed(2))}–{Number(bandR.high.toFixed(2))}× ({bandR.basis}).
             </div>
 
           </div>

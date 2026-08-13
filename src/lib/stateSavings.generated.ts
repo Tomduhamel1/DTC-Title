@@ -67,7 +67,7 @@ export const STATE_ANCHORS: Record<string, StateAnchor> = {
   OK: { purchase: { save: 296, ourTotal: 4539 }, refinance: { save: 139, ourTotal: 2723 } },
   OR: { purchase: { save: 224, ourTotal: 3103 }, refinance: { save: 254, ourTotal: 2258 } },
   PA: { purchase: { save: 545, ourTotal: 15882 }, refinance: { save: 446, ourTotal: 3656 } },
-  RI: { purchase: { save: 500, ourTotal: 2225 }, refinance: { save: 260, ourTotal: 1127 } },
+  RI: { purchase: { save: 500, ourTotal: 2225 }, refinance: { save: 260, ourTotal: 1227 } },
   SC: { purchase: { save: 247, ourTotal: 2229 }, refinance: { save: 100, ourTotal: 1003 } },
   SD: { purchase: { save: 355, ourTotal: 3829 }, refinance: { save: 191, ourTotal: 2743 } },
   TN: { purchase: { save: 54, ourTotal: 3534 }, refinance: { save: 100, ourTotal: 1532 } },
