@@ -162,6 +162,14 @@ async function main() {
     }
   }
 
+  // Subset run: carry forward every state we didn't ask for.
+  if (only) {
+    const prev = await import('../src/lib/stateMatrix.generated')
+    for (const [s, entry] of Object.entries(prev.STATE_MATRIX as Record<string, StateMatrix>)) {
+      if (!matrix[s] && !only.includes(s)) matrix[s] = entry
+    }
+  }
+
   const done = Object.keys(matrix).sort()
   if (done.length === 0) throw new Error('every state failed — refusing to write an empty matrix')
 
