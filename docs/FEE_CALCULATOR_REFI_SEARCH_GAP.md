@@ -42,6 +42,24 @@ Once the REFI column is populated upstream, BetterClose's `ENSURE_LINES`
 entries become harmless no-ops (the dedupe in `src/lib/elendCalc.ts` skips
 lines the upstream already returns).
 
+## URGENT: IN/LA refinance quotes 500, NC flaky (observed 2026-08-12)
+
+Separate from the search-line gap, the quick-quote API is **failing
+outright** for three states we currently offer:
+
+- **IN and LA: every refinance quote returns 500** (deterministic —
+  reproduced across many attempts over ~2 hours; purchase quotes for the
+  same ZIPs succeed). Neither state is in the centralized-rates list, so
+  their refi lender's policy goes through the FirstAm L2 path — the
+  failure is likely there.
+- **NC: intermittent 500s in both modes** (the same request succeeds or
+  fails minute to minute; NC's `eLEND_public_calc` row is well-formed).
+
+Customer impact on betterclose.co today: an IN or LA refinance estimate
+always errors; NC estimates error unpredictably. Until fixed upstream,
+these states cannot be included in the generated savings data
+(anchors/matrix/curve fall back to the national figures).
+
 ## Also observed (worth the FNTE team's attention)
 
 - The live `/test` API-Gateway stage routes to the Lambda named

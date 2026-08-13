@@ -76,7 +76,13 @@ async function withRetry<T>(fn: () => Promise<T>): Promise<T> {
 }
 
 async function main() {
-  const states = Object.keys(REPRESENTATIVE_ZIP_BY_STATE).sort()
+  // Optional subset run: `npx tsx scripts/build-state-savings.ts IN,LA,NC`
+  // refreshes just those states and carries every other state forward from
+  // the previous generated file.
+  const only = process.argv[2] ? process.argv[2].split(',').map((s) => s.toUpperCase()) : null
+  const states = Object.keys(REPRESENTATIVE_ZIP_BY_STATE)
+    .filter((s) => !only || only.includes(s))
+    .sort()
   const anchors: Record<string, StateAnchor> = {}
   const failed: string[] = []
 
@@ -118,6 +124,14 @@ async function main() {
       }
     } catch {
       // no previous file — nothing to retain
+    }
+  }
+
+  // Subset run: carry forward every state we didn't ask for.
+  if (only) {
+    const prev = await import('../src/lib/stateSavings.generated')
+    for (const [st, a] of Object.entries(prev.STATE_ANCHORS as Record<string, StateAnchor>)) {
+      if (!anchors[st] && !only.includes(st)) anchors[st] = a
     }
   }
 
