@@ -1,3 +1,4 @@
+import { offeredStateCount } from '@/lib/stateMaster'
 import Link from 'next/link'
 import NavigationCredible from '@/components/NavigationCredible'
 import FooterComprehensive from '@/components/FooterComprehensive'
@@ -78,7 +79,7 @@ const COMPANY_INFO_REQUEST_HREF = `mailto:orders@betterclose.co?subject=${encode
 const BROKER_TRUST_STATS = [
   { value: '30,000+', label: 'Closings completed' },
   { value: 'A-rated', label: 'Underwriters only' },
-  { value: '50 states', label: 'Closing coverage' },
+  { value: `${offeredStateCount()} states`, label: 'Closing coverage' },
 ] as const
 
 // Outline-style icons sized to fit OrderTile (w-5) and ReasonCard (w-6)
@@ -196,12 +197,6 @@ export default function BrokersPage() {
                 >
                   Sign in
                 </Link>
-                <a
-                  href="/pdfs/betterclose-for-brokers.pdf"
-                  className="text-base font-semibold text-primary-700 hover:underline whitespace-nowrap"
-                >
-                  Download one-pager (PDF)
-                </a>
               </div>
               <p className="text-sm text-gray-500 mt-4">
                 No login required. Create an account when you&apos;re ready to send or open a closing.
@@ -249,7 +244,7 @@ export default function BrokersPage() {
                   <span className="text-sm font-bold text-dark-900">{formatCurrency(EXAMPLE_BASIS.ourTotal)}</span>
                 </div>
                 <div className="flex items-baseline justify-between">
-                  <span className="text-xs text-gray-400">Comparable option</span>
+                  <span className="text-xs text-gray-400">Typical rates in this area</span>
                   <span className="text-sm font-semibold text-gray-400 line-through decoration-gray-300">{formatCurrency(EXAMPLE_BASIS.typicalTotal)}</span>
                 </div>
               </div>
@@ -401,7 +396,7 @@ export default function BrokersPage() {
             <OrderTile
               icon={ICONS.workflow}
               title="Your existing workflow"
-              body="Use the LOS, pricing engine, or platform your team already runs on — SmartFees, Encompass, Qualia, ResWare, or email — and send the order to BetterClose."
+              body="Work from Encompass or plain email today — SmartFees, Qualia, and ResWare integrations are coming soon."
             />
             <OrderTile
               icon={ICONS.clipboard}

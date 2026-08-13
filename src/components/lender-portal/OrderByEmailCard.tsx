@@ -116,7 +116,7 @@ export default function OrderByEmailCard({
             <h3 className="text-base font-bold text-dark-900">Use your existing tool</h3>
           </div>
           <p className="text-sm text-gray-600 mb-5">
-            Find <strong>BetterClose</strong> in SmartFees, Encompass, Qualia, or ResWare. Need our info to add us or for closing instructions? Copy below.
+            Find <strong>BetterClose</strong> in Encompass (SmartFees, Qualia, and ResWare coming soon). Need our info to add us or for closing instructions? Copy below.
           </p>
 
           <div className="bg-white border border-gray-200 rounded-lg p-4 text-xs text-gray-700 font-mono leading-relaxed mb-3 whitespace-pre-line">

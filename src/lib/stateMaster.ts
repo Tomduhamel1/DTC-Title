@@ -122,6 +122,13 @@ export const STATE_MASTER: Record<string, StateMasterEntry> = {
   WY: { offer: { purchase: false, refinance: false }, availabilityNote: 'Workshare state — OFF pending review (Tom, 2026-08-10)' },
 }
 
+/** Number of states currently offering at least one transaction type —
+ *  the honest "coverage" figure for marketing copy (replaces the old
+ *  hardcoded "50 states" claims; Tom, 2026-08-12). */
+export function offeredStateCount(): number {
+  return Object.values(STATE_MASTER).filter((e) => e.offer.purchase || e.offer.refinance).length
+}
+
 // Unknown/unlisted state codes are NOT offered (allowlist posture).
 export function stateOffered(
   stateCode: string | undefined | null,

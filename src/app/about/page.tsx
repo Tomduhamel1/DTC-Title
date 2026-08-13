@@ -109,12 +109,11 @@ export default function AboutPage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <h2 className="text-4xl font-black text-dark-900 mb-6">
-            Serving All 50 States
+            Where We Close Today
           </h2>
           <p className="text-xl text-gray-700 mb-8">
-            Directly licensed in 34 states, with workshare partners covering
-            the remaining 16. Whether you're buying in California, Texas,
-            Florida, New York, or anywhere in the US, you get the same
+            We currently close purchases and refinances in 34 states, and
+            we're expanding. Wherever we operate, you get the same
             BetterClose pricing and digital experience.
           </p>
         </div>

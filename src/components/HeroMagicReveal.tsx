@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { estimateSavings } from '@/lib/stateSavings'
+import { estimateSavings, resolveStateCode } from '@/lib/stateSavings'
+import { offeredStateCount, stateOffered } from '@/lib/stateMaster'
 import { useSavings } from '@/contexts/SavingsContext'
 import RotatingSavingsPill from '@/components/RotatingSavingsPill'
 
@@ -35,6 +36,12 @@ export default function HeroMagicReveal() {
     }
   }, [])
 
+  // A geo-detected state we don't serve must never be promised local
+  // savings — drop the local labeling and show the national example
+  // (estimateSavings already falls back to national numbers for OFF states).
+  const code = resolveStateCode(state)
+  const served = !code || stateOffered(code, 'purchase') || stateOffered(code, 'refinance')
+
   const { saveAtClosing, saveOverLoan } = estimateSavings(homeValue, mode, state)
 
   // Push hero savings into the shared SavingsContext so downstream sections
@@ -49,9 +56,8 @@ export default function HeroMagicReveal() {
   // (VPN, privacy blockers, failed lookup), keep the subject but drop the
   // location — "Buyers typically save" — never the vague "in your area".
   const subject = mode === 'refinance' ? 'Refinancings' : 'Buyers'
-  const headlineCopy = city
-    ? `${subject} in ${city} typically save`
-    : `${subject} typically save`
+  const headlineCopy =
+    city && served ? `${subject} in ${city} typically save` : `${subject} typically save`
 
   return (
     <section className="relative bg-white py-12 md:py-16 px-6">
@@ -72,7 +78,7 @@ export default function HeroMagicReveal() {
             <strong>just lower fees</strong>, itemized below.
           </p>
           <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-600">
-            <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>50 states</span></span>
+            <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>{offeredStateCount()} states</span></span>
             <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>Every fee published</span></span>
             <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>30,000+ closings</span></span>
             <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>A-rated underwriters</span></span>
