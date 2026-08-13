@@ -7,7 +7,7 @@
 // it; do not hardcode a new stage here.
 
 import { betterCloseBucksLine } from './betterCloseBucks'
-import { betterCloseServiceFee } from './betterCloseFees'
+import { betterCloseServiceFee, ensuredLinesFor } from './betterCloseFees'
 import { assertServiceOffered } from './stateMaster'
 import { REPORT_MODEL_VERSION } from './feeReport'
 import type { FeeCategory, FeeLineItem, FeeReport, FeeSource } from './feeReport'
@@ -299,6 +299,24 @@ export async function fetchElendFeeEstimate(
       ourCost,
       isFixed,
       ...(feeSource ? { feeSource } : {}),
+    })
+  })
+
+  // Upstream-gap patch (betterCloseFees.ENSURE_LINES): fees we actually bill
+  // that the upstream calculator omits — e.g. the refi title search, which
+  // FNTE's API returns on purchases but drops on refinances. Added BEFORE
+  // the market comparison and Bucks so the full stack drives both. Skipped
+  // when the upstream already returned a matching line.
+  ensuredLinesFor(data.stateCode, req.transactionType).forEach((el, i) => {
+    const already = lineItems.some((li) => li.label.toLowerCase() === el.label.toLowerCase())
+    if (already) return
+    lineItems.push({
+      id: `ensured-${i}`,
+      label: el.label,
+      category: 'title-settlement',
+      ourCost: el.amount,
+      isFixed: isComparisonFixed(el.label, 'title-settlement', data.stateCode),
+      feeSource: 'service',
     })
   })
 

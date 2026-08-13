@@ -198,7 +198,7 @@ const SERVICE_BANDS: Record<string, ServiceBand> = {
   // 'inferred' until the Liberty Title quote documents are archived under
   // data/market-fees/ (then 'calculator', providers: 1).
   // Full-precision ratio so the quote shows Tom's exact delta: $690 − $550 = $140.
-  RI: { low: 690 / 550, high: 1.4, basis: 'quoted', providers: 1, lowSource: 'Liberty Title (RI) purchase quote: $690 full buyer-side stack vs our $550 anchor stack — exact $140 delta (supplied by Tom, 2026-07-30)' },
+  RI: { low: 690 / 550, high: 1.4, basis: 'quoted', providers: 1, lowSource: 'Liberty Title (RI) purchase quote: $690 full buyer-side stack (incl. their itemized search) vs our $550 stack (incl. our $100 search) — exact $140 delta (Tom 2026-07-30; composition verified 2026-08-12)' },
 }
 
 // Refinance-specific overrides. Refi service fees are a different market
@@ -219,8 +219,9 @@ const SERVICE_BANDS_REFI: Record<string, ServiceBand> = {
   // RI: owner-supplied market low $590 refi full stack (Liberty Title — see
   // purchase note): $590 / $450 refi stack = 1.31; high bounded at the
   // purchase high.
-  // Full-precision ratio: $590 − $450 = $140 exact.
-  RI: { low: 590 / 450, high: 1.4, basis: 'quoted', providers: 1, lowSource: 'Liberty Title (RI) refinance quote: $590 full buyer-side stack vs our $450 anchor stack — exact $140 delta (supplied by Tom, 2026-07-30)' },
+  // Full stacks both sides (composition verified against Liberty's itemized
+  // quote 2026-08-12): $690 − $550 = $140 exact.
+  RI: { low: 690 / 550, high: 1.4, basis: 'quoted', providers: 1, lowSource: 'Liberty Title (RI) refi quote 2026-08-12: $495 settlement + $195 itemized search = $690, vs our full $550 stack (settlement $250 + search $100 + notary $150 + attorney $50) — exact $140 delta' },
   CA: { low: 1.37, high: 2.19, basis: 'calculator', providers: 1, lowSource: 'REAL: First American (API) refi $685' },
   GA: { low: 1.0, high: 1.2, basis: 'published', providers: 1, lowSource: 'REAL: Campbell & Brannon refi $475 + exam 75' },
   IL: { low: 0.57, high: 0.91, basis: 'calculator', providers: 1, lowSource: 'REAL: First American (API) refi $325' },

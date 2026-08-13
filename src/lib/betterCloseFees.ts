@@ -58,6 +58,38 @@ function lookupLabel(
   return undefined
 }
 
+// ── Lines the upstream calculator OMITS but we actually bill ──────────────
+// Discovered 2026-08-12 (Tom, via a Liberty Title side-by-side): the FNTE
+// calculator returns the title-search line on PURCHASE quotes but silently
+// drops it on REFINANCE quotes in every probed state — while the search IS
+// billed separately at closing. An estimate must never hide a real charge,
+// so these lines are ADDED to the quote when the upstream omits them.
+// Fill per state as Tom/FNTE confirm the refi search amounts from the
+// master fee schedule; states not listed keep the (incomplete) upstream
+// response and are flagged on /admin/states.
+export interface EnsuredLine {
+  label: string
+  amount: number
+}
+
+export const ENSURE_LINES: Record<
+  string,
+  Partial<Record<'purchase' | 'refinance', EnsuredLine[]>>
+> = {
+  // RI refi search $100 — same as the purchase-quote line the upstream
+  // already returns (assumption flagged to Tom; correct here if the master
+  // schedule prices refi search differently).
+  RI: { refinance: [{ label: 'Abstractor Title Search', amount: 100 }] },
+}
+
+export function ensuredLinesFor(
+  stateCode: string | undefined,
+  mode: 'purchase' | 'refinance',
+): EnsuredLine[] {
+  if (!stateCode) return []
+  return ENSURE_LINES[stateCode.toUpperCase()]?.[mode] ?? []
+}
+
 export function betterCloseServiceFee(
   label: string,
   stateCode: string | undefined,
