@@ -28,8 +28,14 @@ export const BUCKS_RATE_BY_STATE: Record<string, number> = {
   RI: 0.2,
 }
 
-// Compliance gate — states where the credit is withheld. Empty = everywhere.
-export const BUCKS_EXCLUDED_STATES: Set<string> = new Set()
+// Compliance gate — states where the credit is withheld.
+// FL (Tom, 2026-08-13): Florida promulgates the title premium and has
+// strict anti-rebating law; a credit whose AMOUNT derives from the premium
+// is structurally exposed there regardless of labeling. Florida competes
+// through BetterClose's own $195 settlement fee instead
+// (betterCloseFees.ts) — discounting our own service charge, with the
+// promulgated premium always charged in full.
+export const BUCKS_EXCLUDED_STATES: Set<string> = new Set(['FL'])
 
 /** Effective Bucks rate in a state (0 when excluded). */
 export function bucksRateFor(stateCode?: string): number {

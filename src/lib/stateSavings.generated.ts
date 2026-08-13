@@ -9,7 +9,7 @@
 // States omitted after upstream failures (runtime falls back to the
 // national anchor): NC
 
-export const GENERATED_AT = '2026-08-13T05:21:05.651Z'
+export const GENERATED_AT = '2026-08-13T22:43:44.747Z'
 
 // Anchor scenario: $500,000 purchase, $400,000 loan (80% LTV);
 // refinance of a $400,000 note.
@@ -28,7 +28,7 @@ export interface StateAnchor {
 }
 
 // Mean across generated states.
-export const NATIONAL_ANCHOR: StateAnchor = { purchase: { save: 366, ourTotal: 4230 }, refinance: { save: 168, ourTotal: 2035 } }
+export const NATIONAL_ANCHOR: StateAnchor = { purchase: { save: 360, ourTotal: 4172 }, refinance: { save: 167, ourTotal: 2016 } }
 
 export const STATE_ANCHORS: Record<string, StateAnchor> = {
   AK: { purchase: { save: 276, ourTotal: 3229 }, refinance: { save: 266, ourTotal: 2449 } },
@@ -40,14 +40,16 @@ export const STATE_ANCHORS: Record<string, StateAnchor> = {
   CT: { purchase: { save: 318, ourTotal: 3206 }, refinance: { save: 221, ourTotal: 2437 } },
   DC: { purchase: { save: 509, ourTotal: 11556 }, refinance: { save: 74, ourTotal: 1446 } },
   DE: { purchase: { save: 384, ourTotal: 13384 }, refinance: { save: 218, ourTotal: 2265 } },
-  FL: { purchase: { save: 390, ourTotal: 5385 }, refinance: { save: 185, ourTotal: 3994 } },
+  FL: { purchase: { save: 270, ourTotal: 5420 }, refinance: { save: 250, ourTotal: 4024 } },
   GA: { purchase: { save: 471, ourTotal: 5048 }, refinance: { save: 74, ourTotal: 2600 } },
   HI: { purchase: { save: 916, ourTotal: 2891 }, refinance: { save: 599, ourTotal: 2081 } },
   IA: { purchase: { save: 200, ourTotal: 2468 }, refinance: { save: 148, ourTotal: 2252 } },
   ID: { purchase: { save: 317, ourTotal: 2853 }, refinance: { save: 323, ourTotal: 2787 } },
   IL: { purchase: { save: 1440, ourTotal: 5245 }, refinance: { save: 60, ourTotal: 1154 } },
+  IN: { purchase: { save: 105, ourTotal: 1408 }, refinance: { save: 93, ourTotal: 1165 } },
   KS: { purchase: { save: 0, ourTotal: 1241 }, refinance: { save: 88, ourTotal: 1486 } },
   KY: { purchase: { save: 397, ourTotal: 2961 }, refinance: { save: 180, ourTotal: 1584 } },
+  LA: { purchase: { save: 444, ourTotal: 4094 }, refinance: { save: 153, ourTotal: 1895 } },
   MA: { purchase: { save: 433, ourTotal: 3552 }, refinance: { save: 128, ourTotal: 1632 } },
   MD: { purchase: { save: 529, ourTotal: 11053 }, refinance: { save: 104, ourTotal: 3211 } },
   ME: { purchase: { save: 336, ourTotal: 3709 }, refinance: { save: 104, ourTotal: 1151 } },
@@ -70,7 +72,7 @@ export const STATE_ANCHORS: Record<string, StateAnchor> = {
   RI: { purchase: { save: 500, ourTotal: 2225 }, refinance: { save: 260, ourTotal: 1227 } },
   SC: { purchase: { save: 245, ourTotal: 2229 }, refinance: { save: 116, ourTotal: 1353 } },
   SD: { purchase: { save: 353, ourTotal: 3829 }, refinance: { save: 190, ourTotal: 2761 } },
-  TN: { purchase: { save: 53, ourTotal: 3534 }, refinance: { save: 117, ourTotal: 1882 } },
+  TN: { purchase: { save: 53, ourTotal: 3534 }, refinance: { save: 117, ourTotal: 1894 } },
   TX: { purchase: { save: 428, ourTotal: 3461 }, refinance: { save: 170, ourTotal: 1782 } },
   UT: { purchase: { save: 210, ourTotal: 1996 }, refinance: { save: 126, ourTotal: 1320 } },
   VA: { purchase: { save: 448, ourTotal: 6283 }, refinance: { save: 98, ourTotal: 2114 } },

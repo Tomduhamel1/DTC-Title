@@ -34,6 +34,15 @@ export const BETTERCLOSE_SERVICE_FEES: BetterCloseFeeTable = {
   byState: {
     // Tom, 2026-07-30: BetterClose RI settlement fee $250 (purchase and refi).
     RI: { 'Settlement Fee': 250 },
+    // Tom, 2026-08-13: FL settlement fee $195 (purchase and refi). Part of
+    // the FL compliance posture: full promulgated premium always charged;
+    // we compete on our own service fee instead of any premium-derived
+    // credit (FL is in BUCKS_EXCLUDED_STATES — see betterCloseBucks.ts).
+    // $195 was chosen to stay clear of below-cost-inducement territory
+    // (blended direct vendor costs ~$85–135/file per the FL actuals recon);
+    // counsel confirmation of the number remains the launch gate for
+    // FL-specific advertising claims.
+    FL: { 'Settlement Fee': 195 },
   },
 }
 
