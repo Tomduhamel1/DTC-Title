@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import FeeReportProgress from '@/components/FeeReportProgress'
 import { getMockFeeReport } from '@/lib/feeReport'
+import { stateForZip } from '@/lib/zipToState'
 
 export default function QuoteWorkingPage() {
   const router = useRouter()
@@ -104,6 +105,15 @@ export default function QuoteWorkingPage() {
               ? err.message
               : 'Something went wrong'
         sessionStorage.setItem('feeReportError', message)
+        // Anything that fails past availability is a calculator problem, not a
+        // user problem — tag it so the form shows the friendly "rates system
+        // was unresponsive" notice instead of a red error, with the state
+        // named when we can resolve it from the ZIP.
+        sessionStorage.setItem('feeReportErrorKind', 'upstream')
+        try {
+          const st = stateForZip(JSON.parse(inputsRaw)?.zip)
+          if (st) sessionStorage.setItem('feeReportErrorState', st)
+        } catch {}
         router.replace(failureHref)
       }
     })()

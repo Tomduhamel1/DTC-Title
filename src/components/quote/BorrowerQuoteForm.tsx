@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import CalculatorUnresponsiveNotice from '@/components/quote/CalculatorUnresponsiveNotice'
+import { STATE_NAMES } from '@/lib/stateMaster'
 
 // Borrower-facing quote form. Extracted verbatim from src/app/quote/page.tsx
 // when the broker estimate split out — preserves the exact pre-extraction
@@ -15,17 +17,22 @@ export default function BorrowerQuoteForm() {
   const [loanAmount, setLoanAmount] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  // 'unavailable' renders as an amber informational notice (service-area), not a red error.
-  const [errorKind, setErrorKind] = useState<'error' | 'unavailable'>('error')
+  // 'unavailable' renders as an amber informational notice (service-area);
+  // 'upstream' renders the friendly "rates system was unresponsive" panel.
+  const [errorKind, setErrorKind] = useState<'error' | 'unavailable' | 'upstream'>('error')
+  const [errorState, setErrorState] = useState<string | null>(null)
 
   useEffect(() => {
     if (typeof window === 'undefined') return
     const stashed = sessionStorage.getItem('feeReportError')
     if (stashed) {
+      const kind = sessionStorage.getItem('feeReportErrorKind')
       setError(stashed)
-      setErrorKind(sessionStorage.getItem('feeReportErrorKind') === 'unavailable' ? 'unavailable' : 'error')
+      setErrorKind(kind === 'unavailable' ? 'unavailable' : kind === 'upstream' ? 'upstream' : 'error')
+      setErrorState(sessionStorage.getItem('feeReportErrorState'))
       sessionStorage.removeItem('feeReportError')
       sessionStorage.removeItem('feeReportErrorKind')
+      sessionStorage.removeItem('feeReportErrorState')
     }
   }, [])
 
@@ -145,17 +152,22 @@ export default function BorrowerQuoteForm() {
             </div>
           </div>
 
-          {error && (
-            <div
-              className={
-                errorKind === 'unavailable'
-                  ? 'bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 text-sm text-amber-900'
-                  : 'bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-800'
-              }
-            >
-              {error}
-            </div>
-          )}
+          {error &&
+            (errorKind === 'upstream' ? (
+              <CalculatorUnresponsiveNotice
+                stateName={errorState ? STATE_NAMES[errorState] : undefined}
+              />
+            ) : (
+              <div
+                className={
+                  errorKind === 'unavailable'
+                    ? 'bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 text-sm text-amber-900'
+                    : 'bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-800'
+                }
+              >
+                {error}
+              </div>
+            ))}
 
           <button
             type="submit"
