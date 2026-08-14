@@ -1,7 +1,7 @@
 import { requireAdmin } from '@/lib/auth/admin'
 import { AdminHeader, Stat } from '@/components/admin/AdminChrome'
 import { STATE_MASTER, STATE_NAMES, StateMasterEntry } from '@/lib/stateMaster'
-import { premiumRegimeFor, serviceBandFor } from '@/lib/marketBaseline'
+import { evidenceStatusFor, premiumRegimeFor, serviceBandFor } from '@/lib/marketBaseline'
 import { BETTERCLOSE_SERVICE_FEES, ENSURE_LINES, FeeAmount } from '@/lib/betterCloseFees'
 import { BUCKS_EXCLUDED_STATES, BUCKS_RATE, BUCKS_RATE_BY_STATE, bucksRateFor } from '@/lib/betterCloseBucks'
 import { splitsForState } from '@/lib/underwriterSplits'
@@ -53,6 +53,11 @@ export default async function AdminStatesPage() {
 
   const codes = Object.keys(STATE_MASTER).sort()
   const onCount = codes.filter((c) => STATE_MASTER[c].offer.purchase || STATE_MASTER[c].offer.refinance).length
+  // Evidence coverage rollup: ON states whose purchase comparison still
+  // rides thin (1–2 providers) or inferred (no real in-state) evidence.
+  const onCodes = codes.filter((c) => STATE_MASTER[c].offer.purchase || STATE_MASTER[c].offer.refinance)
+  const evidenceNone = onCodes.filter((c) => evidenceStatusFor(c, 'purchase').grade === 'none')
+  const evidenceThin = onCodes.filter((c) => evidenceStatusFor(c, 'purchase').grade === 'thin')
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -88,6 +93,32 @@ export default async function AdminStatesPage() {
           </div>
         </div>
 
+        {(evidenceNone.length > 0 || evidenceThin.length > 0) && (
+          <div className="mb-6 bg-white rounded-2xl border border-amber-200 p-4">
+            <div className="text-[10px] font-bold uppercase tracking-wider text-amber-700 mb-1">
+              Evidence gaps — live states whose comparison needs more sources
+            </div>
+            {evidenceNone.length > 0 && (
+              <div className="text-xs text-gray-700">
+                <span className="font-bold text-red-700">No real in-state evidence ({evidenceNone.length}):</span>{' '}
+                {evidenceNone.join(', ')} — pooled inferred band; needs provider calls, browser calculator
+                harvest (FNF NRC / FACC), or DOI filings.
+              </div>
+            )}
+            {evidenceThin.length > 0 && (
+              <div className="text-xs text-gray-700 mt-1">
+                <span className="font-bold text-amber-700">Thin — 1–2 providers ({evidenceThin.length}):</span>{' '}
+                {evidenceThin.join(', ')} — corroborate before treating the band as the market.
+              </div>
+            )}
+            <div className="text-[11px] text-gray-400 mt-1.5">
+              Method is uniform everywhere (symmetric stacks, anti-inflation rules); it&apos;s the
+              evidence depth that varies. Per-state detail in each row&apos;s badge and
+              &ldquo;How the low stack is derived.&rdquo;
+            </div>
+          </div>
+        )}
+
         <div className="space-y-2">
           {codes.map((code) => (
             <StateRow key={code} code={code} entry={STATE_MASTER[code]} />
@@ -114,6 +145,7 @@ function StateRow({ code, entry }: { code: string; entry: StateMasterEntry }) {
   const matrix = STATE_MATRIX[code]
   const bandP = serviceBandFor(code, 'purchase')
   const bandR = serviceBandFor(code, 'refinance')
+  const evidence = evidenceStatusFor(code, 'purchase')
   const overrides = BETTERCLOSE_SERVICE_FEES.byState[code]
   const splits = splitsForState(code)
   const regime = premiumRegimeFor(code)
@@ -148,6 +180,17 @@ function StateRow({ code, entry }: { code: string; entry: StateMasterEntry }) {
         </span>
         <span className="text-xs text-gray-500 tabular-nums">
           band {Number(bandP.low.toFixed(2))}–{Number(bandP.high.toFixed(2))}× <span className="text-gray-400">({bandP.basis}{bandP.providers ? ` · ${bandP.providers}` : ''})</span>
+        </span>
+        <span
+          className={`text-[10px] font-bold uppercase tracking-wider rounded-full px-2 py-0.5 border ${
+            evidence.grade === 'solid'
+              ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+              : evidence.grade === 'thin'
+                ? 'bg-amber-50 text-amber-700 border-amber-200'
+                : 'bg-red-50 text-red-700 border-red-200'
+          }`}
+        >
+          evidence {evidence.grade === 'none' ? 'inferred' : evidence.grade}
         </span>
         <span className="text-xs text-gray-500">
           {overrides ? `fees: ${Object.entries(overrides).map(([k, v]) => `${k} ${fmtFee(v)}`).join(', ')}` : 'fees: FNTE'}
@@ -204,6 +247,9 @@ function StateRow({ code, entry }: { code: string; entry: StateMasterEntry }) {
                 ? 'Purchase band applied to the refi stack (no refi-specific evidence).'
                 : `Pooled inferred band ${bandR.low}× — no in-state competitor evidence yet.`)}
           </div>
+          {evidence.action && (
+            <div className="text-xs font-semibold text-amber-700 mt-1.5">To upgrade: {evidence.action}</div>
+          )}
         </div>
 
         {matrix ? (

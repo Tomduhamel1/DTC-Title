@@ -43,6 +43,17 @@ export const BETTERCLOSE_SERVICE_FEES: BetterCloseFeeTable = {
     // counsel confirmation of the number remains the launch gate for
     // FL-specific advertising claims.
     FL: { 'Settlement Fee': 195 },
+    // Tom, 2026-08-14: FL treatment extended "relatively speaking" to the
+    // other Bucks-excluded states. Calibration rule (documented for team
+    // review, ISSUES.md): target our comparable service stack at ~56% of
+    // the state's evidenced market low (FL's landing: $345/$615), with
+    // $195 as the floor — the same counsel-gated below-cost basis as FL.
+    // TX: floor binds ($345 stack vs $462 market low). NY: floor binds
+    // ($345 vs Tier One's real $574). NM: rule gives $295 ($475 stack vs
+    // First American's $834; NM evidence is a single point — flagged).
+    TX: { 'Settlement Fee': 195 },
+    NY: { 'Settlement Fee': 195 },
+    NM: { 'Settlement Fee': 295 },
   },
 }
 
