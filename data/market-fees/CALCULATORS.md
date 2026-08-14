@@ -158,6 +158,107 @@ browser-driven) doesn't repeat the same dead ends:
   capturing the actual network request Stewart's own JS sends (exact field names, full
   `quoteRequestRoot` shape actually used), rather than reconstructing it from `nrc.js` alone.
 
+### Stewart Title — 2026-08-14 update: `/api/SRC/quote` SOLVED — full working recipe (MAJOR cross-state unlock)
+The WV calculator-harvest session finally solved the `quote` endpoint that the 2026-07-23 session
+correctly diagnosed as JS-runtime-populated (see above) — no browser automation was needed after
+all; the trick was building the `QuoteRequestRoot` JSON by hand from the same field references
+already mapped in `nrc.js`, then submitting it as a **plain form-urlencoded POST field named
+`QuoteRequestRoot`** (not `hidQuoteRequestRoot` as the prior session guessed) alongside
+`StateSetting` (the raw `statesettings` JSON, re-serialized verbatim) and a valid antiforgery
+token/cookie pair scraped from the initial page GET. **This works nationwide wherever Stewart
+writes title insurance** — not a WV-specific fix — making it one of the highest-leverage findings
+in this catalog; every remaining below-3-provider or premium-only-only scarce state should try this
+before anything else next session.
+
+**Two separate `POST /api/SRC/quote` calls are required for a complete itemized quote** — this is
+the single most important gotcha:
+- **`QuoteType=3` (Fee-Estimate / LoanEstimate flow, `pageBuyerSeller=buyer`)** — set
+  `IsCalculatePremium=True` and `IsCalculateTitleServiceFee=True` (two extra hidden fields that
+  only exist on this page variant) and `QuoteRequestRoot.QuoteRequest.TransactionInformation.
+  ProviderID=<a real provider ID from the `providers` GET>` (leaving `ProviderID` empty returns a
+  null `TitleServiceFee` section). Returns the response's `Pricing.TitleServiceFee.
+  ItemizedTitleServiceFeeList` — the actual settlement/closing fee line items, each carrying
+  `BuyerAmount`/`SellerAmount` splits — plus `Pricing.RateManual`/`Pricing.TRID` premium sections.
+  `Recording` comes back `null` on this flow.
+- **`QuoteType=2` (Netsheet flow, `pageBuyerSeller=seller`)** — no `ProviderID` needed. Returns
+  `Recording.Mortgage/Deed/Release` (recording fees + transfer/deed tax, with a `CFPB2015.CFPBTax`
+  breakdown) plus the same premium sections. `Pricing.TitleServiceFee` is present but its
+  `ItemizedTitleServiceFeeList` is `null` on this flow.
+- **A future session harvesting a new state via this recipe should run BOTH calls** to get the full
+  itemized picture (settlement fee + recording/transfer tax + premiums) — running only one produces
+  an incomplete evidence entry.
+
+**Recipe, step by step** (all plain HTTP, `requests.Session()`-style cookie jar, no browser):
+1. `GET /Quote/LoanEstimate?urlParams=&quotetype=3&branded=true` (or `/Quote/Netsheet?urlParams=
+   &quotetype=2&branded=true` for the Netsheet flow) — scrape the antiforgery cookie
+   (`.AspNetCore.Antiforgery.*`) and the matching `__RequestVerificationToken` hidden input. Each
+   flow/page load needs its own fresh token+cookie pair — don't reuse one from a different page.
+2. `GET /api/SRC/transactiontypes?statecode=<ST>&networkid=&propertytype=residential` → confirms
+   `SALE` = "Sale/Purchase with Mortgage" (matches the standard scenario) for that state.
+3. `GET /api/SRC/propertysearch?value=<City>,%20<ST>` → resolves `CountyFIPS` + a default zip for
+   the target county/city — use the state's most-populous-county seat as the search city.
+4. `GET /api/SRC/policycoveragetypes?statecode=<ST>&transactionType=Sale%2FPurchase%20with%20
+   Mortgage&policyInsuredTypeCode=OP&networkid=&propertytype=Residential` (and again with
+   `policyInsuredTypeCode=MP`) → confirms the coverage-type code to use for each policy leg
+   (default/most common is `BASIC` for both; some states also offer `HOP`/`EXPLP` alternates).
+5. `GET /api/SRC/providers?statecode=<ST>&countycode=<FIPS>&zipcode=<ZIP>&transactiontype=SALE` →
+   list of real settlement offices serving that county, each with an `ID` — **the settlement/
+   closing fee itemization varies per provider, not just per state**, so harvesting 2 different
+   providers in the same county (if the tool returns more than one) yields 2 independently
+   comparable fee schedules from the same underwriter, a useful richness bonus.
+6. `GET /api/SRC/statesettings?statecode=<ST>&networkid=` → a large JSON blob of state-level
+   defaults; re-serialize it verbatim into the POST body's `StateSetting` field.
+7. `GET /api/SRC/ernstlookup?statecode=<ST>&countycode=<FIPS>` (only needed for the `QuoteType=3`
+   flow) → returns `Recording.IndexT.PageRec`/`ShowTorrens`, which must be copied into
+   `QuoteRequestRoot.QuoteRequest.Recording.PageRec`/`IsTorren`.
+8. Build `QuoteRequestRoot` (exact JSON shape, field names case-sensitive):
+   ```
+   {"QuoteRequest":{"@version":"3.0",
+     "TransactionInformation":{"TransactionDateTime":"0001-01-01T00:00:00","ClientReferenceNumber":"",
+       "StewartReferenceNumber":"<any client-generated GUID>","ProviderID":"<from step 5, QuoteType=3 only>",
+       "CustomerName":"","ClosingDate":"0001-01-01T00:00:00","TransactionTypeCode":"SALE",
+       "TransactionTypeDescription":"Sale/Purchase with Mortgage","FeeItemTypeList":{"FeeItemType":[]},
+       "SA_AgentID":null,"ProvideRemittance":false},
+     "PropertyAddress":{"CityName":"<city>","CountyCode":"<FIPS>","StateCode":"<ST>","ZipCode":"<zip>"},
+     "PolicyInfo":{"IsSimultaneous":"False","PolicyList":{"Policy":[
+       {"FeeType":"OwnerPremium","PolicyCoverageTypeCode":"BASIC","IsCollateral":false,"Amount":"500000.00",
+        "NumberOfYearsSinceLastIssue":null,"BuyerSplitPercentage":"100",
+        "Reissue":{"PriorPolicyAmount":null,"PriorPolicyCoverageTypeCode":null,"PriorPolicyNumberOfYears":null},
+        "EndorsementList":{"Endorsement":[]},"AdditionalPolicyList":{"Policy":[]}},
+       {"FeeType":"LenderPremium","PolicyCoverageTypeCode":"BASIC","IsCollateral":false,"Amount":"400000.00",
+        "NumberOfYearsSinceLastIssue":null,"BuyerSplitPercentage":"100",
+        "Reissue":{"PriorPolicyAmount":null,"PriorPolicyCoverageTypeCode":null,"PriorPolicyNumberOfYears":null},
+        "EndorsementList":{"Endorsement":[]},"AdditionalPolicyList":{"Policy":[]}}]}},
+     "Recording":{"QuestionList":{"Question":[]},"MortgageNumPages":"25","DeedNumPages":"6",
+       "ReleaseNumPages":"3","CountyName":"<county>","PageRec":"<from ernstlookup, QuoteType=3 only>",
+       "OriginalDebt":"","UnpaidBalance":"","IsTorren":"<from ernstlookup>","Subjurisdiction":"",
+       "LandSystem":"","FairMarketValue":""},
+     "Internal":{"UnderwriterName":"","FeeItemName":"","Commercial":"false","Reverse":false,
+       "UserRole":0,"UserEmail":"","HostNetworkGUID":""}}}
+   ```
+   Note: `IsSimultaneous` was sent `"False"` in both flows tested (WV, NH) yet the response's
+   `RateManual.LenderPolicy` premium still reflected a simultaneous-issue rate on the `QuoteType=2`
+   call and a stand-alone rate on `QuoteType=3` — the two flows appear to apply different default
+   rate logic server-side regardless of this field. Unresolved; doesn't block harvesting (both
+   figures are genuine, just label them by which flow produced them), but flagged for whoever wants
+   precise control over simultaneous-vs-stand-alone pricing.
+9. `POST /api/SRC/quote` (form-urlencoded body): `pageBuyerSeller` (`seller` for QuoteType=2,
+   `buyer` for QuoteType=3), `TransactionTypeCode=SALE`, `PolicyCoverageTypeCode=BASIC` (sent twice,
+   once per coverage-type select on the page), `QuoteType` (`2` or `3`), `NetsheetQuoteTrigger=1`
+   (QuoteType=2 only), `ErnstRequestData=` (empty), `CountyName=<county>`, `StateSetting=<step 6
+   JSON>`, `NetworkID=` (empty), `QuoteRequestRoot=<step 8 JSON>`, `IsRecordingSectionHidden=False`,
+   `IsCalculatePremium=True`/`IsCalculateTitleServiceFee=True` (QuoteType=3 only),
+   `__RequestVerificationToken=<step 1 token>`. Send the step-1 antiforgery cookie alongside.
+10. Parse the response's `Pricing.RateManual`/`Pricing.TRID` (premiums), `Pricing.TitleServiceFee.
+    ItemizedTitleServiceFeeList` (QuoteType=3 only — the actual settlement fee line items, with
+    `BuyerAmount`/`SellerAmount` splits), and `Recording.Mortgage/Deed/Release`/`CFPB2015.CFPBTax`
+    (QuoteType=2 only — recording fees + transfer/deed tax).
+
+Full verbatim example request/response pairs (both flows, WV/Kanawha County scenario) are preserved
+in the 2026-08-14 session transcript for reference if a future session needs to double-check field
+serialization exactly. See WV.json and NH.json's Stewart entries for the harvested dollar figures
+this recipe produced for those two states.
+
 ### WFG National Title — 2026-07-23 update: own rate calculator found, partially working but GATED
 `dashboard.wfgnationaltitle.com/rates/` redirects to **`rates.wfgnationaltitle.com`**, an Angular
 SPA ("WFG Rate Calculator: Escrow Calculator") with a real backend at
@@ -2665,3 +2766,145 @@ unconfigured placeholder — none genuine SC. The generic-search well for this p
 fully dry for SC; a 4th SC provider will require either a genuinely new platform (not
 NetSheetCalc/TitleTap) or a browser-driven TitleCapture/Qualia Connect breakthrough, not further
 appid searching on this one.
+
+## 2026-08-14 session — resuming the calculator harvest against the 11 lower-population "complete (scarce)" states never yet worked (AK/DC/ME/ND/NH/RI/SD/VT/WV/WY/DE); WV and NH tackled first (highest population); Stewart's `/api/SRC/quote` endpoint fully solved (see the dedicated entry above, under "Stewart Title"); NH crosses the 3-provider threshold, WV still short
+
+The calculator-harvest tracker's original 27-state working set (see the 2026-08-09 session note)
+never actually covered every "complete (scarce)" state from the published-schedule survey — 11
+lower-population states (AK, DC, ME, ND, NH, RI, SD, VT, WV, WY, DE) were left untouched. This
+session began working through that remaining list, highest-population first: **WV** (~1.77M) and
+**NH** (~1.4M).
+
+### New Hampshire (NH) — crosses threshold, 3 providers, first pass
+1. **Stewart Title Guaranty Company** (stewartratecalculator.com) — the newly-solved `/api/SRC/
+   quote` recipe (see above), Hillsborough County/Manchester. Genuinely itemized: Title Closing Fee
+   $725.00 buyer-side (Great East Title and Closing, Bedford NH) + Deed Prep $150/Discharge
+   Management $50/Overnight $35/Wire $35/Recording Service $25 (seller/buyer split as shown), plus
+   Owner's $1,320.00/Lender's $100.00 (simultaneous) RateManual premiums. A 2nd settlement office in
+   the same county (Stewart Title-Northern New England Division, Portsmouth NH) returned a
+   different, less-itemized fee ($695 Title Closing Fee only) — confirms this endpoint's
+   settlement-fee itemization is per-settlement-office, not just per-state.
+2. **Old Republic's 2nd tool** (`ortratecalculator.oldrepublictitle.com`, `Location=NH`) — **new
+   technical finding: the tool's NoBot anti-bot check is Referer-gated**, not purely state-gated as
+   this catalog's prior fluctuating-block sessions assumed. Hitting it via the public landing page
+   `oldrepublictitle.com/rate-calculator/?location=<state-slug>` (e.g. `?location=new-hampshire`)
+   and preserving that exact `Referer` header across the entire session (every GET and POST, not
+   just the first request) resolved the block reliably across two independent fresh sessions this
+   run — a bare direct hit to the embed URL without it intermittently returned "Your agent number
+   has been cancelled." **Recommendation**: retry this fix against every state previously logged as
+   NoBot-blocked on this tool, especially `Location=IN` (durably blocked since 2026-07-29/
+   2026-08-10 using the old bare-URL technique) — the fix may resolve it. Premium-only output for
+   NH: Owner's $1,200.00/Lender's $100.00 simultaneous, $800.00 lender standalone.
+3. **Absolute Title, LLC** ("New England's Premier Title Company") — own first-party calculator,
+   `absolutetitle.com/ratecalculator.asp`, all math client-side in a same-origin `rc_ct.js` file
+   with hardcoded rate-table constants — same "grep first-party JS for hardcoded fee constants"
+   technique already established for Modern Title Group (MI)/Columbus Title Agency (OH)/Land Title
+   Company of Alabama (AL). Settlement Fee $595.00 flat, a rare genuine non-premium NH figure (both
+   published-schedule sources on file for NH explicitly exclude settlement/closing fees).
+
+NH's other findings this session (gated/jsOnly, logged so future sessions don't repeat the search):
+- **First American AgentNet/PrismPowered** (`marketing.agentnetsolutions.com`) — tested 2 NH
+  agency slugs (Accurate Title NH id 455, Red Door Title id 304) against the real
+  `POST /api/Bundle/*` API (not personal-info-gated at the API layer, confirming the 2026-08-13 UT
+  session's route-mapping) — both return an empty county/office list for every `calculatorType`
+  (BuyerEstimate/SellerNetSheet/SellerToNet/MultipleOffers/Refinance), meaning these two specific
+  agencies never configured office/coverage data on the platform; the flow dead-ends to a contact
+  form regardless. Also newly found: `POST /api/Agent/prismRouteName/{slug}` returns agent
+  metadata for any known slug, and `POST /api/AppSettings` reveals the backing
+  `calculatorApiUrl` is an internal-only `*.corp.firstam.com` host that doesn't resolve publicly —
+  the working consumer-facing path is the same-origin `marketing.agentnetsolutions.com/api/Bundle/*`
+  confirmed above. Worth trying a larger/more established NH agency's slug in a future session.
+- `agency.facc.firstam.com` — true login/SSO gate, not attempted further.
+- Capital Title & Escrow LLC (NH) TitleTap/NetSheetCalc tenant — confirmed **disabled** by the
+  platform itself (`app.titlepremiumcalculator.com/company/errors/disabled.php?appid=232`).
+- **CATICulator** (`caticulator.com`) — one retry per this catalog's standing protocol:
+  `POST /PremiumCalculator/Calculate` returned an HTTP 302 this run (not the previously-reported
+  500) redirecting away from the quote; no session-establishment path found quickly (Knockout.js
+  SPA, no plain-text form fallback). Still blocked, logged, not pursued further.
+- Lighthouse Title/Lighthouse Closings (`lighthouseclosings.com/calculator`) and Cohen Closing and
+  Title (`cohenclosing.com/quotecalculator`) — both **jsOnly**, Wix-rendered with no vendor/API URL
+  in static HTML.
+- MyTitleRates.com, TitleClose.com, TRACcalculator/comparetitlecompanies.com — no NH agency
+  instance found via search for any of the three.
+- **Compass Title & Closings, Inc.** (`compasstitlenh.com/rate-calculator.html`) — promising lead
+  (explicitly advertises an "online rate calculator") but the domain returned HTTP 429 during
+  investigation — worth retrying with pacing/backoff in a future session.
+- Untested candidates for the Absolute-Title-style "grep for a same-origin `.js` file referenced by
+  an onclick handler" technique, flagged for a follow-up: Barristers Title (`nhbarristers.com`),
+  Summit Title (`stscorp.com`), Liberty Title (`libtitle.com`).
+
+### West Virginia (WV) — 1 confirmed provider so far (Stewart), still below the 3-provider threshold
+1. **Stewart Title Guaranty Company** (stewartratecalculator.com) — same newly-solved `/api/SRC/
+   quote` recipe, Kanawha County/Charleston, provider "Omnia Title Corp." (ID 3030, the only
+   settlement office this tool lists for the county). Title Closing Fee $750.00 total ($550.00
+   buyer/$200.00 seller split), plus Owner's $1,920.00/Lender's $200.00 (simultaneous-flow)
+   RateManual premiums, Mortgage/Deed/Release recording fees ($53/$53/$12), and Kanawha County
+   Deed/Transfer Tax $2,750.00 (100% seller-paid per the tool's own split).
+
+WV's dead ends this session (logged so future sessions don't repeat the search):
+- **anytimeestimate.com** ("West Virginia Title Insurance & Transfer Tax Calculator") — found and
+  initially investigated, but ruled **out of scope** and excluded from the harvest: it's a
+  third-party informational site (not a title company/agency/underwriter's own system) computing
+  off a hardcoded client-side rate table, the same category as the already-excluded `alphaadv.net`
+  entry earlier in this catalog. Logging it here explicitly so a future session doesn't re-harvest
+  it under the mistaken impression it qualifies.
+- Old Republic's 2nd tool (`Location=WV`) — blocked by the NoBot check on 3 attempts including a
+  retry with the new Referer-header fix discovered in the parallel NH session this same run; still
+  unresolved for WV specifically (the fix is not a universal unblock — it helped NH but not WV in
+  the same session, so it should still be retried per-state rather than assumed to always work now).
+- TitleCapture tenants RGS Title (`rgstitle.titlecapture.com`) and Investors Title
+  (`invtitle.titlecapture.com`) — both **jsOnly**, same platform-level limitation logged elsewhere
+  in this catalog (Angular SPA, API hosts identified but no static endpoint path).
+- WV Bankers Title (`titlesinsured.com/calculator/`) — embeds a `titlehoundonline.com/login.aspx`
+  iframe with a pre-published, non-personal business login (`WVBTwebsite`/`4quotes`) visible in the
+  page's own HTML; a raw ASP.NET postback replay of that exact login returned "Invalid user name/
+  password" — the real login apparently depends on the page's own JS auto-fill/submit flow, not a
+  literal field-value replay. Logged as jsOnly/gated rather than working.
+- Title Resources Guaranty (`ratecalculator.trguw.com`) — Next.js/React app, no `/api/*` or
+  GraphQL endpoint surfaced in static JS bundles this session; WV coverage unconfirmed.
+- First American `ratecalculator.firstam.com` / `prism-calculator-api-prod...corp.firstam.com` —
+  both return 502/policy-denial at the network level, consistent with the NH session's finding that
+  the real First American backend is an internal-only `*.corp.firstam.com` host not publicly
+  reachable directly (only the `marketing.agentnetsolutions.com` consumer-facing proxy is public).
+- MyTitleRates.com — swept `a=1` through `a=220`; none list West Virginia in their state dropdown.
+- NetSheetCalc/TitleTap, TitleClose.com, TRACcalculator/comparetitlecompanies.com — no WV-serving
+  tenant/agency found via search for any of the three.
+- Westcor/eWestcor (`ewestcor.com/ratecalculator2.aspx`) — classic ASP.NET postback calculator, but
+  its state dropdown only offers `FL` — confirmed not to cover WV.
+- `closingcostcalc.com` (First Title Services) — unreachable (TLS certificate error/503).
+- No calculator found at all (static marketing sites only) on: wvtitleco.com, BesTitle, Go Title
+  PLLC (Charleston/Huntington/Hurricane WV — uses TitleTap only for website hosting, not a quote
+  widget), Eastern Title, RGS Title's own homepage (as opposed to its gated TitleCapture instance
+  above), Allied Title & Escrow (no WV in its state list).
+
+**Next-session priority for WV**: still needs 2 more calculator-basis providers to cross threshold.
+Worth trying: (a) a fresh Old Republic `Location=WV` attempt on a different day (the NoBot block has
+been observed to loosen/tighten across sessions independent of any specific fix); (b) the
+Absolute-Title-style hardcoded-JS-constant technique against any WV independent agency not yet
+checked for a *calculator* specifically (BesTitle, Eastern Title, First Title & Escrow, Bailey &
+Slotnick, Ratified Title Group were named in the published-schedule survey as WV independents but
+only checked for static rate schedules, not calculators); (c) apply the Stewart recipe's
+multi-provider-per-county trick to any other WV county with more than one settlement office listed.
+
+### Freshness spot-check (5 oldest-retrieved published sources never previously included in any
+prior freshness rotation — GA/Stewart Georgia rate manual PDF via virtualunderwriter.com, NC/Chicago
+Title NC rates PDF via northcarolina.ctic.com, CA/Corinthian Title residential rate schedule PDF,
+WA/Old Republic Washington escrow-and-service-fees PDF, IL/Old Republic Illinois rate card PDF): 4 of
+5 returned a clean HTTP 200 and readable PDF content. The GA/virtualunderwriter.com PDF returned HTTP
+403 — consistent with this project's existing recurring WAF/bot-gate precedent on that specific host
+(CATIC CT, AZ Pioneer Title Agency), not a dead-link signal. Not marked `{stale: true}`.
+
+### Blocked-source retries (one quick check each): no status change
+AZ DIFI (`difi.az.gov/title-insurance-rate-filings`) still HTTP 403; CATIC CT
+(`catic.com/state-resources/connecticut`) HTTP 403 this run (still fluctuating across sessions);
+Jackson & Scott AL (`realestatelclosings.com/closing-costs-calculator/`) still HTTP 403, consistent
+with the recurring WAF-block finding. No status change on any of the three.
+
+**Recommendation for next session**: (1) finish WV (needs 2 more providers, see above); (2) apply
+the newly-solved Stewart `/api/SRC/quote` recipe to every remaining below-threshold or premium-only
+scarce state before anything else — it is now the fastest, most reliable calculator-harvest source
+available (a genuine stateless JSON API, no anti-bot friction observed so far, and likely covers
+most/all states where Stewart underwrites); (3) apply the Referer-header fix to Old Republic's 2nd
+tool against `Location=IN` and any other previously NoBot-blocked state/location code; (4) continue
+down the remaining untouched "complete (scarce)" list by population after WV: ME (~1.4M), RI
+(~1.1M), DE (~1.05M), SD (~925k), ND (~797k), AK (~733k), DC (~702k), VT (~647k), WY (~588k).

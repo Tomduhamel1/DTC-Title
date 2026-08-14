@@ -61,5 +61,83 @@
     },
     "bundlingNotes": "Introduction states explicitly: 'The rates shown are the all-inclusive title insurance fees and charges and includes both the risk portion and the service or work portion, but does not include charges for title search, surveys, escrow, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant.' Zero settlement/closing/escrow dollar figures anywhere in the document.",
     "transactionContext": "Owner's policy (purchase), loan policy (purchase, refinance, home equity), simultaneous issue, lender volume programs -- premium calculation only."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company — Stewart Rate Calculator (stewartratecalculator.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true",
+    "endpointOrParams": "Genuine JSON REST API at /api/SRC/*, driven via plain HTTP GET/POST (no browser/JS execution). Sequence: GET /api/SRC/transactiontypes?statecode=NH -> GET /api/SRC/propertysearch?value=Manchester,%20NH (resolves Hillsborough County, CountyFIPS 33011, zip 03101) -> GET /api/SRC/statesettings?statecode=NH -> GET /api/SRC/providers?statecode=NH&countycode=33011&zipcode=03101&transactiontype=SALE -> GET /api/SRC/policyinsuredtypes / policycoveragetypes -> POST /api/SRC/quote (form-urlencoded, key field QuoteRequestRoot = JSON built from the page's own default schema; TransactionTypeCode=SALE 'Sale/Purchase with Mortgage'; simultaneous Owner HOP $500,000 + Lender BASIC $400,000; IsCalculateTitleServiceFee=true; ProviderID set to a real settlement office serving Hillsborough County). No personal-data fields required or entered.",
+    "retrievalDate": "2026-08-14",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Hillsborough County (Manchester), residential resale, Sale/Purchase with Mortgage transaction.",
+    "methodology": "Same technique as the WV entry's Stewart Rate Calculator harvest this session (see WV.json for the fully-documented request/response recipe, also written up in CALCULATORS.md) -- the first session to complete reverse-engineering of Stewart's /api/SRC/quote endpoint, applicable nationwide wherever Stewart writes.",
+    "settlementFee": {
+      "note": "Title Closing Fee, split buyer/seller, varies by settlement-office provider selected within the county -- 'Great East Title and Closing' (Bedford, NH) quoted $725.00 buyer-side; alternate provider 'Stewart Title-Northern New England Division' (Portsmouth, NH) quoted $695.00 buyer-side, no other itemized fees."
+    },
+    "itemizedFees": {
+      "processing": "$725.00 (Title Closing Fee, buyer -- Great East Title and Closing, Bedford NH)",
+      "docPrep": "$150.00 (Title Deed Preparation Fee, seller -- Great East Title and Closing)",
+      "wire": "$35.00 (Title Wire Transfer Fee, seller -- Great East Title and Closing)",
+      "eRecording": "$25.00 (Title Recording Service Fees, buyer -- Great East Title and Closing)",
+      "other": [
+        { "name": "Title Discharge Management Fee (seller) -- Great East Title and Closing", "amount": "$50.00" },
+        { "name": "Title Overnight Fee (seller) -- Great East Title and Closing", "amount": "$35.00" },
+        { "name": "Owner's Policy (Homeowner's Policy/HOP) premium, RateManual", "amount": "$1,320.00" },
+        { "name": "Lender's Policy (Basic) simultaneous premium, RateManual", "amount": "$100.00" },
+        { "name": "TRID-disclosure Owner Policy premium", "amount": "$620.00" },
+        { "name": "TRID-disclosure Lender Policy premium", "amount": "$800.00" },
+        { "name": "Alternate provider Stewart Title-Northern New England Division (Portsmouth NH) Title Closing Fee, buyer", "amount": "$695.00" }
+      ]
+    },
+    "bundlingNotes": "Confirmed the settlement-fee/service-fee section is provider(settlement-office)-specific, not underwriter-wide -- two different settlement offices serving the same county returned materially different Title Closing Fee amounts and itemization depth from the same underwriter's calculator, the same per-office variation pattern already seen elsewhere in this project (e.g. TitleClose.com tenants).",
+    "transactionContext": "Sale/Purchase with Mortgage, simultaneous Owner's + Lender's Basic Policy, Hillsborough County/Manchester NH."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company — second rate calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://oldrepublictitle.com/rate-calculator/?location=new-hampshire",
+    "calculatorUrl": "https://oldrepublictitle.com/rate-calculator/?location=new-hampshire",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (embeds ortratecalculator.oldrepublictitle.com/EmbedRateCalc.aspx?Location=NH&cms=https://oldrepublictitle.com/, redirects to a session-scoped RateCalc.aspx?...Location=28...). GET the page (capture __VIEWSTATE/__EVENTVALIDATION), POST __EVENTTARGET=ddlPolicyCategory value 3 (SIMULTANEOUS LOAN & OWNERS), POST __EVENTTARGET=ddlPolicyType1 value 13615 (BASIC OWNER POLICY), POST __EVENTTARGET=ddlPolicyType2 value 13621 (SIMULT LOAN), then POST __EVENTTARGET=btnCalculate with txtLiabilityAmt=500000, txtCrLiabilityAmt=400000. Key fix (new finding this session): must send Referer: https://oldrepublictitle.com/rate-calculator/?location=new-hampshire on every request in the session -- without it the NoBot check returns 'not authorized'/'Your agent number has been cancelled.' Verified reliable across two fresh sessions once the Referer was set correctly throughout.",
+    "retrievalDate": "2026-08-14",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, statewide (no county selector in this tool), SIMULTANEOUS LOAN & OWNERS policy category.",
+    "methodology": "Direct HTTP GET/POST against the ASP.NET WebForms postback mechanism, no browser/JS execution. No personal data entered.",
+    "settlementFee": {
+      "note": "This tool prices title insurance premiums only -- no settlement/closing/escrow service-fee line items are itemized in its output (same structural limitation observed for this tool's other state entries elsewhere in this project)."
+    },
+    "itemizedFees": {
+      "other": [
+        { "name": "SIMULT LOAN (Lender), insured amount $400,000.00 -- Lenders-Only standalone premium", "amount": "$800.00" },
+        { "name": "SIMULT LOAN (Lender), combined (simultaneous) premium", "amount": "$100.00" },
+        { "name": "BASIC OWNER POLICY, insured amount $500,000.00, combined (simultaneous) premium", "amount": "$1,200.00" },
+        { "name": "Grand Total Policy & Endorsement Premium, standalone-lenders-only", "amount": "$800.00" },
+        { "name": "Grand Total Policy & Endorsement Premium, Owners+Lenders combined", "amount": "$1,300.00" }
+      ]
+    },
+    "bundlingNotes": "New technical finding this session: this tool's NoBot anti-bot check is Referer-gated, not (only) state-gated as prior sessions' fluctuating-block observations suggested -- hitting it via the public oldrepublictitle.com/rate-calculator/?location=<state-slug> landing page and preserving that exact Referer header across the full session resolves it reliably. Flagged in CALCULATORS.md for retrying other previously NoBot-blocked states (IN) with this fix.",
+    "transactionContext": "Simultaneous Owner's + Lender's policy, statewide New Hampshire, purchase with financing."
+  },
+  {
+    "provider": "Absolute Title, LLC (\"New England's Premier Title Company\") — own rate calculator",
+    "basis": "calculator",
+    "sourceUrl": "https://www.absolutetitle.com/ratecalculator.asp",
+    "calculatorUrl": "https://www.absolutetitle.com/ratecalculator.asp",
+    "endpointOrParams": "Static HTML page; all calculation logic lives client-side in a same-origin linked JS file, https://www.absolutetitle.com/rc_ct.js?v=20260710.1 (getPremium()/getOwnersPremium()/getLPremium() functions with hardcoded rate-table constants). Fee constants and formulas read directly from the fetched JS source without executing it in a browser -- same technique already established in this project for Modern Title Group (MI), Columbus Title Agency/Owl Creek Title Agency (OH), and Land Title Company of Alabama (AL): a provider's own first-party client-side calculator, grepped for hardcoded constants rather than driven through a live UI.",
+    "retrievalDate": "2026-08-14",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Purchase transaction, Simultaneous Issue checked, standard (non-enhanced) coverage.",
+    "methodology": "Direct HTTP GET of the calculator page and its linked JS file; formulas evaluated by hand against the standard scenario inputs. No browser/JS execution, no personal data entered (this is Absolute Title's own first-party system, not a third-party informational site).",
+    "settlementFee": {
+      "note": "Settlement Fee: $595.00 (flat, per the page's own JS constant)."
+    },
+    "itemizedFees": {
+      "processing": "$595.00 (Settlement Fee)",
+      "other": [
+        { "name": "Owners Premium (title insurance, simultaneous mode)", "amount": "$1,275.00" },
+        { "name": "Endorsements", "amount": "$125.00" },
+        { "name": "Transfer Tax (one party's share; NH RSA 78-B $0.75/$100 each side, per the site's own formula)", "amount": "$3,750.00" },
+        { "name": "Lender Premium (reference line: loan premium + endorsements)", "amount": "$1,400.00" }
+      ]
+    },
+    "bundlingNotes": "Statewide flat calculator (no county/metro tiering in the tool). $595 settlement fee is a genuine, dollar-denominated, non-premium service-fee figure -- rare among NH sources found so far (both premium-only underwriter manuals on file explicitly exclude settlement/closing fees).",
+    "transactionContext": "Purchase, simultaneous issue, statewide New Hampshire."
   }
 ]

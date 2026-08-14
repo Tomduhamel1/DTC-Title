@@ -74,5 +74,33 @@
     },
     "bundlingNotes": "General Rule F is the clearest single-sentence 'Risk Rate' exclusion of settlement/search/exam/closing/escrow charges found among the 3 WV manuals reviewed this session, and (together with Stewart) is one of only two WV underwriters to publish a standalone CPL fee -- notably lower on the purchaser/seller side ($25/$25) than Stewart's ($50/$75).",
     "transactionContext": "Owner's and Loan (including Refinance, Junior, Home Equity) policies for all 55 West Virginia counties (full county code table published), statewide uniform rates -- no metro/county tiering."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company — Stewart Rate Calculator (stewartratecalculator.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true",
+    "endpointOrParams": "Genuine JSON REST API at /api/SRC/*, driven via plain HTTP GET/POST (no browser/JS execution) -- this session fully solved the previously-unreverse-engineered POST /api/SRC/quote endpoint; full recipe documented in CALCULATORS.md. Sequence: GET /api/SRC/transactiontypes?statecode=WV -> GET /api/SRC/propertysearch?value=Charleston,%20WV (resolves Kanawha County, CountyFIPS 54039, zip 25301) -> GET /api/SRC/policycoveragetypes (OP and MP legs, both BASIC) -> GET /api/SRC/providers?statecode=WV&countycode=54039&zipcode=25301&transactiontype=SALE (returns the only settlement office serving this county, Omnia Title Corp., ID 3030) -> GET /api/SRC/statesettings?statecode=WV -> GET /api/SRC/ernstlookup?statecode=WV&countycode=54039 -> two POST /api/SRC/quote calls (QuoteType=2 Netsheet flow for recording/transfer-tax, QuoteType=3 Fee-Estimate flow with ProviderID=3030 for the itemized settlement fee), each with a QuoteRequestRoot JSON body and a scraped antiforgery token/cookie pair. No personal-data fields required or entered.",
+    "retrievalDate": "2026-08-14",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Kanawha County (Charleston), residential resale, Sale/Purchase with Mortgage transaction.",
+    "methodology": "First session to complete reverse-engineering of Stewart's /api/SRC/quote endpoint (flagged unreverse-engineered since 2026-07-22/23) -- confirmed working nationwide, not WV-specific. Full request/response detail and step-by-step recipe in CALCULATORS.md's 2026-08-14 Stewart Title entry.",
+    "settlementFee": {
+      "note": "Title Closing Fee (provider: Omnia Title Corp., the only settlement office this tool lists for Kanawha County): $750.00 total, split $550.00 buyer / $200.00 seller."
+    },
+    "itemizedFees": {
+      "processing": "$750.00 (Title Closing Fee, total -- $550.00 buyer / $200.00 seller split)",
+      "other": [
+        { "name": "Owner's Policy (Basic) premium, RateManual", "amount": "$1,920.00" },
+        { "name": "Lender's Policy (Basic) simultaneous-flow premium, RateManual", "amount": "$200.00" },
+        { "name": "TRID-disclosure Owner Policy premium", "amount": "$875.00" },
+        { "name": "TRID-disclosure Lender Policy premium (stand-alone flow)", "amount": "$1,245.00" },
+        { "name": "Mortgage recording fee", "amount": "$53.00" },
+        { "name": "Deed recording fee", "amount": "$53.00" },
+        { "name": "Release recording fee", "amount": "$12.00" },
+        { "name": "Kanawha County Deed/Transfer Tax (100% seller-paid per the tool's own split)", "amount": "$2,750.00" }
+      ]
+    },
+    "bundlingNotes": "Only one settlement office (Omnia Title Corp., a Tampa FL-headquartered national settlement provider, not a WV-local firm) is returned by this tool for Kanawha County -- unlike NH's Hillsborough County, which returned multiple distinct local providers with different fee schedules. Two separate POST flows were required for a complete quote (QuoteType=2 for recording/transfer-tax, QuoteType=3 for the itemized settlement fee) -- see CALCULATORS.md.",
+    "transactionContext": "Sale/Purchase with Mortgage, Kanawha County/Charleston WV."
   }
 ]

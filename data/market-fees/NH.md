@@ -1,5 +1,33 @@
 # New Hampshire (NH) — Market Fee Evidence
 
+## Status: COMPLETE (scarce market) — 2 verified published sources; calculator-quoted (3 providers) as of 2026-08-14
+
+## Calculator harvest (2026-08-14)
+
+Separate from the published-schedule survey below, 3 calculator-basis quotes were harvested for the
+standard scenario ($500,000 purchase / $400,000 loan / Hillsborough County-Manchester / residential
+resale) — crossing the 3-provider calculator-quoted threshold on the first pass. See NH.json entries
+with `"basis": "calculator"` for full itemized figures and CALCULATORS.md for the technical recipes.
+
+1. **Stewart Title Guaranty Company** — Stewart Rate Calculator (stewartratecalculator.com). This
+   session completed reverse-engineering of the `/api/SRC/quote` endpoint (previously unsolved across
+   many prior state sessions — see CALCULATORS.md's master recipe entry). Returned a genuinely
+   itemized settlement statement: Title Closing Fee $725.00 (buyer, Great East Title and Closing/
+   Bedford NH) plus Deed Prep $150, Discharge Management $50, Overnight $35, Wire Transfer $35,
+   Recording Service $25 (all seller/buyer split as shown), alongside Owner's/Lender's premiums.
+2. **Old Republic Title Insurance Company** — second rate calculator
+   (ortratecalculator.oldrepublictitle.com, `Location=NH`). New technical finding this session: the
+   tool's NoBot anti-bot check is Referer-gated — hitting it via
+   `oldrepublictitle.com/rate-calculator/?location=new-hampshire` and preserving that Referer across
+   the full session resolves the block reliably (previously logged as inconsistently blocked). Premium-
+   only output (Owner's $1,200/Lender's $100 simultaneous, $800 lender standalone).
+3. **Absolute Title, LLC** ("New England's Premier Title Company") — own first-party rate calculator,
+   client-side JS (`rc_ct.js`), read directly for its hardcoded constants (same technique as Modern
+   Title Group/MI, Columbus Title Agency/OH). Settlement Fee $595.00 flat, Owners Premium $1,275.00,
+   Endorsements $125.00 — a rare genuine non-premium NH service-fee figure.
+
+## Published-schedule survey (original, 2026-07-22)
+
 ## Status: COMPLETE (scarce market) — 2 verified sources
 
 2 premium-only rate manuals verified (Stewart, WFG), both explicitly and

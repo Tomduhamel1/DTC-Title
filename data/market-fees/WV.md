@@ -1,5 +1,32 @@
 # West Virginia — Market Fee Evidence
 
+## Status: complete (scarce market) — 3 verified published sources (all premium-only rate manuals), 2026-07-22; calculator harvest in progress — 1 of 3 providers as of 2026-08-14
+
+## Calculator harvest (2026-08-14, in progress)
+
+Separate from the published-schedule survey below, a calculator-basis harvest was started this
+session for the standard scenario ($500,000 purchase / $400,000 loan / Kanawha County-Charleston /
+residential resale). 1 provider confirmed so far (below the 3-provider calculator-quoted threshold);
+see WV.json's `"basis": "calculator"` entry and CALCULATORS.md for full technical detail.
+
+1. **Stewart Title Guaranty Company** — Stewart Rate Calculator (stewartratecalculator.com). This
+   session completed reverse-engineering of the `/api/SRC/quote` endpoint (unreverse-engineered
+   since 2026-07-22/23 — see CALCULATORS.md's master recipe entry, confirmed working nationwide).
+   Returned a genuinely itemized settlement statement for Kanawha County via Omnia Title Corp. (the
+   only settlement office this tool lists for the county): Title Closing Fee $750.00 total ($550.00
+   buyer/$200.00 seller), Owner's Policy premium $1,920.00, Lender's Policy premium $200.00
+   (simultaneous flow), recording fees ($53 mortgage/$53 deed/$12 release), and Kanawha County
+   Deed/Transfer Tax $2,750.00 (100% seller-paid).
+
+WV still needs 2 more calculator-basis providers to cross threshold — see CALCULATORS.md's
+2026-08-14 entry for the specific leads tried and still open (Old Republic's 2nd tool remains
+NoBot-blocked for `Location=WV` even after a Referer-header fix that worked for NH; several
+TitleTap/TitleCapture/First-American-corp dead ends logged; untried leads include BesTitle, Eastern
+Title, First Title & Escrow, Bailey & Slotnick, and Ratified Title Group — named as WV independents
+in the published-schedule survey below but not yet checked specifically for a calculator).
+
+## Published-schedule survey (original, 2026-07-22)
+
 ## Status: complete (scarce market) — 3 verified sources (all premium-only rate manuals), 2026-07-22
 
 West Virginia is a filed-rate (insurer-filed and Commissioner-approved) title insurance market: West

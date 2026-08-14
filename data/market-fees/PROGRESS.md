@@ -44,6 +44,7 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | NE | 3 (Nebraska Title Company — statewide, Omaha/Douglas County scenario, via the Title Midwest platform's Vue.js client-side calculator; FNF national rate calculator — Douglas County, Grand Total $1,282.50; WFG National Title — Douglas County, Owner's Premium $1,573.00) | **calculator-quoted (3 providers)** | 2026-08-08 |
 | LA | 3 (FNF national rate calculator — East Baton Rouge Parish, Grand Total $2,345.20; WFG National Title — East Baton Rouge Parish, Owner's Premium $2,579.72; Old Republic's 2nd tool — statewide, Owner's Premium $2,345.20 [byte-identical to FNF]) | **calculator-quoted (3 providers)** | 2026-08-09 |
 | SC | 3 (WFG National Title — Greenville County, Owner's Premium $1,404.00; FNF national rate calculator — Greenville County, Owner's Policy Premium $1,404.00 [byte-identical to WFG]/Loan Policy $100.00; Old Republic's 2nd tool — statewide, Owner's Premium $1,170.00/simultaneous Grand Total $1,270.00) | **calculator-quoted (3 providers)** | 2026-08-09 |
+| NH | 3 (Stewart Title Guaranty — Stewart Rate Calculator, Hillsborough County/Manchester, Title Closing Fee $725.00 buyer via Great East Title and Closing — first session to fully solve stewartratecalculator.com's `/api/SRC/quote` endpoint, see CALCULATORS.md master recipe; Old Republic's 2nd tool — statewide, `Location=NH`, Owner's $1,200/Lender's $100 simultaneous premium, unblocked via a newly-found Referer-header fix; Absolute Title, LLC — statewide, own first-party JS calculator, Settlement Fee $595.00 flat) | **calculator-quoted (3 providers)** | 2026-08-14 |
 
 FNF's ratecalculator.fnf.com **is drivable via plain HTTP POST, no browser needed** — confirmed
 2026-07-25 by replaying its ASP.NET WebForms `__doPostBack`/`__VIEWSTATE` protocol directly (the
@@ -2442,3 +2443,56 @@ still vary and matter).
   same-origin API host and route names confirmed, only the POST body shape is missing; (3) retry
   `documentpub.fnti.com` — promote to `{stale: true}` if the TLS break persists across 2+ sessions;
   (4) SC/LA/MS remain the least-explored below-4-provider states for a genuine 4th provider.
+
+- **2026-08-14: resumed calculator harvest against the 11 lower-population "complete (scarce)"
+  states never yet worked (AK, DC, ME, ND, NH, RI, SD, VT, WV, WY, DE) — the original 27-state
+  working set stopped short of the full "complete (scarce)" list from the published-schedule
+  survey. Worked WV and NH (highest two by population) in parallel. NH crosses the 3-provider
+  threshold on the first pass; WV still needs 2 more (1 confirmed so far).** Headline finding: Stewart's
+  `stewartratecalculator.com` `/api/SRC/quote` endpoint — flagged unreverse-engineered since
+  2026-07-22/23 and used as a fallback by no state so far — is now **fully solved**, with a
+  complete, reusable, nationwide recipe documented in CALCULATORS.md (two POST flows required —
+  `QuoteType=3` for itemized settlement fees with buyer/seller splits, `QuoteType=2` for recording/
+  transfer-tax — plus the exact `QuoteRequestRoot` JSON shape). This should be the first technique
+  tried against every remaining below-threshold or premium-only scarce state going forward, since
+  it requires no anti-bot workaround and no browser. Also found a fix for Old Republic's 2nd tool's
+  previously-fluctuating NoBot block: hitting it via `oldrepublictitle.com/rate-calculator/
+  ?location=<state-slug>` and preserving that Referer header across the whole session resolved it
+  reliably for NH (though the same fix did not resolve `Location=WV` in the same session — a
+  per-state retry is still needed, not a universal unblock).
+  **NH** (3 providers): Stewart Title Guaranty (Hillsborough County/Manchester, via the new recipe
+  — Title Closing Fee $725.00 buyer via Great East Title and Closing, itemized with Deed Prep/
+  Discharge/Overnight/Wire/Recording sub-fees); Old Republic's 2nd tool (statewide, Owner's
+  $1,200.00/Lender's $100.00 simultaneous premium); Absolute Title, LLC (statewide, own first-party
+  JS calculator, Settlement Fee $595.00 flat — a rare genuine non-premium NH figure).
+  **WV** (1 of 3 providers so far): Stewart Title Guaranty (Kanawha County/Charleston, via the same
+  recipe — Title Closing Fee $750.00 total/$550 buyer+$200 seller, Owner's $1,920.00/Lender's
+  $200.00 premiums, recording fees, Kanawha County Deed/Transfer Tax $2,750.00). A third-party
+  informational site (anytimeestimate.com) was found and correctly excluded as out-of-scope (same
+  category as the existing `alphaadv.net` exclusion) rather than counted toward the threshold.
+  Old Republic's 2nd tool remains blocked for `Location=WV` even with the new Referer fix; several
+  TitleTap/TitleCapture/First-American-corp dead ends logged in CALCULATORS.md. WV needs 1-2 more
+  sessions to cross threshold — see CALCULATORS.md's 2026-08-14 entry for the specific untried
+  leads (BesTitle, Eastern Title, First Title & Escrow, Bailey & Slotnick, Ratified Title Group all
+  named as WV independents in the published-schedule survey but not yet checked for a *calculator*
+  specifically).
+
+  **Freshness spot-check** (5 oldest-retrieved published sources, all from states never previously
+  included in any prior freshness-pass rotation — GA/Stewart Georgia rate manual PDF via
+  virtualunderwriter.com, NC/Chicago Title NC rates PDF, CA/Corinthian Title residential rate
+  schedule PDF, WA/Old Republic Washington escrow-and-service-fees PDF, IL/Old Republic Illinois
+  rate card PDF): 4 of 5 returned a clean HTTP 200. The GA/virtualunderwriter.com PDF 403'd,
+  consistent with the existing recurring WAF/bot-gate precedent on that host (CATIC CT, AZ Pioneer
+  Title Agency) — **not** flagged `{stale: true}`.
+
+  **Blocked-source retries** (one quick check each): AZ DIFI still HTTP 403; CATIC CT
+  (`catic.com/state-resources/connecticut`) HTTP 403 this run (still fluctuating across sessions);
+  Jackson & Scott AL (`realestatelclosings.com/closing-costs-calculator/`) still HTTP 403,
+  consistent with the recurring WAF-block finding. No status change on any of the three.
+
+  **Next session priority**: (1) finish WV (needs 2 more providers); (2) apply the newly-solved
+  Stewart recipe to every remaining below-threshold/premium-only scarce state — now the fastest,
+  most reliable calculator source available; (3) apply the Referer-header fix to Old Republic's 2nd
+  tool against `Location=IN` and other previously NoBot-blocked states; (4) continue down the
+  remaining untouched "complete (scarce)" list by population after WV: ME (~1.4M), RI (~1.1M), DE
+  (~1.05M), SD (~925k), ND (~797k), AK (~733k), DC (~702k), VT (~647k), WY (~588k).
