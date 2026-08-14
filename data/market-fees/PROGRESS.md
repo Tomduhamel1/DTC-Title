@@ -2465,17 +2465,27 @@ still vary and matter).
   Discharge/Overnight/Wire/Recording sub-fees); Old Republic's 2nd tool (statewide, Owner's
   $1,200.00/Lender's $100.00 simultaneous premium); Absolute Title, LLC (statewide, own first-party
   JS calculator, Settlement Fee $595.00 flat — a rare genuine non-premium NH figure).
-  **WV** (1 of 3 providers so far): Stewart Title Guaranty (Kanawha County/Charleston, via the same
-  recipe — Title Closing Fee $750.00 total/$550 buyer+$200 seller, Owner's $1,920.00/Lender's
-  $200.00 premiums, recording fees, Kanawha County Deed/Transfer Tax $2,750.00). A third-party
-  informational site (anytimeestimate.com) was found and correctly excluded as out-of-scope (same
-  category as the existing `alphaadv.net` exclusion) rather than counted toward the threshold.
-  Old Republic's 2nd tool remains blocked for `Location=WV` even with the new Referer fix; several
-  TitleTap/TitleCapture/First-American-corp dead ends logged in CALCULATORS.md. WV needs 1-2 more
-  sessions to cross threshold — see CALCULATORS.md's 2026-08-14 entry for the specific untried
-  leads (BesTitle, Eastern Title, First Title & Escrow, Bailey & Slotnick, Ratified Title Group all
-  named as WV independents in the published-schedule survey but not yet checked for a *calculator*
-  specifically).
+  **WV** (2 of 3 providers, closed out below threshold this session): Stewart Title Guaranty
+  (Kanawha County/Charleston, via the same recipe — Title Closing Fee $750.00 total/$550 buyer+$200
+  seller, Owner's $1,920.00/Lender's $200.00 premiums, recording fees, Kanawha County Deed/Transfer
+  Tax $2,750.00); Old Republic's 2nd tool (statewide, Owner's $1,700.00/Lender's $100.00 simultaneous
+  premium, Grand Total $1,800.00). **Old Republic's real block root-cause found**: backend session
+  affinity (the ASP.NET session lives on one web-farm node addressed only via the URL's
+  `(S(...)F(...))` segment, not a cookie) — a persistent single HTTP session/connection through the
+  full GET→login-redirect→POST→POST sequence resolves it reliably; a fresh-`curl`-per-request
+  approach reads as blocked purely from load-balancer node mismatch, not a real anti-bot rule. This
+  should be retried against `Location=IN` (durably "blocked" since 2026-07-29/2026-08-10 using the
+  old bare-URL technique) — very plausibly the same root cause, not an IN-specific block. A
+  third-party informational site (anytimeestimate.com) was found and correctly excluded as
+  out-of-scope (same category as the existing `alphaadv.net` exclusion) rather than counted toward
+  the threshold; Madison Title Agency had a genuine no-login JSON API but confirmed WV-unsupported
+  via its own `states` field (clean negative, not blocked). A focused 3rd-provider search (county-
+  name-targeted NetSheetCalc/TitleTap, Old Republic's other/first tool, Eastern Panhandle
+  independents) came back empty and surfaced a structural finding: **WV is a mandatory-attorney-
+  closing state**, plausibly explaining why independent WV title-company calculators are scarce —
+  next session should try searching for WV real estate *attorney* closing-cost tools instead of more
+  title-agency names. WV needs 1 more provider — see CALCULATORS.md's 2026-08-14 entry for full
+  detail and the closed-out dead-end list.
 
   **Freshness spot-check** (5 oldest-retrieved published sources, all from states never previously
   included in any prior freshness-pass rotation — GA/Stewart Georgia rate manual PDF via
@@ -2490,9 +2500,12 @@ still vary and matter).
   Jackson & Scott AL (`realestatelclosings.com/closing-costs-calculator/`) still HTTP 403,
   consistent with the recurring WAF-block finding. No status change on any of the three.
 
-  **Next session priority**: (1) finish WV (needs 2 more providers); (2) apply the newly-solved
-  Stewart recipe to every remaining below-threshold/premium-only scarce state — now the fastest,
-  most reliable calculator source available; (3) apply the Referer-header fix to Old Republic's 2nd
-  tool against `Location=IN` and other previously NoBot-blocked states; (4) continue down the
-  remaining untouched "complete (scarce)" list by population after WV: ME (~1.4M), RI (~1.1M), DE
-  (~1.05M), SD (~925k), ND (~797k), AK (~733k), DC (~702k), VT (~647k), WY (~588k).
+  **Next session priority**: (1) finish WV (needs 1 more provider — try WV real estate attorney
+  closing-cost tools per the mandatory-attorney-closing-state finding above); (2) apply the
+  newly-solved Stewart recipe to every remaining below-threshold/premium-only scarce state — now
+  the fastest, most reliable calculator source available; (3) apply the session-affinity fix
+  (persistent single HTTP session through the full request sequence, not just a Referer header) to
+  Old Republic's 2nd tool against `Location=IN` and other previously NoBot-blocked states; (4)
+  continue down the remaining untouched "complete (scarce)" list by population after WV: ME
+  (~1.4M), RI (~1.1M), DE (~1.05M), SD (~925k), ND (~797k), AK (~733k), DC (~702k), VT (~647k), WY
+  (~588k).

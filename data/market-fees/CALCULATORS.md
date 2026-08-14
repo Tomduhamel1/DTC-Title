@@ -2833,13 +2833,40 @@ NH's other findings this session (gated/jsOnly, logged so future sessions don't 
   an onclick handler" technique, flagged for a follow-up: Barristers Title (`nhbarristers.com`),
   Summit Title (`stscorp.com`), Liberty Title (`libtitle.com`).
 
-### West Virginia (WV) — 1 confirmed provider so far (Stewart), still below the 3-provider threshold
+### West Virginia (WV) — 2 confirmed providers (Stewart, Old Republic), closed out below the 3-provider threshold for this session
 1. **Stewart Title Guaranty Company** (stewartratecalculator.com) — same newly-solved `/api/SRC/
    quote` recipe, Kanawha County/Charleston, provider "Omnia Title Corp." (ID 3030, the only
    settlement office this tool lists for the county). Title Closing Fee $750.00 total ($550.00
    buyer/$200.00 seller split), plus Owner's $1,920.00/Lender's $200.00 (simultaneous-flow)
    RateManual premiums, Mortgage/Deed/Release recording fees ($53/$53/$12), and Kanawha County
    Deed/Transfer Tax $2,750.00 (100% seller-paid per the tool's own split).
+2. **Old Republic Title Insurance Company's 2nd tool** (`Location=WV`, internal numeric code 47) —
+   **root cause of the previously-fluctuating block identified this session: it is backend session
+   affinity, not (only) a NoBot/Referer check.** This tool's ASP.NET session lives on one specific
+   web-farm node, addressed only via the URL's `(S(...)F(...))` segment (not a cookie) — a fresh
+   `curl`-per-request approach (or any client that opens a new TCP connection per call) risks the
+   load balancer routing a later request to a *different* node than the one that minted the
+   session, which reads indistinguishably from "unauthorized." Routing the full GET → login-redirect
+   → POST → POST sequence through one persistent HTTP session/connection (reusing the exact
+   `(S(...)F(...))` path from the login redirect, plus a consistent Referer) resolved it reliably
+   across two independent fresh sessions, no blocking at all. **A second real gotcha**: the POST
+   must include every AJAX-extender `*_ClientState` hidden field
+   (`PdateReqE_ClientState`/`DFormatValEx_ClientState`/`DateRangValEx_ClientState`/
+   `PCatValEx_ClientState`/`txtPriorPremiumTypesExist`) as empty strings — omitting them causes an
+   HTTP 500 "Rate Calculator Error" page, a distinct failure mode from the session-affinity block.
+   **Recommendation**: apply the "one persistent session, reuse the exact post-login-redirect URL"
+   fix (not just the Referer header) to every other state previously logged as blocked on this
+   tool, especially `Location=IN` (durably blocked since 2026-07-29/2026-08-10 using the old
+   bare-URL-per-request technique — very plausibly the same root cause, not a real IN-specific
+   block). WV result: statewide flat rate, no county field in this tool's form — Owner's Policy
+   premium $1,700.00, Loan Policy premium $100.00 simultaneous ($980.00 stand-alone), Grand Total
+   $1,800.00 combined. Premium-only, no settlement-fee itemization (same structural limitation as
+   this tool's other state entries).
+
+A focused follow-up pass for a 3rd WV provider (county-name-targeted NetSheetCalc/TitleTap search,
+Old Republic's *other*/first tool, and Eastern-Panhandle/Berkeley-County independent search) came
+back empty — see below — so WV is being closed out at 2 of 3 for this session rather than pursued
+further.
 
 WV's dead ends this session (logged so future sessions don't repeat the search):
 - **anytimeestimate.com** ("West Virginia Title Insurance & Transfer Tax Calculator") — found and
@@ -2848,10 +2875,34 @@ WV's dead ends this session (logged so future sessions don't repeat the search):
   off a hardcoded client-side rate table, the same category as the already-excluded `alphaadv.net`
   entry earlier in this catalog. Logging it here explicitly so a future session doesn't re-harvest
   it under the mistaken impression it qualifies.
-- Old Republic's 2nd tool (`Location=WV`) — blocked by the NoBot check on 3 attempts including a
-  retry with the new Referer-header fix discovered in the parallel NH session this same run; still
-  unresolved for WV specifically (the fix is not a universal unblock — it helped NH but not WV in
-  the same session, so it should still be retried per-state rather than assumed to always work now).
+- **Madison Title Agency** (madisontitle.com) — genuinely promising: a real title agency with its
+  own no-login, no-antiforgery-token JSON endpoint (`POST /resources/title-calc`, fed by
+  `GET /resources/title-init?state=<ST>`), confirmed fully working for NY (a complete 12-line
+  itemized breakdown). But **WV is confirmed unsupported, not blocked**: `title-init`'s own
+  `states` field only ever returns `[NY, NJ]` regardless of the `state=` param requested, and any
+  WV quote attempt 500s — Madison's backend genuinely has no WV rate tables wired up despite its
+  marketing page listing WV among licensed states generally. Log as "checked, confirmed
+  unsupported," not gated/jsOnly — don't re-attempt without evidence their backend has changed.
+- Old Republic's **other/first** tool (`ortconline.com/Web2/.../ratefeecalc/default.aspx`) — checked
+  its `PropertyStateList` dropdown directly: **AZ, CA, HI, IN, MO, NM, NV, OH, OK, OR, TX, UT, WA**
+  — no WV. (Minor incidental finding: this list has grown to include `IN` since the last time it was
+  fully enumerated in this catalog — worth a periodic re-check of other states not currently listed,
+  though not urgent since IN is already calculator-quoted via other providers.)
+- NetSheetCalc/TitleTap searched with WV's actual populous county/city names (Kanawha/Charleston,
+  Berkeley/Martinsburg, Cabell/Huntington, Monongalia/Morgantown, Wood/Parkersburg) as well as the
+  generic state name — no WV-serving tenant found either way; every result resolved to other states'
+  known tenants (Title Partners Agency, Members Title Agency, Abstract Title Agency, Pinnacle Title
+  Agency, Venture Title Agency, Home Partners Title Services).
+- Berkeley County/Martinsburg (Eastern Panhandle, WV's fastest-growing DC-commuter area) independent
+  search — no agency calculator found; results were entirely consumer-facing estimate-guide content
+  and directory listings, not provider tools.
+- **Structural finding**: West Virginia is a mandatory-attorney-closing state (a licensed WV real
+  estate attorney conducts the exam/closing) — plausibly explains why independent WV title-company
+  calculators are so scarce relative to other states surveyed: the natural customer base for these
+  SaaS calculator platforms (agencies running their own closings) is structurally smaller in WV,
+  with attorneys and the underwriters' own tools (Stewart, Old Republic) filling the gap instead.
+  **Next-session angle**: search for WV *real estate attorney* closing-cost tools/calculators rather
+  than more title-agency names, per this finding.
 - TitleCapture tenants RGS Title (`rgstitle.titlecapture.com`) and Investors Title
   (`invtitle.titlecapture.com`) — both **jsOnly**, same platform-level limitation logged elsewhere
   in this catalog (Angular SPA, API hosts identified but no static endpoint path).
@@ -2867,24 +2918,26 @@ WV's dead ends this session (logged so future sessions don't repeat the search):
   the real First American backend is an internal-only `*.corp.firstam.com` host not publicly
   reachable directly (only the `marketing.agentnetsolutions.com` consumer-facing proxy is public).
 - MyTitleRates.com — swept `a=1` through `a=220`; none list West Virginia in their state dropdown.
-- NetSheetCalc/TitleTap, TitleClose.com, TRACcalculator/comparetitlecompanies.com — no WV-serving
-  tenant/agency found via search for any of the three.
+- TitleClose.com, TRACcalculator/comparetitlecompanies.com — no WV-serving tenant/agency found via
+  search for either.
 - Westcor/eWestcor (`ewestcor.com/ratecalculator2.aspx`) — classic ASP.NET postback calculator, but
   its state dropdown only offers `FL` — confirmed not to cover WV.
 - `closingcostcalc.com` (First Title Services) — unreachable (TLS certificate error/503).
 - No calculator found at all (static marketing sites only) on: wvtitleco.com, BesTitle, Go Title
   PLLC (Charleston/Huntington/Hurricane WV — uses TitleTap only for website hosting, not a quote
   widget), Eastern Title, RGS Title's own homepage (as opposed to its gated TitleCapture instance
-  above), Allied Title & Escrow (no WV in its state list).
+  above), Allied Title & Escrow (no WV in its state list), First Title & Escrow, Bailey & Slotnick,
+  Ratified Title Group (all VA/MD/DC-only, not WV), Prosperus Title (site unreachable — connection
+  reset/503 on every attempt).
 
-**Next-session priority for WV**: still needs 2 more calculator-basis providers to cross threshold.
-Worth trying: (a) a fresh Old Republic `Location=WV` attempt on a different day (the NoBot block has
-been observed to loosen/tighten across sessions independent of any specific fix); (b) the
-Absolute-Title-style hardcoded-JS-constant technique against any WV independent agency not yet
-checked for a *calculator* specifically (BesTitle, Eastern Title, First Title & Escrow, Bailey &
-Slotnick, Ratified Title Group were named in the published-schedule survey as WV independents but
-only checked for static rate schedules, not calculators); (c) apply the Stewart recipe's
-multi-provider-per-county trick to any other WV county with more than one settlement office listed.
+**Next-session priority for WV**: needs 1 more calculator-basis provider to cross threshold. No
+WV-specific state/land-title-association member directory exists to systematically enumerate more
+independent-agency candidates. Best next angles, in order: (a) retry Old Republic's other tool's
+footprint (it grew to include IN since last checked — worth periodically re-checking for WV too);
+(b) search for WV real estate *attorney* closing-cost calculators per the structural finding above,
+rather than more title-agency names; (c) apply the Stewart recipe's multi-provider-per-county trick
+to any other WV county with more than one settlement office listed, as a richness add even if it
+doesn't add a new distinct company.
 
 ### Freshness spot-check (5 oldest-retrieved published sources never previously included in any
 prior freshness rotation — GA/Stewart Georgia rate manual PDF via virtualunderwriter.com, NC/Chicago
