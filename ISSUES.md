@@ -13,7 +13,16 @@ competitor fee schedules (241 verified sources + First American direct-API
 recon, maintained nightly by an automated agent); premiums are never compared
 or discounted anywhere (promulgated/bureau states labeled "Set by state");
 every issued quote freezes its numbers; every marketing figure derives from
-the engine at render. Master reference: `docs/STATE_MASTER_VS_FNTE.csv`
+the engine at render. **Important nuance: evidence depth is NOT uniform** —
+the comparison method is the same everywhere, but of the 34 live states
+only 8 have solid multi-provider evidence behind their band (CT, FL, ID,
+IL, KS, OH, OK, TX); 5 are thin at 1–2 providers (GA, IA, MO, NY, RI) and
+21 ride inferred pooled bands (AL, AR, AZ, CO, DE, IN, KY, LA, MA, MD, ME,
+MI, MS, NC, NH, NJ, PA, SC, TN, VA, VT). Inferred/thin states need more
+sources: provider calls, browser-based calculator harvests, DOI filings.
+`/admin/states` now grades every state (solid / thin / inferred) with the
+specific upgrade action, and rolls up the gap list at the top of the page.
+Master reference: `docs/STATE_MASTER_VS_FNTE.csv`
 (51 states × purchase/refi — our fees, market evidence with provenance,
 verdicts, and the assumptions each comparison rests on). Florida was
 restructured on 2026-08-13: $195 published settlement fee, promotional
@@ -40,12 +49,51 @@ only.
 
 ## Open
 
-### FL: counsel gate on $195 fee + Bucks state-by-state review (found 2026-08-13)
-$195 FL settlement fee shipped (PR #81) with Bucks excluded in FL as the
-compliance posture — but counsel has not yet confirmed $195 clears the
-below-cost-inducement doctrine, and the Bucks premium-derived structure is
-unreviewed in every other state (most exposed: TX and NM, the other
-promulgated states). FL advertising claims stay gated until confirmed.
+### DECISIONS MADE 2026-08-14 — for team review (Tom-directed)
+Bucks (premium-derived credit) is now excluded in the four verified-strict
+anti-rebating states, and each got an FL-style BetterClose service-fee card
+so the state still has a compliant competitive lever. Calibration rule:
+target our comparable service stack at ~56% of the state's evidenced market
+low (Florida's landing), floored at $195 (the counsel-gated below-cost
+basis; blended direct vendor costs ~$85–135/file).
+
+| State | Card (settlement, purch+refi) | Our stack | Market low (evidence) | Quoted savings |
+|-------|------------------------------|-----------|----------------------|----------------|
+| FL    | $195 (2026-08-13)            | $345      | $615 (P25 of 6 published) | $270 / $250 refi |
+| TX    | $195 — floor binds           | $345      | $462 (P25 of 5 published) | $117 |
+| NY    | $195 — floor binds           | $345      | $574 (Tier One, real)     | $229 |
+| NM    | $295                         | ~$475     | $834 (First American API) | $359 / $147 refi |
+
+Open questions the team should weigh in on:
+1. Counsel: does the $195 floor clear below-cost-inducement in TX and NY as
+   assumed for FL? (Same basis; different statutes: TX §2502.051/P-53, NY
+   §6409(d).)
+2. NM's card rests on a single evidence point (FA's API) — acceptable, or
+   hold NM claims until a second provider corroborates? Note NM is a
+   workshare state currently OFF in the state master, so the card and
+   Bucks exclusion are dormant config that activates with the state
+   (verified 2026-08-14: NM quotes return "doesn't currently offer").
+3. TX charges a separate $150 search line the TX market bundles into the
+   promulgated premium — keep billing it (shown, no-comparison) or have
+   FNTE fold it? (It is really billed; quotes must keep showing it until
+   ops changes.)
+4. Revenue: these cards cut TX/NY/NM settlement revenue the same way FL's
+   did — needs the FL-style actuals/scenario modeling per state before
+   anyone treats the cards as final.
+5. Ops/CD alignment now applies to four states, not one.
+
+### Counsel gate: FL $195 fee + Bucks review for remaining states (found 2026-08-13, updated 2026-08-14)
+$195 FL settlement fee shipped (PR #81) with Bucks excluded in FL. On
+2026-08-14 the exclusion was extended to the other verified-strict states:
+TX (Ins. Code §2502.051 + TDI P-53), NM (promulgated, same structure), and
+NY (Ins. Law §6409(d)). Consequence: those states' quotes now show little or
+no savings until a compliant competitive lever exists there (e.g., a
+BetterClose service-fee card like FL's $195 — pricing/leadership decision).
+Still with counsel: (1) confirm FL $195 clears below-cost-inducement, (2)
+confirm the NM statute cite, (3) review Bucks in the bureau-uniform states
+(PA/NJ/OH/DE/NC — premiums effectively fixed, statutes unverified) and the
+filed states, (4) confirm whether TX/NM/NY should get FL-style service-fee
+cards as the compliant alternative.
 
 ### FL: quoted-vs-charged ops alignment (found 2026-08-13)
 Prod actuals (189 files/12mo, `support-incidents/fl-charging-actuals-2026-08-13/`)
@@ -74,7 +122,11 @@ $700 buyer-side imply the filed fees are whole-transaction and split by
 custom. Band deliberately held conservative; resolving the split (~one call)
 roughly doubles Idaho's claimable savings.
 
-### Evidence coverage: browser-only calculators + thin states (found 2026-07-23)
+### Evidence coverage: browser-only calculators + thin states (found 2026-07-23, admin visibility added 2026-08-14)
+Per-state evidence grades (solid ≥3 providers / thin 1–2 / inferred) now
+show on `/admin/states` with the upgrade action per state — use that page
+as the work queue for calls and deeper calculator-based agent searches.
+
 FNF's National Rate Calculator and First American's FACC (the two highest-
 coverage fee sources) are JS-only and need a browser session to harvest;
 ~20 states still ride the inferred/capped band. Also open: refi-side

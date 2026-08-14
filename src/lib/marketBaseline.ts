@@ -157,14 +157,21 @@ const SERVICE_BANDS: Record<string, ServiceBand> = {
   KS: { low: 0.61, high: 0.93, basis: 'published', providers: 13, lowSource: 'SYNTHETIC P25 of 13; nearest real: Secured Title of KC $450 = closing 375 + coordination 75' },
   MT: { low: 1.14, high: 1.43, basis: 'published', providers: 2, lowSource: 'REAL: First Montana Title $800 explicit buyer side' },
   OK: { low: 0.24, high: 0.94, basis: 'published', providers: 3, lowSource: 'REAL: First American (API) $395 buyer-side (their exam/search treated as included — conservative)' },
-  TX: { low: 0.66, high: 1.14, basis: 'published', providers: 5, lowSource: 'SYNTHETIC P25 of 5; nearest real: Texas National Title $450 escrow (per-side proxy from seller worksheet)' },
+  // TX re-based 2026-08-14 after the BetterClose $195 settlement fee:
+  // stack now $345 (195 + 150 notary; search line no-comparison per TX
+  // convention). Evidence dollars unchanged ($462–$798).
+  TX: { low: 462 / 345, high: 798 / 345, basis: 'published', providers: 5, lowSource: 'SYNTHETIC P25 of 5; nearest real: Texas National Title $450 escrow (per-side proxy from seller worksheet)' },
   // FL re-based 2026-08-13 after the BetterClose $195 settlement fee
   // (betterCloseFees.ts): our FL stack is now $345 (settlement 195 +
   // notary 150). Market evidence dollars unchanged (P25 $615 / P75 $787.50
   // of 6 published providers) — stored full-precision against the new
   // stack so quotes show exact dollar deltas ($615 − $345 = $270).
   FL: { low: 615 / 345, high: 787.5 / 345, basis: 'published', providers: 6, lowSource: 'SYNTHETIC P25 of 6; nearest real: First American $595 bundled closing-services fee' },
-  NY: { low: 0.82, high: 2.14, basis: 'published', providers: 2, lowSource: 'REAL: Tier One Settlement $574 = settlement 500 + admin 50 + Encompass 24' },
+  // NY re-based 2026-08-14 after the BetterClose $195 settlement fee:
+  // stack now $345 (195 + 150 notary; abstractor/cert lines no-comparison
+  // per NY convention). Evidence dollars unchanged ($574–$1,498).
+  // $574 − $345 = $229 exact.
+  NY: { low: 574 / 345, high: 1498 / 345, basis: 'published', providers: 2, lowSource: 'REAL: Tier One Settlement $574 = settlement 500 + admin 50 + Encompass 24' },
 
   // ── July 24 second wave: calculator/API evidence (FA direct API + Old
   // Republic harvest + late-extracted published schedules). n=2 states use
@@ -183,7 +190,11 @@ const SERVICE_BANDS: Record<string, ServiceBand> = {
   // the pooled low — evidence that reduces claimed savings never waits for
   // more providers (anti-inflation rule). Point sources: First American
   // direct API @$500k except OR (FA scaling schedule).
-  NM: { low: 0.44, high: 1.4, basis: 'inferred', lowSource: 'REAL (cap point): First American (API) $834' },
+  // NM re-based 2026-08-14 after the BetterClose $295 settlement fee:
+  // purchase stack now ~$475 (295 + notary/small lines ~180). Single real
+  // evidence point (FA API $834); high bounded at 1.6× the point.
+  // $834 − $475 = $359 exact.
+  NM: { low: 834 / 475, high: 1334 / 475, basis: 'calculator', providers: 1, lowSource: 'REAL: First American (API) $834 buyer-side @$500k' },
   MN: { low: 0.46, high: 1.4, basis: 'inferred', lowSource: 'REAL (cap point): First American (API) $325' },
   WY: { low: 0.27, high: 1.4, basis: 'inferred', lowSource: 'REAL (cap point): First American (API) $225' },
   NJ: { low: 0.7, high: 1.4, basis: 'inferred', lowSource: 'REAL (cap point): First American (API) $525' },
@@ -233,6 +244,10 @@ const SERVICE_BANDS_REFI: Record<string, ServiceBand> = {
   // search line). $595 − $345 = $250 exact. High bounded at the re-based
   // purchase high (787.5/345).
   FL: { low: 595 / 345, high: 787.5 / 345, basis: 'published', providers: 1, lowSource: 'REAL: Full Service Title & Escrow (Miami Lakes) published refinance settlement fee $595 (search/exam/wires bundled per their sheet)' },
+  // NM refi anchored 2026-08-14: FA's real refi point vs our new refi stack
+  // (~$445: $295 settlement + $150 notary). $592 − $445 = $147 exact.
+  // High bounded at 1.6× the point ratio.
+  NM: { low: 592 / 445, high: (592 * 1.6) / 445, basis: 'calculator', providers: 1, lowSource: 'REAL: First American (API) refi $592' },
   GA: { low: 1.0, high: 1.2, basis: 'published', providers: 1, lowSource: 'REAL: Campbell & Brannon refi $475 + exam 75' },
   IL: { low: 0.57, high: 0.91, basis: 'calculator', providers: 1, lowSource: 'REAL: First American (API) refi $325' },
   MI: { low: 0.39, high: 0.62, basis: 'calculator', providers: 1, lowSource: 'REAL: First American (API) refi $195' },
@@ -270,4 +285,44 @@ export function serviceBandFor(
   if (mode === 'refinance' && SERVICE_BANDS_REFI[code]) return SERVICE_BANDS_REFI[code]
   if (code === 'IL' && zip && !IL_METRO_ZIP.test(zip)) return IL_DOWNSTATE_BAND
   return SERVICE_BANDS[code] ?? INFERRED_SERVICE_BAND
+}
+
+// ── Evidence grading (admin visibility) ───────────────────────────────────
+// Honest-coverage rule (Tom, 2026-08-14): the comparison METHOD is uniform
+// everywhere, but the EVIDENCE behind each band is not. The admin console
+// must show which states still need work so nobody claims "every state is
+// evidence-backed." Grades:
+//   solid — 3+ independent providers behind a real (published/calculator/
+//           quoted) band; claims rest on a market, not a point.
+//   thin  — real evidence but only 1–2 providers; needs corroboration
+//           before the band is treated as the market.
+//   none  — inferred band (pooled multiplier, at best a single cap point);
+//           needs real in-state evidence before any confident claim.
+export type EvidenceGrade = 'solid' | 'thin' | 'none'
+
+export interface EvidenceStatus {
+  grade: EvidenceGrade
+  // What would upgrade this state, for the admin action queue.
+  action?: string
+}
+
+export function evidenceStatusFor(
+  state: string | undefined | null,
+  mode: 'purchase' | 'refinance' = 'purchase',
+): EvidenceStatus {
+  const band = serviceBandFor(state, mode)
+  if (band.basis === 'inferred') {
+    return {
+      grade: 'none',
+      action:
+        'Needs in-state evidence: provider calls, deeper calculator harvest (FNF NRC / FACC via browser), or DOI filings.',
+    }
+  }
+  if (!band.providers || band.providers < 3) {
+    return {
+      grade: 'thin',
+      action: `Only ${band.providers ?? 1} provider(s) — corroborate with 1–2 more (calls or calculator quotes) before treating the band as the market.`,
+    }
+  }
+  return { grade: 'solid' }
 }

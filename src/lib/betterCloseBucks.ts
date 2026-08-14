@@ -29,13 +29,23 @@ export const BUCKS_RATE_BY_STATE: Record<string, number> = {
 }
 
 // Compliance gate — states where the credit is withheld.
-// FL (Tom, 2026-08-13): Florida promulgates the title premium and has
-// strict anti-rebating law; a credit whose AMOUNT derives from the premium
-// is structurally exposed there regardless of labeling. Florida competes
-// through BetterClose's own $195 settlement fee instead
-// (betterCloseFees.ts) — discounting our own service charge, with the
-// promulgated premium always charged in full.
-export const BUCKS_EXCLUDED_STATES: Set<string> = new Set(['FL'])
+// A credit whose AMOUNT derives from the premium is structurally exposed
+// wherever premium rebating/inducement is prohibited, regardless of
+// labeling. Verified-strict states are excluded here; bureau-uniform states
+// (PA/NJ/OH/DE/NC) and filed states remain ON pending counsel review
+// (tracked in ISSUES.md).
+//
+// FL (Tom, 2026-08-13): promulgated premium + strict anti-rebating law.
+//   FL competes through BetterClose's own $195 settlement fee instead
+//   (betterCloseFees.ts) — premium always charged in full.
+// TX (2026-08-14): promulgated; Ins. Code §2502.051 + TDI Procedural Rule
+//   P-53 prohibit rebates/discounts on title business.
+// NM (2026-08-14): promulgated regime — same structure as FL/TX; statute
+//   cite for counsel to confirm.
+// NY (2026-08-14): Ins. Law §6409(d) — no rebate or "any consideration or
+//   valuable thing" as inducement for title business, directly or
+//   indirectly; DFS reads it broadly.
+export const BUCKS_EXCLUDED_STATES: Set<string> = new Set(['FL', 'TX', 'NM', 'NY'])
 
 /** Effective Bucks rate in a state (0 when excluded). */
 export function bucksRateFor(stateCode?: string): number {
