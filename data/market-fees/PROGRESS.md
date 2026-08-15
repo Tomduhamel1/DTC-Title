@@ -2560,3 +2560,26 @@ still vary and matter).
   2nd tool for newly-blocked states — apply the full session-affinity fix (persistent connection
   reusing the post-redirect `(S(...))` URL) documented in the WV entry instead, since the lighter fix
   has now failed twice (ME, RI) after succeeding once (NH).
+
+  **Same session, continued: DE harvested (1 of 3 providers, below threshold).** Applied the Stewart
+  recipe a 3rd time this session (WV/NH from 2026-08-14, now ME/RI/DE) — again zero modification
+  needed. **DE**: Stewart Title Guaranty (New Castle County/Wilmington, Stewart's own Wilmington
+  office) returned a null itemized settlement fee — corroborating, not contradicting, DE.md's
+  existing central finding that DTIRB's Manual excludes attorney/settlement/closing charges from the
+  regulated rate and Delaware requires an attorney to close. Still yielded genuinely new figures:
+  Owner's Premium $2,275/Lender's Premium $1,235 (simultaneous), and a combined Delaware Realty
+  Transfer Tax of **$20,000.00 on $500,000 (4.0% combined state+county rate)** — the highest
+  transfer-tax figure recorded anywhere in this entire survey, a notable new data point. Old
+  Republic's 2nd tool NoBot-blocked for `Location=DE` too (3rd confirmation this session that the
+  Referer-only fix is unreliable). Web search for a genuine DE provider-owned attorney/title-agency
+  calculator came up empty — only third-party aggregator estimate tools found (out of scope per the
+  standing `alphaadv.net` exclusion precedent).
+  **Freshness/blocked-source retries**: not run this session (full time budget went to the calculator
+  harvest, now 3 states in one sitting on the strength of the Stewart recipe).
+  **Next session priority**: (1) SD is next by population (~925k) on the untouched-scarce list,
+  followed by ND/AK/DC/VT/WY; (2) WV still needs its 3rd provider; (3) a browser-driven session is
+  now the clearest path to push ME/RI/DE past the 3-provider threshold — Old Republic's 2nd tool is
+  blocked for all three via the lighter fix, and TitleCapture/Qualia Connect (recurring nationwide)
+  remain the highest-value jsOnly targets; (4) keep applying the Stewart recipe first against every
+  remaining scarce state — 5-for-5 clean harvests across 2 sessions (WV, NH, ME, RI, DE) with zero
+  recipe changes needed.

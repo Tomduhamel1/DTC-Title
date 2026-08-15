@@ -3030,3 +3030,32 @@ full session-affinity recipe from the WV entry instead, or skip the tool entirel
 is short, since two states in a row (ME, RI) failed the lighter fix; (4) a browser-driven session
 remains the highest-value unlock for TitleCapture/Qualia Connect (recurring across many independent
 agencies nationwide) and would likely be the fastest path to a 3rd provider for both ME and RI.
+
+### DE added same session — Stewart recipe's 3rd clean harvest in a row, null settlement fee is a genuine (not missing) result
+Applied the Stewart recipe to DE (New Castle County/Wilmington) after ME/RI, again with zero
+modification. The matched settlement office (Stewart's own Wilmington office, provider ID 2531)
+returns `"ItemizedTitleServiceFeeList": null` — a real, correctly-parsed empty result, not a fetch
+failure. This is consistent with, and further corroborates, DE.md's pre-existing structural finding
+(DTIRB's Rating Manual Sections 1.5/2.1 explicitly exclude attorney/settlement/closing charges from
+the regulated rate, and Delaware requires a licensed attorney to conduct every closing) — Stewart's
+own Wilmington office apparently has nothing configured to itemize through this tool because the
+attorney handles that step outside Stewart's own pricing. **Lesson for future sessions**: a null
+`ItemizedTitleServiceFeeList` from this recipe is not necessarily a bug or a sign to retry a
+different provider in the same county — check whether the state's own market structure (attorney-
+closing, rating-bureau exclusion) already predicts a null result before assuming something went
+wrong. The premium and recording/transfer-tax sections (`Pricing.RateManual`, `Recording`) still
+returned complete, genuine data regardless — DE's combined Realty Transfer Tax came out to
+**$20,000.00 on a $500,000 sale (4.0%)**, the highest transfer-tax figure found anywhere in this
+survey. Old Republic's 2nd tool NoBot-blocked for `Location=DE` too — the 3rd state in a row this
+session (after ME, RI) where the Referer-only fix failed, further reinforcing the recommendation
+above to switch to the full session-affinity recipe or skip the tool when time is short. A web search
+for a genuine DE-provider-owned calculator (attorney or title-agency) came up empty — only third-
+party aggregator estimate tools found (AnytimeEstimate, ListWithClever, StateCalc), all out of scope
+per the standing `alphaadv.net` exclusion precedent.
+
+**Session total: 3 new states touched (ME, RI, DE), all below the 3-provider threshold, all via the
+Stewart recipe with zero modification across 3 different state/county combinations — the strongest
+evidence yet that this recipe is genuinely state-agnostic.** Next session should continue down the
+population-ordered list (SD ~925k, ND ~797k, AK ~733k, DC ~702k, VT ~647k, WY ~588k) with Stewart
+first, and separately revisit WV's 3rd-provider gap and a browser-driven pass at TitleCapture/Qualia
+Connect to push ME/RI/DE past threshold.

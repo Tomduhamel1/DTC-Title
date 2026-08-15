@@ -1,5 +1,28 @@
 # Delaware (DE) — Market Fee Evidence
 
+## Calculator harvest (2026-08-15)
+
+Separate from the published-schedule survey below, 1 calculator-basis quote was harvested for the
+standard scenario ($500,000 purchase / $400,000 loan / New Castle County-Wilmington / residential
+resale) — below the 3-provider calculator-quoted threshold this session. See DE.json's `"basis":
+"calculator"` entry for full itemized figures and CALCULATORS.md for the technical recipe.
+
+1. **Stewart Title Guaranty Company** — Stewart Rate Calculator (stewartratecalculator.com), matched
+   to Stewart's own Wilmington office. Returns no itemized settlement fee (null in the tool's
+   response) — corroborating this file's central DTIRB/attorney-closing finding below rather than
+   representing a gap in the harvest. Genuinely new figures: Owner's Premium $2,275.00, Lender's
+   Premium $1,235.00 (simultaneous)/$25.00 (standalone), recording fees (Mortgage $360/Deed $116/
+   Release $81), and Delaware's combined Realty Transfer Tax of $20,000.00 on $500,000 (State $12,500
+   + New Castle County $7,500, both 50/50 buyer/seller split) — a 4.0% combined rate, the highest
+   transfer-tax figure recorded anywhere in this survey.
+
+**2nd/3rd-provider search (dead ends this session)**: Old Republic's 2nd tool (`Location=DE`) NoBot-
+blocked, same as ME/RI this session (see CALCULATORS.md — the Referer-header fix is confirmed
+unreliable). Web search for a DE-specific attorney or title-agency calculator (New Castle County
+focus) surfaced only third-party aggregator estimate calculators (AnytimeEstimate, ListWithClever,
+StateCalc, etc.), none of which are a provider's own system — out of scope per this project's
+standing `alphaadv.net`-precedent exclusion rule. No genuine second DE provider calculator found.
+
 ## Status: complete (scarce market) — 2 verified sources (1 rating-bureau regulatory manual + 1 attorney-published settlement-fee estimate range), 2026-07-22
 
 ## DTIRB premium note (regulatory backbone)
