@@ -26,5 +26,60 @@
     },
     "bundlingNotes": "Rate Manual General Rules state: 'The rates shown are the all-inclusive title insurance fees and charges and includes both the risk portion and the service or work portion, but does not include charges for title search, surveys, escrow, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant.' This is a distinctive middle-ground structure -- unlike most states' pure risk-only premium, WFG's Rhode Island rate explicitly bundles some 'service or work portion' into the premium (similar in spirit to Tennessee's All-Inclusive Rate rule), while still excluding title search, escrow, and closing/settlement services as separate unregulated charges.",
     "transactionContext": "Owner's, Leasehold Owner's, Acquisition Loan, and Finance/Refinance Loan policies (purchase and refinance), statewide -- no county/metro rate differentiation."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company — Stewart Rate Calculator (stewartratecalculator.com), via settlement office Warr & Warr, PC",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true",
+    "endpointOrParams": "Genuine JSON REST API at /api/SRC/*, driven via plain HTTP GET/POST (no browser/JS execution), per the nationwide recipe documented in CALCULATORS.md. Sequence: GET /api/SRC/transactiontypes?statecode=RI -> GET /api/SRC/propertysearch?value=Providence,%20RI (resolves Providence County) -> GET /api/SRC/providers?statecode=RI&countycode=<FIPS>&zipcode=<zip>&transactiontype=SALE (chosen provider: Warr & Warr, PC, ID 1552, a Riverside RI closing-attorney firm -- consistent with RI's attorney-closing custom already noted in the published-schedule survey) -> GET /api/SRC/statesettings?statecode=RI -> GET /api/SRC/ernstlookup?statecode=RI&countycode=<FIPS> -> POST /api/SRC/quote twice (QuoteType=3 for itemized settlement fee + premiums, QuoteType=2 for recording/transfer-tax + premiums). No personal-data fields required or entered.",
+    "retrievalDate": "2026-08-15",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Providence County, residential resale, Sale/Purchase with Mortgage transaction.",
+    "methodology": "Same technique as the WV/NH/ME entries' Stewart Rate Calculator harvest (see CALCULATORS.md's 2026-08-14 master recipe for the fully-documented request/response shape).",
+    "settlementFee": {
+      "note": "Title Closing Fee $1,725.00 total, split $875.00 buyer / $850.00 seller -- the richest single-provider itemization found in this survey for a New England attorney-closing state, plus 4 additional itemized ancillary fee lines."
+    },
+    "itemizedFees": {
+      "processing": "$1,725.00 (Title Closing Fee, $875.00 buyer / $850.00 seller -- Warr & Warr, PC)",
+      "searchExam": "$500.00 (Title Examination Fee, $375.00 buyer / $125.00 seller)",
+      "courier": "$85.00 (Title Courier Fee, $40.00 buyer / $45.00 seller)",
+      "eRecording": "$30.00 (Title E Recording Fee, 100% buyer)",
+      "other": [
+        {
+          "name": "Title Municipal Lien Certificate (100% buyer)",
+          "amount": "$25.00"
+        },
+        {
+          "name": "Owner's Policy premium, RateManual (both QuoteType=2 and QuoteType=3 flows agreed)",
+          "amount": "$1,750.00"
+        },
+        {
+          "name": "Lender's Policy premium, simultaneous-flow (QuoteType=3)",
+          "amount": "$1,000.00"
+        },
+        {
+          "name": "Lender's Policy premium, stand-alone-flow (QuoteType=2)",
+          "amount": "$50.00"
+        },
+        {
+          "name": "Recording fee, Mortgage",
+          "amount": "$88.00"
+        },
+        {
+          "name": "Recording fee, Deed",
+          "amount": "$89.00"
+        },
+        {
+          "name": "Recording fee, Release",
+          "amount": "$51.00"
+        },
+        {
+          "name": "Rhode Island real estate conveyance tax (Deed Tax), total on $500,000, 100% seller-paid per the tool's own CFPB2015 breakdown",
+          "amount": "$3,750.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Confirms RI's attorney-closing custom noted in the original published-schedule survey -- the settlement office this tool matched to Providence County is a law firm (Warr & Warr, PC), not an independent title/escrow company. Five distinct itemized settlement-service line items is unusually rich for this survey's New England scarce-state harvests.",
+    "transactionContext": "Sale/Purchase with Mortgage, Providence County RI."
   }
 ]

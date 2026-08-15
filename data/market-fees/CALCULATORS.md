@@ -2961,3 +2961,72 @@ most/all states where Stewart underwrites); (3) apply the Referer-header fix to 
 tool against `Location=IN` and any other previously NoBot-blocked state/location code; (4) continue
 down the remaining untouched "complete (scarce)" list by population after WV: ME (~1.4M), RI
 (~1.1M), DE (~1.05M), SD (~925k), ND (~797k), AK (~733k), DC (~702k), VT (~647k), WY (~588k).
+
+## 2026-08-15 session — ME and RI harvested via the Stewart recipe (both below threshold); Absolute Title's calculator footprint fully mapped; Old Republic 2nd-tool Referer-fix confirmed unreliable
+
+Continued down the untouched-scarce-by-population list from the 2026-08-14 session's recommendation:
+ME (~1.4M) and RI (~1.1M), the next two states after WV. Both harvested cleanly via the Stewart
+`/api/SRC/quote` recipe with zero modification needed — the recipe continues to work exactly as
+documented against a 4th and 5th new state (after WV/NH), reinforcing it as the highest-leverage,
+lowest-friction technique in this catalog.
+
+### Absolute Title, LLC — calculator footprint fully mapped: NH/ME/MA only, with a new false-positive gotcha
+Following the NH/ME pattern (own first-party JS calculator, hardcoded constants in a same-origin
+`rc_<st>.js` file), this session found Absolute Title also maintains a genuine Maine calculator at
+`ratecalculator_me.asp`/`rc_me.js` — harvested (see ME.json). Probing every other New England state
+suffix (`ratecalculator_ri.asp`, `_ct.asp`, `_de.asp`, `_vt.asp`) all returned **HTTP 200**, which
+looked promising at first, but each resolves to the site's generic contact-page fallback (same
+generic `<title>Absolute Title, LLC - New England's Premier Title Company</title>`, no `rc_<st>.js`
+script tag, no `txtSalePrice` form field) rather than a real calculator — the company's own nav menu
+confirms it only lists Rate Calculator links for NH/MA/ME. **New gotcha for future sessions on any
+platform with per-state URL suffixes**: an HTTP 200 alone does not confirm a real per-state page on
+a server with catch-all routing — verify a state-specific asset reference (script tag, distinct
+`<title>`) or actual form-field content in the body before treating a 200 as a hit.
+
+### Old Republic's 2nd tool — the Referer-header fix is NOT universally reliable (2 more failures)
+The 2026-08-14 NH session found that sending `Referer: oldrepublictitle.com/rate-calculator/
+?location=<state-slug>` consistently across the session resolved this tool's NoBot block. This
+session retried the identical fix (same code, same header-persistence approach — `Referer` set on
+the `requests.Session()` object, not per-request) against `Location=ME` and `Location=RI` and got
+the same "You are not authorized to access the site. Code: 2." NoBot rejection both times, on the
+very first GET. This confirms the WV session's separate finding (backend session affinity, not just
+a Referer check) is the more fundamental fix needed — the Referer-only fix that worked for NH was
+likely coincidental (e.g. that specific session happened to land on a healthy web-farm node) rather
+than a real solution. **Recommendation**: any future session targeting this tool should implement
+the full WV recipe (persistent single HTTP connection, reuse the exact post-redirect `(S(...))` URL
+segment throughout, plus the AJAX-extender `*_ClientState` empty-string fields) rather than the
+lighter Referer-only fix, which should now be considered unreliable/deprecated.
+
+### Dead ends checked this session (logged so they aren't re-tried)
+- **Gateway Title of Maine** (`gatewaytitleme.com/rate-calculator/`) — the page is a Gravity Forms
+  contact form gated by Google reCAPTCHA, not a calculator; jsOnly/gated.
+- **Cumberland Title Services + Central Maine Title** (`cumberlandtitle.com/fee-calculator`) — routes
+  directly to First American's FACC tool (`facc.firstam.com`), the already-catalogued true login/SSO
+  gate; two outbound links confirmed (`facc.firstam.com/?SSID=...`).
+- **Priority Title Company** (`prioritytitlecompany.com/purchase-cash`, RI) — a Wix-rendered SPA
+  (`static.parastorage.com` bundle references) with no discoverable static form/API in the page
+  source; jsOnly, flagged for a browser-driven session.
+- **"Island Title & Escrow Agency"** (NetSheetCalc/TitleTap `appid=396`) — surfaced by a web search
+  for RI-flavored TitleTap instances, but its own `APP_INFO` JSON (`GET .../quickquote.php?appid=396`)
+  confirms it's Merritt Island, **Florida**-based (`"state":"FL"`, `"approved_states":[{"label":
+  "Florida","value":"FL"}]`) — a false-positive search result, not an RI provider. Logged so a future
+  session doesn't re-surface and re-check the same lead.
+- Old Republic's other/first tool (`ortconline.com/Web2/.../ratefeecalc/default.aspx`) — confirmed
+  (per its already-documented fixed footprint: AZ/CA/HI/MO/NM/NV/OH/OK/OR/TX/UT/WA) it does not reach
+  New England at all; not applicable to ME/RI, not tested this session (no need).
+
+### WV's 3rd-provider search — not retried this session
+Time budget went to ME/RI (the next states by population per the standing priority order) rather than
+finishing WV's search for a 3rd provider. WV remains at 2 of 3 confirmed providers — see the
+2026-08-14 entry above for the mandatory-attorney-closing-state finding and the recommended next
+angle (WV real estate attorney closing-cost tools).
+
+**Recommendation for next session**: (1) DE is next by population (~1.05M) on the untouched-scarce
+list, followed by SD/ND/AK/DC/VT/WY — keep applying the Stewart recipe first against each, since it
+has now succeeded cleanly on 5 consecutive new states (WV, NH, ME, RI implied via Stewart's own
+underwriting footprint) with zero modification; (2) WV still needs a 3rd provider; (3) do not spend
+further time on the Old Republic 2nd-tool Referer-only fix for newly-blocked states — implement the
+full session-affinity recipe from the WV entry instead, or skip the tool entirely for a state if time
+is short, since two states in a row (ME, RI) failed the lighter fix; (4) a browser-driven session
+remains the highest-value unlock for TitleCapture/Qualia Connect (recurring across many independent
+agencies nationwide) and would likely be the fastest path to a 3rd provider for both ME and RI.

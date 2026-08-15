@@ -1,5 +1,34 @@
 # Maine (ME) — Market Fee Evidence
 
+## Calculator harvest (2026-08-15)
+
+Separate from the published-schedule survey below, 2 calculator-basis quotes were harvested for the
+standard scenario ($500,000 purchase / $400,000 loan / Cumberland County-Portland / residential
+resale) — below the 3-provider calculator-quoted threshold this session. See ME.json entries with
+`"basis": "calculator"` for full itemized figures and CALCULATORS.md for the technical recipes.
+
+1. **Stewart Title Guaranty Company** — Stewart Rate Calculator (stewartratecalculator.com), via
+   settlement office Stewart Title-Northern New England Division (Portsmouth NH, the only office this
+   tool lists serving Cumberland County). Title Closing Fee $695.00 (100% buyer), Owner's Premium
+   $1,500.00, Lender's Premium $700.00 (simultaneous)/$50.00 (standalone), recording fees ($40 each
+   Mortgage/Deed/Release), Maine Real Estate Transfer Tax $2,200.00 total (50/50 buyer/seller split).
+2. **Absolute Title, LLC** ("New England's Premier Title Company") — own first-party rate calculator,
+   Maine edition (`ratecalculator_me.asp`/`rc_me.js`), same technique as this company's NH calculator
+   (already on file). Settlement Fee $650.00 flat, Owner's Premium $1,600.00, Lender's Premium
+   $700.00, Endorsements $125.00, Transfer Tax $1,100.00 (byte-identical buyer/seller split to
+   Stewart's figure above — a cross-provider convergence). Confirmed this session that Absolute Title
+   only maintains calculators for NH/ME/MA, not RI/CT/DE/VT (those URLs resolve to a generic fallback
+   page).
+
+**3rd-provider search (dead ends this session)**: Old Republic's 2nd tool (`Location=ME`) still
+NoBot-blocked despite the Referer-header fix that worked for NH — the fix is not universally
+reliable, matching the WV session's finding that a deeper session-affinity fix (not just Referer) is
+sometimes required; not retried further this session. Gateway Title of Maine's "rate calculator" page
+is a Gravity Forms reCAPTCHA-gated contact form, not a calculator — jsOnly/gated. Cumberland Title
+Services + Central Maine Title's "fee calculator" routes to First American's FACC tool
+(`facc.firstam.com`), a known login/SSO gate. No Maine-specific MyTitleRates.com or NetSheetCalc/
+TitleTap agency instance found via search.
+
 ## Status: complete (scarce market)
 
 2 providers verified (3 documents: 1 WFG manual, 2 Stewart documents from the same

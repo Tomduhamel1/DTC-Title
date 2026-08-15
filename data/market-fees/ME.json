@@ -75,5 +75,89 @@
     },
     "bundlingNotes": "One-page condensed rate card, same underwriter and same premium-only scope as the companion Schedule of Charges document above -- title-insurance premium and endorsement pricing only, no settlement/closing/escrow fee figures.",
     "transactionContext": "Condensed premium/endorsement rate card; refinance charge table matches the full Schedule of Charges document (80% of original charge within 5 years, 100% after 5 years)."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company — Stewart Rate Calculator (stewartratecalculator.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true",
+    "endpointOrParams": "Genuine JSON REST API at /api/SRC/*, driven via plain HTTP GET/POST (no browser/JS execution), per the nationwide recipe documented in CALCULATORS.md. Sequence: GET /api/SRC/transactiontypes?statecode=ME -> GET /api/SRC/propertysearch?value=Portland,%20ME (resolves Cumberland County, CountyFIPS 23005, zip 04101) -> GET /api/SRC/providers?statecode=ME&countycode=23005&zipcode=04101&transactiontype=SALE (chosen provider: Stewart Title-Northern New England Division, ID 3962, Portsmouth NH office serving Cumberland County) -> GET /api/SRC/statesettings?statecode=ME -> GET /api/SRC/ernstlookup?statecode=ME&countycode=23005 -> POST /api/SRC/quote twice (QuoteType=3 for itemized settlement fee + premiums, QuoteType=2 for recording/transfer-tax + premiums). No personal-data fields required or entered.",
+    "retrievalDate": "2026-08-15",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Cumberland County (Portland), residential resale, Sale/Purchase with Mortgage transaction.",
+    "methodology": "Same technique as the WV/NH entries' Stewart Rate Calculator harvest (see CALCULATORS.md's 2026-08-14 master recipe for the fully-documented request/response shape).",
+    "settlementFee": {
+      "note": "Title Closing Fee $695.00, 100% buyer-paid, no other itemized settlement-fee line items from this provider."
+    },
+    "itemizedFees": {
+      "processing": "$695.00 (Title Closing Fee, buyer -- Stewart Title-Northern New England Division)",
+      "other": [
+        {
+          "name": "Owner's Policy premium, RateManual (both QuoteType=2 and QuoteType=3 flows agreed)",
+          "amount": "$1,500.00"
+        },
+        {
+          "name": "Lender's Policy premium, simultaneous-flow (QuoteType=3)",
+          "amount": "$700.00"
+        },
+        {
+          "name": "Lender's Policy premium, stand-alone-flow (QuoteType=2) -- see WV/NH entries' note on the two flows applying different default simultaneous-vs-standalone rate logic",
+          "amount": "$50.00"
+        },
+        {
+          "name": "Recording fee, Mortgage",
+          "amount": "$40.00"
+        },
+        {
+          "name": "Recording fee, Deed",
+          "amount": "$40.00"
+        },
+        {
+          "name": "Recording fee, Release",
+          "amount": "$40.00"
+        },
+        {
+          "name": "Maine Real Estate Transfer Tax (Deed Tax), total on $500,000, 50/50 buyer/seller split ($1,100.00 each) per the tool's own CFPB2015 breakdown",
+          "amount": "$2,200.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Only settlement office this tool lists serving Cumberland County; itemization is thin (single line item) compared to some other states' Stewart harvests, consistent with the pattern that settlement-fee itemization depth varies per settlement office, not just per underwriter.",
+    "transactionContext": "Sale/Purchase with Mortgage, Cumberland County/Portland ME."
+  },
+  {
+    "provider": "Absolute Title, LLC (\"New England's Premier Title Company\") — own rate calculator, Maine edition",
+    "basis": "calculator",
+    "sourceUrl": "https://absolutetitle.com/ratecalculator_me.asp",
+    "calculatorUrl": "https://absolutetitle.com/ratecalculator_me.asp",
+    "endpointOrParams": "Static HTML page; all calculation logic lives client-side in a same-origin linked JS file, https://absolutetitle.com/rc_me.js?v=20260710.1 (getPremium()/getOwnersPremium()/getLPremium()/getEndorsements() functions with hardcoded rate-table constants). Fee constants and formulas read directly from the fetched JS source without executing it in a browser -- same technique already established for this company's NH calculator (see NH.json) and for Modern Title Group (MI)/Columbus Title Agency (OH)/Land Title Company of Alabama (AL) elsewhere in this project. Confirmed this session that Absolute Title only maintains distinct calculators for NH, ME, and MA (ratecalculator_ri.asp/_ct.asp/_de.asp/_vt.asp all resolve to the site's generic fallback page, not real calculators).",
+    "retrievalDate": "2026-08-15",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Purchase transaction, standard (non-enhanced) coverage, not simultaneous (separate owner's + lender's policies).",
+    "methodology": "Direct HTTP GET of the calculator page and its linked JS file; formulas evaluated by hand against the standard scenario inputs. No browser/JS execution, no personal data entered.",
+    "settlementFee": {
+      "note": "Settlement Fee: $650.00 flat (Purchase, non-simultaneous, per the page's own JS constant)."
+    },
+    "itemizedFees": {
+      "processing": "$650.00 (Settlement Fee)",
+      "other": [
+        {
+          "name": "Owner's Premium (title insurance, standard coverage, non-simultaneous)",
+          "amount": "$1,600.00"
+        },
+        {
+          "name": "Lender's/Loan Premium",
+          "amount": "$700.00"
+        },
+        {
+          "name": "Endorsements (flat constant in this tool's formula)",
+          "amount": "$125.00"
+        },
+        {
+          "name": "Transfer Tax (one party's share; Maine's $2.20/$500 rate split in half per the tool's own formula -- byte-identical to the Stewart entry's $1,100.00 buyer/seller split above, a cross-provider convergence)",
+          "amount": "$1,100.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Statewide flat calculator (no county/metro tiering in the tool). A genuine, dollar-denominated, non-premium settlement-fee figure distinct from Stewart's Title Closing Fee for the same scenario ($650.00 vs $695.00), confirming this is an independently-configured second provider, not a shared template.",
+    "transactionContext": "Purchase, standard coverage, non-simultaneous, statewide Maine."
   }
 ]

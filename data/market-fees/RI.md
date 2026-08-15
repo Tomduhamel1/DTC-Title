@@ -1,5 +1,29 @@
 # Rhode Island (RI) — Market Fee Evidence
 
+## Calculator harvest (2026-08-15)
+
+Separate from the published-schedule survey below, 1 calculator-basis quote was harvested for the
+standard scenario ($500,000 purchase / $400,000 loan / Providence County / residential resale) —
+below the 3-provider calculator-quoted threshold this session. See RI.json's `"basis": "calculator"`
+entry for full itemized figures and CALCULATORS.md for the technical recipe.
+
+1. **Stewart Title Guaranty Company** — Stewart Rate Calculator (stewartratecalculator.com), matched
+   to settlement office **Warr & Warr, PC**, a Riverside RI closing-attorney firm — confirming RI's
+   attorney-closing custom already noted in the published-schedule survey below. Unusually rich
+   itemization for this survey's New England scarce states: Title Closing Fee $1,725.00 ($875 buyer/
+   $850 seller), Title Examination Fee $500.00 ($375/$125), Title Courier Fee $85.00 ($40/$45), Title
+   E Recording Fee $30.00 (buyer), Title Municipal Lien Certificate $25.00 (buyer), Owner's Premium
+   $1,750.00, Lender's Premium $1,000.00 (simultaneous), recording fees, and Rhode Island's real
+   estate conveyance tax $3,750.00 (100% seller-paid).
+
+**2nd/3rd-provider search (dead ends this session)**: Old Republic's 2nd tool (`Location=RI`) NoBot-
+blocked, same as ME this session — the Referer-header fix alone did not resolve it. Priority Title
+Company's RI closing-cost calculator (`prioritytitlecompany.com/purchase-cash`) is a Wix SPA with no
+discoverable static API — jsOnly. Absolute Title, LLC does not maintain a real RI calculator (see
+ME.md's note this session — `ratecalculator_ri.asp` resolves to a generic fallback page). A
+NetSheetCalc/TitleTap agency search surfaced "Island Title & Escrow Agency" (appid 396) but it is
+Merritt Island, FLORIDA-based and FL-only (`approved_states: [FL]`) — not an RI provider, excluded.
+
 ## Status: COMPLETE (scarce market) — 1 document / 1 provider verified
 
 Only 1 document verified despite 12+ query strategies and extensive direct

@@ -2509,3 +2509,54 @@ still vary and matter).
   continue down the remaining untouched "complete (scarce)" list by population after WV: ME
   (~1.4M), RI (~1.1M), DE (~1.05M), SD (~925k), ND (~797k), AK (~733k), DC (~702k), VT (~647k), WY
   (~588k).
+
+- **2026-08-15: applied the Stewart `/api/SRC/quote` recipe to ME and RI (next two by population on
+  the untouched-scarce list after WV); both gain a rich Stewart harvest plus one more provider apiece,
+  both closed out below the 3-provider threshold this session.** WV's 3rd-provider search was not
+  retried this session (time budget went to the next two states per the standing priority order
+  instead). Confirmed the Stewart recipe from CALCULATORS.md's 2026-08-14 entry works exactly as
+  documented, unmodified, for both new states — reinforcing that it's the nationwide, state-agnostic
+  unlock the prior session flagged it as.
+  **ME** (2 of 3 providers): Stewart Title Guaranty (Cumberland County/Portland, via Stewart Title-
+  Northern New England Division — Title Closing Fee $695.00 buyer, Owner's $1,500/Lender's $700
+  simultaneous, Maine Real Estate Transfer Tax $2,200.00 total 50/50 split); Absolute Title, LLC
+  (statewide, own first-party JS calculator — **new finding: this company also maintains a Maine-
+  specific calculator** at `ratecalculator_me.asp`/`rc_me.js`, same technique as their existing NH
+  entry — Settlement Fee $650.00 flat, Owner's $1,600, Transfer Tax $1,100.00 per side, byte-identical
+  to Stewart's split). **Also confirmed this session**: Absolute Title's calculator footprint is
+  exactly NH/ME/MA — `ratecalculator_ri.asp`/`_ct.asp`/`_de.asp`/`_vt.asp` all silently resolve to the
+  site's generic fallback page (HTTP 200 but no real form/JS), not real calculators, despite returning
+  200 — a new gotcha for future sessions: **a 200 status alone does not confirm a real per-state
+  calculator on this platform; check for the state-specific `rc_<st>.js` script tag or a matching
+  page `<title>`.** ME's 3rd-provider search came up empty: Old Republic's 2nd tool (`Location=ME`)
+  is still NoBot-blocked despite sending the NH session's Referer-header fix throughout — **the
+  Referer-header fix is not universally reliable**, consistent with WV's finding that a deeper
+  session-affinity fix (persistent connection reusing the exact post-redirect `(S(...))` URL, not
+  just a Referer header) is sometimes required; not pursued further this session given time budget.
+  Gateway Title of Maine's "rate calculator" page is a Gravity Forms/reCAPTCHA contact form, not a
+  calculator (gated). Cumberland Title Services + Central Maine Title's "fee calculator" routes to
+  First American's FACC tool (`facc.firstam.com`), the already-catalogued login/SSO gate.
+  **RI** (1 of 3 providers): Stewart Title Guaranty (Providence County, matched to settlement office
+  **Warr & Warr, PC**, a Riverside RI closing-attorney firm — confirms RI's attorney-closing custom
+  already noted in the published-schedule survey). This is the richest single-provider itemization
+  found in this survey's New England scarce-state harvests: 5 distinct settlement-service line items
+  (Title Closing Fee $1,725/Title Examination $500/Title Courier $85/Title E Recording $30/Municipal
+  Lien Certificate $25) plus Owner's $1,750/Lender's $1,000 premiums and a $3,750 conveyance tax
+  (100% seller-paid). RI's 2nd/3rd-provider search came up empty: Old Republic's 2nd tool
+  (`Location=RI`) also NoBot-blocked (same Referer-fix-doesn't-always-work finding as ME); Priority
+  Title Company's RI closing-cost calculator (`prioritytitlecompany.com/purchase-cash`) is a Wix SPA
+  with no discoverable static API (jsOnly); a NetSheetCalc/TitleTap search surfaced "Island Title &
+  Escrow Agency" (appid 396) but its own `APP_INFO` JSON confirms it's Merritt Island, FLORIDA-based
+  and FL-only (`approved_states: [{"label":"Florida","value":"FL"}]`) — a false-positive lead, ruled
+  out and logged so it isn't retried.
+  **Freshness/blocked-source retries**: not run this session (full time budget went to the calculator
+  harvest given the strong momentum from the newly-solved Stewart recipe).
+  **Next session priority**: (1) DE is next by population (~1.05M) on the untouched-scarce list,
+  followed by SD/ND/AK/DC/VT/WY; (2) WV still needs its 3rd provider (see 2026-08-14 entry — try WV
+  real estate attorney closing-cost tools per the mandatory-attorney-closing-state finding); (3) a
+  browser-driven session remains the highest-value unlock for TitleCapture/Qualia Connect (recurring
+  across many independent agencies) and for pushing ME/RI past the 3-provider threshold if no more
+  stateless leads turn up; (4) do not retry the plain Referer-header fix alone against Old Republic's
+  2nd tool for newly-blocked states — apply the full session-affinity fix (persistent connection
+  reusing the post-redirect `(S(...))` URL) documented in the WV entry instead, since the lighter fix
+  has now failed twice (ME, RI) after succeeding once (NH).
