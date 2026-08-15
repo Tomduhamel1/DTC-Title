@@ -2576,10 +2576,39 @@ still vary and matter).
   standing `alphaadv.net` exclusion precedent).
   **Freshness/blocked-source retries**: not run this session (full time budget went to the calculator
   harvest, now 3 states in one sitting on the strength of the Stewart recipe).
-  **Next session priority**: (1) SD is next by population (~925k) on the untouched-scarce list,
-  followed by ND/AK/DC/VT/WY; (2) WV still needs its 3rd provider; (3) a browser-driven session is
-  now the clearest path to push ME/RI/DE past the 3-provider threshold — Old Republic's 2nd tool is
-  blocked for all three via the lighter fix, and TitleCapture/Qualia Connect (recurring nationwide)
-  remain the highest-value jsOnly targets; (4) keep applying the Stewart recipe first against every
-  remaining scarce state — 5-for-5 clean harvests across 2 sessions (WV, NH, ME, RI, DE) with zero
-  recipe changes needed.
+  **Next session priority (superseded below)**: continue down the untouched-scarce list; SD was
+  picked up next, same session.
+
+  **Same session, continued: SD harvested (1 of 3 providers, below threshold) — 4th untouched state
+  this session, 6th consecutive clean Stewart harvest across 2 sessions.** Stewart Title Company's
+  Sioux Falls/Minnehaha County office returned the richest single-office itemization of this session's
+  batch: Title Closing Fee $400/Title Examination Fee $300/Title Certif I D $15, plus Owner's $1,325/
+  Lender's $837.50 premiums, recording fees, and a $500 deed/transfer tax. **New structural finding**:
+  South Dakota applies its 6.2% state sales tax to title-service fees ($24.80 on the Closing Fee,
+  $18.60 on the Examination Fee) — not seen in any other state harvested via this recipe so far,
+  worth watching for in future SD-adjacent states. Old Republic's 2nd tool NoBot-blocked for
+  `Location=SD` too (4th confirmation this session the lighter Referer-fix is unreliable, after ME/
+  RI/DE). Black Hills Title (an existing SD published-schedule provider) has a `/calculator/` page
+  but no discoverable static form/API — likely jsOnly, flagged for a future browser-driven session;
+  its site also surfaced a freshly-dated `SD-RATE-CHART-effective-2026.pdf` worth a freshness-pass
+  look later (not pursued this session, out of scope for the calculator mission). Pennington Title
+  and Titles of Dakota not checked this session (time budget went to closing out the session cleanly).
+
+  **Session total (2026-08-15): 4 new states touched (ME, RI, DE, SD), all below the 3-provider
+  threshold, 6 consecutive clean Stewart-recipe harvests across 2 sessions (WV, NH, ME, RI, DE, SD)
+  with zero recipe modification needed across 6 different state/county combinations — the strongest
+  confirmation yet that this recipe is genuinely state-agnostic and should remain the first technique
+  tried against every remaining scarce state.** Old Republic's 2nd-tool Referer-only fix failed 4/4
+  times this session (ME, RI, DE, SD) after working once for NH on 2026-08-14 — treat it as
+  unreliable going forward; the full session-affinity fix (persistent connection, reused post-redirect
+  `(S(...))` URL) from the WV entry is the correct fallback, or skip the tool under time pressure.
+  Freshness/blocked-source retries were not run this session (full time budget went to the calculator
+  harvest, given the recipe's strong momentum).
+  **Next session priority**: (1) ND is next by population (~797k) on the untouched-scarce list,
+  followed by AK/DC/VT/WY — keep applying the Stewart recipe first against each; (2) WV still needs
+  its 3rd provider (mandatory-attorney-closing-state finding, see 2026-08-14 entry); (3) a browser-
+  driven session is now the clearest path to push ME/RI/DE/SD past the 3-provider threshold —
+  TitleCapture/Qualia Connect (recurring nationwide) remain the highest-value jsOnly targets, and
+  Black Hills Title's broken/jsOnly SD calculator is a new specific lead for that session; (4) apply
+  the full Old Republic session-affinity fix (not the lighter Referer-only fix) to any state where
+  it's needed going forward.

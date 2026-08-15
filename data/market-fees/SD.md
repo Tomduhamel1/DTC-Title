@@ -1,5 +1,30 @@
 # South Dakota — Market Fee Evidence
 
+## Calculator harvest (2026-08-15)
+
+Separate from the published-schedule survey below, 1 calculator-basis quote was harvested for the
+standard scenario ($500,000 purchase / $400,000 loan / Minnehaha County-Sioux Falls / residential
+resale) — below the 3-provider calculator-quoted threshold this session. See SD.json's `"basis":
+"calculator"` entry for full itemized figures and CALCULATORS.md for the technical recipe.
+
+1. **Stewart Title Guaranty Company** — Stewart Rate Calculator (stewartratecalculator.com), matched
+   to Stewart Title Company's own Sioux Falls office. The richest single-office Stewart harvest of
+   this session's multi-state batch: Title Closing Fee $400.00, Title Examination Fee $300.00, Title
+   Certif I D $15.00, Owner's Premium $1,325.00, Lender's Premium $837.50 (simultaneous), recording
+   fees, and a $500.00 deed/transfer tax (100% seller-paid). **New structural finding**: South Dakota
+   applies its 6.2% state sales tax to itemized title-service fees ($24.80 on the Closing Fee, $18.60
+   on the Examination Fee) — the first instance of sales tax on title-service fees found anywhere in
+   this survey.
+
+**2nd/3rd-provider search (dead ends this session)**: Old Republic's 2nd tool (`Location=SD`) NoBot-
+blocked, consistent with ME/RI/DE this session. Black Hills Title, Inc. (an existing SD provider in
+the published-schedule survey) has a `/calculator/` page but no discoverable embedded
+form/iframe/API in the static HTML — likely jsOnly or currently broken; flagged for a browser-driven
+session. Its site does link a freshly-dated `SD-RATE-CHART-effective-2026.pdf` (uploaded 2026-08) —
+noted here for a future published-schedule freshness pass, not pursued as calculator evidence this
+session. Pennington Title and Titles of Dakota not checked for calculators this session (time
+budget).
+
 ## Status: complete (scarce market) — 5 verified sources, 2026-07-22
 
 South Dakota is a filed-rate (insurer-filed, not state-promulgated) title insurance

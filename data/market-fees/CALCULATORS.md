@@ -3059,3 +3059,35 @@ evidence yet that this recipe is genuinely state-agnostic.** Next session should
 population-ordered list (SD ~925k, ND ~797k, AK ~733k, DC ~702k, VT ~647k, WY ~588k) with Stewart
 first, and separately revisit WV's 3rd-provider gap and a browser-driven pass at TitleCapture/Qualia
 Connect to push ME/RI/DE past threshold.
+
+### SD added same session — 6th consecutive clean Stewart harvest; South Dakota applies sales tax to title-service fees (new finding)
+Applied the Stewart recipe to SD (Minnehaha County/Sioux Falls) after ME/RI/DE, again with zero
+modification — 6 consecutive states (WV, NH, ME, RI, DE, SD across 2 sessions) with an unchanged
+recipe. Stewart Title Company's Sioux Falls office returned the richest itemization of this session's
+batch: Title Closing Fee $400.00, Title Examination Fee $300.00, Title Certif I D $15.00, plus
+Owner's $1,325.00/Lender's $837.50 premiums and a $500.00 deed/transfer tax. **New finding**: two of
+the three itemized fees carry an explicit `SalesTax` line in the response (`$24.80` on the $400.00
+Closing Fee, `$18.60` on the $300.00 Examination Fee — both exactly 6.2%, South Dakota's state sales
+tax rate) — the first state in this recipe's usage where the tool itself computes and returns sales
+tax on a title-service fee, rather than just on the deed/transfer-tax line as seen elsewhere. Future
+sessions harvesting via this recipe should check every `ItemizedTitleServiceFee` entry's `SalesTax`/
+`SalesTaxBuyerAmount`/`SalesTaxSellerAmount` fields (present in the schema for every state, usually
+`"0"`) rather than assuming they're always zero.
+
+Black Hills Title, Inc. (`blackhillstitle.com/calculator/`) — an existing SD published-schedule
+provider — advertises a rate calculator but the static HTML has no discoverable iframe/form-action/
+API endpoint; likely a JS widget (Elementor-built site) that couldn't be mapped without a browser.
+Flagged for a future browser-driven session. Its "South Dakota Rates" nav link also surfaced a
+freshly-dated `SD-RATE-CHART-effective-2026.pdf` (uploaded August 2026) — a lead for a future
+published-schedule freshness pass, out of scope for tonight's calculator-only mission. Old Republic's
+2nd tool NoBot-blocked for `Location=SD` too — the 4th state in a row this session (ME, RI, DE, SD)
+where the Referer-only fix failed; the full session-affinity recipe (or skipping the tool) is now the
+clear standing recommendation rather than a one-off caveat.
+
+**Session grand total (2026-08-15): 4 states harvested (ME, RI, DE, SD), all below the 3-provider
+threshold but each with a genuinely new, richly-itemized Stewart data point; 3 commits pushed to
+`research/market-fees`.** Next session: continue the population-ordered untouched-scarce list (ND
+~797k, AK ~733k, DC ~702k, VT ~647k, WY ~588k) with Stewart first; revisit WV's 3rd-provider gap; a
+browser-driven session remains the highest-leverage unresolved lead (TitleCapture/Qualia Connect
+nationwide, plus Black Hills Title's SD calculator specifically) for pushing any of ME/RI/DE/SD past
+threshold without waiting on more one-off provider discoveries.

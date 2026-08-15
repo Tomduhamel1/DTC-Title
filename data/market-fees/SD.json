@@ -161,5 +161,58 @@
     },
     "bundlingNotes": "This is a bare owner's/lender's/lender's-simultaneous title insurance premium rate table with no escrow, closing, settlement, search/exam, or document-prep fees itemized anywhere on the document -- the four county-office phone numbers (Lawrence, Meade, Butte, Harding) are provided in lieu of a settlement-fee schedule ('please call us for any questions or specific quotes'). Rate steps are irregular/non-formulaic in places (e.g., $51,000 jumps from $379 to $380 owner's rate, a $1 step inconsistent with the surrounding $4-per-$1,000 pattern), suggesting the table may have accumulated small manual-entry adjustments across its 2022-2024 revision history.",
     "transactionContext": "Northern Black Hills counties (Lawrence/Spearfish, Meade/Sturgis, Butte/Belle Fourche, Harding/Buffalo). Owner's, lender's, and lender's-simultaneous title insurance premium schedule only; no settlement/closing-service fee breakdown."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company — Stewart Rate Calculator (stewartratecalculator.com), via Stewart Title Company (Sioux Falls office)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true",
+    "endpointOrParams": "Genuine JSON REST API at /api/SRC/*, driven via plain HTTP GET/POST (no browser/JS execution), per the nationwide recipe documented in CALCULATORS.md. Sequence: GET /api/SRC/transactiontypes?statecode=SD -> GET /api/SRC/propertysearch?value=Sioux%20Falls,%20SD (resolves Minnehaha County) -> GET /api/SRC/providers?statecode=SD&countycode=<FIPS>&zipcode=<zip>&transactiontype=SALE (chosen provider: Stewart Title Company, ID 1880, Sioux Falls) -> GET /api/SRC/statesettings?statecode=SD -> GET /api/SRC/ernstlookup?statecode=SD&countycode=<FIPS> -> POST /api/SRC/quote twice (QuoteType=3, QuoteType=2). No personal-data fields required or entered.",
+    "retrievalDate": "2026-08-15",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Minnehaha County (Sioux Falls), residential resale, Sale/Purchase with Mortgage transaction.",
+    "methodology": "Same technique as the WV/NH/ME/RI/DE entries' Stewart Rate Calculator harvest (see CALCULATORS.md's 2026-08-14 master recipe for the fully-documented request/response shape); 6th consecutive state harvested cleanly with this recipe, zero modification.",
+    "settlementFee": {
+      "note": "Title Closing Fee $400.00 (100% buyer) plus a distinct Title Examination Fee $300.00 (100% buyer) and a small Title Certif I D fee $15.00 (100% seller). New finding: South Dakota applies its state sales tax to these two service fees -- $24.80 on the $400.00 Title Closing Fee and $18.60 on the $300.00 Title Examination Fee (both 6.2% of the base fee) -- the first instance of a state sales tax being applied to itemized title-service fees found anywhere in this survey."
+    },
+    "itemizedFees": {
+      "processing": "$400.00 (Title Closing Fee, buyer) + $24.80 SD sales tax (buyer)",
+      "searchExam": "$300.00 (Title Examination Fee, buyer) + $18.60 SD sales tax (buyer)",
+      "other": [
+        {
+          "name": "Title Certif I D (seller)",
+          "amount": "$15.00"
+        },
+        {
+          "name": "Owner's Policy premium, RateManual (both flows agreed)",
+          "amount": "$1,325.00"
+        },
+        {
+          "name": "Lender's Policy premium, simultaneous-flow (QuoteType=3)",
+          "amount": "$837.50"
+        },
+        {
+          "name": "Lender's Policy premium, stand-alone-flow (QuoteType=2)",
+          "amount": "$100.00"
+        },
+        {
+          "name": "Recording fee, Mortgage",
+          "amount": "$30.00"
+        },
+        {
+          "name": "Recording fee, Deed",
+          "amount": "$30.00"
+        },
+        {
+          "name": "Recording fee, Release",
+          "amount": "$30.00"
+        },
+        {
+          "name": "South Dakota deed/transfer tax, total on $500,000, 100% seller-paid per the tool's own CFPB2015 breakdown",
+          "amount": "$500.00"
+        }
+      ]
+    },
+    "bundlingNotes": "The richest single-office Stewart harvest of this session's batch by line-item count (3 distinct settlement-service fees plus sales tax on 2 of them). South Dakota's application of sales tax to title service fees is a genuinely new structural finding for this survey, worth flagging for any future SD published-schedule work as well.",
+    "transactionContext": "Sale/Purchase with Mortgage, Minnehaha County/Sioux Falls SD."
   }
 ]
