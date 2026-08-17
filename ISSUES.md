@@ -61,7 +61,15 @@ an IAM problem and is not one.
   `docs/SES_PRODUCTION_ACCESS_APPEAL.md`.
 - **Interim:** `aws ses verify-email-identity --email-address <addr>` per
   person (they must click AWS's confirmation). Done for
-  `steve@firstnte.com` 2026-08-17 — pending his click. Does not scale.
+  `steve@firstnte.com` 2026-08-17 — verified, and his sign-in is
+  **confirmed working** end to end. Does not scale to customers.
+- **IAM footgun found the same day:** AWS authorizes `ses:SendEmail`
+  against the *recipient's* identity ARN too, so a policy listing specific
+  identity ARNs as `Resource` blocks everyone not listed. Final working
+  policy: `Resource: "*"` + `Condition StringLike ses:FromAddress
+  *@betterclose.co`. An intermediate attempt that scoped `Resource` to
+  `identity/betterclose.co` produced `implicitDeny` — verify with
+  `aws iam simulate-principal-policy` before trusting a change here.
 - Two real bugs were found and fixed while chasing this, both of which
   would have broken sending anyway once the sandbox is lifted: the
   `AWS_SES_FROM_EMAIL` → `APP_AWS_SES_FROM_EMAIL` name mismatch (PR #85)
