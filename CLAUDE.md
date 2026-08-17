@@ -56,7 +56,19 @@ hours.
   `aws sesv2 get-account --region us-east-1` first.
 - Interim unblock for one person:
   `aws ses verify-email-identity --email-address <addr> --region us-east-1`
-  (they must click AWS's confirmation email).
+  (they must click AWS's confirmation email). Confirmed working end to end
+  for a verified recipient on 2026-08-17.
+- **IAM shape for SES (do not "tighten" this):** AWS authorizes
+  `ses:SendEmail` against the **recipient's** identity ARN as well as the
+  sender's, so listing specific identity ARNs as `Resource` silently blocks
+  mail to everyone not listed. The working policy on `betterclose-app` is
+  `Resource: "*"` plus
+  `Condition: StringLike { ses:FromAddress: "*@betterclose.co" }` — the
+  condition is the real constraint (this key can only send *as*
+  betterclose.co). Scoping `Resource` to `identity/betterclose.co` looks
+  safer but yields `implicitDeny` with no matched statement. Check any
+  change with `aws iam simulate-principal-policy` and a
+  `ses:FromAddress` context entry.
 - **Admin access** = email listed in `ADMIN_EMAILS` (app-level env,
   comma-separated; `src/lib/auth/admin.ts`). No role column. Changing it
   requires a rebuild.
