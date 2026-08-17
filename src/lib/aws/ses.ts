@@ -38,7 +38,11 @@ export async function sendEmail({
   textBody,
   from,
 }: SendEmailParams): Promise<string> {
-  const fromAddress = from || process.env.AWS_SES_FROM_EMAIL || 'noreply@betterclose.co'
+  const fromAddress =
+    from ||
+    process.env.APP_AWS_SES_FROM_EMAIL ||
+    process.env.AWS_SES_FROM_EMAIL ||
+    'noreply@betterclose.co'
 
   // SES Source supports RFC 5322 "Display Name <addr@host>" format. Inboxes
   // surface the display name to recipients (e.g. "BetterClose" instead of
