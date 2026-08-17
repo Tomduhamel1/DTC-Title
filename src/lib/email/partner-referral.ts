@@ -36,7 +36,10 @@ interface PartnerReferralEmailData {
 export async function sendPartnerReferralEmail(
   data: PartnerReferralEmailData
 ): Promise<boolean> {
-  const fromEmail = process.env.AWS_SES_FROM_EMAIL || 'noreply@truefeeclosing.com'
+  const fromEmail =
+    process.env.APP_AWS_SES_FROM_EMAIL ||
+    process.env.AWS_SES_FROM_EMAIL ||
+    'noreply@betterclose.co'
   const formattedSource = /<[^>]+>/.test(fromEmail)
     ? fromEmail
     : `BetterClose <${fromEmail}>`

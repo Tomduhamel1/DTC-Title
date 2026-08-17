@@ -49,6 +49,32 @@ only.
 
 ## Open
 
+### Production secrets need rotation (found 2026-08-17)
+The Amplify `main` branch environment was read in full during a support
+session, putting live production secrets into a chat transcript:
+`DATABASE_URL` (Neon password), `NEXTAUTH_SECRET`, `ORDER_INGEST_SECRET`,
+and the `APP_AWS_ACCESS_KEY_ID`/`APP_AWS_SECRET_ACCESS_KEY` pair. Rotate
+all five. Notes: rotating `NEXTAUTH_SECRET` signs out every existing
+session (pick a quiet window); the AWS key is the highest priority since
+it is a standing credential usable outside the app. After rotating, update
+the branch env in Amplify and redeploy `main`.
+
+### Coming-soon gate was one deploy from failing open (found/fixed 2026-08-17)
+`COMING_SOON_MODE` and `COMING_SOON_BYPASS_KEY` had been removed from the
+Amplify environment while the *running* build still had them baked in — so
+the gate worked, but `amplify.yml` would have written neither into
+`.env.production` on the next build, and `middleware.ts` opens the whole
+site when `COMING_SOON_MODE !== 'true'`. That would have exposed
+`/licenses` (placeholder "[number]" license numbers) and `/for-lenders`
+(advertises an API/portal/webhooks that are not live). Both vars restored
+on the `main` branch env 2026-08-17 + redeploy (job 114).
+**Lesson: env vars deleted from the console are invisible until the next
+build.** Before any deploy that matters, confirm the build log shows
+`- COMING_SOON_MODE (len=4)` rather than `MISSING!`. Longer-term fix worth
+considering: fail the build when a launch-critical var is missing, instead
+of printing `MISSING!` and continuing.
+
+
 ### DECISIONS MADE 2026-08-14 — for team review (Tom-directed)
 Bucks (premium-derived credit) is now excluded in the four verified-strict
 anti-rebating states, and each got an FL-style BetterClose service-fee card

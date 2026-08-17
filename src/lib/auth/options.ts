@@ -19,7 +19,14 @@ export const authOptions: NextAuthOptions = {
     EmailProvider({
       // We never call SMTP — sendVerificationRequest does its own send via SES.
       server: { host: 'unused', port: 0, auth: { user: '', pass: '' } },
-      from: process.env.AWS_SES_FROM_EMAIL || 'noreply@truefeeclosing.com',
+      // APP_AWS_* is the deployed name (Amplify reserves bare AWS_* names);
+      // the unprefixed read is the local-dev fallback. The last-resort
+      // literal must be a VERIFIED SES identity — an unverified domain here
+      // makes every send fail with NextAuth's opaque EmailSignin error.
+      from:
+        process.env.APP_AWS_SES_FROM_EMAIL ||
+        process.env.AWS_SES_FROM_EMAIL ||
+        'noreply@betterclose.co',
       async sendVerificationRequest({ identifier, url, provider }) {
         // 5 magic-link sends per email per 15 min
         const limit = rateLimit(`magic:${identifier.toLowerCase()}`, 5, 15 * 60 * 1000)
