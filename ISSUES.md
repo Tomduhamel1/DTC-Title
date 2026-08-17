@@ -49,6 +49,30 @@ only.
 
 ## Open
 
+### LAUNCH BLOCKER: SES is in the sandbox — no real user can sign in (found 2026-08-17)
+`ProductionAccessEnabled: false` on account 621852467690 (us-east-1), and a
+prior production-access request was **DENIED** (case `177722805500436`). In
+the sandbox SES delivers only to *verified* identities, so every
+magic-link sign-in from a real broker/agent/lender fails. It surfaces as
+NextAuth's opaque `error=EmailSignin` ("Could not send email"), and SES
+reports it as `AccessDenied` naming the *recipient* ARN — which reads like
+an IAM problem and is not one.
+- **Fix:** appeal the denied case. Draft justification ready in
+  `docs/SES_PRODUCTION_ACCESS_APPEAL.md`.
+- **Interim:** `aws ses verify-email-identity --email-address <addr>` per
+  person (they must click AWS's confirmation). Done for
+  `steve@firstnte.com` 2026-08-17 — pending his click. Does not scale.
+- Two real bugs were found and fixed while chasing this, both of which
+  would have broken sending anyway once the sandbox is lifted: the
+  `AWS_SES_FROM_EMAIL` → `APP_AWS_SES_FROM_EMAIL` name mismatch (PR #85)
+  and an over-scoped IAM policy that listed recipient ARNs as resources
+  (corrected 2026-08-17 to resource=domain identity + `ses:FromAddress`
+  condition).
+- **Worth doing regardless:** every send failure — bad from-address, IAM
+  denial, sandbox restriction — presents identically in the UI. Surface a
+  distinguishable error so the next outage is diagnosable without
+  CloudWatch.
+
 ### Production secrets need rotation (found 2026-08-17)
 The Amplify `main` branch environment was read in full during a support
 session, putting live production secrets into a chat transcript:
