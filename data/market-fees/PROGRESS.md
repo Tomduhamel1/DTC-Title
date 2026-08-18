@@ -47,6 +47,12 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | NH | 3 (Stewart Title Guaranty — Stewart Rate Calculator, Hillsborough County/Manchester, Title Closing Fee $725.00 buyer via Great East Title and Closing — first session to fully solve stewartratecalculator.com's `/api/SRC/quote` endpoint, see CALCULATORS.md master recipe; Old Republic's 2nd tool — statewide, `Location=NH`, Owner's $1,200/Lender's $100 simultaneous premium, unblocked via a newly-found Referer-header fix; Absolute Title, LLC — statewide, own first-party JS calculator, Settlement Fee $595.00 flat) | **calculator-quoted (3 providers)** | 2026-08-14 |
 | WV | 3 (Stewart Title Guaranty — Stewart Rate Calculator, Kanawha County/Charleston via Omnia Title Corp., Title Closing Fee $750.00 total; Old Republic's 2nd tool — statewide, `Location=WV`, Owner's $1,700/Lender's $100 simultaneous premium; WFG National Title — Seller Net Sheet Rate Calculator, Kanawha County, Owner's Premium $2,280.00) | **calculator-quoted (3 providers)** | 2026-08-18 |
 | ME | 3 (Stewart Title Guaranty — Stewart Rate Calculator, Cumberland County/Portland via Stewart Title-Northern New England Division, Title Closing Fee $695.00; Absolute Title, LLC — own Maine-specific calculator, Settlement Fee $650.00 flat; WFG National Title — Seller Net Sheet Rate Calculator, Cumberland County, Owner's Premium $1,750.00) | **calculator-quoted (3 providers)** | 2026-08-18 |
+| ND | 3 (Dickey and LaMoure County Abstract and Title Company — Stewart Rate Calculator, Cass County/Fargo, Title Closing Fee $350.00 buyer, 7-line itemization; WFG National Title — Seller Net Sheet Rate Calculator, Owner's Premium $1,238.00; FNF-family underwriter — ratecalculator.fnf.com, Grand Total $1,450.00) | **calculator-quoted (3 providers)** | 2026-08-18 |
+| VT | 3 (Omnia Title Corp. — Stewart Rate Calculator, Chittenden County/Burlington, Title Closing Fee $750.00 total; WFG National Title — Seller Net Sheet Rate Calculator, Owner's Premium $1,878.80; FNF-family underwriter — ratecalculator.fnf.com, Grand Total $1,620.00) | **calculator-quoted (3 providers)** | 2026-08-18 |
+| WY | 3 (Executive Title Services LLC — Stewart Rate Calculator, Laramie County/Cheyenne, Title Closing Fee $400.00 total; WFG National Title — Seller Net Sheet Rate Calculator, Owner's Premium $1,733.00; FNF-family underwriter — ratecalculator.fnf.com, Grand Total $2,268.00) | **calculator-quoted (3 providers)** | 2026-08-18 |
+| RI | 3 (Stewart Title Guaranty — Stewart Rate Calculator, Providence County via Warr & Warr PC, Title Closing Fee $1,725.00 total; WFG National Title — Seller Net Sheet Rate Calculator, Owner's Premium $1,925.00; FNF-family underwriter — ratecalculator.fnf.com, Grand Total $1,800.00) | **calculator-quoted (3 providers)** | 2026-08-18 |
+| DE | 3 (Stewart Title Guaranty — Stewart Rate Calculator, New Castle County/Wilmington, null settlement fee corroborating DTIRB attorney-closing finding; WFG National Title — Seller Net Sheet Rate Calculator, Owner's Premium $2,424.00; FNF-family underwriter — ratecalculator.fnf.com, Grand Total $2,300.00, byte-identical Owner's Premium to Stewart) | **calculator-quoted (3 providers)** | 2026-08-18 |
+| SD | 3 (Stewart Title Company — Stewart Rate Calculator, Minnehaha County/Sioux Falls, Title Closing Fee $400.00 + SD sales tax; WFG National Title — Seller Net Sheet Rate Calculator, Owner's Premium $2,000.00; FNF-family underwriter — ratecalculator.fnf.com, Grand Total $1,662.50) | **calculator-quoted (3 providers)** | 2026-08-18 |
 
 FNF's ratecalculator.fnf.com **is drivable via plain HTTP POST, no browser needed** — confirmed
 2026-07-25 by replaying its ASP.NET WebForms `__doPostBack`/`__VIEWSTATE` protocol directly (the
@@ -2663,3 +2669,43 @@ still vary and matter).
   still HTTP 403. No status change on any of the three. Freshness spot-check (5 oldest published
   sources) was not run this session — full time budget went to the calculator-harvest breadth push
   described above.
+
+- **2026-08-18, continued in the same session — the FNF national rate calculator (already solved
+  2026-07-25/2026-08-06) also generalizes to every remaining below-threshold small state, crossing
+  ND/VT/WY/RI/DE/SD to the 3-provider threshold in one pass and closing out the calculator-harvest
+  mission for the whole "complete (scarce), never yet worked" list except AK and DC.** After the
+  WFG generalization above still left 7 states 1 provider short (ND/DC/VT/WY/RI/DE/SD) and AK with
+  no WFG fallback, tried `ratecalculator.fnf.com` (already confirmed working and in-scope
+  premium-only evidence since 2026-07-25/2026-08-06) against all 8. Rebuilt the ASP.NET WebForms
+  postback recipe as a local Python script (not committed — scratch tooling) and found/fixed a bug
+  that had silently blocked the *original* 2026-08-06 script from ever reaching this point for these
+  states: **the page renders a hidden `ctl00$btnDummy` submit button (used only for Enter-key
+  submission) alongside the real `btnGeneralNext`/`btnFinish` buttons** — a naive "first submit
+  button found" selector clicks the dummy button instead and the flow silently fails to advance
+  (same-length response, no error). Fix: always filter submit-button candidates for the actual
+  button's own name substring (`Next`/`Finish`), never just take the first match. Also note for
+  future replays: the Transaction Type question is a `<select>` dropdown for most of these states,
+  not the radio-group UI documented for some other states in the original recipe — handle both
+  shapes. With the bug fixed, **6 of 8 states harvested cleanly on the first pass**: ND (Grand Total
+  $1,450.00), VT ($1,620.00), WY ($2,268.00), RI ($1,800.00), DE ($2,300.00, byte-identical Owner's
+  Premium to that state's own Stewart entry — a genuine cross-tool corroboration), SD ($1,662.50).
+  **AK also succeeded** ($1,985.25) but doesn't cross threshold alone since WFG has no AK coverage
+  (still needs 1 more). **DC failed** — the flow completes without error but never reaches a
+  results/Grand-Total page (a much larger, ~194KB response with no quote content), a DC-specific
+  quirk not yet root-caused (DC has no county dropdown at all, unlike every other state tried, which
+  may be related) — flagged for a future session.
+  **Results this pass**: **ND, VT, WY, RI, DE, and SD all cross the 3-provider calculator-quoted
+  threshold** (each: Stewart/local-agency entry + WFG + FNF). **AK reaches 2 of 3** (Stewart + FNF,
+  still no WFG). **DC remains at 2 of 3** (Stewart + WFG; FNF unsolved for this state specifically).
+  Combined with the WFG pass earlier in this same session, this closes out the calculator-harvest
+  mission for every state in the original "complete (scarce), never yet worked" list except **AK**
+  (needs 1 more provider) and **DC** (needs 1 more provider, and its own FNF quirk needs solving).
+  **Next session priority**: (1) DC's FNF quirk (no county dropdown — investigate whether the flow
+  needs a different first step, e.g. an implicit DC-specific transaction path); (2) AK's 3rd
+  provider — no WFG coverage, so try NetSheetCalc/TitleTap, MyTitleRates.com, or Alyeska Title
+  Guaranty Agency's own site for a genuine AK-specific 2nd/3rd calculator; (3) the standing freshness
+  and blocked-source-retry passes remain overdue; (4) with the scarce-state calculator backlog now
+  essentially cleared, a future session should pivot back to richness passes on already-crossed
+  states (2nd/3rd corroborating sources, per the standing richness-pass precedent) or a browser-driven
+  session to finally crack TitleCapture/Qualia Connect, the single highest-value remaining jsOnly
+  target nationwide.

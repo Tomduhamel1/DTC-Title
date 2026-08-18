@@ -341,5 +341,23 @@
     "sectionTotals": null,
     "bundlingNotes": "Property location for this request: Sioux Falls, SD (Minnehaha County).",
     "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Minnehaha County, SD."
+  },
+  {
+    "provider": "FNF-family underwriter (Chicago Title/Fidelity National Title/Commonwealth Land Title -- ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine; this tool's pre-selected default underwriter brand varies by request, and prior sessions confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=SD",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=SD (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-18",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Minnehaha County (Sioux Falls) (the standard-scenario county), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions, Concurrent Owner's+Loan rate eligibility answered Yes (the tool's own default first option).",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback), following this project's existing FNF recipe documented in CALCULATORS.md: GET the county-selection page, POST the county (own __EVENTTARGET), POST btnGeneralNext=Next, POST TranType$ddl=PropertyPurchase, POST AmountPurchase$txt=500000 then AmountLoan1$txt=400000 (each with its own __EVENTTARGET), auto-answer the revealed Concurrent-rate-eligibility question Yes, then POST btnFinish=Finish for the final Rate Summary. One correction to the prior recipe write-up worth flagging: the page also renders a hidden 'ctl00$btnDummy' submit button used only for Enter-key submission -- a naive first-submit-button-found selector picks this dummy button instead of the real 'Next'/'Finish' button and silently fails to advance the flow; always filter submit-button candidates for the actual button's own name substring ('Next'/'Finish') rather than taking the first match. No personal-data fields exist anywhere in this flow.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1562.50 (Owner's Policy Premium, concurrent-issue rate)",
+      "loanPolicyPremium": "$100.00 (Loan Policy Premium, concurrent-issue rate)",
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence."
+    },
+    "sectionTotals": "Grand Total (Owner's Policy Purchased): $1662.50.",
+    "bundlingNotes": "Harvested as part of this session's systematic FNF pass across every remaining below-threshold small/low-population state (ND/VT/WY/RI/DE/SD/AK), following the same technique already applied to the 2026-08-06 session's 8-state batch.",
+    "transactionContext": "Owner's + Loan Policy concurrent-issue premiums for a $500,000 residential purchase / $400,000 loan, Minnehaha County (Sioux Falls)."
   }
 ]

@@ -1,11 +1,11 @@
 # Wyoming — Market Fee Evidence
 
-## Calculator harvest (2026-08-18)
+## Calculator harvest (2026-08-18) — **calculator-quoted (3 providers)**
 
-Separate from the published-schedule survey below, 2 calculator-basis quotes were harvested for the
+Separate from the published-schedule survey below, 3 calculator-basis quotes were harvested for the
 standard scenario ($500,000 purchase / $400,000 loan / Laramie County-Cheyenne / residential
-resale) — below the 3-provider calculator-quoted threshold this session. See WY.json's `"basis":
-"calculator"` entries for full itemized figures and CALCULATORS.md for the technical recipes.
+resale), crossing the 3-provider calculator-quoted threshold. See WY.json's `"basis": "calculator"`
+entries for full itemized figures and CALCULATORS.md for the technical recipes.
 
 1. **Executive Title Services LLC** (Jackson, WY) — via Stewart Rate Calculator
    (stewartratecalculator.com), applying the recipe fully documented in CALCULATORS.md's 2026-08-14
@@ -20,8 +20,11 @@ resale) — below the 3-provider calculator-quoted threshold this session. See W
    in CALCULATORS.md's 2026-08-08 entry. Premium-only result: Owner's Title Insurance Premium
    $1,733.00 (WY is not one of the 7 states with configured HUD-fee itemization in this tool).
 
-**3rd-provider search**: not run this session (time budget spent across 5 states); WY remains a
-target for a future session's 3rd-provider pass.
+3. **FNF-family underwriter** (ratecalculator.fnf.com, shared ASP.NET WebForms engine) — Laramie
+   County, via the recipe already documented in CALCULATORS.md's FNF section. Owner's Policy Premium
+   $1,597.00, Loan Policy Premium $671.00 (concurrent-issue rate), Grand Total **$2,268.00**.
+   Premium-only, no settlement-fee itemization. **This crosses WY to the 3-provider calculator-quoted
+   threshold.**
 
 ## Status: complete (scarce market) — 3 verified sources (all premium-only rate schedules), 2026-07-22
 

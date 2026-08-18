@@ -1,12 +1,11 @@
 # South Dakota — Market Fee Evidence
 
-## Calculator harvest (2026-08-15 through 2026-08-18)
+## Calculator harvest (2026-08-15 through 2026-08-18) — **calculator-quoted (3 providers)**
 
-Separate from the published-schedule survey below, 2 calculator-basis quotes have been harvested for
+Separate from the published-schedule survey below, 3 calculator-basis quotes have been harvested for
 the standard scenario ($500,000 purchase / $400,000 loan / Minnehaha County-Sioux Falls /
-residential resale) — still below the 3-provider calculator-quoted threshold. See SD.json's
-`"basis": "calculator"` entries for full itemized figures and CALCULATORS.md for the technical
-recipes.
+residential resale), crossing the 3-provider calculator-quoted threshold. See SD.json's `"basis":
+"calculator"` entries for full itemized figures and CALCULATORS.md for the technical recipes.
 
 1. **Stewart Title Guaranty Company** — Stewart Rate Calculator (stewartratecalculator.com), matched
    to Stewart Title Company's own Sioux Falls office. The richest single-office Stewart harvest of
@@ -21,7 +20,13 @@ recipes.
    in CALCULATORS.md's 2026-08-08 entry. Confirmed SD `isCalculationEnabled: true` via
    `GetCalculationEnabledStates` and harvested directly (Minnehaha County/Sioux Falls). Premium-only
    result: Owner's Title Insurance Premium **$2,000.00** (SD is not one of the 7 states with
-   configured HUD-fee itemization in this tool). SD now needs 1 more provider to cross threshold.
+   configured HUD-fee itemization in this tool).
+3. **FNF-family underwriter** (ratecalculator.fnf.com, shared ASP.NET WebForms engine) — Minnehaha
+   County, via the recipe already documented in CALCULATORS.md's FNF section. Owner's Policy Premium
+   $1,562.50, Loan Policy Premium $100.00 (concurrent-issue rate), Grand Total **$1,662.50**.
+   Premium-only, no settlement-fee itemization (no sales-tax line appeared on this tool's output,
+   unlike the Stewart entry above -- FNF does not surface SD's sales-tax treatment). **This crosses
+   SD to the 3-provider calculator-quoted threshold.**
 
 **2nd/3rd-provider search (dead ends this session)**: Old Republic's 2nd tool (`Location=SD`) NoBot-
 blocked, consistent with ME/RI/DE this session. Black Hills Title, Inc. (an existing SD provider in

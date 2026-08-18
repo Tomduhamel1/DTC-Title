@@ -1,11 +1,11 @@
 # Vermont — Market Fee Evidence
 
-## Calculator harvest (2026-08-18)
+## Calculator harvest (2026-08-18) — **calculator-quoted (3 providers)**
 
-Separate from the published-schedule survey below, 2 calculator-basis quotes were harvested for the
+Separate from the published-schedule survey below, 3 calculator-basis quotes were harvested for the
 standard scenario ($500,000 purchase / $400,000 loan / Chittenden County-Burlington / residential
-resale) — below the 3-provider calculator-quoted threshold this session. See VT.json's `"basis":
-"calculator"` entries for full itemized figures and CALCULATORS.md for the technical recipes.
+resale), crossing the 3-provider calculator-quoted threshold. See VT.json's `"basis": "calculator"`
+entries for full itemized figures and CALCULATORS.md for the technical recipes.
 
 1. **Omnia Title Corp.** (Tampa, FL) — via Stewart Rate Calculator (stewartratecalculator.com),
    applying the recipe fully documented in CALCULATORS.md's 2026-08-14 entry unmodified. Stewart's
@@ -20,8 +20,11 @@ resale) — below the 3-provider calculator-quoted threshold this session. See V
    in CALCULATORS.md's 2026-08-08 entry. Premium-only result: Owner's Title Insurance Premium
    $1,878.80 (VT is not one of the 7 states with configured HUD-fee itemization in this tool).
 
-**3rd-provider search**: not run this session (time budget spent across 5 states); VT remains a
-target for a future session's 3rd-provider pass.
+3. **FNF-family underwriter** (ratecalculator.fnf.com, shared ASP.NET WebForms engine) — Chittenden
+   County, via the recipe already documented in CALCULATORS.md's FNF section. Owner's Policy Premium
+   $1,570.00, Loan Policy Premium $50.00 (concurrent-issue rate), Grand Total **$1,620.00**.
+   Premium-only, no settlement-fee itemization. **This crosses VT to the 3-provider calculator-quoted
+   threshold.**
 
 ## Status: complete (scarce market) — 6 verified sources (3 premium-only rate manuals + 3 settlement/search-fee-adjacent sources), 2026-07-22
 

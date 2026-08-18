@@ -2,10 +2,10 @@
 
 ## Calculator harvest (2026-08-18)
 
-Separate from the published-schedule survey below, 1 calculator-basis quote was harvested for the
+Separate from the published-schedule survey below, 2 calculator-basis quotes were harvested for the
 standard scenario ($500,000 purchase / $400,000 loan / Anchorage / residential resale) — below the
-3-provider calculator-quoted threshold this session. See AK.json's `"basis": "calculator"` entry for
-full itemized figures and CALCULATORS.md for the technical recipe.
+3-provider calculator-quoted threshold this session. See AK.json's `"basis": "calculator"` entries
+for full itemized figures and CALCULATORS.md for the technical recipes.
 
 1. **Stewart Title Company — Stewart Title of Alaska** (Anchorage) — via Stewart Rate Calculator
    (stewartratecalculator.com), applying the recipe fully documented in CALCULATORS.md's 2026-08-14
@@ -16,12 +16,16 @@ full itemized figures and CALCULATORS.md for the technical recipe.
    Transfer Fee $25.00 (seller), and Owner's/Lender's Basic Policy standalone premiums
    $1,990.00/$1,336.00. No deed/transfer tax (Alaska has none, corroborating the published-schedule
    finding below).
+2. **FNF-family underwriter** (ratecalculator.fnf.com, shared ASP.NET WebForms engine) — Anchorage,
+   via the recipe already documented in CALCULATORS.md's FNF section. Owner's Policy Premium
+   $1,910.25, Loan Policy Premium $75.00 (concurrent-issue rate), Grand Total **$1,985.25**.
+   Premium-only, no settlement-fee itemization.
 
-**2nd/3rd-provider search**: WFG's own `GetCalculationEnabledStates` list does not include Alaska at
-all (confirmed via direct query this session), so WFG — the tool that supplied a fast 2nd provider
-for ND/DC/VT/WY this session — is not usable here. AK remains at 1 of 3 and needs a genuinely
-different technique next session (e.g. NetSheetCalc/TitleTap or MyTitleRates.com search for an
-independent AK agency, or Old Republic's 2nd tool with the full session-affinity fix).
+**3rd-provider search**: WFG's own `GetCalculationEnabledStates` list does not include Alaska at
+all (confirmed via direct query this session), so WFG — the tool that supplied a fast provider for
+every other state harvested this session — is not usable here. AK now needs 1 more provider (up
+from needing 2, since FNF worked where WFG couldn't) — try NetSheetCalc/TitleTap or MyTitleRates.com
+search for an independent AK agency, or Old Republic's 2nd tool with the full session-affinity fix.
 
 ## Status: complete (scarce market) — 2 verified sources (1 genuine escrow schedule + 1 premium manual), 2026-07-22
 

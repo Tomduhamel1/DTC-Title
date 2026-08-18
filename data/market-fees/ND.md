@@ -1,11 +1,11 @@
 # North Dakota (ND) — Market Fee Evidence
 
-## Calculator harvest (2026-08-18)
+## Calculator harvest (2026-08-18) — **calculator-quoted (3 providers)**
 
-Separate from the published-schedule survey below, 2 calculator-basis quotes were harvested for the
-standard scenario ($500,000 purchase / $400,000 loan / Cass County-Fargo / residential resale) —
-below the 3-provider calculator-quoted threshold this session. See ND.json's `"basis": "calculator"`
-entries for full itemized figures and CALCULATORS.md for the technical recipes.
+Separate from the published-schedule survey below, 3 calculator-basis quotes were harvested for the
+standard scenario ($500,000 purchase / $400,000 loan / Cass County-Fargo / residential resale),
+crossing the 3-provider calculator-quoted threshold. See ND.json's `"basis": "calculator"` entries
+for full itemized figures and CALCULATORS.md for the technical recipes.
 
 1. **Dickey and LaMoure County Abstract and Title Company** — via Stewart Rate Calculator
    (stewartratecalculator.com), applying the recipe fully documented in CALCULATORS.md's 2026-08-14
@@ -19,9 +19,11 @@ entries for full itemized figures and CALCULATORS.md for the technical recipes.
    in CALCULATORS.md's 2026-08-08 entry. Premium-only result: Owner's Title Insurance Premium
    $1,238.00 (ND is not one of the 7 states with configured HUD-fee itemization in this tool).
 
-**3rd-provider search**: not run this session (time budget spent across 5 states); ND remains a
-target for a future session's 3rd-provider pass, per the standing priority to keep working down the
-population-ordered untouched-scarce-state list.
+3. **FNF-family underwriter** (ratecalculator.fnf.com, shared ASP.NET WebForms engine) — Cass
+   County, via the recipe already documented in CALCULATORS.md's FNF section. Owner's Policy Premium
+   $1,300.00, Loan Policy Premium $150.00 (concurrent-issue rate), Grand Total **$1,450.00**.
+   Premium-only, no settlement-fee itemization. **This crosses ND to the 3-provider calculator-quoted
+   threshold.**
 
 ## Status: COMPLETE (scarce market) — 2 verified sources
 

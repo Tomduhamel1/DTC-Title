@@ -1,12 +1,11 @@
 # Delaware (DE) — Market Fee Evidence
 
-## Calculator harvest (2026-08-15 through 2026-08-18)
+## Calculator harvest (2026-08-15 through 2026-08-18) — **calculator-quoted (3 providers)**
 
-Separate from the published-schedule survey below, 2 calculator-basis quotes have been harvested for
+Separate from the published-schedule survey below, 3 calculator-basis quotes have been harvested for
 the standard scenario ($500,000 purchase / $400,000 loan / New Castle County-Wilmington /
-residential resale) — still below the 3-provider calculator-quoted threshold. See DE.json's
-`"basis": "calculator"` entries for full itemized figures and CALCULATORS.md for the technical
-recipes.
+residential resale), crossing the 3-provider calculator-quoted threshold. See DE.json's `"basis":
+"calculator"` entries for full itemized figures and CALCULATORS.md for the technical recipes.
 
 1. **Stewart Title Guaranty Company** — Stewart Rate Calculator (stewartratecalculator.com), matched
    to Stewart's own Wilmington office. Returns no itemized settlement fee (null in the tool's
@@ -21,7 +20,13 @@ recipes.
    in CALCULATORS.md's 2026-08-08 entry. Confirmed DE `isCalculationEnabled: true` via
    `GetCalculationEnabledStates` and harvested directly (New Castle County/Wilmington). Premium-only
    result: Owner's Title Insurance Premium **$2,424.00** (DE is not one of the 7 states with
-   configured HUD-fee itemization in this tool). DE now needs 1 more provider to cross threshold.
+   configured HUD-fee itemization in this tool).
+3. **FNF-family underwriter** (ratecalculator.fnf.com, shared ASP.NET WebForms engine) — New Castle
+   County, via the recipe already documented in CALCULATORS.md's FNF section. Owner's Policy Premium
+   $2,275.00, Loan Policy Premium $0.00 (concurrent-issue rate), Grand Total **$2,300.00** —
+   byte-identical Owner's Premium to the Stewart entry above, a genuine cross-tool corroboration.
+   Premium-only, no settlement-fee itemization. **This crosses DE to the 3-provider calculator-quoted
+   threshold.**
 
 **2nd/3rd-provider search (dead ends this session)**: Old Republic's 2nd tool (`Location=DE`) NoBot-
 blocked, same as ME/RI this session (see CALCULATORS.md — the Referer-header fix is confirmed

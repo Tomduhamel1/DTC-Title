@@ -1,11 +1,11 @@
 # Rhode Island (RI) — Market Fee Evidence
 
-## Calculator harvest (2026-08-15 through 2026-08-18)
+## Calculator harvest (2026-08-15 through 2026-08-18) — **calculator-quoted (3 providers)**
 
-Separate from the published-schedule survey below, 2 calculator-basis quotes have been harvested for
-the standard scenario ($500,000 purchase / $400,000 loan / Providence County / residential resale) —
-still below the 3-provider calculator-quoted threshold. See RI.json's `"basis": "calculator"`
-entries for full itemized figures and CALCULATORS.md for the technical recipes.
+Separate from the published-schedule survey below, 3 calculator-basis quotes have been harvested for
+the standard scenario ($500,000 purchase / $400,000 loan / Providence County / residential resale),
+crossing the 3-provider calculator-quoted threshold. See RI.json's `"basis": "calculator"` entries
+for full itemized figures and CALCULATORS.md for the technical recipes.
 
 1. **Stewart Title Guaranty Company** — Stewart Rate Calculator (stewartratecalculator.com), matched
    to settlement office **Warr & Warr, PC**, a Riverside RI closing-attorney firm — confirming RI's
@@ -20,7 +20,11 @@ entries for full itemized figures and CALCULATORS.md for the technical recipes.
    in CALCULATORS.md's 2026-08-08 entry. Confirmed RI `isCalculationEnabled: true` via
    `GetCalculationEnabledStates` and harvested directly (Providence County/Providence). Premium-only
    result: Owner's Title Insurance Premium **$1,925.00** (RI is not one of the 7 states with
-   configured HUD-fee itemization in this tool). RI now needs 1 more provider to cross threshold.
+   configured HUD-fee itemization in this tool).
+3. **FNF-family underwriter** (ratecalculator.fnf.com, shared ASP.NET WebForms engine) — Providence
+   County, via the recipe already documented in CALCULATORS.md's FNF section. Policy Premium
+   $1,750.00 + $50.00 (concurrent-issue Owner's/Loan split), Grand Total **$1,800.00**. Premium-only,
+   no settlement-fee itemization. **This crosses RI to the 3-provider calculator-quoted threshold.**
 
 **2nd/3rd-provider search (dead ends this session)**: Old Republic's 2nd tool (`Location=RI`) NoBot-
 blocked, same as ME this session — the Referer-header fix alone did not resolve it. Priority Title

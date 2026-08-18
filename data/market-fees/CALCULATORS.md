@@ -3173,3 +3173,73 @@ every state tried this session) against each; (2) AK needs 2 more providers and 
 Alaska-specific independent agency; (3) the standing freshness and blocked-source-retry passes are
 now overdue after 3 consecutive sessions skipping them in favor of the calculator-harvest breadth
 push.
+
+## 2026-08-18 session, continued — FNF national rate calculator generalizes to small states too; 6 more states cross threshold; submit-button selector bug found and fixed
+
+After the WFG pass above still left ND/DC/VT/WY/RI/DE/SD one provider short of threshold (and AK
+with no WFG fallback at all), tried `ratecalculator.fnf.com` against all 8 — already confirmed
+working and in-scope (premium-only) evidence since the 2026-07-25/2026-08-06 sessions, but never
+actually applied to any of this session's 10-state working set before now.
+
+### Bug found: a hidden dummy submit button silently derails naive button-selection logic
+
+Rebuilding the WebForms postback flow as a fresh local script surfaced a bug that plausibly affected
+some fraction of the original 2026-08-06 8-state batch too (though that batch's target states may
+not have hit it): the rendered page always includes **two** `type="submit"` inputs at the "Next"
+step — the real `ctl00$BodyContent$UcRateCalc1$btnGeneralNext` **and** a hidden
+`ctl00$btnDummy` (`class="HiddenButton"`, used only so pressing Enter in a text field submits the
+form via *some* button). A naive "grab the first submit-button name found in the page" selector
+picks `btnDummy` first (it appears earlier in the markup) and clicks it instead of `btnGeneralNext`
+— the server accepts the POST (200 OK) but the flow doesn't advance at all, returning an
+identical-looking page. This reads exactly like "the click didn't register" rather than a clear
+error, and is easy to miss if only checking HTTP status/response length coarsely. **Fix: always
+filter submit-button candidates for the real button's own name substring (`Next`/`Finish`), never
+just take the first `type="submit"` match on the page.** Flagged as a generalizable lesson for any
+future WebForms replay in this project (same family of bug as the earlier `dict(hidden)` ambient
+submit-button-carryover bug documented in the 2026-08-09 UT/SC entry above, but a distinct
+mechanism — that one was about *carrying forward* a stale button value across requests, this one is
+about *choosing the wrong button* on a single request).
+
+### Second gotcha: Transaction Type is a `<select>` dropdown for some states, a radio group for others
+
+The original recipe's radio-group `__EVENTTARGET` handling (`<fieldname>$<optionindex>`) does not
+apply universally — for ND/VT/WY/DC/RI/DE/SD/AK, `TranType` renders as a plain `<select>` with a
+`chosen`-jQuery-plugin skin, not radio buttons. Selecting `PropertyPurchase` and firing
+`__EVENTTARGET=<the select's own name>` (no `$index` suffix) works exactly like any other dropdown
+postback (the same mechanism already used for `ddlCounty`). A future replay script should try the
+`<select>` path first and fall back to the radio-group path only if no matching `<select>` is found,
+since (per this session's 8-state sample) the dropdown form appears to be more common.
+
+### Results (6 of 8 succeeded cleanly on the first pass with the bug fixed)
+
+| State | County | Owner's Premium | Loan Premium (concurrent) | Grand Total | Threshold effect |
+|---|---|---|---|---|---|
+| ND | Cass (Fargo) | $1,300.00 | $150.00 | $1,450.00 | **crosses to 3** |
+| VT | Chittenden (Burlington) | $1,570.00 | $50.00 | $1,620.00 | **crosses to 3** |
+| WY | Laramie (Cheyenne) | $1,597.00 | $671.00 | $2,268.00 | **crosses to 3** |
+| RI | Providence | $1,750.00 | $50.00 | $1,800.00 | **crosses to 3** |
+| DE | New Castle (Wilmington) | $2,275.00 | $0.00 | $2,300.00 | **crosses to 3** (Owner's Premium byte-identical to this state's own Stewart entry) |
+| SD | Minnehaha (Sioux Falls) | $1,562.50 | $100.00 | $1,662.50 | **crosses to 3** |
+| AK | Anchorage | $1,910.25 | $75.00 | $1,985.25 | 2 of 3 (no WFG coverage for AK, so still 1 short) |
+| DC | — (no county field) | — | — | — | **failed, see below** |
+
+### DC failure — flow completes without error but never reaches a results page
+
+Unlike every other state tried (all of which have a `ddlCounty` dropdown), DC's page has no county
+selector at all — the script skips straight to the Amounts step. The full sequence (TranType select,
+Purchase/Loan amounts, Concurrent-rate radio, Finish) all appear to execute without any visible
+validation error, but the final response is anomalously large (~194KB vs. ~70-73KB for every
+successful state) and contains no `Grand Total`/`Premium` quote content at all — not a clean failure
+mode, and not yet root-caused. Worth a focused follow-up: possibly DC needs an explicit
+jurisdiction-equivalent-to-county selection this recipe doesn't know to look for, or the underwriter
+dropdown (`ddlUnderwriters`) needs an explicit non-default selection for DC specifically. Flagged for
+next session rather than pursued further this session (AK's 3rd-provider gap and the DC gap are now
+the only 2 remaining below-threshold states from the original working set, so either is a reasonable
+next target).
+
+**Session grand total (2026-08-18): 10 states worked (ND/DC/VT/WY/AK harvested fresh via Stewart,
+plus WV/ME/RI/DE/SD's existing entries extended), 8 states crossed or already-crossed the
+3-provider calculator-quoted threshold this session (WV, ME, ND, VT, WY, RI, DE, SD), leaving only
+AK (2 of 3) and DC (2 of 3) below threshold from the entire original "complete (scarce), never yet
+worked" list.** Two commits pushed to `research/market-fees`; this WFG+FNF generalization work will
+be pushed as a follow-up commit.
