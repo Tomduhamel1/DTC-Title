@@ -1,5 +1,28 @@
 # Alaska — Market Fee Evidence
 
+## Calculator harvest (2026-08-18)
+
+Separate from the published-schedule survey below, 1 calculator-basis quote was harvested for the
+standard scenario ($500,000 purchase / $400,000 loan / Anchorage / residential resale) — below the
+3-provider calculator-quoted threshold this session. See AK.json's `"basis": "calculator"` entry for
+full itemized figures and CALCULATORS.md for the technical recipe.
+
+1. **Stewart Title Company — Stewart Title of Alaska** (Anchorage) — via Stewart Rate Calculator
+   (stewartratecalculator.com), applying the recipe fully documented in CALCULATORS.md's 2026-08-14
+   entry unmodified. Unlike VT/WY above, this is a genuine Alaska-based settlement office, not an
+   out-of-state remote provider. Title Closing Fee **$1,381.00** total (split $690.50/$690.50) — the
+   largest single settlement-fee line item recorded anywhere in this entire survey to date — plus
+   Title Courier Fee $20.00, Title Document Preparation Fee $50.00 (split $25/$25), Title Wire
+   Transfer Fee $25.00 (seller), and Owner's/Lender's Basic Policy standalone premiums
+   $1,990.00/$1,336.00. No deed/transfer tax (Alaska has none, corroborating the published-schedule
+   finding below).
+
+**2nd/3rd-provider search**: WFG's own `GetCalculationEnabledStates` list does not include Alaska at
+all (confirmed via direct query this session), so WFG — the tool that supplied a fast 2nd provider
+for ND/DC/VT/WY this session — is not usable here. AK remains at 1 of 3 and needs a genuinely
+different technique next session (e.g. NetSheetCalc/TitleTap or MyTitleRates.com search for an
+independent AK agency, or Old Republic's 2nd tool with the full session-affinity fix).
+
 ## Status: complete (scarce market) — 2 verified sources (1 genuine escrow schedule + 1 premium manual), 2026-07-22
 
 Alaska is unusual among states surveyed to date: **AS 21.66.460 legally requires title insurance

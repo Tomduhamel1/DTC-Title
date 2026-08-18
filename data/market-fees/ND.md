@@ -1,5 +1,28 @@
 # North Dakota (ND) — Market Fee Evidence
 
+## Calculator harvest (2026-08-18)
+
+Separate from the published-schedule survey below, 2 calculator-basis quotes were harvested for the
+standard scenario ($500,000 purchase / $400,000 loan / Cass County-Fargo / residential resale) —
+below the 3-provider calculator-quoted threshold this session. See ND.json's `"basis": "calculator"`
+entries for full itemized figures and CALCULATORS.md for the technical recipes.
+
+1. **Dickey and LaMoure County Abstract and Title Company** — via Stewart Rate Calculator
+   (stewartratecalculator.com), applying the recipe fully documented in CALCULATORS.md's 2026-08-14
+   entry unmodified. Rich 7-line itemization: Title Closing Fee $350.00, Title Certification Fee
+   $25.00, Title Courier Fee $22.95, Title Examination Fee $200.00, Title Plat Draw $175.00, Title
+   Search Fee $50.00, Title Wire Transfer Fee $15.00 (all buyer-side), plus Owner's/Lender's Basic
+   Policy standalone premiums $1,400.00/$1,050.00. No deed/transfer tax (North Dakota has none,
+   corroborating the published-schedule finding below).
+2. **WFG National Title Insurance Company** — Seller Net Sheet Rate Calculator
+   (rates.wfgnationaltitle.com), via the publicly-reachable no-auth JSON API solved and documented
+   in CALCULATORS.md's 2026-08-08 entry. Premium-only result: Owner's Title Insurance Premium
+   $1,238.00 (ND is not one of the 7 states with configured HUD-fee itemization in this tool).
+
+**3rd-provider search**: not run this session (time budget spent across 5 states); ND remains a
+target for a future session's 3rd-provider pass, per the standing priority to keep working down the
+population-ordered untouched-scarce-state list.
+
 ## Status: COMPLETE (scarce market) — 2 verified sources
 
 2 premium-only rate manuals verified (Stewart, WFG), both explicitly

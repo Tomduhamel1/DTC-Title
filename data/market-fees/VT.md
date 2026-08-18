@@ -1,5 +1,28 @@
 # Vermont — Market Fee Evidence
 
+## Calculator harvest (2026-08-18)
+
+Separate from the published-schedule survey below, 2 calculator-basis quotes were harvested for the
+standard scenario ($500,000 purchase / $400,000 loan / Chittenden County-Burlington / residential
+resale) — below the 3-provider calculator-quoted threshold this session. See VT.json's `"basis":
+"calculator"` entries for full itemized figures and CALCULATORS.md for the technical recipes.
+
+1. **Omnia Title Corp.** (Tampa, FL) — via Stewart Rate Calculator (stewartratecalculator.com),
+   applying the recipe fully documented in CALCULATORS.md's 2026-08-14 entry unmodified. Stewart's
+   own providers lookup for Chittenden County returned only this out-of-state national settlement
+   office (not a Vermont-based one), consistent with VT's thin independent-title-agency presence
+   already documented below. Title Closing Fee $750.00 total, split $550.00 buyer / $200.00 seller
+   — the only itemized settlement-service line item returned — plus Owner's/Lender's Basic Policy
+   standalone premiums $1,723.00/$1,050.00. Vermont Property Transfer Tax $5,410.00, 100% buyer-paid
+   (1.082% on $500,000, consistent with VT's tiered statutory 0.5%/1.25% rate).
+2. **WFG National Title Insurance Company** — Seller Net Sheet Rate Calculator
+   (rates.wfgnationaltitle.com), via the publicly-reachable no-auth JSON API solved and documented
+   in CALCULATORS.md's 2026-08-08 entry. Premium-only result: Owner's Title Insurance Premium
+   $1,878.80 (VT is not one of the 7 states with configured HUD-fee itemization in this tool).
+
+**3rd-provider search**: not run this session (time budget spent across 5 states); VT remains a
+target for a future session's 3rd-provider pass.
+
 ## Status: complete (scarce market) — 6 verified sources (3 premium-only rate manuals + 3 settlement/search-fee-adjacent sources), 2026-07-22
 
 Vermont, like Massachusetts and Connecticut, is an **attorney-closing state**: real

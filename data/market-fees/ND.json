@@ -59,5 +59,99 @@
     },
     "bundlingNotes": "Premium-only rate manual. Standard WFG exclusion language: rate 'does not include charges for title search, surveys, escrow, closing services, settlement services, recording fees, other charges.' No CPL fee priced in this manual (unlike most other states' WFG manuals, which typically price a $25 CPL) -- ND is one of the few states surveyed where WFG's manual omits CPL pricing entirely.",
     "transactionContext": "Owner's policy (purchase), loan policy (purchase, refinance, home equity/junior loan), simultaneous issue, lender volume programs -- premium calculation only, statewide (no county/metro differentiation)."
+  },
+  {
+    "provider": "Dickey and LaMoure County Abstract and Title Company — Stewart Rate Calculator (stewartratecalculator.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true",
+    "endpointOrParams": "Genuine JSON REST API at /api/SRC/*, driven via plain HTTP GET/POST (no browser/JS execution) -- the recipe fully documented in CALCULATORS.md's 2026-08-14 entry, applied unmodified. Sequence: GET /api/SRC/transactiontypes?statecode=ND -> GET /api/SRC/propertysearch?value=Fargo,%20ND (resolves Cass County) -> GET /api/SRC/statesettings?statecode=ND -> GET /api/SRC/providers?statecode=ND&countycode=<FIPS>&zipcode=<ZIP>&transactiontype=SALE -> GET /api/SRC/ernstlookup -> two POST /api/SRC/quote calls (QuoteType=3 for itemized settlement fees, QuoteType=2 for recording/transfer-tax), each form-urlencoded with a hand-built QuoteRequestRoot JSON. No personal-data fields required or entered.",
+    "retrievalDate": "2026-08-18",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Cass County (Fargo), residential resale, Sale/Purchase with Mortgage transaction.",
+    "methodology": "Same nationwide-reusable Stewart /api/SRC/quote recipe already applied to WV/NH/ME/RI/DE/SD (see CALCULATORS.md's 2026-08-14 entry for the full technical writeup); zero recipe modification needed.",
+    "settlementFee": {
+      "note": "Title Closing Fee $350.00 (buyer), plus separately-itemized Title Certification/Courier/Examination/Plat Draw/Search/Wire fees, all buyer-side -- see itemizedFees.other for the full 7-line breakdown."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "Title Certification Fee (buyer)",
+          "amount": "$25.00"
+        },
+        {
+          "name": "Title Closing Fee (buyer)",
+          "amount": "$350.00"
+        },
+        {
+          "name": "Title Courier Fee (buyer)",
+          "amount": "$22.95"
+        },
+        {
+          "name": "Title Examination Fee (buyer)",
+          "amount": "$200.00"
+        },
+        {
+          "name": "Title Plat Draw (buyer)",
+          "amount": "$175.00"
+        },
+        {
+          "name": "Title Search Fee (buyer)",
+          "amount": "$50.00"
+        },
+        {
+          "name": "Title Wire Transfer Fee (buyer)",
+          "amount": "$15.00"
+        },
+        {
+          "name": "Owner's Policy (Basic) standalone premium, RateManual (QuoteType=3)",
+          "amount": "$1400.00"
+        },
+        {
+          "name": "Lender's Policy (Basic) standalone premium, RateManual (QuoteType=3)",
+          "amount": "$1050.00"
+        },
+        {
+          "name": "Lender's Policy (Basic) simultaneous-issue premium, RateManual (QuoteType=2)",
+          "amount": "$100.00"
+        },
+        {
+          "name": "Recording -- Mortgage fee",
+          "amount": "$65"
+        },
+        {
+          "name": "Recording -- Deed fee",
+          "amount": "$20"
+        },
+        {
+          "name": "Recording -- Release fee",
+          "amount": "$20"
+        },
+        {
+          "name": "Deed/transfer tax (state+county combined, per CFPB2015.CFPBTax breakdown)",
+          "amount": "$0.00 (North Dakota has no real estate transfer tax -- corroborates the published-schedule survey's existing finding of no ND deed/transfer tax anywhere)"
+        }
+      ]
+    },
+    "bundlingNotes": "Settlement office/provider used: Dickey and LaMoure County Abstract and Title Company (Ellendale, ND) -- the specific settlement office returned by Stewart's own providers lookup for Cass County; itemization is provider-specific, not underwriter-wide, consistent with the pattern already documented for this recipe elsewhere in this project. A 2nd provider (Omnia Title Corp., Tampa FL) was also offered by the same lookup for this county but not separately harvested, since ND's own in-state provider was available and preferred.",
+    "transactionContext": "Sale/Purchase with Mortgage, Basic Owner's + Lender's Policy, Cass County/Fargo ND."
+  },
+  {
+    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-18",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Cass County (Fargo), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Same publicly-reachable, no-auth JSON API already solved and documented in CALCULATORS.md's 2026-08-08 entry -- confirmed via GET /api/rates/State/GetCalculationEnabledStates that this state is isCalculationEnabled:true, then POST directly with the nested Properties/Loans request shape. No personal-data field exists anywhere in this request shape.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1238.00",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's sellernet/seller-side-only design, same behavior already documented for every other state harvested via this tool)",
+      "other": [],
+      "note": "Premium-only result -- this state is not one of the 7 (WA/CA/TX/OR/AZ/NV/CO) with configured HUD-fee line items in WFG's own fee-description table."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "Property location for this request: Fargo, ND (Cass County).",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Cass County, ND."
   }
 ]

@@ -1,5 +1,28 @@
 # Wyoming — Market Fee Evidence
 
+## Calculator harvest (2026-08-18)
+
+Separate from the published-schedule survey below, 2 calculator-basis quotes were harvested for the
+standard scenario ($500,000 purchase / $400,000 loan / Laramie County-Cheyenne / residential
+resale) — below the 3-provider calculator-quoted threshold this session. See WY.json's `"basis":
+"calculator"` entries for full itemized figures and CALCULATORS.md for the technical recipes.
+
+1. **Executive Title Services LLC** (Jackson, WY) — via Stewart Rate Calculator
+   (stewartratecalculator.com), applying the recipe fully documented in CALCULATORS.md's 2026-08-14
+   entry unmodified. Stewart's own providers lookup for Laramie County (Cheyenne) returned this
+   Jackson-headquartered, statewide-serving WY office rather than a Cheyenne-local one. Title
+   Closing Fee $400.00 total (split $200/$200), Title Mobile Notary Fee $300.00 (split $150/$150),
+   Title Remote Notary Fee $90.00 (split $45/$45), Title Wire Transfer Fee $25.00 (seller), plus
+   Owner's/Lender's Basic Policy standalone premiums $1,694.00/$712.00. No deed/transfer tax
+   (Wyoming has none, corroborating the published-schedule finding below).
+2. **WFG National Title Insurance Company** — Seller Net Sheet Rate Calculator
+   (rates.wfgnationaltitle.com), via the publicly-reachable no-auth JSON API solved and documented
+   in CALCULATORS.md's 2026-08-08 entry. Premium-only result: Owner's Title Insurance Premium
+   $1,733.00 (WY is not one of the 7 states with configured HUD-fee itemization in this tool).
+
+**3rd-provider search**: not run this session (time budget spent across 5 states); WY remains a
+target for a future session's 3rd-provider pass.
+
 ## Status: complete (scarce market) — 3 verified sources (all premium-only rate schedules), 2026-07-22
 
 Wyoming is a filed-rate title insurance market (the Wyoming Division of Insurance's Rate & Form

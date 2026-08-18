@@ -1,5 +1,31 @@
 # District of Columbia — Market Fee Evidence
 
+## Calculator harvest (2026-08-18)
+
+Separate from the published-schedule survey below, 2 calculator-basis quotes were harvested for the
+standard scenario ($500,000 purchase / $400,000 loan / Washington DC / residential resale) — below
+the 3-provider calculator-quoted threshold this session. See DC.json's `"basis": "calculator"`
+entries for full itemized figures and CALCULATORS.md for the technical recipes.
+
+1. **Stewart Title and Escrow, Inc.** (Washington, DC) — via Stewart Rate Calculator
+   (stewartratecalculator.com), applying the recipe fully documented in CALCULATORS.md's 2026-08-14
+   entry unmodified. The richest single-office itemization of this session's 5-state batch — 10
+   distinct line items: Title Abstract Charge $300.00, Title Closing Fee $700.00 (split $350/$350),
+   Title Commitment Fee $269.00, Title Courier Fee $35.00, Title Deed Preparation Fee $195.00, Title
+   Document Preparation Fee $650.00 (split $200/$450), Title Examination Fee $450.00, Title Release
+   Procurement Fee $200.00, Title Remote Notary Fee $300.00 (split $150/$150), Title
+   Simplefile/Recording/Certified ID/Zoccam Fee $128.00, Title Tax Certificate $30.76 — plus
+   Owner's/Lender's Basic Policy standalone premiums $2,700.00/$1,710.00. Combined Deed
+   Tax/Recordation Tax of $14,500.00 on $500,000 (2.9%) — the 2nd-highest combined transfer-tax
+   figure recorded anywhere in this survey after Delaware's 4.0%.
+2. **WFG National Title Insurance Company** — Seller Net Sheet Rate Calculator
+   (rates.wfgnationaltitle.com), via the publicly-reachable no-auth JSON API solved and documented
+   in CALCULATORS.md's 2026-08-08 entry. Premium-only result: Owner's Title Insurance Premium
+   $3,263.00 (DC is not one of the 7 states with configured HUD-fee itemization in this tool).
+
+**3rd-provider search**: not run this session (time budget spent across 5 states); DC remains a
+target for a future session's 3rd-provider pass.
+
 ## Status: complete (scarce market) — 4 verified sources (2 premium-only, 2 settlement-fee-priced), 2026-07-22
 
 Washington DC is an **attorney/title-agent-closing jurisdiction** with **insurer-filed but uncoordinated
