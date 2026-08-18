@@ -15,19 +15,58 @@
     },
     "itemizedFees": {
       "other": [
-        { "name": "Secondary Market Short Form Residential Loan Policy (One-to-Four Family)", "amount": "$350 up to $250,000; $460 to $500,000; $700 to $750,000; $925 to $1,000,000; up to $1,290 at $1,250,001-$1,500,000" },
-        { "name": "Junior (Second Mortgage) Policy", "amount": "$70 flat up to $10,000, plus $1.75/thousand thereafter" },
-        { "name": "ALTA Residential Limited Coverage Junior Loan Policy", "amount": "$2.00/thousand, minimum $35" },
-        { "name": "Stewart Master Residential (Home Equity) Loan Policy", "amount": "$25 up to $25,000; $65 to $250,000; $125 to $500,000" },
-        { "name": "Limited Coverage STG Home Equity Loan Policy (HELP)", "amount": "$45 up to $100,000; $65 to $250,000; $125 to $500,000" },
-        { "name": "ALTA Residential Limited Coverage Mortgage Modification Policy", "amount": "$150 flat" },
-        { "name": "GOLD Comprehensive Protection Owner's/Loan Policy surcharge", "amount": "10% of basic charge (owner's); $50 flat surcharge (loan)" },
-        { "name": "ALTA Homeowner's Policy surcharge", "amount": "10% of basic schedule of charges" },
-        { "name": "Article 9 Comprehensive Plus UCC Policy", "amount": "$500 minimum up to $100,000, then $3.85/thousand declining to $0.50/thousand above $50,000,000 (excludes UCC search/prep/filing fees)" },
-        { "name": "Home Equity Policy (HEP)", "amount": "$2.00/thousand" },
-        { "name": "Common ALTA endorsements", "amount": "ALTA 8.1/8.2 Environmental Protection Lien $50; ALTA 9 Restrictions/Encroachments/Minerals $25; ALTA 17.2 Utility Access $100; SD Utilities Available Endorsement 1 $500; ALTA 27 Usury $100; ALTA 42 Commercial Lender Group $100" },
-        { "name": "Extended coverage policy (removal of standard exceptions)", "amount": "Up to $0.35/thousand per exception removed" },
-        { "name": "Commercial charges (policies aggregating $20,000,000+)", "amount": "Negotiated, but not less than $0.35/thousand" }
+        {
+          "name": "Secondary Market Short Form Residential Loan Policy (One-to-Four Family)",
+          "amount": "$350 up to $250,000; $460 to $500,000; $700 to $750,000; $925 to $1,000,000; up to $1,290 at $1,250,001-$1,500,000"
+        },
+        {
+          "name": "Junior (Second Mortgage) Policy",
+          "amount": "$70 flat up to $10,000, plus $1.75/thousand thereafter"
+        },
+        {
+          "name": "ALTA Residential Limited Coverage Junior Loan Policy",
+          "amount": "$2.00/thousand, minimum $35"
+        },
+        {
+          "name": "Stewart Master Residential (Home Equity) Loan Policy",
+          "amount": "$25 up to $25,000; $65 to $250,000; $125 to $500,000"
+        },
+        {
+          "name": "Limited Coverage STG Home Equity Loan Policy (HELP)",
+          "amount": "$45 up to $100,000; $65 to $250,000; $125 to $500,000"
+        },
+        {
+          "name": "ALTA Residential Limited Coverage Mortgage Modification Policy",
+          "amount": "$150 flat"
+        },
+        {
+          "name": "GOLD Comprehensive Protection Owner's/Loan Policy surcharge",
+          "amount": "10% of basic charge (owner's); $50 flat surcharge (loan)"
+        },
+        {
+          "name": "ALTA Homeowner's Policy surcharge",
+          "amount": "10% of basic schedule of charges"
+        },
+        {
+          "name": "Article 9 Comprehensive Plus UCC Policy",
+          "amount": "$500 minimum up to $100,000, then $3.85/thousand declining to $0.50/thousand above $50,000,000 (excludes UCC search/prep/filing fees)"
+        },
+        {
+          "name": "Home Equity Policy (HEP)",
+          "amount": "$2.00/thousand"
+        },
+        {
+          "name": "Common ALTA endorsements",
+          "amount": "ALTA 8.1/8.2 Environmental Protection Lien $50; ALTA 9 Restrictions/Encroachments/Minerals $25; ALTA 17.2 Utility Access $100; SD Utilities Available Endorsement 1 $500; ALTA 27 Usury $100; ALTA 42 Commercial Lender Group $100"
+        },
+        {
+          "name": "Extended coverage policy (removal of standard exceptions)",
+          "amount": "Up to $0.35/thousand per exception removed"
+        },
+        {
+          "name": "Commercial charges (policies aggregating $20,000,000+)",
+          "amount": "Negotiated, but not less than $0.35/thousand"
+        }
       ]
     },
     "bundlingNotes": "No settlement/escrow/closing-service charges appear anywhere in this manual -- it is exclusively a title insurance premium schedule (owner's, loan, leasehold, UCC/Article 9, guarantees, and a full ALTA/CLTA/STG endorsement price list). The Minnehaha/Lincoln/Yankton vs. rest-of-state two-tier structure is the manual's most distinctive feature and tracks South Dakota's actual metro geography (Minnehaha = Sioux Falls, Yankton = Yankton). No CPL (Closing Protection Letter) fee is itemized anywhere in the document.",
@@ -47,13 +86,34 @@
     },
     "itemizedFees": {
       "other": [
-        { "name": "Lender's Special Rate 1 (min. 100 orders, refinance only)", "amount": "$350 up to $100,000, rising to $3,600 at $1,800,000-$2,000,000" },
-        { "name": "Lender's Special Rate 4 (min. 500 orders, refinance only)", "amount": "$275 up to $250,000, rising to $2,200 at $4,000,001-$5,000,000" },
-        { "name": "ALTA Residential Limited Coverage Junior Loan Policy", "amount": "$112.50 up to $75,000; $150.00 to $100,000; $187.50 to $125,000; $225.00 to $250,000" },
-        { "name": "Mortgage Protection Guarantee (MPG)", "amount": "$125 up to $1,000,000; $250 to $1,500,000; $350 to $2,000,000" },
-        { "name": "Residential Limited Coverage Mortgage Modification Policy (MMP)", "amount": "$125 up to $1,000,000; $250 to $1,500,000; $350 to $2,000,000" },
-        { "name": "Master Home Equity / HE2 certificate fee", "amount": "$45 up to $250,000; $75 to $500,000; $250 to $750,000; $300 to $1,000,000" },
-        { "name": "Common ALTA endorsements", "amount": "ALTA 8.1 Environmental Protection Lien (lender) $100; ALTA 17.2 Utility Access $100; ALTA 11 Mortgage Modification $150; ALTA 46 Option (owner) $500; ALTA 43 Anti-Taint (lender) $100" }
+        {
+          "name": "Lender's Special Rate 1 (min. 100 orders, refinance only)",
+          "amount": "$350 up to $100,000, rising to $3,600 at $1,800,000-$2,000,000"
+        },
+        {
+          "name": "Lender's Special Rate 4 (min. 500 orders, refinance only)",
+          "amount": "$275 up to $250,000, rising to $2,200 at $4,000,001-$5,000,000"
+        },
+        {
+          "name": "ALTA Residential Limited Coverage Junior Loan Policy",
+          "amount": "$112.50 up to $75,000; $150.00 to $100,000; $187.50 to $125,000; $225.00 to $250,000"
+        },
+        {
+          "name": "Mortgage Protection Guarantee (MPG)",
+          "amount": "$125 up to $1,000,000; $250 to $1,500,000; $350 to $2,000,000"
+        },
+        {
+          "name": "Residential Limited Coverage Mortgage Modification Policy (MMP)",
+          "amount": "$125 up to $1,000,000; $250 to $1,500,000; $350 to $2,000,000"
+        },
+        {
+          "name": "Master Home Equity / HE2 certificate fee",
+          "amount": "$45 up to $250,000; $75 to $500,000; $250 to $750,000; $300 to $1,000,000"
+        },
+        {
+          "name": "Common ALTA endorsements",
+          "amount": "ALTA 8.1 Environmental Protection Lien (lender) $100; ALTA 17.2 Utility Access $100; ALTA 11 Mortgage Modification $150; ALTA 46 Option (owner) $500; ALTA 43 Anti-Taint (lender) $100"
+        }
       ]
     },
     "bundlingNotes": "WFG's manual is explicit and unusually direct (compared to most other states' WFG manuals reviewed in this survey) that its premium is 'all-inclusive' of only the risk and service/work portions of the TITLE premium itself, and separately and explicitly excludes title search, survey, escrow, closing, and settlement services, and recording fees -- confirming these are priced and billed separately by the closing/settlement provider, not disclosed here. No CPL fee is itemized anywhere in this manual (unlike several other states' WFG manuals reviewed in this survey, which do list a flat CPL charge).",
@@ -92,9 +152,18 @@
       "cpl": null,
       "binder": null,
       "other": [
-        { "name": "Recording fees", "amount": "$30.00 flat fee per document (deeds, mortgages, satisfactions, releases, POA, etc.)" },
-        { "name": "Endorsements -- residential", "amount": "$25.00 - $50.00" },
-        { "name": "Endorsements -- commercial", "amount": "varies, call for quote" }
+        {
+          "name": "Recording fees",
+          "amount": "$30.00 flat fee per document (deeds, mortgages, satisfactions, releases, POA, etc.)"
+        },
+        {
+          "name": "Endorsements -- residential",
+          "amount": "$25.00 - $50.00"
+        },
+        {
+          "name": "Endorsements -- commercial",
+          "amount": "varies, call for quote"
+        }
       ]
     },
     "bundlingNotes": "The core 'Settlement Service Fee' line items ($639 financed purchase / $532.50 cash purchase / $426 lot-only) appear to be bundled, all-in package prices for the closing/settlement service itself (sales tax included per the document header), separate from the itemized add-on charges below the main table (doc prep, wire, recording, endorsements, overnight delivery) and from the standalone Residential Record Title Search line ($159.75) -- it is not fully clear from the document alone whether the $159.75 search fee is already embedded in the main settlement fee tiers or is billed as a genuinely separate line item in every transaction; presented here as-is per the source. No refinance-specific settlement fee tier is broken out (refinance appears to fall under one of the standard purchase/HELOC categories or is quoted separately).",
@@ -128,19 +197,58 @@
       "cpl": null,
       "binder": null,
       "other": [
-        { "name": "Additional parcels (search/exam)", "amount": "$100 + tax per additional parcel" },
-        { "name": "Cancellation fee (search/exam)", "amount": "up to the price of the search fee, plus tax" },
-        { "name": "Owners and Encumbrance (O&E) Report", "amount": "$250 + tax ($100 + tax per additional parcel)" },
-        { "name": "Mortgage Foreclosure / TBD Report", "amount": "$250 + tax ($100 + tax per additional parcel)" },
-        { "name": "Name Search", "amount": "$50 per name + tax" },
-        { "name": "Tax Deed Search", "amount": "$100 + tax ($50 + tax per additional parcel)" },
-        { "name": "New Construction Priority Inspection", "amount": "$50 + tax" },
-        { "name": "Proforma", "amount": "minimum $150 + tax" },
-        { "name": "Marked-Up Commitment", "amount": "$50 + tax per request" },
-        { "name": "Rush Fee", "amount": "$150 + tax ($25 + tax per additional parcel)" },
-        { "name": "Copies", "amount": "$1 per page + tax" },
-        { "name": "Countersignature -- TOD Plant County search (no policy, TOD issues countersignature report)", "amount": "search fee: 1st parcel free, $75/additional parcel (no tax); cancellation: minimum $250 + tax, plus $75/additional parcel" },
-        { "name": "Countersignature -- Other County search (TOD issues title policy)", "amount": "title premium = normal underwriter-filed premium; multiple parcels: 1st free, up to $100 + tax/additional parcel; cancellation minimum $250 + tax, maximum full search fee + tax" }
+        {
+          "name": "Additional parcels (search/exam)",
+          "amount": "$100 + tax per additional parcel"
+        },
+        {
+          "name": "Cancellation fee (search/exam)",
+          "amount": "up to the price of the search fee, plus tax"
+        },
+        {
+          "name": "Owners and Encumbrance (O&E) Report",
+          "amount": "$250 + tax ($100 + tax per additional parcel)"
+        },
+        {
+          "name": "Mortgage Foreclosure / TBD Report",
+          "amount": "$250 + tax ($100 + tax per additional parcel)"
+        },
+        {
+          "name": "Name Search",
+          "amount": "$50 per name + tax"
+        },
+        {
+          "name": "Tax Deed Search",
+          "amount": "$100 + tax ($50 + tax per additional parcel)"
+        },
+        {
+          "name": "New Construction Priority Inspection",
+          "amount": "$50 + tax"
+        },
+        {
+          "name": "Proforma",
+          "amount": "minimum $150 + tax"
+        },
+        {
+          "name": "Marked-Up Commitment",
+          "amount": "$50 + tax per request"
+        },
+        {
+          "name": "Rush Fee",
+          "amount": "$150 + tax ($25 + tax per additional parcel)"
+        },
+        {
+          "name": "Copies",
+          "amount": "$1 per page + tax"
+        },
+        {
+          "name": "Countersignature -- TOD Plant County search (no policy, TOD issues countersignature report)",
+          "amount": "search fee: 1st parcel free, $75/additional parcel (no tax); cancellation: minimum $250 + tax, plus $75/additional parcel"
+        },
+        {
+          "name": "Countersignature -- Other County search (TOD issues title policy)",
+          "amount": "title premium = normal underwriter-filed premium; multiple parcels: 1st free, up to $100 + tax/additional parcel; cancellation minimum $250 + tax, maximum full search fee + tax"
+        }
       ]
     },
     "bundlingNotes": "Closing fees are stated as 'all inclusive -- no additional fees will be charged for downloading documents or wire service,' a notably more bundled/transparent structure than most SD sources. The search/exam fee is billed as a fully separate line item from both the closing fee and the title premium (a genuine three-part fee stack: closing fee + search/exam fee + title premium). Titles of Dakota also issues 'countersignature' reports when acting as the county title-plant holder for a transaction underwritten by another company -- distinct from its own direct-issue title premium business.",
@@ -214,5 +322,24 @@
     },
     "bundlingNotes": "The richest single-office Stewart harvest of this session's batch by line-item count (3 distinct settlement-service fees plus sales tax on 2 of them). South Dakota's application of sales tax to title service fees is a genuinely new structural finding for this survey, worth flagging for any future SD published-schedule work as well.",
     "transactionContext": "Sale/Purchase with Mortgage, Minnehaha County/Sioux Falls SD."
+  },
+  {
+    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-18",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Minnehaha County (Sioux Falls), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Same publicly-reachable, no-auth JSON API already solved and documented in CALCULATORS.md's 2026-08-08 entry -- confirmed via GET /api/rates/State/GetCalculationEnabledStates that this state is isCalculationEnabled:true, then POST directly with the nested Properties/Loans request shape. No personal-data field exists anywhere in this request shape.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2000.00",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's sellernet/seller-side-only design, same behavior already documented for every other state harvested via this tool)",
+      "other": [],
+      "note": "Premium-only result -- this state is not one of the 7 (WA/CA/TX/OR/AZ/NV/CO) with configured HUD-fee line items in WFG's own fee-description table."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "Property location for this request: Sioux Falls, SD (Minnehaha County).",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Minnehaha County, SD."
   }
 ]

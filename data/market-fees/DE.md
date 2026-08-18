@@ -1,11 +1,12 @@
 # Delaware (DE) — Market Fee Evidence
 
-## Calculator harvest (2026-08-15)
+## Calculator harvest (2026-08-15 through 2026-08-18)
 
-Separate from the published-schedule survey below, 1 calculator-basis quote was harvested for the
-standard scenario ($500,000 purchase / $400,000 loan / New Castle County-Wilmington / residential
-resale) — below the 3-provider calculator-quoted threshold this session. See DE.json's `"basis":
-"calculator"` entry for full itemized figures and CALCULATORS.md for the technical recipe.
+Separate from the published-schedule survey below, 2 calculator-basis quotes have been harvested for
+the standard scenario ($500,000 purchase / $400,000 loan / New Castle County-Wilmington /
+residential resale) — still below the 3-provider calculator-quoted threshold. See DE.json's
+`"basis": "calculator"` entries for full itemized figures and CALCULATORS.md for the technical
+recipes.
 
 1. **Stewart Title Guaranty Company** — Stewart Rate Calculator (stewartratecalculator.com), matched
    to Stewart's own Wilmington office. Returns no itemized settlement fee (null in the tool's
@@ -15,6 +16,12 @@ resale) — below the 3-provider calculator-quoted threshold this session. See D
    Release $81), and Delaware's combined Realty Transfer Tax of $20,000.00 on $500,000 (State $12,500
    + New Castle County $7,500, both 50/50 buyer/seller split) — a 4.0% combined rate, the highest
    transfer-tax figure recorded anywhere in this survey.
+2. **WFG National Title Insurance Company** — Seller Net Sheet Rate Calculator
+   (rates.wfgnationaltitle.com), via the publicly-reachable no-auth JSON API solved and documented
+   in CALCULATORS.md's 2026-08-08 entry. Confirmed DE `isCalculationEnabled: true` via
+   `GetCalculationEnabledStates` and harvested directly (New Castle County/Wilmington). Premium-only
+   result: Owner's Title Insurance Premium **$2,424.00** (DE is not one of the 7 states with
+   configured HUD-fee itemization in this tool). DE now needs 1 more provider to cross threshold.
 
 **2nd/3rd-provider search (dead ends this session)**: Old Republic's 2nd tool (`Location=DE`) NoBot-
 blocked, same as ME/RI this session (see CALCULATORS.md — the Referer-header fix is confirmed

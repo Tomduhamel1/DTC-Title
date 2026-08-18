@@ -1,11 +1,11 @@
 # Rhode Island (RI) — Market Fee Evidence
 
-## Calculator harvest (2026-08-15)
+## Calculator harvest (2026-08-15 through 2026-08-18)
 
-Separate from the published-schedule survey below, 1 calculator-basis quote was harvested for the
-standard scenario ($500,000 purchase / $400,000 loan / Providence County / residential resale) —
-below the 3-provider calculator-quoted threshold this session. See RI.json's `"basis": "calculator"`
-entry for full itemized figures and CALCULATORS.md for the technical recipe.
+Separate from the published-schedule survey below, 2 calculator-basis quotes have been harvested for
+the standard scenario ($500,000 purchase / $400,000 loan / Providence County / residential resale) —
+still below the 3-provider calculator-quoted threshold. See RI.json's `"basis": "calculator"`
+entries for full itemized figures and CALCULATORS.md for the technical recipes.
 
 1. **Stewart Title Guaranty Company** — Stewart Rate Calculator (stewartratecalculator.com), matched
    to settlement office **Warr & Warr, PC**, a Riverside RI closing-attorney firm — confirming RI's
@@ -15,6 +15,12 @@ entry for full itemized figures and CALCULATORS.md for the technical recipe.
    E Recording Fee $30.00 (buyer), Title Municipal Lien Certificate $25.00 (buyer), Owner's Premium
    $1,750.00, Lender's Premium $1,000.00 (simultaneous), recording fees, and Rhode Island's real
    estate conveyance tax $3,750.00 (100% seller-paid).
+2. **WFG National Title Insurance Company** — Seller Net Sheet Rate Calculator
+   (rates.wfgnationaltitle.com), via the publicly-reachable no-auth JSON API solved and documented
+   in CALCULATORS.md's 2026-08-08 entry. Confirmed RI `isCalculationEnabled: true` via
+   `GetCalculationEnabledStates` and harvested directly (Providence County/Providence). Premium-only
+   result: Owner's Title Insurance Premium **$1,925.00** (RI is not one of the 7 states with
+   configured HUD-fee itemization in this tool). RI now needs 1 more provider to cross threshold.
 
 **2nd/3rd-provider search (dead ends this session)**: Old Republic's 2nd tool (`Location=RI`) NoBot-
 blocked, same as ME this session — the Referer-header fix alone did not resolve it. Priority Title

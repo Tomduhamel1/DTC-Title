@@ -45,6 +45,8 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | LA | 3 (FNF national rate calculator — East Baton Rouge Parish, Grand Total $2,345.20; WFG National Title — East Baton Rouge Parish, Owner's Premium $2,579.72; Old Republic's 2nd tool — statewide, Owner's Premium $2,345.20 [byte-identical to FNF]) | **calculator-quoted (3 providers)** | 2026-08-09 |
 | SC | 3 (WFG National Title — Greenville County, Owner's Premium $1,404.00; FNF national rate calculator — Greenville County, Owner's Policy Premium $1,404.00 [byte-identical to WFG]/Loan Policy $100.00; Old Republic's 2nd tool — statewide, Owner's Premium $1,170.00/simultaneous Grand Total $1,270.00) | **calculator-quoted (3 providers)** | 2026-08-09 |
 | NH | 3 (Stewart Title Guaranty — Stewart Rate Calculator, Hillsborough County/Manchester, Title Closing Fee $725.00 buyer via Great East Title and Closing — first session to fully solve stewartratecalculator.com's `/api/SRC/quote` endpoint, see CALCULATORS.md master recipe; Old Republic's 2nd tool — statewide, `Location=NH`, Owner's $1,200/Lender's $100 simultaneous premium, unblocked via a newly-found Referer-header fix; Absolute Title, LLC — statewide, own first-party JS calculator, Settlement Fee $595.00 flat) | **calculator-quoted (3 providers)** | 2026-08-14 |
+| WV | 3 (Stewart Title Guaranty — Stewart Rate Calculator, Kanawha County/Charleston via Omnia Title Corp., Title Closing Fee $750.00 total; Old Republic's 2nd tool — statewide, `Location=WV`, Owner's $1,700/Lender's $100 simultaneous premium; WFG National Title — Seller Net Sheet Rate Calculator, Kanawha County, Owner's Premium $2,280.00) | **calculator-quoted (3 providers)** | 2026-08-18 |
+| ME | 3 (Stewart Title Guaranty — Stewart Rate Calculator, Cumberland County/Portland via Stewart Title-Northern New England Division, Title Closing Fee $695.00; Absolute Title, LLC — own Maine-specific calculator, Settlement Fee $650.00 flat; WFG National Title — Seller Net Sheet Rate Calculator, Cumberland County, Owner's Premium $1,750.00) | **calculator-quoted (3 providers)** | 2026-08-18 |
 
 FNF's ratecalculator.fnf.com **is drivable via plain HTTP POST, no browser needed** — confirmed
 2026-07-25 by replaying its ASP.NET WebForms `__doPostBack`/`__VIEWSTATE` protocol directly (the
@@ -2612,3 +2614,52 @@ still vary and matter).
   Black Hills Title's broken/jsOnly SD calculator is a new specific lead for that session; (4) apply
   the full Old Republic session-affinity fix (not the lighter Referer-only fix) to any state where
   it's needed going forward.
+
+- **2026-08-18: finished the last 5 untouched-scarce states (ND/AK/DC/VT/WY) via the Stewart recipe;
+  discovered WFG's Seller Net Sheet API (already solved 2026-08-08 for the tier-1 scarce states) also
+  covers essentially every small/low-population state, retroactively crossing WV and ME to the
+  3-provider threshold and giving RI/DE/SD a 2nd provider each.** Ran the reusable Python
+  `requests.Session()` Stewart harvester (`/api/SRC/quote`, both QuoteType=2 and QuoteType=3 flows,
+  recipe unchanged from the 2026-08-14 entry) against **ND (Cass/Fargo), DC (Washington), VT
+  (Chittenden/Burlington), WY (Laramie/Cheyenne), AK (Anchorage)** — all 5 succeeded cleanly (11th-14th
+  consecutive clean Stewart harvests across 3 sessions with zero recipe modification), each returning
+  a genuine settlement office and a multi-line itemized fee breakdown. Notable per-state findings: DC
+  returned the richest single-office itemization of this session (10 line items) plus a $14,500
+  combined Deed Tax/Recordation Tax (2.9% of price, 2nd-highest transfer-tax figure in this entire
+  survey after DE's 4.0%); AK's Title Closing Fee ($1,381.00) is the single largest settlement-fee
+  line item recorded anywhere in this survey to date; ND/WY/AK confirmed to have no deed/transfer tax
+  at all (matches each state's known statutory position); VT's settlement office (Omnia Title Corp.,
+  Tampa FL) and WY's (Executive Title Services LLC, Jackson) were both out-of-state/out-of-county
+  remote providers rather than local ones, per Stewart's own providers lookup for those counties.
+  **New technique generalization**: rather than searching cold for a 2nd provider per state, tried
+  WFG's already-solved `rates.wfgnationaltitle.com` Seller Net Sheet API (documented in CALCULATORS.md's
+  2026-08-08 entry) against all 5 new states plus every state still below threshold from the prior
+  4 sessions (WV, ME, RI, DE, SD) — confirmed via `GetCalculationEnabledStates` that **all 9 states
+  except AK** are `isCalculationEnabled: true`, and all 9 successful queries returned a clean
+  premium-only Owner's Policy figure with zero personal-data fields required. AK is not in WFG's
+  enabled-states list at all (confirmed by direct query) and needs a different 2nd-provider technique
+  next session. Results: **WV and ME both cross the 3-provider calculator-quoted threshold**
+  (WV: Stewart + Old Republic's 2nd tool + WFG $2,280.00; ME: Stewart + Absolute Title + WFG
+  $1,750.00); **ND, DC, VT, WY each reach 2 of 3** (Stewart + WFG); **RI, DE, SD each reach 2 of 3**
+  (their existing Stewart entry + a new WFG entry); **AK remains at 1 of 3** (Stewart only, no WFG
+  coverage). Freshness/blocked-source-retry passes were not run this session (full time budget spent
+  on the calculator-harvest breadth push, which combined two already-solved recipes across 10 states
+  in one session — the widest single-session state coverage to date).
+  **Next session priority**: (1) ND, DC, VT, WY each need exactly 1 more provider to cross
+  threshold — try NetSheetCalc/TitleTap, MyTitleRates.com, or Old Republic's 2nd tool (with the full
+  session-affinity fix, not just Referer) against each; (2) RI, DE, SD each also need exactly 1 more
+  provider — same target list; (3) AK needs 2 more providers and cannot use the WFG shortcut — try
+  Alyeska Title Guaranty Agency (AK's own published-schedule provider) or another Alaska-specific
+  independent agency for a genuine 2nd source; (4) the standing freshness and blocked-source-retry
+  passes are now overdue (skipped for 3 consecutive sessions in favor of the calculator-harvest
+  breadth push) and should be prioritized once the remaining below-threshold scarce states are
+  cleared.
+
+  **Blocked-source retries** (one quick check each, per the standing rotation): AZ DIFI
+  (`difi.az.gov/title-insurance-rate-filings`) still HTTP 403, unchanged across every session this
+  has been checked; CATIC CT (`catic.com/state-resources/connecticut`) returned a clean HTTP 200 this
+  run, continuing its established fluctuating-block pattern (not flagged `{stale: true}`, consistent
+  with the recurring precedent); Jackson & Scott AL (`realestatelclosings.com/closing-costs-calculator/`)
+  still HTTP 403. No status change on any of the three. Freshness spot-check (5 oldest published
+  sources) was not run this session — full time budget went to the calculator-harvest breadth push
+  described above.

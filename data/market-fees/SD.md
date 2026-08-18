@@ -1,11 +1,12 @@
 # South Dakota — Market Fee Evidence
 
-## Calculator harvest (2026-08-15)
+## Calculator harvest (2026-08-15 through 2026-08-18)
 
-Separate from the published-schedule survey below, 1 calculator-basis quote was harvested for the
-standard scenario ($500,000 purchase / $400,000 loan / Minnehaha County-Sioux Falls / residential
-resale) — below the 3-provider calculator-quoted threshold this session. See SD.json's `"basis":
-"calculator"` entry for full itemized figures and CALCULATORS.md for the technical recipe.
+Separate from the published-schedule survey below, 2 calculator-basis quotes have been harvested for
+the standard scenario ($500,000 purchase / $400,000 loan / Minnehaha County-Sioux Falls /
+residential resale) — still below the 3-provider calculator-quoted threshold. See SD.json's
+`"basis": "calculator"` entries for full itemized figures and CALCULATORS.md for the technical
+recipes.
 
 1. **Stewart Title Guaranty Company** — Stewart Rate Calculator (stewartratecalculator.com), matched
    to Stewart Title Company's own Sioux Falls office. The richest single-office Stewart harvest of
@@ -15,6 +16,12 @@ resale) — below the 3-provider calculator-quoted threshold this session. See S
    applies its 6.2% state sales tax to itemized title-service fees ($24.80 on the Closing Fee, $18.60
    on the Examination Fee) — the first instance of sales tax on title-service fees found anywhere in
    this survey.
+2. **WFG National Title Insurance Company** — Seller Net Sheet Rate Calculator
+   (rates.wfgnationaltitle.com), via the publicly-reachable no-auth JSON API solved and documented
+   in CALCULATORS.md's 2026-08-08 entry. Confirmed SD `isCalculationEnabled: true` via
+   `GetCalculationEnabledStates` and harvested directly (Minnehaha County/Sioux Falls). Premium-only
+   result: Owner's Title Insurance Premium **$2,000.00** (SD is not one of the 7 states with
+   configured HUD-fee itemization in this tool). SD now needs 1 more provider to cross threshold.
 
 **2nd/3rd-provider search (dead ends this session)**: Old Republic's 2nd tool (`Location=SD`) NoBot-
 blocked, consistent with ME/RI/DE this session. Black Hills Title, Inc. (an existing SD provider in

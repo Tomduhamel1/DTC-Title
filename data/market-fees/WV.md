@@ -1,14 +1,14 @@
 # West Virginia — Market Fee Evidence
 
-## Status: complete (scarce market) — 3 verified published sources (all premium-only rate manuals), 2026-07-22; calculator harvest in progress — 2 of 3 providers as of 2026-08-14
+## Status: complete (scarce market) — 3 verified published sources (all premium-only rate manuals), 2026-07-22; calculator harvest complete — 3 of 3 providers as of 2026-08-18 (**calculator-quoted**)
 
-## Calculator harvest (2026-08-14, in progress)
+## Calculator harvest (2026-08-14 through 2026-08-18)
 
-Separate from the published-schedule survey below, a calculator-basis harvest was started this
-session for the standard scenario ($500,000 purchase / $400,000 loan / Kanawha County-Charleston /
-residential resale, statewide for tools with no county tiering). 2 providers confirmed so far (below
-the 3-provider calculator-quoted threshold); see WV.json's `"basis": "calculator"` entries and
-CALCULATORS.md for full technical detail.
+Separate from the published-schedule survey below, a calculator-basis harvest for the standard
+scenario ($500,000 purchase / $400,000 loan / Kanawha County-Charleston / residential resale,
+statewide for tools with no county tiering) **crossed the 3-provider calculator-quoted threshold**
+this session. See WV.json's `"basis": "calculator"` entries and CALCULATORS.md for full technical
+detail.
 
 1. **Stewart Title Guaranty Company** — Stewart Rate Calculator (stewartratecalculator.com). This
    session completed reverse-engineering of the `/api/SRC/quote` endpoint (unreverse-engineered
@@ -26,13 +26,16 @@ CALCULATORS.md for full technical detail.
    Loan Policy premium $100.00 simultaneous ($980.00 stand-alone), Grand Total $1,800.00 combined.
    Premium-only — no settlement/closing fee line items.
 
-WV still needs 1 more calculator-basis provider to cross threshold — see CALCULATORS.md's
-2026-08-14 entry for the specific leads tried and still open. A promising independent-agency
-candidate (Madison Title Agency) was found with a genuine no-login JSON API but confirmed via its
-own `title-init` endpoint to not have WV rate tables configured (a clean "checked, unsupported"
-negative result, not a blocked one). Untried leads include BesTitle, Eastern Title, First Title &
-Escrow, Bailey & Slotnick, and Ratified Title Group — named as WV independents in the
-published-schedule survey below but not yet checked specifically for a calculator.
+3. **WFG National Title Insurance Company** — Seller Net Sheet Rate Calculator
+   (rates.wfgnationaltitle.com), via the publicly-reachable no-auth JSON API solved and documented
+   in CALCULATORS.md's 2026-08-08 entry. Confirmed WV `isCalculationEnabled: true` via
+   `GetCalculationEnabledStates` and harvested directly (Kanawha County/Charleston). Premium-only
+   result: Owner's Title Insurance Premium **$2,280.00** (WV is not one of the 7 states with
+   configured HUD-fee itemization in this tool). **This crosses WV to the 3-provider
+   calculator-quoted threshold** — the same fast WFG technique that was applied to the whole
+   2026-08-18 session's untouched-scarce-state batch (ND/DC/VT/WY/AK) was retried against every
+   still-below-threshold state from the prior 4 sessions (WV/ME/RI/DE/SD) and found WV and ME both
+   already 1 provider short of crossing.
 
 ## Published-schedule survey (original, 2026-07-22)
 

@@ -1,11 +1,11 @@
 # Maine (ME) — Market Fee Evidence
 
-## Calculator harvest (2026-08-15)
+## Calculator harvest (2026-08-15 through 2026-08-18) — **calculator-quoted (3 providers)**
 
-Separate from the published-schedule survey below, 2 calculator-basis quotes were harvested for the
-standard scenario ($500,000 purchase / $400,000 loan / Cumberland County-Portland / residential
-resale) — below the 3-provider calculator-quoted threshold this session. See ME.json entries with
-`"basis": "calculator"` for full itemized figures and CALCULATORS.md for the technical recipes.
+Separate from the published-schedule survey below, 3 calculator-basis quotes have been harvested for
+the standard scenario ($500,000 purchase / $400,000 loan / Cumberland County-Portland / residential
+resale), crossing the 3-provider calculator-quoted threshold. See ME.json entries with `"basis":
+"calculator"` for full itemized figures and CALCULATORS.md for the technical recipes.
 
 1. **Stewart Title Guaranty Company** — Stewart Rate Calculator (stewartratecalculator.com), via
    settlement office Stewart Title-Northern New England Division (Portsmouth NH, the only office this
@@ -20,14 +20,22 @@ resale) — below the 3-provider calculator-quoted threshold this session. See M
    only maintains calculators for NH/ME/MA, not RI/CT/DE/VT (those URLs resolve to a generic fallback
    page).
 
-**3rd-provider search (dead ends this session)**: Old Republic's 2nd tool (`Location=ME`) still
-NoBot-blocked despite the Referer-header fix that worked for NH — the fix is not universally
-reliable, matching the WV session's finding that a deeper session-affinity fix (not just Referer) is
-sometimes required; not retried further this session. Gateway Title of Maine's "rate calculator" page
-is a Gravity Forms reCAPTCHA-gated contact form, not a calculator — jsOnly/gated. Cumberland Title
-Services + Central Maine Title's "fee calculator" routes to First American's FACC tool
-(`facc.firstam.com`), a known login/SSO gate. No Maine-specific MyTitleRates.com or NetSheetCalc/
-TitleTap agency instance found via search.
+3. **WFG National Title Insurance Company** — Seller Net Sheet Rate Calculator
+   (rates.wfgnationaltitle.com), via the publicly-reachable no-auth JSON API solved and documented
+   in CALCULATORS.md's 2026-08-08 entry. Confirmed ME `isCalculationEnabled: true` via
+   `GetCalculationEnabledStates` and harvested directly (Cumberland County/Portland). Premium-only
+   result: Owner's Title Insurance Premium **$1,750.00** (ME is not one of the 7 states with
+   configured HUD-fee itemization in this tool). **This crosses ME to the 3-provider
+   calculator-quoted threshold.**
+
+**Earlier 3rd-provider search (2026-08-15, dead ends before the WFG technique above)**: Old
+Republic's 2nd tool (`Location=ME`) still NoBot-blocked despite the Referer-header fix that worked
+for NH — the fix is not universally reliable, matching the WV session's finding that a deeper
+session-affinity fix (not just Referer) is sometimes required. Gateway Title of Maine's "rate
+calculator" page is a Gravity Forms reCAPTCHA-gated contact form, not a calculator — jsOnly/gated.
+Cumberland Title Services + Central Maine Title's "fee calculator" routes to First American's FACC
+tool (`facc.firstam.com`), a known login/SSO gate. No Maine-specific MyTitleRates.com or
+NetSheetCalc/TitleTap agency instance found via search.
 
 ## Status: complete (scarce market)
 

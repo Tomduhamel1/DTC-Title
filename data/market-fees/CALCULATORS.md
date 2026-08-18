@@ -3091,3 +3091,85 @@ threshold but each with a genuinely new, richly-itemized Stewart data point; 3 c
 browser-driven session remains the highest-leverage unresolved lead (TitleCapture/Qualia Connect
 nationwide, plus Black Hills Title's SD calculator specifically) for pushing any of ME/RI/DE/SD past
 threshold without waiting on more one-off provider discoveries.
+
+## 2026-08-18 session — last 5 untouched-scarce states harvested via Stewart; WFG's Seller Net Sheet API confirmed to generalize to nearly every small/low-population state, retroactively crossing WV and ME to threshold
+
+Continued the population-ordered "complete (scarce), never yet worked" list from the 2026-08-15
+recommendation: applied the unchanged Stewart `/api/SRC/quote` recipe (both QuoteType=2 and
+QuoteType=3 flows, exactly as documented in the 2026-08-14 entry above) to the final 5 states —
+**ND (Cass/Fargo), DC (District of Columbia/Washington), VT (Chittenden/Burlington), WY
+(Laramie/Cheyenne), AK (Anchorage)**. All 5 succeeded cleanly with no recipe changes — the 11th
+through 14th consecutive clean Stewart harvest across 3 sessions (after WV, NH, ME, RI, DE, SD).
+
+A local Python harvester script (`requests.Session()`-based, not committed to the repo — scratch
+tooling, same convention as the 2026-08-06 FNF script and the 2026-08-08 WFG script) implements the
+full 10-step recipe end to end: `propertysearch` → `statesettings` → `providers` → `ernstlookup` →
+build `QuoteRequestRoot` → two `POST /api/SRC/quote` calls. One implementation detail worth flagging
+for whoever reuses this: the `/api/SRC/providers` response is **not always a JSON array** — for a
+single-provider county it returns `{"ProviderList": {"Provider": {...}}}` with `Provider` as a bare
+object, not a one-element list; a naive `isinstance(providers, list)` check silently no-ops and
+leaves `ProviderID` empty, which in turn makes `ItemizedTitleServiceFeeList` come back `null` (looks
+exactly like a genuine null result, e.g. DE's, but is actually a client bug) — always normalize
+`Provider` to a list before indexing it.
+
+**Results**:
+- **ND** (Cass/Fargo): Dickey and LaMoure County Abstract and Title Company (Ellendale, ND) — 7-line
+  itemization (Certification $25/Closing $350/Courier $22.95/Examination $200/Plat Draw $175/Search
+  $50/Wire $15, all buyer-side), Owner's/Lender's standalone premiums $1,400/$1,050. No transfer tax
+  (ND has none).
+- **DC**: Stewart Title and Escrow, Inc. (Washington, DC) — the richest single-office itemization of
+  this session, 10 line items (Abstract $300/Closing $700 split/Commitment $269/Courier $35/Deed
+  Prep $195/Doc Prep $650 split/Examination $450/Release Procurement $200/Remote Notary $300
+  split/Simplefile-Recording-Zoccam $128/Tax Certificate $30.76), Owner's/Lender's premiums
+  $2,700/$1,710. Combined Deed Tax + Deed Recordation Tax $14,500.00 (2.9% of $500,000) — 2nd-highest
+  combined transfer-tax figure in this survey after DE's 4.0%.
+- **VT** (Chittenden/Burlington): Omnia Title Corp. (Tampa, FL — the *only* settlement office
+  Stewart's own providers lookup returns for this county, an out-of-state remote provider). Title
+  Closing Fee $750.00 (split $550/$200), Owner's/Lender's premiums $1,723/$1,050. VT Property
+  Transfer Tax $5,410.00 (1.082%, 100% buyer-paid).
+- **WY** (Laramie/Cheyenne): Executive Title Services LLC (Jackson, WY — also not local to the
+  target county, a statewide-serving office). Title Closing Fee $400 (split $200/$200), Mobile
+  Notary $300 (split), Remote Notary $90 (split), Wire $25 (seller); Owner's/Lender's premiums
+  $1,694/$712. No transfer tax (WY has none).
+- **AK** (Anchorage): Stewart Title Company — Stewart Title of Alaska (a genuine in-state office,
+  unlike VT/WY above). Title Closing Fee **$1,381.00** (split $690.50/$690.50) — the single largest
+  settlement-fee line item recorded anywhere in this entire survey to date — plus Courier $20/Doc
+  Prep $50 split/Wire $25; Owner's/Lender's premiums $1,990/$1,336. No transfer tax (AK has none).
+
+### WFG's Seller Net Sheet API generalizes far beyond the original 8-state target list — a fast, free 2nd/3rd provider for nearly every remaining below-threshold scarce state
+
+Rather than cold-searching for each new state's 2nd provider, queried WFG's already-solved
+`GET /api/rates/State/GetCalculationEnabledStates` (no auth, documented in the 2026-08-08 entry
+above) for all 5 new states plus every state still below threshold from the 4 prior sessions (WV,
+ME, RI, DE, SD) — **9 of these 10 states came back `isCalculationEnabled: true`** (only AK is
+absent from WFG's enabled-states list entirely — confirmed by direct lookup, not a fetch failure).
+Ran the same `POST /api/rates/fees/estimatefeesforsellernet` request (nested `Properties`/`Loans`
+body, `SettlementStatementVersion: "CD"`) against all 9 and got a clean premium-only Owner's Policy
+figure back from every one, no personal-data fields required:
+
+| State | County | Owner's Premium | Effect |
+|---|---|---|---|
+| WV | Kanawha (Charleston) | $2,280.00 | **crosses to 3** (Stewart + Old Republic 2nd tool + WFG) |
+| ME | Cumberland (Portland) | $1,750.00 | **crosses to 3** (Stewart + Absolute Title + WFG) |
+| ND | Cass (Fargo) | $1,238.00 | 2 of 3 |
+| DC | District of Columbia | $3,263.00 | 2 of 3 |
+| VT | Chittenden (Burlington) | $1,878.80 | 2 of 3 |
+| WY | Laramie (Cheyenne) | $1,733.00 | 2 of 3 |
+| RI | Providence | $1,925.00 | 2 of 3 |
+| DE | New Castle (Wilmington) | $2,424.00 | 2 of 3 |
+| SD | Minnehaha (Sioux Falls) | $2,000.00 | 2 of 3 |
+
+This is a generalizable lesson worth stating plainly for future sessions: **whenever Stewart's recipe
+gives a state its 1st (or 2nd) provider, immediately check WFG's `GetCalculationEnabledStates` before
+searching for anything else** — it costs one GET + one POST per state and has now supplied a
+provider for 9/10 states tried across two different sessions (2026-08-08's original 8-state batch and
+this session's 10-state retry), the highest hit rate of any technique in this entire catalog.
+
+**Next session priority**: (1) ND, DC, VT, WY, RI, DE, SD each need exactly 1 more provider —
+try NetSheetCalc/TitleTap, MyTitleRates.com, or Old Republic's 2nd tool (full session-affinity fix,
+not the lighter Referer-only fix that has now failed 5 times in a row: ME, RI, DE, SD, and implicitly
+every state tried this session) against each; (2) AK needs 2 more providers and has no WFG fallback
+— try Alyeska Title Guaranty Agency (AK's own existing published-schedule provider) or another
+Alaska-specific independent agency; (3) the standing freshness and blocked-source-retry passes are
+now overdue after 3 consecutive sessions skipping them in favor of the calculator-harvest breadth
+push.

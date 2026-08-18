@@ -23,7 +23,10 @@
       "cpl": "$125.00 per transaction, single-transaction letter, remitted entirely to the Insurer (Section 6.1) -- see settlementFee.closingProtectionLetter above",
       "binder": null,
       "other": [
-        { "name": "Extension/Modification of Insured Mortgage (illustrative worked example)", "amount": "Loan Policy Rate applied on a percentage-of-prior-liability basis per Section 3.11 (e.g., $90,000 unpaid balance extended with $125,000 new liability computed to $273.25 in the Manual's own example)" }
+        {
+          "name": "Extension/Modification of Insured Mortgage (illustrative worked example)",
+          "amount": "Loan Policy Rate applied on a percentage-of-prior-liability basis per Section 3.11 (e.g., $90,000 unpaid balance extended with $125,000 new liability computed to $273.25 in the Manual's own example)"
+        }
       ]
     },
     "bundlingNotes": "DTIRB's Sections 1.5 and 2.1 are the most direct 'premium-only' unregulated-settlement-fee language found in this survey outside of Ohio's GP-4 -- Delaware's rating bureau declares up front that searches, abstracts, attorney's fees, escrow, and closing/settlement charges are never part of the regulated premium for any provider type (Insurer or Agent). Because Delaware additionally requires a Delaware-licensed attorney to conduct every residential closing and disburse funds (an attorney-closing-state custom distinct from DTIRB regulation itself, confirmed via multiple independent sources -- see DE.md), the entire settlement/service-fee stack the task brief targeted is priced by whichever attorney or title/settlement agency handles the file, not by the Manual. The one closing-adjacent item DTIRB does price is the Closing Protection Letter at a flat $125.00/transaction (Section 6.1), remitted entirely to the Insurer.",
@@ -49,11 +52,26 @@
       "cpl": null,
       "binder": null,
       "other": [
-        { "name": "Deed and mortgage recording (state/county fee, pass-through, not the firm's own charge)", "amount": "$58.00-$109.00" },
-        { "name": "Home appraisal (third-party, referenced for context, not the firm's charge)", "amount": "$400.00-$800.00" },
-        { "name": "Survey (third-party, referenced for context)", "amount": "$625.00-$1,200.00" },
-        { "name": "Home inspection (third-party, referenced for context)", "amount": "$500.00-$1,000.00" },
-        { "name": "Credit report (third-party, referenced for context)", "amount": "approximately $30.00" }
+        {
+          "name": "Deed and mortgage recording (state/county fee, pass-through, not the firm's own charge)",
+          "amount": "$58.00-$109.00"
+        },
+        {
+          "name": "Home appraisal (third-party, referenced for context, not the firm's charge)",
+          "amount": "$400.00-$800.00"
+        },
+        {
+          "name": "Survey (third-party, referenced for context)",
+          "amount": "$625.00-$1,200.00"
+        },
+        {
+          "name": "Home inspection (third-party, referenced for context)",
+          "amount": "$500.00-$1,000.00"
+        },
+        {
+          "name": "Credit report (third-party, referenced for context)",
+          "amount": "approximately $30.00"
+        }
       ]
     },
     "bundlingNotes": "This is the single genuine provider-published, dollar-denominated Delaware settlement/attorney-fee figure located this session. It illustrates Delaware's attorney-closing custom directly: because DTIRB's own Manual excludes attorney's fees and settlement/closing charges from the regulated premium (see the DTIRB entry above), and Delaware law requires a licensed Delaware attorney to conduct the settlement and disburse funds, the closing-attorney's bundled fee IS the settlement-fee market signal in Delaware, rather than a separate title-company line item layered on top of an independent attorney fee (contrast NJ, where both a regulated title-company settlement charge and an additive, unregulated attorney fee exist side by side). The $1,400-$1,600 range bundles title exam, attorney review, settlement coordination, admin, and transaction coordination into one number rather than itemizing doc prep/wire/courier/notary separately, consistent with the market-opacity pattern (bundled rather than itemized pricing) observed at attorney-run firms in other states surveyed (e.g., NJ's Makarov and Y. Levin flat fees).",
@@ -109,5 +127,24 @@
     },
     "bundlingNotes": "The absence of an itemized settlement fee from this tool is itself corroborating evidence for DE.md's central structural finding (DTIRB explicitly excludes settlement/closing/attorney charges from the regulated rate, and Delaware requires an attorney to close) rather than a gap in the harvest -- the tool simply has nothing configured to itemize because Stewart's own Wilmington office does not price the attorney-handled settlement step through this calculator. The combined $20,000.00 state+county transfer tax on a $500,000 sale (4.0% combined rate) is a genuinely new dollar figure for this state's evidence file, not previously on record.",
     "transactionContext": "Sale/Purchase with Mortgage, New Castle County/Wilmington DE."
+  },
+  {
+    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-18",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, New Castle County (Wilmington), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Same publicly-reachable, no-auth JSON API already solved and documented in CALCULATORS.md's 2026-08-08 entry -- confirmed via GET /api/rates/State/GetCalculationEnabledStates that this state is isCalculationEnabled:true, then POST directly with the nested Properties/Loans request shape. No personal-data field exists anywhere in this request shape.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2424.00",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's sellernet/seller-side-only design, same behavior already documented for every other state harvested via this tool)",
+      "other": [],
+      "note": "Premium-only result -- this state is not one of the 7 (WA/CA/TX/OR/AZ/NV/CO) with configured HUD-fee line items in WFG's own fee-description table."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "Property location for this request: Wilmington, DE (New Castle County).",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, New Castle County, DE."
   }
 ]
