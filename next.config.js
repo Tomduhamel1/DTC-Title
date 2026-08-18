@@ -37,6 +37,31 @@ const nextConfig = {
           { key: 'Cache-Control', value: 'no-store, must-revalidate' },
         ],
       },
+      // Same CloudFront problem, different blast radius: /login was being
+      // pinned with s-maxage=31536000 and served from the edge for hours
+      // (observed age=22465). The page reads NextAuth state per request —
+      // the CSRF token, the ?callbackUrl and ?error params — so a cached
+      // copy hands every visitor stale auth state, and the sign-in callback
+      // then rejects the mismatch as "the link is no longer valid".
+      // Auth pages must never be edge-cached.
+      {
+        source: '/login',
+        headers: [
+          { key: 'Cache-Control', value: 'no-store, must-revalidate' },
+        ],
+      },
+      {
+        source: '/login/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'no-store, must-revalidate' },
+        ],
+      },
+      {
+        source: '/api/auth/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'no-store, must-revalidate' },
+        ],
+      },
     ]
   },
   // /for-my-lender was renamed to /for-my-team. Permanent redirect so
