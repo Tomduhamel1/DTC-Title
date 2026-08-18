@@ -3243,3 +3243,51 @@ plus WV/ME/RI/DE/SD's existing entries extended), 8 states crossed or already-cr
 AK (2 of 3) and DC (2 of 3) below threshold from the entire original "complete (scarce), never yet
 worked" list.** Two commits pushed to `research/market-fees`; this WFG+FNF generalization work will
 be pushed as a follow-up commit.
+
+### DC follow-up (same session) — four-radio structure mapped, quote still not produced; two more reusable script fixes
+
+Spent a focused pass on the DC failure above. DC's Amounts step turns out to reveal **four**
+sequential radio questions where every other state tried asks one or two, all four present in the
+DOM at once (unlike UT's genuinely sequential reveal documented in the 2026-08-09 entry):
+`IsPolicyIssuedToInsure_1_To_4_FamilyResidence`, `Concurrent_IsEligible`, `CFPB_IsQualified`, and
+`Reissue_IsEligible`. Two script fixes were required just to answer them all, both worth reusing in
+any future FNF replay:
+
+1. **Track answered question *names***, not just "is there an unanswered radio on the page." A loop
+   that re-scans and takes the first match each iteration re-answers the same question forever and
+   never reaches the others — the page keeps rendering all four regardless, so there's no natural
+   termination signal.
+2. **Match radios on the `$rc_` infix**, not on a question-keyword list. The original loop looked for
+   `Eligible|Qualified|LenderBorrower` in the field name, which silently misses
+   `IsPolicyIssuedToInsure_1_To_4_FamilyResidence` entirely — one unanswered required question is
+   enough to block the whole flow, and the symptom (Finish returns a non-results page) is identical
+   to every other failure mode here.
+
+**`Reissue_IsEligible` must be answered No** for this project's standard scenario: answering Yes
+reveals a required `Reissue_FaceAmount` (prior policy amount), which a fresh $500,000 resale has no
+basis to supply — filling it would mean inventing a figure, which the evidence rules forbid. Answered
+No, which is also the substantively correct answer for the standard scenario.
+
+**Still unsolved**: with all four answered and `btnFinish` clicked cleanly, the response carries no
+`Grand Total`/`Premium` content, no `pnlErrors` marker, and the only registered page validator is
+TranType's own `rfv` — so this is not a surfaced validation failure. **Best remaining hypothesis for
+next session**: `ddlUnderwriters` is the one field this recipe has never explicitly set (it's always
+been left at the tool's own pre-selected default, which works everywhere else); DC's underwriter list
+differs from other states' (only Chicago Title / Fidelity National Title / National Title of NY, no
+Commonwealth) and may have no valid default for the chosen transaction shape. Try an explicit
+underwriter selection with its own postback before investigating anything else.
+
+### AK 3rd-provider search (same session) — no lead found
+
+Checked, all negative: **Alyeska Title Guaranty Agency**'s own site (`alyeskatitle.com`, AK's
+existing published-schedule provider) has no calculator/net-sheet/rate-quote page of any kind in its
+static HTML. **NetSheetCalc's own Alaska landing page**
+(`netsheetcalc.com/net-sheet-calculator-by-state/alaska-net-sheet-calculator/`) is pure platform
+marketing with no tenant `app_id` referenced anywhere — it does not evidence any actual Alaska
+tenant. The **Alaska Land Title Association member directory** (`alaskalandtitle.net/member-directory/`)
+is JS-rendered (a "smartcat team" WordPress plugin); the only member domain resolvable from the
+static HTML is **Western Alaska Land Title** (`westernaktitle.com`), which has no calculator either.
+Generic web search for AK title-company calculators returns only third-party aggregator estimate
+tools (AnytimeEstimate, ListWithClever, RealEstateWitch, HomeLight), all out of scope per the
+standing `alphaadv.net` exclusion precedent. AK stays at 2 of 3 — a genuinely thin market, consistent
+with its published-schedule survey finding of only 2 sources statewide.

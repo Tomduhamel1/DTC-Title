@@ -2700,12 +2700,48 @@ still vary and matter).
   Combined with the WFG pass earlier in this same session, this closes out the calculator-harvest
   mission for every state in the original "complete (scarce), never yet worked" list except **AK**
   (needs 1 more provider) and **DC** (needs 1 more provider, and its own FNF quirk needs solving).
-  **Next session priority**: (1) DC's FNF quirk (no county dropdown — investigate whether the flow
-  needs a different first step, e.g. an implicit DC-specific transaction path); (2) AK's 3rd
-  provider — no WFG coverage, so try NetSheetCalc/TitleTap, MyTitleRates.com, or Alyeska Title
-  Guaranty Agency's own site for a genuine AK-specific 2nd/3rd calculator; (3) the standing freshness
-  and blocked-source-retry passes remain overdue; (4) with the scarce-state calculator backlog now
-  essentially cleared, a future session should pivot back to richness passes on already-crossed
-  states (2nd/3rd corroborating sources, per the standing richness-pass precedent) or a browser-driven
-  session to finally crack TitleCapture/Qualia Connect, the single highest-value remaining jsOnly
-  target nationwide.
+  **DC's FNF failure partially characterized (still unsolved).** Spent a focused pass on it: DC's
+  Amounts step reveals **four** sequential radio questions, not the one or two every other state
+  asks — `IsPolicyIssuedToInsure_1_To_4_FamilyResidence`, `Concurrent_IsEligible`,
+  `CFPB_IsQualified`, and `Reissue_IsEligible` — all four of which are present in the DOM
+  simultaneously (not revealed one at a time as UT's cascade was). Two script fixes were needed just
+  to reach this point and are worth reusing: (a) the "answer extra radios" loop must track which
+  question *names* have already been answered, or it re-finds the same first match forever and never
+  answers the rest; (b) the radio-matching regex must key on the `$rc_` infix rather than a
+  question-keyword list, since `IsPolicyIssuedToInsure_1_To_4_FamilyResidence` matches none of the
+  Eligible/Qualified/LenderBorrower keywords the original loop looked for. `Reissue_IsEligible` is
+  now answered **No** (it demands a `Reissue_FaceAmount` prior-policy amount if answered Yes, which
+  the standard fresh-purchase scenario has no basis to supply — answering Yes would require
+  fabricating a figure, which the evidence rules forbid). Even with all four answered correctly and
+  Finish clicked cleanly, the response still contains no `Grand Total`/`Premium` content and the only
+  registered page validator is TranType's — so this is not a visible validation failure. Root cause
+  still unknown; DC stays at 2 of 3.
+
+  **Freshness spot-check** (5 oldest published sources from states never previously in any freshness
+  rotation — ND/Stewart ND manual PDF, AK/Alyeska escrow rates PDF, DC/Stewart DC rate manual PDF,
+  VT/FNTI VT rate manual PDF, WY/Stewart WY manual PDF): 4 of 5 returned a clean HTTP 200. The VT
+  source is on `documentpub.fnti.com`, the host a prior session (2026-08-13) flagged as having a
+  "domain-wide TLS break" with a standing instruction to promote its citations to `{stale: true}` if
+  the break persisted across 2+ sessions. **That promotion was NOT applied, and the prior session's
+  characterization is corrected here**: the failure is *not* attributable to the upstream host with
+  any confidence. Investigated directly this session — a direct `openssl s_client` handshake against
+  `documentpub.fnti.com` verifies the full chain cleanly (`Verify return code: 0 (ok)`) against the
+  same CA bundle that curl/requests are configured to use, and a proxy-bypassing fetch reaches the
+  host and gets an HTTP-level response rather than a TLS error. The `CERTIFICATE_VERIFY_FAILED` is
+  reproducible **only** on the proxied HTTP path inside this research sandbox, which makes it an
+  environment artifact rather than evidence about the source itself. **Standing correction for future
+  sessions: do not flag `documentpub.fnti.com` citations `{stale: true}` on the strength of a TLS
+  error observed from inside this sandbox** — verify with a direct handshake first, and only flag if
+  the upstream host itself is genuinely failing. (This is the same class of care already applied to
+  the recurring 403/WAF hosts, which are likewise never flagged stale.)
+
+  **Next session priority**: (1) DC's FNF quirk — the four-radio structure is now mapped, so the
+  remaining unknown is why Finish doesn't produce a quote; worth trying an explicit non-default
+  `ddlUnderwriters` selection (DC's underwriter list is the one field this recipe has never set
+  explicitly) before anything else; (2) AK's 3rd provider — no WFG coverage, and this session
+  confirmed Alyeska Title's own site has no calculator and the Alaska Land Title Association's
+  member directory is JS-rendered (only Western Alaska Land Title resolvable statically, no
+  calculator on it); try NetSheetCalc/TitleTap or MyTitleRates.com tenant search next; (3) with the
+  scarce-state calculator backlog otherwise cleared, pivot to richness passes on already-crossed
+  states, or a browser-driven session to finally crack TitleCapture/Qualia Connect — the single
+  highest-value remaining jsOnly target nationwide.
