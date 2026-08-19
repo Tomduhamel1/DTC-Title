@@ -1,6 +1,12 @@
 # Ohio (OH) — Market Fee Evidence
 
-## Status: complete (scarce market) — 2 verified published sources + 3 calculator-basis providers (**calculator-quoted (3 providers)**, threshold crossed 2026-07-27)
+## Status: complete (scarce market) — 2 verified published sources + 4 calculator-basis providers (**calculator-quoted (4 providers)**, threshold crossed 2026-07-27; 4th provider added 2026-08-19)
+
+## Richness pass (2026-08-19) — FNF national rate calculator, Franklin County
+`ratecalculator.fnf.com` (already-solved recipe, reused nationwide) reaches Franklin County even
+though Old Republic's tool doesn't. Premium-only: Owner's Policy Premium $2,475.00, Loan Policy
+Premium $150.00, Lender's Closing Protection Coverage $40.00, Grand Total $2,665.00. See OH.json's
+4th `"basis": "calculator"` entry for full detail.
 
 ## Calculator harvest (2026-07-27 update) — Franklin County (Columbus) reached, threshold crossed
 Old Republic's ortconline.com tool (below) does not serve Franklin County, OH's actual most-populous

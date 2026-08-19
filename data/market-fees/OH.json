@@ -216,5 +216,26 @@
     },
     "bundlingNotes": "Second agency found running the same shared OH netsheet-calculator template as Columbus Title Agency (see that entry's bundlingNotes) -- confirms this is a genuine multi-agency reusable platform, not a one-off. Owl Creek's own fee constants (search $225 vs. Columbus's $275; closing $125 vs. $210; doc prep $75 vs. $85) differ meaningfully from Columbus Title's, satisfying the 'each instance reflects its own real fee schedule' pattern already established for MyTitleRates.com/TitleCapture elsewhere in this survey. Combined with Old Republic's ortconline.com entry above, this brings OH to 3 calculator-basis providers, crossing the calculator-quoted threshold.",
     "transactionContext": "Seller-side settlement/service-fee schedule for a residential resale at $500,000 purchase price; agency home county Knox (Mount Vernon), statewide service area."
+  },
+  {
+    "provider": "FNF-family underwriter (Chicago Title/Fidelity National Title/Commonwealth Land Title -- ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine; this tool's pre-selected default underwriter brand varies by request, and prior sessions confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=OH",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=OH (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-19",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Franklin County (Columbus, OH's most-populous county), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions.",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback), following this project's existing FNF recipe documented in CALCULATORS.md: GET the county-selection page, POST the county (own __EVENTTARGET), POST btnGeneralNext=Next, POST TranType$ddl=PropertyPurchase, POST AmountPurchase$txt=500000 then AmountLoan1$txt=400000 (each with its own __EVENTTARGET), tool defaults for all remaining policy questions, then POST btnFinish=Finish for the final Rate Summary. No personal-data fields exist anywhere in this flow. This is a richness pass applying the already-solved FNF recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers (this tool's OH footprint reaches Franklin County even though Old Republic's ortconline.com tool -- OH's existing calculator entry -- only covers 15 northern-Ohio counties and does not reach Franklin).",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2475.00 (Owner's Policy Total Policy Premium: Disclosure Amount $1,160.00 + Adjustment $1,315.00, concurrent-issue rate)",
+      "loanPolicyPremium": "$150.00 (Loan Policy Total Policy Premium, concurrent-issue rate)",
+      "other": [
+        { "name": "Charge for Lender's Closing Protection Coverage", "amount": "$40.00" }
+      ],
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence."
+    },
+    "sectionTotals": "Grand Total (Owner's Policy Purchased): $2665.00.",
+    "bundlingNotes": "Harvested this session as a richness pass -- OH had already crossed the 3-provider threshold (Old Republic, Columbus Title Agency, Owl Creek Title Agency); this FNF entry is a 4th corroborating provider, applying the same generalized recipe already used for AR/CT/CO/MA/ND/VT/WY/RI/DE/SD/AK/NH/WV/ME.",
+    "transactionContext": "Owner's + Loan Policy concurrent-issue premiums plus Lender's Closing Protection Coverage for a $500,000 residential purchase / $400,000 loan, Franklin County (Columbus)."
   }
 ]

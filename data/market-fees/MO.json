@@ -182,5 +182,27 @@
     "sectionTotals": "Net Owner's Title Policy Charge: $1,010.00 (CPL $50 + MO Title Service Fee $665.50 + Filed Premium $294.50). Net Lender's Title Policy Charge: $425.00 (CPL $50 + MO Title Service Fee $372.00 + Filed Premium $3.00). Total Other Title Charges: $970.00 (Seller closing fee $500 + Buyer/borrower closing fee $400 + Wire fee $25 + Delivery fee $45).",
     "bundlingNotes": "This tenant explicitly splits 'closing fee' into a Seller closing fee ($500) and a separate Buyer/borrower closing fee ($400) -- a genuine buyer/seller-asymmetric closing-fee structure, distinct from Elite Title Company's (also on file for MO, harvested this session) single flat $395 Closing Fee, and from Old Republic's bundled escrow product. The 'Missouri Title Service Fee' + 'Filed Premium' split (rather than a single title insurance premium line) matches the same platform's Minnesota Secured Title tenant structure (which uses 'Title Evidence'/'Title Examination' instead) -- confirms the Title Midwest platform's schema is genuinely per-tenant-configured, not a copy-paste demo, despite the shared backend.",
     "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Jackson County/Kansas City -- the same metro area as the existing Old Republic entry, giving a direct same-market comparison point. This is MO's 3rd calculator-basis provider, crossing the 3-provider threshold."
+  },
+  {
+    "provider": "FNF-family underwriter (Chicago Title/Fidelity National Title/Commonwealth Land Title -- ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine; this tool's pre-selected default underwriter brand varies by request, and prior sessions confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=MO",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=MO (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-19",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Jackson County (Kansas City) (matching this state's existing calculator entries' county), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions.",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback), following this project's existing FNF recipe documented in CALCULATORS.md: GET the county-selection page, POST the county (own __EVENTTARGET), POST btnGeneralNext=Next, POST TranType$ddl=PropertyPurchase, POST AmountPurchase$txt=500000 then AmountLoan1$txt=400000 (each with its own __EVENTTARGET), tool defaults for all remaining policy questions, then POST btnFinish=Finish for the final Rate Summary. No personal-data fields exist anywhere in this flow. This is a richness pass applying the already-solved FNF recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$450.00 (Owner's Policy Premium, concurrent-issue rate -- this tool does not itemize a Disclosure/Adjustment split for MO, unlike most other states in this recipe)",
+      "loanPolicyPremium": "$4.00 (Loan Policy Premium, concurrent-issue rate)",
+      "other": [
+        { "name": "Closing Protection Letter Coverage - Lender/Buyer", "amount": "$25.00" },
+        { "name": "Closing Protection Letter Coverage - Seller", "amount": "$25.00" }
+      ],
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence. The unusually low Owner's/Loan premiums ($450.00/$4.00) are recorded exactly as returned by the tool per this project's evidence rules (exact figures only, never estimated or corrected)."
+    },
+    "sectionTotals": "Grand Total: $504.00.",
+    "bundlingNotes": "Harvested this session as a richness pass -- MO had already crossed the 3-provider threshold (Old Republic, Elite Title Company, Secured Title of Kansas City); this FNF entry is a 4th corroborating provider, applying the same generalized recipe already used for AR/CT/CO/MA/ND/VT/WY/RI/DE/SD/AK/NH/WV/ME/OH.",
+    "transactionContext": "Owner's + Loan Policy concurrent-issue premiums plus dual Closing Protection Letter charges for a $500,000 residential purchase / $400,000 loan, Jackson County (Kansas City)."
   }
 ]

@@ -263,3 +263,11 @@ MyTitleRates.com discovery is significant beyond PA: it is shared SaaS infrastru
 independent title agencies nationwide (each with its own `a=<id>`), analogous in importance to Old
 Republic's ortconline.com postback tool for other states — see CALCULATORS.md's "For future
 sessions" note for the recommended follow-up search strategy.
+
+## Richness pass (2026-08-19) — FNF national rate calculator, Philadelphia County
+`ratecalculator.fnf.com` (already-solved recipe, reused nationwide), Philadelphia County — the same
+scenario this recipe was originally verified against in the 2026-07-25 session that solved it, so
+figures are byte-identical to that original writeup. Premium-only: Owner's Policy Premium $3,305.00
+(Disclosure $570.00 + Adjustment $2,735.00), Loan Policy Premium $0.00 (concurrent rate), Grand Total
+$3,305.00. Crosses PA to **calculator-quoted (4 providers)**. See PA.json's 4th
+`"basis": "calculator"` entry for full detail.

@@ -86,6 +86,12 @@ upgrade over this state's published-schedule survey, which found zero settlement
 figures anywhere. See AL.json for full itemized figures; see CALCULATORS.md for the full technical
 recipes (including the new "ydwebpro" platform, flagged there for reuse in other scarce states).
 
+## Richness pass (2026-08-19) — FNF national rate calculator, Jefferson County
+`ratecalculator.fnf.com` (already-solved recipe, reused nationwide), Jefferson County (Birmingham).
+Premium-only: Owner's Policy Premium $1,625.00 (Disclosure $875.00 + Adjustment $750.00), Loan
+Policy Premium $250.00, Grand Total $1,875.00. This is AL's 4th calculator-basis provider — **now
+calculator-quoted (4 providers)**. See AL.json's 4th `"basis": "calculator"` entry for full detail.
+
 ## Not used / found-but-blocked
 
 - **southoaktitle.com/resources/title-closing-rates/birmingham-rates** — fetched; directs to

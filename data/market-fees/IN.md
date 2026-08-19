@@ -187,3 +187,15 @@ is formula-driven off a dedicated rate-table key (`Indiana480`), resolved via
 price; Lender's Title Insurance Premium is a flat $100.00 constant. Statewide, no county
 selector present in this tenant's schema. **This crosses IN to calculator-quoted (3
 providers).** See CALCULATORS.md for the full technical entry.
+
+## Richness pass (2026-08-19) — FNF national rate calculator, Marion County
+`ratecalculator.fnf.com` (already-solved recipe, reused nationwide), Marion County (Indianapolis,
+IN's most-populous county). IN-specific recipe fix required: the tool's `BuilderEligible` radio
+question renders with neither option pre-checked and lives in a different form panel than every
+other question this recipe has previously encountered — see CALCULATORS.md's 2026-08-19 entry for
+the full technical writeup. Answered No (the standard scenario is a resale, not new construction).
+Premium-only: Owner's Policy Premium $1,337.00, Loan Policy Premium $120.00, plus a genuinely new
+line item -- **TIEFF (Title Insurance Enforcement Fund Fee) $5.00**, a real Indiana-specific
+statutory charge -- and triple CPL charges (Lenders $35.00/Buyer $25.00/Seller $25.00), Grand Total
+$1,552.00. Crosses IN to **calculator-quoted (4 providers)**. See IN.json's 4th
+`"basis": "calculator"` entry for full detail.

@@ -278,5 +278,26 @@
     "sectionTotals": "C. Services You Can Shop For (loan-related shoppable costs): $1,940.00. Seller Fees (recordation/transfer tax): $5,752.50.",
     "bundlingNotes": "3rd MD calculator-basis provider (after Federal Title & Escrow Company and Allstates Title Service) -- crosses MD's 3-provider calculator-quoted threshold. Recordation/transfer tax figures match Allstates' MD quote exactly (both are Montgomery County government-set taxes, not provider-set, so identical figures are expected); the Settlement Fee ($425.00) also happens to match Allstates' figure exactly, a genuine coincidence worth noting rather than a sign of a shared template -- the two providers' Title Insurance Premium, Abstract/Search, and courier/wire line items differ.",
     "transactionContext": "Calculator-derived point estimate for Montgomery County, MD (matches this survey's existing MD providers' county choice for comparability)."
+  },
+  {
+    "provider": "FNF-family underwriter (Chicago Title/Fidelity National Title/Commonwealth Land Title -- ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine; this tool's pre-selected default underwriter brand varies by request, and prior sessions confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=MD",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=MD (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-19",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Montgomery County (matching this state's existing calculator entries' county), Property Purchase (with or without financing) transaction type, Residential property type, Owner Occupied = Yes (see methodology note), tool defaults for all other policy questions.",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback), following this project's existing FNF recipe documented in CALCULATORS.md: GET the county-selection page, POST the county (own __EVENTTARGET), POST btnGeneralNext=Next, POST TranType$ddl=PropertyPurchase, POST AmountPurchase$txt=500000 then AmountLoan1$txt=400000 (each with its own __EVENTTARGET), POST Reissue_IsEligible=No, then POST OwnerOccupied=Yes (own __EVENTTARGET) before Finish. MD-specific new finding this session: unlike every other state's radio-group questions in this tool (which always default-check one option), MD's 'OwnerOccupied' question renders with NEITHER option pre-checked -- leaving it unanswered kept the server-side Finish button disabled with no visible error (the same 'large-response no-quote' symptom already documented for DC/IN in CALCULATORS.md). Fix: explicitly POST the field with its own __EVENTTARGET before Finish. Answered Yes as the substantively correct default for a standard owner-occupied residential resale purchase (this project's standard scenario has no basis to assume an investment/non-owner-occupied purchase). No personal-data fields exist anywhere in this flow. This is a richness pass applying the FNF recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2507.50 (Owner's Policy Total Policy Premium: Disclosure Amount $1,422.50 + Adjustment $1,085.00, concurrent-issue rate)",
+      "loanPolicyPremium": "$275.00 (Loan Policy Total Policy Premium, concurrent-issue rate)",
+      "other": [
+        { "name": "Charge for Closing Protection Letter(s)", "amount": "$55.00" }
+      ],
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence."
+    },
+    "sectionTotals": "Grand Total (Owner's Policy Purchased): $2837.50.",
+    "bundlingNotes": "Harvested this session as a richness pass -- MD had already crossed the 3-provider threshold (Federal Title & Escrow Company, Allstates Title Service, Tri-State Signature Settlements); this FNF entry is a 4th corroborating provider, applying the same generalized recipe already used for AR/CT/CO/MA/ND/VT/WY/RI/DE/SD/AK/NH/WV/ME/OH/MO/MI/PA/NJ/TN/KY/AL, with a new fix (explicit OwnerOccupied selection) required specifically for MD.",
+    "transactionContext": "Owner's + Loan Policy concurrent-issue premiums plus CPL for a $500,000 residential purchase / $400,000 loan, Montgomery County."
   }
 ]

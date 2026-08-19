@@ -180,5 +180,29 @@
       "other": []
     },
     "bundlingNotes": "3rd IN calculator-basis provider -- crosses Indiana to calculator-quoted (3 providers). Thinnest of the 3 IN tenants (only 2 itemized lines vs. Agency Title's 7 and Momentum's 9+), but genuinely and unambiguously IN-scoped per its own approved_states field, avoiding the appid misattribution risk flagged repeatedly elsewhere in this survey. Lender's Title Insurance Premium is a flat non-formula constant ($100.00, plausibly a simultaneous-issue rate) while Owner's Title Insurance Premium is priced off the tenant's own rate table."
+  },
+  {
+    "provider": "FNF-family underwriter (Chicago Title/Fidelity National Title/Commonwealth Land Title -- ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine; this tool's pre-selected default underwriter brand varies by request, and prior sessions confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=IN",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=IN (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-19",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Marion County (Indianapolis, IN's most-populous county), Property Purchase (with or without financing) transaction type, Residential property type, Builder's Rate eligibility = No (see methodology note), tool defaults for all other policy questions.",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback), following this project's existing FNF recipe documented in CALCULATORS.md: GET the county-selection page, POST the county (own __EVENTTARGET), POST btnGeneralNext=Next, POST TranType$ddl=PropertyPurchase, POST AmountPurchase$txt=500000 then AmountLoan1$txt=400000 (each with its own __EVENTTARGET), POST Reissue_IsEligible=No, then POST BuilderEligible=No (own __EVENTTARGET) before Finish. IN-specific new finding this session: 'BuilderEligible' renders with neither radio option pre-checked (unlike every other Yes/No question in this recipe, which always defaults to one option) AND lives in a different panel (pnlAmountsPolicyQuestions, not pnlAmountsTransactionQuestions) than every other question this recipe has previously encountered -- leaving it unanswered kept the server-side Finish button disabled with no visible error (the same 'large-response no-quote' symptom already documented for DC/MD in CALCULATORS.md). Fix: explicitly POST the field (found by scanning for any unanswered rc_ control, not assuming a fixed panel) before Finish. Answered No since this project's standard scenario is a residential resale, not new construction, so the Builder's Rate does not apply. No personal-data fields exist anywhere in this flow. This is a richness pass applying the FNF recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1337.00 (Owner's Policy Premium, concurrent-issue rate -- this tool does not itemize a Disclosure/Adjustment split for IN, unlike most other states in this recipe)",
+      "loanPolicyPremium": "$120.00 (Loan Policy Premium, concurrent-issue rate)",
+      "other": [
+        { "name": "TIEFF (Title Insurance Enforcement Fund Fee)", "amount": "$5.00" },
+        { "name": "Closing Protection Letter Charges - Lenders", "amount": "$35.00" },
+        { "name": "Closing Protection Letter Charges - Buyer", "amount": "$25.00" },
+        { "name": "Closing Protection Letter Charges - Seller", "amount": "$25.00" }
+      ],
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence. The TIEFF fee is a genuine Indiana-specific statutory charge (Title Insurance Enforcement Fund Fee), the first time this recipe has surfaced a state-specific line item beyond premium/CPL."
+    },
+    "sectionTotals": "Grand Total: $1552.00.",
+    "bundlingNotes": "Harvested this session as a richness pass -- IN had already crossed the 3-provider threshold (Agency Title Inc., Momentum Title Agency, Rounsavall Title Group); this FNF entry is a 4th corroborating provider, applying the same generalized recipe already used for AR/CT/CO/MA/ND/VT/WY/RI/DE/SD/AK/NH/WV/ME/OH/MO/MI/PA/NJ/TN/KY/AL, with a new fix (explicit BuilderEligible selection, a policy-panel question rather than a transaction-panel one) required specifically for IN.",
+    "transactionContext": "Owner's + Loan Policy concurrent-issue premiums plus TIEFF fee and triple CPL charges for a $500,000 residential purchase / $400,000 loan, Marion County (Indianapolis)."
   }
 ]

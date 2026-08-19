@@ -244,3 +244,10 @@ already on file, this tool prices no settlement/closing/escrow service fees.
 
 KY is now **calculator-quoted (3 providers)**: Agency Title, Inc.; Rounsavall Title Group,
 LLC; and Old Republic Title Insurance Company.
+
+## Richness pass (2026-08-19) — FNF national rate calculator, Jefferson County
+`ratecalculator.fnf.com` (already-solved recipe, reused nationwide), Jefferson County (Louisville).
+Premium-only: Owner's Policy Premium $2,075.00 (Disclosure $895.00 + Adjustment $1,180.00), Loan
+Policy Premium $225.00, Closing Protection Letter Coverage $0.00 (a genuine zero figure, recorded
+as-is). Grand Total $2,300.00. Crosses KY to **calculator-quoted (4 providers)**. See KY.json's 4th
+`"basis": "calculator"` entry for full detail.

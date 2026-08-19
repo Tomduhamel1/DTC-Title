@@ -103,5 +103,26 @@
     },
     "bundlingNotes": "Third calculator-basis provider for Kentucky (alongside Agency Title, Inc. and Rounsavall Title Group, LLC above), crossing KY to the 3-provider calculator-quoted threshold. The 'Fees / Taxes: LOUISVILLE URBAN SERVICES DIST' line is the same Kentucky municipal premium tax referenced in WFG's KY 2020-01 bulletin (see KY.md) and in the Rounsavall Title Group entry above -- this is a second, independent calculator-sourced dollar figure for that same tax at Jefferson County/Louisville (combined $115.00 vs. Rounsavall's $97.00 on a slightly different Owner's premium base of $2,075 vs. $1,940 -- the two tools use different underlying rate schedules, a genuine cross-underwriter premium difference, not a data error). Old Republic Title Insurance Company is a distinct national underwriter from both Stewart and WFG already on file for KY's published-schedule survey.",
     "transactionContext": "Louisville/Jefferson County, Kentucky specifically -- the tool's own address-verification lookup auto-resolved the placeholder Louisville, KY 40202 address to the 'LOUISVILLE URBAN SERVICES DIST' local tax jurisdiction, confirming county-level accuracy independent of a plain dropdown pick. Statewide policy-type/coverage options otherwise available (Basic vs. Enhanced Residential Owner's coverage; Owners-only, Loan-only, or Simultaneous policy categories) for other KY locations via the same tool."
+  },
+  {
+    "provider": "FNF-family underwriter (Chicago Title/Fidelity National Title/Commonwealth Land Title -- ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine; this tool's pre-selected default underwriter brand varies by request, and prior sessions confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=KY",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=KY (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-19",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Jefferson County (Louisville) (matching this state's existing calculator entries' county), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions.",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback), following this project's existing FNF recipe documented in CALCULATORS.md: GET the county-selection page, POST the county (own __EVENTTARGET), POST btnGeneralNext=Next, POST TranType$ddl=PropertyPurchase, POST AmountPurchase$txt=500000 then AmountLoan1$txt=400000 (each with its own __EVENTTARGET), tool defaults for all remaining policy questions, then POST btnFinish=Finish for the final Rate Summary. No personal-data fields exist anywhere in this flow. This is a richness pass applying the already-solved FNF recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2075.00 (Owner's Policy Total Policy Premium: Disclosure Amount $895.00 + Adjustment $1,180.00, concurrent-issue rate)",
+      "loanPolicyPremium": "$225.00 (Loan Policy Total Policy Premium, concurrent-issue rate)",
+      "other": [
+        { "name": "Closing Protection Letter Coverage", "amount": "$0.00" }
+      ],
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence. The $0.00 CPL charge is a genuine figure returned by the tool, recorded as-is per this project's evidence rules."
+    },
+    "sectionTotals": "Grand Total (Owner's Policy Purchased): $2300.00.",
+    "bundlingNotes": "Harvested this session as a richness pass -- KY had already crossed the 3-provider threshold (Agency Title Inc., Rounsavall Title Group, Old Republic's 2nd tool); this FNF entry is a 4th corroborating provider, applying the same generalized recipe already used for AR/CT/CO/MA/ND/VT/WY/RI/DE/SD/AK/NH/WV/ME/OH/MO/MI/PA/NJ/TN.",
+    "transactionContext": "Owner's + Loan Policy concurrent-issue premiums plus a $0 CPL charge for a $500,000 residential purchase / $400,000 loan, Jefferson County (Louisville)."
   }
 ]

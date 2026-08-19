@@ -1,6 +1,13 @@
 # Michigan — Market Fee Evidence
 
-## Status: complete (scarce market) — 6 verified premium sources, 0 published settlement/service-fee schedules + 3 calculator-basis providers (**calculator-quoted (3 providers)**, threshold crossed 2026-08-02)
+## Status: complete (scarce market) — 6 verified premium sources, 0 published settlement/service-fee schedules + 4 calculator-basis providers (**calculator-quoted (4 providers)**, threshold crossed 2026-08-02; 4th provider added 2026-08-19)
+
+## Richness pass (2026-08-19) — FNF national rate calculator, Wayne County
+`ratecalculator.fnf.com` (already-solved recipe, reused nationwide), Wayne County (Detroit, MI's
+actual most-populous county — the existing 3 providers used Washtenaw/Lenawee instead). Premium-only,
+no Disclosure/Adjustment split for MI: Owner's Final Policy Premium $2,436.00, Loan Final Policy
+Premium $1,372.00, Grand Total $3,808.00. See MI.json's 4th `"basis": "calculator"` entry for full
+detail.
 
 Michigan is a filed-rate (insurer-filed, not promulgated) state for title insurance premiums, and
 premium schedules count as "good sources" under the completion contract for filed-rate states.

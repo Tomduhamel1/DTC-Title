@@ -201,3 +201,13 @@ Montgomery County government-set charges rather than provider-set fees.
 
 **MD is now calculator-quoted (3 providers)**: Federal Title & Escrow Company, Allstates
 Title Service, Tri-State Signature Settlements.
+
+## Richness pass (2026-08-19) — FNF national rate calculator, Montgomery County
+`ratecalculator.fnf.com` (already-solved recipe, reused nationwide), Montgomery County. MD-specific
+recipe fix required: the tool's `OwnerOccupied` radio question renders with neither option
+pre-checked (unlike every other question in this recipe), silently blocking Finish until answered —
+see CALCULATORS.md's 2026-08-19 entry for the full technical writeup. Answered Yes (the standard
+scenario's substantively correct default). Premium-only: Owner's Policy Premium $2,507.50 (Disclosure
+$1,422.50 + Adjustment $1,085.00), Loan Policy Premium $275.00, Closing Protection Letter(s) $55.00,
+Grand Total $2,837.50. Crosses MD to **calculator-quoted (4 providers)**. See MD.json's 4th
+`"basis": "calculator"` entry for full detail.

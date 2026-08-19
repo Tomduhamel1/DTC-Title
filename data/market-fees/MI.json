@@ -212,5 +212,24 @@
     "sectionTotals": null,
     "bundlingNotes": "This tenant's schema is leaner than Arizona Premier Title's (same platform, app_id 546, harvested same session): no CPL, notary, doc-prep, search, or exam fee fields exist anywhere in the config for any of the 4 scenario types -- Closing Fee ($425 flat) appears to be this agency's all-in settlement/closing charge, with title insurance premiums and government recording fees itemized separately. Confirms the TitleTap platform's config schema is genuinely per-tenant-configured (not a shared demo/template), consistent with the pattern already established for Modern Title Group/Knight Barry (MI) and Columbus Title/Owl Creek (OH).",
     "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Lenawee County -- this tenant's own service footprint. This is MI's 3rd calculator-basis provider, crossing the 3-provider threshold."
+  },
+  {
+    "provider": "FNF-family underwriter (Chicago Title/Fidelity National Title/Commonwealth Land Title -- ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine; this tool's pre-selected default underwriter brand varies by request, and prior sessions confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=MI",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=MI (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-19",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Wayne County (Detroit, MI's most-populous county), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions.",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback), following this project's existing FNF recipe documented in CALCULATORS.md: GET the county-selection page, POST the county (own __EVENTTARGET), POST btnGeneralNext=Next, POST TranType$ddl=PropertyPurchase, POST AmountPurchase$txt=500000 then AmountLoan1$txt=400000 (each with its own __EVENTTARGET), tool defaults for all remaining policy questions, then POST btnFinish=Finish for the final Rate Summary. No personal-data fields exist anywhere in this flow. This is a richness pass applying the already-solved FNF recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2436.00 (Owner's Policy Final Policy Premium, concurrent-issue rate -- this tool does not itemize a Disclosure/Adjustment split for MI, unlike most other states in this recipe)",
+      "loanPolicyPremium": "$1372.00 (Loan Policy Final Policy Premium, concurrent-issue rate)",
+      "other": [],
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence. No separate CPL charge appeared for this state/scenario."
+    },
+    "sectionTotals": "Grand Total: $3808.00.",
+    "bundlingNotes": "Harvested this session as a richness pass -- MI had already crossed the 3-provider threshold (Modern Title Group, Knight Barry Title Group, Prestige Title Insurance Agency); this FNF entry is a 4th corroborating provider, applying the same generalized recipe already used for AR/CT/CO/MA/ND/VT/WY/RI/DE/SD/AK/NH/WV/ME/OH/MO. Note the existing MI calculator-basis providers used Washtenaw/Lenawee Counties; this entry uses Wayne County (MI's actual most-populous), so figures are not directly county-matched to the other 3 MI providers -- flagged for a future session if strict county-matching richness is desired.",
+    "transactionContext": "Owner's + Loan Policy concurrent-issue premiums for a $500,000 residential purchase / $400,000 loan, Wayne County (Detroit)."
   }
 ]

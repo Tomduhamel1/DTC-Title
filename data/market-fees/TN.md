@@ -164,3 +164,13 @@ $300 Closing Fee is in the same range as, though not identical to, the $595 Sett
 existing TN providers independently returned — a useful third data point on Nashville's independent
 settlement-fee market. This crosses TN to 3 calculator-basis providers (Tennessee Title Services,
 Signature Title Services, Cornerstone Title of Tennessee) — **calculator-quoted (3 providers)**.
+
+## Richness pass (2026-08-19) — FNF national rate calculator, Davidson County
+`ratecalculator.fnf.com` (already-solved recipe, reused nationwide), Davidson County (Nashville).
+Premium-only: Owner's Policy Premium $3,104.69 (Disclosure $764.00 + Adjustment $2,340.69), Loan
+Policy Premium $225.00, Grand Total $3,329.69. **Notable finding**: the Owner's Policy Premium is
+byte-identical to Cornerstone Title of Tennessee's TitleTap-sourced figure above ($3,104.69) — a
+genuine cross-tool corroboration (both independently reflect the same underlying filed/formula rate
+for Davidson County at this scenario), not a data-entry duplication. Crosses TN to
+**calculator-quoted (4 providers)**. See TN.json's 4th `"basis": "calculator"` entry for full
+detail.

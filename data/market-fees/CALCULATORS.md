@@ -3389,3 +3389,57 @@ missing an entry from one of the tools already solved and generalized nationwide
 (Stewart's `/api/SRC/quote`, Old Republic's 2 tools, WFG's Seller Net Sheet API, FNF's
 `ratecalculator.fnf.com`) — these are near-zero-marginal-cost richness adds compared to hunting for a
 new agency/platform, and this session found 3 in one pass just by checking tracker coverage.
+
+### Richness pass, continued same session — FNF applied to 10 more already-crossed-threshold states (8 succeed, 2 hit a DC-like block)
+
+Systematized the recommendation above: checked `ratecalculator.fnf.com`'s county-dropdown coverage
+for every remaining state at exactly 3 providers, none yet showing an FNF entry — **OH, MO, MI, PA,
+NJ, MD, TN, IN, KY, AL** — all 10 confirmed in the tool's footprint (each returned a populated
+`ddlCounty` list for its most-populous county). Ran the standard recipe against each using that
+state's own most-populous county (or, where an existing calculator entry already used a specific
+county for comparability, that same county: Jackson/MO, Philadelphia/PA, Montgomery/MD, Davidson/TN,
+Jefferson/KY, Jefferson/AL; Franklin/OH, Wayne/MI, Bergen/NJ, and Marion/IN were chosen as each
+state's actual most-populous county since no existing entry constrained the choice).
+
+**8 of 10 succeeded cleanly on the first pass, no new recipe issues**: OH (Franklin — Grand Total
+$2,665.00), MO (Jackson — Grand Total $504.00, unusually low premiums recorded as-is per the exact-
+figures rule), MI (Wayne — Grand Total $3,808.00), PA (Philadelphia — Grand Total $3,305.00, exactly
+reproducing the figures from this recipe's original 2026-07-25 solve, a nice internal-consistency
+check), NJ (Bergen — Grand Total $2,325.00), TN (Davidson — Grand Total $3,329.69, Owner's Premium
+byte-identical to Cornerstone Title of Tennessee's existing TitleTap-sourced figure, a genuine cross-
+tool corroboration), KY (Jefferson — Grand Total $2,300.00), AL (Jefferson — Grand Total $1,875.00).
+All 8 now at 4 of 4 calculator-basis providers.
+
+**MD and IN both initially failed with the exact same DC-shaped symptom**: an anomalously large
+response (MD ~174KB, IN ~209KB, vs. ~70-85KB for every successful state in this batch) with no
+`Grand Total` content reached after `btnFinish`. This is now the 3rd/4th state (after DC) to hit
+this specific failure mode, worth naming as a recognized pattern: the **"large-response no-quote"
+failure**. Unlike DC, both MD and IN got a dedicated debugging pass this session, and both turned
+out to have a cheaper stateless-HTTP fix than DC's (which remains unsolved and server-disabled even
+with every known question answered) — **the actual root cause in both cases was a radio-group
+question rendering with *neither* option pre-checked**, unlike every other Yes/No question this
+recipe has encountered elsewhere (which always default-check one option): MD's `OwnerOccupied` and
+IN's `BuilderEligible`. Finding this required diffing each radio group's rendered `checked`
+attributes against the ones this recipe was already answering, rather than assuming "some panel has
+an extra question" the way the DC investigation approached it. **IN's `BuilderEligible` also lives
+in a different panel** (`pnlAmountsPolicyQuestions`, not the `pnlAmountsTransactionQuestions` panel
+every other question in this recipe has come from) — a generalizable lesson: when hunting for an
+unanswered blocker, scan the *entire* response for any `rc_` radio-group name not yet in the
+answered set, not just the one panel this recipe has looked at historically. With `OwnerOccupied=Yes`
+(MD, the substantively correct default for a standard owner-occupied resale) and
+`BuilderEligible=No` (IN, correct since the standard scenario is a resale, not new construction)
+each explicitly posted via their own `__EVENTTARGET`, both completed cleanly: **MD** Owner's $2,507.50
+(Disclosure $1,422.50 + Adjustment $1,085.00), Loan $275.00, CPL $55.00, Grand Total $2,837.50.
+**IN** Owner's $1,337.00, Loan $120.00, plus a genuinely new line item this recipe hadn't surfaced
+before — **TIEFF (Title Insurance Enforcement Fund Fee) $5.00**, a real Indiana-specific statutory
+charge — plus triple CPL charges (Lenders $35/Buyer $25/Seller $25), Grand Total $1,552.00. Both now
+at 4 of 4 calculator-basis providers. **Updated recommendation**: DC's `btnFinish` disabled-state
+symptom is confirmed distinct from MD/IN's missing-radio-default symptom (DC's four questions *were*
+all correctly answered per the 2026-08-19 DC entry above, yet Finish stayed disabled regardless) — so
+DC genuinely does still need a browser-driven session, while any *future* state hitting this same
+large-response/no-Grand-Total symptom should first be checked for an unanswered-by-default radio
+group before being written off as DC-shaped.
+
+**Session-wide total for this richness push**: 13 states gained a 4th calculator-basis provider
+(NH, WV, ME, OH, MO, MI, PA, NJ, TN, KY, AL, MD, IN) in one session via the FNF recipe, including 2
+(MD, IN) that required solving a new recipe gotcha (unanswered-by-default radio groups) along the way.

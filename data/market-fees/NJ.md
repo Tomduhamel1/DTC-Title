@@ -196,3 +196,11 @@ E-Recording Fee $9.50, Lender's FF9 Endorsement $25.00.
 
 **NJ is now calculator-quoted (3 providers)**: Trident Land Transfer, Allstates Title
 Service, The Closing Partner.
+
+## Richness pass (2026-08-19) — FNF national rate calculator, Bergen County
+`ratecalculator.fnf.com` (already-solved recipe, reused nationwide), Bergen County (NJ's
+most-populous county), using NJ's NJLTIRB-regulated uniform rate schedule rather than an
+underwriter-specific premium. Premium-only: Owner's Policy Premium $2,225.00 (Disclosure $450.00 +
+Adjustment $1,775.00), Loan Policy Premium $25.00, Closing Protection Letter $75.00, Grand Total
+$2,325.00. Crosses NJ to **calculator-quoted (4 providers)**. See NJ.json's 4th
+`"basis": "calculator"` entry for full detail.

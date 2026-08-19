@@ -362,5 +362,26 @@
     },
     "bundlingNotes": "3rd NJ calculator-basis provider (after Trident Land Transfer a=15, and Allstates Title Service a=78 above) -- crosses NJ's 3-provider calculator-quoted threshold. Distinct from the seller-side estimate type in the same tool (Closing/Settlement Fee $625.00, Title Search $200.00, Municipal Lien Search $200.00 -- the buyer/finance figures above were used to match this survey's standard purchase-with-loan scenario).",
     "transactionContext": "Calculator-derived flat statewide fee constants (no county/city selection exposed in this tool's schema); Chester, NJ is in Morris County, Northern NJ."
+  },
+  {
+    "provider": "FNF-family underwriter (Chicago Title/Fidelity National Title/Commonwealth Land Title -- ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine; this tool's pre-selected default underwriter brand varies by request, and prior sessions confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=NJ",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=NJ (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-19",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Bergen County (NJ's most-populous county), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions.",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback), following this project's existing FNF recipe documented in CALCULATORS.md: GET the county-selection page, POST the county (own __EVENTTARGET), POST btnGeneralNext=Next, POST TranType$ddl=PropertyPurchase, POST AmountPurchase$txt=500000 then AmountLoan1$txt=400000 (each with its own __EVENTTARGET), tool defaults for all remaining policy questions, then POST btnFinish=Finish for the final Rate Summary. No personal-data fields exist anywhere in this flow. This is a richness pass applying the already-solved FNF recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers, using NJ's own NJLTIRB-regulated uniform rate schedule (a rating-bureau state, not underwriter-set) rather than an underwriter-specific premium.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2225.00 (Owner's Policy Total Policy Premium: Disclosure Amount $450.00 + Adjustment $1,775.00, concurrent-issue rate)",
+      "loanPolicyPremium": "$25.00 (Loan Policy Total Policy Premium, concurrent-issue rate)",
+      "other": [
+        { "name": "Charge for Closing Protection Letter", "amount": "$75.00" }
+      ],
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence."
+    },
+    "sectionTotals": "Grand Total (Owner's Policy Purchased): $2325.00.",
+    "bundlingNotes": "Harvested this session as a richness pass -- NJ had already crossed the 3-provider threshold (Trident Land Transfer, Allstates Title Service, The Closing Partner LLC); this FNF entry is a 4th corroborating provider, applying the same generalized recipe already used for AR/CT/CO/MA/ND/VT/WY/RI/DE/SD/AK/NH/WV/ME/OH/MO/MI/PA.",
+    "transactionContext": "Owner's + Loan Policy concurrent-issue premiums plus CPL for a $500,000 residential purchase / $400,000 loan, Bergen County."
   }
 ]

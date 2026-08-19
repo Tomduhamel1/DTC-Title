@@ -238,5 +238,24 @@
     "sectionTotals": null,
     "bundlingNotes": "This tenant's Owner's Policy Premium ($3,104.69 at $500k, Davidson County) is notably higher than the flat $595 Settlement Fee both existing TN providers (Tennessee Title Services, Signature Title Services) independently returned in the 2026-07-28 session -- not directly comparable figures, since this tenant's $3,104.69 is the title INSURANCE PREMIUM (a state-filed-rate-adjacent figure), while the existing providers' $595 is their SETTLEMENT/CLOSING fee specifically; this tenant's own equivalent settlement-side figure is the $300.00 Closing Fee, which is in the same range. This tenant is also the first TN calculator source to disclose government conveyance/mortgage tax formulas alongside its own fees, and the first to expose a buyer/seller payer-allocation toggle that changes which fees are computed at all (Search Fees and both title insurance premiums are conditionally hidden/zeroed under the alternate 'Seller pays' toggle setting, not evaluated this session).",
     "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Davidson County (Nashville) -- matching the county used for TN's existing 2 calculator-basis providers. This is TN's 3rd calculator-basis provider, crossing the 3-provider threshold."
+  },
+  {
+    "provider": "FNF-family underwriter (Chicago Title/Fidelity National Title/Commonwealth Land Title -- ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine; this tool's pre-selected default underwriter brand varies by request, and prior sessions confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=TN",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=TN (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-19",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Davidson County (Nashville) (matching this state's existing calculator entries' county), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions.",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback), following this project's existing FNF recipe documented in CALCULATORS.md: GET the county-selection page, POST the county (own __EVENTTARGET), POST btnGeneralNext=Next, POST TranType$ddl=PropertyPurchase, POST AmountPurchase$txt=500000 then AmountLoan1$txt=400000 (each with its own __EVENTTARGET), tool defaults for all remaining policy questions, then POST btnFinish=Finish for the final Rate Summary. No personal-data fields exist anywhere in this flow. This is a richness pass applying the already-solved FNF recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$3104.69 (Owner's Policy Total Policy Premium: Disclosure Amount $764.00 + Adjustment $2,340.69, concurrent-issue rate)",
+      "loanPolicyPremium": "$225.00 (Loan Policy Total Policy Premium, concurrent-issue rate)",
+      "other": [],
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence. No separate CPL charge appeared for this state/scenario."
+    },
+    "sectionTotals": "Grand Total (Owner's Policy Purchased): $3329.69.",
+    "bundlingNotes": "Harvested this session as a richness pass -- TN had already crossed the 3-provider threshold (Tennessee Title Services, Signature Title Services, Cornerstone Title of Tennessee); this FNF entry is a 4th corroborating provider, applying the same generalized recipe already used for AR/CT/CO/MA/ND/VT/WY/RI/DE/SD/AK/NH/WV/ME/OH/MO/MI/PA/NJ. This tool's Owner's Policy Premium ($3,104.69) is a title INSURANCE premium figure, not directly comparable to the existing TN providers' $595 flat SETTLEMENT/closing fee -- same distinction already flagged in the 3rd-provider entry above.",
+    "transactionContext": "Owner's + Loan Policy concurrent-issue premiums for a $500,000 residential purchase / $400,000 loan, Davidson County (Nashville)."
   }
 ]

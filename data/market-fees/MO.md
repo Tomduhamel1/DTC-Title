@@ -1,6 +1,12 @@
 # Missouri — Market Fee Evidence
 
-## Status: complete (scarce market) — 2 verified premium sources, 0 published settlement/service-fee schedules + 3 calculator-basis providers (**calculator-quoted (3 providers)**, threshold crossed 2026-08-02)
+## Status: complete (scarce market) — 2 verified premium sources, 0 published settlement/service-fee schedules + 4 calculator-basis providers (**calculator-quoted (4 providers)**, threshold crossed 2026-08-02; 4th provider added 2026-08-19)
+
+## Richness pass (2026-08-19) — FNF national rate calculator, Jackson County
+`ratecalculator.fnf.com` (already-solved recipe, reused nationwide), Jackson County/Kansas City.
+Premium-only, no Disclosure/Adjustment split for MO: Owner's Policy Premium $450.00, Loan Policy
+Premium $4.00, Closing Protection Letter (Lender/Buyer) $25.00, Closing Protection Letter (Seller)
+$25.00, Grand Total $504.00. See MO.json's 4th `"basis": "calculator"` entry for full detail.
 
 ## Calculator harvest (2026-08-02 update, continued) — 3rd provider found via a new multi-state platform
 **Secured Title of Kansas City** (Jackson County, same metro as the existing Old Republic entry) was
