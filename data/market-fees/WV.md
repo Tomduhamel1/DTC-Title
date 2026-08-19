@@ -1,8 +1,8 @@
 # West Virginia — Market Fee Evidence
 
-## Status: complete (scarce market) — 3 verified published sources (all premium-only rate manuals), 2026-07-22; calculator harvest complete — 3 of 3 providers as of 2026-08-18 (**calculator-quoted**)
+## Status: complete (scarce market) — 3 verified published sources (all premium-only rate manuals), 2026-07-22; calculator harvest complete — 4 of 4 providers as of 2026-08-19 (**calculator-quoted**)
 
-## Calculator harvest (2026-08-14 through 2026-08-18)
+## Calculator harvest (2026-08-14 through 2026-08-19)
 
 Separate from the published-schedule survey below, a calculator-basis harvest for the standard
 scenario ($500,000 purchase / $400,000 loan / Kanawha County-Charleston / residential resale,
@@ -36,6 +36,11 @@ detail.
    2026-08-18 session's untouched-scarce-state batch (ND/DC/VT/WY/AK) was retried against every
    still-below-threshold state from the prior 4 sessions (WV/ME/RI/DE/SD) and found WV and ME both
    already 1 provider short of crossing.
+
+4. **FNF-family underwriter** — `ratecalculator.fnf.com` national rate calculator, ASP.NET WebForms
+   postback flow (same recipe already applied to AR/CT/CO/MA/ND/VT/WY/RI/DE/SD/AK), harvested
+   2026-08-19 as a richness pass. Premium-only: Owner's Policy Premium $1,750.00, Loan Policy
+   Premium $150.00, Lender's Closing Protection Letter $50.00, Grand Total $1,950.00.
 
 ## Published-schedule survey (original, 2026-07-22)
 

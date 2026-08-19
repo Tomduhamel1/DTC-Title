@@ -3360,3 +3360,32 @@ with the 2026-08-18 finding. AK stays at 2 of 3 — no new lead found across two
 now; likely genuinely exhausted for stateless-HTTP-reachable calculators given Alaska's small title
 market (independent agencies, no major SaaS-platform or big-four-brand coverage found). Not
 recommended as a further priority target barring a genuinely new technique.
+
+### Richness pass, same session — FNF national rate calculator applied to 3 already-crossed-threshold states missing it (NH, WV, ME)
+
+With AK and DC both dead ends for this session, pivoted to the standing recommendation to check
+already-crossed-threshold states for a still-missing already-solved-recipe provider before assuming
+saturation. Cross-referenced the Calculator harvest tracker in PROGRESS.md against
+`ratecalculator.fnf.com`'s per-state county-dropdown coverage and found **NH, WV, and ME** (each
+already at exactly 3 providers via some combination of Stewart/Old Republic's 2nd tool/WFG/Absolute
+Title) had never had the FNF recipe applied, despite it already being solved and reused across a
+dozen-plus other states. Confirmed all 3 states are in the tool's county-dropdown coverage, then ran
+the standard recipe (unchanged from the 2026-08-18 write-up: GET county-selection page, POST county,
+POST `btnGeneralNext`, POST `TranType$ddl=PropertyPurchase`, POST `AmountPurchase$txt`/
+`AmountLoan1$txt` each with their own `__EVENTTARGET`, POST `btnFinish`) against each state's
+existing standard-scenario county (Hillsborough/Manchester for NH, Kanawha/Charleston for WV,
+Cumberland/Portland for ME, matching each state's own Stewart entry). **All 3 succeeded cleanly on
+the first pass, no new recipe issues** — confirms the recipe is now fully general-purpose across
+this tool's entire footprint, not just the specific batch of states it was originally solved
+against. Results: **NH** Owner's Policy Premium $1,275.00 (Disclosure $575 + Adjustment $700), Loan
+Policy Premium $100.00, Survey Coverage/Endorsement Package $125.00, CPL $25.00, Grand Total
+$1,525.00. **WV** Owner's Policy Premium $1,750.00 (Disclosure $890 + Adjustment $860), Loan Policy
+Premium $150.00, Lender's Closing Protection Letter $50.00, Grand Total $1,950.00. **ME** Owner's
+Policy Premium $1,500.00 (Disclosure $850 + Adjustment $650), Loan Policy Premium $50.00, no separate
+CPL line, Grand Total $1,550.00 (exactly Owner's + Loan Policy premiums summed). All 3 states now at
+4 of 4 calculator-basis providers. **Recommendation for future sessions**: before searching for an
+entirely new calculator platform for any already-crossed-threshold state, first check whether it's
+missing an entry from one of the tools already solved and generalized nationwide in this catalog
+(Stewart's `/api/SRC/quote`, Old Republic's 2 tools, WFG's Seller Net Sheet API, FNF's
+`ratecalculator.fnf.com`) — these are near-zero-marginal-cost richness adds compared to hunting for a
+new agency/platform, and this session found 3 in one pass just by checking tracker coverage.

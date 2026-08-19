@@ -1,13 +1,14 @@
 # New Hampshire (NH) — Market Fee Evidence
 
-## Status: COMPLETE (scarce market) — 2 verified published sources; calculator-quoted (3 providers) as of 2026-08-14
+## Status: COMPLETE (scarce market) — 2 verified published sources; calculator-quoted (4 providers) as of 2026-08-19
 
-## Calculator harvest (2026-08-14)
+## Calculator harvest (2026-08-14; richness pass 2026-08-19)
 
-Separate from the published-schedule survey below, 3 calculator-basis quotes were harvested for the
+Separate from the published-schedule survey below, calculator-basis quotes were harvested for the
 standard scenario ($500,000 purchase / $400,000 loan / Hillsborough County-Manchester / residential
-resale) — crossing the 3-provider calculator-quoted threshold on the first pass. See NH.json entries
-with `"basis": "calculator"` for full itemized figures and CALCULATORS.md for the technical recipes.
+resale) — crossing the 3-provider calculator-quoted threshold on the first pass (2026-08-14), then
+gaining a 4th corroborating provider in a 2026-08-19 richness pass. See NH.json entries with
+`"basis": "calculator"` for full itemized figures and CALCULATORS.md for the technical recipes.
 
 1. **Stewart Title Guaranty Company** — Stewart Rate Calculator (stewartratecalculator.com). This
    session completed reverse-engineering of the `/api/SRC/quote` endpoint (previously unsolved across
@@ -25,6 +26,10 @@ with `"basis": "calculator"` for full itemized figures and CALCULATORS.md for th
    client-side JS (`rc_ct.js`), read directly for its hardcoded constants (same technique as Modern
    Title Group/MI, Columbus Title Agency/OH). Settlement Fee $595.00 flat, Owners Premium $1,275.00,
    Endorsements $125.00 — a rare genuine non-premium NH service-fee figure.
+4. **FNF-family underwriter** — `ratecalculator.fnf.com` national rate calculator, ASP.NET WebForms
+   postback flow (same recipe already applied to AR/CT/CO/MA/ND/VT/WY/RI/DE/SD/AK). Premium-only:
+   Owner's Policy Premium $1,275.00, Loan Policy Premium $100.00, Survey Coverage/Endorsement Package
+   $125.00, CPL $25.00, Grand Total $1,525.00.
 
 ## Published-schedule survey (original, 2026-07-22)
 

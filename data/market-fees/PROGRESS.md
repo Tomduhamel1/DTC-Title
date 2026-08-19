@@ -44,9 +44,9 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | NE | 3 (Nebraska Title Company — statewide, Omaha/Douglas County scenario, via the Title Midwest platform's Vue.js client-side calculator; FNF national rate calculator — Douglas County, Grand Total $1,282.50; WFG National Title — Douglas County, Owner's Premium $1,573.00) | **calculator-quoted (3 providers)** | 2026-08-08 |
 | LA | 3 (FNF national rate calculator — East Baton Rouge Parish, Grand Total $2,345.20; WFG National Title — East Baton Rouge Parish, Owner's Premium $2,579.72; Old Republic's 2nd tool — statewide, Owner's Premium $2,345.20 [byte-identical to FNF]) | **calculator-quoted (3 providers)** | 2026-08-09 |
 | SC | 3 (WFG National Title — Greenville County, Owner's Premium $1,404.00; FNF national rate calculator — Greenville County, Owner's Policy Premium $1,404.00 [byte-identical to WFG]/Loan Policy $100.00; Old Republic's 2nd tool — statewide, Owner's Premium $1,170.00/simultaneous Grand Total $1,270.00) | **calculator-quoted (3 providers)** | 2026-08-09 |
-| NH | 3 (Stewart Title Guaranty — Stewart Rate Calculator, Hillsborough County/Manchester, Title Closing Fee $725.00 buyer via Great East Title and Closing — first session to fully solve stewartratecalculator.com's `/api/SRC/quote` endpoint, see CALCULATORS.md master recipe; Old Republic's 2nd tool — statewide, `Location=NH`, Owner's $1,200/Lender's $100 simultaneous premium, unblocked via a newly-found Referer-header fix; Absolute Title, LLC — statewide, own first-party JS calculator, Settlement Fee $595.00 flat) | **calculator-quoted (3 providers)** | 2026-08-14 |
-| WV | 3 (Stewart Title Guaranty — Stewart Rate Calculator, Kanawha County/Charleston via Omnia Title Corp., Title Closing Fee $750.00 total; Old Republic's 2nd tool — statewide, `Location=WV`, Owner's $1,700/Lender's $100 simultaneous premium; WFG National Title — Seller Net Sheet Rate Calculator, Kanawha County, Owner's Premium $2,280.00) | **calculator-quoted (3 providers)** | 2026-08-18 |
-| ME | 3 (Stewart Title Guaranty — Stewart Rate Calculator, Cumberland County/Portland via Stewart Title-Northern New England Division, Title Closing Fee $695.00; Absolute Title, LLC — own Maine-specific calculator, Settlement Fee $650.00 flat; WFG National Title — Seller Net Sheet Rate Calculator, Cumberland County, Owner's Premium $1,750.00) | **calculator-quoted (3 providers)** | 2026-08-18 |
+| NH | 4 (Stewart Title Guaranty — Stewart Rate Calculator, Hillsborough County/Manchester, Title Closing Fee $725.00 buyer via Great East Title and Closing — first session to fully solve stewartratecalculator.com's `/api/SRC/quote` endpoint, see CALCULATORS.md master recipe; Old Republic's 2nd tool — statewide, `Location=NH`, Owner's $1,200/Lender's $100 simultaneous premium, unblocked via a newly-found Referer-header fix; Absolute Title, LLC — statewide, own first-party JS calculator, Settlement Fee $595.00 flat; FNF national rate calculator — Hillsborough County, Grand Total $1,525.00) | **calculator-quoted (4 providers)** | 2026-08-19 |
+| WV | 4 (Stewart Title Guaranty — Stewart Rate Calculator, Kanawha County/Charleston via Omnia Title Corp., Title Closing Fee $750.00 total; Old Republic's 2nd tool — statewide, `Location=WV`, Owner's $1,700/Lender's $100 simultaneous premium; WFG National Title — Seller Net Sheet Rate Calculator, Kanawha County, Owner's Premium $2,280.00; FNF national rate calculator — Kanawha County, Grand Total $1,950.00) | **calculator-quoted (4 providers)** | 2026-08-19 |
+| ME | 4 (Stewart Title Guaranty — Stewart Rate Calculator, Cumberland County/Portland via Stewart Title-Northern New England Division, Title Closing Fee $695.00; Absolute Title, LLC — own Maine-specific calculator, Settlement Fee $650.00 flat; WFG National Title — Seller Net Sheet Rate Calculator, Cumberland County, Owner's Premium $1,750.00; FNF national rate calculator — Cumberland County, Grand Total $1,550.00) | **calculator-quoted (4 providers)** | 2026-08-19 |
 | ND | 3 (Dickey and LaMoure County Abstract and Title Company — Stewart Rate Calculator, Cass County/Fargo, Title Closing Fee $350.00 buyer, 7-line itemization; WFG National Title — Seller Net Sheet Rate Calculator, Owner's Premium $1,238.00; FNF-family underwriter — ratecalculator.fnf.com, Grand Total $1,450.00) | **calculator-quoted (3 providers)** | 2026-08-18 |
 | VT | 3 (Omnia Title Corp. — Stewart Rate Calculator, Chittenden County/Burlington, Title Closing Fee $750.00 total; WFG National Title — Seller Net Sheet Rate Calculator, Owner's Premium $1,878.80; FNF-family underwriter — ratecalculator.fnf.com, Grand Total $1,620.00) | **calculator-quoted (3 providers)** | 2026-08-18 |
 | WY | 3 (Executive Title Services LLC — Stewart Rate Calculator, Laramie County/Cheyenne, Title Closing Fee $400.00 total; WFG National Title — Seller Net Sheet Rate Calculator, Owner's Premium $1,733.00; FNF-family underwriter — ratecalculator.fnf.com, Grand Total $2,268.00) | **calculator-quoted (3 providers)** | 2026-08-18 |
@@ -2800,11 +2800,27 @@ browser-driven queue); AK 3rd-provider re-search still dry; freshness + blocked-
   GET) against this host, never trust a HEAD-only check's 403 as evidence of staleness. No new
   `{stale: true}` flags needed; no status changes.
 
+**Richness pass, same session**: acted on the priority above immediately — applied the already-solved
+FNF national rate calculator recipe (`ratecalculator.fnf.com`) to the 3 already-crossed-threshold
+states that were still missing an FNF entry: **NH, WV, ME** (each already at 3 providers via
+Stewart/Old Republic/WFG/Absolute Title combinations, per their existing entries above). All 3
+harvested cleanly on the first pass using their existing standard-scenario county (Hillsborough/
+Manchester, Kanawha/Charleston, Cumberland/Portland respectively) — no new recipe issues, confirming
+the FNF flow generalizes as reliably to already-crossed states as it did to the 2026-08-18 batch of
+never-yet-worked ones. Results: **NH** Owner's $1,275.00 + Loan $100.00 + Survey/Endorsement Package
+$125.00 + CPL $25.00, Grand Total $1,525.00; **WV** Owner's $1,750.00 + Loan $150.00 + Lender's CPL
+$50.00, Grand Total $1,950.00; **ME** Owner's $1,500.00 + Loan $50.00 (no separate CPL line), Grand
+Total $1,550.00. All 3 states now at **4 of 4 calculator-basis providers**. See each state's own
+.json (`"basis": "calculator"` entries)/.md for full detail.
+
 **Next session priority**: (1) with AK and DC both effectively exhausted for stateless-HTTP
-technique (DC needs a browser-driven session, AK's market is simply too thin), pivot primary effort
-to richness passes on already-crossed calculator-quoted states, or take on the TitleCapture/Qualia
-Connect browser-driven-session queue if that capability becomes available; (2) continue the
-freshness rotation through the remaining never-checked states (LA, NM, NV, NY, OH, OR, PA, SD, TX,
-WV still outstanding as of this session); (3) blocked-source retries remain a quick, low-value
-per-session check — no change expected barring an actual policy change at AZ DIFI or Jackson & Scott
-AL's hosting.
+technique (DC needs a browser-driven session, AK's market is simply too thin), continue richness
+passes on the remaining already-crossed-threshold states still missing an FNF (or other
+already-solved-recipe) entry — check each state in the Calculator harvest tracker table above for
+which of Stewart/Old Republic (either tool)/WFG/FNF it's missing before assuming a state is
+saturated; also take on the TitleCapture/Qualia Connect browser-driven-session queue if that
+capability becomes available; (2) continue the freshness rotation through the remaining
+never-checked states (LA, NM, NV, NY, OH, OR, PA, SD, TX, WV still outstanding — this session's WV
+work was a calculator richness pass, not a freshness check, so WV remains in the freshness queue);
+(3) blocked-source retries remain a quick, low-value per-session check — no change expected barring
+an actual policy change at AZ DIFI or Jackson & Scott AL's hosting.

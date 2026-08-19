@@ -1,10 +1,11 @@
 # Maine (ME) — Market Fee Evidence
 
-## Calculator harvest (2026-08-15 through 2026-08-18) — **calculator-quoted (3 providers)**
+## Calculator harvest (2026-08-15 through 2026-08-19) — **calculator-quoted (4 providers)**
 
-Separate from the published-schedule survey below, 3 calculator-basis quotes have been harvested for
+Separate from the published-schedule survey below, 4 calculator-basis quotes have been harvested for
 the standard scenario ($500,000 purchase / $400,000 loan / Cumberland County-Portland / residential
-resale), crossing the 3-provider calculator-quoted threshold. See ME.json entries with `"basis":
+resale), crossing the 3-provider calculator-quoted threshold (2026-08-18) and gaining a 4th
+corroborating provider in a 2026-08-19 richness pass. See ME.json entries with `"basis":
 "calculator"` for full itemized figures and CALCULATORS.md for the technical recipes.
 
 1. **Stewart Title Guaranty Company** — Stewart Rate Calculator (stewartratecalculator.com), via
@@ -27,6 +28,11 @@ resale), crossing the 3-provider calculator-quoted threshold. See ME.json entrie
    result: Owner's Title Insurance Premium **$1,750.00** (ME is not one of the 7 states with
    configured HUD-fee itemization in this tool). **This crosses ME to the 3-provider
    calculator-quoted threshold.**
+
+4. **FNF-family underwriter** — `ratecalculator.fnf.com` national rate calculator, ASP.NET WebForms
+   postback flow (same recipe already applied to AR/CT/CO/MA/ND/VT/WY/RI/DE/SD/AK), harvested
+   2026-08-19 as a richness pass. Premium-only: Owner's Policy Premium $1,500.00, Loan Policy
+   Premium $50.00, Grand Total $1,550.00 (no separate CPL line for this state/scenario).
 
 **Earlier 3rd-provider search (2026-08-15, dead ends before the WFG technique above)**: Old
 Republic's 2nd tool (`Location=ME`) still NoBot-blocked despite the Referer-header fix that worked
