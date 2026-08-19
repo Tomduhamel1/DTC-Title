@@ -254,3 +254,9 @@ backend is fully mapped and ready to replay the moment Title Resources' own outa
 CALCULATORS.md for the exact query/variable shapes and calculator nanoIds for WI); PowerSnap and
 Elko both have confirmed WI tenant footprints (Burnet Title, Polk County Abstract) but remain
 browser-driven-session targets per their existing catalog entries.
+
+## Richness pass (2026-08-19) — FNF national rate calculator, Milwaukee County
+`ratecalculator.fnf.com` (already-solved recipe, reused nationwide), Milwaukee County. Premium-only:
+Owner's Policy Premium $2,073.00 (Disclosure $775.00 + Adjustment $1,298.00), Loan Policy Premium
+$525.00, Grand Total $2,598.00. Crosses WI to **calculator-quoted (4 providers)**. See WI.json's 4th
+`"basis": "calculator"` entry for full detail.

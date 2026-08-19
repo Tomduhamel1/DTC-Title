@@ -180,5 +180,24 @@
     "sectionTotals": "Seller-side subtotal (excludes buyer's/listing agent commissions, which are user-input percentages, not fixed dollar fees, in this tool): $225.00 + $1,500.00 + $2,022.50 + $25.00 + $100.00 + $150.00 = $4,022.50. Buyer/finance-side subtotal: $300.00 + $450.00 + $60.00 = $810.00 (no CPL/wire/e-doc line items exist in this tenant's config, unlike the richer IN/KY/AR NetSheetCalc tenants already on file elsewhere in this survey).",
     "bundlingNotes": "3rd WI calculator-basis provider (after Knight Barry Title Group and Homestead Title Company LLC) -- crosses the 3-provider calculator-quoted threshold for WI. Genuinely itemized (title premium, statutory transfer tax, deed preparation, gap endorsement, special assessment letter, split buyer/seller closing fees, recording) rather than premium-only. Notable cross-validation: this tenant's transfer-tax formula (sale_price * 0.003) independently confirms Homestead Title's own hand-derived Wisconsin statutory transfer-fee approximation (~$3.00/$1,000) from a completely separate provider and calculator platform. Also notable: this tenant's Purchase-calculator Lender's premium is a flat, non-rate-table default while its own Refinance-calculator computes the identical line item via a live rate lookup that returns a different figure at the same loan amount -- a real per-tenant configuration inconsistency worth flagging for future settlement-fee analysis, not a methodology error in this survey.",
     "transactionContext": "Wausau/Marathon County (and Wisconsin Rapids/Marshfield per the tool's own page title) -- a smaller-market central-Wisconsin independent agency, not Milwaukee County; no Milwaukee-reaching calculator was found for this tenant (single-location statewide-style flat pricing, no county selector present in the config at all)."
+  },
+  {
+    "provider": "FNF-family underwriter (Chicago Title/Fidelity National Title/Commonwealth Land Title -- ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine; this tool's pre-selected default underwriter brand varies by request, and prior sessions confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=WI",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=WI (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-19",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Milwaukee County (matching this state's existing calculator entries' county), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions.",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback), following this project's existing FNF recipe documented in CALCULATORS.md: GET the county-selection page, POST the county (own __EVENTTARGET), POST btnGeneralNext=Next, POST TranType$ddl=PropertyPurchase, POST AmountPurchase$txt=500000 then AmountLoan1$txt=400000 (each with its own __EVENTTARGET), tool defaults for all remaining policy questions, then POST btnFinish=Finish for the final Rate Summary. No personal-data fields exist anywhere in this flow. This is a richness pass applying the already-solved FNF recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2073.00 (Owner's Policy Total Policy Premium: Disclosure Amount $775.00 + Adjustment $1,298.00, concurrent-issue rate)",
+      "loanPolicyPremium": "$525.00 (Loan Policy Total Policy Premium, concurrent-issue rate)",
+      "other": [],
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence. No separate CPL charge appeared for this state/scenario."
+    },
+    "sectionTotals": "Grand Total (Owner's Policy Purchased): $2598.00.",
+    "bundlingNotes": "Harvested this session as a richness pass -- WI had already crossed the 3-provider threshold (Knight Barry Title Group, Homestead Title Company, Avenue Title); this FNF entry is a 4th corroborating provider, applying the same generalized recipe already used for AR/CT/CO/MA/ND/VT/WY/RI/DE/SD/AK/NH/WV/ME/OH/MO/MI/PA/NJ/TN/KY/AL/MD/IN.",
+    "transactionContext": "Owner's + Loan Policy concurrent-issue premiums for a $500,000 residential purchase / $400,000 loan, Milwaukee County."
   }
 ]

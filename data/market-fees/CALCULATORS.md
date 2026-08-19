@@ -3443,3 +3443,30 @@ group before being written off as DC-shaped.
 **Session-wide total for this richness push**: 13 states gained a 4th calculator-basis provider
 (NH, WV, ME, OH, MO, MI, PA, NJ, TN, KY, AL, MD, IN) in one session via the FNF recipe, including 2
 (MD, IN) that required solving a new recipe gotcha (unanswered-by-default radio groups) along the way.
+
+### Richness pass, final sweep same session — WI and VA close out the FNF backlog
+
+Checked the last 2 remaining exactly-3-provider states without an existing FNF entry (every other
+state at 3 either already had FNF or is in the AK/DC dead-end category): **WI** and **VA**. Both
+confirmed in the tool's county-dropdown footprint and harvested cleanly against each state's
+existing standard-scenario county (Milwaukee/WI, Fairfax/VA), no new recipe issues. **WI**: Owner's
+Policy Premium $2,073.00 (Disclosure $775 + Adjustment $1,298), Loan Policy Premium $525.00, Grand
+Total $2,598.00. **VA**: Owner's Policy Premium $2,097.50 (Disclosure $1,050.50 + Adjustment
+$1,047.00), Loan Policy Premium $200.00, CPL $50.00, Grand Total $2,347.50 — the Owner's Premium is
+byte-identical to VA's existing Independent Title & Escrow LLC NetSheetCalc entry, another genuine
+cross-tool corroboration (the 3rd one surfaced this session, after DE/Stewart-FNF and TN/Cornerstone-
+FNF). Both states now at 4 of 4 calculator-basis providers.
+
+**This closes out the FNF-recipe richness backlog for the entire "already-crossed-threshold, missing
+FNF" list identified at the start of this session's richness push.** 15 states total gained a 4th
+calculator-basis provider in this session (NH, WV, ME, OH, MO, MI, PA, NJ, TN, KY, AL, MD, IN, WI,
+VA) — every remaining exactly-3-provider state either already had an FNF entry from an earlier
+session or is outside this tool's footprint entirely. Remaining priorities for future sessions: (1)
+DC's browser-driven-session need (see the 2026-08-19 DC entry above) and AK's thin-market 3rd
+provider (also above) are the only 2 states that could not be closed this session; (2) the same
+"check tracker coverage before hunting for a new platform" technique should now be applied to the
+*other* already-solved nationwide tools (Stewart's `/api/SRC/quote`, Old Republic's 2 tools, WFG's
+Seller Net Sheet API) against states that have FNF but are missing one of those instead — a
+systematic pass state-by-state would likely surface several more free 5th/6th-provider richness
+adds toward the mission's 3-6-harvest stretch target; (3) TitleCapture/Qualia Connect remain the
+highest-value jsOnly targets nationwide for a future browser-driven session.

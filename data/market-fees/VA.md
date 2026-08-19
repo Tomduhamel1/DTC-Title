@@ -163,3 +163,12 @@ are used by many independent title agencies nationwide per their own marketing p
 are likely high-leverage, multi-state/multi-agency unlocks for future harvest sessions,
 following the same per-tenant-distinct-fee-schedule pattern already established for
 MyTitleRates.com and TitleCapture elsewhere in CALCULATORS.md.
+
+## Richness pass (2026-08-19) — FNF national rate calculator, Fairfax County
+`ratecalculator.fnf.com` (already-solved recipe, reused nationwide), Fairfax County. Premium-only:
+Owner's Policy Premium $2,097.50 (Disclosure $1,050.50 + Adjustment $1,047.00), Loan Policy Premium
+$200.00, Closing Protection Letter $50.00, Grand Total $2,347.50. **Notable finding**: the Owner's
+Policy Premium is byte-identical to Independent Title & Escrow LLC's existing NetSheetCalc-sourced
+figure above ($2,097.50) — a genuine cross-tool corroboration for Fairfax County at this scenario.
+Crosses VA to **calculator-quoted (4 providers)**. See VA.json's 4th `"basis": "calculator"` entry
+for full detail.

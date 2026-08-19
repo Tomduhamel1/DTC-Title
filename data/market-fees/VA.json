@@ -243,5 +243,26 @@
     "sectionTotals": "Sum of this agency's own ancillary settlement/service fees (settlement fee, abstract, binder, exam, doc prep, CPL, e-record, deed recording, mortgage recording, excluding taxes/premiums/commission): $1,992.00. Adding title insurance premiums ($200 lender's + $2,097.50 owner's) and VA state/local grantee (recordation) taxes on deed and mortgage ($1,250 + $416.63 + $1,000 + $333.30): grand total $7,089.43 before any real estate commission (left blank/unspecified in the quick-quote scenario).",
     "bundlingNotes": "Unlike the two TitleClose-platform agencies above (which returned $0 or bundled some ancillary items), this agency's schema itemizes 10 distinct flat-dollar settlement/service fee line items individually (settlement fee $375, abstract $350, binder $300, exam $300, doc prep $300, CPL $50, e-record $10, deed recording $47, mortgage recording $60) plus separately-formula-computed VA state and local grantee taxes on both the deed and the mortgage (VA's recordation-tax structure, distinct from Fairfax-specific real property tax) -- the richest single-agency ancillary-fee breakdown found in this VA harvest. Only the Owner's Title Insurance Premium is dynamically rated via a live API call; every other dollar figure is a static per-agency constant embedded directly in the tool's own JSON configuration, confirming this is Independent Title & Escrow's actual configured pricing rather than a generic template.",
     "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k Fairfax, VA purchase-with-financing scenario via NetSheetCalc/TitleTap's Quick Quote flow (app_id 533/534, tenant independent-VA)."
+  },
+  {
+    "provider": "FNF-family underwriter (Chicago Title/Fidelity National Title/Commonwealth Land Title -- ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine; this tool's pre-selected default underwriter brand varies by request, and prior sessions confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=VA",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=VA (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-19",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Fairfax County (matching this state's existing calculator entries' county), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions.",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback), following this project's existing FNF recipe documented in CALCULATORS.md: GET the county-selection page, POST the county (own __EVENTTARGET), POST btnGeneralNext=Next, POST TranType$ddl=PropertyPurchase, POST AmountPurchase$txt=500000 then AmountLoan1$txt=400000 (each with its own __EVENTTARGET), tool defaults for all remaining policy questions, then POST btnFinish=Finish for the final Rate Summary. No personal-data fields exist anywhere in this flow. This is a richness pass applying the already-solved FNF recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2097.50 (Owner's Policy Total Policy Premium: Disclosure Amount $1,050.50 + Adjustment $1,047.00, concurrent-issue rate)",
+      "loanPolicyPremium": "$200.00 (Loan Policy Total Policy Premium, concurrent-issue rate)",
+      "other": [
+        { "name": "Charge for Closing Protection Letter", "amount": "$50.00" }
+      ],
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence."
+    },
+    "sectionTotals": "Grand Total (Owner's Policy Purchased): $2347.50.",
+    "bundlingNotes": "Harvested this session as a richness pass -- VA had already crossed the 3-provider threshold (Bon Air Title Agency, Appomattox, Independent Title & Escrow LLC); this FNF entry is a 4th corroborating provider, applying the same generalized recipe already used for AR/CT/CO/MA/ND/VT/WY/RI/DE/SD/AK/NH/WV/ME/OH/MO/MI/PA/NJ/TN/KY/AL/MD/IN/WI.",
+    "transactionContext": "Owner's + Loan Policy concurrent-issue premiums plus CPL for a $500,000 residential purchase / $400,000 loan, Fairfax County."
   }
 ]
