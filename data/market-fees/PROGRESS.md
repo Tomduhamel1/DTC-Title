@@ -2745,3 +2745,66 @@ still vary and matter).
   scarce-state calculator backlog otherwise cleared, pivot to richness passes on already-crossed
   states, or a browser-driven session to finally crack TitleCapture/Qualia Connect — the single
   highest-value remaining jsOnly target nationwide.
+
+## 2026-08-19 session — DC's FNF quirk narrowed (still unsolved, recommend retiring to the
+browser-driven queue); AK 3rd-provider re-search still dry; freshness + blocked-retry passes clean
+
+- **DC's FNF quirk**: picked up the prior session's top recommendation — explicitly select
+  `ddlUnderwriters` (tried `cti`/Chicago Title) via its own postback before advancing. Rebuilt the
+  full postback flow fresh (scratch Python, not committed) to retest end-to-end. The explicit
+  underwriter selection succeeds cleanly but **does not fix the outcome** — ruling out that
+  hypothesis. Went further this time and inspected the `btnFinish`/`btnFinishAndPrint`/
+  `btnEndorsements` controls' actual rendered state rather than just their absence of a results
+  panel: **all three are server-rendered `disabled="disabled"` even after every one of the four
+  required questions is confirmed correctly answered** (verified by re-reading each `checked`
+  attribute after its own postback, not just assuming the POST took effect) and after
+  `IsPolicyIssuedToInsure_1_To_4_FamilyResidence`/`CFPB_IsQualified`/`Concurrent_IsEligible` are
+  confirmed to already default to the scenario-correct "Yes" (only `Reissue_IsEligible` needs an
+  explicit "No" postback, unchanged reasoning from the prior session). No further required-question
+  panel renders any content anywhere in the flow for DC. Since a raw POST asserting
+  `btnFinish=Finish` in the body cannot make ASP.NET WebForms dispatch a Click event for a
+  server-disabled control (server-side `Enabled` state gates postback dispatch, independent of
+  whatever the client sends), this narrows the root cause to whatever server-side condition
+  controls this button's `Enabled` property — most likely a client-side JS event/UpdatePanel
+  callback that only fires in a real browser, plausibly tied to DC's unusual four-simultaneous-radio
+  question layout (every other state this tool has been applied to shows 0-2). **Recommend retiring
+  this as a stateless-HTTP target and moving it to the browser-driven-session queue** (alongside
+  TitleCapture/Qualia Connect) — the only concrete next step left is a devtools network capture of a
+  real browser completing DC's flow to see what request the enabled Finish button actually sends.
+  DC stays at 2 of 3 (Stewart + WFG).
+- **AK 3rd-provider search**: one more pass, still no lead after two consecutive sessions. Checked
+  `oldrepublictitle.com/rate-calculator/alaska` (a 3rd, previously-unchecked Old Republic web
+  property, distinct from the already-catalogued `ortconline.com`/`ortratecalculator` tools) — static
+  page stating Old Republic has no direct AK presence, agents only, no calculator. First American's
+  `firstam.com/title-fee-calculator/` marketing page only links to the already-catalogued jsOnly
+  `facc.firstam.com`. MyTitleRates.com and NetSheetCalc/TitleTap directory searches for AK/Anchorage
+  surfaced zero new tenants. AK stays at 2 of 3 (Stewart + FNF) — recommend deprioritizing further
+  search barring a genuinely new technique; see CALCULATORS.md's 2026-08-19 entry for full detail.
+- **Blocked-source retries** (one quick check each): AZ DIFI — the canonical `difi.az.gov` (no-www)
+  host still returns its persistent Cloudflare WAF HTTP 403, unchanged; the `www.difi.az.gov`
+  subdomain returned a 502 at the proxy/routing level, matching the 2026-08-03 finding that this is
+  a DNS/routing quirk for a likely-nonexistent subdomain, not a new signal. CATIC CT
+  (`catic.com/state-resources/connecticut`) HTTP 200, unchanged. Jackson & Scott AL
+  (`realestatelclosings.com/closing-costs-calculator/`) HTTP 403, consistent WAF block, unchanged.
+  No status changes on any of the three.
+- **Freshness spot-check** (5 oldest-retrieved published sources, all from states never previously
+  included in any prior freshness-pass rotation — IN/WFG Indiana rate bulletin PDF [effective
+  2013-07-01, already noted stale/superseded in-text], NH/Stewart New Hampshire rate manual PDF via
+  virtualunderwriter.com [effective 2017-02-09], MD/Ardent Title fee schedule page [title rates
+  effective 2017-04-01], MI/First American Michigan basic rate sheet PDF [effective 2020-04-01],
+  NJ/Federated National Land fee schedule PDF [updated 2020-05-15]): **5 of 5 confirmed live** —
+  4 returned a clean HTTP 200 on the first check; the NH/virtualunderwriter.com PDF initially
+  returned HTTP 403 on a HEAD request, but a full GET with a standard browser User-Agent returned a
+  clean HTTP 200 and a valid 323KB PDF. **New finding: virtualunderwriter.com's Azure Front Door WAF
+  blocks HEAD requests specifically while allowing GET** — always use GET (or WebFetch, which uses
+  GET) against this host, never trust a HEAD-only check's 403 as evidence of staleness. No new
+  `{stale: true}` flags needed; no status changes.
+
+**Next session priority**: (1) with AK and DC both effectively exhausted for stateless-HTTP
+technique (DC needs a browser-driven session, AK's market is simply too thin), pivot primary effort
+to richness passes on already-crossed calculator-quoted states, or take on the TitleCapture/Qualia
+Connect browser-driven-session queue if that capability becomes available; (2) continue the
+freshness rotation through the remaining never-checked states (LA, NM, NV, NY, OH, OR, PA, SD, TX,
+WV still outstanding as of this session); (3) blocked-source retries remain a quick, low-value
+per-session check — no change expected barring an actual policy change at AZ DIFI or Jackson & Scott
+AL's hosting.

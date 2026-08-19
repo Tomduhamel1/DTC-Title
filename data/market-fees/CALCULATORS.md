@@ -3291,3 +3291,72 @@ Generic web search for AK title-company calculators returns only third-party agg
 tools (AnytimeEstimate, ListWithClever, RealEstateWitch, HomeLight), all out of scope per the
 standing `alphaadv.net` exclusion precedent. AK stays at 2 of 3 — a genuinely thin market, consistent
 with its published-schedule survey finding of only 2 sources statewide.
+
+## 2026-08-19 session — DC's FNF quirk further characterized (still unsolved, root cause now narrowed); AK 3rd-provider re-search, still dry
+
+### DC's FNF flow — explicit `ddlUnderwriters` selection tried per the 2026-08-18 hypothesis, does NOT fix it; `btnFinish` confirmed server-rendered `disabled` even with every question answered correctly
+
+Picked up the 2026-08-18 session's specific next-step recommendation: explicitly select
+`ddlUnderwriters` (tried `cti` = Chicago Title) via its own dedicated `__EVENTTARGET` postback,
+inserted right after the county selection and before `btnGeneralNext`. Rebuilt the whole flow fresh
+as a scratch Python script (not committed) to retest end-to-end rather than assume the rest of the
+recipe still holds. Confirmed along the way: **DC's `ddlCounty` control is not actually absent** (the
+2026-08-18 "no county field" observation was imprecise) — it renders with exactly one option,
+`district of columbia`, pre-selectable via the standard recipe, same mechanism as every other state's
+county dropdown. The explicit underwriter postback itself succeeds cleanly (no error, dropdown value
+sticks across subsequent postbacks) but **does not change the outcome** — confirming the
+`ddlUnderwriters` hypothesis was not the cause.
+
+Re-confirmed the four-radio structure exactly as the 2026-08-18 session mapped it, and found two of
+the four (`IsPolicyIssuedToInsure_1_To_4_FamilyResidence`, `CFPB_IsQualified`) already default to the
+substantively-correct "Yes" with no postback needed; `Concurrent_IsEligible` also defaults to "Yes"
+(correct — a purchase with simultaneous Owner's & Loan policy issuance); only `Reissue_IsEligible`
+needs an explicit "No" postback (unchanged from the prior session's reasoning — answering "Yes"
+would require fabricating a `Reissue_FaceAmount`, forbidden by the evidence rules). With all four
+confirmed answered (verified by re-reading the `checked` attribute in the response HTML after each
+postback, not just assuming the POST took effect), the page still does not reach a results panel.
+
+**New, more precise root-cause signal**: inspected the rendered `btnFinish`/`btnFinishAndPrint`/
+`btnEndorsements` submit controls directly in the HTML response *before* attempting to click them,
+and found all three already carry `disabled="disabled" class="aspNetDisabled"` **even after every
+question is answered and validated with no visible error** — this is true both before and after
+submitting the Finish click, i.e. clicking a control the server itself is rendering as disabled
+predictably has no effect (ASP.NET WebForms checks server-side `Enabled` state for postback event
+dispatch, not just the client-side `disabled` HTML attribute, so a raw POST asserting
+`btnFinish=Finish` in the body does not fool it). This had not been explicitly checked in either
+prior DC session — both treated the symptom as "Finish produces no error but no results either,"
+without confirming the button itself was server-disabled the whole time. **This localizes the bug to
+whatever server-side condition controls this button's `Enabled` property**, rather than a missing
+required field (every field this recipe knows about is answered, and no additional required-question
+panel — `pnlPolicyQuestions`/`pnlAmountsPolicyQuestions` — renders any content for DC at any point in
+the flow, confirmed empty at every step). The most likely remaining explanation, given the disabled
+state persists through a plain synchronous postback with no error, is that this control's enable
+logic depends on a **client-side JS event** (an `onchange`/`onblur` handler wiring, or an UpdatePanel
+async-postback completion callback) that only fires in a real browser and never fires when the form
+is replayed via raw HTTP — i.e. this is likely a genuine JS-execution requirement specific to DC's
+question layout (four simultaneous radios vs. the 0-2 seen in every other state this tool has been
+applied to), not a missing-field bug crackable by finding one more POST parameter. **Recommendation:
+retire this as a stateless-HTTP target and move it to the browser-driven-session queue** (alongside
+TitleCapture/Qualia Connect) rather than spend further plain-POST-recipe effort on it — the next
+concrete step that could actually resolve it is a devtools network capture of a real browser session
+clicking through DC's own flow to see what request the enabled Finish button actually sends that this
+recipe isn't replicating. DC remains at 2 of 3 (Stewart + WFG).
+
+### AK 3rd-provider search — one more pass, still no lead
+
+Followed up on the 2026-08-18 dead-end list with a few more targeted searches this session:
+**Old Republic's own `oldrepublictitle.com/rate-calculator/alaska`** page (distinct from both
+already-catalogued Old Republic tools, `ortconline.com/Web2` and `ortratecalculator.oldrepublictitle.com`)
+returns a static, formless page stating "Old Republic National Title Insurance Company has filed
+rates in Alaska and issues title products only through its appointed Agents" with only a phone
+number/email for a Portland, OR underwriting contact — no calculator, confirming Old Republic has no
+direct-write AK presence to calculate against. **First American's marketing calculator page**
+(`firstam.com/title/resources/calculators/title-fee-calculator.html`) only links out to the
+already-catalogued jsOnly `facc.firstam.com` tool, no new state-specific path found. **Trident Land
+Transfer Company**'s MyTitleRates.com instance (surfaced again in a fresh search) is the same
+already-confirmed NJ/PA/DE-only tenant, not AK. A NetSheetCalc/TitleTap directory search
+(`netsheetcalc.com quickquote Alaska`/`Anchorage`) surfaced zero AK-attributed appids, consistent
+with the 2026-08-18 finding. AK stays at 2 of 3 — no new lead found across two consecutive sessions
+now; likely genuinely exhausted for stateless-HTTP-reachable calculators given Alaska's small title
+market (independent agencies, no major SaaS-platform or big-four-brand coverage found). Not
+recommended as a further priority target barring a genuinely new technique.
