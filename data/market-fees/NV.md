@@ -236,3 +236,9 @@ Settlement or Closing Fee $1,580.00 (split $790.00/$790.00 buyer/seller). Lender
 $0 despite the $400,000 loan entered, consistent with this being a seller-net-sheet-only tool (same
 behavior already documented for WFG's OR entry). See NV.json's newest `basis: "calculator"` entry
 for the full record.
+
+## Calculator harvest addendum (2026-08-20) — richness pass: Stewart Rate Calculator
+
+Richness pass per the 2026-08-19 session's own recommendation (check tracker coverage for already-solved nationwide recipes — Stewart's `/api/SRC/quote`, WFG's Seller Net Sheet API — before hunting a new platform). Prior: 4 calculator-basis providers. This session adds 1 corroborating provider, bringing NV to **5 calculator-basis providers**. See NV.json's newest `basis: "calculator"` entry for full itemized figures and methodology.
+
+- **Stewart Title Guaranty Company** (Stewart Rate Calculator, `stewartratecalculator.com`) — matched settlement office **Stewart Title Company - Nevada Division**. Owner's Policy Premium **$1,850.00**, Lender's Policy Premium **$1,240.00**, 8 itemized settlement/closing-fee line item(s).

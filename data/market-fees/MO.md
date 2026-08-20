@@ -158,3 +158,10 @@ ptofmo.com/rate-calculator, equitytitle.com. Binary PDF content unreadable by We
 was recovered via the Read-tool PDF-recovery technique for both verified sources plus 4 discarded
 wrong-state PDFs (2 First American: Hawaii, Illinois; the FNTI and WFG bulletin cover pages
 themselves parsed fine as short documents).
+
+## Calculator harvest addendum (2026-08-20) — richness pass: WFG National Title + Stewart Rate Calculator
+
+Richness pass per the 2026-08-19 session's own recommendation (check tracker coverage for already-solved nationwide recipes — Stewart's `/api/SRC/quote`, WFG's Seller Net Sheet API — before hunting a new platform). Prior: 4 calculator-basis providers. This session adds 2 corroborating provider(s), bringing MO to **6 calculator-basis providers**. See MO.json's newest `basis: "calculator"` entries for full itemized figures and methodology.
+
+- **Stewart Title Guaranty Company** (Stewart Rate Calculator, `stewartratecalculator.com`) — matched settlement office **Stewart Title Company-Midwest Division**. Owner's Policy Premium **$1,149.00**, Lender's Policy Premium **$1,006.00**, 1 itemized settlement/closing-fee line item(s).
+- **WFG National Title Insurance Company** (Seller Net Sheet Rate Calculator, `rates.wfgnationaltitle.com`) — Owner's Title Insurance Premium **$518.00**, premium-only (no itemized settlement fee configured for this state in this tool).

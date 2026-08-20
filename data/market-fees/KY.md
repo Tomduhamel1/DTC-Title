@@ -251,3 +251,10 @@ Premium-only: Owner's Policy Premium $2,075.00 (Disclosure $895.00 + Adjustment 
 Policy Premium $225.00, Closing Protection Letter Coverage $0.00 (a genuine zero figure, recorded
 as-is). Grand Total $2,300.00. Crosses KY to **calculator-quoted (4 providers)**. See KY.json's 4th
 `"basis": "calculator"` entry for full detail.
+
+## Calculator harvest addendum (2026-08-20) — richness pass: WFG National Title + Stewart Rate Calculator
+
+Richness pass per the 2026-08-19 session's own recommendation (check tracker coverage for already-solved nationwide recipes — Stewart's `/api/SRC/quote`, WFG's Seller Net Sheet API — before hunting a new platform). Prior: 4 calculator-basis providers. This session adds 2 corroborating provider(s), bringing KY to **6 calculator-basis providers**. See KY.json's newest `basis: "calculator"` entries for full itemized figures and methodology.
+
+- **Stewart Title Guaranty Company** (Stewart Rate Calculator, `stewartratecalculator.com`) — matched settlement office **Emerald Title Group, LLC**. Owner's Policy Premium **$2,075.00**, Lender's Policy Premium **$1,405.00**, 3 itemized settlement/closing-fee line item(s).
+- **WFG National Title Insurance Company** (Seller Net Sheet Rate Calculator, `rates.wfgnationaltitle.com`) — Owner's Title Insurance Premium **$2,025.00**, premium-only (no itemized settlement fee configured for this state in this tool).

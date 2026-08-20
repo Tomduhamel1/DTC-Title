@@ -211,3 +211,10 @@ scenario's substantively correct default). Premium-only: Owner's Policy Premium 
 $1,422.50 + Adjustment $1,085.00), Loan Policy Premium $275.00, Closing Protection Letter(s) $55.00,
 Grand Total $2,837.50. Crosses MD to **calculator-quoted (4 providers)**. See MD.json's 4th
 `"basis": "calculator"` entry for full detail.
+
+## Calculator harvest addendum (2026-08-20) — richness pass: WFG National Title + Stewart Rate Calculator
+
+Richness pass per the 2026-08-19 session's own recommendation (check tracker coverage for already-solved nationwide recipes — Stewart's `/api/SRC/quote`, WFG's Seller Net Sheet API — before hunting a new platform). Prior: 4 calculator-basis providers. This session adds 2 corroborating provider(s), bringing MD to **6 calculator-basis providers**. See MD.json's newest `basis: "calculator"` entries for full itemized figures and methodology.
+
+- **Stewart Title Guaranty Company** (Stewart Rate Calculator, `stewartratecalculator.com`) — matched settlement office **Stewart Title and Escrow, Inc.**. Owner's Policy Premium **$2,507.50**, Lender's Policy Premium **$1,360.00**, 12 itemized settlement/closing-fee line item(s).
+- **WFG National Title Insurance Company** (Seller Net Sheet Rate Calculator, `rates.wfgnationaltitle.com`) — Owner's Title Insurance Premium **$2,865.00**, premium-only (no itemized settlement fee configured for this state in this tool).

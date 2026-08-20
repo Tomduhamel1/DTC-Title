@@ -354,3 +354,10 @@ survey's own scarce classification.
   amount entered (same behavior already documented for this tool's NV/AR entries) — recorded as-is.
   Premium-only output is valid calculator-harvest evidence per the 2026-08-05 CT-session scoping
   correction. **Crosses MA to the 3-provider calculator-quoted threshold**, after 3 prior sessions (2026-07-27, 2026-08-02, 2026-08-04) found no 3rd provider. Middlesex County (MA's most populous, Cambridge/Lowell area) used per the standard scenario's most-populous-county rule — a deviation from the two existing MA entries' own county choices.
+
+## Calculator harvest addendum (2026-08-20) — richness pass: WFG National Title + Stewart Rate Calculator
+
+Richness pass per the 2026-08-19 session's own recommendation (check tracker coverage for already-solved nationwide recipes — Stewart's `/api/SRC/quote`, WFG's Seller Net Sheet API — before hunting a new platform). Prior: 3 calculator-basis providers. This session adds 2 corroborating provider(s), bringing MA to **5 calculator-basis providers**. See MA.json's newest `basis: "calculator"` entries for full itemized figures and methodology.
+
+- **Stewart Title Guaranty Company** (Stewart Rate Calculator, `stewartratecalculator.com`) — matched settlement office **Warr & Warr, PC**. Owner's Policy Premium **$2,125.00**, Lender's Policy Premium **$1,000.00**, 6 itemized settlement/closing-fee line item(s).
+- **WFG National Title Insurance Company** (Seller Net Sheet Rate Calculator, `rates.wfgnationaltitle.com`) — Owner's Title Insurance Premium **$2,375.00**, premium-only (no itemized settlement fee configured for this state in this tool).

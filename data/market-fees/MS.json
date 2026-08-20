@@ -27,7 +27,7 @@
       ]
     },
     "bundlingNotes": "Explicitly states: 'The charges hereinafter set out are basic charges for title insurance only and do not include charges for searches, abstracts, attorney's fees, escrow or closing services, inspections or other services charged by local attorneys, title companies, surveyors, abstractors, or abstract companies.' Definitions section further clarifies a 'Charge' does not include 'any settlement fee, trustee fee, attorney fee, surveying fee, inspection fee, document fee, closing fee, escrow fee or any other fee associated with escrow.' Zero settlement/service-fee dollar figures anywhere in the document.",
-    "transactionContext": "Owner's policy (purchase), loan policy (purchase and refinance), simultaneous issue, reissue/substitution \u2014 premium calculation only."
+    "transactionContext": "Owner's policy (purchase), loan policy (purchase and refinance), simultaneous issue, reissue/substitution — premium calculation only."
   },
   {
     "provider": "WFG National Title Insurance Company",
@@ -56,7 +56,7 @@
       ]
     },
     "bundlingNotes": "Explicitly states: 'The rates shown are the all-inclusive title insurance fees and charges and include both the risk portion and the service or work portion, but do not include charges for title search, surveys, escrow, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant.' Zero settlement/service-fee dollar figures anywhere in the document (19-page manual with extensive endorsement fee schedule, all title-insurance-related).",
-    "transactionContext": "Owner's policy (purchase), loan policy (purchase, refinance/substitution, construction), simultaneous issue, reissue \u2014 premium calculation only."
+    "transactionContext": "Owner's policy (purchase), loan policy (purchase, refinance/substitution, construction), simultaneous issue, reissue — premium calculation only."
   },
   {
     "provider": "Commonwealth Land Title Insurance Company (national FNF-family underwriter; ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine -- this tool's pre-selected default underwriter brand varies by request; prior sessions (CT, AR) confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
@@ -113,5 +113,26 @@
     "sectionTotals": null,
     "bundlingNotes": "Crosses MS to 3 calculator-basis providers (FNF, WFG, Old Republic) -- calculator-quoted status. MS's $2,000.00 Owner's Premium sits below both the existing FNF ($2,250.00 Total Policy Premium) and WFG ($2,200.00 Owner's Premium) figures already on file for Hinds County -- a plausible, moderate spread across 3 independently-operated calculator sources for a state with no rating bureau.",
     "transactionContext": "Old Republic's rate-calculator standalone Owner's Policy quote ($500,000 purchase) and standalone Lender's Policy quote ($400,000 loan), statewide Mississippi (no county tiering in this tool)."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company -- Stewart Rate Calculator, matched settlement office: Watson Jones PLLC (2829 Lakeland Drive, Suite 1502, Jackson, MS 39225)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true (LoanEstimate/QuoteType=3 flow) and https://www.stewartratecalculator.com/Quote/Netsheet?urlParams=&quotetype=2&branded=true (Netsheet/QuoteType=2 flow); both POST to the shared /api/SRC/quote endpoint",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Hinds County (Jackson), residential resale, Sale/Purchase with Mortgage transaction type, BASIC coverage on both Owner's and Lender's policies. Richness-pass harvest applying an already-solved, previously state-limited recipe to a state not yet in Stewart's harvested-state list, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "methodology": "Harvested via Stewart's discoverable `/api/SRC/*` JSON REST API (stewartratecalculator.com), driven entirely by plain HTTP GET/POST (Python requests.Session(), cookie jar) with no browser/JS execution and no personal-data fields, replaying the full recipe documented in this project's CALCULATORS.md (2026-08-14 'SOLVED' entry): GET the LoanEstimate/Netsheet page to scrape a fresh antiforgery cookie + __RequestVerificationToken; GET /api/SRC/propertysearch to resolve the county FIPS code and a default zip; GET /api/SRC/providers to find the county's real settlement office(s) (used to set ProviderID on the QuoteType=3 flow so the itemized settlement-fee list is populated -- an empty ProviderID silently returns a null itemized list); GET /api/SRC/statesettings and /api/SRC/ernstlookup for state-level defaults; build the QuoteRequestRoot JSON by hand (Owner's Policy $500,000 / Lender's Policy $400,000, BASIC coverage, standard Sale/Purchase with Mortgage transaction); POST /api/SRC/quote twice -- QuoteType=2 (Netsheet, pageBuyerSeller=seller) for Recording/CFPB2015 transfer-tax figures, and QuoteType=3 (LoanEstimate, pageBuyerSeller=buyer, IsCalculatePremium=True, IsCalculateTitleServiceFee=True) for the itemized Pricing.TitleServiceFee.ItemizedTitleServiceFeeList settlement-fee line items. One new gotcha found and fixed this session: stewartratecalculator.com's bare apex domain 301-redirects every POST to the www subdomain, and that redirect's response body hangs indefinitely on this sandbox's proxied connection (a 30s+ read timeout with 0 bytes received) -- fixed by targeting https://www.stewartratecalculator.com directly, skipping the apex redirect entirely; this is an environment/proxy artifact, not a sign the endpoint is blocked. Also confirmed the documented /api/SRC/providers gotcha firsthand: for a single-provider county the response's `Provider` field is a bare object, not a one-element list -- must be normalized before indexing or ProviderID silently stays empty and every itemized-fee list comes back null (looks exactly like a genuine empty result).",
+    "settlementFee": {
+      "note": "No itemized settlement/closing-fee line items returned for this settlement office (QuoteType=3's ItemizedTitleServiceFeeList was null/empty) -- a genuine result the recipe has documented before for markets where Stewart's local office has nothing configured through this tool (e.g. attorney-closing states), not a fetch failure."
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,200.00",
+      "loanPolicyPremium": "$1,320.00",
+      "other": [],
+      "note": "Premium-only result for this settlement office/state (see settlementFee note)."
+    },
+    "sectionTotals": "Owner's Policy Premium $2,200.00; Lender's Policy Premium $1,320.00",
+    "bundlingNotes": "No deed/transfer/mortgage recording tax returned by this tool for this state (consistent with states known to levy no such tax, or the tax simply isn't configured in this tool).",
+    "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Hinds County, Mississippi."
   }
 ]

@@ -158,3 +158,10 @@ CPL/notary/doc-prep/search/exam fields exist in this tenant's schema at all — 
 than Modern Title Group's. This crosses MI to 3 calculator-basis providers (Modern Title Group,
 Knight Barry, Prestige Title) — **calculator-quoted (3 providers)**. See CALCULATORS.md's
 2026-08-02 entry for the full `getNetSheetConfig`/`api/index.php/rate` recipe.
+
+## Calculator harvest addendum (2026-08-20) — richness pass: WFG National Title + Stewart Rate Calculator
+
+Richness pass per the 2026-08-19 session's own recommendation (check tracker coverage for already-solved nationwide recipes — Stewart's `/api/SRC/quote`, WFG's Seller Net Sheet API — before hunting a new platform). Prior: 4 calculator-basis providers. This session adds 2 corroborating provider(s), bringing MI to **6 calculator-basis providers**. See MI.json's newest `basis: "calculator"` entries for full itemized figures and methodology.
+
+- **Stewart Title Guaranty Company** (Stewart Rate Calculator, `stewartratecalculator.com`) — matched settlement office **Devon Title**. Owner's Policy Premium **$2,435.60**, Lender's Policy Premium **$1,372.00**, 9 itemized settlement/closing-fee line item(s).
+- **WFG National Title Insurance Company** (Seller Net Sheet Rate Calculator, `rates.wfgnationaltitle.com`) — Owner's Title Insurance Premium **$2,722.00**, premium-only (no itemized settlement fee configured for this state in this tool).

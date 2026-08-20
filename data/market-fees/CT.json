@@ -12,10 +12,18 @@
       "homeEquityHE2Certificate": "$45 (up to $250,000) / $75 (over $250,000-$500,000) / $250 (over $500,000-$750,000) / $300 (over $750,000-$1,000,000) per transaction"
     },
     "itemizedFees": {
-      "cpl": { "perLetter": "$25.00 per closing protection letter, pursuant to C.G.S.A. Sec. 38a-404" },
+      "cpl": {
+        "perLetter": "$25.00 per closing protection letter, pursuant to C.G.S.A. Sec. 38a-404"
+      },
       "other": [
-        { "name": "Mortgage Protection Guaranty / Residential Limited Coverage Mortgage Modification Policy", "amount": "$125.00" },
-        { "name": "Junior Loan Policy (JR1/JR2)", "amount": "$2.00/thousand, minimum $65.00" }
+        {
+          "name": "Mortgage Protection Guaranty / Residential Limited Coverage Mortgage Modification Policy",
+          "amount": "$125.00"
+        },
+        {
+          "name": "Junior Loan Policy (JR1/JR2)",
+          "amount": "$2.00/thousand, minimum $65.00"
+        }
       ]
     },
     "bundlingNotes": "Section I.A states explicitly: 'Fees and charges in connection with the searching, examination, certification and closing of title are not included in the rates herein, and WFG National Title Insurance Company may make additional charges for these and other services.' No dollar figures given for those additional charges.",
@@ -35,11 +43,26 @@
     },
     "itemizedFees": {
       "other": [
-        { "name": "Home Equity Policy (limited coverage, up to $100,000)", "amount": "$2.00/thousand of liability" },
-        { "name": "ALTA Residential Limited Coverage Junior Loan Policy", "amount": "$2.25/thousand, minimum $100.00" },
-        { "name": "ALTA Residential Limited Coverage Mortgage Modification Policy", "amount": "$150.00 flat" },
-        { "name": "Foreclosure Insurance Policy (ALTA Limited Pre-Foreclosure)", "amount": "50% of Basic Mortgagee Policy charge, minimum $50.00" },
-        { "name": "Stewart Master Residential Loan Policy (equity loans)", "amount": "$25 (up to $25,000) / $65 (over $25,000-$250,000) / $125 (over $250,000-$500,000)" }
+        {
+          "name": "Home Equity Policy (limited coverage, up to $100,000)",
+          "amount": "$2.00/thousand of liability"
+        },
+        {
+          "name": "ALTA Residential Limited Coverage Junior Loan Policy",
+          "amount": "$2.25/thousand, minimum $100.00"
+        },
+        {
+          "name": "ALTA Residential Limited Coverage Mortgage Modification Policy",
+          "amount": "$150.00 flat"
+        },
+        {
+          "name": "Foreclosure Insurance Policy (ALTA Limited Pre-Foreclosure)",
+          "amount": "50% of Basic Mortgagee Policy charge, minimum $50.00"
+        },
+        {
+          "name": "Stewart Master Residential Loan Policy (equity loans)",
+          "amount": "$25 (up to $25,000) / $65 (over $25,000-$250,000) / $125 (over $250,000-$500,000)"
+        }
       ]
     },
     "bundlingNotes": "Definitions section states explicitly: 'This charge does not include all of the abstracting or searching fee, examination fee, settlement fees, closing fees, or escrow fees.' General Provisions further specify charges 'do not include charges for searches, examinations, abstracts, attorneys' fees, escrow or closing services, inspections or other services charged by local attorneys, surveyors, abstractors, or abstract companies' -- an unusually explicit list naming local attorneys directly, consistent with CT being an attorney-closing state.",
@@ -55,9 +78,15 @@
       "sale": "$1,975.00 FLAT (properties up to $1,000,000; higher values require custom quote)"
     },
     "itemizedFees": {
-      "docPrep": { "note": "Bundled into the flat attorney fee, not separately itemized" },
-      "courier": { "note": "Bundled into the flat attorney fee, not separately itemized" },
-      "searchExam": { "note": "Bundled into the flat attorney fee, not separately itemized" },
+      "docPrep": {
+        "note": "Bundled into the flat attorney fee, not separately itemized"
+      },
+      "courier": {
+        "note": "Bundled into the flat attorney fee, not separately itemized"
+      },
+      "searchExam": {
+        "note": "Bundled into the flat attorney fee, not separately itemized"
+      },
       "other": []
     },
     "bundlingNotes": "Firm states its flat fee is 'comprehensive for all legal work and costs incurred by the firm for your closing, including title search, title review, document preparation, courier fees, and phone/facsimile fees.' Title insurance premium is billed as 'a separate charge as required by the State of Connecticut' -- i.e. the flat fee is the settlement/attorney fee and explicitly excludes the title insurance premium, the reverse pairing of what WFG/Stewart's premium-only manuals show.",
@@ -175,5 +204,43 @@
     "sectionTotals": null,
     "bundlingNotes": "Property location for this request: Bridgeport, CT (Fairfield County). Discovered and harvested in the same 2026-08-08 session across 8 below-threshold scarce states at once (OR, NM, CT, NE, MS, LA, UT, SC) using one newly-solved API -- see CALCULATORS.md's 2026-08-08 entry for the full technical recipe and the complete list of states affected.",
     "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Fairfield County, CT."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company -- Stewart Rate Calculator, matched settlement office: Warr & Warr, PC (47 Bullocks Point Avenue, Riverside, RI 02915)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true (LoanEstimate/QuoteType=3 flow) and https://www.stewartratecalculator.com/Quote/Netsheet?urlParams=&quotetype=2&branded=true (Netsheet/QuoteType=2 flow); both POST to the shared /api/SRC/quote endpoint",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Fairfield County (Bridgeport), residential resale, Sale/Purchase with Mortgage transaction type, BASIC coverage on both Owner's and Lender's policies. Richness-pass harvest applying an already-solved, previously state-limited recipe to a state not yet in Stewart's harvested-state list, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "methodology": "Harvested via Stewart's discoverable `/api/SRC/*` JSON REST API (stewartratecalculator.com), driven entirely by plain HTTP GET/POST (Python requests.Session(), cookie jar) with no browser/JS execution and no personal-data fields, replaying the full recipe documented in this project's CALCULATORS.md (2026-08-14 'SOLVED' entry): GET the LoanEstimate/Netsheet page to scrape a fresh antiforgery cookie + __RequestVerificationToken; GET /api/SRC/propertysearch to resolve the county FIPS code and a default zip; GET /api/SRC/providers to find the county's real settlement office(s) (used to set ProviderID on the QuoteType=3 flow so the itemized settlement-fee list is populated -- an empty ProviderID silently returns a null itemized list); GET /api/SRC/statesettings and /api/SRC/ernstlookup for state-level defaults; build the QuoteRequestRoot JSON by hand (Owner's Policy $500,000 / Lender's Policy $400,000, BASIC coverage, standard Sale/Purchase with Mortgage transaction); POST /api/SRC/quote twice -- QuoteType=2 (Netsheet, pageBuyerSeller=seller) for Recording/CFPB2015 transfer-tax figures, and QuoteType=3 (LoanEstimate, pageBuyerSeller=buyer, IsCalculatePremium=True, IsCalculateTitleServiceFee=True) for the itemized Pricing.TitleServiceFee.ItemizedTitleServiceFeeList settlement-fee line items. One new gotcha found and fixed this session: stewartratecalculator.com's bare apex domain 301-redirects every POST to the www subdomain, and that redirect's response body hangs indefinitely on this sandbox's proxied connection (a 30s+ read timeout with 0 bytes received) -- fixed by targeting https://www.stewartratecalculator.com directly, skipping the apex redirect entirely; this is an environment/proxy artifact, not a sign the endpoint is blocked. Also confirmed the documented /api/SRC/providers gotcha firsthand: for a single-provider county the response's `Provider` field is a bare object, not a one-element list -- must be normalized before indexing or ProviderID silently stays empty and every itemized-fee list comes back null (looks exactly like a genuine empty result).",
+    "settlementFee": {
+      "note": "$1,825.00 total, split buyer $875.00 / seller $950.00 (line item: 'Title Closing Fee')"
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1,929.00",
+      "loanPolicyPremium": "$1,472.00",
+      "other": [
+        {
+          "name": "Title Closing Fee",
+          "amount": "$1,825.00 (buyer $875.00 / seller $950.00)"
+        },
+        {
+          "name": "Title Courier Fee",
+          "amount": "$85.00 (buyer $40.00 / seller $45.00)"
+        },
+        {
+          "name": "Title E Recording Fee",
+          "amount": "$30.00 (buyer $30.00 / seller $0.00)"
+        },
+        {
+          "name": "Title Examination Fee",
+          "amount": "$500.00 (buyer $375.00 / seller $125.00)"
+        }
+      ],
+      "note": "4 itemized settlement/closing-fee line item(s) returned via the QuoteType=3 flow."
+    },
+    "sectionTotals": "Owner's Policy Premium $1,929.00; Lender's Policy Premium $1,472.00; itemized settlement fees sum $2,440.00",
+    "bundlingNotes": "Combined deed/transfer/mortgage tax on QuoteType=2 (Netsheet) flow: $6,250.00 total -- DeedTax $6,250.00.",
+    "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Fairfield County, Connecticut."
   }
 ]

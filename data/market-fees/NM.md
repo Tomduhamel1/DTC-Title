@@ -275,3 +275,9 @@ sources — this tool, the existing `ortconline.com` Old Republic entry, the exi
 seller-net-sheet entry, and the OSI promulgated-rate table itself. Confirms New Mexico's title
 premium is genuinely fixed/promulgated regardless of agent or platform, and that settlement/escrow
 fees (not premiums) are where NM's real market variation lives.
+
+## Calculator harvest addendum (2026-08-20) — richness pass: Stewart Rate Calculator
+
+Richness pass per the 2026-08-19 session's own recommendation (check tracker coverage for already-solved nationwide recipes — Stewart's `/api/SRC/quote`, WFG's Seller Net Sheet API — before hunting a new platform). Prior: 3 calculator-basis providers. This session adds 1 corroborating provider(s), bringing NM to **4 calculator-basis providers**. See NM.json's newest `basis: "calculator"` entries for full itemized figures and methodology.
+
+- **Stewart Title Guaranty Company** (Stewart Rate Calculator, `stewartratecalculator.com`) — matched settlement office **Stewart Title of Albuquerque, LLC**. Owner's Policy Premium **$2,387.00**, Lender's Policy Premium **$1,770.00**, 5 itemized settlement/closing-fee line item(s).

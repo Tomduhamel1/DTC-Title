@@ -381,3 +381,9 @@ This session solved `rates.wfgnationaltitle.com`'s `POST /api/rates/fees/estimat
 - **WFG National Title Insurance Company** (`rates.wfgnationaltitle.com`) — WORKING. Fairfield County (CT's most-populous/standard-scenario county), Bridgeport, CT, $500,000 purchase / $400,000 loan, SettlementStatementVersion `CD`. Result: Owner's Title Insurance Premium **$2,122.00**, premium-only. A third independent premium figure for CT's uncoordinated (non-rating-bureau) market, falling between the existing Old Republic ($1,979.00) and FNF ($2,080.00 + $50 CPL) entries. Loan Policy premium returned $0/null in every state tried this session, consistent with this tool's seller-net-sheet (seller-side) design — not pursued further as out of scope.
 
 **CT now calculator-quoted (3 providers)** — WFG National Title crosses the threshold.
+
+## Calculator harvest addendum (2026-08-20) — richness pass: Stewart Rate Calculator
+
+Richness pass per the 2026-08-19 session's own recommendation (check tracker coverage for already-solved nationwide recipes — Stewart's `/api/SRC/quote`, WFG's Seller Net Sheet API — before hunting a new platform). Prior: 3 calculator-basis providers. This session adds 1 corroborating provider(s), bringing CT to **4 calculator-basis providers**. See CT.json's newest `basis: "calculator"` entries for full itemized figures and methodology.
+
+- **Stewart Title Guaranty Company** (Stewart Rate Calculator, `stewartratecalculator.com`) — matched settlement office **Warr & Warr, PC**. Owner's Policy Premium **$1,929.00**, Lender's Policy Premium **$1,472.00**, 4 itemized settlement/closing-fee line item(s).

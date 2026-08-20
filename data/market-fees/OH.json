@@ -230,12 +230,36 @@
       "ownersTitleInsurancePremium": "$2475.00 (Owner's Policy Total Policy Premium: Disclosure Amount $1,160.00 + Adjustment $1,315.00, concurrent-issue rate)",
       "loanPolicyPremium": "$150.00 (Loan Policy Total Policy Premium, concurrent-issue rate)",
       "other": [
-        { "name": "Charge for Lender's Closing Protection Coverage", "amount": "$40.00" }
+        {
+          "name": "Charge for Lender's Closing Protection Coverage",
+          "amount": "$40.00"
+        }
       ],
       "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence."
     },
     "sectionTotals": "Grand Total (Owner's Policy Purchased): $2665.00.",
     "bundlingNotes": "Harvested this session as a richness pass -- OH had already crossed the 3-provider threshold (Old Republic, Columbus Title Agency, Owl Creek Title Agency); this FNF entry is a 4th corroborating provider, applying the same generalized recipe already used for AR/CT/CO/MA/ND/VT/WY/RI/DE/SD/AK/NH/WV/ME.",
     "transactionContext": "Owner's + Loan Policy concurrent-issue premiums plus Lender's Closing Protection Coverage for a $500,000 residential purchase / $400,000 loan, Franklin County (Columbus)."
+  },
+  {
+    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Franklin County (Columbus), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Harvested via WFG National Title's own public JSON API, `POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet`, fully solved and documented in this project's CALCULATORS.md (2026-08-08 entry) -- no browser/JS execution needed, no personal-data fields in the request shape (nested Properties/Loans arrays, TransactionProductType, SettlementStatementVersion: \"CD\"). Confirmed via the same API's public `GET /api/rates/State/GetCalculationEnabledStates` that OH is `isCalculationEnabled: true` before harvesting. Richness-pass application of an already-solved, previously-untried-for-this-state recipe, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "settlementFee": {
+      "note": "Premium-only result (no itemized settlement/search/doc-prep line items) -- consistent with WFG's own hardcoded fee-description table, which only itemizes HUD-style settlement fees for 7 states (WA, CA, TX, OR, AZ, NV, CO); every other state, including this one, returns only the Owner's Title Insurance Premium."
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,846.25",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's seller-net-sheet-only design)",
+      "other": [],
+      "note": "Premium-only result for this state (see settlementFee note)."
+    },
+    "sectionTotals": "Owner's Title Insurance Premium $2,846.25",
+    "bundlingNotes": "Discovered and solved 2026-08-08; applied here as a richness-pass 4th/5th calculator-basis provider for Ohio (already at 3-4 providers via other tools) since no prior session had run this already-solved recipe against this state. Property location for this request: Columbus, Ohio (Franklin County).",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Franklin County, Ohio."
   }
 ]

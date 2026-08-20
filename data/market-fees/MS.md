@@ -200,3 +200,9 @@ This session solved `rates.wfgnationaltitle.com`'s `POST /api/rates/fees/estimat
 Old Republic's second calculator tool (`ortratecalculator.oldrepublictitle.com`, distinct from `ortconline.com/Web2`, whose footprint does not reach MS) had not previously been tried for MS; harvested this session as part of the same NoBot-loosening follow-up that unlocked SC/LA. MS's category set (OWNERS/LOAN/HOME EQUITY/MISCELLANEOUS) has no combined simultaneous-issue option, so Owner's and Lender's premiums were queried as two separate standalone single-category calculations rather than one combined quote — see JSON methodology for the "posting a field not in the DOM throws HTTP 500" gotcha this uncovered when switching categories.
 
 - **Old Republic Title Insurance Company** (`ortratecalculator.oldrepublictitle.com`) — WORKING. Statewide (no county tiering in this tool). Result: Owner's Policy Premium (standalone) **$2,000.00**; Lender's Policy Premium (standalone) **$1,200.00** — no combinable simultaneous-issue total available for this state on this tool, unlike SC/LA. **Crosses MS to the 3-provider calculator-quoted threshold.**
+
+## Calculator harvest addendum (2026-08-20) — richness pass: Stewart Rate Calculator
+
+Richness pass per the 2026-08-19 session's own recommendation (check tracker coverage for already-solved nationwide recipes — Stewart's `/api/SRC/quote`, WFG's Seller Net Sheet API — before hunting a new platform). Prior: 3 calculator-basis providers. This session adds 1 corroborating provider(s), bringing MS to **4 calculator-basis providers**. See MS.json's newest `basis: "calculator"` entries for full itemized figures and methodology.
+
+- **Stewart Title Guaranty Company** (Stewart Rate Calculator, `stewartratecalculator.com`) — matched settlement office **Watson Jones PLLC**. Owner's Policy Premium **$2,200.00**, Lender's Policy Premium **$1,320.00**, premium-only (no itemized settlement fee returned).

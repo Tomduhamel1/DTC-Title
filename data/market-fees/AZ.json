@@ -272,5 +272,35 @@
     "sectionTotals": null,
     "bundlingNotes": "Property location for this request: Phoenix, AZ (Maricopa County). Adds WFG as AZ's 4th calculator-basis provider (already past the 3-provider threshold via Old Republic + Arizona Premier Title/TitleTap + First Integrity/TRACcalculator); harvested for richness (itemized HUD fees, not just a premium figure) per the standing next-session recommendation to push already-quoted states toward richer entries.",
     "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium plus itemized settlement fees for a $500,000 residential purchase, Maricopa County, AZ."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company -- Stewart Rate Calculator, matched settlement office: Stewart Title & Trust of Phoenix, Inc. (3131 E. Camelback Rd., Suite 200, Phoenix, AZ 85016)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true (LoanEstimate/QuoteType=3 flow) and https://www.stewartratecalculator.com/Quote/Netsheet?urlParams=&quotetype=2&branded=true (Netsheet/QuoteType=2 flow); both POST to the shared /api/SRC/quote endpoint",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Maricopa County (Phoenix), residential resale, Sale/Purchase with Mortgage transaction type, BASIC coverage on both Owner's and Lender's policies. Richness-pass harvest applying an already-solved, previously state-limited recipe to a state not yet in Stewart's harvested-state list, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "methodology": "Harvested via Stewart's discoverable `/api/SRC/*` JSON REST API (stewartratecalculator.com), driven entirely by plain HTTP GET/POST (Python requests.Session(), cookie jar) with no browser/JS execution and no personal-data fields, replaying the full recipe documented in this project's CALCULATORS.md (2026-08-14 'SOLVED' entry): GET the LoanEstimate/Netsheet page to scrape a fresh antiforgery cookie + __RequestVerificationToken; GET /api/SRC/propertysearch to resolve the county FIPS code and a default zip; GET /api/SRC/providers to find the county's real settlement office(s) (used to set ProviderID on the QuoteType=3 flow so the itemized settlement-fee list is populated -- an empty ProviderID silently returns a null itemized list); GET /api/SRC/statesettings and /api/SRC/ernstlookup for state-level defaults; build the QuoteRequestRoot JSON by hand (Owner's Policy $500,000 / Lender's Policy $400,000, BASIC coverage, standard Sale/Purchase with Mortgage transaction); POST /api/SRC/quote twice -- QuoteType=2 (Netsheet, pageBuyerSeller=seller) for Recording/CFPB2015 transfer-tax figures, and QuoteType=3 (LoanEstimate, pageBuyerSeller=buyer, IsCalculatePremium=True, IsCalculateTitleServiceFee=True) for the itemized Pricing.TitleServiceFee.ItemizedTitleServiceFeeList settlement-fee line items. One new gotcha found and fixed this session: stewartratecalculator.com's bare apex domain 301-redirects every POST to the www subdomain, and that redirect's response body hangs indefinitely on this sandbox's proxied connection (a 30s+ read timeout with 0 bytes received) -- fixed by targeting https://www.stewartratecalculator.com directly, skipping the apex redirect entirely; this is an environment/proxy artifact, not a sign the endpoint is blocked. Also confirmed the documented /api/SRC/providers gotcha firsthand: for a single-provider county the response's `Provider` field is a bare object, not a one-element list -- must be normalized before indexing or ProviderID silently stays empty and every itemized-fee list comes back null (looks exactly like a genuine empty result).",
+    "settlementFee": {
+      "note": "$1,823.00 total, split buyer $911.50 / seller $911.50 (line item: 'Title Closing Fee')"
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,155.00",
+      "loanPolicyPremium": "$1,500.00",
+      "other": [
+        {
+          "name": "Title Closing Fee",
+          "amount": "$1,823.00 (buyer $911.50 / seller $911.50)"
+        },
+        {
+          "name": "Title Reconveyance Fee",
+          "amount": "$100.00 (buyer $0.00 / seller $100.00)"
+        }
+      ],
+      "note": "2 itemized settlement/closing-fee line item(s) returned via the QuoteType=3 flow."
+    },
+    "sectionTotals": "Owner's Policy Premium $2,155.00; Lender's Policy Premium $1,500.00; itemized settlement fees sum $1,923.00",
+    "bundlingNotes": "No deed/transfer/mortgage recording tax returned by this tool for this state (consistent with states known to levy no such tax, or the tax simply isn't configured in this tool).",
+    "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Maricopa County, Arizona."
   }
 ]

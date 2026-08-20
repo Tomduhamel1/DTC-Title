@@ -1,6 +1,6 @@
 [
   {
-    "provider": "New Mexico Office of Superintendent of Insurance (OSI) \u2014 Table of New Mexico Promulgated Title Insurance Premiums and Charges, adopted June 27, 2025 (REGULATORY/PROMULGATED, not provider-set)",
+    "provider": "New Mexico Office of Superintendent of Insurance (OSI) — Table of New Mexico Promulgated Title Insurance Premiums and Charges, adopted June 27, 2025 (REGULATORY/PROMULGATED, not provider-set)",
     "sourceUrl": "https://www.osi.state.nm.us/wp-content/uploads/2025/09/Revised-Title-Ins-Rate-Table-Updated-9.30.2025.pdf (fetched and machine-read this session via PDF text extraction), cross-verified against https://www.osi.state.nm.us/wp-content/uploads/2025/09/2024-Promulgated-Title-Insurance-Forms-Updated-09-30-2025.pdf (NM Form 49 regulatory-text excerpt) and two independent provider restatements of the same underlying premium table (see WFG and Centric Title entries below)",
     "asOf": "Adopted 2025-06-27; still the controlling promulgated rate as of this session (2026-07-22)",
     "settlementFee": {
@@ -27,7 +27,7 @@
     "transactionContext": "Applies uniformly to Owner's and Loan title insurance premiums statewide, all metros, all provider types (national-brand underwriters and independent agents alike file/use the same promulgated table). Premium depends only on policy liability/face amount, not purchase-vs-refinance transaction type."
   },
   {
-    "provider": "WFG National Title Insurance Company \u2014 2025 Schedule of New Mexico Basic Premium Rates for Title Insurance (issuing underwriter; statewide)",
+    "provider": "WFG National Title Insurance Company — 2025 Schedule of New Mexico Basic Premium Rates for Title Insurance (issuing underwriter; statewide)",
     "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/new-mexico/rates/2025%20Rate%20Card%20%20FINAL.pdf (fetched and machine-read this session via PDF text extraction after an initial WebFetch binary-decode failure)",
     "asOf": "Effective 2025-07-01",
     "settlementFee": {
@@ -147,7 +147,7 @@
     "transactionContext": "Applies to purchase transactions (formula scales with sales price); separate seller-financed-transaction fees (escrow setup, attorney fees) published for owner-carry closings. Albuquerque (100 Sun Ave NE #440) and Rio Rancho (500 Unser Blvd #102) offices -- Bernalillo/Sandoval County metro."
   },
   {
-    "provider": "Fidelity National Title Group \u2014 Title Insurance Rate Tables for New Mexico (issuing underwriter; statewide; older vintage, hosted via Las Cruces Abstract and Title's document library)",
+    "provider": "Fidelity National Title Group — Title Insurance Rate Tables for New Mexico (issuing underwriter; statewide; older vintage, hosted via Las Cruces Abstract and Title's document library)",
     "sourceUrl": "https://lcat.net/wp-content/uploads/2017/03/NM_Title_Ins_Rates_2012.pdf (fetched and machine-read this session via PDF text extraction after an initial WebFetch binary-decode failure)",
     "asOf": "Effective 2012-07-01 (older vintage; no newer Fidelity-specific NM rate PDF located this session -- see search log in NM.md)",
     "settlementFee": {
@@ -178,7 +178,7 @@
       ]
     },
     "bundlingNotes": "This 2012-vintage Fidelity National table is numerically DIFFERENT from (higher than) the 2022 Centric and 2025 WFG tables at every tier checked, which cross-verifies (via a third, older, independent source) that the promulgated NM premium rate decreased at some point between 2012 and 2022 and then held flat through mid-2025. No settlement/escrow fee content of any kind is published on this document -- consistent with the general pattern across NM issuing-underwriter rate cards found in this survey (premium-only; settlement fees are left to the individual agent and not centrally published by underwriters).",
-    "transactionContext": "Statewide New Mexico; hosted by Las Cruces Abstract and Title (lcat.net), a southern-NM/Las Cruces-Do\u00f1a Ana County provider, giving this document partial relevance as a Las Cruces metro data point even though it is premium-only and not LCAT's own settlement-fee schedule."
+    "transactionContext": "Statewide New Mexico; hosted by Las Cruces Abstract and Title (lcat.net), a southern-NM/Las Cruces-Doña Ana County provider, giving this document partial relevance as a Las Cruces metro data point even though it is premium-only and not LCAT's own settlement-fee schedule."
   },
   {
     "provider": "New Mexico Escrow Solutions (licensed escrow company under NM RLD; statewide NM -- NOTE: this is a loan-servicing/mortgage-payment-collection escrow business, NOT a real-estate closing/settlement agent; see bundlingNotes)",
@@ -283,7 +283,7 @@
     "transactionContext": "Ongoing collection-escrow servicing for privately-held notes/contracts for deed, Albuquerque-based, statewide NM reach. NOT a purchase or refinance real-estate closing transaction."
   },
   {
-    "provider": "Old Republic Title Insurance Company \u2014 Estimated Rate/Fee Calculator (ortconline.com)",
+    "provider": "Old Republic Title Insurance Company — Estimated Rate/Fee Calculator (ortconline.com)",
     "basis": "calculator",
     "sourceUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
     "calculatorUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
@@ -376,5 +376,47 @@
     "sectionTotals": null,
     "bundlingNotes": "Not counted toward NM's provider-threshold count (already at 3 calculator-basis providers: Old Republic/ortconline, FNF, WFG) since this is the same Old Republic corporate entity as the existing ortconline.com entry -- recorded purely as richness/corroborating evidence per the 2026-08-12 richness-pass priority. Remarkable triple convergence: this tool's Owner's Basic premium ($2,387.00) and standalone Lender's Policy premium ($1,770.00) are BOTH byte-identical to (a) the existing ortconline.com Old Republic entry's own 'Title - Lender's Title Policy (Total: $1,770.00)' figure, (b) the existing WFG seller-net-sheet entry's Owner's Premium ($2,387.00), and (c) the OSI promulgated-rate table's own Original Owner's Policy ($2,387 at $500,000) / Original Loan Policy ($1,770 at $400,000) figures recorded in this file's first entry -- three independently-operated calculator platforms (two different Old Republic engines plus WFG) and the state's own regulatory promulgated-rate table all landing on the exact same dollar figures, the strongest possible confirmation that New Mexico's title premium is genuinely promulgated/fixed regardless of which tool or agent quotes it, and that only the settlement/escrow-fee side of the transaction (documented in the independent-agency entries elsewhere in this file) carries any real market variation.",
     "transactionContext": "Old Republic's 2nd-tool rate-calculator quote for Owner's and Lender's simultaneous title insurance policies plus 2 lender endorsements, $500,000 purchase price with a $400,000 loan, statewide New Mexico (no county tiering in this tool)."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company -- Stewart Rate Calculator, matched settlement office: Stewart Title of Albuquerque, LLC (7801 Academy Road NE, Building 1,Suite 101, Albuquerque, NM 87109)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true (LoanEstimate/QuoteType=3 flow) and https://www.stewartratecalculator.com/Quote/Netsheet?urlParams=&quotetype=2&branded=true (Netsheet/QuoteType=2 flow); both POST to the shared /api/SRC/quote endpoint",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Bernalillo County (Albuquerque), residential resale, Sale/Purchase with Mortgage transaction type, BASIC coverage on both Owner's and Lender's policies. Richness-pass harvest applying an already-solved, previously state-limited recipe to a state not yet in Stewart's harvested-state list, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "methodology": "Harvested via Stewart's discoverable `/api/SRC/*` JSON REST API (stewartratecalculator.com), driven entirely by plain HTTP GET/POST (Python requests.Session(), cookie jar) with no browser/JS execution and no personal-data fields, replaying the full recipe documented in this project's CALCULATORS.md (2026-08-14 'SOLVED' entry): GET the LoanEstimate/Netsheet page to scrape a fresh antiforgery cookie + __RequestVerificationToken; GET /api/SRC/propertysearch to resolve the county FIPS code and a default zip; GET /api/SRC/providers to find the county's real settlement office(s) (used to set ProviderID on the QuoteType=3 flow so the itemized settlement-fee list is populated -- an empty ProviderID silently returns a null itemized list); GET /api/SRC/statesettings and /api/SRC/ernstlookup for state-level defaults; build the QuoteRequestRoot JSON by hand (Owner's Policy $500,000 / Lender's Policy $400,000, BASIC coverage, standard Sale/Purchase with Mortgage transaction); POST /api/SRC/quote twice -- QuoteType=2 (Netsheet, pageBuyerSeller=seller) for Recording/CFPB2015 transfer-tax figures, and QuoteType=3 (LoanEstimate, pageBuyerSeller=buyer, IsCalculatePremium=True, IsCalculateTitleServiceFee=True) for the itemized Pricing.TitleServiceFee.ItemizedTitleServiceFeeList settlement-fee line items. One new gotcha found and fixed this session: stewartratecalculator.com's bare apex domain 301-redirects every POST to the www subdomain, and that redirect's response body hangs indefinitely on this sandbox's proxied connection (a 30s+ read timeout with 0 bytes received) -- fixed by targeting https://www.stewartratecalculator.com directly, skipping the apex redirect entirely; this is an environment/proxy artifact, not a sign the endpoint is blocked. Also confirmed the documented /api/SRC/providers gotcha firsthand: for a single-provider county the response's `Provider` field is a bare object, not a one-element list -- must be normalized before indexing or ProviderID silently stays empty and every itemized-fee list comes back null (looks exactly like a genuine empty result).",
+    "settlementFee": {
+      "note": "$1,125.00 total, split buyer $0.00 / seller $1,125.00 (line item: 'Title Closing Fee')"
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,387.00",
+      "loanPolicyPremium": "$1,770.00",
+      "other": [
+        {
+          "name": "Title Certif I D",
+          "amount": "$15.00 (buyer $0.00 / seller $15.00)"
+        },
+        {
+          "name": "Title Closing Fee",
+          "amount": "$1,125.00 (buyer $0.00 / seller $1,125.00)"
+        },
+        {
+          "name": "Title Courier Fee",
+          "amount": "$65.00 (buyer $45.00 / seller $20.00)"
+        },
+        {
+          "name": "Title Insurance Binder Fee",
+          "amount": "$100.00 (buyer $0.00 / seller $100.00)"
+        },
+        {
+          "name": "Title Recording Service Fees",
+          "amount": "$7.20 (buyer $3.60 / seller $3.60)"
+        }
+      ],
+      "note": "5 itemized settlement/closing-fee line item(s) returned via the QuoteType=3 flow."
+    },
+    "sectionTotals": "Owner's Policy Premium $2,387.00; Lender's Policy Premium $1,770.00; itemized settlement fees sum $1,312.20",
+    "bundlingNotes": "No deed/transfer/mortgage recording tax returned by this tool for this state (consistent with states known to levy no such tax, or the tax simply isn't configured in this tool).",
+    "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Bernalillo County, New Mexico."
   }
 ]

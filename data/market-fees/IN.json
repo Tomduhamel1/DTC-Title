@@ -16,7 +16,10 @@
     "itemizedFees": {
       "cpl": "$25.00 per party",
       "other": [
-        { "name": "TIEFF (Title Insurance Enforcement Fund Fee)", "amount": "$5.00 per policy, statutory" }
+        {
+          "name": "TIEFF (Title Insurance Enforcement Fund Fee)",
+          "amount": "$5.00 per policy, statutory"
+        }
       ]
     },
     "bundlingNotes": "Premium-only; excludes search, exam, doc prep, and recording by explicit statement.",
@@ -34,7 +37,9 @@
       "simultaneousIssueLoanPolicy": "$50 flat",
       "lenderSpecialRefinanceRate_sample": "Volume tier 100-200 orders/month, $0-$100,000 liability = $350 premium"
     },
-    "itemizedFees": { "other": [] },
+    "itemizedFees": {
+      "other": []
+    },
     "bundlingNotes": "Premium-only. 2013 vintage is the oldest verifiable WFG Indiana document located; a 2022-05-01 update was referenced in a bulletin but its full manual PDF could not be independently fetched this session.",
     "transactionContext": "Owner's, Homeowner's, and Loan title insurance premium, statewide, by liability amount."
   },
@@ -49,7 +54,9 @@
       "reissueRate": "80% of Owner's premium",
       "loanPolicySimultaneous_sample": "<=$100,000 -> $120; $100k-$150k -> $195; $150k-$200k -> $230; $200k-$250k -> $300; up to $500,000 -> $475."
     },
-    "itemizedFees": { "other": [] },
+    "itemizedFees": {
+      "other": []
+    },
     "bundlingNotes": "Premium-only; explicit, detailed exclusion list for escrow/closing/settlement charges, attorney fees, document prep, and courier/fax fees -- the most explicit exclusion language found among Indiana underwriter manuals.",
     "transactionContext": "Owner's, Homeowner's, and Loan title insurance premium, statewide (all IN counties), by liability amount."
   },
@@ -90,7 +97,9 @@
         "Doma (eff. 2024-11-01)": "Owner's $345/$1,162; Lender's $138/$465; reissue 20%; CPL $25"
       }
     },
-    "itemizedFees": { "other": [] },
+    "itemizedFees": {
+      "other": []
+    },
     "bundlingNotes": "Regulator-compiled premium comparison across ~19 insurers, confirming close convergence of current Owner's Policy premiums ($300-$395 at $100k) across most underwriters, with Rocket Title notably lower. Full 19-company table exists in the source file; not fully transcribed here.",
     "transactionContext": "Owner's and Lender's title insurance premium, statewide, at standard liability tiers, per-insurer."
   },
@@ -99,9 +108,27 @@
     "sourceUrl": "https://regionallandtitle.com/locations/bloomington/fees/",
     "asOf": "Retrieval date 2026-07-22 (no effective date stated on the page)",
     "settlementFee": {
-      "purchase": { "closingFee": 200.00, "deedDocPrepPerDoc": 100.00, "titleSearchWithPrior": 250.00, "titleSearchWithoutPrior": 300.00, "buyersProcessingFee": 200.00, "sellerDocPrep": 125.00 },
-      "refinance": { "closingFee": 200.00, "buyersProcessingFee": 100.00, "titleSearchWithPrior": 225.00, "titleSearchWithoutPrior": 275.00 },
-      "cashSale": { "closingFee": 200.00, "deedPrep": 100.00, "vendorAndSalesDisclosurePrep": 125.00, "titleSearch": 250.00, "buyerProcessing": 100.00 }
+      "purchase": {
+        "closingFee": 200.0,
+        "deedDocPrepPerDoc": 100.0,
+        "titleSearchWithPrior": 250.0,
+        "titleSearchWithoutPrior": 300.0,
+        "buyersProcessingFee": 200.0,
+        "sellerDocPrep": 125.0
+      },
+      "refinance": {
+        "closingFee": 200.0,
+        "buyersProcessingFee": 100.0,
+        "titleSearchWithPrior": 225.0,
+        "titleSearchWithoutPrior": 275.0
+      },
+      "cashSale": {
+        "closingFee": 200.0,
+        "deedPrep": 100.0,
+        "vendorAndSalesDisclosurePrep": 125.0,
+        "titleSearch": 250.0,
+        "buyerProcessing": 100.0
+      }
     },
     "itemizedFees": {
       "wire": "$30.00 per extra wire",
@@ -110,10 +137,22 @@
       "recording": "$25.00/deed, $55.00/mortgage",
       "cpl": "not separately itemized on this page",
       "other": [
-        { "name": "Title Update", "amount": "$50.00 per update" },
-        { "name": "Witness Closing Fee", "amount": "$125.00" },
-        { "name": "Current Owner Search", "amount": "$65.00 + copies" },
-        { "name": "TIEFF (Title Insurance Enforcement Fund Fee)", "amount": "$5.00 per policy -- independently corroborates Stewart's statutory figure" }
+        {
+          "name": "Title Update",
+          "amount": "$50.00 per update"
+        },
+        {
+          "name": "Witness Closing Fee",
+          "amount": "$125.00"
+        },
+        {
+          "name": "Current Owner Search",
+          "amount": "$65.00 + copies"
+        },
+        {
+          "name": "TIEFF (Title Insurance Enforcement Fund Fee)",
+          "amount": "$5.00 per policy -- independently corroborates Stewart's statutory figure"
+        }
       ]
     },
     "bundlingNotes": "The only genuine settlement/service-fee (non-premium) schedule found for Indiana this session, despite ~25+ query variants and 10+ direct company-site checks. Closing fee, doc prep, title search, and processing are itemized separately by transaction type (purchase/refinance/cash sale).",
@@ -127,15 +166,21 @@
     "retrievalDate": "2026-07-29",
     "scenario": "$500,000 purchase price / $400,000 loan, residential resale (buyer-finance closing statement form). The tool's fee constants are statewide-flat hardcoded defaults shipped in its own JSON config (confirmed by inspecting the raw schema, not computed from the entered sale/loan amount); its 416-entry municipality dropdown only supplies a per-mille local-tax multiplier for the tax-proration line, not these service-fee constants, so no specific county/city needed to be selected to read them.",
     "itemizedFees": {
-      "settlementFee": 495.00,
-      "cpl": { "borrower": 25.00, "lender": 25.00 },
-      "incomingWireFee": 35.00,
-      "tieff": 10.00,
-      "eRecordingFee": 10.00,
-      "recordingFees": 118.50,
-      "salesDisclosureFee": 30.00,
+      "settlementFee": 495.0,
+      "cpl": {
+        "borrower": 25.0,
+        "lender": 25.0
+      },
+      "incomingWireFee": 35.0,
+      "tieff": 10.0,
+      "eRecordingFee": 10.0,
+      "recordingFees": 118.5,
+      "salesDisclosureFee": 30.0,
       "other": [
-        { "name": "Lender's Title Insurance (tool's own 'Misc. Fees' line item -- an ancillary charge distinct from the underwriter's actual filed premium)", "amount": 120.00 }
+        {
+          "name": "Lender's Title Insurance (tool's own 'Misc. Fees' line item -- an ancillary charge distinct from the underwriter's actual filed premium)",
+          "amount": 120.0
+        }
       ]
     },
     "bundlingNotes": "Discovered via the agency's own site (agencytitle.com/calculator/), which links out to this NetSheetCalc-hosted Quick Quote tool. First calculator-basis provider for Indiana; TIEFF figure here ($10.00) is this agency's own line item and does not need to match Stewart's cited $5.00 statutory pass-through figure exactly (may reflect a doubled buyer+seller-policy charge or the agency's own rounding)."
@@ -175,8 +220,8 @@
     "scenario": "$500,000 purchase price / $400,000 loan, statewide (no county selector present in this tenant's config -- unlike Agency Title's/Momentum's flat constants, this tenant's Owner's Title Insurance Premium is formula-driven off a dedicated rate-table key ('Indiana480') resolved via the platform's rate endpoint).",
     "methodology": "Discovered via this company's parent app_id (479, its Kentucky-approved instance, itself found via a broader netsheetcalc.com quickquote search) -- its 'currentAppLocations' payload lists a 2nd, child tenant (app_id=480, tenant_name 'rounsavall-title-IN', approved_states: [\"IN\"], location_name: \"Indiana\") sharing the same Louisville KY company address/phone but explicitly scoped to Indiana. This app_id=480 config's own getAppData response (old endpoint) returned only sparse/empty fields, but the newer getNetSheetConfig endpoint (per the 2026-08-02 AZ/MI-session discovery) revealed the real formula-driven schema underneath, avoiding a false 'thin/unusable' write-off.",
     "itemizedFees": {
-      "ownersTitleInsurancePremium": 1100.00,
-      "lendersTitleInsurancePremium": 100.00,
+      "ownersTitleInsurancePremium": 1100.0,
+      "lendersTitleInsurancePremium": 100.0,
       "other": []
     },
     "bundlingNotes": "3rd IN calculator-basis provider -- crosses Indiana to calculator-quoted (3 providers). Thinnest of the 3 IN tenants (only 2 itemized lines vs. Agency Title's 7 and Momentum's 9+), but genuinely and unambiguously IN-scoped per its own approved_states field, avoiding the appid misattribution risk flagged repeatedly elsewhere in this survey. Lender's Title Insurance Premium is a flat non-formula constant ($100.00, plausibly a simultaneous-issue rate) while Owner's Title Insurance Premium is priced off the tenant's own rate table."
@@ -194,15 +239,95 @@
       "ownersTitleInsurancePremium": "$1337.00 (Owner's Policy Premium, concurrent-issue rate -- this tool does not itemize a Disclosure/Adjustment split for IN, unlike most other states in this recipe)",
       "loanPolicyPremium": "$120.00 (Loan Policy Premium, concurrent-issue rate)",
       "other": [
-        { "name": "TIEFF (Title Insurance Enforcement Fund Fee)", "amount": "$5.00" },
-        { "name": "Closing Protection Letter Charges - Lenders", "amount": "$35.00" },
-        { "name": "Closing Protection Letter Charges - Buyer", "amount": "$25.00" },
-        { "name": "Closing Protection Letter Charges - Seller", "amount": "$25.00" }
+        {
+          "name": "TIEFF (Title Insurance Enforcement Fund Fee)",
+          "amount": "$5.00"
+        },
+        {
+          "name": "Closing Protection Letter Charges - Lenders",
+          "amount": "$35.00"
+        },
+        {
+          "name": "Closing Protection Letter Charges - Buyer",
+          "amount": "$25.00"
+        },
+        {
+          "name": "Closing Protection Letter Charges - Seller",
+          "amount": "$25.00"
+        }
       ],
       "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence. The TIEFF fee is a genuine Indiana-specific statutory charge (Title Insurance Enforcement Fund Fee), the first time this recipe has surfaced a state-specific line item beyond premium/CPL."
     },
     "sectionTotals": "Grand Total: $1552.00.",
     "bundlingNotes": "Harvested this session as a richness pass -- IN had already crossed the 3-provider threshold (Agency Title Inc., Momentum Title Agency, Rounsavall Title Group); this FNF entry is a 4th corroborating provider, applying the same generalized recipe already used for AR/CT/CO/MA/ND/VT/WY/RI/DE/SD/AK/NH/WV/ME/OH/MO/MI/PA/NJ/TN/KY/AL, with a new fix (explicit BuilderEligible selection, a policy-panel question rather than a transaction-panel one) required specifically for IN.",
     "transactionContext": "Owner's + Loan Policy concurrent-issue premiums plus TIEFF fee and triple CPL charges for a $500,000 residential purchase / $400,000 loan, Marion County (Indianapolis)."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company -- Stewart Rate Calculator, matched settlement office: Stewart Title Company, Indiana Division (20 E. 91st street, Indianapolis, IN 46240)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true (LoanEstimate/QuoteType=3 flow) and https://www.stewartratecalculator.com/Quote/Netsheet?urlParams=&quotetype=2&branded=true (Netsheet/QuoteType=2 flow); both POST to the shared /api/SRC/quote endpoint",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Marion County (Indianapolis), residential resale, Sale/Purchase with Mortgage transaction type, BASIC coverage on both Owner's and Lender's policies. Richness-pass harvest applying an already-solved, previously state-limited recipe to a state not yet in Stewart's harvested-state list, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "methodology": "Harvested via Stewart's discoverable `/api/SRC/*` JSON REST API (stewartratecalculator.com), driven entirely by plain HTTP GET/POST (Python requests.Session(), cookie jar) with no browser/JS execution and no personal-data fields, replaying the full recipe documented in this project's CALCULATORS.md (2026-08-14 'SOLVED' entry): GET the LoanEstimate/Netsheet page to scrape a fresh antiforgery cookie + __RequestVerificationToken; GET /api/SRC/propertysearch to resolve the county FIPS code and a default zip; GET /api/SRC/providers to find the county's real settlement office(s) (used to set ProviderID on the QuoteType=3 flow so the itemized settlement-fee list is populated -- an empty ProviderID silently returns a null itemized list); GET /api/SRC/statesettings and /api/SRC/ernstlookup for state-level defaults; build the QuoteRequestRoot JSON by hand (Owner's Policy $500,000 / Lender's Policy $400,000, BASIC coverage, standard Sale/Purchase with Mortgage transaction); POST /api/SRC/quote twice -- QuoteType=2 (Netsheet, pageBuyerSeller=seller) for Recording/CFPB2015 transfer-tax figures, and QuoteType=3 (LoanEstimate, pageBuyerSeller=buyer, IsCalculatePremium=True, IsCalculateTitleServiceFee=True) for the itemized Pricing.TitleServiceFee.ItemizedTitleServiceFeeList settlement-fee line items. One new gotcha found and fixed this session: stewartratecalculator.com's bare apex domain 301-redirects every POST to the www subdomain, and that redirect's response body hangs indefinitely on this sandbox's proxied connection (a 30s+ read timeout with 0 bytes received) -- fixed by targeting https://www.stewartratecalculator.com directly, skipping the apex redirect entirely; this is an environment/proxy artifact, not a sign the endpoint is blocked. Also confirmed the documented /api/SRC/providers gotcha firsthand: for a single-provider county the response's `Provider` field is a bare object, not a one-element list -- must be normalized before indexing or ProviderID silently stays empty and every itemized-fee list comes back null (looks exactly like a genuine empty result).",
+    "settlementFee": {
+      "note": "$450.00 total, split buyer $450.00 / seller $0.00 (line item: 'Title Closing Fee')"
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1,357.50",
+      "loanPolicyPremium": "$392.50",
+      "other": [
+        {
+          "name": "Title Certif I D",
+          "amount": "$15.00 (buyer $0.00 / seller $15.00)"
+        },
+        {
+          "name": "Title Closing Fee",
+          "amount": "$450.00 (buyer $450.00 / seller $0.00)"
+        },
+        {
+          "name": "Title Deed Preparation Fee",
+          "amount": "$70.00 (buyer $0.00 / seller $70.00)"
+        },
+        {
+          "name": "Title Service Fee",
+          "amount": "$350.00 (buyer $350.00 / seller $0.00)"
+        },
+        {
+          "name": "Title Search And Exam Fee",
+          "amount": "$325.00 (buyer $0.00 / seller $325.00)"
+        }
+      ],
+      "note": "5 itemized settlement/closing-fee line item(s) returned via the QuoteType=3 flow."
+    },
+    "sectionTotals": "Owner's Policy Premium $1,357.50; Lender's Policy Premium $392.50; itemized settlement fees sum $1,210.00",
+    "bundlingNotes": "Combined deed/transfer/mortgage tax on QuoteType=2 (Netsheet) flow: $30.00 total -- SalesDisclosureFormFee $20.00; AuditorTransferFee $10.00.",
+    "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Marion County, Indiana."
+  },
+  {
+    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Marion County (Indianapolis), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Harvested via WFG National Title's own public JSON API, `POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet`, fully solved and documented in this project's CALCULATORS.md (2026-08-08 entry) -- no browser/JS execution needed, no personal-data fields in the request shape (nested Properties/Loans arrays, TransactionProductType, SettlementStatementVersion: \"CD\"). Confirmed via the same API's public `GET /api/rates/State/GetCalculationEnabledStates` that IN is `isCalculationEnabled: true` before harvesting. Richness-pass application of an already-solved, previously-untried-for-this-state recipe, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "settlementFee": {
+      "note": "Itemized HUD-style settlement fees returned for this state (rare -- WFG's own bundle only configures HUD-fee itemization for 7 states nationwide): Closing Protection Letter (Seller) $25.00 (buyer $0.00 / seller $25.00)."
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1,470.70",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's seller-net-sheet-only design)",
+      "other": [
+        {
+          "name": "Closing Protection Letter (Seller)",
+          "amount": "$25.00 (buyer $0.00 / seller $25.00)"
+        }
+      ],
+      "note": "1 itemized settlement-fee line item(s) returned."
+    },
+    "sectionTotals": "Owner's Title Insurance Premium $1,470.70; itemized fees sum $25.00",
+    "bundlingNotes": "Discovered and solved 2026-08-08; applied here as a richness-pass 4th/5th calculator-basis provider for Indiana (already at 3-4 providers via other tools) since no prior session had run this already-solved recipe against this state. Property location for this request: Indianapolis, Indiana (Marion County).",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Marion County, Indiana."
   }
 ]

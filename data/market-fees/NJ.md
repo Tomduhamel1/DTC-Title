@@ -204,3 +204,10 @@ underwriter-specific premium. Premium-only: Owner's Policy Premium $2,225.00 (Di
 Adjustment $1,775.00), Loan Policy Premium $25.00, Closing Protection Letter $75.00, Grand Total
 $2,325.00. Crosses NJ to **calculator-quoted (4 providers)**. See NJ.json's 4th
 `"basis": "calculator"` entry for full detail.
+
+## Calculator harvest addendum (2026-08-20) — richness pass: WFG National Title + Stewart Rate Calculator
+
+Richness pass per the 2026-08-19 session's own recommendation (check tracker coverage for already-solved nationwide recipes — Stewart's `/api/SRC/quote`, WFG's Seller Net Sheet API — before hunting a new platform). Prior: 4 calculator-basis providers. This session adds 2 corroborating provider(s), bringing NJ to **6 calculator-basis providers**. See NJ.json's newest `basis: "calculator"` entries for full itemized figures and methodology.
+
+- **Stewart Title Guaranty Company** (Stewart Rate Calculator, `stewartratecalculator.com`) — matched settlement office **Stewart Title Company, New Jersey Division**. Owner's Policy Premium **$2,225.00**, Lender's Policy Premium **$1,800.00**, 7 itemized settlement/closing-fee line item(s).
+- **WFG National Title Insurance Company** (Seller Net Sheet Rate Calculator, `rates.wfgnationaltitle.com`) — Owner's Title Insurance Premium **$2,670.00**, premium-only (no itemized settlement fee configured for this state in this tool).

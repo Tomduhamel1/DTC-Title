@@ -131,7 +131,7 @@
   {
     "provider": "Stewart Title Guaranty Company",
     "sourceUrl": "https://public.stewart.com/vu/rate-book-massachusetts.pdf",
-    "asOf": "vintage circa 2021 (document copyright \"\u00a9 2021 Stewart\"; superseded by a newer 2025-09-15 Stewart MA rate manual per a secondary law-firm citation, but that later document could not itself be located/verified this session -- see MA.md)",
+    "asOf": "vintage circa 2021 (document copyright \"© 2021 Stewart\"; superseded by a newer 2025-09-15 Stewart MA rate manual per a secondary law-firm citation, but that later document could not itself be located/verified this session -- see MA.md)",
     "settlementFee": null,
     "itemizedFees": {
       "docPrep": null,
@@ -242,5 +242,72 @@
     "sectionTotals": "Total Charges for the Policy: $2,125.00. Grand Total: $2,125.00.",
     "bundlingNotes": "Part of this project's ongoing 2026-08-06 calculator-harvest pass applying the FNF national rate calculator (already confirmed in-scope for premium-only evidence as of the 2026-08-05 CT session) across every remaining below-threshold scarce state where the tool's own county dropdown confirms coverage.",
     "transactionContext": "Owner's Policy premium for a $500,000 residential purchase, Middlesex County, MA. No Loan Policy line appeared despite the $400,000 loan amount entered. Middlesex County (MA's most populous, Cambridge/Lowell area) used per the standard scenario's most-populous-county rule."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company -- Stewart Rate Calculator, matched settlement office: Warr & Warr, PC (47 Bullocks Point Avenue, Riverside, RI 02915)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true (LoanEstimate/QuoteType=3 flow) and https://www.stewartratecalculator.com/Quote/Netsheet?urlParams=&quotetype=2&branded=true (Netsheet/QuoteType=2 flow); both POST to the shared /api/SRC/quote endpoint",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Middlesex County (Cambridge), residential resale, Sale/Purchase with Mortgage transaction type, BASIC coverage on both Owner's and Lender's policies. Richness-pass harvest applying an already-solved, previously state-limited recipe to a state not yet in Stewart's harvested-state list, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "methodology": "Harvested via Stewart's discoverable `/api/SRC/*` JSON REST API (stewartratecalculator.com), driven entirely by plain HTTP GET/POST (Python requests.Session(), cookie jar) with no browser/JS execution and no personal-data fields, replaying the full recipe documented in this project's CALCULATORS.md (2026-08-14 'SOLVED' entry): GET the LoanEstimate/Netsheet page to scrape a fresh antiforgery cookie + __RequestVerificationToken; GET /api/SRC/propertysearch to resolve the county FIPS code and a default zip; GET /api/SRC/providers to find the county's real settlement office(s) (used to set ProviderID on the QuoteType=3 flow so the itemized settlement-fee list is populated -- an empty ProviderID silently returns a null itemized list); GET /api/SRC/statesettings and /api/SRC/ernstlookup for state-level defaults; build the QuoteRequestRoot JSON by hand (Owner's Policy $500,000 / Lender's Policy $400,000, BASIC coverage, standard Sale/Purchase with Mortgage transaction); POST /api/SRC/quote twice -- QuoteType=2 (Netsheet, pageBuyerSeller=seller) for Recording/CFPB2015 transfer-tax figures, and QuoteType=3 (LoanEstimate, pageBuyerSeller=buyer, IsCalculatePremium=True, IsCalculateTitleServiceFee=True) for the itemized Pricing.TitleServiceFee.ItemizedTitleServiceFeeList settlement-fee line items. One new gotcha found and fixed this session: stewartratecalculator.com's bare apex domain 301-redirects every POST to the www subdomain, and that redirect's response body hangs indefinitely on this sandbox's proxied connection (a 30s+ read timeout with 0 bytes received) -- fixed by targeting https://www.stewartratecalculator.com directly, skipping the apex redirect entirely; this is an environment/proxy artifact, not a sign the endpoint is blocked. Also confirmed the documented /api/SRC/providers gotcha firsthand: for a single-provider county the response's `Provider` field is a bare object, not a one-element list -- must be normalized before indexing or ProviderID silently stays empty and every itemized-fee list comes back null (looks exactly like a genuine empty result).",
+    "settlementFee": {
+      "note": "$1,725.00 total, split buyer $875.00 / seller $850.00 (line item: 'Title Closing Fee')"
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,125.00",
+      "loanPolicyPremium": "$1,000.00",
+      "other": [
+        {
+          "name": "Title Closing Fee",
+          "amount": "$1,725.00 (buyer $875.00 / seller $850.00)"
+        },
+        {
+          "name": "Title Courier Fee",
+          "amount": "$85.00 (buyer $40.00 / seller $45.00)"
+        },
+        {
+          "name": "Title E Recording Fee",
+          "amount": "$30.00 (buyer $30.00 / seller $0.00)"
+        },
+        {
+          "name": "Title Municipal Lien Certificate",
+          "amount": "$50.00 (buyer $50.00 / seller $0.00)"
+        },
+        {
+          "name": "Title Plot Plan",
+          "amount": "$175.00 (buyer $175.00 / seller $0.00)"
+        },
+        {
+          "name": "Title Examination Fee",
+          "amount": "$500.00 (buyer $375.00 / seller $125.00)"
+        }
+      ],
+      "note": "6 itemized settlement/closing-fee line item(s) returned via the QuoteType=3 flow."
+    },
+    "sectionTotals": "Owner's Policy Premium $2,125.00; Lender's Policy Premium $1,000.00; itemized settlement fees sum $2,565.00",
+    "bundlingNotes": "Combined deed/transfer/mortgage tax on QuoteType=2 (Netsheet) flow: $2,280.00 total -- DeedTax $2,280.00.",
+    "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Middlesex County, Massachusetts."
+  },
+  {
+    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Middlesex County (Cambridge), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Harvested via WFG National Title's own public JSON API, `POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet`, fully solved and documented in this project's CALCULATORS.md (2026-08-08 entry) -- no browser/JS execution needed, no personal-data fields in the request shape (nested Properties/Loans arrays, TransactionProductType, SettlementStatementVersion: \"CD\"). Confirmed via the same API's public `GET /api/rates/State/GetCalculationEnabledStates` that MA is `isCalculationEnabled: true` before harvesting. Richness-pass application of an already-solved, previously-untried-for-this-state recipe, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "settlementFee": {
+      "note": "Premium-only result (no itemized settlement/search/doc-prep line items) -- consistent with WFG's own hardcoded fee-description table, which only itemizes HUD-style settlement fees for 7 states (WA, CA, TX, OR, AZ, NV, CO); every other state, including this one, returns only the Owner's Title Insurance Premium."
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,375.00",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's seller-net-sheet-only design)",
+      "other": [],
+      "note": "Premium-only result for this state (see settlementFee note)."
+    },
+    "sectionTotals": "Owner's Title Insurance Premium $2,375.00",
+    "bundlingNotes": "Discovered and solved 2026-08-08; applied here as a richness-pass 4th/5th calculator-basis provider for Massachusetts (already at 3-4 providers via other tools) since no prior session had run this already-solved recipe against this state. Property location for this request: Cambridge, Massachusetts (Middlesex County).",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Middlesex County, Massachusetts."
   }
 ]

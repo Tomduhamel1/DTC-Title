@@ -229,3 +229,9 @@ rich, current, multi-transaction-type fee schedule — the single most itemized 
 and notable for spanning two of the task brief's three target metros (Dayton primary office, Cincinnati/
 Hamilton County via its own published service area) in one document, plus its Lender CPL figure
 independently corroborating the OTIRB-regulated $40 rate byte-for-byte.
+
+## Calculator harvest addendum (2026-08-20) — richness pass: WFG National Title
+
+Richness pass per the 2026-08-19 session's own recommendation (check tracker coverage for already-solved nationwide recipes — Stewart's `/api/SRC/quote`, WFG's Seller Net Sheet API — before hunting a new platform). Prior: 4 calculator-basis providers. This session adds 1 corroborating provider(s), bringing OH to **5 calculator-basis providers**. See OH.json's newest `basis: "calculator"` entries for full itemized figures and methodology.
+
+- **WFG National Title Insurance Company** (Seller Net Sheet Rate Calculator, `rates.wfgnationaltitle.com`) — Owner's Title Insurance Premium **$2,846.25**, premium-only (no itemized settlement fee configured for this state in this tool).

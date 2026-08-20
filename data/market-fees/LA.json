@@ -1,8 +1,8 @@
 [
   {
-    "provider": "Louisiana Title Statistical Services Organization, Inc. (LATISSO) \u2014 rating bureau manual, all member insurers",
+    "provider": "Louisiana Title Statistical Services Organization, Inc. (LATISSO) — rating bureau manual, all member insurers",
     "sourceUrl": "https://www.stewart.com/-/media/files/stewartdotcom/pdfs/states/louisiana/lamanuaofratesandforms.pdf",
-    "asOf": "(06/01/2026) Edition \u2014 effective to orders received on or after June 1, 2026; filed with the Louisiana Department of Insurance (LIRC# Form Filing DEMT-134801757, Rate/Rule Filing DEMT-134802798)",
+    "asOf": "(06/01/2026) Edition — effective to orders received on or after June 1, 2026; filed with the Louisiana Department of Insurance (LIRC# Form Filing DEMT-134801757, Rate/Rule Filing DEMT-134802798)",
     "settlementFee": {
       "note": "Title insurance premium (and Closing Protection Coverage) only, NOT an escrow/settlement-service fee schedule. GP-3 explicitly excludes title search, examination, closing, and escrow charges from the rate.",
       "ownersOrLeaseholdOwnerPolicy_liabilityTiered": "Up to $12,000 = $100 flat; $12,001-$50,000 = $5.40/M; $50,001-$100,000 = $4.80/M; $100,001-$500,000 = $4.50/M; $500,001-$1,000,000 = $3.60/M; $1,000,001-$2,000,000 = $3.00/M; $2,000,001-$10,000,000 = $2.70/M; $10,000,001-$15,000,000 = $2.40/M; $15,000,001-$25,000,000 = $2.10/M; $25,000,001-$35,000,000 = $1.80/M; over $35,000,000 = $1.50/M (Rule PR-1).",
@@ -85,5 +85,26 @@
     "sectionTotals": null,
     "bundlingNotes": "Crosses LA to 3 calculator-basis providers (FNF, WFG, Old Republic) -- calculator-quoted status. Striking cross-underwriter convergence: this tool's Owner's Policy Premium ($2,345.20) is byte-identical to the existing FNF national rate calculator entry's own Grand Total ($2,345.20) for the identical scenario/parish -- two independently-operated calculator platforms from two different underwriter families landing on the exact same dollar figure, the strongest such convergence found in this survey to date (stronger than OR's and this same session's SC-FNF-vs-WFG match, which differed by underwriter family but matched to the penny; here it is FNF vs. Old Republic, an entirely distinct pairing). Strongly suggests Louisiana's title premium market, despite having no formal rating bureau, has converged on a de facto uniform filed rate at this liability tier.",
     "transactionContext": "Old Republic's rate-calculator quote for Owner's and Lender's simultaneous title insurance policies, $500,000 purchase price with a $400,000 loan, statewide Louisiana (no parish/county tiering in this tool)."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company -- Stewart Rate Calculator, matched settlement office: BD Title, LLC (450 Laurel St, 21st Floor, Chase North Tower, Baton Rouge, LA 70801)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true (LoanEstimate/QuoteType=3 flow) and https://www.stewartratecalculator.com/Quote/Netsheet?urlParams=&quotetype=2&branded=true (Netsheet/QuoteType=2 flow); both POST to the shared /api/SRC/quote endpoint",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, East Baton Rouge County (Baton Rouge), residential resale, Sale/Purchase with Mortgage transaction type, BASIC coverage on both Owner's and Lender's policies. Richness-pass harvest applying an already-solved, previously state-limited recipe to a state not yet in Stewart's harvested-state list, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "methodology": "Harvested via Stewart's discoverable `/api/SRC/*` JSON REST API (stewartratecalculator.com), driven entirely by plain HTTP GET/POST (Python requests.Session(), cookie jar) with no browser/JS execution and no personal-data fields, replaying the full recipe documented in this project's CALCULATORS.md (2026-08-14 'SOLVED' entry): GET the LoanEstimate/Netsheet page to scrape a fresh antiforgery cookie + __RequestVerificationToken; GET /api/SRC/propertysearch to resolve the county FIPS code and a default zip; GET /api/SRC/providers to find the county's real settlement office(s) (used to set ProviderID on the QuoteType=3 flow so the itemized settlement-fee list is populated -- an empty ProviderID silently returns a null itemized list); GET /api/SRC/statesettings and /api/SRC/ernstlookup for state-level defaults; build the QuoteRequestRoot JSON by hand (Owner's Policy $500,000 / Lender's Policy $400,000, BASIC coverage, standard Sale/Purchase with Mortgage transaction); POST /api/SRC/quote twice -- QuoteType=2 (Netsheet, pageBuyerSeller=seller) for Recording/CFPB2015 transfer-tax figures, and QuoteType=3 (LoanEstimate, pageBuyerSeller=buyer, IsCalculatePremium=True, IsCalculateTitleServiceFee=True) for the itemized Pricing.TitleServiceFee.ItemizedTitleServiceFeeList settlement-fee line items. One new gotcha found and fixed this session: stewartratecalculator.com's bare apex domain 301-redirects every POST to the www subdomain, and that redirect's response body hangs indefinitely on this sandbox's proxied connection (a 30s+ read timeout with 0 bytes received) -- fixed by targeting https://www.stewartratecalculator.com directly, skipping the apex redirect entirely; this is an environment/proxy artifact, not a sign the endpoint is blocked. Also confirmed the documented /api/SRC/providers gotcha firsthand: for a single-provider county the response's `Provider` field is a bare object, not a one-element list -- must be normalized before indexing or ProviderID silently stays empty and every itemized-fee list comes back null (looks exactly like a genuine empty result).",
+    "settlementFee": {
+      "note": "No itemized settlement/closing-fee line items returned for this settlement office (QuoteType=3's ItemizedTitleServiceFeeList was null/empty) -- a genuine result the recipe has documented before for markets where Stewart's local office has nothing configured through this tool (e.g. attorney-closing states), not a fetch failure."
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,345.20",
+      "loanPolicyPremium": "$1,429.60",
+      "other": [],
+      "note": "Premium-only result for this settlement office/state (see settlementFee note)."
+    },
+    "sectionTotals": "Owner's Policy Premium $2,345.20; Lender's Policy Premium $1,429.60",
+    "bundlingNotes": "No deed/transfer/mortgage recording tax returned by this tool for this state (consistent with states known to levy no such tax, or the tax simply isn't configured in this tool).",
+    "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, East Baton Rouge County, Louisiana."
   }
 ]

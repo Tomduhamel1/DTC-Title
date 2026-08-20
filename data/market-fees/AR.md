@@ -246,3 +246,10 @@ itemized figures, exact formulas, and methodology.
   (Little Rock, no calculator found via search), Lenders Title Co. (Little Rock, no calculator
   found via search), or Advantage Title & Escrow (Bentonville/Fayetteville, mentions "an app to
   calculate costs" in marketing copy but no working link found this session).
+
+## Calculator harvest addendum (2026-08-20) — richness pass: WFG National Title + Stewart Rate Calculator
+
+Richness pass per the 2026-08-19 session's own recommendation (check tracker coverage for already-solved nationwide recipes — Stewart's `/api/SRC/quote`, WFG's Seller Net Sheet API — before hunting a new platform). Prior: 4 calculator-basis providers. This session adds 2 corroborating provider(s), bringing AR to **6 calculator-basis providers**. See AR.json's newest `basis: "calculator"` entries for full itemized figures and methodology.
+
+- **Stewart Title Guaranty Company** (Stewart Rate Calculator, `stewartratecalculator.com`) — matched settlement office **Harly Enterprises, LLC D/B/A Beach Abstract and Title Company**. Owner's Policy Premium **$1,265.00**, Lender's Policy Premium **$871.50**, premium-only (no itemized settlement fee returned).
+- **WFG National Title Insurance Company** (Seller Net Sheet Rate Calculator, `rates.wfgnationaltitle.com`) — Owner's Title Insurance Premium **$1,688.00**, premium-only (no itemized settlement fee configured for this state in this tool).

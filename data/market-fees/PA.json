@@ -1,6 +1,6 @@
 [
   {
-    "provider": "Title Insurance Rating Bureau of Pennsylvania (TIRBOP) \u2014 Manual of the Title Insurance Rating Bureau of Pennsylvania (REGULATORY/RATING-BUREAU-UNIFORM, not provider-set)",
+    "provider": "Title Insurance Rating Bureau of Pennsylvania (TIRBOP) — Manual of the Title Insurance Rating Bureau of Pennsylvania (REGULATORY/RATING-BUREAU-UNIFORM, not provider-set)",
     "sourceUrl": "https://patitleratingbureau.org/wp-content/uploads/2024/07/TIRBOP-Manual-FINAL-APPROVED-08-01-2024-4857-2336-2733-v2.pdf (current 08/01/24 manual, fetched and machine-read this session via PDF text extraction after WebFetch's native PDF parsing failed on garbled binary); cross-checked against the prior 04/01/23 vintage at https://patitleratingbureau.org/wp-content/uploads/2023/04/TIRBOP-Manual-FINAL-APPROVED-04-01-2023.pdf (identical Sale/Non-Sale/Approved-Attorney rate tables -- only endorsement-form additions changed between vintages, confirming the rate has been unchanged since at least 04/01/23) and against https://patitleratingbureau.org/pennsylvania-is-an-all-inclusive-rate-state/ and https://patitleratingbureau.org/other-allowable-charges/",
     "asOf": "Approved by the Pennsylvania Insurance Department, amended through 08/01/24; members list as of 08/01/24 includes 22 title insurers (Chicago Title, Commonwealth Land Title, Fidelity National, First American, Old Republic National, Stewart Title Guaranty, WFG National, Westcor, Doma, Alliant National, and others), all bound to the identical rate table",
     "settlementFee": {
@@ -251,5 +251,68 @@
     "sectionTotals": "Grand Total (Owner's Policy Purchased): $3305.00.",
     "bundlingNotes": "Harvested this session as a richness pass -- PA had already crossed the 3-provider threshold (ALT Title, TitleWorks, Trident Land Transfer); this FNF entry is a 4th corroborating provider, applying the same generalized recipe already used for AR/CT/CO/MA/ND/VT/WY/RI/DE/SD/AK/NH/WV/ME/OH/MO/MI.",
     "transactionContext": "Owner's + Loan Policy concurrent-issue premiums for a $500,000 residential purchase / $400,000 loan, Philadelphia County."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company -- Stewart Rate Calculator, matched settlement office: Signature Abstract (1100 Berkshire Blvd., Wyomissing, PA 19610)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true (LoanEstimate/QuoteType=3 flow) and https://www.stewartratecalculator.com/Quote/Netsheet?urlParams=&quotetype=2&branded=true (Netsheet/QuoteType=2 flow); both POST to the shared /api/SRC/quote endpoint",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Philadelphia County (Philadelphia), residential resale, Sale/Purchase with Mortgage transaction type, BASIC coverage on both Owner's and Lender's policies. Richness-pass harvest applying an already-solved, previously state-limited recipe to a state not yet in Stewart's harvested-state list, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "methodology": "Harvested via Stewart's discoverable `/api/SRC/*` JSON REST API (stewartratecalculator.com), driven entirely by plain HTTP GET/POST (Python requests.Session(), cookie jar) with no browser/JS execution and no personal-data fields, replaying the full recipe documented in this project's CALCULATORS.md (2026-08-14 'SOLVED' entry): GET the LoanEstimate/Netsheet page to scrape a fresh antiforgery cookie + __RequestVerificationToken; GET /api/SRC/propertysearch to resolve the county FIPS code and a default zip; GET /api/SRC/providers to find the county's real settlement office(s) (used to set ProviderID on the QuoteType=3 flow so the itemized settlement-fee list is populated -- an empty ProviderID silently returns a null itemized list); GET /api/SRC/statesettings and /api/SRC/ernstlookup for state-level defaults; build the QuoteRequestRoot JSON by hand (Owner's Policy $500,000 / Lender's Policy $400,000, BASIC coverage, standard Sale/Purchase with Mortgage transaction); POST /api/SRC/quote twice -- QuoteType=2 (Netsheet, pageBuyerSeller=seller) for Recording/CFPB2015 transfer-tax figures, and QuoteType=3 (LoanEstimate, pageBuyerSeller=buyer, IsCalculatePremium=True, IsCalculateTitleServiceFee=True) for the itemized Pricing.TitleServiceFee.ItemizedTitleServiceFeeList settlement-fee line items. One new gotcha found and fixed this session: stewartratecalculator.com's bare apex domain 301-redirects every POST to the www subdomain, and that redirect's response body hangs indefinitely on this sandbox's proxied connection (a 30s+ read timeout with 0 bytes received) -- fixed by targeting https://www.stewartratecalculator.com directly, skipping the apex redirect entirely; this is an environment/proxy artifact, not a sign the endpoint is blocked. Also confirmed the documented /api/SRC/providers gotcha firsthand: for a single-provider county the response's `Provider` field is a bare object, not a one-element list -- must be normalized before indexing or ProviderID silently stays empty and every itemized-fee list comes back null (looks exactly like a genuine empty result).",
+    "settlementFee": {
+      "note": "No itemized settlement/closing-fee line items returned for this settlement office (QuoteType=3's ItemizedTitleServiceFeeList was null/empty) -- a genuine result the recipe has documented before for markets where Stewart's local office has nothing configured through this tool (e.g. attorney-closing states), not a fetch failure."
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$3,305.00",
+      "loanPolicyPremium": "$2,735.00",
+      "other": [
+        {
+          "name": "Title Fed Ex Fee",
+          "amount": "$60.00 (buyer $30.00 / seller $30.00)"
+        },
+        {
+          "name": "Title Deed Preparation Fee",
+          "amount": "$150.00 (buyer $0.00 / seller $150.00)"
+        },
+        {
+          "name": "Title Document Preparation Fee",
+          "amount": "$230.00 (buyer $180.00 / seller $50.00)"
+        },
+        {
+          "name": "Title Notary Fee",
+          "amount": "$80.00 (buyer $50.00 / seller $30.00)"
+        },
+        {
+          "name": "Title Wire Transfer Fee",
+          "amount": "$60.00 (buyer $30.00 / seller $30.00)"
+        }
+      ],
+      "note": "5 itemized settlement/closing-fee line item(s) returned via the QuoteType=3 flow."
+    },
+    "sectionTotals": "Owner's Policy Premium $3,305.00; Lender's Policy Premium $2,735.00; itemized settlement fees sum $580.00",
+    "bundlingNotes": "Combined deed/transfer/mortgage tax on QuoteType=2 (Netsheet) flow: $22,890.00 total -- DeedTax $22,890.00.",
+    "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Philadelphia County, Pennsylvania."
+  },
+  {
+    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Philadelphia County (Philadelphia), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Harvested via WFG National Title's own public JSON API, `POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet`, fully solved and documented in this project's CALCULATORS.md (2026-08-08 entry) -- no browser/JS execution needed, no personal-data fields in the request shape (nested Properties/Loans arrays, TransactionProductType, SettlementStatementVersion: \"CD\"). Confirmed via the same API's public `GET /api/rates/State/GetCalculationEnabledStates` that PA is `isCalculationEnabled: true` before harvesting. Richness-pass application of an already-solved, previously-untried-for-this-state recipe, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "settlementFee": {
+      "note": "Premium-only result (no itemized settlement/search/doc-prep line items) -- consistent with WFG's own hardcoded fee-description table, which only itemizes HUD-style settlement fees for 7 states (WA, CA, TX, OR, AZ, NV, CO); every other state, including this one, returns only the Owner's Title Insurance Premium."
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$3,635.50",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's seller-net-sheet-only design)",
+      "other": [],
+      "note": "Premium-only result for this state (see settlementFee note)."
+    },
+    "sectionTotals": "Owner's Title Insurance Premium $3,635.50",
+    "bundlingNotes": "Discovered and solved 2026-08-08; applied here as a richness-pass 4th/5th calculator-basis provider for Pennsylvania (already at 3-4 providers via other tools) since no prior session had run this already-solved recipe against this state. Property location for this request: Philadelphia, Pennsylvania (Philadelphia County).",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Philadelphia County, Pennsylvania."
   }
 ]

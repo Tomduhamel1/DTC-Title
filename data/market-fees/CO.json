@@ -4,17 +4,33 @@
     "sourceUrl": "https://www.etcos.com/wp-content/uploads/2024/03/333901-24-STC-CO-Empire-Title-El-Paso-Teller-Rate-FLY.pdf",
     "asOf": "Escrow/closing charges effective 2024-02-20 (title premium rates effective 2023-02-13; PDF revised March 2024)",
     "settlementFee": {
-      "bundledRealEstateClosingFee": { "realtorDirected": "$360", "forSaleByOwner": "$550" },
-      "bundledLoanClosingFee": { "1stMtgConcurrentWithSale": "$380", "2ndMtgConcurrentWithSale": "$250", "1stMtgRefinance": "$450" },
-      "commercial": { "realEstateClosing": "$500", "loanClosing": "$500" }
+      "bundledRealEstateClosingFee": {
+        "realtorDirected": "$360",
+        "forSaleByOwner": "$550"
+      },
+      "bundledLoanClosingFee": {
+        "1stMtgConcurrentWithSale": "$380",
+        "2ndMtgConcurrentWithSale": "$250",
+        "1stMtgRefinance": "$450"
+      },
+      "commercial": {
+        "realEstateClosing": "$500",
+        "loanClosing": "$500"
+      }
     },
     "itemizedFees": {
       "wire": "$25 (1 wire included in bundled fees)",
       "courier": "included (1) in bundled closing fees, not separately priced outside the bundle",
       "docPrep": "Mail Out Preparation $30",
       "other": [
-        { "name": "Tax Certificate", "amount": "$35" },
-        { "name": "Cashier's Check", "amount": "$25" }
+        {
+          "name": "Tax Certificate",
+          "amount": "$35"
+        },
+        {
+          "name": "Cashier's Check",
+          "amount": "$25"
+        }
       ]
     },
     "bundlingNotes": "Bundled Real Estate Closing Fee 'Includes our fee for closing, presentation, wire fee (1), courier fee (1), mail fees, cashier's check (1), disbursement, except tax certificate and recording fees.' Bundled Loan Closing Fee adds 'loan document retrieval' to the same list, also excluding tax certificate and recording fees. Loan title insurance premiums are separately bundled with endorsements (e.g., Loan Policy Issued with Sale $531 up to $100,000, scaling to $1,406 for $1.5M-$2M; Refinance Loan Policy $525 up to $100,000 scaling to $1,375 for $1M-$2M) and explicitly 'Includes applicable endorsements.'",
@@ -26,14 +42,34 @@
     "asOf": "Effective 2025-05-05",
     "settlementFee": {
       "residentialSalesClosing": {
-        "premiumCounties (Adams, Arapahoe, Boulder, Broomfield, Denver, Douglas, El Paso, Elbert, Jefferson, Larimer, Teller, Weld)": { "resale_RealtorBroker": "$285", "forSaleByOwner": "$350", "builderDeveloper": "$205" },
-        "otherCounties": { "resale_RealtorBroker": "$200", "forSaleByOwner": "$325", "builderDeveloper": "$180" }
+        "premiumCounties (Adams, Arapahoe, Boulder, Broomfield, Denver, Douglas, El Paso, Elbert, Jefferson, Larimer, Teller, Weld)": {
+          "resale_RealtorBroker": "$285",
+          "forSaleByOwner": "$350",
+          "builderDeveloper": "$205"
+        },
+        "otherCounties": {
+          "resale_RealtorBroker": "$200",
+          "forSaleByOwner": "$325",
+          "builderDeveloper": "$180"
+        }
       },
       "lenderLoanClosing_residential": {
-        "conventional/FHA/VA/3rdParty": { "premium": "$285", "other": "$200" },
-        "presentationOnly": { "premium": "$175", "other": "$150" },
-        "disbursementOnly": { "premium": "$175", "other": "$150" },
-        "juniorLoan": { "premium": "$250/$200 (concurrent w/ 1st mtg = lower)", "other": "$200/$120" }
+        "conventional/FHA/VA/3rdParty": {
+          "premium": "$285",
+          "other": "$200"
+        },
+        "presentationOnly": {
+          "premium": "$175",
+          "other": "$150"
+        },
+        "disbursementOnly": {
+          "premium": "$175",
+          "other": "$150"
+        },
+        "juniorLoan": {
+          "premium": "$250/$200 (concurrent w/ 1st mtg = lower)",
+          "other": "$200/$120"
+        }
       },
       "bundledLoanPackage_premiumCountiesOnly": "$390.00 — includes loan closing fee, courier, wire, tax certificate, e-recording, e-doc and e-storage fees",
       "commercial": "$375-$400 across transaction types"
@@ -44,9 +80,18 @@
       "edoc": "$25",
       "eRecording": "$43/document (recording) plus E-filing $8/document",
       "other": [
-        { "name": "E-storage", "amount": "$15" },
-        { "name": "Miscellaneous services", "amount": "$50/hour" },
-        { "name": "Short sale resolution", "amount": "$600" }
+        {
+          "name": "E-storage",
+          "amount": "$15"
+        },
+        {
+          "name": "Miscellaneous services",
+          "amount": "$50/hour"
+        },
+        {
+          "name": "Short sale resolution",
+          "amount": "$600"
+        }
       ]
     },
     "bundlingNotes": "Standalone closing fee is unbundled/itemized by default; a separate 'Bundled Loan Closing Fee' product ($390, premium counties only) explicitly packages courier, wire, tax certificate, e-recording, e-doc and e-storage into one line.",
@@ -63,9 +108,18 @@
     "itemizedFees": {
       "eRecording": "$20/document",
       "other": [
-        { "name": "Consumer Protection Fee", "amount": "$20" },
-        { "name": "Release Tracking Fee", "amount": "$60/payoff" },
-        { "name": "Tax Certificate (buyer)", "amount": "$40" }
+        {
+          "name": "Consumer Protection Fee",
+          "amount": "$20"
+        },
+        {
+          "name": "Release Tracking Fee",
+          "amount": "$60/payoff"
+        },
+        {
+          "name": "Tax Certificate (buyer)",
+          "amount": "$40"
+        }
       ]
     },
     "bundlingNotes": "Closing fees are listed as standalone, separately itemized line items (not bundled into one all-in figure); page separately notes 'Owners Extended Coverage: Included with Eagle Policy' for the title insurance product. Coverage area: Adams, Arapahoe, Broomfield, Denver, Douglas, Elbert, Gilpin, Jefferson, Clear Creek counties.",
@@ -79,10 +133,22 @@
     "itemizedFees": {
       "cpl": "$25 per protected party (Closing Protection Letter, Section J) — 'deemed to be earned upon closing... If the transaction is cancelled and does not close, the CPL fee is waived.'",
       "other": [
-        { "name": "TBD Commitment (6-month hold, no concurrent transaction)", "amount": "$350" },
-        { "name": "Additional chain of title search", "amount": "$100 each" },
-        { "name": "Policy correction/replacement endorsement", "amount": "$150" },
-        { "name": "Lost policy replacement", "amount": "$50" }
+        {
+          "name": "TBD Commitment (6-month hold, no concurrent transaction)",
+          "amount": "$350"
+        },
+        {
+          "name": "Additional chain of title search",
+          "amount": "$100 each"
+        },
+        {
+          "name": "Policy correction/replacement endorsement",
+          "amount": "$150"
+        },
+        {
+          "name": "Lost policy replacement",
+          "amount": "$50"
+        }
       ]
     },
     "bundlingNotes": "Title-insurance premium manual only, zoned by county (Zone 1: Adams/Arapahoe/Broomfield/Denver/Douglas/Elbert/Jefferson; Zone 2: Boulder/Larimer/Weld; Zone 3: El Paso/Pueblo/Teller; Zone 4: all others). Owner's policy minimum premiums: Zone 1 $900, Zone 2 $700, Zone 3 $600, Zone 4 $900 (for $0-$5,000 coverage tier), scaling up per the Basic Rate Table (e.g., $1M policy = $2,990 Zone 1 / $2,640 Zone 2 / $2,572 Zone 3 / $2,990 Zone 4). Confirms CO is a filed-rate (not promulgated) state and that closing/settlement fees are filed and charged separately from the underwriter's premium by the settlement agent.",
@@ -216,5 +282,35 @@
     "sectionTotals": null,
     "bundlingNotes": "Property location for this request: Denver, CO (Denver County). Adds WFG as CO's 4th calculator-basis provider (already past the 3-provider threshold via First Integrity/TRACcalculator + FNF + Principal Title); harvested for richness (itemized HUD fees, not just a premium figure) per the standing next-session recommendation to push already-quoted states toward richer entries.",
     "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium plus itemized settlement fees for a $500,000 residential purchase, Denver County, CO."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company -- Stewart Rate Calculator, matched settlement office: Capital Title, LLC (355 South Teller Street, Suite 200, Lakewood, CO 80226)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true (LoanEstimate/QuoteType=3 flow) and https://www.stewartratecalculator.com/Quote/Netsheet?urlParams=&quotetype=2&branded=true (Netsheet/QuoteType=2 flow); both POST to the shared /api/SRC/quote endpoint",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Denver County (Denver), residential resale, Sale/Purchase with Mortgage transaction type, BASIC coverage on both Owner's and Lender's policies. Richness-pass harvest applying an already-solved, previously state-limited recipe to a state not yet in Stewart's harvested-state list, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "methodology": "Harvested via Stewart's discoverable `/api/SRC/*` JSON REST API (stewartratecalculator.com), driven entirely by plain HTTP GET/POST (Python requests.Session(), cookie jar) with no browser/JS execution and no personal-data fields, replaying the full recipe documented in this project's CALCULATORS.md (2026-08-14 'SOLVED' entry): GET the LoanEstimate/Netsheet page to scrape a fresh antiforgery cookie + __RequestVerificationToken; GET /api/SRC/propertysearch to resolve the county FIPS code and a default zip; GET /api/SRC/providers to find the county's real settlement office(s) (used to set ProviderID on the QuoteType=3 flow so the itemized settlement-fee list is populated -- an empty ProviderID silently returns a null itemized list); GET /api/SRC/statesettings and /api/SRC/ernstlookup for state-level defaults; build the QuoteRequestRoot JSON by hand (Owner's Policy $500,000 / Lender's Policy $400,000, BASIC coverage, standard Sale/Purchase with Mortgage transaction); POST /api/SRC/quote twice -- QuoteType=2 (Netsheet, pageBuyerSeller=seller) for Recording/CFPB2015 transfer-tax figures, and QuoteType=3 (LoanEstimate, pageBuyerSeller=buyer, IsCalculatePremium=True, IsCalculateTitleServiceFee=True) for the itemized Pricing.TitleServiceFee.ItemizedTitleServiceFeeList settlement-fee line items. One new gotcha found and fixed this session: stewartratecalculator.com's bare apex domain 301-redirects every POST to the www subdomain, and that redirect's response body hangs indefinitely on this sandbox's proxied connection (a 30s+ read timeout with 0 bytes received) -- fixed by targeting https://www.stewartratecalculator.com directly, skipping the apex redirect entirely; this is an environment/proxy artifact, not a sign the endpoint is blocked. Also confirmed the documented /api/SRC/providers gotcha firsthand: for a single-provider county the response's `Provider` field is a bare object, not a one-element list -- must be normalized before indexing or ProviderID silently stays empty and every itemized-fee list comes back null (looks exactly like a genuine empty result).",
+    "settlementFee": {
+      "note": "$300.00 total, split buyer $300.00 / seller $0.00 (line item: 'Title Closing Fee')"
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1,947.00",
+      "loanPolicyPremium": "$1,756.00",
+      "other": [
+        {
+          "name": "Title Closing Fee",
+          "amount": "$300.00 (buyer $300.00 / seller $0.00)"
+        },
+        {
+          "name": "Title Recording Service Fees",
+          "amount": "$10.00 (buyer $10.00 / seller $0.00)"
+        }
+      ],
+      "note": "2 itemized settlement/closing-fee line item(s) returned via the QuoteType=3 flow."
+    },
+    "sectionTotals": "Owner's Policy Premium $1,947.00; Lender's Policy Premium $1,756.00; itemized settlement fees sum $310.00",
+    "bundlingNotes": "Combined deed/transfer/mortgage tax on QuoteType=2 (Netsheet) flow: $50.00 total -- DeedTax $50.00.",
+    "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Denver County, Colorado."
   }
 ]

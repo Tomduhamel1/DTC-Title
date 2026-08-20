@@ -172,3 +172,10 @@ Policy Premium is byte-identical to Independent Title & Escrow LLC's existing Ne
 figure above ($2,097.50) — a genuine cross-tool corroboration for Fairfax County at this scenario.
 Crosses VA to **calculator-quoted (4 providers)**. See VA.json's 4th `"basis": "calculator"` entry
 for full detail.
+
+## Calculator harvest addendum (2026-08-20) — richness pass: WFG National Title + Stewart Rate Calculator
+
+Richness pass per the 2026-08-19 session's own recommendation (check tracker coverage for already-solved nationwide recipes — Stewart's `/api/SRC/quote`, WFG's Seller Net Sheet API — before hunting a new platform). Prior: 4 calculator-basis providers. This session adds 2 corroborating provider(s), bringing VA to **6 calculator-basis providers**. See VA.json's newest `basis: "calculator"` entries for full itemized figures and methodology.
+
+- **Stewart Title Guaranty Company** (Stewart Rate Calculator, `stewartratecalculator.com`) — matched settlement office **Stewart Title and Escrow, Inc.**. Owner's Policy Premium **$2,097.50**, Lender's Policy Premium **$1,247.00**, 10 itemized settlement/closing-fee line item(s).
+- **WFG National Title Insurance Company** (Seller Net Sheet Rate Calculator, `rates.wfgnationaltitle.com`) — Owner's Title Insurance Premium **$2,387.50**, premium-only (no itemized settlement fee configured for this state in this tool).

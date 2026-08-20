@@ -214,3 +214,9 @@ See `AZ.json` for full structured records with source URLs.
 Retried `difi.az.gov` root and the escrow-rate-filings path via direct curl with a full current-
 generation browser header set (User-Agent, Accept, Accept-Language) — still HTTP 403 Forbidden.
 No change; confirms the Cloudflare WAF block persists across at least 4 retry sessions now.
+
+## Calculator harvest addendum (2026-08-20) — richness pass: Stewart Rate Calculator
+
+Richness pass per the 2026-08-19 session's own recommendation (check tracker coverage for already-solved nationwide recipes — Stewart's `/api/SRC/quote`, WFG's Seller Net Sheet API — before hunting a new platform). Prior: 4 calculator-basis providers. This session adds 1 corroborating provider(s), bringing AZ to **5 calculator-basis providers**. See AZ.json's newest `basis: "calculator"` entries for full itemized figures and methodology.
+
+- **Stewart Title Guaranty Company** (Stewart Rate Calculator, `stewartratecalculator.com`) — matched settlement office **Stewart Title & Trust of Phoenix, Inc.**. Owner's Policy Premium **$2,155.00**, Lender's Policy Premium **$1,500.00**, 2 itemized settlement/closing-fee line item(s).

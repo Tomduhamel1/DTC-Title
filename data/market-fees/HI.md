@@ -154,3 +154,9 @@ figures found), tghawaii.com alternate fee-schedule URL (returned HTML, not the 
   (non-underwriter-operated) agency. **This crosses HI to calculator-quoted (3 providers) status.**
   No personal data was entered (buyer name/address fields are optional labeling fields in this
   tenant's schema, left blank).
+
+## Calculator harvest addendum (2026-08-20) — richness pass: Stewart Rate Calculator
+
+Richness pass per the 2026-08-19 session's own recommendation (check tracker coverage for already-solved nationwide recipes — Stewart's `/api/SRC/quote`, WFG's Seller Net Sheet API — before hunting a new platform). Prior: 3 calculator-basis providers. This session adds 1 corroborating provider(s), bringing HI to **4 calculator-basis providers**. See HI.json's newest `basis: "calculator"` entries for full itemized figures and methodology.
+
+- **Stewart Title Guaranty Company** (Stewart Rate Calculator, `stewartratecalculator.com`) — no local settlement office found in Honolulu County via the tool's own providers lookup (state-level defaults only). Owner's Policy Premium **$2,155.00**, Lender's Policy Premium **$1,835.00**, premium-only (no itemized settlement fee returned).

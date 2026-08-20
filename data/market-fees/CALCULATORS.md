@@ -3470,3 +3470,112 @@ Seller Net Sheet API) against states that have FNF but are missing one of those 
 systematic pass state-by-state would likely surface several more free 5th/6th-provider richness
 adds toward the mission's 3-6-harvest stretch target; (3) TitleCapture/Qualia Connect remain the
 highest-value jsOnly targets nationwide for a future browser-driven session.
+
+## 2026-08-20 session — systematic richness pass: WFG's Seller Net Sheet API and Stewart's `/api/SRC/quote` applied to every already-crossed-threshold state missing either recipe; 2 new reusable bugs found and fixed in the Stewart harvester
+
+Picked up the 2026-08-19 session's own final recommendation directly: with the FNF-recipe richness
+backlog fully closed, applied the standing "check tracker coverage before hunting a new platform"
+technique to the two other already-solved nationwide recipes — WFG's Seller Net Sheet API
+(`rates.wfgnationaltitle.com`) and Stewart's `/api/SRC/quote` (`stewartratecalculator.com`) —
+against every state in the Calculator harvest tracker missing either one. Built two small
+`requests.Session()`-based Python harvesters (scratch tooling, not committed to the repo, same
+convention as every prior session's FNF/WFG/Stewart scripts) and ran them as unattended batches
+rather than one state at a time.
+
+### WFG Seller Net Sheet — 15 states harvested (14 already missing it + a manually-added OH), zero recipe issues
+Cross-referenced the tracker table against which states already carried a WFG entry and found **OH,
+MO, MI, PA, NJ, MN, WI, VA, MD, MA, TN, IN, AL, AR, KY** had never had this recipe applied despite it
+being solved since 2026-08-08. Confirmed all 15 via `GET /api/rates/State/GetCalculationEnabledStates`
+(also reconfirmed **HI and AK have no WFG coverage at all** — absent from the enabled-states list
+entirely, not just `isCalculationEnabled: false` — closing off WFG as a lead for either state
+permanently). Ran the unchanged `POST /api/rates/fees/estimatefeesforsellernet` recipe (nested
+`Properties`/`Loans` body, `SettlementStatementVersion: "CD"`) against each state's own most-populous
+county (or an existing entry's county where one was already on file, for comparability). **All 15
+succeeded cleanly on the first pass** — no payload or gating issues, confirming this recipe is as
+durable and state-agnostic as the FNF one. Sample results: OH (Franklin) Owner's Premium $2,846.25;
+PA (Philadelphia) $3,635.50; TN (Davidson) $3,484.00; MO (Jackson) $518.00 (an unusually low figure,
+recorded as-is per the exact-figures rule, consistent with MO's own existing FNF entry's similarly
+low $504.00 Grand Total — a genuine cross-tool corroboration of MO being an outlier-cheap market, not
+a fetch error). IN returned WFG's rare itemized-HUD-fee case (a $25.00 seller-side CPL line, on top
+of the Owner's Premium) — the 8th state nationwide (after WA/CA/TX/OR/AZ/NV/CO) actually observed
+with a non-empty `hudFees` array from this endpoint, a small addition to the known-itemized-state list
+first documented 2026-08-08.
+
+### Stewart `/api/SRC/quote` — 26 states harvested (every remaining state in the tracker table missing it), 2 reusable environment/client bugs found and fixed
+Cross-referenced the same table for Stewart coverage and found it missing from every state except the
+9 New-England/thin-market states already worked in the 2026-08-14 through 2026-08-18 sessions (NH,
+WV, ME, ND, VT, WY, RI, DE, SD) — a much larger backlog than WFG's. Targeted **NM, UT, HI, OR, CT,
+MS, NE, LA, SC, MO, MI, PA, NJ, MN, WI, VA, MD, MA, TN, IN, AL, AR, KY, CO, AZ, NV** (26 states) using
+each state's own existing standard-scenario county where one was already on file.
+
+**Bug #1 — apex-domain POST hang, a sandbox/proxy artifact, not a live block.** The very first attempt
+(NM) hung indefinitely (30s+ read timeout, 0 bytes received) on every `POST /api/SRC/quote` call.
+Root-caused via a manual `curl -v`: `stewartratecalculator.com` (bare apex) returns a clean `301
+Location: https://www.stewartratecalculator.com/api/SRC/quote` instantly, but reading that redirect
+response's (empty) body hangs forever on this sandbox's proxied HTTP/2 connection — `requests`'s
+automatic redirect-following tries to consume that body internally, so even a script that never
+touches the apex host directly still hits this once a redirect fires mid-`POST`. **Fix: target
+`https://www.stewartratecalculator.com` directly everywhere (page loads, all `/api/SRC/*` calls,
+the final `quote` POST) so the apex redirect never fires at all.** This is almost certainly an
+artifact of this sandbox's outbound proxy's handling of a 301 response to a POST with a Cloudflare
+`cf-ray` header present, not a real change in Stewart's own infrastructure — flagged here so a future
+session doesn't waste time treating it as a new block on Stewart's end.
+
+**Bug #2 — a client-side normalization bug that had been silently zeroing out every itemized
+settlement-fee result.** The first full batch run (24 states, before this fix) completed with clean
+HTTP 200s on every request but returned `ItemizedTitleServiceFeeList: null` for **100% of states**,
+including NM, where the 2026-08-12 session's existing figures should have made a `null` result
+immediately suspicious. Root cause: this session's harvester script computed `ProviderID` for the
+`QuoteType=3` POST by checking `isinstance(providers, list)` against the *entire* `/api/SRC/providers`
+response object (`{"ProviderList": {"Provider": [...]}}`), which is never a bare list at the top
+level — so the check always fell through to treating the whole wrapper dict as "the provider," whose
+`.get("ID")` naturally returned `None` every time. This is the same class of bug the 2026-08-18
+session already documented and fixed once (`Provider` sometimes being a bare object instead of a
+one-element list for single-provider counties) — this session's script had the *containing* dict
+mismatch, one level up, that the earlier fix hadn't been aimed at. **Fix: drill into
+`providers.get("ProviderList", {}).get("Provider")` first, then normalize *that* value to a list
+before indexing.** Re-ran the full 24-state batch (plus NM and NV, added after this fix) with the
+corrected extraction and got itemized settlement-fee data back for the large majority of states —
+see the per-state `.json`/`.md` entries for the full line-item detail. **Generalizable lesson for any
+future session reusing this recipe: a clean HTTP 200 with an all-states-null itemized-fee result is a
+much stronger signal of a client-side extraction bug than of a genuine market pattern — the earlier
+sessions' occasional genuine nulls (DE, and now confirmed HI) were each a single state, not a sweep.**
+
+**HI's genuine null, confirmed distinct from the bug above.** After the ProviderID fix, HI's
+`/api/SRC/providers` call for Honolulu County returns `{"ProviderList": null}` — a real, correctly-
+parsed empty result (Stewart has no local settlement office serving this county through this tool at
+all, not just a missing single-object-vs-list normalization). Required a 3rd small fix (guard against
+`providers.get("ProviderList")` itself being `None`, not just absent) to stop this from crashing the
+harvester outright. HI's premium and recording-tax figures (Owner's $2,155.00/Lender's $1,835.00, no
+transfer tax found) still came back fine — only the itemized settlement-fee line items are unavailable
+for this state via this tool, a genuine market-coverage gap worth noting for any future HI session.
+
+### Results summary (28 states total touched this session: 27 gained a genuine new calculator-basis
+provider count via Stewart and/or WFG, 1 more — OH — via WFG only)
+| Recipe | States |
+|---|---|
+| WFG only | OH |
+| Stewart only | NM, UT, HI, OR, CT, MS, NE, LA, SC, CO, AZ, NV |
+| Both WFG + Stewart | MO, MI, PA, NJ, MN, WI, VA, MD, MA, TN, IN, AL, AR, KY |
+
+Every state above gained 1 or 2 additional calculator-basis providers (see PROGRESS.md's tracker
+table for the exact new counts, now ranging 4-6 per state) plus a rich set of new premium/itemized-
+fee/recording-tax dollar figures in each state's own `.json`/`.md`. Full per-state itemized figures
+are in each state's `basis: "calculator"` JSON entries rather than repeated here.
+
+**Not touched this session** (already had both WFG and Stewart, or are outside this session's scope
+per the standing task brief): NH, WV, ME, ND, VT, WY, RI, DE, SD (the 9 already-saturated New England/
+thin-market states), and AK/DC (explicitly out of scope for stateless-HTTP retries per the task
+brief — both remain at their existing 2-of-3/no-WFG-coverage status).
+
+**Recommendation for next session**: (1) the WFG+Stewart richness pass is now essentially complete —
+the only two remaining nationwide recipes not yet cross-checked against every state are Old
+Republic's two tools (`ortconline.com` and `ortratecalculator.oldrepublictitle.com`), which the
+2026-08-09/2026-08-10 sessions found are geographically narrower and NoBot-gated for several states
+(IN, and previously LA/SC/MS until that block partially lifted) — a focused pass checking exactly
+which of the 26 states touched this session are missing an Old Republic entry, with the full
+session-affinity fix (not just the lighter Referer-header fix) applied to any NoBot-blocked ones,
+would likely be the next-highest-yield richness target; (2) TitleCapture/Qualia Connect remain the
+highest-value jsOnly targets nationwide for a future browser-driven session, as does DC's server-
+disabled `btnFinish` control; (3) the freshness and blocked-source-retry passes should resume their
+normal rotation now that this session's richness push is wrapping up.

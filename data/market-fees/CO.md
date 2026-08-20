@@ -305,3 +305,9 @@ Settlement or Closing Fee $400.00 (split $200.00/$200.00 buyer/seller), Tax Cert
 (seller-paid). Lender's premium returned $0 despite the $400,000 loan entered, consistent with this
 being a seller-net-sheet-only tool. See CO.json's newest `basis: "calculator"` entry for the full
 record.
+
+## Calculator harvest addendum (2026-08-20) — richness pass: Stewart Rate Calculator
+
+Richness pass per the 2026-08-19 session's own recommendation (check tracker coverage for already-solved nationwide recipes — Stewart's `/api/SRC/quote`, WFG's Seller Net Sheet API — before hunting a new platform). Prior: 4 calculator-basis providers. This session adds 1 corroborating provider(s), bringing CO to **5 calculator-basis providers**. See CO.json's newest `basis: "calculator"` entries for full itemized figures and methodology.
+
+- **Stewart Title Guaranty Company** (Stewart Rate Calculator, `stewartratecalculator.com`) — matched settlement office **Capital Title, LLC**. Owner's Policy Premium **$1,947.00**, Lender's Policy Premium **$1,756.00**, 2 itemized settlement/closing-fee line item(s).

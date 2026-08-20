@@ -174,3 +174,10 @@ genuine cross-tool corroboration (both independently reflect the same underlying
 for Davidson County at this scenario), not a data-entry duplication. Crosses TN to
 **calculator-quoted (4 providers)**. See TN.json's 4th `"basis": "calculator"` entry for full
 detail.
+
+## Calculator harvest addendum (2026-08-20) — richness pass: WFG National Title + Stewart Rate Calculator
+
+Richness pass per the 2026-08-19 session's own recommendation (check tracker coverage for already-solved nationwide recipes — Stewart's `/api/SRC/quote`, WFG's Seller Net Sheet API — before hunting a new platform). Prior: 4 calculator-basis providers. This session adds 2 corroborating provider(s), bringing TN to **6 calculator-basis providers**. See TN.json's newest `basis: "calculator"` entries for full itemized figures and methodology.
+
+- **Stewart Title Guaranty Company** (Stewart Rate Calculator, `stewartratecalculator.com`) — matched settlement office **Cindy S. Smith, P.C./Central Title, LLC**. Owner's Policy Premium **$3,104.69**, Lender's Policy Premium **$2,565.69**, 4 itemized settlement/closing-fee line item(s).
+- **WFG National Title Insurance Company** (Seller Net Sheet Rate Calculator, `rates.wfgnationaltitle.com`) — Owner's Title Insurance Premium **$3,484.00**, premium-only (no itemized settlement fee configured for this state in this tool).

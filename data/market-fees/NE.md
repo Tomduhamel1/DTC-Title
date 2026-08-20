@@ -218,3 +218,9 @@ This session solved `rates.wfgnationaltitle.com`'s `POST /api/rates/fees/estimat
 - **WFG National Title Insurance Company** (`rates.wfgnationaltitle.com`) — WORKING. Douglas County (NE's most-populous/standard-scenario county), Omaha, NE, $500,000 purchase / $400,000 loan, SettlementStatementVersion `CD`. Result: Owner's Title Insurance Premium **$1,573.00**, premium-only. Loan Policy premium returned $0/null in every state tried this session, consistent with this tool's seller-net-sheet (seller-side) design — not pursued further as out of scope.
 
 **NE now calculator-quoted (3 providers)** — WFG National Title crosses the threshold.
+
+## Calculator harvest addendum (2026-08-20) — richness pass: Stewart Rate Calculator
+
+Richness pass per the 2026-08-19 session's own recommendation (check tracker coverage for already-solved nationwide recipes — Stewart's `/api/SRC/quote`, WFG's Seller Net Sheet API — before hunting a new platform). Prior: 3 calculator-basis providers. This session adds 1 corroborating provider(s), bringing NE to **4 calculator-basis providers**. See NE.json's newest `basis: "calculator"` entries for full itemized figures and methodology.
+
+- **Stewart Title Guaranty Company** (Stewart Rate Calculator, `stewartratecalculator.com`) — matched settlement office **Stewart Title Company**. Owner's Policy Premium **$1,282.50**, Lender's Policy Premium **$1,057.50**, 4 itemized settlement/closing-fee line item(s).
