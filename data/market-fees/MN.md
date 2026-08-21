@@ -215,3 +215,7 @@ Richness pass per the 2026-08-19 session's own recommendation (check tracker cov
 
 - **Stewart Title Guaranty Company** (Stewart Rate Calculator, `stewartratecalculator.com`) — matched settlement office **Stewart Title Company - Minnesota Division**. Owner's Policy Premium **$1,452.50**, Lender's Policy Premium **$1,090.00**, 3 itemized settlement/closing-fee line item(s).
 - **WFG National Title Insurance Company** (Seller Net Sheet Rate Calculator, `rates.wfgnationaltitle.com`) — Owner's Title Insurance Premium **$1,720.00**, premium-only (no itemized settlement fee configured for this state in this tool).
+
+## Calculator harvest addendum (2026-08-21) — Old Republic's 2nd-tool richness pass
+
+Old Republic's second calculator (`ortratecalculator.oldrepublictitle.com`), statewide, PURCHASE/SALE OWNERS-STANDARD: Grand Total Policy & Endorsement Premium — Owners+Lenders combined **$1,712.50** (Owner's $1,562.50 + $150.00 simultaneous surcharge), Lenders-only standalone **$1,125.00**. In the same range as, but not identical to, this state's already-on-file Stewart entry ($1,452.50/$1,090.00) — genuine cross-underwriter market variation. Premium-only, no settlement-fee itemization. 7th corroborating provider — MN stays at **calculator-quoted (7 providers)**. See MN.json's newest `basis: "calculator"` entry for full detail.

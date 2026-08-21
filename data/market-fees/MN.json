@@ -323,7 +323,7 @@
     "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Hennepin County, Minnesota."
   },
   {
-    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "provider": "WFG National Title Insurance Company \u2014 Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
     "basis": "calculator",
     "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
     "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
@@ -342,5 +342,44 @@
     "sectionTotals": "Owner's Title Insurance Premium $1,720.00",
     "bundlingNotes": "Discovered and solved 2026-08-08; applied here as a richness-pass 4th/5th calculator-basis provider for Minnesota (already at 3-4 providers via other tools) since no prior session had run this already-solved recipe against this state. Property location for this request: Minneapolis, Minnesota (Hennepin County).",
     "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Hennepin County, Minnesota."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company \u2014 second rate calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://oldrepublictitle.com/rate-calculator/?location=minnesota",
+    "calculatorUrl": "https://oldrepublictitle.com/rate-calculator/?location=minnesota",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (RateCalc.aspx?CallingApp=PUBLIC&Location=MN, redirects to a session-scoped (S(...)F(...))/RateCalc.aspx?...Location=22..., statewide, no county selector). GET the page with Referer https://oldrepublictitle.com/rate-calculator/?location=minnesota (capture __VIEWSTATE/__EVENTVALIDATION), POST __EVENTTARGET=ddlPolicyCategory value 49 (PURCHASE / SALE), POST __EVENTTARGET=ddlPolicyType1 value 5182 (OWNERS - STANDARD), then POST __EVENTTARGET=btnCalculate with txtLiabilityAmt=500000, txtCrLiabilityAmt=400000. Same Referer-header-throughout fix documented for NH/WV/MI/PA/NJ/VA/TN/MD/WI; no personal data entered.",
+    "retrievalDate": "2026-08-21",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, statewide (no county selector in this tool), PURCHASE / SALE, OWNERS - STANDARD policy type.",
+    "methodology": "Direct HTTP GET/POST against the ASP.NET WebForms postback mechanism (Python requests.Session()), no browser/JS execution. No personal data entered. Richness pass applying this project's already-solved Old Republic 2nd-tool recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": {
+      "note": "This tool prices title insurance premiums only -- no settlement/closing/escrow service-fee line items are itemized (same structural limitation observed for this tool's other state entries elsewhere in this project)."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "LENDERS POLICY, insured amount $400,000.00 -- Lenders-Only standalone premium",
+          "amount": "$1,125.00"
+        },
+        {
+          "name": "LENDERS POLICY, Owners+Lenders combined (simultaneous) premium",
+          "amount": "$150.00"
+        },
+        {
+          "name": "OWNERS - STANDARD, insured amount $500,000.00, Owners+Lenders combined premium",
+          "amount": "$1,562.50"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, standalone-lenders-only",
+          "amount": "$1,125.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, Owners+Lenders combined",
+          "amount": "$1,712.50"
+        }
+      ]
+    },
+    "bundlingNotes": "Owner's $1,562.50/Lender's $1,125.00 are in the same range as, but not identical to, this state's already-on-file Stewart entry (Owner's $1,452.50/Lender's $1,090.00) -- genuine cross-underwriter market variation rather than a fetch error.",
+    "transactionContext": "Purchase/Sale simultaneous Owner's Standard + Lender's policy, statewide Minnesota, purchase with financing."
   }
 ]

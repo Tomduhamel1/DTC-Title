@@ -267,3 +267,7 @@ Richness pass per the 2026-08-19 session's own recommendation (check tracker cov
 
 - **Stewart Title Guaranty Company** (Stewart Rate Calculator, `stewartratecalculator.com`) — matched settlement office **Stewart Title Company Wisconsin**. Owner's Policy Premium **$2,098.00**, Lender's Policy Premium **$1,848.00**, 2 itemized settlement/closing-fee line item(s).
 - **WFG National Title Insurance Company** (Seller Net Sheet Rate Calculator, `rates.wfgnationaltitle.com`) — Owner's Title Insurance Premium **$2,298.00**, premium-only (no itemized settlement fee configured for this state in this tool).
+
+## Calculator harvest addendum (2026-08-21) — Old Republic's 2nd-tool richness pass
+
+Old Republic's second calculator (`ortratecalculator.oldrepublictitle.com`), statewide, PURCHASE/SALE: Grand Total Policy & Endorsement Premium — Owners+Lenders combined **$2,623.00** (Owner's $2,123.00 + $500.00 simultaneous surcharge), Lenders-only standalone **$1,873.00**. Close to, but not identical to, this state's already-on-file Stewart entry ($2,098.00/$1,848.00) — genuine cross-underwriter market variation. Premium-only, no settlement-fee itemization. 7th corroborating provider — WI stays at **calculator-quoted (7 providers)**. See WI.json's newest `basis: "calculator"` entry for full detail.
