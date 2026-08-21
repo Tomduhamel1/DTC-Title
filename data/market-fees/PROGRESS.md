@@ -2901,3 +2901,68 @@ browser-driven session, as does DC's server-disabled `btnFinish` control; (4) AK
 genuinely exhausted for stateless-HTTP technique per 3+ consecutive sessions now — no further time
 should be spent on either without a fundamentally new idea (browser-driven session territory for
 both).
+
+## 2026-08-21 session — Old Republic's 2nd-tool richness pass completed nationwide (18 states); IN's
+durable NoBot block finally resolved; CO/AR confirmed genuinely login-gated on this tool; freshness
++ blocked-retry passes clean
+
+Picked up the 2026-08-20 session's own top recommendation directly: apply Old Republic's second
+calculator (`ortratecalculator.oldrepublictitle.com`) to every state in the tracker that was missing
+an entry from it, following the full session-affinity fix (persistent session, Referer header held
+throughout every request) already solved on the WV/NH entries. Worked highest-population-first:
+**MI, PA, NJ, VA, TN, MD, WI, MN, AL, MA, IN, NE, ME, ND, VT, WY, RI, DE, SD** — 19 states touched
+(18 successful harvests + IN, which required unblocking first).
+
+**Headline result: IN's `Location=IN` was logged as durably NoBot-blocked back on 2026-07-29 and
+reconfirmed 2026-08-10, and every session since 2026-08-19 flagged it as the top candidate to retry
+with the full session-affinity fix — but none had actually done so until this session.** Retried it
+directly: works cleanly on the first attempt with the standard fix, no further gate. IN's form also
+returned a genuine non-premium **TIEFF Policy Fee** (Indiana Title Insurance Enforcement Fund Fee)
+line item, a state-specific regulatory-fee data point not seen on this tool's other state entries.
+
+**New reusable gotcha found and documented**: this tool's `RadPolicyCategory`/`ddlPolicyCategory`
+radio-group states (AL, then reproduced on ND/WY/SD) default to the *correct* PURCHASE/SALE option
+in the page's own rendered HTML, but a naive "scrape every field's current value from the DOM"
+harvesting approach that doesn't check the `checked` attribute silently submits the *last* radio
+option in HTML source order instead (HOME EQUITY for AL, REFINANCE for ND/WY/SD) — caught by
+noticing implausible result labels ("REFINANCE LENDERS POLICY" for a purchase scenario) rather than
+a hard error. Re-checked LA's and MS's already-on-file entries from this same family of states
+(2026-08-09 session) against this gotcha: both are unaffected — LA's default was already correct,
+and MS explicitly documented switching categories rather than relying on an unverified default. Full
+technical writeup, per-state recipe details, and the complete Grand Total figures for all 18 states
+are in CALCULATORS.md's parallel 2026-08-21 entry (split across two dated sub-sections for the
+first 11 states and the final NE+small-states batch).
+
+**CO and AR are confirmed genuinely login-gated on this specific tool** (`Login.aspx` redirect, not
+a NoBot rejection) — distinct from a fixable anti-bot block, not pursued further. This is
+consistent with CO's prior absence from this tool's `ortconline.com` sibling product's
+`PropertyStateList`, and with the 2026-08-08 session's finding that AL (`Location=01`) is this
+tool's sole public-pilot outlier.
+
+**This closes out the Old Republic 2nd-tool richness pass for every state in the original
+"complete (scarce), never yet worked" survey list except AK/DC** (out of scope per the standing
+task brief) **and CO/AR** (genuinely login-gated, confirmed above). Every touched state gained a
+new calculator-basis provider; see each state's own tracker row above and its `.json`/`.md`
+`basis: "calculator"` entries for full itemized figures.
+
+**Freshness spot-check** (5 states never previously in the freshness rotation, per the 2026-08-20
+session's own note — NM/OSI promulgated rate table PDF, NV/First American Escrow Rate Manual PDF,
+OH/OTIRB Schedule of Rates PDF via go.stewart.com, OR/OTIRO Rate Manual PDF, WV/Stewart West
+Virginia Full Manual PDF): **5 of 5 confirmed live**, clean HTTP 200 on a full GET with a standard
+browser User-Agent. No `{stale: true}` flags needed. Every state's published-schedule sources have
+now been through at least one freshness check.
+
+**Blocked-source retries** (one quick check each, per the standing rotation): AZ DIFI
+(`difi.az.gov/title-insurance-rate-filings`) still HTTP 403, unchanged across every session this has
+been checked. CATIC CT (`catic.com/state-resources/connecticut`) HTTP 200 this run, continuing its
+established fluctuating-block pattern. Jackson & Scott AL
+(`realestatelclosings.com/closing-costs-calculator/`) still HTTP 403, consistent WAF block. No
+status changes on any of the three.
+
+**Next session priority**: (1) with the Old Republic 2nd-tool richness pass now complete nationwide,
+no further states remain on this specific recipe — a fresh richness target would need a new
+platform/tool, or a return to the freshness rotation now that every state has been checked at least
+once (start a 2nd pass on the states checked earliest); (2) TitleCapture/Qualia Connect remain the
+highest-value jsOnly targets nationwide for a future browser-driven session, as does DC's
+server-disabled `btnFinish` control; (3) AK and DC remain genuinely exhausted for stateless-HTTP
+technique — no further time should be spent on either without a fundamentally new idea.
