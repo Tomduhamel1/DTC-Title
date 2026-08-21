@@ -3650,7 +3650,40 @@ mismatch), and MS's entry explicitly documents switching `RadPolicyCategory` fro
 (value 2) for its second query, so neither relied on an unverified default. No correction needed to
 either state's existing data.
 
-**Recommendation for next session**: (1) continue the Old Republic 2nd-tool richness pass on the
-remaining 9 states listed above (AR/NE next by population, then the New England/Dakota small
-states); (2) the freshness and blocked-source-retry passes are due again next session, having been
-skipped this session in favor of the richness-pass breadth push.
+**Continued this same session — NE and the remaining New England/Dakota small states.** NE worked
+cleanly (county-list + dropdown-cascade pattern, Douglas County code 055): Grand Total $1,332.50
+combined/$1,057.50 lenders-only, the latter byte-identical to NE's existing Stewart entry, plus a
+genuine $25.00 CPL fee. AR is confirmed still login-gated (`Login.aspx` redirect, same as CO) —
+consistent with the 2026-08-08 session's "Location=01 is the outlier public pilot" finding, no
+change. The remaining 7 states (ME, ND, VT, WY, RI, DE, SD) all worked without any login/NoBot
+gate: ME/VT/RI/DE use the `ddlPolicyCategory`-then-`ddlPolicyType1`/`ddlPolicyType2` dropdown
+cascade (same pattern as MI/PA/NJ/etc. earlier this session); ND/WY/SD use the `RadPolicyCategory`
+radio-group pattern (same family as AL/LA/MS) and **all three reproduce the AL-style default-radio
+gotcha**: `RadPolicyCategory` is genuinely checked to PURCHASE/SALE (value 49) in the page's own
+HTML, but a naive "scrape every field's current value from the DOM" approach that doesn't check the
+`checked` attribute silently picks up the *last* radio option in HTML source order (REFINANCE,
+value 51) instead — confirmed by a first-pass run on all three that returned "REFINANCE LENDERS
+POLICY" results before the value was explicitly re-asserted in the POST body. Any future harvester
+touching this tool's `RadPolicyCategory`/`RadPolicyCategory`-style controls should always explicitly
+set the intended value rather than trusting a scraped default, even when the page's own default
+already happens to be correct.
+
+Results (Grand Total Owners+Lenders combined / Lenders-only standalone, all premium-only): ME
+$1,600.00/$700.00; ND $1,550.00/$1,025.00; VT $1,650.00/$987.50; WY $2,260.00/$737.00; RI
+$1,800.00/$1,000.00 (byte-identical combined total to RI's existing FNF entry); DE $2,300.00/
+$1,235.00 (byte-identical combined total to DE's existing FNF entry AND to DE's Stewart Owner's
+Premium — a 3-way convergence); SD $1,350.00/$875.00 (this tool applies no SD sales tax to title
+fees, unlike SD's existing Stewart entry). Each state gains a 4th or 5th calculator-basis provider
+(NE went 4→5; the 7 small states each went 3→4). Full per-state itemization in each state's own
+`.json`/`.md`.
+
+**This closes out the Old Republic 2nd-tool richness pass for every state in the original
+"complete (scarce), never yet worked" tracker list except AK/DC (out of scope) and CO/AR (both
+genuinely login-gated on this specific tool, confirmed and not pursued further).**
+
+**Recommendation for next session**: (1) the Old Republic 2nd-tool richness pass is now complete
+across the tracker — no further states to check on this specific recipe; (2) the freshness and
+blocked-source-retry passes are due again next session, having been skipped this session in favor
+of the richness-pass breadth push; (3) TitleCapture/Qualia Connect remain the highest-value jsOnly
+targets nationwide for a future browser-driven session, as does DC's server-disabled `btnFinish`
+control.

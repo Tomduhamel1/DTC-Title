@@ -162,3 +162,8 @@ Williston are not priced separately by either underwriter).
 
 With only 2 verified sources despite this exhaustive search, ND meets the
 contract's scarce criterion.
+
+
+## Calculator harvest addendum (2026-08-21) — Old Republic's 2nd-tool richness pass
+
+Old Republic's second calculator (`ortratecalculator.oldrepublictitle.com`), statewide, PURCHASE/SALE: Grand Total Policy & Endorsement Premium — Owners+Lenders combined **$1,550.00** (Owner's $1,400.00 + $150.00 simultaneous surcharge), Lenders-only standalone **$1,025.00**. In the same range as this state's already-on-file FNF entry (Grand Total $1,450.00). Premium-only, no settlement-fee itemization. Note: this state's `RadPolicyCategory` radio group defaults to PURCHASE/SALE, but a naive form-field scrape silently picks up the wrong (last-in-HTML) radio value unless the correct value is explicitly re-asserted in the POST — the same gotcha found on AL this session. 4th corroborating provider — ND rises to **calculator-quoted (4 providers)**. See ND.json's newest `basis: "calculator"` entry for full detail.

@@ -200,3 +200,8 @@ the last of 51 states surveyed, this closes the full survey with the same fundam
 throughout Priority tier 3 (rating-bureau states regulate the premium but not the settlement fee) now
 confirmed in a jurisdiction where the settlement-fee market itself is additionally thinned by a
 mandatory-attorney-closing custom, the clearest example of that combined effect found in the survey.
+
+
+## Calculator harvest addendum (2026-08-21) — Old Republic's 2nd-tool richness pass
+
+Old Republic's second calculator (`ortratecalculator.oldrepublictitle.com`), statewide, SIMULTANEOUS LOAN & OWNERS BASIC: Grand Total Policy & Endorsement Premium — Owners+Lenders combined **$2,300.00** (Owner's $2,275.00 + $25.00 simultaneous surcharge), Lenders-only standalone **$1,235.00**. The combined Grand Total is byte-identical to this state's already-on-file FNF entry's Grand Total ($2,300.00) and to the Stewart entry's Owner's Premium ($2,300.00) — a strong 3-way convergence. Premium-only, no settlement-fee itemization. 4th corroborating provider — DE rises to **calculator-quoted (4 providers)**. See DE.json's newest `basis: "calculator"` entry for full detail.

@@ -227,7 +227,7 @@
     "transactionContext": "Direct-to-consumer and B2B (attorney/lender) title search and abstract products, statewide -- explicitly covers all 14 Vermont counties (Addison, Bennington, Caledonia, Chittenden, Essex, Franklin, Grand Isle, Lamoille, Orange, Orleans, Rutland, Washington, Windham, Windsor)."
   },
   {
-    "provider": "Omnia Title Corp. — Stewart Rate Calculator (stewartratecalculator.com)",
+    "provider": "Omnia Title Corp. \u2014 Stewart Rate Calculator (stewartratecalculator.com)",
     "basis": "calculator",
     "sourceUrl": "https://www.stewartratecalculator.com/",
     "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true",
@@ -278,7 +278,7 @@
     "transactionContext": "Sale/Purchase with Mortgage, Basic Owner's + Lender's Policy, Chittenden County/Burlington VT."
   },
   {
-    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "provider": "WFG National Title Insurance Company \u2014 Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
     "basis": "calculator",
     "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
     "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
@@ -313,5 +313,44 @@
     "sectionTotals": "Grand Total (Owner's Policy Purchased): $1620.00.",
     "bundlingNotes": "Harvested as part of this session's systematic FNF pass across every remaining below-threshold small/low-population state (ND/VT/WY/RI/DE/SD/AK), following the same technique already applied to the 2026-08-06 session's 8-state batch.",
     "transactionContext": "Owner's + Loan Policy concurrent-issue premiums for a $500,000 residential purchase / $400,000 loan, Chittenden County (Burlington)."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company \u2014 second rate calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://oldrepublictitle.com/rate-calculator/?location=vermont",
+    "calculatorUrl": "https://oldrepublictitle.com/rate-calculator/?location=vermont",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (RateCalc.aspx?CallingApp=PUBLIC&Location=VT, redirects to a session-scoped (S(...)F(...))/RateCalc.aspx?...Location=44..., statewide, no county selector). GET the page with Referer https://oldrepublictitle.com/rate-calculator/?location=vermont (capture __VIEWSTATE/__EVENTVALIDATION), POST __EVENTTARGET=ddlPolicyCategory value 3 (SIMULTANEOUS LOAN & OWNERS), POST __EVENTTARGET=ddlPolicyType1 value 10985 (OWNERS - BASIC), POST __EVENTTARGET=ddlPolicyType2 value 10994 (SIMULTANEOUS LOAN - LONG FORM), then POST __EVENTTARGET=btnCalculate with txtLiabilityAmt=500000, txtCrLiabilityAmt=400000. Same Referer-header-throughout fix documented for NH/WV and applied consistently across this project's Old Republic 2nd-tool richness pass; no personal data entered.",
+    "retrievalDate": "2026-08-21",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, statewide (no county selector in this tool), SIMULTANEOUS LOAN & OWNERS BASIC/LONG FORM policy category.",
+    "methodology": "Direct HTTP GET/POST against the ASP.NET WebForms postback mechanism (Python requests.Session()), no browser/JS execution. No personal data entered. Richness pass applying this project's already-solved Old Republic 2nd-tool recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": {
+      "note": "This tool prices title insurance premiums only -- no settlement/closing/escrow service-fee line items are itemized (same structural limitation observed for this tool's other state entries elsewhere in this project)."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "SIMULTANEOUS LOAN - LONG FORM, insured amount $400,000.00 -- Lenders-Only standalone premium",
+          "amount": "$987.50"
+        },
+        {
+          "name": "SIMULTANEOUS LOAN - LONG FORM, Owners+Lenders combined (simultaneous) premium",
+          "amount": "$50.00"
+        },
+        {
+          "name": "OWNERS - BASIC, insured amount $500,000.00, Owners+Lenders combined premium",
+          "amount": "$1,600.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, standalone-lenders-only",
+          "amount": "$987.50"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, Owners+Lenders combined",
+          "amount": "$1,650.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Owner's $1,600.00/Lender's $987.50 are close to this state's already-on-file FNF entry (Grand Total $1,620.00) -- genuine cross-underwriter convergence.",
+    "transactionContext": "Simultaneous Owner's Basic + Loan Long Form policy, statewide Vermont, purchase with financing."
   }
 ]

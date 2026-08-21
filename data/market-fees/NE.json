@@ -178,7 +178,7 @@
     "transactionContext": "Owner's Policy premium for a $500,000 residential purchase, Douglas County, NE. No Loan Policy line appeared despite the $400,000 loan amount entered; a $25.00 Closing Protection Letter charge is itemized separately (tool asked 'Is a Closing Protection Letter requested for this transaction?', answered Yes as the standard-scenario default)."
   },
   {
-    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "provider": "WFG National Title Insurance Company \u2014 Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
     "basis": "calculator",
     "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
     "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
@@ -233,5 +233,60 @@
     "sectionTotals": "Owner's Policy Premium $1,282.50; Lender's Policy Premium $1,057.50; itemized settlement fees sum $693.50",
     "bundlingNotes": "Combined deed/transfer/mortgage tax on QuoteType=2 (Netsheet) flow: $1,660.00 total -- DeedTax $1,660.00.",
     "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Douglas County, Nebraska."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company \u2014 second rate calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://oldrepublictitle.com/rate-calculator/?location=nebraska",
+    "calculatorUrl": "https://oldrepublictitle.com/rate-calculator/?location=nebraska",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (RateCalc.aspx?CallingApp=PUBLIC&Location=NE, redirects to a session-scoped (S(...)F(...))/RateCalc.aspx?...Location=26...). GET the page with Referer https://oldrepublictitle.com/rate-calculator/?location=nebraska (capture __VIEWSTATE/__EVENTVALIDATION), POST __EVENTTARGET=ddlCounty value 055 (DOUGLAS), POST __EVENTTARGET=ddlPolicyCategory value 5 (SIMULTANEOUS LOAN & OWNERS), POST __EVENTTARGET=ddlPolicyType1 value 10238 (OWNERS - BASIC), POST __EVENTTARGET=ddlPolicyType2 value 10240 (SIMULT LOAN), then POST __EVENTTARGET=btnCalculate with txtLiabilityAmt=500000, txtCrLiabilityAmt=400000. Same Referer-header-throughout fix documented for NH/WV/MI/PA/NJ/VA/TN/MD/WI/MN/AL/MA/IN; no personal data entered.",
+    "retrievalDate": "2026-08-21",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Douglas County (Omaha), SIMULTANEOUS LOAN & OWNERS BASIC policy category.",
+    "methodology": "Direct HTTP GET/POST against the ASP.NET WebForms postback mechanism (Python requests.Session()), no browser/JS execution. No personal data entered. Richness pass applying this project's already-solved Old Republic 2nd-tool recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": {
+      "note": "This tool prices title insurance premiums only -- no settlement/closing/escrow service-fee line items are itemized, but it does return a genuine Closing Protection Letter fee (see itemizedFees below)."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "SIMULT LOAN, insured amount $400,000.00 -- Lenders-Only standalone premium",
+          "amount": "$1,057.50"
+        },
+        {
+          "name": "SIMULT LOAN, Owners+Lenders combined (simultaneous) premium",
+          "amount": "$75.00"
+        },
+        {
+          "name": "OWNERS - BASIC, insured amount $500,000.00, Owners+Lenders combined premium",
+          "amount": "$1,257.50"
+        },
+        {
+          "name": "Closing Protection Letter fee, standalone-lenders-only",
+          "amount": "$25.00"
+        },
+        {
+          "name": "Closing Protection Letter fee, Owners+Lenders combined",
+          "amount": "$25.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, standalone-lenders-only",
+          "amount": "$1,057.50"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, Owners+Lenders combined",
+          "amount": "$1,332.50"
+        },
+        {
+          "name": "Total Premium & Endorsement & Fees/Taxes, standalone-lenders-only",
+          "amount": "$1,082.50"
+        },
+        {
+          "name": "Total Premium & Endorsement & Fees/Taxes, Owners+Lenders combined",
+          "amount": "$1,357.50"
+        }
+      ]
+    },
+    "bundlingNotes": "Lenders-Only standalone premium ($1,057.50) is byte-identical to this state's already-on-file Stewart entry's Lender's Policy Premium ($1,057.50) -- a strong 2-way convergence.",
+    "transactionContext": "Simultaneous Owner's Basic + Loan policy plus a $25.00 CPL fee, Douglas County (Omaha) Nebraska, purchase with financing."
   }
 ]

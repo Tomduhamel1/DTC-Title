@@ -268,3 +268,8 @@ a given site was a genuine JS single-page-application (First American's local.fi
 a normal server-rendered WordPress site whose content WebFetch had simply failed to retrieve on a
 first attempt (Flying S Title & Escrow, Title Financial Corporation, American Title Agency) — this
 distinction mattered for correctly logging "found-but-blocked" vs. "no pricing published."
+
+
+## Calculator harvest addendum (2026-08-21) — Old Republic's 2nd-tool richness pass
+
+Old Republic's second calculator (`ortratecalculator.oldrepublictitle.com`), statewide, PURCHASE/SALE OWNER'S BASIC: Grand Total Policy & Endorsement Premium — Owners+Lenders combined **$2,260.00**, Lenders-only standalone **$737.00**. Below this state's already-on-file FNF entry (Grand Total $2,268.00) but the same order of magnitude — genuine cross-underwriter market variation. Premium-only, no settlement-fee itemization. Note: this state's `RadPolicyCategory` radio group defaults to PURCHASE/SALE, but a naive form-field scrape silently picks up the wrong (last-in-HTML) radio value unless the correct value is explicitly re-asserted in the POST — the same gotcha found on AL/ND this session. 4th corroborating provider — WY rises to **calculator-quoted (4 providers)**. See WY.json's newest `basis: "calculator"` entry for full detail.

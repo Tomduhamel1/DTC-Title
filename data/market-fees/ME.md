@@ -186,3 +186,8 @@ figures), Gateway Title of Maine (Bangor location page), Stewart's Maine rates h
   other scarce states (e.g. MD, MN).
 - No FNTI-published Maine rate manual was locatable via search (unlike FNTI's indexed
   manuals for TX, UT, NE, FL).
+
+
+## Calculator harvest addendum (2026-08-21) — Old Republic's 2nd-tool richness pass
+
+Old Republic's second calculator (`ortratecalculator.oldrepublictitle.com`), statewide, SIMULTANEOUS LOAN & OWNERS BASIC: Grand Total Policy & Endorsement Premium — Owners+Lenders combined **$1,600.00** (Owner's $1,500.00 + $100.00 simultaneous surcharge), Lenders-only standalone **$700.00**. In the same range as this state's already-on-file Stewart and FNF entries. Premium-only, no settlement-fee itemization. 5th corroborating provider — ME rises to **calculator-quoted (5 providers)**. See ME.json's newest `basis: "calculator"` entry for full detail.

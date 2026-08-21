@@ -213,3 +213,8 @@ companies, all 5 national-brand underwriters), and Rhode Island's own
 statutes confirming escrow/settlement/closing fees are legally defined but
 not filing-mandated (unlike premiums), RI meets the contract's scarce
 criterion. Marked **complete (scarce)**.
+
+
+## Calculator harvest addendum (2026-08-21) — Old Republic's 2nd-tool richness pass
+
+Old Republic's second calculator (`ortratecalculator.oldrepublictitle.com`), statewide, SIMULTANEOUS LOAN & OWNERS STANDARD: Grand Total Policy & Endorsement Premium — Owners+Lenders combined **$1,800.00** (Owner's $1,750.00 + $50.00 simultaneous surcharge), Lenders-only standalone **$1,000.00**. The combined Grand Total is byte-identical to this state's already-on-file FNF entry's Grand Total ($1,800.00) — a strong 2-way convergence. Premium-only, no settlement-fee itemization. 4th corroborating provider — RI rises to **calculator-quoted (4 providers)**. See RI.json's newest `basis: "calculator"` entry for full detail.

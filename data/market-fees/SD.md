@@ -262,3 +262,8 @@ via the Read tool on WebFetch-saved files was used throughout (same technique as
 CA/GA/NC/WA/MI/AL/AK sessions) — WebFetch itself cannot parse compressed FlateDecode PDF
 streams, but the Read tool successfully extracted full text/tables from every PDF this
 technique was applied to in this session.
+
+
+## Calculator harvest addendum (2026-08-21) — Old Republic's 2nd-tool richness pass
+
+Old Republic's second calculator (`ortratecalculator.oldrepublictitle.com`), statewide, PURCHASE/SALE: Grand Total Policy & Endorsement Premium — Owners+Lenders combined **$1,350.00** (Owner's $1,200.00 + $150.00 simultaneous surcharge), Lenders-only standalone **$875.00**. Below this state's already-on-file FNF entry (Grand Total $1,662.50) but the same order of magnitude — genuine cross-underwriter market variation; unlike this state's existing Stewart entry, this tool's output does not apply SD sales tax to title fees. Note: this state's `RadPolicyCategory` radio group defaults to PURCHASE/SALE, but a naive form-field scrape silently picks up the wrong (last-in-HTML) radio value unless the correct value is explicitly re-asserted in the POST — the same gotcha found on AL/ND/WY this session. 4th corroborating provider — SD rises to **calculator-quoted (4 providers)**. See SD.json's newest `basis: "calculator"` entry for full detail.

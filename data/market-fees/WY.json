@@ -81,7 +81,7 @@
     "transactionContext": "Owner's/Ag/Commercial Lenders, Extended/Simultaneous Lenders, and flat Simultaneous Lenders policy premiums for Weston County (Newcastle), Wyoming -- the only verified WY provider found this session outside the Jackson Hole/Teton-Lincoln corridor, giving genuine east-west regional spread even though both sources are premium-only."
   },
   {
-    "provider": "Executive Title Services LLC — Stewart Rate Calculator (stewartratecalculator.com)",
+    "provider": "Executive Title Services LLC \u2014 Stewart Rate Calculator (stewartratecalculator.com)",
     "basis": "calculator",
     "sourceUrl": "https://www.stewartratecalculator.com/",
     "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true",
@@ -144,7 +144,7 @@
     "transactionContext": "Sale/Purchase with Mortgage, Basic Owner's + Lender's Policy, Laramie County/Cheyenne WY."
   },
   {
-    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "provider": "WFG National Title Insurance Company \u2014 Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
     "basis": "calculator",
     "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
     "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
@@ -179,5 +179,44 @@
     "sectionTotals": "Grand Total (Owner's Policy Purchased): $2268.00.",
     "bundlingNotes": "Harvested as part of this session's systematic FNF pass across every remaining below-threshold small/low-population state (ND/VT/WY/RI/DE/SD/AK), following the same technique already applied to the 2026-08-06 session's 8-state batch.",
     "transactionContext": "Owner's + Loan Policy concurrent-issue premiums for a $500,000 residential purchase / $400,000 loan, Laramie County (Cheyenne)."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company \u2014 second rate calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://oldrepublictitle.com/rate-calculator/?location=wyoming",
+    "calculatorUrl": "https://oldrepublictitle.com/rate-calculator/?location=wyoming",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (RateCalc.aspx?CallingApp=PUBLIC&Location=WY, redirects to a session-scoped (S(...)F(...))/RateCalc.aspx?...Location=49..., statewide, no county selector). GET the page with Referer https://oldrepublictitle.com/rate-calculator/?location=wyoming (capture __VIEWSTATE/__EVENTVALIDATION), the RadPolicyCategory radio group defaults to PURCHASE/SALE (value 49, already checked) which reveals txtLiabilityAmt/txtCrLiabilityAmt directly -- must still explicitly include RadPolicyCategory=49 in the POST body (same AL-style gotcha noted for ND), then POST __EVENTTARGET=btnCalculate with txtLiabilityAmt=500000, txtCrLiabilityAmt=400000. Same Referer-header-throughout fix documented for NH/WV and applied consistently across this project's Old Republic 2nd-tool richness pass; no personal data entered.",
+    "retrievalDate": "2026-08-21",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, statewide (no county selector in this tool), PURCHASE / SALE, OWNER'S BASIC policy category.",
+    "methodology": "Direct HTTP GET/POST against the ASP.NET WebForms postback mechanism (Python requests.Session()), no browser/JS execution. No personal data entered. Richness pass applying this project's already-solved Old Republic 2nd-tool recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": {
+      "note": "This tool prices title insurance premiums only -- no settlement/closing/escrow service-fee line items are itemized (same structural limitation observed for this tool's other state entries elsewhere in this project)."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "LENDERS POLICY, insured amount $400,000.00 -- Lenders-Only standalone premium",
+          "amount": "$737.00"
+        },
+        {
+          "name": "LENDERS POLICY, Owners+Lenders combined (simultaneous) premium",
+          "amount": "$670.00"
+        },
+        {
+          "name": "OWNER'S BASIC, insured amount $500,000.00, Owners+Lenders combined premium",
+          "amount": "$1,590.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, standalone-lenders-only",
+          "amount": "$737.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, Owners+Lenders combined",
+          "amount": "$2,260.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Owner's $1,590.00/Lender's $737.00 sit below this state's already-on-file FNF entry (Grand Total $2,268.00) -- genuine cross-underwriter market variation.",
+    "transactionContext": "Purchase/Sale simultaneous Owner's Basic + Lender's policy, statewide Wyoming, purchase with financing."
   }
 ]

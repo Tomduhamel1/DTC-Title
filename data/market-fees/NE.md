@@ -224,3 +224,7 @@ This session solved `rates.wfgnationaltitle.com`'s `POST /api/rates/fees/estimat
 Richness pass per the 2026-08-19 session's own recommendation (check tracker coverage for already-solved nationwide recipes — Stewart's `/api/SRC/quote`, WFG's Seller Net Sheet API — before hunting a new platform). Prior: 3 calculator-basis providers. This session adds 1 corroborating provider(s), bringing NE to **4 calculator-basis providers**. See NE.json's newest `basis: "calculator"` entries for full itemized figures and methodology.
 
 - **Stewart Title Guaranty Company** (Stewart Rate Calculator, `stewartratecalculator.com`) — matched settlement office **Stewart Title Company**. Owner's Policy Premium **$1,282.50**, Lender's Policy Premium **$1,057.50**, 4 itemized settlement/closing-fee line item(s).
+
+## Calculator harvest addendum (2026-08-21) — Old Republic's 2nd-tool richness pass
+
+Old Republic's second calculator (`ortratecalculator.oldrepublictitle.com`), Douglas County (Omaha), SIMULTANEOUS LOAN & OWNERS BASIC: Grand Total Policy & Endorsement Premium — Owners+Lenders combined **$1,332.50** (Owner's $1,257.50 + $75.00 simultaneous surcharge), Lenders-only standalone **$1,057.50** (byte-identical to this state's already-on-file Stewart Lender's figure), plus a genuine $25.00 Closing Protection Letter fee itemized separately. 5th corroborating provider — NE rises to **calculator-quoted (5 providers)**. See NE.json's newest `basis: "calculator"` entry for full detail.

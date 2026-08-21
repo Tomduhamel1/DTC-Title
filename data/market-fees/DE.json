@@ -1,6 +1,6 @@
 [
   {
-    "provider": "Delaware Title Insurance Rating Bureau (DTIRB) — Rating Manual (REGULATORY/RATING-BUREAU-UNIFORM, not provider-set)",
+    "provider": "Delaware Title Insurance Rating Bureau (DTIRB) \u2014 Rating Manual (REGULATORY/RATING-BUREAU-UNIFORM, not provider-set)",
     "sourceUrl": "https://www.virtualunderwriter.com/-/media/files/virtualunderwriter/imported/pdfs/dtirb-rate-manual-final-approved-04-01-2025.pdf (fetched and machine-read this session via PDF stream decompression + content-stream text-token extraction after WebFetch's native PDF parsing failed on the raw binary; a Stewart-hosted courtesy copy of the same document -- go.stewart.com/rs/067-YWO-436/images/DTIRB%20MANUAL%20-%20FINAL%20APPROVED%20(04-01-2023).pdf -- also surfaced but is the superseded 04/01/2023 vintage)",
     "asOf": "Approved by the Delaware Insurance Department, effective as amended through 04/01/2025 -- current vintage as of retrieval 2026-07-22, no newer revision located",
     "settlementFee": {
@@ -33,7 +33,7 @@
     "transactionContext": "Applies uniformly statewide (New Castle, Kent, and Sussex Counties alike) to all DTIRB member insurers' and agents' Owner's and Loan policy premiums; no purchase-vs-refinance distinction in the base rate."
   },
   {
-    "provider": "Law Office of L. Echevarría (lem.associates) — Delaware closing/settlement attorney",
+    "provider": "Law Office of L. Echevarr\u00eda (lem.associates) \u2014 Delaware closing/settlement attorney",
     "sourceUrl": "https://lem.associates/faqs",
     "asOf": "Retrieved 2026-07-22; no explicit effective date stated on the page (current published estimate range)",
     "settlementFee": {
@@ -78,7 +78,7 @@
     "transactionContext": "Residential real estate closings; firm explicitly serves Kent County and Sussex County, Delaware (also offers virtual/remote handling of out-of-area files); no New Castle County-specific coverage stated on this page."
   },
   {
-    "provider": "Stewart Title Guaranty Company — Stewart Rate Calculator (stewartratecalculator.com)",
+    "provider": "Stewart Title Guaranty Company \u2014 Stewart Rate Calculator (stewartratecalculator.com)",
     "basis": "calculator",
     "sourceUrl": "https://www.stewartratecalculator.com/",
     "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true",
@@ -129,7 +129,7 @@
     "transactionContext": "Sale/Purchase with Mortgage, New Castle County/Wilmington DE."
   },
   {
-    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "provider": "WFG National Title Insurance Company \u2014 Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
     "basis": "calculator",
     "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
     "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
@@ -164,5 +164,44 @@
     "sectionTotals": "Grand Total (Owner's Policy Purchased): $2300.00.",
     "bundlingNotes": "Harvested as part of this session's systematic FNF pass across every remaining below-threshold small/low-population state (ND/VT/WY/RI/DE/SD/AK), following the same technique already applied to the 2026-08-06 session's 8-state batch.",
     "transactionContext": "Owner's + Loan Policy concurrent-issue premiums for a $500,000 residential purchase / $400,000 loan, New Castle County (Wilmington)."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company \u2014 second rate calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://oldrepublictitle.com/rate-calculator/?location=delaware",
+    "calculatorUrl": "https://oldrepublictitle.com/rate-calculator/?location=delaware",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (RateCalc.aspx?CallingApp=PUBLIC&Location=DE, redirects to a session-scoped (S(...)F(...))/RateCalc.aspx?...Location=7..., statewide, no county selector). GET the page with Referer https://oldrepublictitle.com/rate-calculator/?location=delaware (capture __VIEWSTATE/__EVENTVALIDATION), POST __EVENTTARGET=ddlPolicyCategory value 5 (SIMULTANEOUS LOAN & OWNERS), POST __EVENTTARGET=ddlPolicyType1 value 11915 (OWNERS - BASIC), POST __EVENTTARGET=ddlPolicyType2 value 11929 (SIMULT - LENDERS BASIC), then POST __EVENTTARGET=btnCalculate with txtLiabilityAmt=500000, txtCrLiabilityAmt=400000. Same Referer-header-throughout fix documented for NH/WV and applied consistently across this project's Old Republic 2nd-tool richness pass; no personal data entered.",
+    "retrievalDate": "2026-08-21",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, statewide (no county selector in this tool), SIMULTANEOUS LOAN & OWNERS BASIC policy category.",
+    "methodology": "Direct HTTP GET/POST against the ASP.NET WebForms postback mechanism (Python requests.Session()), no browser/JS execution. No personal data entered. Richness pass applying this project's already-solved Old Republic 2nd-tool recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": {
+      "note": "This tool prices title insurance premiums only -- no settlement/closing/escrow service-fee line items are itemized (same structural limitation observed for this tool's other state entries elsewhere in this project)."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "SIMULT - LENDERS BASIC, insured amount $400,000.00 -- Lenders-Only standalone premium",
+          "amount": "$1,235.00"
+        },
+        {
+          "name": "SIMULT - LENDERS BASIC, Owners+Lenders combined (simultaneous) premium",
+          "amount": "$25.00"
+        },
+        {
+          "name": "OWNERS - BASIC, insured amount $500,000.00, Owners+Lenders combined premium",
+          "amount": "$2,275.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, standalone-lenders-only",
+          "amount": "$1,235.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, Owners+Lenders combined",
+          "amount": "$2,300.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Grand Total Owners+Lenders combined ($2,300.00) is byte-identical to this state's already-on-file FNF entry's Grand Total ($2,300.00) and Stewart entry's Owner's Premium ($2,300.00) -- a strong 3-way convergence.",
+    "transactionContext": "Simultaneous Owner's Basic + Lenders Basic policy, statewide Delaware, purchase with financing."
   }
 ]

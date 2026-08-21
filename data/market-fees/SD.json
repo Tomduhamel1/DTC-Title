@@ -271,7 +271,7 @@
     "transactionContext": "Northern Black Hills counties (Lawrence/Spearfish, Meade/Sturgis, Butte/Belle Fourche, Harding/Buffalo). Owner's, lender's, and lender's-simultaneous title insurance premium schedule only; no settlement/closing-service fee breakdown."
   },
   {
-    "provider": "Stewart Title Guaranty Company — Stewart Rate Calculator (stewartratecalculator.com), via Stewart Title Company (Sioux Falls office)",
+    "provider": "Stewart Title Guaranty Company \u2014 Stewart Rate Calculator (stewartratecalculator.com), via Stewart Title Company (Sioux Falls office)",
     "basis": "calculator",
     "sourceUrl": "https://www.stewartratecalculator.com/",
     "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true",
@@ -324,7 +324,7 @@
     "transactionContext": "Sale/Purchase with Mortgage, Minnehaha County/Sioux Falls SD."
   },
   {
-    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "provider": "WFG National Title Insurance Company \u2014 Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
     "basis": "calculator",
     "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
     "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
@@ -359,5 +359,44 @@
     "sectionTotals": "Grand Total (Owner's Policy Purchased): $1662.50.",
     "bundlingNotes": "Harvested as part of this session's systematic FNF pass across every remaining below-threshold small/low-population state (ND/VT/WY/RI/DE/SD/AK), following the same technique already applied to the 2026-08-06 session's 8-state batch.",
     "transactionContext": "Owner's + Loan Policy concurrent-issue premiums for a $500,000 residential purchase / $400,000 loan, Minnehaha County (Sioux Falls)."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company \u2014 second rate calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://oldrepublictitle.com/rate-calculator/?location=south-dakota",
+    "calculatorUrl": "https://oldrepublictitle.com/rate-calculator/?location=south-dakota",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (RateCalc.aspx?CallingApp=PUBLIC&Location=SD, redirects to a session-scoped (S(...)F(...))/RateCalc.aspx?...Location=40..., statewide, no county selector). GET the page with Referer https://oldrepublictitle.com/rate-calculator/?location=south-dakota (capture __VIEWSTATE/__EVENTVALIDATION), the RadPolicyCategory radio group defaults to PURCHASE/SALE (value 49, already checked) which reveals txtLiabilityAmt/txtCrLiabilityAmt directly -- must still explicitly include RadPolicyCategory=49 in the POST body (same AL-style gotcha noted for ND/WY), then POST __EVENTTARGET=btnCalculate with txtLiabilityAmt=500000, txtCrLiabilityAmt=400000. Same Referer-header-throughout fix documented for NH/WV and applied consistently across this project's Old Republic 2nd-tool richness pass; no personal data entered.",
+    "retrievalDate": "2026-08-21",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, statewide (no county selector in this tool), PURCHASE / SALE policy category.",
+    "methodology": "Direct HTTP GET/POST against the ASP.NET WebForms postback mechanism (Python requests.Session()), no browser/JS execution. No personal data entered. Richness pass applying this project's already-solved Old Republic 2nd-tool recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": {
+      "note": "This tool prices title insurance premiums only -- no settlement/closing/escrow service-fee line items are itemized (same structural limitation observed for this tool's other state entries elsewhere in this project)."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "LENDERS POLICY, insured amount $400,000.00 -- Lenders-Only standalone premium",
+          "amount": "$875.00"
+        },
+        {
+          "name": "LENDERS POLICY, Owners+Lenders combined (simultaneous) premium",
+          "amount": "$150.00"
+        },
+        {
+          "name": "OWNERS POLICY, insured amount $500,000.00, Owners+Lenders combined premium",
+          "amount": "$1,200.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, standalone-lenders-only",
+          "amount": "$875.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, Owners+Lenders combined",
+          "amount": "$1,350.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Owner's $1,200.00/Lender's $875.00 sit below this state's already-on-file FNF entry (Grand Total $1,662.50) -- genuine cross-underwriter market variation. Unlike this state's existing Stewart entry, this tool's output does not apply SD sales tax to title fees (premium-only figures, no tax line item present).",
+    "transactionContext": "Purchase/Sale simultaneous Owner's + Lender's policy, statewide South Dakota, purchase with financing."
   }
 ]

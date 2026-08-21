@@ -335,3 +335,8 @@ total documents but only 1 priced settlement-fee source... no service-stack
 range exists to test saturation"), and for the same reason this session marks
 Vermont **complete (scarce market)** rather than saturated, despite crossing the
 raw 6-source count.
+
+
+## Calculator harvest addendum (2026-08-21) — Old Republic's 2nd-tool richness pass
+
+Old Republic's second calculator (`ortratecalculator.oldrepublictitle.com`), statewide, SIMULTANEOUS LOAN & OWNERS BASIC/LONG FORM: Grand Total Policy & Endorsement Premium — Owners+Lenders combined **$1,650.00** (Owner's $1,600.00 + $50.00 simultaneous surcharge), Lenders-only standalone **$987.50**. Close to this state's already-on-file FNF entry (Grand Total $1,620.00). Premium-only, no settlement-fee itemization. 4th corroborating provider — VT rises to **calculator-quoted (4 providers)**. See VT.json's newest `basis: "calculator"` entry for full detail.

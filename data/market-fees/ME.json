@@ -77,7 +77,7 @@
     "transactionContext": "Condensed premium/endorsement rate card; refinance charge table matches the full Schedule of Charges document (80% of original charge within 5 years, 100% after 5 years)."
   },
   {
-    "provider": "Stewart Title Guaranty Company — Stewart Rate Calculator (stewartratecalculator.com)",
+    "provider": "Stewart Title Guaranty Company \u2014 Stewart Rate Calculator (stewartratecalculator.com)",
     "basis": "calculator",
     "sourceUrl": "https://www.stewartratecalculator.com/",
     "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true",
@@ -125,7 +125,7 @@
     "transactionContext": "Sale/Purchase with Mortgage, Cumberland County/Portland ME."
   },
   {
-    "provider": "Absolute Title, LLC (\"New England's Premier Title Company\") — own rate calculator, Maine edition",
+    "provider": "Absolute Title, LLC (\"New England's Premier Title Company\") \u2014 own rate calculator, Maine edition",
     "basis": "calculator",
     "sourceUrl": "https://absolutetitle.com/ratecalculator_me.asp",
     "calculatorUrl": "https://absolutetitle.com/ratecalculator_me.asp",
@@ -161,7 +161,7 @@
     "transactionContext": "Purchase, standard coverage, non-simultaneous, statewide Maine."
   },
   {
-    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "provider": "WFG National Title Insurance Company \u2014 Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
     "basis": "calculator",
     "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
     "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
@@ -197,5 +197,44 @@
     "sectionTotals": "Grand Total (Owner's Policy Purchased): $1550.00.",
     "bundlingNotes": "Harvested this session as a richness pass -- ME had already crossed the 3-provider threshold (Stewart, Absolute Title, WFG); this FNF entry is a 4th corroborating provider, applying the same generalized recipe already used for AR/CT/CO/MA/ND/VT/WY/RI/DE/SD/AK.",
     "transactionContext": "Owner's + Loan Policy concurrent-issue premiums for a $500,000 residential purchase / $400,000 loan, Cumberland County (Portland)."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company \u2014 second rate calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://oldrepublictitle.com/rate-calculator/?location=maine",
+    "calculatorUrl": "https://oldrepublictitle.com/rate-calculator/?location=maine",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (RateCalc.aspx?CallingApp=PUBLIC&Location=ME, redirects to a session-scoped (S(...)F(...))/RateCalc.aspx?...Location=18..., statewide, no county selector). GET the page with Referer https://oldrepublictitle.com/rate-calculator/?location=maine (capture __VIEWSTATE/__EVENTVALIDATION), POST __EVENTTARGET=ddlPolicyCategory value 3 (SIMULTANEOUS LOAN & OWNERS), POST __EVENTTARGET=ddlPolicyType1 value 6705 (BASIC OWNER'S POLICY), POST __EVENTTARGET=ddlPolicyType2 value 6708 (SIMULT LOAN), then POST __EVENTTARGET=btnCalculate with txtLiabilityAmt=500000, txtCrLiabilityAmt=400000. Same Referer-header-throughout fix documented for NH/WV and applied consistently across this project's Old Republic 2nd-tool richness pass; no personal data entered.",
+    "retrievalDate": "2026-08-21",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, statewide (no county selector in this tool), SIMULTANEOUS LOAN & OWNERS BASIC policy category.",
+    "methodology": "Direct HTTP GET/POST against the ASP.NET WebForms postback mechanism (Python requests.Session()), no browser/JS execution. No personal data entered. Richness pass applying this project's already-solved Old Republic 2nd-tool recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": {
+      "note": "This tool prices title insurance premiums only -- no settlement/closing/escrow service-fee line items are itemized (same structural limitation observed for this tool's other state entries elsewhere in this project)."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "SIMULT LOAN, insured amount $400,000.00 -- Lenders-Only standalone premium",
+          "amount": "$700.00"
+        },
+        {
+          "name": "SIMULT LOAN, Owners+Lenders combined (simultaneous) premium",
+          "amount": "$100.00"
+        },
+        {
+          "name": "BASIC OWNER'S POLICY, insured amount $500,000.00, Owners+Lenders combined premium",
+          "amount": "$1,500.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, standalone-lenders-only",
+          "amount": "$700.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, Owners+Lenders combined",
+          "amount": "$1,600.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Owner's $1,500.00/Lender's $700.00 are in the same range as this state's already-on-file Stewart entry (Title Closing Fee $695.00, no comparable premium figure on file) and FNF entry (Grand Total $1,550.00) -- genuine cross-underwriter market variation.",
+    "transactionContext": "Simultaneous Owner's Basic + Loan policy, statewide Maine, purchase with financing."
   }
 ]
