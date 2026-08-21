@@ -165,3 +165,7 @@ Richness pass per the 2026-08-19 session's own recommendation (check tracker cov
 
 - **Stewart Title Guaranty Company** (Stewart Rate Calculator, `stewartratecalculator.com`) — matched settlement office **Devon Title**. Owner's Policy Premium **$2,435.60**, Lender's Policy Premium **$1,372.00**, 9 itemized settlement/closing-fee line item(s).
 - **WFG National Title Insurance Company** (Seller Net Sheet Rate Calculator, `rates.wfgnationaltitle.com`) — Owner's Title Insurance Premium **$2,722.00**, premium-only (no itemized settlement fee configured for this state in this tool).
+
+## Calculator harvest addendum (2026-08-21) — Old Republic's 2nd-tool richness pass
+
+Old Republic's second calculator (`ortratecalculator.oldrepublictitle.com`) had not yet been checked against MI (already at 6 calculator-basis providers via other tools). Applying this project's standing Old Republic 2nd-tool recipe (session-scoped ASP.NET postback, Referer header set throughout) with Wayne County (Detroit) and SIMUL LOAN & OWNERS: Grand Total Policy & Endorsement Premium — Lenders-Only standalone **$1,359.80**, Owners+Lenders combined **$3,590.85** (the combined figure bundles a mandatory Homeowners Extended endorsement into the Owner's side, a MI-specific rate-manual quirk not seen in this tool's other state entries — recorded exactly as displayed). Premium-only, no settlement-fee itemization. This is a 7th corroborating provider — MI stays at **calculator-quoted (7 providers)**. See MI.json's newest `basis: "calculator"` entry for full detail.

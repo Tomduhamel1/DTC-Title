@@ -1,6 +1,6 @@
 [
   {
-    "provider": "New Jersey Land Title Insurance Rating Bureau (NJLTIRB) — Manual of Rates and Charges (REGULATORY/RATING-BUREAU-UNIFORM, not provider-set)",
+    "provider": "New Jersey Land Title Insurance Rating Bureau (NJLTIRB) \u2014 Manual of Rates and Charges (REGULATORY/RATING-BUREAU-UNIFORM, not provider-set)",
     "sourceUrl": "https://cdn.ymaws.com/njlta.site-ym.com/resource/resmgr/docs/rate_manual_-_11-01-2023.pdf (fetched and machine-read this session via PDF text extraction after WebFetch's native PDF parsing failed on the raw binary; hosted as a courtesy copy by the New Jersey Land Title Association at https://njlta.org/page/RateManual, which 403-blocked direct WebFetch access but was independently confirmed via search-engine snippet to list this same November 1, 2023 vintage as current)",
     "asOf": "Approved by the NJ Commissioner of Banking and Insurance; applies to all applications/orders for title insurance received on or after November 1, 2023 -- current vintage as of retrieval 2026-07-22, no newer revision located",
     "settlementFee": {
@@ -438,7 +438,7 @@
     "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Bergen County, New Jersey."
   },
   {
-    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "provider": "WFG National Title Insurance Company \u2014 Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
     "basis": "calculator",
     "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
     "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
@@ -457,5 +457,44 @@
     "sectionTotals": "Owner's Title Insurance Premium $2,670.00",
     "bundlingNotes": "Discovered and solved 2026-08-08; applied here as a richness-pass 4th/5th calculator-basis provider for New Jersey (already at 3-4 providers via other tools) since no prior session had run this already-solved recipe against this state. Property location for this request: Hackensack, New Jersey (Bergen County).",
     "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Bergen County, New Jersey."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company \u2014 second rate calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://oldrepublictitle.com/rate-calculator/?location=new-jersey",
+    "calculatorUrl": "https://oldrepublictitle.com/rate-calculator/?location=new-jersey",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (RateCalc.aspx?CallingApp=PUBLIC&Location=NJ, redirects to a session-scoped (S(...)F(...))/RateCalc.aspx?...Location=29..., statewide, no county selector). GET the page with Referer https://oldrepublictitle.com/rate-calculator/?location=new-jersey (capture __VIEWSTATE/__EVENTVALIDATION), POST __EVENTTARGET=ddlPolicyCategory value 5 (SIMULTANEOUS LOAN & OWNERS), POST __EVENTTARGET=ddlPolicyType1 value 3945 (OWNERS - STANDARD), POST __EVENTTARGET=ddlPolicyType2 value 3962 (LOAN - STANDARD), then POST __EVENTTARGET=btnCalculate with txtLiabilityAmt=500000, txtCrLiabilityAmt=400000. Same Referer-header-throughout fix documented for NH/WV/MI/PA; no personal data entered.",
+    "retrievalDate": "2026-08-21",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, statewide (no county selector in this tool), SIMULTANEOUS LOAN & OWNERS STANDARD policy category.",
+    "methodology": "Direct HTTP GET/POST against the ASP.NET WebForms postback mechanism (Python requests.Session()), no browser/JS execution. No personal data entered. Richness pass applying this project's already-solved Old Republic 2nd-tool recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": {
+      "note": "This tool prices title insurance premiums only -- no settlement/closing/escrow service-fee line items are itemized (same structural limitation observed for this tool's other state entries elsewhere in this project)."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "LOAN - STANDARD, insured amount $400,000.00 -- Lenders-Only standalone premium",
+          "amount": "$1,800.00"
+        },
+        {
+          "name": "LOAN - STANDARD, Owners+Lenders combined (simultaneous) premium",
+          "amount": "$25.00"
+        },
+        {
+          "name": "OWNERS - STANDARD, insured amount $500,000.00, Owners+Lenders combined premium",
+          "amount": "$2,225.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, standalone-lenders-only",
+          "amount": "$1,800.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, Owners+Lenders combined",
+          "amount": "$2,250.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Owner's $2,225.00/Lender's $1,800.00 (Owners-side and standalone-Lenders-only figures) match this state's already-on-file Stewart entry (Owner's $2,225.00/Lender's $1,800.00) exactly -- a 2-way convergence.",
+    "transactionContext": "Simultaneous Owner's Standard + Loan Standard policy, statewide New Jersey, purchase with financing."
   }
 ]

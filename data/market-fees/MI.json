@@ -291,7 +291,7 @@
     "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Wayne County, Michigan."
   },
   {
-    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "provider": "WFG National Title Insurance Company \u2014 Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
     "basis": "calculator",
     "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
     "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
@@ -310,5 +310,44 @@
     "sectionTotals": "Owner's Title Insurance Premium $2,722.00",
     "bundlingNotes": "Discovered and solved 2026-08-08; applied here as a richness-pass 4th/5th calculator-basis provider for Michigan (already at 3-4 providers via other tools) since no prior session had run this already-solved recipe against this state. Property location for this request: Detroit, Michigan (Wayne County).",
     "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Wayne County, Michigan."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company \u2014 second rate calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://oldrepublictitle.com/rate-calculator/?location=michigan",
+    "calculatorUrl": "https://oldrepublictitle.com/rate-calculator/?location=michigan",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (RateCalc.aspx?CallingApp=PUBLIC&Location=MI, redirects to a session-scoped (S(...)F(...))/RateCalc.aspx?...Location=21...). GET the page with Referer https://oldrepublictitle.com/rate-calculator/?location=michigan (capture __VIEWSTATE/__EVENTVALIDATION), POST __EVENTTARGET=ddlCounty value 163 (WAYNE), POST __EVENTTARGET=ddlPolicyCategory value 58 (SIMUL LOAN & OWNERS), POST __EVENTTARGET=ddlPolicyType2 value 4438 (SIMUL LOAN), then POST __EVENTTARGET=btnCalculate with txtLiabilityAmt=500000, txtCrLiabilityAmt=400000. Same Referer-header-throughout fix documented for NH/WV; no personal data entered.",
+    "retrievalDate": "2026-08-21",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Wayne County (Detroit), SIMUL LOAN & OWNERS policy category.",
+    "methodology": "Direct HTTP GET/POST against the ASP.NET WebForms postback mechanism (Python requests.Session()), no browser/JS execution. No personal data entered. Richness pass applying this project's already-solved Old Republic 2nd-tool recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": {
+      "note": "This tool prices title insurance premiums only -- no settlement/closing/escrow service-fee line items are itemized (same structural limitation observed for this tool's other state entries elsewhere in this project)."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "SIMUL LOAN, insured amount $400,000.00 -- Lenders-Only standalone premium",
+          "amount": "$1,359.80"
+        },
+        {
+          "name": "SIMUL LOAN, insured amount $500,000.00 -- Owners+Lenders combined (simultaneous) premium",
+          "amount": "$1,019.85"
+        },
+        {
+          "name": "HOMEOWNERS EXTENDED endorsement, insured amount $500,000.00 -- Owners+Lenders combined premium",
+          "amount": "$2,571.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, standalone-lenders-only",
+          "amount": "$1,359.80"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, Owners+Lenders combined",
+          "amount": "$3,590.85"
+        }
+      ]
+    },
+    "bundlingNotes": "MI's SIMUL LOAN & OWNERS category on this tool bundles a mandatory 'Homeowners Extended' endorsement into the Owner's-side total (not separately optional in the form) -- a state-specific rate-manual quirk not seen on this tool's other state entries; recorded exactly as displayed per the evidence rules rather than backing it out.",
+    "transactionContext": "Simultaneous Owner's + Lender's policy with Homeowners Extended endorsement, Wayne County (Detroit) Michigan, purchase with financing."
   }
 ]

@@ -278,3 +278,7 @@ Richness pass per the 2026-08-19 session's own recommendation (check tracker cov
 
 - **Stewart Title Guaranty Company** (Stewart Rate Calculator, `stewartratecalculator.com`) — matched settlement office **Signature Abstract**. Owner's Policy Premium **$3,305.00**, Lender's Policy Premium **$2,735.00**, 5 itemized settlement/closing-fee line item(s).
 - **WFG National Title Insurance Company** (Seller Net Sheet Rate Calculator, `rates.wfgnationaltitle.com`) — Owner's Title Insurance Premium **$3,635.50**, premium-only (no itemized settlement fee configured for this state in this tool).
+
+## Calculator harvest addendum (2026-08-21) — Old Republic's 2nd-tool richness pass
+
+Old Republic's second calculator (`ortratecalculator.oldrepublictitle.com`), statewide, SIMULTANEOUS OWNERS-STANDARD/LENDERS-STANDARD: Grand Total Policy & Endorsement Premium — Owners+Lenders combined **$3,305.00**, Lenders-only standalone **$2,735.00**. Byte-identical to this state's already-on-file FNF ($3,305.00 Grand Total) and Stewart (Owner's $3,305.00/Lender's $2,735.00) entries — a 3-way convergence consistent with PA's TIRBOP bureau-promulgated rate structure. Premium-only, no settlement-fee itemization. 7th corroborating provider — PA stays at **calculator-quoted (7 providers)**. See PA.json's newest `basis: "calculator"` entry for full detail.

@@ -1,6 +1,6 @@
 [
   {
-    "provider": "Title Insurance Rating Bureau of Pennsylvania (TIRBOP) — Manual of the Title Insurance Rating Bureau of Pennsylvania (REGULATORY/RATING-BUREAU-UNIFORM, not provider-set)",
+    "provider": "Title Insurance Rating Bureau of Pennsylvania (TIRBOP) \u2014 Manual of the Title Insurance Rating Bureau of Pennsylvania (REGULATORY/RATING-BUREAU-UNIFORM, not provider-set)",
     "sourceUrl": "https://patitleratingbureau.org/wp-content/uploads/2024/07/TIRBOP-Manual-FINAL-APPROVED-08-01-2024-4857-2336-2733-v2.pdf (current 08/01/24 manual, fetched and machine-read this session via PDF text extraction after WebFetch's native PDF parsing failed on garbled binary); cross-checked against the prior 04/01/23 vintage at https://patitleratingbureau.org/wp-content/uploads/2023/04/TIRBOP-Manual-FINAL-APPROVED-04-01-2023.pdf (identical Sale/Non-Sale/Approved-Attorney rate tables -- only endorsement-form additions changed between vintages, confirming the rate has been unchanged since at least 04/01/23) and against https://patitleratingbureau.org/pennsylvania-is-an-all-inclusive-rate-state/ and https://patitleratingbureau.org/other-allowable-charges/",
     "asOf": "Approved by the Pennsylvania Insurance Department, amended through 08/01/24; members list as of 08/01/24 includes 22 title insurers (Chicago Title, Commonwealth Land Title, Fidelity National, First American, Old Republic National, Stewart Title Guaranty, WFG National, Westcor, Doma, Alliant National, and others), all bound to the identical rate table",
     "settlementFee": {
@@ -295,7 +295,7 @@
     "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Philadelphia County, Pennsylvania."
   },
   {
-    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "provider": "WFG National Title Insurance Company \u2014 Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
     "basis": "calculator",
     "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
     "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
@@ -314,5 +314,44 @@
     "sectionTotals": "Owner's Title Insurance Premium $3,635.50",
     "bundlingNotes": "Discovered and solved 2026-08-08; applied here as a richness-pass 4th/5th calculator-basis provider for Pennsylvania (already at 3-4 providers via other tools) since no prior session had run this already-solved recipe against this state. Property location for this request: Philadelphia, Pennsylvania (Philadelphia County).",
     "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Philadelphia County, Pennsylvania."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company \u2014 second rate calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://oldrepublictitle.com/rate-calculator/?location=pennsylvania",
+    "calculatorUrl": "https://oldrepublictitle.com/rate-calculator/?location=pennsylvania",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (RateCalc.aspx?CallingApp=PUBLIC&Location=PA, redirects to a session-scoped (S(...)F(...))/RateCalc.aspx?...Location=37..., statewide, no county selector). GET the page with Referer https://oldrepublictitle.com/rate-calculator/?location=pennsylvania (capture __VIEWSTATE/__EVENTVALIDATION), POST __EVENTTARGET=ddlPolicyCategory value 127 (SIMULTANEOUS), POST __EVENTTARGET=ddlPolicyType1 value 10705 (OWNERS - STANDARD), POST __EVENTTARGET=ddlPolicyType2 value 10717 (LENDERS - STANDARD), then POST __EVENTTARGET=btnCalculate with txtLiabilityAmt=500000, txtCrLiabilityAmt=400000. Same Referer-header-throughout fix documented for NH/WV/MI; no personal data entered.",
+    "retrievalDate": "2026-08-21",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, statewide (no county selector in this tool), SIMULTANEOUS OWNERS-STANDARD/LENDERS-STANDARD policy category.",
+    "methodology": "Direct HTTP GET/POST against the ASP.NET WebForms postback mechanism (Python requests.Session()), no browser/JS execution. No personal data entered. Richness pass applying this project's already-solved Old Republic 2nd-tool recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": {
+      "note": "This tool prices title insurance premiums only -- no settlement/closing/escrow service-fee line items are itemized (same structural limitation observed for this tool's other state entries elsewhere in this project)."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "LENDERS - STANDARD, insured amount $400,000.00 -- Lenders-Only standalone premium",
+          "amount": "$2,735.00"
+        },
+        {
+          "name": "LENDERS - STANDARD, Owners+Lenders combined (simultaneous) premium",
+          "amount": "$0.00"
+        },
+        {
+          "name": "OWNERS - STANDARD, insured amount $500,000.00, Owners+Lenders combined premium",
+          "amount": "$3,305.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, standalone-lenders-only",
+          "amount": "$2,735.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, Owners+Lenders combined",
+          "amount": "$3,305.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Grand Total (Owners+Lenders combined $3,305.00 / Lenders-only standalone $2,735.00) is byte-identical to this state's already-on-file FNF entry (Grand Total $3,305.00) and Stewart entry (Owner's $3,305.00/Lender's $2,735.00) -- a 3-way convergence consistent with PA's TIRBOP bureau-promulgated rate structure, where every underwriter/tool must file the same rate.",
+    "transactionContext": "Simultaneous Owner's Standard + Lender's Standard policy, statewide Pennsylvania, purchase with financing."
   }
 ]
