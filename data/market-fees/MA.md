@@ -361,3 +361,7 @@ Richness pass per the 2026-08-19 session's own recommendation (check tracker cov
 
 - **Stewart Title Guaranty Company** (Stewart Rate Calculator, `stewartratecalculator.com`) — matched settlement office **Warr & Warr, PC**. Owner's Policy Premium **$2,125.00**, Lender's Policy Premium **$1,000.00**, 6 itemized settlement/closing-fee line item(s).
 - **WFG National Title Insurance Company** (Seller Net Sheet Rate Calculator, `rates.wfgnationaltitle.com`) — Owner's Title Insurance Premium **$2,375.00**, premium-only (no itemized settlement fee configured for this state in this tool).
+
+## Calculator harvest addendum (2026-08-21) — Old Republic's 2nd-tool richness pass
+
+Old Republic's second calculator (`ortratecalculator.oldrepublictitle.com`), statewide, SIMULTANEOUS LOAN & OWNERS STANDARD/BASIC: Grand Total Policy & Endorsement Premium — Owners+Lenders combined **$2,300.00** (Owner's $2,125.00 + $175.00 simultaneous surcharge), Lenders-only standalone **$1,000.00**. Owner's/Lender's figures are byte-identical to this state's already-on-file Stewart entry ($2,125.00/$1,000.00) — a strong convergence consistent with MA's promulgated rate structure. Premium-only, no settlement-fee itemization. 6th corroborating provider — MA rises to **calculator-quoted (6 providers)**. See MA.json's newest `basis: "calculator"` entry for full detail.

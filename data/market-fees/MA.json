@@ -131,7 +131,7 @@
   {
     "provider": "Stewart Title Guaranty Company",
     "sourceUrl": "https://public.stewart.com/vu/rate-book-massachusetts.pdf",
-    "asOf": "vintage circa 2021 (document copyright \"© 2021 Stewart\"; superseded by a newer 2025-09-15 Stewart MA rate manual per a secondary law-firm citation, but that later document could not itself be located/verified this session -- see MA.md)",
+    "asOf": "vintage circa 2021 (document copyright \"\u00a9 2021 Stewart\"; superseded by a newer 2025-09-15 Stewart MA rate manual per a secondary law-firm citation, but that later document could not itself be located/verified this session -- see MA.md)",
     "settlementFee": null,
     "itemizedFees": {
       "docPrep": null,
@@ -290,7 +290,7 @@
     "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Middlesex County, Massachusetts."
   },
   {
-    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "provider": "WFG National Title Insurance Company \u2014 Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
     "basis": "calculator",
     "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
     "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
@@ -309,5 +309,44 @@
     "sectionTotals": "Owner's Title Insurance Premium $2,375.00",
     "bundlingNotes": "Discovered and solved 2026-08-08; applied here as a richness-pass 4th/5th calculator-basis provider for Massachusetts (already at 3-4 providers via other tools) since no prior session had run this already-solved recipe against this state. Property location for this request: Cambridge, Massachusetts (Middlesex County).",
     "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Middlesex County, Massachusetts."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company \u2014 second rate calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://oldrepublictitle.com/rate-calculator/?location=massachusetts",
+    "calculatorUrl": "https://oldrepublictitle.com/rate-calculator/?location=massachusetts",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (RateCalc.aspx?CallingApp=PUBLIC&Location=MA, redirects to a session-scoped (S(...)F(...))/RateCalc.aspx?...Location=20..., statewide, no county selector). GET the page with Referer https://oldrepublictitle.com/rate-calculator/?location=massachusetts (capture __VIEWSTATE/__EVENTVALIDATION), POST __EVENTTARGET=ddlPolicyCategory value 3 (SIMULTANEOUS LOAN & OWNERS), POST __EVENTTARGET=ddlPolicyType1 value 6716 (STANDARD OWNERS), POST __EVENTTARGET=ddlPolicyType2 value 6720 (BASIC LOAN), then POST __EVENTTARGET=btnCalculate with txtLiabilityAmt=500000, txtCrLiabilityAmt=400000. Same Referer-header-throughout fix documented for NH/WV/MI/PA/NJ/VA/TN/MD/WI/MN; no personal data entered.",
+    "retrievalDate": "2026-08-21",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, statewide (no county selector in this tool), SIMULTANEOUS LOAN & OWNERS STANDARD/BASIC policy category.",
+    "methodology": "Direct HTTP GET/POST against the ASP.NET WebForms postback mechanism (Python requests.Session()), no browser/JS execution. No personal data entered. Richness pass applying this project's already-solved Old Republic 2nd-tool recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": {
+      "note": "This tool prices title insurance premiums only -- no settlement/closing/escrow service-fee line items are itemized (same structural limitation observed for this tool's other state entries elsewhere in this project)."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "BASIC LOAN, insured amount $400,000.00 -- Lenders-Only standalone premium",
+          "amount": "$1,000.00"
+        },
+        {
+          "name": "BASIC LOAN, Owners+Lenders combined (simultaneous) premium",
+          "amount": "$175.00"
+        },
+        {
+          "name": "STANDARD OWNERS, insured amount $500,000.00, Owners+Lenders combined premium",
+          "amount": "$2,125.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, standalone-lenders-only",
+          "amount": "$1,000.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, Owners+Lenders combined",
+          "amount": "$2,300.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Owner's $2,125.00/Lender's $1,000.00 are byte-identical to this state's already-on-file Stewart entry (Owner's $2,125.00/Lender's $1,000.00) -- a strong 2-way convergence consistent with MA's promulgated title insurance rate structure.",
+    "transactionContext": "Simultaneous Owner's Standard + Loan Basic policy, statewide Massachusetts, purchase with financing."
   }
 ]

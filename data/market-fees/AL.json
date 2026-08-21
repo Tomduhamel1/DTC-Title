@@ -232,7 +232,7 @@
     "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Jefferson County, Alabama."
   },
   {
-    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "provider": "WFG National Title Insurance Company \u2014 Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
     "basis": "calculator",
     "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
     "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
@@ -251,5 +251,44 @@
     "sectionTotals": "Owner's Title Insurance Premium $1,350.00",
     "bundlingNotes": "Discovered and solved 2026-08-08; applied here as a richness-pass 4th/5th calculator-basis provider for Alabama (already at 3-4 providers via other tools) since no prior session had run this already-solved recipe against this state. Property location for this request: Birmingham, Alabama (Jefferson County).",
     "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Jefferson County, Alabama."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company \u2014 second rate calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://oldrepublictitle.com/rate-calculator/?location=alabama",
+    "calculatorUrl": "https://ortratecalculator.oldrepublictitle.com/RateCalc.aspx?CallingApp=PUBLIC&Location=01",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app -- AL is this tool's outlier public pilot state, loading with no login gate at Location=01 (unlike most other numeric Location codes) and no county selector. GET the page (capture __VIEWSTATE/__EVENTVALIDATION), the RadPolicyCategory radio group defaults to HOME EQUITY (value 52) -- must explicitly POST __EVENTTARGET=ctl00$ContentPlaceHolder1$RadPolicyCategory$0 with RadPolicyCategory=49 (PURCHASE/SALE) to switch it, which reveals txtLiabilityAmt/txtCrLiabilityAmt directly (no separate policy-type dropdown), then POST __EVENTTARGET=btnCalculate with txtLiabilityAmt=500000, txtCrLiabilityAmt=400000. No Referer/NoBot gate encountered for this specific Location code. No personal data entered.",
+    "retrievalDate": "2026-08-21",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, statewide (no county selector in this tool), PURCHASE / SALE policy category.",
+    "methodology": "Direct HTTP GET/POST against the ASP.NET WebForms postback mechanism (Python requests.Session()), no browser/JS execution. No personal data entered. Richness pass applying this project's already-solved Old Republic 2nd-tool recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": {
+      "note": "This tool prices title insurance premiums only -- no settlement/closing/escrow service-fee line items are itemized (same structural limitation observed for this tool's other state entries elsewhere in this project)."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "LENDERS POLICY, insured amount $400,000.00 -- Lenders-Only standalone premium",
+          "amount": "$1,000.00"
+        },
+        {
+          "name": "LENDERS POLICY, Owners+Lenders combined (simultaneous) premium",
+          "amount": "$250.00"
+        },
+        {
+          "name": "OWNERS POLICY, insured amount $500,000.00, Owners+Lenders combined premium",
+          "amount": "$1,650.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, standalone-lenders-only",
+          "amount": "$1,000.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, Owners+Lenders combined",
+          "amount": "$1,900.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Lenders-Only standalone premium ($1,000.00) is byte-identical to this state's already-on-file Stewart entry's Lender's Policy Premium ($1,000.00); Owner's ($1,650.00) is close to Stewart's Owner's ($1,625.00) -- strong cross-underwriter convergence.",
+    "transactionContext": "Purchase/Sale simultaneous Owner's + Lender's policy, statewide Alabama, purchase with financing."
   }
 ]

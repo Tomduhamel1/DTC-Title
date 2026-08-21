@@ -158,3 +158,7 @@ Richness pass per the 2026-08-19 session's own recommendation (check tracker cov
 
 - **Stewart Title Guaranty Company** (Stewart Rate Calculator, `stewartratecalculator.com`) — matched settlement office **Maynard Nexsen PC**. Owner's Policy Premium **$1,625.00**, Lender's Policy Premium **$1,000.00**, premium-only (no itemized settlement fee returned).
 - **WFG National Title Insurance Company** (Seller Net Sheet Rate Calculator, `rates.wfgnationaltitle.com`) — Owner's Title Insurance Premium **$1,350.00**, premium-only (no itemized settlement fee configured for this state in this tool).
+
+## Calculator harvest addendum (2026-08-21) — Old Republic's 2nd-tool richness pass
+
+Old Republic's second calculator (`ortratecalculator.oldrepublictitle.com`) — AL is this tool's outlier public pilot state (`Location=01` loads with no login gate, unlike most other states on this tool), statewide, PURCHASE/SALE: Grand Total Policy & Endorsement Premium — Owners+Lenders combined **$1,900.00** (Owner's $1,650.00 + $250.00 simultaneous surcharge), Lenders-only standalone **$1,000.00** (byte-identical to this state's already-on-file Stewart Lender's figure). Premium-only, no settlement-fee itemization. 7th corroborating provider — AL stays at **calculator-quoted (7 providers)**. See AL.json's newest `basis: "calculator"` entry for full detail.

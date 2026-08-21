@@ -3579,3 +3579,78 @@ would likely be the next-highest-yield richness target; (2) TitleCapture/Qualia 
 highest-value jsOnly targets nationwide for a future browser-driven session, as does DC's server-
 disabled `btnFinish` control; (3) the freshness and blocked-source-retry passes should resume their
 normal rotation now that this session's richness push is wrapping up.
+
+## 2026-08-21 session — Old Republic's 2nd-tool richness pass: MI/PA/NJ/VA/TN/MD/WI/MN/AL/MA/IN each gain a corroborating provider; IN's durable NoBot block finally resolved
+
+Picked up the 2026-08-20 session's own top recommendation: apply Old Republic's second calculator
+(`ortratecalculator.oldrepublictitle.com`) to every already-crossed-threshold state that lacked an
+entry from it. Cross-referenced the Calculator harvest tracker table (PROGRESS.md) against every
+state's provider list to find candidates, then worked them highest-population-first: MI, PA, NJ,
+VA, TN, MD, WI, MN, AL, MA, IN (11 states this session).
+
+**Recipe (unchanged from the NH/WV-era session-affinity fix, applied consistently)**: GET
+`https://ortratecalculator.oldrepublictitle.com/RateCalc.aspx?CallingApp=PUBLIC&Location=<ST>` with
+`Referer: https://oldrepublictitle.com/rate-calculator/?location=<state-slug>` set on every request
+in one persistent `requests.Session()` (not a fresh connection per call); the response 302s to a
+session-scoped `(S(...)F(...))/RateCalc.aspx?...Location=<numeric-code>...` URL that must be reused
+for every subsequent POST. Each state's own form must be inspected fresh — this tool's field set
+varies meaningfully by state:
+- **County-list states** (MI, TN): `ddlCounty` appears first, own `__EVENTTARGET` postback, before
+  the policy-category cascade.
+- **Two-dropdown-cascade states** (PA, NJ, VA, MD, MA): `ddlPolicyCategory` (pick the SIMULTANEOUS
+  variant) reveals `ddlPolicyType1`(Owner's)/`ddlPolicyType2`(Lender's) dropdowns, each its own
+  postback, which finally reveal `txtLiabilityAmt`/`txtCrLiabilityAmt`.
+- **Radio-driven "PURCHASE/SALE" states** (TN, WI, MN): a `ddlPolicyCategory` or
+  `RadPolicyCategory` value of 49 reveals both liability fields directly with no separate
+  policy-type dropdown step — the same structural pattern already catalogued for LA earlier in this
+  project.
+- **AL is a genuine outlier**: the only state where `Location=01` loads with no login/NoBot gate at
+  all even without the Referer fix, but its `RadPolicyCategory` radio group **defaults to HOME
+  EQUITY (value 52), not PURCHASE/SALE** — naively reading "the checked radio's value" from the
+  first-loaded page and blindly re-POSTing every field back (this project's usual postback pattern)
+  silently submits the wrong category, since a plain `<input>`-scraping loop that doesn't check the
+  `checked` attribute picks up whichever radio button appears *last* in the HTML, not the one
+  actually selected. Must explicitly POST `__EVENTTARGET=ctl00$ContentPlaceHolder1$RadPolicyCategory$0`
+  with `RadPolicyCategory=49` to switch categories before the liability fields are usable — a new
+  gotcha for this catalog, worth checking for on any other state using the `RadPolicyCategory`
+  radio-group pattern (LA, MS) rather than assuming the visually-first option is what gets submitted.
+- **CO is genuinely login-gated on this tool** (`RateCalc.aspx?...Location=CO` redirects straight to
+  a `Login.aspx` page, not a NoBot rejection) — logged as `{gated: true}` in the tracker below and
+  not pursued further; consistent with CO's absence from this tool's `ortconline.com` sibling
+  product's `PropertyStateList` as well.
+- **IN's durable NoBot block (logged 2026-07-29, reconfirmed 2026-08-10) is resolved by the full
+  session-affinity fix.** Every session since 2026-08-19 flagged `Location=IN` as the top candidate
+  to retry with the fix found on WV, but none had actually done so until this session — confirmed
+  working cleanly on the first attempt. IN's form also returned a genuine non-premium **TIEFF Policy
+  Fee** (Indiana Title Insurance Enforcement Fund Fee) line item, a state-specific regulatory-fee
+  data point not seen on this tool's other state entries.
+
+**Results** (all premium-only, no settlement-service-fee itemization on this tool, consistent with
+its structural limitation elsewhere in this project) — Owner's/Lender's Grand Total premiums:
+MI $3,590.85 combined/$1,359.80 lenders-only (bundles a mandatory Homeowners Extended endorsement,
+a MI-specific quirk); PA $3,305.00/$2,735.00 (byte-identical 3-way convergence with FNF/Stewart,
+consistent with PA's TIRBOP bureau-promulgated rates); NJ $2,250.00/$1,800.00 (matches Stewart
+exactly); VA $2,297.50/$1,247.00 (matches Stewart exactly); TN $3,171.01/$2,455.01; MD
+$2,775.00/$1,355.00; WI $2,623.00/$1,873.00; MN $1,712.50/$1,125.00; AL $1,900.00/$1,000.00
+(Lenders-only figure matches Stewart exactly); MA $2,300.00/$1,000.00 (byte-identical to Stewart);
+IN $1,460.00/$380.00 plus the TIEFF fee noted above. Each state's own `.json` `basis: "calculator"`
+entry and `.md` addendum has the full itemization and per-state bundlingNotes. Every state gains a
+7th calculator-basis provider (MA and IN reached 6/7 respectively, having started one provider
+lower than the rest of this batch).
+
+**Not yet checked this session** (deferred to a future richness pass, in roughly population order):
+AR, NE, ME, ND, VT, WY, RI, DE, SD — all still lack an Old Republic 2nd-tool entry. CO is now
+confirmed permanently out of reach on this specific tool (login-gated); AK and DC remain out of
+scope per the standing task brief.
+
+**Follow-up check performed this session**: re-read LA's and MS's already-on-file Old Republic 2nd-
+tool entries to confirm the AL default-radio gotcha doesn't affect them. **Both are fine** — LA's
+`RadPolicyCategory=49` (PURCHASE/SALE) was already the page's own default-checked option (no
+mismatch), and MS's entry explicitly documents switching `RadPolicyCategory` from OWNERS to LOAN
+(value 2) for its second query, so neither relied on an unverified default. No correction needed to
+either state's existing data.
+
+**Recommendation for next session**: (1) continue the Old Republic 2nd-tool richness pass on the
+remaining 9 states listed above (AR/NE next by population, then the New England/Dakota small
+states); (2) the freshness and blocked-source-retry passes are due again next session, having been
+skipped this session in favor of the richness-pass breadth push.

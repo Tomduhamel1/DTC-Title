@@ -82,7 +82,7 @@
     "transactionContext": "Owner's and Loan title insurance premium plus dedicated refinance-rate schedules, statewide, by liability amount."
   },
   {
-    "provider": "Indiana Department of Insurance — Title Insurance Rate Comparison Tool (regulator-published spreadsheet)",
+    "provider": "Indiana Department of Insurance \u2014 Title Insurance Rate Comparison Tool (regulator-published spreadsheet)",
     "sourceUrl": "https://www.in.gov/idoi/files/Title-Insurance-Rating-Tool.xlsx",
     "asOf": "Retrieved 2026-07-22; per-insurer effective dates vary 2013-2026 as tabulated in the file",
     "settlementFee": {
@@ -104,7 +104,7 @@
     "transactionContext": "Owner's and Lender's title insurance premium, statewide, at standard liability tiers, per-insurer."
   },
   {
-    "provider": "Regional Land Title — Bloomington office (independent title/settlement company)",
+    "provider": "Regional Land Title \u2014 Bloomington office (independent title/settlement company)",
     "sourceUrl": "https://regionallandtitle.com/locations/bloomington/fees/",
     "asOf": "Retrieval date 2026-07-22 (no effective date stated on the page)",
     "settlementFee": {
@@ -159,7 +159,7 @@
     "transactionContext": "Purchase, refinance, and cash-sale settlement fee schedules, Bloomington / Monroe County office."
   },
   {
-    "provider": "Agency Title, Inc. — Indiana (New Albany office; serves the Louisville-metro/Southern Indiana market)",
+    "provider": "Agency Title, Inc. \u2014 Indiana (New Albany office; serves the Louisville-metro/Southern Indiana market)",
     "basis": "calculator",
     "calculatorUrl": "https://app.netsheetcalc.com/company/quickquote.php?appid=581",
     "endpoint": "GET https://app.netsheetcalc.com/company/non-auth-ajax.php?action=getAppData&app_id=581 -- NetSheetCalc/TitleTap white-label platform's public, unauthenticated 'Quick Quote (No sign in needed)' JSON API; no personal data required or entered.",
@@ -305,7 +305,7 @@
     "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Marion County, Indiana."
   },
   {
-    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "provider": "WFG National Title Insurance Company \u2014 Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
     "basis": "calculator",
     "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
     "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
@@ -329,5 +329,60 @@
     "sectionTotals": "Owner's Title Insurance Premium $1,470.70; itemized fees sum $25.00",
     "bundlingNotes": "Discovered and solved 2026-08-08; applied here as a richness-pass 4th/5th calculator-basis provider for Indiana (already at 3-4 providers via other tools) since no prior session had run this already-solved recipe against this state. Property location for this request: Indianapolis, Indiana (Marion County).",
     "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Marion County, Indiana."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company \u2014 second rate calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://oldrepublictitle.com/rate-calculator/?location=indiana",
+    "calculatorUrl": "https://oldrepublictitle.com/rate-calculator/?location=indiana",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (RateCalc.aspx?CallingApp=PUBLIC&Location=IN, redirects to a session-scoped (S(...)F(...))/RateCalc.aspx?...Location=13..., statewide, no county selector). Previously durably NoBot-blocked (2026-07-29/2026-08-10 sessions, bare-URL-per-request technique) -- this session confirms the full session-affinity fix (persistent requests.Session(), Referer https://oldrepublictitle.com/rate-calculator/?location=indiana held throughout) resolves it, as prior sessions had predicted but never actually retried. GET the page (capture __VIEWSTATE/__EVENTVALIDATION), POST __EVENTTARGET=ddlPolicyCategory value 5 (SIMULTANEOUS LOAN & OWNERS), POST __EVENTTARGET=ddlPolicyType1 value 12318 (OWNERS - BASIC), POST __EVENTTARGET=ddlPolicyType2 value 12335 (SIMULTANEOUS LOAN), then POST __EVENTTARGET=btnCalculate with txtLiabilityAmt=500000, txtCrLiabilityAmt=400000. No personal data entered.",
+    "retrievalDate": "2026-08-21",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, statewide (no county selector in this tool), SIMULTANEOUS LOAN & OWNERS BASIC policy category.",
+    "methodology": "Direct HTTP GET/POST against the ASP.NET WebForms postback mechanism (Python requests.Session()), no browser/JS execution. No personal data entered. Richness pass applying this project's already-solved Old Republic 2nd-tool recipe (full session-affinity variant) to a state that had already crossed the 3-provider calculator-quoted threshold via other providers and was previously logged as durably blocked on this specific tool.",
+    "settlementFee": {
+      "note": "This tool prices title insurance premiums only -- no settlement/closing/escrow service-fee line items are itemized -- but it does return a genuine non-premium regulatory fee line item for IN (TIEFF Policy Fee, see itemizedFees below), a data point not seen on this tool's other state entries."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "SIMULTANEOUS LOAN, insured amount $400,000.00 -- Lenders-Only standalone premium",
+          "amount": "$380.00"
+        },
+        {
+          "name": "SIMULTANEOUS LOAN, Owners+Lenders combined (simultaneous) premium",
+          "amount": "$120.00"
+        },
+        {
+          "name": "OWNERS - BASIC, insured amount $500,000.00, Owners+Lenders combined premium",
+          "amount": "$1,340.00"
+        },
+        {
+          "name": "TIEFF Policy Fee (Indiana Title Insurance Enforcement Fund Fee), Lenders-Only standalone",
+          "amount": "$5.00"
+        },
+        {
+          "name": "TIEFF Policy Fee (Indiana Title Insurance Enforcement Fund Fee), Owners+Lenders combined",
+          "amount": "$10.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, standalone-lenders-only",
+          "amount": "$380.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, Owners+Lenders combined",
+          "amount": "$1,460.00"
+        },
+        {
+          "name": "Total Premium & Endorsement & Fees/Taxes, standalone-lenders-only",
+          "amount": "$385.00"
+        },
+        {
+          "name": "Total Premium & Endorsement & Fees/Taxes, Owners+Lenders combined",
+          "amount": "$1,470.00"
+        }
+      ]
+    },
+    "bundlingNotes": "This state's Location=IN was durably logged as NoBot-blocked across the 2026-07-29 and 2026-08-10 sessions (before the WV session's session-affinity root-cause finding on 2026-08-19); every subsequent session flagged it as the top candidate to retry with the full fix but none actually did until this session -- confirmed the full fix resolves it. Owner's $1,340.00/Lender's $380.00 (pre-fee premiums) are in the same range as, but lower than, this state's already-on-file Stewart entry (Owner's $1,357.50/Lender's $392.50) -- genuine cross-underwriter market variation.",
+    "transactionContext": "Simultaneous Owner's Basic + Loan policy plus TIEFF regulatory fee, statewide Indiana, purchase with financing."
   }
 ]
