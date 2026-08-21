@@ -3,7 +3,7 @@
     "provider": "Stewart Title Guaranty Company",
     "sourceUrl": "http://go.stewart.com/rs/067-YWO-436/images/Tennessee%20Rate%20Manual%20FINAL.pdf",
     "asOf": "2022-02-04 (Last Updated)",
-    "settlementFee": "NOT SEPARATELY DISCLOSED as a distinct line — Montgomery/Rutherford/Sumner/Williamson (Schedule A), Hamilton (B), Knox (C), and Davidson (G) counties use an \"All-Inclusive Charge\": \"The foregoing charges include the cost for the title search or abstract, title examination and title insurance.\" Shelby County (Schedule D) uses a \"Modified All-Inclusive Charge\" that includes title examination and title insurance but excludes abstracts (billed separately per Schedule D-1).",
+    "settlementFee": "NOT SEPARATELY DISCLOSED as a distinct line \u2014 Montgomery/Rutherford/Sumner/Williamson (Schedule A), Hamilton (B), Knox (C), and Davidson (G) counties use an \"All-Inclusive Charge\": \"The foregoing charges include the cost for the title search or abstract, title examination and title insurance.\" Shelby County (Schedule D) uses a \"Modified All-Inclusive Charge\" that includes title examination and title insurance but excludes abstracts (billed separately per Schedule D-1).",
     "itemizedFees": {
       "docPrep": null,
       "processing": null,
@@ -27,14 +27,14 @@
         "Modification Guarantee: $150 (+$25/continuation or down-date)"
       ]
     },
-    "bundlingNotes": "Tennessee's \"All-Inclusive Rate\" structure (Dept. of Commerce & Insurance Rule 0780-1-12) is unique among states surveyed: in 4 of TN's largest counties (Montgomery, Rutherford, Sumner, Williamson, plus Hamilton, Knox, and Davidson), the FILED PREMIUM ITSELF legally includes title search/abstract and examination — the opposite of the GA/VA/CA pattern where premiums explicitly exclude search/exam/settlement services. Shelby County uses a middle-ground \"Modified All-Inclusive\" that folds in exam but not abstracts. Only the remaining ~87 rural counties (Schedule E) use a traditional \"risk rate\" that excludes search/exam/closing entirely.",
+    "bundlingNotes": "Tennessee's \"All-Inclusive Rate\" structure (Dept. of Commerce & Insurance Rule 0780-1-12) is unique among states surveyed: in 4 of TN's largest counties (Montgomery, Rutherford, Sumner, Williamson, plus Hamilton, Knox, and Davidson), the FILED PREMIUM ITSELF legally includes title search/abstract and examination \u2014 the opposite of the GA/VA/CA pattern where premiums explicitly exclude search/exam/settlement services. Shelby County uses a middle-ground \"Modified All-Inclusive\" that folds in exam but not abstracts. Only the remaining ~87 rural counties (Schedule E) use a traditional \"risk rate\" that excludes search/exam/closing entirely.",
     "transactionContext": "Statewide TN, county-schedule-specific (8 named counties get bespoke schedules; ~87 remaining counties share Schedule E); covers purchase, refinance, and construction/simultaneous-issue transactions."
   },
   {
     "provider": "First National Title Insurance Company (FNTI)",
     "sourceUrl": "http://documentpub.fnti.com/Documents/Tennessee/Rate%20Manual/FNTI%20Tennessee%20Rate%20Manual%20_Clean_Eff.%2005.27.2024.pdf",
     "asOf": "2024-05-27",
-    "settlementFee": "NOT SEPARATELY DISCLOSED — same All-Inclusive structure as Stewart: Montgomery/Rutherford/Sumner/Williamson (Ch.1), Hamilton/Knox (Ch.2), and Davidson (Ch.3, abstract fees excepted) counties have \"All-Inclusive Rates... includes the abstracting, search and examination\" per Dept. of Commerce and Insurance Rule 0780-1-12-.01(2). Shelby County (Ch.4) same pattern, abstract fees excepted. All-other-counties (Ch.5) use a pure \"risk rate\" explicitly excluding \"fees or charges for abstracts of title, title searches, attorney's fees, escrow or closing-related services charged locally by abstracters, attorneys, and title companies.\"",
+    "settlementFee": "NOT SEPARATELY DISCLOSED \u2014 same All-Inclusive structure as Stewart: Montgomery/Rutherford/Sumner/Williamson (Ch.1), Hamilton/Knox (Ch.2), and Davidson (Ch.3, abstract fees excepted) counties have \"All-Inclusive Rates... includes the abstracting, search and examination\" per Dept. of Commerce and Insurance Rule 0780-1-12-.01(2). Shelby County (Ch.4) same pattern, abstract fees excepted. All-other-counties (Ch.5) use a pure \"risk rate\" explicitly excluding \"fees or charges for abstracts of title, title searches, attorney's fees, escrow or closing-related services charged locally by abstracters, attorneys, and title companies.\"",
     "itemizedFees": {
       "docPrep": null,
       "processing": null,
@@ -54,10 +54,10 @@
         "Expedited Refinance Rate (centralized processing): $300 (up to $250k) to $860 ($1.25M-$1.5M); Qualified Bundled Refinance: $355-$1,000",
         "Simultaneous owner's/loan: loan policy flat $200",
         "Master Home Equity Loan Policy: $45 (up to $250k) / $75 ($250k-$500k)",
-        "CPL fee tiers separately published by liability amount: $550 ($0-$100k) up to $1,450 ($900k-$1M) — appears to be a distinct bulk/aggregate CPL schedule alongside the flat $50/letter rate"
+        "CPL fee tiers separately published by liability amount: $550 ($0-$100k) up to $1,450 ($900k-$1M) \u2014 appears to be a distinct bulk/aggregate CPL schedule alongside the flat $50/letter rate"
       ]
     },
-    "bundlingNotes": "Independently corroborates Stewart's finding that TN's largest-metro counties (Montgomery, Rutherford, Sumner, Williamson, Hamilton, Knox, Davidson, Shelby) file All-Inclusive premiums bundling search/exam into the title charge, while the ~87 remaining counties use a pure risk-rate model excluding all service charges — FNTI's Chapter 5 boilerplate is the most explicit statement found in any state of which services a risk-rate premium excludes (\"abstracts of title, title searches, attorney's fees, escrow or closing-related services charged locally\").",
+    "bundlingNotes": "Independently corroborates Stewart's finding that TN's largest-metro counties (Montgomery, Rutherford, Sumner, Williamson, Hamilton, Knox, Davidson, Shelby) file All-Inclusive premiums bundling search/exam into the title charge, while the ~87 remaining counties use a pure risk-rate model excluding all service charges \u2014 FNTI's Chapter 5 boilerplate is the most explicit statement found in any state of which services a risk-rate premium excludes (\"abstracts of title, title searches, attorney's fees, escrow or closing-related services charged locally\").",
     "transactionContext": "Statewide TN, identical 5-chapter county-grouping structure to Stewart's manual (confirming both underwriters file under the same TN regulatory county-tier scheme); full county-code appendix included (95 counties)."
   },
   {
@@ -82,13 +82,13 @@
     "transactionContext": "Nashville-area residential closings; single flat closing fee figure, transaction type not specified."
   },
   {
-    "provider": "Tennessee Title Services, LLC (independent title/settlement agency, Middle Tennessee — Brentwood office used for the standard scenario)",
+    "provider": "Tennessee Title Services, LLC (independent title/settlement agency, Middle Tennessee \u2014 Brentwood office used for the standard scenario)",
     "basis": "calculator",
     "sourceUrl": "https://www.tennesseetitle.com/calculator.html",
     "calculatorUrl": "https://www.tennesseetitle.com/calculator/calc.php",
     "endpointOrParams": "First-party HTML form (id=\"calculator\") embedded directly on the company's own site (not an iframe from a third-party platform), whose \"Submit\" click handler (in calculator/js/calculator.js) POSTs plain form-urlencoded fields directly to calculator/calculator.php: type=PURCHASE, purchasePrice=500000, loanAmount=400000, numMortgages=0, dwr=1 (\"Is the property in Davidson, Williamson or Rutherford County?\" Yes), davidson=1 (property is in Davidson County specifically), tn=1 (property is in Tennessee), buyer=1 (a payer-perspective toggle; confirmed the returned fee list is identical whether buyer=1 or buyer=0), location=Brentwood (nearest of the tool's own office dropdown values to Davidson County -- the office list itself has no Nashville/Davidson entry, but the dwr/davidson flags apply the correct county-specific pricing regardless of which office location is selected). Returns JSON directly, no HTML parsing needed.",
     "retrievalDate": "2026-07-28",
-    "scenario": "$500,000 purchase price / $400,000 loan amount, Purchase transaction, Davidson County (Nashville — TN's most populous county).",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Purchase transaction, Davidson County (Nashville \u2014 TN's most populous county).",
     "methodology": "No personal data fields exist anywhere in this flow -- the only optional 'email your results' feature is a separate button/endpoint (calc-email.php) not used here. All fields are plain scenario parameters (price, loan amount, county flags).",
     "itemizedFees": {
       "settlementClosing": "Settlement Fee $595.00",
@@ -136,7 +136,7 @@
     "calculatorUrl": "https://app.signaturetitleservices.net/PurchaseCalculator",
     "endpointOrParams": "Classic ASP.NET WebForms postback app (same __VIEWSTATE/__VIEWSTATEGENERATOR/__EVENTVALIDATION pattern as FNF/Old Republic/Federal Title/Knight Barry, already documented elsewhere in this catalog), driven with a single GET (capture hidden fields) then one POST (no intermediate postbacks needed -- all fields are already present on the initial page, no cascading dropdowns to trigger). POST fields: ctl00$MainContent$DD_Property_County=Davidson, ctl00$MainContent$TxtOwnerPolicyAmt=500000 (purchase price), ctl00$MainContent$txtLoanPolicyAmt=400000 (loan amount), ctl00$MainContent$Reissue=RadioButton2 (No -- standard purchase, not a reissue rate), ctl00$MainContent$DD_LP_Type=Basic Rate, ctl00$MainContent$txtDeedPgs=4, ctl00$MainContent$txtPgs1=25 (1st mortgage page count), ctl00$MainContent$txtPgs2=0 (no 2nd mortgage), ctl00$MainContent$btnCalc=Calculate.",
     "retrievalDate": "2026-07-28",
-    "scenario": "$500,000 purchase price / $400,000 loan amount, Basic Rate (non-reissue), Davidson County (Nashville — TN's most populous county), 4-page deed + 25-page 1st mortgage (the form's own defaults for page-count fields).",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Basic Rate (non-reissue), Davidson County (Nashville \u2014 TN's most populous county), 4-page deed + 25-page 1st mortgage (the form's own defaults for page-count fields).",
     "methodology": "No personal data fields exist anywhere in this form -- every field is a plain scenario parameter (county, price, loan amount, rate type, document page counts for recording-fee calculation). No login/registration required.",
     "itemizedFees": {
       "settlementClosing": "Buyer's Settlement Fee $595.00",
@@ -297,7 +297,7 @@
     "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Davidson County, Tennessee."
   },
   {
-    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "provider": "WFG National Title Insurance Company \u2014 Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
     "basis": "calculator",
     "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
     "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
@@ -316,5 +316,44 @@
     "sectionTotals": "Owner's Title Insurance Premium $3,484.00",
     "bundlingNotes": "Discovered and solved 2026-08-08; applied here as a richness-pass 4th/5th calculator-basis provider for Tennessee (already at 3-4 providers via other tools) since no prior session had run this already-solved recipe against this state. Property location for this request: Nashville, Tennessee (Davidson County).",
     "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Davidson County, Tennessee."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company \u2014 second rate calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://oldrepublictitle.com/rate-calculator/?location=tennessee",
+    "calculatorUrl": "https://oldrepublictitle.com/rate-calculator/?location=tennessee",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (RateCalc.aspx?CallingApp=PUBLIC&Location=TN, redirects to a session-scoped (S(...)F(...))/RateCalc.aspx?...Location=41...). GET the page with Referer https://oldrepublictitle.com/rate-calculator/?location=tennessee (capture __VIEWSTATE/__EVENTVALIDATION), POST __EVENTTARGET=ddlCounty value 037 (DAVIDSON), POST __EVENTTARGET=ddlPolicyCategory value 49 (PURCHASE / SALE -- reveals both txtLiabilityAmt/txtCrLiabilityAmt directly, no separate policy-type dropdown for this state), then POST __EVENTTARGET=btnCalculate with txtLiabilityAmt=500000, txtCrLiabilityAmt=400000. Same Referer-header-throughout fix documented for NH/WV/MI/PA/NJ/VA; no personal data entered.",
+    "retrievalDate": "2026-08-21",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Davidson County (Nashville), PURCHASE / SALE policy category.",
+    "methodology": "Direct HTTP GET/POST against the ASP.NET WebForms postback mechanism (Python requests.Session()), no browser/JS execution. No personal data entered. Richness pass applying this project's already-solved Old Republic 2nd-tool recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": {
+      "note": "This tool prices title insurance premiums only -- no settlement/closing/escrow service-fee line items are itemized (same structural limitation observed for this tool's other state entries elsewhere in this project)."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "LENDERS POLICY, insured amount $400,000.00 -- Lenders-Only standalone premium",
+          "amount": "$2,455.01"
+        },
+        {
+          "name": "LENDERS POLICY, Owners+Lenders combined (simultaneous) premium",
+          "amount": "$200.00"
+        },
+        {
+          "name": "OWNERS POLICY, insured amount $500,000.00, Owners+Lenders combined premium",
+          "amount": "$2,971.01"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, standalone-lenders-only",
+          "amount": "$2,455.01"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, Owners+Lenders combined",
+          "amount": "$3,171.01"
+        }
+      ]
+    },
+    "bundlingNotes": "Owner's $2,971.01/Lender's $2,455.01 are in the same range as, but not identical to, this state's already-on-file Stewart entry (Owner's $3,104.69/Lender's $2,565.69) -- genuine cross-underwriter market variation rather than a fetch error, consistent with TN's non-promulgated (filed-rate) market structure.",
+    "transactionContext": "Purchase/Sale simultaneous Owner's + Lender's policy, Davidson County (Nashville) Tennessee, purchase with financing."
   }
 ]

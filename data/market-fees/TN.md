@@ -181,3 +181,7 @@ Richness pass per the 2026-08-19 session's own recommendation (check tracker cov
 
 - **Stewart Title Guaranty Company** (Stewart Rate Calculator, `stewartratecalculator.com`) — matched settlement office **Cindy S. Smith, P.C./Central Title, LLC**. Owner's Policy Premium **$3,104.69**, Lender's Policy Premium **$2,565.69**, 4 itemized settlement/closing-fee line item(s).
 - **WFG National Title Insurance Company** (Seller Net Sheet Rate Calculator, `rates.wfgnationaltitle.com`) — Owner's Title Insurance Premium **$3,484.00**, premium-only (no itemized settlement fee configured for this state in this tool).
+
+## Calculator harvest addendum (2026-08-21) — Old Republic's 2nd-tool richness pass
+
+Old Republic's second calculator (`ortratecalculator.oldrepublictitle.com`), Davidson County (Nashville), PURCHASE/SALE: Grand Total Policy & Endorsement Premium — Owners+Lenders combined **$3,171.01** (Owner's $2,971.01 + $200.00 simultaneous surcharge), Lenders-only standalone **$2,455.01**. In the same range as, but not identical to, this state's already-on-file Stewart entry ($3,104.69/$2,565.69) — genuine cross-underwriter market variation, consistent with TN's non-promulgated market. Premium-only, no settlement-fee itemization. 7th corroborating provider — TN stays at **calculator-quoted (7 providers)**. See TN.json's newest `basis: "calculator"` entry for full detail.
