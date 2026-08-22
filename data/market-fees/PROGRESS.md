@@ -2966,3 +2966,58 @@ once (start a 2nd pass on the states checked earliest); (2) TitleCapture/Qualia 
 highest-value jsOnly targets nationwide for a future browser-driven session, as does DC's
 server-disabled `btnFinish` control; (3) AK and DC remain genuinely exhausted for stateless-HTTP
 technique — no further time should be spent on either without a fundamentally new idea.
+
+## 2026-08-22 session — calculator-harvest priority-1 confirmed fully saturated (36/36 in-scope
+scarce states already calculator-quoted); one new-platform lead chased to a dead end; freshness +
+blocked-retry passes clean, no changes
+
+Before doing any harvesting, cross-checked the full 51-row published-schedule completion table
+against the calculator-harvest tracker's state list to verify the standing claim that no
+"complete (scarce)"/"complete (scarce market)" state remains below the 3-provider calculator
+threshold. Result: **all 36 in-scope scarce/scarce-market states** (CO, AZ, VA, TN, MI, MO, AL, AR,
+CT, HI, IN, KY, LA, ME, MD, MA, MN, MS, NE, NV, NH, ND, OR, RI, SC, SD, UT, VT, WV, WI, WY, NM, PA,
+NJ, OH, DE) **already carry `calculator-quoted` status**, every one with 4-7 providers on file — an
+exact 1:1 match, confirming the 2026-08-21 session's own note that the Old Republic 2nd-tool pass
+closed out the last gap. AK/DC remain out of scope per the standing task brief. **No new harvests
+were performed this session** — there is genuinely nothing left to harvest via the recipes already
+in hand.
+
+**New-platform search (bonus, since priority 1 had no open work):** searched for a calculator
+platform not yet in CALCULATORS.md's catalog. Found Investors Title Insurance Company
+(`invtitle.com/calculator`) and its affiliate National Investors Title Insurance Company
+(`nititle.com/calculator`) — both marketed as having their own rate calculators. Fetched both pages
+directly: neither serves a first-party HTML form or discoverable JSON endpoint. `invtitle.com`'s
+calculator link resolves to `invtitle.titlecapture.com/title-quote-uw` — i.e. this "calculator" is
+just another TitleCapture tenant, the platform already catalogued nationwide as the top jsOnly
+target requiring a browser-driven session. `nititle.com/calculator` is a client-side-rendered page
+with no server-rendered form and no `<iframe>`/API reference found in its static HTML (likely the
+same TitleCapture backend, unconfirmed without a browser). Logged in CALCULATORS.md as a dead end
+for stateless-HTTP purposes — not a new independent recipe, just another entry point into the
+already-known jsOnly queue. No further new-platform search was attempted this session; per every
+prior session's own conclusion, growth beyond the current 36-state saturation now depends on a
+browser-driven session for TitleCapture/Qualia Connect, not a new stateless technique.
+
+**Freshness spot-check** (5 oldest-retrieved sources — the very first freshness-rotation batch ever
+run, at the start of the round-1 cycle that just closed out on 2026-08-21: AZ/Pioneer Title Agency's
+First American-Maricopa PDF, DC/Federal Title fees page, DC/Avenue Settlements fees page, DE/Lem &
+Associates FAQ page, CT/Yona Law closings page): 4 of 5 returned a clean HTTP 200. AZ/Pioneer Title
+Agency's PDF continues to return **HTTP 202 with a redirect to `/.well-known/sgcaptcha/`**
+(SG-Firewall bot-challenge interstitial), unchanged from the last time this exact source was
+checked — still not marked `{stale: true}`, consistent with this project's standing rule of not
+flagging a bot-gate as a dead link. This begins round 2 of the freshness rotation now that every
+state has had at least one round-1 check.
+
+**Blocked-source retries**: AZ DIFI (`difi.az.gov/title-insurance-rate-filings`) still HTTP 403,
+unchanged across every session checked. CATIC CT (`catic.com/state-resources/connecticut`) HTTP 200
+this run, continuing its established fluctuating-block pattern. Jackson & Scott AL
+(`realestatelclosings.com/closing-costs-calculator/`) still HTTP 403, consistent WAF block. No
+status changes on any of the three.
+
+**Next session priority**: (1) priority-1 calculator harvest has no remaining stateless-HTTP work —
+do not re-attempt it without a genuinely new platform idea (this session's Investors
+Title/National Investors Title lead did not pan out); (2) continue the freshness rotation's round 2,
+picking up from the next-oldest batch after this session's AZ/DC/DC/DE/CT recheck (VA was the next
+round-1 batch chronologically, so it is the next round-2 target); (3) TitleCapture/Qualia Connect
+remain the highest-value jsOnly targets nationwide for a future browser-driven session, as does DC's
+server-disabled `btnFinish` control; (4) AK and DC remain genuinely exhausted for stateless-HTTP
+technique — no further time should be spent on either without a fundamentally new idea.

@@ -3687,3 +3687,35 @@ blocked-source-retry passes are due again next session, having been skipped this
 of the richness-pass breadth push; (3) TitleCapture/Qualia Connect remain the highest-value jsOnly
 targets nationwide for a future browser-driven session, as does DC's server-disabled `btnFinish`
 control.
+
+## 2026-08-22 session — new-platform search dead end: Investors Title / National Investors Title
+both route to TitleCapture
+
+Confirmed via the PROGRESS.md tracker that all 36 in-scope scarce/scarce-market states already carry
+`calculator-quoted` status (4-7 providers each) — no state has any open priority-1 work on the
+recipes already in hand. Searched for a genuinely new calculator platform to check whether any
+further stateless-HTTP growth is possible.
+
+**Investors Title Insurance Company** (`invtitle.com/calculator`) and its affiliate **National
+Investors Title Insurance Company** (`nititite.com` — correct domain `nititle.com/calculator`) both
+advertise their own rate calculators (both companies are part of the same NC-headquartered
+corporate family, primarily serving the southeast/mid-Atlantic). Fetched both calculator pages
+directly via plain GET:
+- `invtitle.com/calculator` is a static Drupal marketing page whose actual "Calculate" call to
+  action links out to **`invtitle.titlecapture.com/title-quote-uw`** — i.e. this is just another
+  TitleCapture tenant, not an independent recipe. TitleCapture is already this project's
+  top-priority jsOnly target nationwide; this is one more entry point into that same queue, not a
+  new platform.
+- `nititle.com/calculator` is also Drupal-served but the calculator itself renders client-side with
+  no server-rendered `<form>`, no `<iframe>`, and no API endpoint reference visible in the static
+  HTML — consistent with (but not confirmed as) the same TitleCapture backend used by its sister
+  company. Not stateless-drivable either way.
+
+**Conclusion: no new independent stateless-HTTP recipe found this session.** Both leads terminate
+in the already-catalogued TitleCapture jsOnly queue. Confirms the standing conclusion from every
+recent session: further calculator-harvest growth beyond the current 36-state saturation requires a
+browser-driven session for TitleCapture/Qualia Connect, not a new plain-HTTP technique. Do not
+re-search for "new platforms" in a future stateless-HTTP session without a specific new lead in
+hand — the obvious candidates (independent regional underwriters with their own branded
+"calculator" page) have converged on the same handful of white-label SaaS backends already
+documented here.
