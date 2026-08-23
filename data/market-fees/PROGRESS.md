@@ -3021,3 +3021,74 @@ round-1 batch chronologically, so it is the next round-2 target); (3) TitleCaptu
 remain the highest-value jsOnly targets nationwide for a future browser-driven session, as does DC's
 server-disabled `btnFinish` control; (4) AK and DC remain genuinely exhausted for stateless-HTTP
 technique — no further time should be spent on either without a fundamentally new idea.
+
+## 2026-08-23 session — freshness rotation round 2 continued (VA + 10 more states, 15 sources, all
+clean); new-platform search dead end (TitleThrive/Land Title AL/Orange Coast CA); blocked-retry pass
+clean; no new calculator harvests (priority-1 remains fully saturated)
+
+Confirmed at session start (re-checking the tracker table against the 51-row published-schedule
+completion table) that priority-1 calculator-harvest saturation is unchanged from 2026-08-22: all
+36 in-scope scarce/scarce-market states still carry `calculator-quoted` status. No harvesting was
+attempted against already-saturated states' known recipes, per the standing instruction.
+
+**New-platform search (bounded, ~15 min)**: see CALCULATORS.md's parallel 2026-08-23 entry for full
+detail. `titlethrive.com` turned up as a website-platform vendor whose calculator is bundled into
+each tenant's site rather than a single API — not yet resolvable to a specific recipe without
+checking individual tenant sites (one very-low-confidence lead, `vgtitle.com`, noted but not
+pursued further this session). Two other leads from the same search — Land Title Company of Alabama
+(`land-title.net/rate-calculator/`) and Orange Coast Title (`octitle.com/rates.asp`, CA) — were
+checked directly and both dead-ended: the former is a client-side JS widget with no discoverable
+backend endpoint (confirmed jsOnly by a quick source grep, no `/api/` or `fetch(...)` call found);
+the latter is JS-rendered and explicitly requires login for any net-sheet output beyond the bare
+premium toggle, a hard stop per the no-fabricated-credentials rule. **No new calculator harvest
+performed** — both leads terminate before reaching harvestable content.
+
+**Freshness rotation, round 2 continued.** Per the 2026-08-22 session's own note, VA was next in
+round-1 chronological order; continued from there through the next two round-1 batches (batches 3
+and 4, ID/IA/ME/MT/ND and CO/TN/WI/AL/AR), covering 15 individual source URLs across 11 states with
+a plain HTTP GET and a standard browser `User-Agent`:
+
+- **VA** (5 sources — Republic Title fees page, Stewart VA rate manual PDF via
+  virtualunderwriter.com, Federal Title fees page, Lighthouse Title Seller PDF via federaltitle.com,
+  WFG VA rate manual PDF): 4 of 5 clean HTTP 200. The Lighthouse Title PDF again returned HTTP 403
+  (`federaltitle.com/wp-content/uploads/2011/02/Seller.Lighthouse-Title.VA_.pdf`) — same
+  Vercel-hosting bot-mitigation block first flagged in this source's own prior round-1 check (2026-08-09
+  entry above), now confirmed persistent across a 2nd check. Consistent with this project's standing
+  convention for fluctuating WAF/bot-gate blocks, **not** marked `{stale: true}` — flagged again here
+  for continued monitoring in case a 3rd consecutive block should tip it into `{stale: true}`.
+- **ID/IA/ME/MT/ND** (1 source each — Idaho DOI short-term escrow rates page, Iowa Opportunity
+  portal ITG rate schedule PDF, WFG Maine rate manual PDF, Stewart Montana rate manual PDF via
+  virtualunderwriter.com, Stewart North Dakota rate manual PDF via virtualunderwriter.com): **5 of 5
+  clean HTTP 200.**
+- **CO/TN/WI/AL/AR** (1 source each — Empire Title of Colorado Springs rate flyer PDF, Stewart
+  Tennessee rate manual PDF via go.stewart.com, Advocus National Title (ATGF) WI rate filing PDF,
+  WFG Alabama rate manual PDF, Stewart Arkansas rate manual PDF via go.stewart.com): **5 of 5 clean
+  HTTP 200.**
+
+**Net result: 14 of 15 sources confirmed live, 1 unchanged known WAF-block (not stale).** No new
+`{stale: true}` flags this session. Round 2 has now covered (in order): AZ/DC/DC/DE/CT (2026-08-22)
+and VA + ID/IA/ME/MT/ND + CO/TN/WI/AL/AR (this session) — 16 states across 2 sessions of round 2's
+recheck pass.
+
+**Blocked-source retries** (one quick check each, per the standing rotation): AZ DIFI
+(`difi.az.gov/title-insurance-rate-filings`) still HTTP 403, unchanged across every session checked.
+CATIC CT (`catic.com/state-resources/connecticut`) HTTP 200 this run, continuing its established
+fluctuating-block pattern. Jackson & Scott AL (`realestatelclosings.com/closing-costs-calculator/`)
+still HTTP 403, consistent WAF block. No status changes on any of the three.
+
+**Next session priority**: (1) continue freshness rotation round 2 from the next round-1 batch
+chronologically after CO/TN/WI/AL/AR — per the round-1 order reconstructed from this file's dated
+entries, the next batches are: NH/WV/ME/ND/AK/DC (2026-08-18, 5-state Stewart-manual batch),
+IN/NH/MD/MI/NJ (2026-08-19), LA/NY/PA/SD/TX (2026-08-20), then NM/NV/OH/OR/WV (2026-08-21) — verify
+exact source URLs the same way this session did (via each state's own `.json` published-schedule
+entries) rather than assuming; (2) priority-1 calculator-harvest remains fully saturated — no
+further time should go to re-harvesting known recipes against already-4+-provider states without a
+genuinely new lead; (3) the VA/Lighthouse Title PDF has now shown 2 consecutive WAF blocks across
+its 2 checks — worth a 3rd check next round before considering `{stale: true}`; (4) TitleThrive
+remains a very-low-confidence open lead if a future session wants to spend real time on it — start
+by finding several live TitleThrive-tenant agency sites (Vanguard Title's
+`vgtitle.com/resources/rate-calculator/` is one) and checking each for a plain form/endpoint rather
+than assuming jsOnly from the vendor's own marketing page alone; (5) TitleCapture/Qualia Connect
+remain the highest-value jsOnly targets nationwide for a future browser-driven session, as does DC's
+server-disabled `btnFinish` control; AK and DC remain genuinely exhausted for stateless-HTTP
+technique.

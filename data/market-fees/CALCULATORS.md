@@ -3719,3 +3719,29 @@ re-search for "new platforms" in a future stateless-HTTP session without a speci
 hand — the obvious candidates (independent regional underwriters with their own branded
 "calculator" page) have converged on the same handful of white-label SaaS backends already
 documented here.
+
+## 2026-08-23 session — new-platform search dead end: TitleThrive is a JS-widget website-platform
+feature, not an independent recipe; Land Title Co of AL and Orange Coast Title AL/CA both resolve
+to login-gated JS calculators
+
+Bounded (~15 min) web search for a calculator platform not yet in this catalog, per the standing
+task brief. `titlethrive.com/features/calculators/` markets a "calculator included with every
+TitleThrive website" — this is a website-builder feature bundled into agency sites built on the
+TitleThrive platform (comparable in kind to TitleCapture/Qualia's per-tenant embed model), not a
+single API to catalog once. The vendor page itself gives no technical detail (iframe vs JS vs API)
+and names no example tenants. Searched for a live example: `vgtitle.com/resources/rate-calculator/`
+(Vanguard Title) surfaced as a TitleThrive tenant candidate but was not investigated further this
+session (bounded time). Two other leads surfaced by the same search were checked directly and both
+dead-ended: **Land Title Company of Alabama** (`land-title.net/rate-calculator/`) is a client-side
+JS toggle widget (Purchase/Refinance, Residential/Commercial, Standard/ALTA, Sales Price input) with
+no `<form>` action/method and no discoverable API endpoint in static HTML — confirmed jsOnly by a
+quick grep of the page source for `fetch`/`axios`/`/api/` references (only a bare, unattached
+`fetch` keyword found, no endpoint). **Orange Coast Title** (`octitle.com/rates.asp`, CA — not an
+in-scope scarce state but checked since it surfaced in the same search) is likewise JS-rendered and
+explicitly gates full net-sheet output behind a login ("for full Net Sheets with closing costs, log
+in and try Net Advantage") — a hard no per the no-fabricated-credentials rule regardless of JS
+status. **Conclusion: no new independent stateless-HTTP recipe found.** Nothing added to the
+tracker. If a future session wants to chase TitleThrive specifically, the right next step is
+finding several live TitleThrive-tenant title-agency sites and checking whether any expose a plain
+form/endpoint distinct from the TitleCapture/Qualia jsOnly pattern — not yet done, still an open
+(very low-confidence) lead.
