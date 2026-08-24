@@ -3092,3 +3092,60 @@ than assuming jsOnly from the vendor's own marketing page alone; (5) TitleCaptur
 remain the highest-value jsOnly targets nationwide for a future browser-driven session, as does DC's
 server-disabled `btnFinish` control; AK and DC remain genuinely exhausted for stateless-HTTP
 technique.
+
+## 2026-08-24 session — freshness rotation round 2 continued (10 states, 36 sources, all live);
+TitleThrive lead closed out (ConvertCalculator, confirmed jsOnly); blocked-retry pass clean; no new
+calculator harvests (priority-1 remains fully saturated)
+
+Confirmed at session start that priority-1 calculator-harvest saturation is unchanged: all 36
+in-scope scarce/scarce-market states still carry `calculator-quoted` status with 4+ (several with
+7) corroborating providers. Per the standing instruction from every recent session, no re-harvest
+was attempted against already-saturated states.
+
+**Freshness rotation, round 2 continued.** Picked up from the 2026-08-23 session's own "next
+batches" ordering, covering the next two round-1 batches:
+
+- **NH/WV/ME/ND/AK/DC** (15 published-schedule sources: NH Stewart + WFG manuals; WV Stewart + WFG
+  + FNTI manuals; ME WFG + 2 Stewart manuals; ND Stewart + WFG manuals; AK Alyeska Title + Stewart
+  manual; DC Stewart + WFG manuals, Federal Title fees page, Avenue Settlements fees page): **14 of
+  15 clean HTTP 200.** The FNTI WV manual (`documentpub.fnti.com`) returned a TLS handshake failure
+  (`unable to get local issuer certificate` — the origin serves an incomplete certificate chain
+  missing an intermediate) rather than any HTTP-layer error; re-checked with certificate
+  verification disabled and the resource itself returned HTTP 200 with a 590KB PDF body, confirming
+  the file is live and the underlying server is just TLS-misconfigured, not down. Per this project's
+  standing convention of not flagging a live-but-anomalous source `{stale: true}` (same treatment as
+  the AZ/Pioneer bot-gate), left unflagged — noted here for monitoring in case a future check shows
+  the resource itself has actually gone away.
+- **IN/MD/MI/NJ** (21 published-schedule sources across the four states' Stewart/WFG/FNTI/First
+  American manuals, IN's DOI rate-comparison spreadsheet, and each state's independent-agency/
+  attorney fee pages): **21 of 21 returned a live status** (19 clean HTTP 200, 2 HTTP 202 — Fidelity
+  Indiana Manual on `momentumclosings.com` and the Levin Law Group NJ page on `ylevinlaw.com` — both
+  bot-challenge interstitials consistent with the established SG-Firewall/Cloudflare pattern, not
+  dead links).
+
+**Net result: 10 states, 36 sources, all confirmed live** (34 clean 200, 1 bot-challenge 202-pattern
+x2 counted individually, 1 TLS-chain anomaly with confirmed-live content). No new `{stale: true}`
+flags this session.
+
+**TitleThrive lead (open item from 2026-08-23) closed out.** Fetched
+`vgtitle.com/resources/rate-calculator/`, the candidate tenant site named but not checked last
+session. Its calculator is a `convertcalculator.com` embed — a generic third-party client-side
+widget platform, not a bespoke TitleThrive backend — and the embed URL itself returns a near-empty
+JS-bootstrap shell with no discoverable endpoint. Confirmed jsOnly; logged in CALCULATORS.md. This
+closes the last open new-platform lead from recent sessions — no further "hunt for a new platform"
+time should be spent without a genuinely new starting point.
+
+**Blocked-source retries**: AZ DIFI (`difi.az.gov/title-insurance-rate-filings`) still HTTP 403,
+unchanged across every session checked. CATIC CT (`catic.com/state-resources/connecticut`) HTTP 200
+this run, continuing its established fluctuating-block pattern. Jackson & Scott AL
+(`realestatelclosings.com/closing-costs-calculator/`) still HTTP 403, consistent WAF block. No
+status changes on any of the three.
+
+**Next session priority**: (1) priority-1 calculator harvest has no remaining stateless-HTTP work
+and no open new-platform leads (TitleThrive now closed) — do not re-attempt without a genuinely new
+platform idea; (2) continue freshness rotation round 2 from the next round-1 batch chronologically
+after IN/NH/MD/MI/NJ — per the 2026-08-23 note, that is LA/NY/PA/SD/TX (2026-08-20), then
+NM/NV/OH/OR/WV (2026-08-21); (3) the FNTI WV manual's TLS-chain issue is worth a re-check next round
+to see if it self-resolves or persists; (4) TitleCapture/Qualia Connect remain the highest-value
+jsOnly targets nationwide for a future browser-driven session, as does DC's server-disabled
+`btnFinish` control; AK and DC remain genuinely exhausted for stateless-HTTP technique.

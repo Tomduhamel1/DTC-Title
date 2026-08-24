@@ -3745,3 +3745,21 @@ tracker. If a future session wants to chase TitleThrive specifically, the right 
 finding several live TitleThrive-tenant title-agency sites and checking whether any expose a plain
 form/endpoint distinct from the TitleCapture/Qualia jsOnly pattern — not yet done, still an open
 (very low-confidence) lead.
+
+## 2026-08-24 session — TitleThrive lead closed out: vgtitle.com resolves to ConvertCalculator, a
+generic client-side widget platform, not a TitleThrive-specific recipe
+
+Followed up on the 2026-08-23 session's open TitleThrive lead by fetching
+`vgtitle.com/resources/rate-calculator/` (Vanguard Title, the candidate tenant site named but not
+checked last session). The page's calculator is embedded via `convertcalculator.com/embed/<id>`
+(ConvertCalculator, a generic third-party form/calculator SaaS unrelated to TitleThrive itself —
+TitleThrive's "calculator" feature appears to just be a wrapper around this or a similar
+white-label embed tool, not an in-house engine). Fetching the embed URL directly returns a
+near-empty HTML shell (1 line, pure JS bootstrap) with no server-rendered form, no visible formula
+data, and no discoverable `/api/` or `.json` endpoint in the static response — **confirmed jsOnly**,
+consistent with every other TitleThrive-adjacent lead checked. **Conclusion: TitleThrive lead is now
+fully closed** — it does not lead to a new stateless-HTTP recipe, and there is no reason to keep it
+open for a future stateless session. Logged here (not the state's `.json`, since no scenario was
+harvested) as `{jsOnly: true, url: "https://vgtitle.com/resources/rate-calculator/"}` for a future
+browser-driven session's queue, alongside the platform note that the underlying widget is
+ConvertCalculator (`convertcalculator.com`), not a bespoke TitleThrive backend.
