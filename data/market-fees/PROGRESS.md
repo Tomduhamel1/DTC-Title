@@ -3141,11 +3141,35 @@ this run, continuing its established fluctuating-block pattern. Jackson & Scott 
 (`realestatelclosings.com/closing-costs-calculator/`) still HTTP 403, consistent WAF block. No
 status changes on any of the three.
 
+**Freshness rotation, round 2, third batch this session: LA/NY/PA/SD/TX** (32 embedded URLs across
+the five states' rating-bureau/underwriter manuals and independent-agency fee pages): **31 of 32
+confirmed live** (all direct HTTP 200, several via redirect chains). Two items worth flagging:
+
+- **TX/GATCO** (`greatamtitleco.com/images/GATCO-CLOSING-FEE-SCHEDULE.pdf`): already known dead as
+  of 2026-07-22 (previously a bare 404; this session it 301-redirects to the site homepage instead)
+  — same underlying fact (the PDF path no longer serves the document), just a different HTTP
+  mechanism. No change to the existing `{stale}`-adjacent treatment; evidence continues to rely on
+  the Wayback Machine capture already on file.
+- The Wayback Machine capture itself (`web.archive.org/web/20250416165727/...`) could **not** be
+  re-verified this session — every attempt (3 retries) returned a TLS-layer connection reset
+  specifically for `web.archive.org`, while every other domain checked this session (including
+  other `*.archive.org`-adjacent-style hosts) worked normally. This reads as an environment/network
+  limitation of this session (archive.org may be rate-limiting or blocking the proxy IP) rather than
+  the archived resource going away — the previously-verified archived content is not being
+  discarded on this basis. Worth a plain re-check from a future session in case this was transient.
+
+**Net for this session across all three freshness batches: 14 states, 68 sources checked, 67
+confirmed live**, 0 new `{stale: true}` flags, 1 pre-existing dead link's failure mode changed
+(404 → redirect-to-homepage, already accounted for) and 1 archive.org re-verification deferred due
+to an apparent transient network block on that specific host.
+
 **Next session priority**: (1) priority-1 calculator harvest has no remaining stateless-HTTP work
 and no open new-platform leads (TitleThrive now closed) — do not re-attempt without a genuinely new
 platform idea; (2) continue freshness rotation round 2 from the next round-1 batch chronologically
-after IN/NH/MD/MI/NJ — per the 2026-08-23 note, that is LA/NY/PA/SD/TX (2026-08-20), then
-NM/NV/OH/OR/WV (2026-08-21); (3) the FNTI WV manual's TLS-chain issue is worth a re-check next round
-to see if it self-resolves or persists; (4) TitleCapture/Qualia Connect remain the highest-value
-jsOnly targets nationwide for a future browser-driven session, as does DC's server-disabled
-`btnFinish` control; AK and DC remain genuinely exhausted for stateless-HTTP technique.
+after LA/NY/PA/SD/TX — per the 2026-08-23 note, that is NM/NV/OH/OR/WV (2026-08-21), which closes
+out round 2 entirely; (3) the FNTI WV manual's TLS-chain issue (documentpub.fnti.com, flagged
+earlier this session) is worth a re-check next round to see if it self-resolves or persists; (4) a
+future session should retry the `web.archive.org` GATCO TX capture in case this session's
+connection resets were transient; (5) TitleCapture/Qualia Connect remain the highest-value jsOnly
+targets nationwide for a future browser-driven session, as does DC's server-disabled `btnFinish`
+control; AK and DC remain genuinely exhausted for stateless-HTTP technique.
