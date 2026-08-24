@@ -3163,13 +3163,28 @@ confirmed live**, 0 new `{stale: true}` flags, 1 pre-existing dead link's failur
 (404 → redirect-to-homepage, already accounted for) and 1 archive.org re-verification deferred due
 to an apparent transient network block on that specific host.
 
+**Freshness rotation, round 2, fourth and final batch this session: NM/NV/OH/OR** (WV's 3 sources
+in this nominal batch were already re-checked earlier in this same session as part of the
+NH/WV/ME/ND/AK/DC batch, so not repeated): 16 sources checked, **all confirmed live** (14 clean
+HTTP 200, 1 HTTP 202 bot-challenge interstitial on `landmarktitlesouth.com` consistent with the
+established pattern, 1 transient 502 on the NM OSI's second PDF that resolved to a clean 200 on a
+3rd retry a few seconds later — a state-server/CDN flake, not a dead link). **Round 2 of the
+freshness rotation is now complete** — every state has had a 2nd live-check pass since round 2
+began on 2026-08-22.
+
+**Session totals: 19 states, 84 published-schedule sources checked across 4 batches, all confirmed
+live** (0 new `{stale: true}` flags). Combined with the blocked-retry and TitleThrive-closure work
+above, this was a full "reduced freshness + blocked retries" night per the standing priority order,
+with priority-1 calculator harvest correctly skipped as already saturated.
+
 **Next session priority**: (1) priority-1 calculator harvest has no remaining stateless-HTTP work
 and no open new-platform leads (TitleThrive now closed) — do not re-attempt without a genuinely new
-platform idea; (2) continue freshness rotation round 2 from the next round-1 batch chronologically
-after LA/NY/PA/SD/TX — per the 2026-08-23 note, that is NM/NV/OH/OR/WV (2026-08-21), which closes
-out round 2 entirely; (3) the FNTI WV manual's TLS-chain issue (documentpub.fnti.com, flagged
-earlier this session) is worth a re-check next round to see if it self-resolves or persists; (4) a
-future session should retry the `web.archive.org` GATCO TX capture in case this session's
-connection resets were transient; (5) TitleCapture/Qualia Connect remain the highest-value jsOnly
-targets nationwide for a future browser-driven session, as does DC's server-disabled `btnFinish`
-control; AK and DC remain genuinely exhausted for stateless-HTTP technique.
+platform idea; (2) round 2 of the freshness rotation is complete — a future session should start
+round 3 from AZ/DC/DC/DE/CT (the original round-1/round-2 starting batch) rather than picking a
+batch at random, to keep the rotation's coverage even; (3) the FNTI WV manual's TLS-chain issue
+(documentpub.fnti.com, flagged earlier this session) is worth a re-check next round to see if it
+self-resolves or persists; (4) a future session should retry the `web.archive.org` GATCO TX capture
+in case this session's connection resets were transient; (5) TitleCapture/Qualia Connect remain the
+highest-value jsOnly targets nationwide for a future browser-driven session, as does DC's
+server-disabled `btnFinish` control; AK and DC remain genuinely exhausted for stateless-HTTP
+technique.
