@@ -3188,3 +3188,50 @@ in case this session's connection resets were transient; (5) TitleCapture/Qualia
 highest-value jsOnly targets nationwide for a future browser-driven session, as does DC's
 server-disabled `btnFinish` control; AK and DC remain genuinely exhausted for stateless-HTTP
 technique.
+
+## 2026-08-26 session — priority-1 calculator harvest confirmed still fully saturated (36/36); two
+new-platform leads (NATIC, Westcor) found but both connection-blocked this session; freshness (5
+sources) + blocked-retry passes clean, no changes
+
+Confirmed at session start that the calculator-harvest tracker's 36-state saturation is unchanged
+since 2026-08-22 (every in-scope "complete (scarce)"/"complete (scarce market)" state still carries
+`calculator-quoted` status with 4-7 providers). No re-harvest attempted against already-saturated
+states, per the standing instruction.
+
+**New-platform search (bounded).** Two calculator platforms not previously in CALCULATORS.md
+surfaced via web search: **North American Title Insurance Company's QuoteLink Calculator**
+(`natic.com/QuoteLink-Calculator.aspx`) and **Westcor Land Title Insurance Company**, which has both
+a legacy FL-only ASP.NET WebForms page (`ewestcor.com/ratecalculator2.aspx`, confirmed reachable and
+structurally similar to the already-solved FNF/Old Republic WebForms postback recipes, but scoped to
+only one state — not useful for the scarce-state priority) and an advertised unified
+"all 50 states" tool (`ratequote.wltic.com/Quote?k=Westcor-All`). Both NATIC's calculator and
+Westcor's unified tool **failed to connect this session** (TLS handshake failure / HTTP 000) rather
+than returning a bot-block or real error — logged in CALCULATORS.md as `connectionFailed: true` for
+a plain retry next session, since this reads as transient rather than a genuine gate. **No new
+calculator-harvest entries added** — full technical detail in CALCULATORS.md's parallel 2026-08-26
+entry.
+
+**Freshness rotation** (5 sources — the same AZ/DC/DC/DE/CT batch that opened round 1 and round 2 of
+the rotation, re-checked again per the 2026-08-24 session's own note that this is round 3's starting
+point): **4 of 5 confirmed live** (DC Federal Title fees page, DC Avenue Title Group fees page, DE
+Lem & Associates FAQ, CT Yona Law closings page, all clean HTTP 200). AZ/Pioneer Title Agency's PDF
+again returned the same SG-Firewall `sgcaptcha` bot-challenge interstitial (HTTP 202) it has shown
+on every check to date — not marked `{stale: true}`, per this project's standing convention for a
+live-but-gated source.
+
+**Blocked-source retries**: Arizona DIFI (`difi.az.gov/title-insurance-rate-filings`) still HTTP
+403, unchanged across every session checked. CATIC CT (`catic.com/state-resources/connecticut`)
+HTTP 403 this run, continuing its established fluctuating 200/403 pattern. Jackson & Scott AL
+(`realestatelclosings.com/closing-costs-calculator/`) still HTTP 403, consistent WAF block. No
+status changes on any of the three.
+
+**Next session priority**: (1) priority-1 calculator harvest remains fully saturated at 36/36 — no
+further re-harvest without a genuinely new, reachable lead; (2) retry NATIC
+(`natic.com/QuoteLink-Calculator.aspx`) and Westcor's unified tool
+(`ratequote.wltic.com/Quote?k=Westcor-All`), both connection-blocked this session rather than
+confirmed dead — Westcor in particular already has a partially-reverse-engineered WebForms recipe
+ready to adapt (see CALCULATORS.md) if the unified endpoint becomes reachable; (3) continue the
+freshness rotation's round 3 from VA next, per the 2026-08-22/23 sessions' own chronological
+ordering notes; (4) TitleCapture/Qualia Connect remain the highest-value jsOnly targets nationwide
+for a future browser-driven session, as does DC's server-disabled `btnFinish` control; AK and DC
+remain genuinely exhausted for stateless-HTTP technique.

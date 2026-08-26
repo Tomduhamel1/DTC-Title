@@ -3763,3 +3763,79 @@ open for a future stateless session. Logged here (not the state's `.json`, since
 harvested) as `{jsOnly: true, url: "https://vgtitle.com/resources/rate-calculator/"}` for a future
 browser-driven session's queue, alongside the platform note that the underlying widget is
 ConvertCalculator (`convertcalculator.com`), not a bespoke TitleThrive backend.
+
+## 2026-08-26 session — new-platform search: NATIC QuoteLink and Westcor both surfaced but neither
+yields a new usable recipe this session; priority-1 calculator harvest confirmed still fully
+saturated (36/36); freshness + blocked-retry passes clean
+
+Confirmed at session start (cross-checking PROGRESS.md's calculator tracker table against the
+36-state "complete (scarce)/complete (scarce market)" list) that saturation is unchanged since
+2026-08-22: all 36 in-scope states still carry `calculator-quoted` status with 4-7 providers each.
+No re-harvest attempted against already-saturated states, per the standing instruction.
+
+**New-platform search (bounded).** Two leads surfaced via web search that were not previously in
+this catalog:
+
+- **North American Title Insurance Company (NATIC) — QuoteLink Calculator**
+  (`natic.com/QuoteLink-Calculator.aspx`): both the calculator page and the bare domain root
+  (`natic.com/`) failed with a TLS handshake error this session (curl exit 35, no HTTP response
+  received at all) — a connection-layer failure, not a bot-block or a real 4xx/5xx. Logged as
+  `{gated: false, jsOnly: unknown, connectionFailed: true}` — worth a plain retry next session in
+  case this was transient (matches this project's established treatment of other transient
+  connection failures, e.g. the 2026-08-20 session's Arizona DIFI 502 CONNECT-tunnel case). Not
+  pursued further this session.
+- **Westcor Land Title Insurance Company (WLTIC)**: two distinct entry points found —
+  `ewestcor.com/ratecalculator2.aspx` fetched cleanly (HTTP 200) and is a genuine ASP.NET WebForms
+  form (`__VIEWSTATE`/`__EVENTTARGET`/`__doPostBack`, same family as the already-solved FNF
+  `ratecalculator.fnf.com` and Old Republic `ortconline.com` tools) with a two-stage
+  postback (select `ddState` → county list populates → select `ddPolicyType` → policy-form list
+  populates → fill `tbAmount` → submit `Button1`/"Print Quote"). **However, its `ddState` dropdown
+  only offers one option (`FL`)** — this specific page instance is FL-scoped, and FL is not an
+  in-scope "complete (scarce)" state (already `complete (saturated)` on the published-schedule
+  track), so solving its postback protocol would not help calculator-harvest priority-1 even if
+  pursued. Per Westcor's own site copy surfaced in the search ("This calculator has been replaced by
+  the Westcor National..." on the old Texas-specific page), Westcor appears to have migrated from
+  per-state `eWestcor.com/rate-estimators/<State>.aspx` pages to a newer unified tool at
+  `ratequote.wltic.com/Quote?k=Westcor-All` — but that URL failed to connect at all (curl exit 0,
+  HTTP 000) both directly and via WebFetch. Logged as `{jsOnly: unknown, connectionFailed: true,
+  url: "https://ratequote.wltic.com/Quote?k=Westcor-All"}` — the more promising target for a future
+  session than the FL-only legacy page, since it's advertised as covering "all 50 states."
+
+**Conclusion: no new usable calculator-harvest recipe added this session** — both leads are
+either connection-blocked (worth a plain retry) or scoped to a non-target state. If a future
+stateless-HTTP session retries `ratequote.wltic.com/Quote?k=Westcor-All` and it resolves, the
+ASP.NET WebForms postback pattern already reverse-engineered on `ratecalculator2.aspx` this session
+(dropdown `ddState` → `__doPostBack` → populated `ddCounty`, same shape as the FNF/Old Republic
+recipes already on file) should transfer directly, so a future session shouldn't need to re-derive
+the form mechanics from scratch — only confirm the field names on the live page since the unified
+tool may differ from the FL-only legacy instance inspected here.
+
+**Freshness rotation** (5 sources re-checked this session, continuing the standing rotation with
+the same batch used to open round 1/round 2 — AZ/Pioneer Title Agency PDF, DC/Federal Title fees
+page, DC/Avenue Settlements [now branded Avenue Title Group] fees page, DE/Lem & Associates FAQ,
+CT/Yona Law closings page): **4 of 5 confirmed live with a clean HTTP 200** (DC Federal Title, DC
+Avenue Title Group, DE Lem & Associates, CT Yona Law). AZ/Pioneer Title Agency's PDF continues to
+return **HTTP 202 with an `sgcaptcha` bot-challenge interstitial** (`text/html`, 231 bytes) —
+unchanged from every prior check of this exact source; per this project's standing convention, not
+marked `{stale: true}` since the underlying resource is confirmed to still exist behind a
+fluctuating bot-gate, not actually gone.
+
+**Blocked-source retries** (one retry each, per the standing rotation): **Arizona DIFI**
+(`difi.az.gov/title-insurance-rate-filings`) still HTTP 403, unchanged across every session checked.
+**CATIC CT** (`catic.com/state-resources/connecticut`) HTTP 403 this run, continuing its established
+fluctuating 200/403 pattern (confirmed 200 as recently as 2026-08-24). **Jackson & Scott AL**
+(`realestatelclosings.com/closing-costs-calculator/`) still HTTP 403, consistent WAF block. No
+status changes on any of the three.
+
+**Next session priority**: (1) priority-1 calculator harvest remains fully saturated at 36/36 — no
+further re-harvest without a genuinely new, *reachable* lead; (2) retry NATIC
+(`natic.com/QuoteLink-Calculator.aspx`) and Westcor's unified tool
+(`ratequote.wltic.com/Quote?k=Westcor-All`) — both failed at the connection layer this session
+(TLS handshake failure / HTTP 000), which may be transient rather than a genuine block, and Westcor
+in particular already has a partially-reverse-engineered WebForms recipe ready to adapt if the
+unified endpoint comes back reachable; (3) continue the freshness rotation from its established
+round-3 starting point (this session's AZ/DC/DC/DE/CT batch matches the round-1/round-2 opening
+batch, so the next batch chronologically is VA, per the 2026-08-22/23 sessions' own notes); (4)
+TitleCapture/Qualia Connect remain the highest-value jsOnly targets nationwide for a future
+browser-driven session, as does DC's server-disabled `btnFinish` control; AK and DC remain
+genuinely exhausted for stateless-HTTP technique.
