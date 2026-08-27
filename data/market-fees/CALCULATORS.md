@@ -3839,3 +3839,121 @@ batch, so the next batch chronologically is VA, per the 2026-08-22/23 sessions' 
 TitleCapture/Qualia Connect remain the highest-value jsOnly targets nationwide for a future
 browser-driven session, as does DC's server-disabled `btnFinish` control; AK and DC remain
 genuinely exhausted for stateless-HTTP technique.
+
+## 2026-08-27 session — Westcor's unified tool resolved and fully harvested: new nationwide
+WebForms recipe cataloged, DC breaks its 3rd-provider gap (2 of 3 → calculator-quoted 3 of 3), AK
+confirmed genuinely excluded from auto-quote (statewide, not county-specific); NATIC still
+connection-blocked; VA freshness (4/5 live) + blocked-retry passes clean
+
+**Westcor's unified "all 50 states" tool (`ratequote.wltic.com/Quote?k=Westcor-All`), connection-
+blocked on 2026-08-26, resolved cleanly this session** (plain `curl`/`requests` GET, no proxy/UA
+tricks needed — the prior HTTP 000 reads as transient, matching this project's precedent for other
+one-off connection failures). Full technical recipe, reverse-engineered from scratch against the
+live unified tool (the FL-only legacy `ewestcor.com/ratecalculator2.aspx` page inspected 2026-08-26
+turned out to share the same general WebForms shape but *not* the same field names — confirming the
+prior session's own caveat that the unified tool needed independent verification):
+
+**Recipe (ASP.NET WebForms cascading postback, plain HTTP, no browser/JS, no personal data anywhere
+in the flow):**
+1. `GET` the base URL. Capture `__VIEWSTATE`, `__VIEWSTATEGENERATOR`, `__EVENTVALIDATION` from the
+   hidden inputs (present in every response, full page or partial).
+2. `POST __EVENTTARGET=ctl00$MainContent$ddlState` with `ddlState=<2-letter state>` plus the rest of
+   the form's current field values (blank/default) and the captured viewstate triad. Response's
+   `ddlCounties` `<select>` populates with that state's counties (FIPS-style numeric `value`,
+   county-name `label`).
+3. `POST __EVENTTARGET=ctl00$MainContent$ddlCounties` with the chosen county value added. Response's
+   `ddlCity` `<select>` populates.
+4. `POST __EVENTTARGET=ctl00$MainContent$ddlCity` with the chosen city added (DC's only "city" option
+   is `Washington`; states with no city-level breakout still require *some* value from the populated
+   list).
+5. `POST` with `ctl00$MainContent$btnGetQuestions=Continue` (no `__EVENTTARGET`) and
+   `ddlTranType=Purchase`, `ddlPolicyType=Simultaneous`, `rblFeeType=All`, `rblQuoteDetail=Quick`,
+   `tbxSalesPrice=500000`, `tbxLoanAmount=400000`. This reveals a **state-specific Yes/No question
+   panel** (`ctl00$MainContent$Q<numeric ID>` radio groups, e.g. AK/WY's single non-compliance-fee
+   question vs. DC's 9-question panel covering enhanced coverage, prior-policy credit, recordation-
+   tax exemptions, and the DC first-time-homebuyer discount). **Every question was left at the tool's
+   own pre-checked default** — consistent with this project's standing convention (never fabricate an
+   answer; accept the tool's own default).
+6. `POST` with `ctl00$MainContent$btnGetQuote=Get Quote`, echoing back every `Q<ID>` field at its
+   default value plus the hidden `ctl00$MainContent$hdnTransactionID` value from step 5's response.
+   The final response renders TITLE FEES / SETTLEMENT FEES / RECORDING FEES tables plus an
+   ESTIMATED TOTALS row (Owner and Lender columns).
+
+**Verification pass (WY, a state already at `calculator-quoted (4 providers)`, used purely to
+confirm the recipe works before spending it on scarce states)**: Laramie County/Cheyenne returned a
+clean, fully itemized quote (Simultaneous Owner Premium $1,590.00, Simultaneous Lender Premium
+$100.00, Total Recording Fees $99.00, ESTIMATED TOTALS Owner $1,689.00/Lender $100.00) — confirms the
+recipe is sound and general-purpose, not DC-specific.
+
+**AK (Anchorage, then re-tried at Fairbanks with `ddlPolicyType=Owner`): both return the identical
+message `"For this policy type and coverage amount, please call Westcor for a quote. Thank you."`**
+across `Simultaneous`, `Owner`, and `Lender` policy types alike. This is a clean, unambiguous
+tool-level refusal (not a bug, not a form-validation error, not gated behind personal data) —
+confirmed state-level rather than county-level since it reproduces identically at both Anchorage
+(the county tried in the DC-recipe walkthrough) and Fairbanks. Logged as
+`{gated: true, reason: "tool declines to auto-quote AK at this coverage amount/policy type, statewide", url: "https://ratequote.wltic.com/Quote?k=Westcor-All"}`
+— this is now the **3rd distinct platform** (after WFG's own `isCalculationEnabled: false` flag and
+the absence of any AK-capable 3rd platform found across many prior sessions' searches) to exclude AK
+from automated online quoting, reinforcing the "AK is a genuinely thin, manually-quoted market"
+conclusion already on file rather than opening a new lead. AK stays at 2 of 3 providers (Stewart +
+WFG), still below the calculator-quoted threshold, and this project's standing conclusion that AK
+needs a fundamentally new (likely non-national-underwriter) lead to close its 3rd-provider gap is
+unchanged.
+
+**DC (District Of Columbia County/Washington, the tool's only DC county/city option): a full,
+clean quote, no refusal message.** This is DC's first successful calculator quote from any platform
+other than Stewart/WFG — FNF's DC flow has completed without producing a result across multiple
+prior sessions (2026-08-18/2026-08-19 entries above) and remains unsolved, but Westcor sidesteps
+that dead end entirely. Result: Simultaneous Owner Premium $2,800.00, Simultaneous Lender Premium
+$150.00, Closing Protection Letter $50.00 (the tool's only settlement-fee line item — no separate
+escrow/closing-agent fee is itemized), Title Insurance Premium Adjustment ($1,640.00), Total
+Recording Fees $20,485.00 (of which $20,335.00 is DC's own deed/mortgage recordation tax at
+2.9%/1.45% — flagged in DC.json as tax, not a service fee, consistent with how this project treats
+transfer taxes elsewhere), ESTIMATED TOTALS Owner $23,335.00/Lender $150.00. **This is DC's 3rd
+calculator-basis provider — DC flips from "2 calculator-basis providers, below 3-provider threshold"
+to `calculator-quoted (3 providers)`.** Full entry appended to DC.json, DC.md, and the PROGRESS.md
+tracker table.
+
+**NATIC's QuoteLink Calculator** (`natic.com/QuoteLink-Calculator.aspx`), connection-blocked on
+2026-08-26 with a plain TLS handshake failure, was retried this session and **still fails identically**
+(HTTP 000, no response received) — unlike Westcor, this one has not resolved. Left logged as
+`{gated: false, jsOnly: unknown, connectionFailed: true}` for a further plain retry next session;
+no further diagnosis attempted (a persistent TLS-layer failure across 2 sessions a day apart starts
+to look more like a real block than a one-off transient, but it's not yet confirmed either way).
+
+**Freshness rotation, round 3, first batch: VA** (5 sources — Republic Title fees page, Stewart VA
+rate manual PDF via virtualunderwriter.com, Federal Title fees page, Lighthouse Title Seller PDF via
+federaltitle.com, WFG VA rate manual PDF): **4 of 5 confirmed live** (Republic Title, Stewart,
+Federal Title [redirects 308→200, benign], WFG all clean). The Lighthouse Title PDF
+(`federaltitle.com/wp-content/uploads/2011/02/Seller.Lighthouse-Title.VA_.pdf`) returned **HTTP 403
+for the 3rd consecutive freshness check** (first flagged 2026-08-09, re-confirmed 2026-08-23, now
+2026-08-27) — per the 2026-08-23 session's own note, this was the trigger point earmarked for
+considering `{stale: true}`. Left unflagged this session pending an explicit decision: every other
+WAF/bot-gate block on file in this project has fluctuated (200 sometimes, 403/202 other times) and
+this project's standing convention is not to mark a live-but-gated source stale, but this specific
+source has now shown *zero* successful fetches across 3 checks spanning 3+ weeks, which reads
+differently from a fluctuating gate. Recommend a future session make the call explicitly (mark
+`{stale: true}` if a 4th check also fails, or downgrade reliance to a Wayback Machine capture)
+rather than defaulting either way without a deliberate decision.
+
+**Blocked-source retries**: Arizona DIFI (`difi.az.gov/title-insurance-rate-filings`) still HTTP
+403, unchanged across every session checked. CATIC CT (`catic.com/state-resources/connecticut`)
+HTTP 200 this run, continuing its established fluctuating 200/403 pattern. Jackson & Scott AL
+(`realestatelclosings.com/closing-costs-calculator/`) still HTTP 403, consistent WAF block. No
+status changes on any of the three.
+
+**Next session priority**: (1) DC is now `calculator-quoted (3 providers)` — no further calculator
+work needed there; priority-1 otherwise remains fully saturated (37/37 in-scope states now, since DC
+graduates) with AK the sole remaining scarce state below threshold, confirmed genuinely excluded from
+Westcor's auto-quote (3rd platform to exclude it) — do not re-attempt AK via Westcor without a
+materially different approach (e.g. a much lower coverage amount, if that's ever worth testing); (2)
+retry NATIC (`natic.com/QuoteLink-Calculator.aspx`) again — 2 consecutive TLS failures a day apart,
+worth one more check before treating it as a genuine block rather than transient; (3) decide on the
+VA/Lighthouse Title PDF's `{stale: true}` status (3 consecutive 403s, zero successful fetches on
+file) rather than deferring again; (4) continue the freshness rotation's round 3 from
+ID/IA/ME/MT/ND next, per the established chronological ordering; (5) TitleCapture/Qualia Connect
+remain the highest-value jsOnly targets nationwide for a future browser-driven session, as does DC's
+server-disabled `btnFinish` control on the FNF flow (now less urgent given Westcor's DC success, but
+still open); Westcor's new recipe is also worth running against a handful of already-saturated
+states opportunistically if a future session has spare time, purely for richness, though it is not
+required by the priority-1 contract.

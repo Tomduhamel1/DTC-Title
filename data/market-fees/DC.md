@@ -1,11 +1,25 @@
 # District of Columbia — Market Fee Evidence
 
-## Calculator harvest (2026-08-18)
+## Calculator harvest — status: calculator-quoted (3 providers), updated 2026-08-27
 
-Separate from the published-schedule survey below, 2 calculator-basis quotes were harvested for the
-standard scenario ($500,000 purchase / $400,000 loan / Washington DC / residential resale) — below
-the 3-provider calculator-quoted threshold this session. See DC.json's `"basis": "calculator"`
-entries for full itemized figures and CALCULATORS.md for the technical recipes.
+Separate from the published-schedule survey below, 3 calculator-basis quotes have now been harvested
+for the standard scenario ($500,000 purchase / $400,000 loan / Washington DC / residential resale),
+clearing the 3-provider calculator-quoted threshold. See DC.json's `"basis": "calculator"` entries
+for full itemized figures and CALCULATORS.md for the technical recipes.
+
+3. **Westcor Land Title Insurance Company** — unified rate/quote tool (ratequote.wltic.com/Quote?k=Westcor-All),
+   harvested 2026-08-27. This tool had previously failed to connect (TLS handshake failure) on
+   2026-08-26; it resolved cleanly this session. New nationwide ASP.NET WebForms cascading-postback
+   recipe (State -> County -> City -> Continue -> per-state Yes/No question panel, all left at
+   default -> Get Quote), no personal-data fields anywhere in the flow. This is DC's first
+   *successful* calculator quote from a platform other than Stewart/WFG — FNF's DC flow has
+   completed without error but never produced a result across several prior sessions (see the
+   2026-08-18/2026-08-19 entries below), so this closes DC's long-standing 3rd-provider gap without
+   needing FNF or a browser-driven session. Result: Simultaneous Owner Premium $2,800.00, Simultaneous
+   Lender Premium $150.00, Closing Protection Letter $50.00, Title Insurance Premium Adjustment
+   ($1,640.00), plus $20,485.00 in combined recording fees and DC deed/mortgage recordation tax
+   (2.9%/1.45% respectively — the tax portion, $20,335.00 of that total, is not a title/settlement
+   service fee). ESTIMATED TOTALS: Simultaneous Owner $23,335.00 / Simultaneous Lender $150.00.
 
 1. **Stewart Title and Escrow, Inc.** (Washington, DC) — via Stewart Rate Calculator
    (stewartratecalculator.com), applying the recipe fully documented in CALCULATORS.md's 2026-08-14

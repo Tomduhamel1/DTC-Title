@@ -285,5 +285,73 @@
     "sectionTotals": null,
     "bundlingNotes": "Property location for this request: Washington, DC (District of Columbia County).",
     "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, District of Columbia County, DC."
+  },
+  {
+    "provider": "Westcor Land Title Insurance Company — unified rate/quote tool (ratequote.wltic.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratequote.wltic.com/Quote?k=Westcor-All",
+    "calculatorUrl": "https://ratequote.wltic.com/Quote?k=Westcor-All",
+    "endpointOrParams": "ASP.NET WebForms cascading-postback flow driven via plain HTTP GET/POST (no browser/JS execution): GET the form to capture __VIEWSTATE/__VIEWSTATEGENERATOR/__EVENTVALIDATION -> POST __EVENTTARGET=ddlState (State=DC) -> POST __EVENTTARGET=ddlCounties (County=11001/District Of Columbia, the tool's only DC county option) -> POST __EVENTTARGET=ddlCity (City=Washington) -> POST btnGetQuestions=Continue (reveals a per-state policy/recording-question panel) -> POST btnGetQuote=Get Quote, answering every revealed Yes/No question with the tool's own pre-checked default (never a fabricated answer). No name/email/phone field exists anywhere in this flow.",
+    "retrievalDate": "2026-08-27",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, District of Columbia County (Washington), Purchase transaction type, Simultaneous (Owner+Lender) policy, Fee Type = All, Quick Quote detail level.",
+    "methodology": "New nationwide calculator recipe, first applied here. Discovered via a from-scratch fetch of Westcor's previously connection-blocked 'all 50 states' rate-quote tool (ratequote.wltic.com/Quote?k=Westcor-All), which resolved cleanly this session. The tool renders a standard ASP.NET WebForms cascading-dropdown quote form (State -> County -> City) followed by a dynamically-rendered state-specific Yes/No question panel before the final quote; every question was left at its own pre-selected default per this project's standing convention. This is the first calculator successfully harvested for DC -- FNF's DC flow has completed without error but never produced a result across multiple prior sessions (see this file's 2026-08-18/2026-08-19 entries), so Westcor is DC's 3rd distinct calculator-basis provider, clearing the 3-provider threshold.",
+    "settlementFee": {
+      "note": "The tool itemizes a 'Closing Protection Letter' fee ($50.00) under a SETTLEMENT FEES header but does not itemize a separate settlement/closing-agent fee -- consistent with this being an underwriter's own rate tool rather than a specific settlement office's net sheet."
+    },
+    "itemizedFees": {
+      "cpl": "$50.00 (Closing Protection Letter)",
+      "other": [
+        {
+          "name": "Simultaneous Owner Premium",
+          "amount": "$2,800.00"
+        },
+        {
+          "name": "Simultaneous Lender Premium",
+          "amount": "$150.00"
+        },
+        {
+          "name": "CFPB 1101: Title Services And Lender's Title Insurance",
+          "amount": "$3,000.00"
+        },
+        {
+          "name": "CFPB 1103: Owner's Title Insurance (Optional)",
+          "amount": "$1,160.00"
+        },
+        {
+          "name": "CFPB 1104: Lender's Title Insurance",
+          "amount": "$1,790.00"
+        },
+        {
+          "name": "Title Insurance Premium Adjustment",
+          "amount": "($1,640.00)"
+        },
+        {
+          "name": "Deed Recording Fee - Borrower (2 pages)",
+          "amount": "$30.00"
+        },
+        {
+          "name": "Mortgage Recording Fee - Borrower (25 pages)",
+          "amount": "$155.00"
+        },
+        {
+          "name": "Deed State Tax/Stamps - Borrower",
+          "amount": "$7,250.00"
+        },
+        {
+          "name": "Deed State Tax/Stamps - Seller",
+          "amount": "$7,250.00"
+        },
+        {
+          "name": "Mortgage State Tax/Stamps - Borrower",
+          "amount": "$5,800.00"
+        },
+        {
+          "name": "Total Recording Fees (recording + DC deed/recordation tax combined)",
+          "amount": "$20,485.00"
+        }
+      ]
+    },
+    "bundlingNotes": "ESTIMATED TOTALS row: Simultaneous Owner $23,335.00 / Simultaneous Lender $150.00. The $7,250+$7,250+$5,800 = $20,335.00 of the recording-fee total is DC's deed and mortgage recordation tax (2.9% combined on the deed, 1.45% on the mortgage), not a title/settlement service fee -- flagged here rather than folded silently into 'recording fees' so it isn't mistaken for a service charge; this matches the 2.9% combined transfer-tax rate already corroborated by this file's Stewart-calculator entry above.",
+    "transactionContext": "Purchase with simultaneous Owner + Lender policy, District of Columbia County/Washington DC, Fee Type = All (Title + Settlement + Recording)."
   }
 ]

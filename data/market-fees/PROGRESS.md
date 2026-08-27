@@ -53,6 +53,7 @@ once 3+ distinct provider calculators are successfully harvested for it; until t
 | RI | 4 (Stewart Title Guaranty — Stewart Rate Calculator, Providence County via Warr & Warr PC, Title Closing Fee $1,725.00 total; WFG National Title — Seller Net Sheet Rate Calculator, Owner's Premium $1,925.00; FNF-family underwriter — ratecalculator.fnf.com, Grand Total $1,800.00; Old Republic's 2nd tool — statewide, SIMULTANEOUS Grand Total Owners+Lenders $1,800.00/Lenders-only $1,000.00, byte-identical to the FNF Grand Total) | **calculator-quoted (4 providers)** | 2026-08-21 |
 | DE | 4 (Stewart Title Guaranty — Stewart Rate Calculator, New Castle County/Wilmington, null settlement fee corroborating DTIRB attorney-closing finding; WFG National Title — Seller Net Sheet Rate Calculator, Owner's Premium $2,424.00; FNF-family underwriter — ratecalculator.fnf.com, Grand Total $2,300.00, byte-identical Owner's Premium to Stewart; Old Republic's 2nd tool — statewide, SIMULTANEOUS Grand Total Owners+Lenders $2,300.00/Lenders-only $1,235.00, byte-identical to the FNF Grand Total, a 3-way convergence) | **calculator-quoted (4 providers)** | 2026-08-21 |
 | SD | 4 (Stewart Title Company — Stewart Rate Calculator, Minnehaha County/Sioux Falls, Title Closing Fee $400.00 + SD sales tax; WFG National Title — Seller Net Sheet Rate Calculator, Owner's Premium $2,000.00; FNF-family underwriter — ratecalculator.fnf.com, Grand Total $1,662.50; Old Republic's 2nd tool — statewide, PURCHASE/SALE Grand Total Owners+Lenders $1,350.00/Lenders-only $875.00) | **calculator-quoted (4 providers)** | 2026-08-21 |
+| DC | 3 (Stewart Title and Escrow — Stewart Rate Calculator, District of Columbia County/Washington, Title Closing Fee $700.00 total, 10-line itemization; WFG National Title — Seller Net Sheet Rate Calculator, Owner's Title Insurance Premium $3,263.00 (premium-only, DC not in this tool's 7-state HUD-itemization list); Westcor Land Title Insurance Company — unified rate/quote tool (ratequote.wltic.com/Quote?k=Westcor-All), new nationwide WebForms-postback recipe, CPL $50.00 + Simultaneous Owner/Lender Premiums $2,800.00/$150.00 + $20,485.00 combined recording/DC-transfer-tax, ESTIMATED TOTALS Owner $23,335.00/Lender $150.00 — DC's first successful non-Stewart/WFG calculator quote, closing the 3rd-provider gap FNF's broken flow had left open since 2026-08-18) | **calculator-quoted (3 providers)** | 2026-08-27 |
 
 FNF's ratecalculator.fnf.com **is drivable via plain HTTP POST, no browser needed** — confirmed
 2026-07-25 by replaying its ASP.NET WebForms `__doPostBack`/`__VIEWSTATE` protocol directly (the
@@ -3235,3 +3236,67 @@ freshness rotation's round 3 from VA next, per the 2026-08-22/23 sessions' own c
 ordering notes; (4) TitleCapture/Qualia Connect remain the highest-value jsOnly targets nationwide
 for a future browser-driven session, as does DC's server-disabled `btnFinish` control; AK and DC
 remain genuinely exhausted for stateless-HTTP technique.
+
+## 2026-08-27 session — Westcor's unified tool resolved; DC clears the 3-provider calculator
+threshold (2 of 3 → calculator-quoted 3 of 3); AK confirmed genuinely excluded from auto-quote
+statewide (stays at 2 of 3); NATIC still connection-blocked; VA freshness (4/5 live, 1 source's 3rd
+consecutive block flagged for a decision) + blocked-retry passes clean
+
+Confirmed at session start that priority-1 calculator-harvest saturation was unchanged from
+2026-08-26 (36/36 in-scope scarce states at `calculator-quoted`, AK and DC both explicitly out of
+scope for the standing stateless-HTTP priority). Retried the two new-platform leads left
+connection-blocked from 2026-08-26 (NATIC's QuoteLink Calculator, Westcor's unified rate-quote tool)
+before falling back to the freshness rotation.
+
+**Westcor's unified tool (`ratequote.wltic.com/Quote?k=Westcor-All`) resolved cleanly this session**
+— the prior session's HTTP 000 was transient. Full recipe reverse-engineered from scratch (a genuine
+ASP.NET WebForms cascading postback: State → County → City → Continue [reveals a state-specific
+Yes/No question panel, every question left at its own default] → Get Quote), verified sound against
+WY (already-saturated, used purely as a sanity check: clean $1,689.00/$100.00 Owner/Lender
+ESTIMATED TOTALS at Laramie County/Cheyenne). Full technical writeup in CALCULATORS.md's parallel
+2026-08-27 entry.
+
+**AK (Anchorage, then Fairbanks with `ddlPolicyType=Owner`) both returned the identical refusal**
+`"For this policy type and coverage amount, please call Westcor for a quote. Thank you."` across
+Simultaneous/Owner/Lender policy types — a clean, unambiguous, state-level (not county-level) tool
+refusal, not a bug or a personal-data gate. This is the 3rd distinct platform (after WFG's own
+`isCalculationEnabled: false` flag) to exclude AK from automated quoting, reinforcing rather than
+contradicting this project's standing "AK is a genuinely thin, manually-quoted market" finding. AK
+**stays at 2 of 3 providers**, still below the calculator-quoted threshold; no new lead opened.
+
+**DC (District Of Columbia County/Washington) returned a full, clean quote — no refusal.** This is
+DC's first successful calculator quote from any platform other than Stewart/WFG (FNF's DC flow has
+completed without producing a result across several prior sessions and remains unsolved). Result:
+Simultaneous Owner Premium $2,800.00, Simultaneous Lender Premium $150.00, Closing Protection Letter
+$50.00, Total Recording Fees $20,485.00 (of which $20,335.00 is DC's own 2.9%/1.45% deed/mortgage
+recordation tax, flagged as tax rather than service fee), ESTIMATED TOTALS Owner $23,335.00/Lender
+$150.00. **DC is now `calculator-quoted (3 providers)`** — entry appended to DC.json, DC.md, and the
+calculator-harvest tracker table above. Priority-1 in-scope count moves from 36/36 to effectively
+37/37 (DC no longer an exception); **AK is now the sole remaining scarce state below the
+calculator-quoted threshold**, and per this session's finding above, genuinely so rather than
+under-searched.
+
+**NATIC's QuoteLink Calculator** (`natic.com/QuoteLink-Calculator.aspx`) retried and **still fails**
+with the same TLS handshake failure as 2026-08-26 — 2 consecutive failures a day apart now, worth one
+more plain retry next session before treating it as a real block rather than transient.
+
+**Freshness rotation, round 3, first batch: VA** (5 sources): 4 of 5 confirmed live (Republic Title,
+Stewart VA manual, Federal Title [benign 308→200 redirect], WFG VA manual). The Lighthouse Title PDF
+(`federaltitle.com/wp-content/uploads/2011/02/Seller.Lighthouse-Title.VA_.pdf`) returned HTTP 403 for
+the **3rd consecutive check** (2026-08-09, 2026-08-23, now 2026-08-27) with zero successful fetches
+on file across 3+ weeks — left unflagged pending an explicit `{stale: true}` decision by a future
+session (see CALCULATORS.md's parallel entry for the reasoning) rather than defaulting either way.
+
+**Blocked-source retries**: Arizona DIFI still HTTP 403, unchanged. CATIC CT HTTP 200 this run,
+continuing its established fluctuating pattern. Jackson & Scott AL still HTTP 403, consistent WAF
+block. No status changes on any of the three.
+
+**Next session priority**: (1) DC needs no further calculator work; AK is the only remaining scarce
+state below the 3-provider threshold and is now confirmed genuinely excluded from Westcor (3rd
+platform to exclude it) — don't re-attempt via Westcor without a materially different approach; (2)
+retry NATIC once more (2 consecutive TLS failures) before concluding it's a genuine block; (3) decide
+explicitly on the VA/Lighthouse Title PDF's staleness (3 consecutive 403s) rather than deferring
+again; (4) continue freshness rotation round 3 from ID/IA/ME/MT/ND next, per established
+chronological order; (5) TitleCapture/Qualia Connect remain the highest-value jsOnly targets for a
+future browser-driven session; Westcor's new recipe is also available for opportunistic richness
+passes on already-saturated states, though not required by the priority-1 contract.
