@@ -36,6 +36,12 @@ genuine market-opacity finding. Marked **complete (scarce)**.
    — the most transaction-type-granular source found (resale, short sale/REO,
    refinance, construction refinance, commercial); older document, useful as a dated
    trend/comparison point rather than current pricing.
+   **STALE as of 2026-08-28** — HTTP 403 (`x-vercel-mitigated: deny`) on 4 consecutive
+   freshness checks spanning 2026-08-09 through 2026-08-28, including with full
+   browser-style headers; unlike CATIC CT/AZ DIFI's fluctuating WAF pattern, this URL
+   has never once returned 200 in 3+ weeks. Marked `stale: true` in VA.json; retained in
+   the record for its historical/comparison value but no longer counted toward VA's
+   good-source total.
 5. **WFG National Title Insurance Company**, "Rate and Rules for the Commonwealth of
    Virginia," effective September 1, 2023:
    https://wfgunderwriting.com/wp-content/uploads/filebase/virginia/rate-manuals/WFG%20Virginia%20Title%20Rates%20and%20Rules%20effective%209-1-2023.pdf

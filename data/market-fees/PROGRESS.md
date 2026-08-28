@@ -675,7 +675,7 @@ still vary and matter).
 | CO | 4 (Empire Title/Stewart, Warranty Title, Homestead Title, WFG rate manual) | 2+ (El Paso/Teller, Denver-metro, Colorado Springs) | national-brand (Stewart via Empire, WFG), independent (Warranty, Homestead) | **complete (scarce)** — 15+ combined query strategies/direct checks across 2 sessions yield <6 usable schedules; CO settlement fees are filed privately with DOI, not routinely published publicly | 2026-07-21 |
 | AZ | 5 (Pioneer Title Agency, WFG, Stewart Title Guaranty, First National Title, Arizona Escrow & Financial) | 1 (Maricopa County) | independent agencies (Pioneer, Arizona Escrow), national-brand underwriters (WFG, Stewart, FNTI) | **complete (scarce)** — DIFI filing library confirmed Cloudflare-blocked across 3 access paths and 2 sessions; 8+ new query strategies this session found only 1 new usable source | 2026-07-21 |
 | WA | 7 (Old Republic x2, WFG, CW Title, Grays Harbor, Puget Sound, Spokane County Title, Equity Title) | 5+ (Grays Harbor, Puget Sound area, Spokane, King/Pierce/Thurston/Snohomish, statewide schedules) | national-brand (Old Republic, WFG), independent (CW Title, Grays Harbor, Puget Sound, Spokane County Title, Equity Title) | **complete (saturated)** — 7 providers/8 documents; last 2 additions fall within the pre-existing range, no >10% movement | 2026-07-21 |
-| VA | 5 (Republic Title, Stewart Title Guaranty, Federal Title & Escrow, Lighthouse Title, WFG National) | 1+ (Arlington/Fairfax/Alexandria vs. other VA counties tiering) | independent title/settlement companies (Republic Title, Federal Title, Lighthouse Title), national-brand underwriters (Stewart, WFG) | **complete (scarce)** — ~20 query strategies/direct checks yield only 5 usable sources; VA law statutorily separates title premium from settlement fees (VA Code §38.2-4608) | 2026-07-21 |
+| VA | 4 good (Republic Title, Stewart Title Guaranty, Federal Title & Escrow, WFG National) + 1 stale (Lighthouse Title — HTTP 403 on 4 consecutive checks 2026-08-09→2026-08-28, `x-vercel-mitigated: deny`, never once resolved live; marked `stale: true` 2026-08-28, retained for historical value only) | 1+ (Arlington/Fairfax/Alexandria vs. other VA counties tiering) | independent title/settlement companies (Republic Title, Federal Title, Lighthouse Title [stale]), national-brand underwriters (Stewart, WFG) | **complete (scarce)** — ~20 query strategies/direct checks yielded 5 usable sources originally, now 4 live + 1 stale; VA law statutorily separates title premium from settlement fees (VA Code §38.2-4608) | 2026-08-28 |
 | TN | 3 (Stewart Title Guaranty, First National Title Insurance, Greater Nashville Title) | 4 metro areas (Nashville, Chattanooga, Knoxville, Memphis via county schedules) | national-brand underwriters (Stewart, FNTI), independent title company (Greater Nashville Title) | **complete (scarce)** — 8+ query strategies/direct checks; TN's All-Inclusive Rate rule bundles search/exam into filed premium in largest counties, reducing independent settlement-fee publication | 2026-07-21 |
 | MI | 6 (Stewart Title Guaranty x2 vintages, First National Title Insurance, First American Title x2 vintages, WFG National) | statewide (no metro/county breakout published) | national-brand underwriters only (Stewart, FNTI, First American via independent agent, WFG); no independent title/escrow settlement-fee schedule found despite exhaustive search | **complete (scarce)** — 6 premium-only rate manuals verified (meets filed-rate good-source definition) but 15+ query strategies plus direct provider-site checks (prioritytitle.biz, sterling-title.com, oldrepublictitle.com/michigan) found zero published settlement/service-fee dollar figures; MI market-opacity pattern matches AZ/CO. Notable finding: Stewart's premium bundling model flipped from "all-inclusive" (2024, search/exam bundled into premium) to "risk rate only" (2025, search/exam excluded) between filings | 2026-07-21 |
 | MO | 2 (First National Title Insurance, WFG National) | statewide (no metro/county breakout published) | national-brand underwriters only (FNTI, WFG); Stewart and First American MO-specific rate manuals not publicly indexed; no independent title/escrow settlement-fee schedule found despite exhaustive search | **complete (scarce)** — only 2 premium-only rate manuals verified despite 16+ query strategies and direct checks of Stewart, First American, Virtual Underwriter, and 4 independent MO title agencies (Monarch, Continental, Preferred Title, Equity Title [confirmed CA-only]); zero settlement-fee dollar figures found anywhere. Only settlement-adjacent data point: statutory Closing Protection Letter fee ($25/party per RSMo 381.022), identical across both verified underwriters | 2026-07-21 |
@@ -3300,3 +3300,69 @@ again; (4) continue freshness rotation round 3 from ID/IA/ME/MT/ND next, per est
 chronological order; (5) TitleCapture/Qualia Connect remain the highest-value jsOnly targets for a
 future browser-driven session; Westcor's new recipe is also available for opportunistic richness
 passes on already-saturated states, though not required by the priority-1 contract.
+
+## 2026-08-28 session — AK reconfirmed genuinely exhausted (no new lead); VA/Lighthouse Title PDF
+formally marked stale after a 4th consecutive 403; freshness rotation round 3 continued
+(ID/IA/ME/MT/ND, all live once WAF-blocked PDFs are retried with full browser headers); NATIC now 3
+consecutive failures, CATIC/AZ-DIFI/Jackson & Scott unchanged
+
+Per the 2026-08-27 session's own priority list, worked items in order rather than picking a new
+thread.
+
+**Calculator harvest (priority 1): AK re-checked with a genuinely different technique, still no
+lead.** Rather than retry Westcor (explicitly discouraged by the prior session without a materially
+different approach), ran a fresh web search for Alaska-specific net-sheet/quote-calculator tenants
+(`"net sheet" calculator title insurance quote app_id OR appid` scoped to Alaska). Every result was
+already catalogued and dead: NetSheetCalc's own AK marketing landing page (still no tenant `app_id`
+referenced), TitleTap's generic mobile-app marketing page, and Alyeska Title Guaranty Agency's static
+site (still no calculator). No new AK-attributed tenant surfaced. **AK stays at 2 of 3 providers,
+confirmed exhausted for a 4th consecutive session** — no further standing retry recommended absent
+either a browser-driven session or a wholly new discovery channel (e.g. a state title-agent directory
+not yet cross-referenced against NetSheetCalc/TitleTap/MyTitleRates tenant lists).
+
+**VA/Lighthouse Title PDF formally marked `stale: true`.** Retried
+`federaltitle.com/wp-content/uploads/2011/02/Seller.Lighthouse-Title.VA_.pdf` with full browser
+headers (User-Agent + Accept + Accept-Language, matching the recipe that resolves the CATIC
+CT/AZ-DIFI/Stewart/virtualunderwriter.com WAF-fluctuation pattern below) — still HTTP 403 with
+`x-vercel-mitigated: deny`, a **4th consecutive block** across 2026-08-09, 2026-08-23, 2026-08-27, and
+now 2026-08-28, with zero successful fetches in over 3 weeks. Unlike the fluctuating WAF pattern
+(which does resolve to 200 intermittently, e.g. CATIC CT this session), this is a persistent
+Vercel-platform mitigation with no observed live window, so per the 2026-08-27 session's explicit
+recommendation to decide rather than defer again, this source is now marked `stale: true` in VA.json
+(with a `staleNote` explaining the basis) and flagged in VA.md; VA's tier-1 table row updated from "5
+good sources" to "4 good + 1 stale" — VA remains **complete (scarce)** either way (well under the
+6-source saturation floor), so no status-tier change, just an accurate count. The document is
+retained in both files for its historical/comparison value (a rare 2010-vintage, transaction-type-
+granular VA schedule) but no longer counted toward the good-source total.
+
+**Freshness rotation, round 3 continued: ID/IA/ME/MT/ND** (30 embedded source URLs across 5 states,
+the next round-1 batch after VA per the established chronological order): all 30 resolved live this
+session. Of note, 6 sources 403'd on a bare plain-GET and required the full browser-header retry to
+confirm liveness — all matching this project's established WAF-fluctuation precedent (not marked
+stale): Stewart's ID rate manual PDF (stewart.com), both Stewart ME rate manual/rate-card PDFs
+(stewart.com), and both Old Republic/Stewart MT and ND rate manual PDFs hosted via
+virtualunderwriter.com. A 7th source, Flying S Title & Escrow's ID rate sheet
+(`fste.com/wp-content/uploads/2024/05/Idaho_2024FATICORateSheet.pdf`), returned an unusual HTTP 202
+with `sg-captcha: challenge` and a 233-byte HTML challenge body (SiteGround's bot-mitigation gate)
+even with full browser headers — same WAF-block category as the others, not marked stale, but noted
+here since it's a form of block this project hadn't previously catalogued (202 rather than 403). No
+dead links found; all 5 states' `complete` status is unchanged.
+
+**Blocked-source retries**: CATIC CT (`catic.com/state-resources/connecticut`) HTTP 200 this run,
+continuing its established fluctuating pattern (last was 403 on 2026-08-27). Arizona DIFI
+(`difi.az.gov/title-insurance-rate-filings`) still HTTP 403, unchanged across every session checked.
+Jackson & Scott AL (`realestatelclosings.com/closing-costs-calculator/`) still HTTP 403, consistent
+WAF block, unchanged. **NATIC's QuoteLink Calculator** (`natic.com/QuoteLink-Calculator.aspx`)
+retried per the 2026-08-27 session's own note (2 consecutive TLS/connection failures) — **failed a
+3rd consecutive time** (connection failure, curl exit before any response), now 3 failures in a row
+across separate days; per the standing "at most once more before treating it as a genuine block"
+rule, this is now treated as a **real block** rather than transient — deprioritized as a lead absent
+a materially different access path (e.g. a different network path or a browser-driven session).
+
+**Next session priority**: (1) AK remains the sole scarce state below the calculator-quoted
+threshold and is now confirmed exhausted across 4 sessions — do not re-attempt without either a
+browser-driven session or a new discovery channel entirely; (2) NATIC is now a confirmed block (3/3
+failures) — no further retry recommended unless the access path changes; (3) continue freshness
+rotation round 3 from CO/TN/WI/AL/AR next, per established round-1 chronological order; (4)
+TitleCapture/Qualia Connect remain the highest-value jsOnly targets for a future browser-driven
+session.

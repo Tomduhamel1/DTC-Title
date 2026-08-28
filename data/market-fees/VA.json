@@ -107,7 +107,9 @@
       ]
     },
     "bundlingNotes": "Bundles settlement fee, courier, title exam, and title binder into single per-side 'Title Services' line items for standard residential resale \u2014 buyer $575 / seller $410, a lower combined figure than Federal Title's newer $1,275-$1,475 all-inclusive fee, though this document is from 2010 and pre-dates over a decade of fee inflation, so the two are not directly comparable without adjusting for date.",
-    "transactionContext": "Residential resale with mortgage, short sale/foreclosure/REO/FSBO purchases, residential refinance, construction refinance, and commercial sale/refinance \u2014 the most transaction-type-granular VA source found, covering Fairfax/Arlington/McLean/Woodbridge offices (Northern Virginia)."
+    "transactionContext": "Residential resale with mortgage, short sale/foreclosure/REO/FSBO purchases, residential refinance, construction refinance, and commercial sale/refinance \u2014 the most transaction-type-granular VA source found, covering Fairfax/Arlington/McLean/Woodbridge offices (Northern Virginia).",
+    "stale": true,
+    "staleNote": "HTTP 403 on 4 consecutive checks (2026-08-09, 2026-08-23, 2026-08-27, 2026-08-28), all showing x-vercel-mitigated: deny even with full browser headers -- unlike the fluctuating CATIC CT/AZ DIFI WAF pattern (which does resolve to 200 intermittently), this URL has never returned 200 across 3+ weeks. Marked stale per the 2026-08-27 session recommendation to decide explicitly rather than defer again."
   },
   {
     "provider": "WFG National Title Insurance Company (underwriter rate manual)",
