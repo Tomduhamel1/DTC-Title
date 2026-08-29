@@ -3366,3 +3366,48 @@ failures) — no further retry recommended unless the access path changes; (3) c
 rotation round 3 from CO/TN/WI/AL/AR next, per established round-1 chronological order; (4)
 TitleCapture/Qualia Connect remain the highest-value jsOnly targets for a future browser-driven
 session.
+
+## 2026-08-29 session — calculator harvest: nothing new to attempt (priority-1 fully saturated,
+AK's exhaustion stands); freshness rotation round 3 continued (CO/TN/WI/AL/AR, 15 sources, all
+live); blocked-source retries unchanged
+
+Per the 2026-08-28 session's own priority list, worked items in order.
+
+**Calculator harvest (priority 1): no work performed.** Re-confirmed against the tracker table
+above that every scarce state except AK carries `calculator-quoted (3+ providers)` status, and AK
+was reconfirmed genuinely exhausted as recently as the immediately-prior session (4 consecutive
+sessions, no new discovery channel identified). Per the standing instruction not to re-harvest
+already-saturated states without a genuinely new lead, and absent either a browser-driven session or
+a new discovery channel for AK, no calculator harvest was attempted this session. TitleCapture and
+Qualia Connect remain queued in CALCULATORS.md as jsOnly targets for a future browser-driven session.
+
+**Freshness rotation, round 3 continued: CO/TN/WI/AL/AR** (15 published-schedule source URLs across
+5 states, the next round-1 batch after ID/IA/ME/MT/ND per the established chronological order): all
+15 resolved live (HTTP 200) via plain GET with a standard browser User-Agent/Accept/Accept-Language
+— Empire Title of Colorado Springs rate flyer PDF, Warranty Title CO closing-rates page, Homestead
+Title & Escrow CO basic-rates page, and WFG CO rate manual PDF for Colorado; Stewart TN rate manual
+PDF (go.stewart.com), FNTI TN rate manual PDF (documentpub.fnti.com), and Greater Nashville Title's
+site for Tennessee; Advocus/ATGF WI rate filing PDF, Stewart WI rate manual PDF (go.stewart.com),
+and Southwest Title's republished First American WI rate schedule PDF for Wisconsin; WFG AL rate
+manual PDF and Stewart AL rate manual PDF (virtualunderwriter.com) for Alabama; Stewart AR rate
+manual PDF (go.stewart.com), WFG AR rate manual PDF, and Southwest Title Insurance Company's AR rate
+chart (fnti.com) for Arkansas. No dead links found; no `{stale: true}` changes; all 5 states'
+`complete (scarce)` status is unchanged.
+
+**Blocked-source retries**: CATIC CT (`catic.com/state-resources/connecticut`) HTTP 200 this run,
+continuing its established fluctuating pattern (last was 200 on 2026-08-28). Arizona DIFI
+(`difi.az.gov/title-insurance-rate-filings`) still HTTP 403, unchanged across every session checked.
+Jackson & Scott AL (`realestatelclosings.com/closing-costs-calculator/`) still HTTP 403, consistent
+WAF block, unchanged. NATIC not retried this session, per the 2026-08-28 session's own
+recommendation (3/3 confirmed failures, no further retry absent a materially different access path).
+
+**Next session priority**: (1) AK remains the sole scarce state below the calculator-quoted
+threshold, confirmed exhausted across 5 consecutive sessions now — do not re-attempt without either
+a browser-driven session or a wholly new discovery channel; (2) NATIC stays a confirmed block, no
+further retry planned; (3) continue freshness rotation round 3 from the next round-1 batch
+chronologically after CO/TN/WI/AL/AR — per the round-1 order reconstructed in the 2026-08-23 entry
+above, that is NH/WV/ME/ND/AK/DC, then IN/MD/MI/NJ, then LA/NY/PA/SD (TX excluded, non-scarce), then
+NM/NV/OH/OR/WV — note ME/ND/AK/DC and WV overlap with round 3's earlier ID/IA/ME/MT/ND and prior VA
+batches, so verify each state's actual embedded source URLs directly from its `.json` file rather
+than assuming a batch is unchecked; (4) TitleCapture/Qualia Connect remain the highest-value jsOnly
+targets for a future browser-driven session.
