@@ -3411,3 +3411,46 @@ NM/NV/OH/OR/WV — note ME/ND/AK/DC and WV overlap with round 3's earlier ID/IA/
 batches, so verify each state's actual embedded source URLs directly from its `.json` file rather
 than assuming a batch is unchecked; (4) TitleCapture/Qualia Connect remain the highest-value jsOnly
 targets for a future browser-driven session.
+
+## 2026-08-30 session — calculator harvest: nothing new to attempt (priority-1 fully saturated,
+AK's exhaustion stands at 5/5 sessions); freshness rotation round 3 continued (NH/WV/ME/ND/AK/DC,
+16 sources, all live); blocked-source retries unchanged
+
+Per the 2026-08-29 session's own priority list, worked items in order.
+
+**Calculator harvest (priority 1): no work performed.** Re-confirmed every scarce state except AK
+carries `calculator-quoted (3+ providers)` status. Did not re-attempt AK — its 3rd-provider search
+has now failed across 5 consecutive sessions (2026-08-17 through 2026-08-28) with dozens of query
+strategies exhausted (see 2026-08-18/19/28 entries above); the standing recommendation is to hold
+off without either a browser-driven session or a genuinely new discovery channel, and none surfaced
+this session. TitleCapture and Qualia Connect remain queued in CALCULATORS.md as jsOnly targets.
+
+**Freshness rotation, round 3 continued: NH/WV/ME/ND/AK/DC** (16 published-schedule source URLs
+across 6 states, the exact next round-1 batch named by the 2026-08-29 session): all 16 resolved live
+via plain GET with a standard browser User-Agent/Accept — Stewart NH rate manual PDF
+(virtualunderwriter.com) and WFG NH rate manual PDF for New Hampshire; Stewart WV rate manual PDF,
+WFG WV rate manual PDF, and FNTI WV rate manual PDF (documentpub.fnti.com) for West Virginia; WFG ME
+rate manual PDF and 2 Stewart ME rate PDFs (go.stewart.com/stewart.com) for Maine; Stewart ND rate
+manual PDF (virtualunderwriter.com) and WFG ND rate manual PDF for North Dakota; Alyeska Title
+Guaranty escrow-rates PDF and Stewart AK rate manual PDF for Alaska; Stewart DC rate manual PDF, WFG
+DC rate bulletin PDF, Federal Title & Escrow's fees page, and Avenue Title Group's settlement-fees
+page for DC. One item flagged for awareness rather than staleness: `documentpub.fnti.com`'s TLS
+certificate chain is incomplete server-side (fails standard cert validation, resolves 200 with
+verification skipped) — content is reachable and unchanged, so not marked `{stale: true}`, but a
+future session should watch for this becoming a hard failure. No dead links found; no `{stale: true}`
+changes; all 6 states' `complete (scarce)` status is unchanged.
+
+**Blocked-source retries**: CATIC CT (`catic.com/state-resources/connecticut`) HTTP 200 this run,
+continuing its established fluctuating pattern. Arizona DIFI (`difi.az.gov/title-insurance-rate-filings`)
+still HTTP 403, unchanged across every session checked. Jackson & Scott AL
+(`realestatelclosings.com/closing-costs-calculator/`) still HTTP 403, consistent WAF block, unchanged.
+
+**Next session priority**: (1) AK remains the sole scarce state below the calculator-quoted
+threshold, now confirmed exhausted across 5 consecutive sessions — do not re-attempt without either
+a browser-driven session or a wholly new discovery channel; (2) NATIC stays a confirmed block, no
+further retry planned; (3) continue freshness rotation round 3 with the next round-1 batch after
+NH/WV/ME/ND/AK/DC — per the 2026-08-29 session's reconstructed order, that is IN/MD/MI/NJ, then
+LA/NY/PA/SD (TX excluded, non-scarce), then NM/NV/OH/OR/WV — verify each state's actual embedded
+source URLs directly from its `.json` file rather than assuming a batch is unchecked, since WV was
+just re-verified here as part of this batch; (4) TitleCapture/Qualia Connect remain the
+highest-value jsOnly targets for a future browser-driven session.
