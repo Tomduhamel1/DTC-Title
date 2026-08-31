@@ -3454,3 +3454,53 @@ LA/NY/PA/SD (TX excluded, non-scarce), then NM/NV/OH/OR/WV — verify each state
 source URLs directly from its `.json` file rather than assuming a batch is unchecked, since WV was
 just re-verified here as part of this batch; (4) TitleCapture/Qualia Connect remain the
 highest-value jsOnly targets for a future browser-driven session.
+
+## 2026-08-31 session — calculator harvest: one new-channel check on AK, still no lead (6th
+consecutive session exhausted); freshness rotation round 3 continued (IN/MD/MI/NJ, 21 sources, all
+live); blocked-source retries unchanged
+
+Per the 2026-08-30 session's own priority list, worked items in order.
+
+**Calculator harvest (priority 1): AK checked against one genuinely new candidate, still no lead.**
+Rather than repeat the already-exhausted NetSheetCalc/TitleTap/Old Republic/First American/Trident
+searches, this session searched specifically for non-catalogued Alaska quote tools and surfaced
+**myclosingcost.com** (`myclosingcost.com/closing-costs/alaska`), a tool not previously logged in
+CALCULATORS.md. Investigated it directly: the `/closing-costs/alaska` page itself is a static
+Next.js-rendered SEO/content page with only rounded illustrative figures ("~$2,100" owner's premium
+on a $450K home) and no discoverable form action, API endpoint, or `fetch`/`.json` call in its raw
+HTML — the real interactive calculator, if one exists, lives behind client-side JS elsewhere on the
+site with no plain-HTTP-reachable backend found. Logged in CALCULATORS.md as `{jsOnly: true}` for a
+future browser-driven session; **not counted as evidence** (illustrative content-page figures, not a
+computed quote) and does not close AK's 3rd-provider gap. **AK stays at 2 of 3 providers, now
+confirmed exhausted across 6 consecutive sessions** for stateless-HTTP-reachable calculators — no
+further standing retry recommended absent a browser-driven session.
+
+**Freshness rotation, round 3 continued: IN/MD/MI/NJ** (21 published-schedule source URLs across 4
+states, the exact next round-1 batch named by the 2026-08-30 session): all 21 resolved live —
+19 returned plain HTTP 200 (virtualunderwriter.com and WFG IN rate PDFs, FNTI IN rate manual PDF,
+IN DOI rating-tool spreadsheet, Regional Land Title's Bloomington fees page for Indiana; Stewart MD
+rate manual PDF, WFG MD rate manual PDF, Ardent Title's fee schedule, TPF Legal's closing-attorney
+page, and CAL Settlements' MD fee sheet for Maryland; both Stewart MI rate manual PDF references,
+FNTI MI rate manual PDF, First American MI rate sheets via Titlera and Sterling Title, and WFG MI
+rate manual PDF for Michigan; the NJLTA rate manual PDF via ymaws.com CDN, Coastal Title Agency's
+rates page, Federated National's NJ fee list PDF, and two NJ closing-attorney pages for New Jersey).
+2 of the 21 (Momentum Closings' IN Fidelity rate manual PDF, and ylevinlaw.com's NJ attorney page)
+returned the already-catalogued SiteGround `sg-captcha: challenge` HTTP 202 WAF-block pattern (first
+seen on Flying S Title ID in the 2026-08-28 round) rather than a genuine dead link — not marked
+`{stale: true}`, consistent with this project's established treatment of that block category. No
+dead links found; no `{stale: true}` changes; all 4 states' `complete (scarce)` status is unchanged.
+
+**Blocked-source retries**: CATIC CT (`catic.com/state-resources/connecticut`) HTTP 200 this run,
+continuing its established fluctuating pattern. Arizona DIFI (`difi.az.gov/title-insurance-rate-filings`)
+still HTTP 403, unchanged across every session checked. Jackson & Scott AL
+(`realestatelclosings.com/closing-costs-calculator/`) still HTTP 403, consistent WAF block, unchanged.
+
+**Next session priority**: (1) AK remains the sole scarce state below the calculator-quoted
+threshold, now confirmed exhausted across 6 consecutive sessions — do not re-attempt without either
+a browser-driven session or a wholly new discovery channel (myclosingcost.com and all previously
+logged candidates are now exhausted); (2) NATIC stays a confirmed block, no further retry planned;
+(3) continue freshness rotation round 3 with the next round-1 batch after IN/MD/MI/NJ — per the
+2026-08-30 session's reconstructed order, that is LA/NY/PA/SD (TX excluded, non-scarce), then
+NM/NV/OH/OR/WV — verify each state's actual embedded source URLs directly from its `.json` file
+rather than assuming a batch is unchecked; (4) TitleCapture/Qualia Connect and myclosingcost.com
+remain the jsOnly targets queued for a future browser-driven session.

@@ -3957,3 +3957,20 @@ server-disabled `btnFinish` control on the FNF flow (now less urgent given Westc
 still open); Westcor's new recipe is also worth running against a handful of already-saturated
 states opportunistically if a future session has spare time, purely for richness, though it is not
 required by the priority-1 contract.
+
+### 2026-08-31 session — AK: myclosingcost.com checked, logged jsOnly, no lead
+
+Searched for Alaska-specific quote tools not already catalogued above and found
+**myclosingcost.com** (`myclosingcost.com/closing-costs/alaska`), not previously logged in this
+file. Fetched the page's raw HTML directly (not just a rendered summary): it is a Next.js
+server-rendered content/SEO page (`/_next/static/chunks/app/closing-costs/[state]/page-*.js`) with
+no `<form>` element, no inline API call, and no `fetch`/`.json` reference discoverable in the static
+markup — the figures shown ("~$2,100" owner's title insurance on a $450K home) read as rounded
+illustrative copy, not a computed per-address quote, and the site's own copy implies the real
+address-driven calculation happens client-side elsewhere with no plain-HTTP-reachable endpoint
+found. **Logged here as `{jsOnly: true, url: "https://www.myclosingcost.com/closing-costs/alaska"}`**
+for a future browser-driven session to evaluate (worth checking whether entering a real AK address
+into the live client-side tool calls a discoverable JSON API, which a browser session could capture
+via devtools network inspection even though this WebFetch-only session could not). Does not close
+AK's 3rd-provider gap — AK remains at 2 of 3, now genuinely exhausted across 6 consecutive sessions
+for stateless-HTTP-reachable calculators (2026-08-17 through 2026-08-31).
