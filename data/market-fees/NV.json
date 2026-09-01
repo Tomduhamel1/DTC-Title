@@ -151,6 +151,8 @@
     "provider": "Western Nevada Title Company (Reno-area independent title agency)",
     "basis": "calculator",
     "sourceUrl": "https://www.wntco.com/calculator",
+    "stale": true,
+    "staleNote": "2026-09-01 freshness check: wntco.com now returns Wix's own 'ConnectYourDomain Error' page (HTTP 404) at both the root domain and /calculator -- the domain has been disconnected from its Wix hosting since this entry's 2026-08-06 retrieval. The white-label NetSheetCalc/TitleTap backend (app.netsheetcalc.com, app_id 435) used to harvest the figures was not re-checked and may still be live, but the agency's own published calculator page is dead. NV remains well above the 3-provider threshold (5 calculator providers on file) even with this one marked stale.",
     "calculatorUrl": "https://app.netsheetcalc.com/company/quickquote.php?appid=435 (NetSheetCalc/TitleTap white-label platform, app_id 435)",
     "retrievalDate": "2026-08-06",
     "scenario": "$500,000 purchase price, $400,000 loan, buyer-financed Purchase scenario (this tenant's 'finance' estimate type), statewide flat/formula fees (no county-tiered dropdown in this tenant's config -- Nevada title/escrow fees are largely uniform statewide for this agency). Seller paying Owner's Title Insurance and splitting Transfer Tax with buyer (tool's own defaults).",

@@ -3974,3 +3974,21 @@ into the live client-side tool calls a discoverable JSON API, which a browser se
 via devtools network inspection even though this WebFetch-only session could not). Does not close
 AK's 3rd-provider gap — AK remains at 2 of 3, now genuinely exhausted across 6 consecutive sessions
 for stateless-HTTP-reachable calculators (2026-08-17 through 2026-08-31).
+
+## 2026-09-01 session — freshness rotation flags 2 dead calculator links (NV, OH); both states stay well above threshold
+
+**Western Nevada Title Company (NV)** — `wntco.com/calculator` now returns Wix's own
+"ConnectYourDomain Error" page (HTTP 404) at both the bare domain and `/calculator`; the domain has
+been disconnected from its Wix hosting since the 2026-08-06 harvest. Marked `{stale: true}` in
+NV.json. The white-label NetSheetCalc/TitleTap backend actually used to pull the figures
+(`app.netsheetcalc.com`, app_id 435) was not re-checked this session and may still be reachable
+directly, but the agency's own published entry point is dead. NV still has 5 calculator providers on
+file, so this does not threaten its `calculator-quoted` status.
+
+**Columbus Title Agency of Westerville (OH)** — `columbustitle.com/netsheets/` now 404s on the live
+site (root domain still 200; tried `/netsheets`, `/netsheets/index.htm`, `/netsheets/index.html`,
+`/Netsheets/index.htm`, all 404). The tool appears taken down or relocated since the 2026-07-27
+harvest. Marked `{stale: true}` in OH.json. OH still has 5 calculator providers on file.
+
+Both are logged here (not just in their state JSON) so a future session doesn't re-attempt these
+exact URLs expecting them to still work.

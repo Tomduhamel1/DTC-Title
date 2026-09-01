@@ -3504,3 +3504,56 @@ logged candidates are now exhausted); (2) NATIC stays a confirmed block, no furt
 NM/NV/OH/OR/WV — verify each state's actual embedded source URLs directly from its `.json` file
 rather than assuming a batch is unchecked; (4) TitleCapture/Qualia Connect and myclosingcost.com
 remain the jsOnly targets queued for a future browser-driven session.
+
+## 2026-09-01 session — calculator harvest: no new work (priority-1 saturated, AK exhausted 6/6);
+freshness rotation round 3 continued (LA/NY/PA/SD then NM/NV/OH/OR/WV, 59 sources total, 2 flagged
+dead); blocked-source retries unchanged
+
+Per the 2026-08-31 session's own priority list, worked items in order.
+
+**Calculator harvest (priority 1): no work attempted on AK.** Priority-1 remains fully saturated
+(36/36 in-scope scarce states at `calculator-quoted (3+ providers)`). AK stands at 2 of 3 providers,
+now confirmed exhausted across 6 consecutive sessions (2026-08-17 through 2026-08-31) with every
+stateless-HTTP-reachable candidate exhausted per the standing recommendation — this session did not
+re-attempt it, consistent with that recommendation, and found no new discovery channel to justify
+another pass. TitleCapture/Qualia Connect and myclosingcost.com remain queued in CALCULATORS.md as
+jsOnly targets for a future browser-driven session.
+
+**Freshness rotation, round 3 continued: LA/NY/PA/SD, then NM/NV/OH/OR/WV** (59 published-schedule
+and calculator source URLs across 9 states, the exact next two round-1 batches named by the
+2026-08-31 session): 57 of 59 resolved live via plain GET/HEAD with a standard browser
+User-Agent/Accept. **2 flagged dead and marked `{stale: true}`:**
+- NV's Western Nevada Title Company calculator entry (`wntco.com/calculator`) — the domain now
+  serves Wix's own "ConnectYourDomain Error" page (404) at root and at `/calculator`, meaning it has
+  been disconnected from Wix hosting since its 2026-08-06 retrieval. NV keeps 5 calculator providers
+  on file, so `calculator-quoted` status is unaffected.
+- OH's Columbus Title Agency of Westerville netsheet calculator (`columbustitle.com/netsheets/`) —
+  genuine WordPress 404 on an otherwise-live site; tried 4 path variants, all 404. OH keeps 5
+  calculator providers on file, so `calculator-quoted` status is unaffected.
+
+One item flagged for awareness rather than staleness: New Mexico OSI's two rate-table PDFs
+(`osi.state.nm.us/wp-content/uploads/2025/09/...`) failed to connect through this session's outbound
+proxy (`CONNECT tunnel failed, response 502` / connection reset, confirmed via
+`$HTTPS_PROXY/__agentproxy/status` as a gateway-level `connect_rejected`/`ws_closed_mid_exchange`
+failure specific to that host, not a client-side or DNS issue) — this reads as a session-side network
+restriction rather than a dead source, so NM's entries were left unmarked; a future session with
+different network access should re-verify directly. Also unchanged from the established pattern:
+Landmark Title South's OH rates page (`landmarktitlesouth.com/rates-and-estimates`) returned the
+already-catalogued SiteGround `sg-captcha: challenge` HTTP 202 WAF-block, not marked `{stale: true}`.
+No other dead links found; no other `{stale: true}` changes; all 9 states' `complete (scarce)` /
+`calculator-quoted` status is otherwise unchanged.
+
+**Blocked-source retries**: CATIC CT (`catic.com/state-resources/connecticut`) HTTP 403 this run
+(within its established fluctuating pattern). Arizona DIFI (`difi.az.gov/title-insurance-rate-filings`)
+still HTTP 403, unchanged across every session checked. Jackson & Scott AL
+(`realestatelclosings.com/closing-costs-calculator/`) still HTTP 403, consistent WAF block, unchanged.
+
+**Next session priority**: (1) AK remains the sole scarce state below the calculator-quoted
+threshold, now confirmed exhausted across 6 consecutive sessions — do not re-attempt without either
+a browser-driven session or a wholly new discovery channel; (2) NATIC stays a confirmed block, no
+further retry planned; (3) continue freshness rotation round 3 with the next round-1 batch after
+NM/NV/OH/OR/WV — verify each state's actual embedded source URLs directly from its `.json` file
+rather than assuming a batch is unchecked; (4) re-verify the two New Mexico OSI PDF URls directly if
+a future session has unrestricted outbound network access, since this session's proxy blocked them
+at the gateway rather than confirming them dead; (5) TitleCapture/Qualia Connect and
+myclosingcost.com remain the jsOnly targets queued for a future browser-driven session.
