@@ -3557,3 +3557,44 @@ rather than assuming a batch is unchecked; (4) re-verify the two New Mexico OSI 
 a future session has unrestricted outbound network access, since this session's proxy blocked them
 at the gateway rather than confirming them dead; (5) TitleCapture/Qualia Connect and
 myclosingcost.com remain the jsOnly targets queued for a future browser-driven session.
+
+## 2026-09-01 session, continued — freshness rotation extended to AZ/MO/HI/KY/CT (30 sources, all live or known-pattern WAF blocks); no new stale markings
+
+Continuing past the LA/NY/PA/SD + NM/NV/OH/OR/WV batch (see above) with a further 5-state batch not
+yet covered by any round-3 freshness pass, to make additional progress within this session's budget.
+
+**Freshness check: AZ/MO/HI/KY/CT** (30 embedded source URLs across 5 states): 27 resolved live via
+plain GET with a standard browser User-Agent/Accept. 3 needed a closer look, none turned out stale:
+- `virtualunderwriter.com`'s AZ and KY rate-manual PDFs each 403'd on the first request but returned
+  200 on an immediate retry with an added `Referer` header — a transient/rate-limit pattern, not a
+  dead link (consistent with this project's established treatment of CATIC CT's fluctuating 403s).
+- Pioneer Title Agency's AZ First American rate PDF (`pioneertitleagency.com`) returned the
+  already-catalogued SiteGround `sg-captcha: challenge` HTTP 202 WAF block (same pattern as Flying S
+  Title ID and Landmark Title South OH) — not marked stale.
+- Oahu Real Estate's HI First American rate sheet (`oahure.com/pdf/FirstAmericanRateSheet.pdf`)
+  403'd twice with different headers, and its own root domain now also 403s behind a Cloudflare
+  managed challenge (`cf-mitigated: challenge`) rather than serving any content — this looks like the
+  whole site moved behind Cloudflare bot-management since this source was last verified. Only checked
+  once this session (no cross-session history yet), so not added to the standing blocked-source-retry
+  list or marked `{stale: true}` on a single observation; flagged here for a future session to
+  re-check and, if it persists, promote to a tracked blocked source or mark stale.
+
+No dead links found; no `{stale: true}` changes; all 5 states' status is unchanged.
+
+**Session total**: 89 published-schedule/calculator source URLs re-verified across 14 states
+(LA/NY/PA/SD, NM/NV/OH/OR/WV, AZ/MO/HI/KY/CT); 2 marked `{stale: true}` (NV's Western Nevada Title
+calculator, OH's Columbus Title netsheet calculator); 1 host flagged for awareness only due to this
+session's own outbound-proxy restriction (NM OSI); 1 host flagged for awareness due to a newly-seen
+Cloudflare challenge (HI's oahure.com).
+
+**Next session priority**: (1) AK remains the sole scarce state below the calculator-quoted
+threshold, now confirmed exhausted across 6 consecutive sessions — do not re-attempt without either
+a browser-driven session or a wholly new discovery channel; (2) NATIC stays a confirmed block, no
+further retry planned; (3) continue freshness rotation with the scarce states not yet covered by any
+round-3 batch — by elimination against every round-3 entry logged to date (VA; ID/IA/ME/MT/ND;
+CO/TN/WI/AL/AR; NH/WV/ME/ND/AK/DC; IN/MD/MI/NJ; LA/NY/PA/SD; NM/NV/OH/OR/WV; AZ/MO/HI/KY/CT), the
+still-unchecked scarce states are: MA, MN, MS, NE, RI, SC, UT, VT, WY, DE — a natural next batch;
+(4) re-verify the two New Mexico OSI PDF URLs directly if a future session has unrestricted outbound
+network access; (5) re-check `oahure.com` (HI) for a second data point on whether its Cloudflare
+challenge is persistent; (6) TitleCapture/Qualia Connect and myclosingcost.com remain the jsOnly
+targets queued for a future browser-driven session.
