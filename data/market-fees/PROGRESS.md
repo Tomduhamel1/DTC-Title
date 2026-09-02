@@ -3598,3 +3598,57 @@ still-unchecked scarce states are: MA, MN, MS, NE, RI, SC, UT, VT, WY, DE — a 
 network access; (5) re-check `oahure.com` (HI) for a second data point on whether its Cloudflare
 challenge is persistent; (6) TitleCapture/Qualia Connect and myclosingcost.com remain the jsOnly
 targets queued for a future browser-driven session.
+
+## 2026-09-02 session — calculator harvest: no work attempted (priority-1 saturated, AK exhausted
+7/7); freshness rotation round 3 completed with the final batch (MA/MN/MS/NE/RI/SC/UT/VT/WY/DE, 70
+sources, all live); blocked-source retries unchanged; round 3 now covers every scarce state
+
+Per the 2026-09-01 session's own priority list, worked items in order.
+
+**Calculator harvest (priority 1): no work attempted on AK.** Priority-1 remains fully saturated
+(36/36 in-scope scarce states at `calculator-quoted (3+ providers)`). AK stands at 2 of 3 providers,
+now confirmed exhausted across 7 consecutive sessions (2026-08-17 through 2026-09-01) with every
+stateless-HTTP-reachable candidate exhausted per the standing recommendation — this session found no
+new discovery channel and did not re-attempt it, consistent with that recommendation.
+
+**Freshness rotation, round 3 completed: MA/MN/MS/NE/RI/SC/UT/VT/WY/DE** (70 unique published-schedule
+and calculator source URLs across these 10 states — the exact final round-1 batch named by the
+2026-09-01 session, closing out round 3's coverage of every scarce state). All 70 resolved live:
+- 65 returned a plain HTTP 200 on the first request with a standard browser User-Agent.
+- `virtualunderwriter.com`'s MN rate-manual PDF 403'd once (with an added `Referer` header) but
+  returned 200 on two immediate retries without it — the same transient/rate-limit pattern already
+  established for this host's AZ/KY PDFs in the 2026-09-01 session, not a dead link.
+- `wfgunderwriting.com`'s MS rate-manual PDF initially failed to resolve (`curl` exit 000) because its
+  filename contains an unencoded literal space; percent-encoding the space (`%20`) resolved it to 200
+  — a URL-encoding artifact in how the link is stored, not a dead source.
+- `documentpub.fnti.com`'s UT and VT rate-manual PDFs both failed TLS verification (`unable to get
+  local issuer certificate`) against this session's CA bundle; re-fetched with certificate validation
+  disabled and both returned 200 with valid PDF content — the same class of session-side network
+  restriction already flagged for NM OSI in the 2026-09-01 session (this host's certificate chain
+  specifically, not general breakage), so left unmarked rather than flagged `{stale: true}`; a future
+  session with a CA bundle that trusts this host's chain should confirm directly.
+
+No dead links found; no `{stale: true}` changes; all 10 states' `calculator-quoted` status is
+unchanged. **Round 3 freshness rotation is now complete for every scarce state** (VA; ID/IA/ME/MT/ND;
+CO/TN/WI/AL/AR; NH/WV/ME/ND/AK/DC; IN/MD/MI/NJ; LA/NY/PA/SD; NM/NV/OH/OR/WV; AZ/MO/HI/KY/CT;
+MA/MN/MS/NE/RI/SC/UT/VT/WY/DE) — a future session should start a new round 4 from the top (VA) rather
+than assume any state is exempt from re-checking.
+
+**Blocked-source retries**: CATIC CT (`catic.com/state-resources/connecticut`) HTTP 200 this run,
+continuing its established fluctuating pattern. Arizona DIFI (`difi.az.gov/title-insurance-rate-filings`)
+still HTTP 403, unchanged across every session checked. Jackson & Scott AL
+(`realestatelclosings.com/closing-costs-calculator/`) still HTTP 403, consistent WAF block, unchanged.
+
+**Session total**: 70 published-schedule/calculator source URLs re-verified across 10 states; 0 marked
+`{stale: true}`; 2 hosts flagged for awareness only due to this session's own TLS/CA restriction
+(`documentpub.fnti.com`'s UT and VT PDFs — content confirmed live via insecure fetch).
+
+**Next session priority**: (1) AK remains the sole scarce state below the calculator-quoted
+threshold, now confirmed exhausted across 7 consecutive sessions — do not re-attempt without either a
+browser-driven session or a wholly new discovery channel; (2) NATIC stays a confirmed block, no
+further retry planned; (3) start freshness rotation round 4 from the top (VA), since round 3 has now
+covered every scarce state at least once; (4) re-verify the two New Mexico OSI PDF URLs and
+`documentpub.fnti.com`'s UT/VT PDFs directly if a future session has a CA bundle/network path that
+resolves them without a TLS or gateway error; (5) re-check `oahure.com` (HI) for a second data point on
+whether its Cloudflare challenge is persistent; (6) TitleCapture/Qualia Connect and myclosingcost.com
+remain the jsOnly targets queued for a future browser-driven session.
