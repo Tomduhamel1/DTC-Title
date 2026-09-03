@@ -3717,3 +3717,37 @@ inconclusive rather than confirmed dead; (5) re-verify the two New Mexico OSI PD
 that resolves them without a TLS or gateway error; (6) retry the newly-tracked blocked source
 `oahure.com` (HI) alongside CATIC CT/AZ DIFI/Jackson & Scott AL each session; (7) TitleCapture/Qualia
 Connect and myclosingcost.com remain the jsOnly targets queued for a future browser-driven session.
+
+## 2026-09-03 session, continued — reduced freshness pass extended to next 5 oldest published sources (AR/DC/AL/IL/WY), all live
+
+Continuing the reduced freshness scope past the first 5 (see above) with the next batch by `asOf`
+date, to make additional progress within this session's budget before stopping.
+
+**5 next-oldest published sources re-verified, all HTTP 200 (live), no changes needed:**
+- **AR** — Stewart Title Guaranty 2014 manual (`go.stewart.com/rs/067-YWO-436/images/...`).
+- **DC** — WFG National Title 2014 rate manual (`wfgunderwriting.com/.../WFG%20DC%20Rates%20(10-01-2014).pdf`).
+- **AL** — Stewart Title Guaranty 2014 manual (`virtualunderwriter.com/.../alabama-manual-120314-...pdf`).
+- **IL** — WFG National Title 2015 rate manual (`wfgunderwriting.com/.../WFG%20Rate%20Manual%20IL%20revised%204-28-2015...pdf`).
+- **WY** — Stewart Title Guaranty 2016 manual (`stewart.com/.../wyoming_manual_101316_eff_120816.pdf`).
+
+No `{stale: true}` markings this session's second batch (0 dead links found).
+
+**Session total (both batches)**: 10 published-schedule source URLs re-verified across 10 states
+(FL/NM/IN/VT/HI, AR/DC/AL/IL/WY); 0 marked `{stale: true}`; 1 host flagged for awareness only due to
+a connect-but-no-response pattern (FL's `flrules.elaws.us`, content cross-verified live elsewhere);
+1 source promoted to tracked blocked source (HI's `oahure.com`, persistent Cloudflare block, 2nd
+consecutive session); blocked-source retries (CATIC CT/AZ DIFI/Jackson & Scott AL) unchanged; no
+calculator-harvest work attempted (priority-1 saturated, AK exhausted, no new discovery channel).
+
+**Next session priority**: (1) AK remains the sole scarce state below the calculator-quoted
+threshold, confirmed exhausted across 8 consecutive sessions — do not re-attempt without a
+browser-driven session or a wholly new discovery channel; (2) NATIC stays a confirmed block; (3)
+continue the reduced-freshness rotation with the next batch of oldest published sources by `asOf`
+date after AR/DC/AL/IL/WY (next up: KS 2017-09-18, ID 2017-09-28, FL/theclosingcompany.net
+2017-10-06, GA 2018-06-01, CT 2020-01-09) — or switch back to full state-rotation round 4 (started
+at VA per the 2026-09-02 plan) if a future session has more budget; (4) retry `flrules.elaws.us`
+(FL) directly — inconclusive connect-but-no-response this session; (5) re-verify the NM OSI PDFs and
+`documentpub.fnti.com`'s FL/UT/VT PDFs if a future session's CA bundle/network resolves them
+directly; (6) retry the newly-tracked blocked source `oahure.com` (HI) alongside
+CATIC CT/AZ DIFI/Jackson & Scott AL each session; (7) TitleCapture/Qualia Connect and
+myclosingcost.com remain the jsOnly targets queued for a future browser-driven session.
