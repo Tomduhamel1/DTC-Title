@@ -3652,3 +3652,68 @@ covered every scarce state at least once; (4) re-verify the two New Mexico OSI P
 resolves them without a TLS or gateway error; (5) re-check `oahure.com` (HI) for a second data point on
 whether its Cloudflare challenge is persistent; (6) TitleCapture/Qualia Connect and myclosingcost.com
 remain the jsOnly targets queued for a future browser-driven session.
+
+## 2026-09-03 session — reduced freshness pass (5 oldest published sources) + blocked-source retries; no work attempted on AK (still exhausted); `oahure.com` (HI) promoted to tracked blocked source on 2nd consecutive Cloudflare-block observation
+
+Per this session's own scoped mission (calculator harvest is fully saturated per every prior
+session's tracking — 36/36 in-scope scarce states at `calculator-quoted (3+ providers)`, AK the sole
+exception, confirmed exhausted across 7 consecutive sessions — so no new calculator work was
+attempted without a new discovery channel, none found), this session ran the reduced freshness scope
+literally: the 5 published-schedule entries with the oldest `asOf` document dates project-wide
+(excluding entries already marked `{stale: true}`), rather than a full state-rotation batch.
+
+**5 oldest published sources re-verified:**
+1. **FL** — Florida OIR/FAC 69O-186.003 (`asOf` 2002-01-27, oldest in the project). Its primary URL
+   (`flrules.elaws.us/fac/69o-186.003/`) failed to return any HTTP response across 3 attempts
+   (HTTP/2 and HTTP/1.1, up to 35s) — TLS handshake completes but the server never sends a response;
+   the domain root also hung identically. This is a connect-but-no-response pattern, not a clean
+   404/403, and only observed this single session, so **not marked stale**. The entry's content
+   remains independently confirmed via its cross-verification source,
+   `documentpub.fnti.com/Documents/Florida/...` (FNTI's own republication of the same FAC text),
+   which returned HTTP 200 this session once fetched with certificate validation disabled — the same
+   TLS-chain issue already flagged for this host's UT/VT PDFs in the 2026-09-02 session, a
+   session-side CA-bundle gap, not a dead source. Flagged for a future session to retry
+   `flrules.elaws.us` directly.
+2. **NM** — Fidelity National Title Group 2012 rate table (`lcat.net/wp-content/uploads/2017/03/NM_Title_Ins_Rates_2012.pdf`): HTTP 200, live.
+3. **IN** — WFG National Title 2013 rate manual (`wfgunderwriting.com/.../WFG%20Indiana%20Rates%20070113(2).pdf`): HTTP 200, live.
+4. **VT** — Stewart Title Guaranty 2013 rate manual (`stewart.com/.../vt_rates.pdf`): HTTP 200, live.
+5. **HI** — First American Title rate sheet (`oahure.com/pdf/FirstAmericanRateSheet.pdf`): HTTP 403
+   with `cf-mitigated: challenge` (Cloudflare managed-challenge block), identical to the 2026-09-01
+   session's first observation. The site's root domain also still 403s the same way. This is now
+   **2 consecutive sessions confirming a persistent, whole-domain Cloudflare block** — per the
+   2026-09-01 session's own recommendation, this is promoted to a **tracked blocked source** (like
+   CATIC CT / AZ DIFI / Jackson & Scott AL) rather than marked `{stale: true}`: a bot-management
+   challenge blocks this scraper's access but does not indicate the underlying content is gone, so
+   treating it as content-removed would be the wrong signal. HI keeps other calculator providers on
+   file, so `calculator-quoted` status is unaffected; this only concerns the older published-schedule
+   entry.
+
+No `{stale: true}` markings this session (0 confirmed-dead links found; the FL and HI issues above are
+access/TLS problems, not content removal).
+
+**Blocked-source retries**: CATIC CT (`catic.com/state-resources/connecticut`) HTTP 200 this run,
+continuing its established fluctuating pattern. Arizona DIFI (`difi.az.gov/title-insurance-rate-filings`)
+still HTTP 403, unchanged across every session checked. Jackson & Scott AL
+(`realestatelclosings.com/closing-costs-calculator/`) still HTTP 403, consistent WAF block, unchanged.
+`oahure.com` (HI) added to this list per above — HTTP 403 (Cloudflare managed challenge) this run,
+first run tracked as a blocked source.
+
+**Calculator harvest (priority 1): no work attempted on AK.** Priority-1 remains fully saturated
+(36/36 in-scope scarce states at `calculator-quoted (3+ providers)`). AK stands at 2 of 3 providers,
+now confirmed exhausted across 8 consecutive sessions (2026-08-17 through 2026-09-02) with no new
+discovery channel found this session — consistent with the standing recommendation not to re-attempt
+without either a browser-driven session or a wholly new lead.
+
+**Next session priority**: (1) AK remains the sole scarce state below the calculator-quoted
+threshold, now confirmed exhausted across 8 consecutive sessions — do not re-attempt without either a
+browser-driven session or a wholly new discovery channel; (2) NATIC stays a confirmed block, no
+further retry planned; (3) continue freshness rotation round 4 (started at VA per the 2026-09-02
+session's plan, not yet run this session since this session used the reduced 5-oldest-sources scope
+instead) or continue with the next batch of oldest published sources by `asOf` date (next up after
+this session's 5: AR 2014-05-22, DC 2014-10-01, AL 2014-12-03, IL 2015-04-28, WY 2016-10-13); (4)
+retry `flrules.elaws.us` (FL) directly — connect-but-no-response across 3 attempts this session,
+inconclusive rather than confirmed dead; (5) re-verify the two New Mexico OSI PDF URLs and
+`documentpub.fnti.com`'s Florida/UT/VT PDFs directly if a future session has a CA bundle/network path
+that resolves them without a TLS or gateway error; (6) retry the newly-tracked blocked source
+`oahure.com` (HI) alongside CATIC CT/AZ DIFI/Jackson & Scott AL each session; (7) TitleCapture/Qualia
+Connect and myclosingcost.com remain the jsOnly targets queued for a future browser-driven session.
