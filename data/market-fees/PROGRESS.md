@@ -3751,3 +3751,58 @@ at VA per the 2026-09-02 plan) if a future session has more budget; (4) retry `f
 directly; (6) retry the newly-tracked blocked source `oahure.com` (HI) alongside
 CATIC CT/AZ DIFI/Jackson & Scott AL each session; (7) TitleCapture/Qualia Connect and
 myclosingcost.com remain the jsOnly targets queued for a future browser-driven session.
+
+## 2026-09-04 session — reduced freshness pass (next 5 oldest published sources: KS/ID/FL/GA/CT), blocked-source retries, AK re-check finds no new discovery channel (Elko confirmed already-gated, not a new lead)
+
+Per the standing mission state (calculator harvest fully saturated: 36/36 in-scope scarce states at
+`calculator-quoted (3+ providers)`, AK the sole exception, confirmed exhausted across 8 consecutive
+prior sessions), this session ran the reduced freshness scope per the previous session's queued
+batch, plus blocked-source retries and one AK discovery check.
+
+**5 next-oldest published sources re-verified, all live:**
+- **KS** — Chicago Title/NationalLink LLC manual via Kansas Insurance Dept
+  (`insurance.ks.gov/documents/company/prop-cas/titlerates/nationallinkllc.pdf`, cover dated
+  2024-03-13 / internal sections from 2017-09-18): HTTP 200.
+- **ID** — WFG National Title 2017 rate manual
+  (`wfgunderwriting.com/.../WFG%20Idaho%20Rate%20Manual%20-%20HE2%20Effective%209-28-17.pdf`): HTTP 200.
+- **FL** — Express Title Services Group sample Closing Disclosure via theclosingcompany.net
+  (`theclosingcompany.net/wp-content/uploads/2018/02/SAMPLE-Closing-Disclosure-Form-.pdf`): HTTP 200.
+- **GA** — First American Title 2018 Georgia Condensed rate manual via oneclosingsource.com
+  (`oneclosingsource.com/.../2018-Rates-Georgia-Condensed-Title-Rate-Manual-Agent-Version-Effect-6-1-18.pdf`): HTTP 200.
+- **CT** — Stewart Title Guaranty 2020 rate manual via virtualunderwriter.com
+  (`virtualunderwriter.com/.../connecticut-rate-manual-01-09-20-eff-03-01-20.pdf`): first attempt with
+  a bare `curl` UA returned HTTP 403; a retry with full browser-style headers (UA + Accept +
+  Accept-Language + Referer) returned HTTP 200, then a follow-up bare retry 403'd again — the same
+  fluctuating WAF-by-request-shape pattern already documented for CATIC CT, not a dead link. Treated
+  as live; not marked stale.
+
+No `{stale: true}` markings this session (0 confirmed-dead links).
+
+**Blocked-source retries**: CATIC CT (`catic.com/state-resources/connecticut`) HTTP 403 this run
+(bare curl) — consistent with its established fluctuating pattern, not re-tested with full headers
+this session; unchanged status. Arizona DIFI (`difi.az.gov/title-insurance-rate-filings`) HTTP 403,
+unchanged across every session checked. Jackson & Scott AL
+(`realestatelclosings.com/closing-costs-calculator/`) HTTP 403, consistent WAF block, unchanged.
+`oahure.com` (HI) HTTP 403 (Cloudflare managed challenge), 3rd consecutive session confirming the
+block — status unchanged (tracked blocked source, not stale).
+
+**Calculator harvest (priority 1): no new work.** Priority-1 remains fully saturated (36/36
+in-scope scarce states). AK re-checked via a fresh web search this session for any newly-launched
+calculator or discovery channel — found `useelko.com` ("Elko") surfaced again as a candidate, but
+this platform was already investigated and confirmed **login-gated with no guest/public quote
+mode** at 3 independent agency instances in the 2026-07-31 session (see CALCULATORS.md); no new
+Elko instance or guest-mode variant found this session. No other new candidate surfaced. AK now
+confirmed exhausted across 9 consecutive sessions (2026-08-17 through 2026-09-04) — do not
+re-attempt without a browser-driven session or a wholly new discovery channel.
+
+**Next session priority**: (1) AK — 9 sessions exhausted, needs a browser-driven session or a truly
+new lead, not another web search repeating known-gated platforms; (2) NATIC stays a confirmed
+block; (3) continue the reduced-freshness rotation with the next batch of oldest published sources
+by `asOf` date after KS/ID/FL/GA/CT (grep remaining entries for the next-oldest `asOf` dates) — or
+switch to full state-rotation round 4 (started at VA per the 2026-09-02 plan) if budget allows; (4)
+retry `flrules.elaws.us` (FL) directly — still inconclusive connect-but-no-response as of
+2026-09-03; (5) re-verify the NM OSI PDFs and `documentpub.fnti.com`'s FL/UT/VT PDFs if a future
+session's CA bundle/network resolves them directly; (6) retry tracked blocked sources (CATIC CT,
+AZ DIFI, Jackson & Scott AL, `oahure.com` HI) each session, ideally with full browser-style headers
+given CT's fluctuating-WAF finding this session; (7) TitleCapture/Qualia Connect and
+myclosingcost.com remain the jsOnly targets queued for a future browser-driven session.
