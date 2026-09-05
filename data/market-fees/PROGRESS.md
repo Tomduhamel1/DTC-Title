@@ -3806,3 +3806,70 @@ session's CA bundle/network resolves them directly; (6) retry tracked blocked so
 AZ DIFI, Jackson & Scott AL, `oahure.com` HI) each session, ideally with full browser-style headers
 given CT's fluctuating-WAF finding this session; (7) TitleCapture/Qualia Connect and
 myclosingcost.com remain the jsOnly targets queued for a future browser-driven session.
+
+## 2026-09-05 session — reduced freshness pass (next 5 oldest published sources: NC/GA/TN/ME/MD),
+blocked-source retries, AK re-check finds no new discovery channel; no `{stale: true}` changes
+
+Per the standing mission state (calculator harvest fully saturated: 36/36 in-scope scarce states at
+`calculator-quoted (3+ providers)`, AK the sole exception, confirmed exhausted across 9 consecutive
+prior sessions), this session ran the reduced freshness scope per the previous session's queued
+batch, plus blocked-source retries and one AK discovery check.
+
+**5 next-oldest published sources re-verified, all live:**
+- **NC** — Investors Title Insurance Company historical rate brochure, `asOf` 2018-10
+  (`invtitle.com/docs/news/nc/ncratebrochure201810.pdf`): HTTP 200.
+- **GA** — First National Title Insurance Company (FNTI) rate manual eff. 2022-02-02
+  (`documentpub.fnti.com/Documents/Georgia/...`): initial plain `curl` failed TLS verification
+  (`unable to get local issuer certificate`) against this session's CA bundle — the same
+  `documentpub.fnti.com`-specific chain issue already flagged for this host's FL/UT/VT PDFs in prior
+  sessions, not general breakage; re-fetched with certificate validation disabled and returned HTTP
+  200 with valid PDF content. Left unmarked (session-side CA-bundle gap, not a dead source).
+- **TN** — Stewart Title Guaranty rate manual, `asOf` 2022-02-04
+  (`go.stewart.com/rs/067-YWO-436/images/Tennessee%20Rate%20Manual%20FINAL.pdf`): HTTP 200.
+- **ME** — WFG National Title rates eff. 2022-03-01
+  (`wfgunderwriting.com/.../Maine%20Title%20Rates%20-%20effective%20March%201,%202022.pdf`): HTTP 200.
+- **MD** — WFG National Title rate manual eff. 2022-03-01
+  (`wfgunderwriting.com/.../Maryland%20Rate%20Title%20Manual%20-%20effective%20March%201,%202022.pdf`):
+  HTTP 200.
+
+No `{stale: true}` markings this session (0 confirmed-dead links; the GA/`documentpub.fnti.com` TLS
+issue is a session-side certificate-chain gap, not content removal — consistent with this host's
+established pattern).
+
+**Blocked-source retries**: CATIC CT (`catic.com/state-resources/connecticut`) HTTP 200 this run,
+continuing its established fluctuating pattern. Arizona DIFI (`difi.az.gov/title-insurance-rate-filings`)
+still HTTP 403, unchanged across every session checked. Jackson & Scott AL
+(`realestatelclosings.com/closing-costs-calculator/`) still HTTP 403, consistent WAF block, unchanged.
+`oahure.com` (HI) still HTTP 403 (Cloudflare managed challenge), 4th consecutive session confirming
+the block — status unchanged (tracked blocked source, not stale).
+
+**Calculator harvest (priority 1): no new work.** Priority-1 remains fully saturated (36/36
+in-scope scarce states). AK re-checked via a fresh web search this session for any newly-launched
+calculator or discovery channel — surfaced only already-catalogued candidates (myclosingcost.com,
+already logged `{jsOnly: true}`; netsheetcalc.com's AK landing page, already confirmed pure platform
+marketing with no tenant `app_id`; general closing-cost blog calculators with no title-provider
+attribution, not in scope). No new stateless-HTTP-reachable candidate found. AK now confirmed
+exhausted across 10 consecutive sessions (2026-08-17 through 2026-09-04) — do not re-attempt without
+a browser-driven session or a wholly new discovery channel.
+
+**Note on tool behavior this session**: the generic WebFetch tool returned false-positive HTTP
+403/503 codes on several of these hosts (catic.com, difi.az.gov, realestatelclosings.com,
+oahure.com, documentpub.fnti.com) that did not match `curl` with browser-style headers run directly
+against the same URLs in the same session. Plain `curl` with a standard browser User-Agent remains
+the reliable verification method for this project, consistent with every prior session's approach —
+future sessions should not treat a WebFetch-tool error alone as evidence of a dead or newly-blocked
+source without confirming via direct `curl`.
+
+**Next session priority**: (1) AK remains the sole scarce state below the calculator-quoted
+threshold, now confirmed exhausted across 10 consecutive sessions — needs a browser-driven session
+or a truly new lead, not another web search repeating known-gated/marketing-only platforms; (2)
+NATIC stays a confirmed block; (3) continue the reduced-freshness rotation with the next batch of
+oldest published sources by `asOf` date after NC/GA/TN/ME/MD (next up by date: WA 2023-09-01, VA
+2023-09-01, TN 2024-05-27, GA 2024-07-08, WI 2024-07-10) — or switch to full state-rotation round 4
+(started at VA per the 2026-09-02 plan) if a future session has more budget; (4) retry
+`flrules.elaws.us` (FL) directly — still inconclusive connect-but-no-response as of 2026-09-03; (5)
+re-verify the NM OSI PDFs and `documentpub.fnti.com`'s FL/GA/UT/VT PDFs if a future session's CA
+bundle/network resolves them directly without disabling certificate validation; (6) retry tracked
+blocked sources (CATIC CT, AZ DIFI, Jackson & Scott AL, `oahure.com` HI) each session with full
+browser-style headers via `curl`, not the generic WebFetch tool; (7) TitleCapture/Qualia Connect and
+myclosingcost.com remain the jsOnly targets queued for a future browser-driven session.
