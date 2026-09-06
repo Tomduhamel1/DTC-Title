@@ -1,0 +1,211 @@
+[
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://go.stewart.com/rs/067-YWO-436/images/Arkansas%20manual%20Final%20eff%203-16-26.pdf?version=0",
+    "asOf": "Last updated 2014-05-22; effective 2026-03-16",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule. Explicitly excludes settlement fees.",
+      "ownersLeaseholdPolicy_liabilityTiered": "Up to $20,000 = $75 fixed; over $20,000-$50,000 add $4.00/thousand; over $50,000-$100,000 add $3.40/thousand; over $100,000-$500,000 add $2.25/thousand; over $500,000-$10,000,000 add $2.00/thousand; over $10,000,000-$15,000,000 add $1.75/thousand; over $15,000,000 add $1.40/thousand.",
+      "homeownersPolicy": "120% of Owner's Policy charge, minimum $90.",
+      "loanPolicy_liabilityTiered": "Up to $20,000 = $75 fixed; over $20,000-$50,000 add $2.80/thousand; over $50,000-$100,000 add $2.25/thousand; over $100,000-$500,000 add $2.00/thousand; over $500,000-$10,000,000 add $1.75/thousand; over $10,000,000-$15,000,000 add $1.40/thousand; over $15,000,000 add $1.15/thousand.",
+      "reissueCredit": "40% (owner's/homeowner's), 30% (loan/refinance)"
+    },
+    "itemizedFees": {
+      "cpl": {
+        "perLetter": "$25.00 per party receiving the benefit, plus $25 more for a second mortgage/HELOC by a different lender"
+      },
+      "other": []
+    },
+    "bundlingNotes": "Definitions section states explicitly: 'A charge does not include the abstracting, searching and examination fee... [nor] any settlement fee, trustee fee, attorney fee, surveying fee, inspection fee, document fee, closing fee, escrow fee or any other fee associated with escrow.' Most current-vintage rate manual found in this entire survey to date (effective just months from now, 2026-03-16), reflecting Stewart's active AR filing cadence.",
+    "transactionContext": "Owner's, Homeowner's, and Loan policy premium schedules, statewide, plus reissue/refinance credits, simultaneous-issue rates, Closing Protection Letter charges, and full residential/commercial endorsement price lists. No purchase/refinance settlement-service-fee breakdown."
+  },
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/arkansas/rate-manuals/WFG%20Arkansas%20Rates%20as%20of%207-25-17%20HE2.pdf",
+    "asOf": "Effective 2017-07-25",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule. Explicitly states AR premiums are unregulated/unfiled.",
+      "ownersPolicy_liabilityTiered": "Up to $50,000 = $3.50/thousand (min $50); over $50,000-$100,000 add $3.00/thousand; over $100,000-$5,000,000 add $2.00/thousand; over $5,000,000-$10,000,000 add $1.75/thousand.",
+      "homeownersPolicy": "150% of Owner's Policy premium.",
+      "loanPolicy_liabilityTiered": "Up to $50,000 = $2.50/thousand (min $50); over $50,000-$100,000 add $2.00/thousand; over $100,000-$500,000 add $1.75/thousand; over $500,000-$10,000,000 add $1.50/thousand.",
+      "reissueRate": "60% of original charge (owner's and loan, prior policy within 10 years)",
+      "simultaneousIssueLoanPolicy": "$25.00 flat"
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "Master Home Equity / HE2 certificate fee",
+          "amount": "$45-$300 tiered by loan amount up to $1,000,000"
+        }
+      ]
+    },
+    "bundlingNotes": "Opens with an explicit statement unique among states surveyed: 'Search and examination fees, as well as closing and escrow fees, are separate from title insurance premiums in the state of Arkansas. The state of Arkansas is an unregulated state, and the title insurance premiums herein are not filed rates.' Confirms AR has no rate-filing requirement at all (unlike AL/AK), yet WFG still publishes a customary rate card -- settlement fees remain entirely unpublished.",
+    "transactionContext": "Owner's (Standard, Homeowner's), Loan, reissue, and simultaneous-issue premium schedules, statewide. No settlement/escrow-service-fee breakdown."
+  },
+  {
+    "provider": "Southwest Title Insurance Company (SWTIC, a First National Title Insurance Company / FNTI affiliate)",
+    "sourceUrl": "https://fnti.com/file/title-rates-chart-arkansas/",
+    "asOf": "Effective 2020-03-01",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule.",
+      "ratesTable_sample": "At $100,000 policy amount: Basic Rate $365, Homeowner $457, Standard Loan $272, Expanded Loan $340. At $500,000: Basic Rate $1,265, Homeowner $1,582, Standard Loan $1,072, Expanded Loan $1,340. At $1,000,000: Basic Rate $2,265, Homeowner $2,832, Standard Loan $1,947, Expanded Loan $2,434. Full $50,000-$1,000,000 table in $5,000 increments recorded in the source PDF/marketing flyer."
+    },
+    "itemizedFees": {},
+    "bundlingNotes": "Published as a printable marketing rate-chart flyer (not a formal regulatory filing document, consistent with WFG's confirmation that AR premiums are unfiled/unregulated). No settlement, escrow, or closing service fee figures appear anywhere on the flyer -- premium only, matching the pattern of the other two AR sources.",
+    "transactionContext": "Owner's (Basic Rate and Homeowner) and Loan (Standard and Expanded) policy premium schedules in $5,000 increments from $50,000 to $1,000,000 of policy liability, statewide. No purchase/refinance settlement-service-fee breakdown."
+  },
+  {
+    "basis": "calculator",
+    "provider": "TitleTech of Arkansas, LLC (independent title/closing company, home office Rogers, AR/Benton County-NWA; embeds a NetSheetCalc/TitleTap white-label net-sheet calculator instance, app_id=393)",
+    "sourceUrl": "https://titletech-arkansas.io/calculator/",
+    "calculatorUrl": "https://app.netsheetcalc.com/c/titletech-title (splash) -> Quick Quote at https://app.netsheetcalc.com/company/quickquote.php?appid=393 (no sign-in needed, though the UI page itself is a JS-rendered shell with no static form -- the data endpoints below were driven directly)",
+    "endpoint": "GET https://app.netsheetcalc.com/company/non-auth-ajax.php?action=getAppData&app_id=393 (no auth) returns this agency's full fee-form JSON schema, including hardcoded flat-dollar ancillary fee constants (closing_fee, search fee, cpl, eFiling_fee_estimate, recording_fee, technology fee, mobile notary); GET https://app.netsheetcalc.com/api/index.php/rate/<amount>/<rate-key> (no auth) returns this agency's own dynamically-rated title insurance premium and transfer-tax ('Revenue Stamps') figures for a given dollar amount, rate keys 'finance393' (title insurance premium, keyed off purchase price per this tool's own formula reference for both the owner's and lender's premium fields), 'cash393', and 'Revenue393' (revenue stamps/transfer tax) specific to this tenant.",
+    "retrievalDate": "2026-07-31",
+    "scenario": "$500,000 purchase price, $400,000 loan, residential purchase with financing ('finance' estimate type), buyer paying for owner's title insurance policy. This tool has no county/city selector at all (a free-text city/state/zip field only, no dropdown or county-based fee branching found anywhere in the schema) -- its ancillary fee constants are flat statewide, so Pulaski County/Little Rock (AR's most-populous county, the mission's standard-scenario target) was not a substitutable input; the company's own home office is in Rogers, AR (Benton County, Northwest Arkansas), not Pulaski County.",
+    "methodology": "Found via web search for Arkansas-specific title-company rate calculators (search snippet: 'Calculator - TitleTech of Arkansas LLC.'); confirmed genuinely Arkansas-specific by the company's own name/domain (titletech-arkansas.io), distinguishing it from several other app.netsheetcalc.com appids that surfaced in Arkansas-flavored search snippets but were confirmed via this same getAppData recipe to actually default to TX/IL/FL/no-state configurations (appids 523, 462, 444 respectively) -- a misattribution pattern matching the one already documented for South Carolina in the 2026-07-30 session, guarded against here by verifying each candidate's own JSON config before treating it as a real state match. The calculator page itself embeds NetSheetCalc's widget.v2.js with a static '__widget_app_data' script tag exposing app_id=393 directly in the page HTML (no iframe-hunting needed). No personal data fields (name/email/phone) exist anywhere in the fee-form schema.",
+    "settlementFee": {
+      "closingFee": "$400.00 (labeled 'Closing Fee' in this agency's own finance/purchase fee schema)"
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "notarySigning": "$350.00 (Mobile Notary, as needed, buyer-side optional line item)",
+      "cpl": "$25.00 (CPL)",
+      "searchExam": "$250.00 (Search Fee)",
+      "eRecording": "$10.00 (eFiling Fee Estimate, $5 per doc x 2 docs)",
+      "wire": null,
+      "courier": null,
+      "recordingFee_combined": "$125.00 (Recording Fees, not split by instrument)",
+      "technologyFee": "$250.00",
+      "transferTaxRevenueStamps": "$825.00 (this tool's own 'Revenue393' formula at $500,000 purchase price -- Arkansas real property transfer tax/revenue stamps, $3.30/thousand)",
+      "ownersTitleInsurancePremium": "$1,100.00 (this tool's own 'finance393' rate at $500,000 purchase price)",
+      "lendersTitleInsurancePremium": "$1,100.00 (this tool's schema reuses the same 'finance393' rate keyed off purchase price, not loan amount, for both the owner's-policy field in the property section and the separate 'Lenders Title Insurance Premium' field in the misc-fee section -- recorded exactly as the tool computes it, not adjusted)",
+      "cashScenario_ownersTitleInsurancePremium_forComparison": "$1,450.00 ('cash393' rate at $500,000, i.e. the no-financing premium tier, materially higher than the finance-scenario rate at the same price point)"
+    },
+    "bundlingNotes": "First genuinely Arkansas-specific calculator-harvest source found this session, after 3 other NetSheetCalc/TitleTap appids surfacing in AR-flavored search results were checked and ruled out as other-state instances (see methodology). No county-based fee variation exists in this tool at all -- flat statewide ancillary fees, distinguishing it from most other NetSheetCalc tenants already on file (VA/IN/KY instances all have county- or city-level fields).",
+    "transactionContext": "Standard purchase-with-financing net sheet: Closing Fee, Search Fee, CPL, eFiling Fee, Recording Fees, Technology Fee, optional Mobile Notary, formula-driven Revenue Stamps (transfer tax) and Owner's/Lender's Title Insurance Premium, statewide."
+  },
+  {
+    "provider": "Hot Springs Title (independent title agency; Hot Springs, AR [Garland County]) - via forms.titlemidwest.com's Title Midwest platform, tenant slug 'HstCalc'",
+    "basis": "calculator",
+    "sourceUrl": "https://forms.titlemidwest.com/titlemidwestForms/RateCalculator/HstCalc/Calculator.asp",
+    "calculatorUrl": "https://forms.titlemidwest.com/titlemidwestForms/RateCalculator/HstCalc/Calculator.asp",
+    "endpointOrParams": "Plain unauthenticated JSON GET: https://forms.titlemidwest.com/titlemidwestForms/RateCalculator/HstCalc/ajax.asp?loantype=p&purchamt=500000&loanamt=400000 (single-county deployment, no county/state parameter needed). Found via this session's Title Midwest platform discovery (see MN.json's Minnesota Secured Title entry for the initial find) -- located directly in the platform's own open directory listing (`forms.titlemidwest.com/titlemidwestForms/RateCalculator/`). The remaining flat 'Other Title Charges' constants are hardcoded in the page's own inline <script> (var feeOtherPurchase = 650; -- split into two $325 line items per the static HTML list) and static HTML, read directly, no execution needed.",
+    "retrievalDate": "2026-08-02",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Purchase transaction, Garland County (Hot Springs, this tenant's own single-county service area; statewide flat fees, no county tiering, consistent with the existing TitleTech of Arkansas entry's own statewide-flat-fee structure).",
+    "methodology": "Found via this session's Title Midwest platform directory listing. The page's own text explicitly references 'Arkansas' mechanic-lien-coverage rules, confirming genuine AR attribution (not a misattributed out-of-state tenant). No personal data fields exist anywhere in the calculator's HTML form (only Purchase Price and Loan Amount).",
+    "itemizedFees": {
+      "cpl": null,
+      "processing": null,
+      "notarySigning": null,
+      "docPrep": null,
+      "searchExam": null,
+      "other": [
+        {
+          "name": "Net Lender's Title Policy Charge",
+          "amount": "$100.00"
+        },
+        {
+          "name": "Net Owner's Title Policy Charge",
+          "amount": "$1,655.00"
+        },
+        {
+          "name": "Seller closing fee",
+          "amount": "$325.00"
+        },
+        {
+          "name": "Buyer closing fee",
+          "amount": "$325.00"
+        }
+      ]
+    },
+    "sectionTotals": "Other Title Charges (Seller + Buyer closing fees combined): $650.00. Total of All Title Charges: pLender + pOwner + Other = $100 + $1,655 + $650 = $2,405.00 (per the page's own 'Total of All Title Charges on this Transaction' figure, not independently re-verified beyond this arithmetic).",
+    "bundlingNotes": "This tenant's split Seller/Buyer closing fee ($325 each, flat, statewide) is structurally similar to TitleTech of Arkansas' own statewide flat-fee model (also on file for AR) but at a different dollar amount ($325 vs. TitleTech's $400 Closing Fee) -- a genuine cross-provider data point on AR's independent-agency closing-fee range. Both AR providers on file to date are single-county-office, statewide-flat-fee operations, consistent with AR's published-schedule survey finding no metro-tiered pricing anywhere.",
+    "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Garland County/Hot Springs. This is AR's 2nd calculator-basis provider, still below the 3-provider threshold (1 more needed)."
+  },
+  {
+    "provider": "Chicago Title Insurance Company (national FNF-family underwriter; ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine -- confirmed byte-identical output for the Fidelity National Title Insurance Company brand on the same platform with identical inputs, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=CTIC&state=AR",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?state=AR (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-05",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Pulaski County (Little Rock), Property Purchase (with or without financing), Residential property type, Closing Protection Letter = Yes, not eligible for Reissue rate. Despite entering a $400,000 loan amount in the 'Amount of Loan #1' field, the tool's final Rate Summary for this state/underwriter combination only computed an Owner's Policy premium -- no separate Loan Policy line item or question appeared anywhere in the flow; recorded exactly as the tool computed it, not adjusted.",
+    "methodology": "Driven via plain HTTP POST (curl, not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback) against the classic __doPostBack/__VIEWSTATE WebForms flow: (1) GET https://ratecalculator.fnf.com/?ID=CTIC&state=AR to capture __VIEWSTATE/__VIEWSTATEGENERATOR/__EVENTVALIDATION/SessionId and confirm AR is in the state list (all 75 AR counties enumerated in ddlCounty, confirming AR IS a supported state for this tool, unlike Old Republic's ortconline.com); (2) POST ddlCounty=pulaski + ddlUnderwriters=cti (Chicago Title) + txtPolicyDate=today + btnGeneralNext=Next as a single combined form resubmission (a separate __EVENTTARGET postback for the dropdowns individually was tried first and worked too, but is not required -- one full-form resubmission with the new dropdown values succeeds directly, simpler than the condensed recipe implied); (3) POST __EVENTTARGET=...TranType$ddl with TranType$ddl=PropertyPurchase to reveal the Purchase Amount field (this dropdown truly is autopostback-only, must be its own __EVENTTARGET); (4) POST __EVENTTARGET=...AmountPurchase$txt with AmountPurchase$txt=500000 to reveal the Loan Amount field; (5) POST __EVENTTARGET=...AmountLoan1$txt with AmountLoan1$txt=400000 to advance to the Endorsements page; (6) POST btnFinish=Finish for the final Rate Summary. Cross-checked the Fidelity National Title Insurance Company brand (landing ID=FNT, ddlUnderwriters value 'fnt') with an identical fresh-session run of the same 6-step flow and identical inputs -- output was byte-identical (Owner's Policy Premium $1,265.00, CPL $25.00, Grand Total $1,290.00; only the Quote Number sequence differed), confirming both brands share one calculation engine for AR per the mission's guidance to de-duplicate. No personal data fields exist anywhere in this flow (only county/underwriter/date/optional-reference-number/dollar-amount fields).",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1,265.00 (ALTA Standard Coverage Owner's Policy, $500,000 liability amount)",
+      "cpl": "$25.00 (Closing Protection Letter)",
+      "loanPolicyPremium": null,
+      "note": "Premium + CPL only, per this tool's own scope -- its own disclaimer text explicitly excludes title search, examination, additional work, certification, or closing/inspection charges ('The totals may not include any other amounts, such as charges/fees related to title search, examination, additional work charges, certification, or closing...'). Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence."
+    },
+    "sectionTotals": "Total Charges for the Policy (premium + $0 endorsements): $1,265.00. Grand Total (policy + CPL): $1,290.00.",
+    "bundlingNotes": "Confirmed AR is a supported state in this national FNF-family shared calculator (all 75 counties enumerated, unlike the separate ortconline.com Old Republic tool already ruled out for AR). Underwriter dropdown for the 'CTIC' landing ID offers Chicago Title/Commonwealth Land Title/Fidelity National Title/National Title Insurance of NY; the 'FNT' landing ID offers a slightly different subset (Commonwealth/Fidelity National/National Title of NY, no Chicago Title) -- both Chicago Title and Fidelity National Title brands were driven end-to-end and produced byte-identical output, confirming a single shared calculation engine; only one entry recorded here. AR's Owner's Policy premium of $1,265.00 at $500,000 liability coincidentally matches Southwest Title/FNTI's own published Basic Rate of $1,265 at $500,000 already on file in this same AR.json (see the published-schedule entries above) -- a notable independent cross-corroboration between a calculator-harvest source and a published marketing rate-chart flyer.",
+    "transactionContext": "Owner's Policy premium + Closing Protection Letter for a $500,000 residential purchase, Pulaski County (Little Rock), AR. No Loan Policy premium appeared in this state's flow despite a $400,000 loan amount being entered. This is AR's 3rd calculator-basis provider, crossing the 3-provider calculator-quoted threshold."
+  },
+  {
+    "provider": "All American Title & Abstract, LLC (independent title/abstract company, Little Rock, AR -- 401 W. Capitol Avenue Suite 300, Pulaski County; first-party static HTML/JS seller net-sheet calculator embedded directly on its own site, not a third-party SaaS platform)",
+    "basis": "calculator",
+    "sourceUrl": "https://all-american-title.net/net-sheet-calculator/",
+    "calculatorUrl": "https://all-american-title.net/net-sheet-calculator/ (the page itself is the calculator -- a static WordPress page with an inline HTML <table> of inputs and a client-side JS engine at https://all-american-title.net/wp-content/themes/all-american-title/assets/js/homeScripts.js; no server round-trip, no third-party widget/iframe)",
+    "retrievalDate": "2026-08-05",
+    "scenario": "$500,000 sales price substituted into the tool's own default-populated Seller's Net Sheet (the tool ships with a $900,000 sample scenario prefilled in every field; recomputed by hand at $500,000 using the tool's own published JS formulas, since curl/WebFetch can read the static page but cannot execute its client-side JS). Deviates from the mission's standard buyer-purchase-with-$400k-loan scenario: this is a SELLER-side net sheet with no loan-amount input field at all (only a 'Less Estimated Mortgage Payoff' field, left at its $0 default); Pulaski County is inherent to the scenario since the company's sole office is in Little Rock and no county selector exists in the tool.",
+    "methodology": "Found via web search for Arkansas title company net-sheet/rate calculators. Confirmed a genuinely first-party (non-SaaS) tool by inspecting the raw page HTML directly with curl (WebFetch's HTML-to-markdown conversion hid the actual <input value=...> attributes needed to see the real defaults) -- ruled out any app.netsheetcalc.com/titletap/mytitlerates script or iframe reference anywhere on the page. Fetched the page's own /wp-content/.../homeScripts.js directly to recover its exact JS calculation formulas: INSURANCE_POLICY_PRICE = (SALES_PRICE - 100000) * 0.005 + 575; DOC_STAMPS_PRICE = SALES_PRICE * 0.007 (labeled on-page as 'Sales Price (rounded up to the nearest $100) x $.70'); all other line items (Settlement and Title Examination Fee, Search Fee, Lien Search, Estoppel Fee, Recording Fee, Transaction Coordination) are flat dollar constants the company itself pre-populates as editable defaults, not price-tiered formulas -- verified by matching the JS source's NETSHEET_VALUES object against the page's own default $900,000 scenario (e.g. INSURANCE_POLICY_PRICE at $900,000 = (900,000-100,000)*0.005+575 = $4,575.00, exactly matching the page's own displayed '$4575.00'; DOC_STAMPS_PRICE at $900,000 = 900,000*0.007 = $6,300.00, exactly matching the page's own displayed '$6300.0' -- confirming the formula extraction is correct before applying it to $500,000). Company address (401 W. Capitol Avenue Suite 300, Little Rock, AR 72201) independently confirmed via web search (BBB profile, Facebook business page) as a genuine Little Rock/Pulaski County title company, not a shared-platform demo tenant. No personal data fields exist anywhere on the page.",
+    "settlementFee": {
+      "closingSettlementTitleExamFee": "$850.00 (labeled 'Settlement and Title Examination Fee', flat company-set default; does not vary with sales price in this tool)"
+    },
+    "itemizedFees": {
+      "searchExam": "$300.00 (Search fee, flat default)",
+      "titleInsurancePolicy": "$2,575.00 (this tool's own formula applied at $500,000 sales price: (500,000-100,000)*0.005+575)",
+      "lienSearch": "$375.00 (flat default; the tool's own page marks this line '*estimated')",
+      "estoppelFee": "$300.00 (flat default; the tool's own page marks this line '*estimated' -- typically an HOA-specific charge that may not apply to every transaction)",
+      "recordingFee": "$35.00 (flat default; the tool's own page labels this '$10.60 p/pg (Affidavits & Mtg Release(s))', marked '*estimated')",
+      "transferTaxDocStamps": "$3,500.00 (this tool's own formula applied at $500,000 sales price: 500,000 x 0.007 -- notably higher than Arkansas's statutory real property transfer tax of $3.30/$1,000 [0.33%] cited elsewhere in this survey's published-schedule entries; recorded exactly as the tool computes it, not adjusted or corrected)",
+      "transactionCoordination": "$0.00 (default, editable)",
+      "realEstateCommission_excludedFromTitleFeeTotals": "6.0% of sales price = $30,000.00 at $500,000 -- a real-estate brokerage commission default, not a title/settlement fee; recorded here only for transparency about the tool's own 'Total Estimated Seller's Costs' figure, excluded from this entry's title-fee-focused subtotal below"
+    },
+    "sectionTotals": "Subtotal of Fees to All American Title & Abstract, LLC (Settlement/Title Exam Fee + Search Fee + Title Insurance Policy): $850 + $300 + $2,575 = $3,725.00 at $500,000. Total Estimated Seller's Costs (adds Lien Search + Estoppel Fee + Real Estate Commission + Transaction Coordination + Doc Stamps + Recording Fee + Credit to Buyer + Tax Proration, per the tool's own formula): $375 + $300 + $30,000 + $0 + $3,500 + $35 + $0 + $0 + $3,725 = $37,935.00 at $500,000 (this total includes the non-title $30,000 real estate commission line item).",
+    "bundlingNotes": "Genuinely first-party, non-SaaS calculator -- distinct in kind from this file's other AR calculator-basis entries (TitleTech/NetSheetCalc, Hot Springs Title/Title Midwest, the FNF national rate engine), all three of which run on third-party shared platforms. This company's own $3,725 title-fee subtotal (Settlement/Title Exam + Search + Title Insurance Policy) at $500,000 is a useful independent cross-check against TitleTech's $400 Closing Fee + $250 Search Fee and Hot Springs Title's $325+$325 Seller/Buyer closing fees already on file. The Doc Stamps formula (0.7% of price) is notably double Arkansas's statutory transfer-tax rate (0.33%) used elsewhere in this survey -- recorded as-is per this project's 'exact dollars, never estimated/adjusted' rule, flagged here as an anomaly for a future session to investigate (may reflect a stale or incorrect constant in the company's own JS, or may intentionally bundle an additional charge into the same line item).",
+    "transactionContext": "Seller's Estimated Closing Costs net sheet, Little Rock/Pulaski County, AR (this company's sole service area). AR's 4th calculator-basis provider found across all sessions to date -- crosses the 3-provider calculator-quoted threshold with one to spare."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company -- Stewart Rate Calculator, matched settlement office: Harly Enterprises, LLC D/B/A Beach Abstract and Title Company (100 Center St., Little Rock, AR 72201)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true (LoanEstimate/QuoteType=3 flow) and https://www.stewartratecalculator.com/Quote/Netsheet?urlParams=&quotetype=2&branded=true (Netsheet/QuoteType=2 flow); both POST to the shared /api/SRC/quote endpoint",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Pulaski County (Little Rock), residential resale, Sale/Purchase with Mortgage transaction type, BASIC coverage on both Owner's and Lender's policies. Richness-pass harvest applying an already-solved, previously state-limited recipe to a state not yet in Stewart's harvested-state list, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "methodology": "Harvested via Stewart's discoverable `/api/SRC/*` JSON REST API (stewartratecalculator.com), driven entirely by plain HTTP GET/POST (Python requests.Session(), cookie jar) with no browser/JS execution and no personal-data fields, replaying the full recipe documented in this project's CALCULATORS.md (2026-08-14 'SOLVED' entry): GET the LoanEstimate/Netsheet page to scrape a fresh antiforgery cookie + __RequestVerificationToken; GET /api/SRC/propertysearch to resolve the county FIPS code and a default zip; GET /api/SRC/providers to find the county's real settlement office(s) (used to set ProviderID on the QuoteType=3 flow so the itemized settlement-fee list is populated -- an empty ProviderID silently returns a null itemized list); GET /api/SRC/statesettings and /api/SRC/ernstlookup for state-level defaults; build the QuoteRequestRoot JSON by hand (Owner's Policy $500,000 / Lender's Policy $400,000, BASIC coverage, standard Sale/Purchase with Mortgage transaction); POST /api/SRC/quote twice -- QuoteType=2 (Netsheet, pageBuyerSeller=seller) for Recording/CFPB2015 transfer-tax figures, and QuoteType=3 (LoanEstimate, pageBuyerSeller=buyer, IsCalculatePremium=True, IsCalculateTitleServiceFee=True) for the itemized Pricing.TitleServiceFee.ItemizedTitleServiceFeeList settlement-fee line items. One new gotcha found and fixed this session: stewartratecalculator.com's bare apex domain 301-redirects every POST to the www subdomain, and that redirect's response body hangs indefinitely on this sandbox's proxied connection (a 30s+ read timeout with 0 bytes received) -- fixed by targeting https://www.stewartratecalculator.com directly, skipping the apex redirect entirely; this is an environment/proxy artifact, not a sign the endpoint is blocked. Also confirmed the documented /api/SRC/providers gotcha firsthand: for a single-provider county the response's `Provider` field is a bare object, not a one-element list -- must be normalized before indexing or ProviderID silently stays empty and every itemized-fee list comes back null (looks exactly like a genuine empty result).",
+    "settlementFee": {
+      "note": "No itemized settlement/closing-fee line items returned for this settlement office (QuoteType=3's ItemizedTitleServiceFeeList was null/empty) -- a genuine result the recipe has documented before for markets where Stewart's local office has nothing configured through this tool (e.g. attorney-closing states), not a fetch failure."
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1,265.00",
+      "loanPolicyPremium": "$871.50",
+      "other": [],
+      "note": "Premium-only result for this settlement office/state (see settlementFee note)."
+    },
+    "sectionTotals": "Owner's Policy Premium $1,265.00; Lender's Policy Premium $871.50",
+    "bundlingNotes": "Combined deed/transfer/mortgage tax on QuoteType=2 (Netsheet) flow: $1,650.00 total -- DeedTax $1,650.00.",
+    "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Pulaski County, Arkansas."
+  },
+  {
+    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Pulaski County (Little Rock), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Harvested via WFG National Title's own public JSON API, `POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet`, fully solved and documented in this project's CALCULATORS.md (2026-08-08 entry) -- no browser/JS execution needed, no personal-data fields in the request shape (nested Properties/Loans arrays, TransactionProductType, SettlementStatementVersion: \"CD\"). Confirmed via the same API's public `GET /api/rates/State/GetCalculationEnabledStates` that AR is `isCalculationEnabled: true` before harvesting. Richness-pass application of an already-solved, previously-untried-for-this-state recipe, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "settlementFee": {
+      "note": "Premium-only result (no itemized settlement/search/doc-prep line items) -- consistent with WFG's own hardcoded fee-description table, which only itemizes HUD-style settlement fees for 7 states (WA, CA, TX, OR, AZ, NV, CO); every other state, including this one, returns only the Owner's Title Insurance Premium."
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1,688.00",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's seller-net-sheet-only design)",
+      "other": [],
+      "note": "Premium-only result for this state (see settlementFee note)."
+    },
+    "sectionTotals": "Owner's Title Insurance Premium $1,688.00",
+    "bundlingNotes": "Discovered and solved 2026-08-08; applied here as a richness-pass 4th/5th calculator-basis provider for Arkansas (already at 3-4 providers via other tools) since no prior session had run this already-solved recipe against this state. Property location for this request: Little Rock, Arkansas (Pulaski County).",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Pulaski County, Arkansas."
+  }
+]

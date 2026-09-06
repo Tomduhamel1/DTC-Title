@@ -1,0 +1,267 @@
+[
+  {
+    "provider": "Ohio Title Insurance Rating Bureau (OTIRB) — Schedule of Rates for Title Insurance in the State of Ohio (REGULATORY/RATING-BUREAU-UNIFORM, not provider-set)",
+    "sourceUrl": "https://go.stewart.com/rs/067-YWO-436/images/OTIRB%20Rates%20for%20Title%20Insurance%20%20Effective%201-1-26.pdf?version=0 (courtesy-hosted reprint of the OTIRB Manual, fetched and machine-read this session via PDF text extraction after WebFetch's native PDF parsing failed on the raw binary; OTIRB is licensed by the Ohio Department of Insurance under Ohio Revised Code Sections 3935.04 and 3953.28, per the Manual's own text)",
+    "asOf": "(01/01/2026) Reprint -- 'EFFECTIVE AS TO ORDERS RECEIVED ON OR AFTER (JANUARY 1, 2026)'; SERFF Tr. Num DEMT-134549810; current vintage as of retrieval 2026-07-22 (a prior 06/01/2023 vintage was also indexed by the same host but superseded)",
+    "settlementFee": {
+      "note": "CENTRAL STRUCTURAL FINDING: Ohio's rating-bureau-uniform premium is set by OTIRB, whose 26 current members (per the Manual's own roster) include ALL FIVE national underwriters named in the task brief -- Chicago Title, Fidelity National Title, First American Title, Old Republic National Title, Stewart Title Guaranty -- plus WFG National Title. Unlike NJ's NJLTIRB, OTIRB does NOT regulate the settlement/closing fee itself: General Provision GP-4 states in so many words, 'The rates set forth herein do not include any charge made for title search, title examination, closing, or escrow services performed by the Insurer, or any of its approved attorneys or agents. Charges made for such services are in addition to the rates and charges set forth herein.' This is the exact unregulated territory the task brief targeted -- settlement/closing/escrow/search/exam fees are left entirely to the market in Ohio, for every provider type, with no carve-out procedure comparable to PA's Approved Attorney track or NJ's Article 6.",
+      "ownerPolicyOriginalRate_PR1": "$5.80/thousand up to $250,000 of liability; +$4.10/thousand $250,001-$500,000; +$3.20/thousand $500,001-$1,000,000; +$3.10/thousand $1,000,001-$5,000,000; +$2.90/thousand $5,000,001-$10,000,000; +$2.60/thousand above that. Minimum Premium $225.00 (Homeowner's Policy variant: PR-1 rate +15%, minimum $250)",
+      "loanPolicyOriginalRate_PR8": "$4.00/thousand up to $250,000; +$3.10/thousand $250,001-$500,000; +$2.90/thousand $500,001-$1,000,000; +$2.50/thousand $1,000,001-$5,000,000; further tiers to $2.20/thousand above $10,000,000. Minimum Premium $150.00",
+      "simultaneousIssueOwnerAndLoan_PR6": "Combined rate = applicable Owner's Rate + $150 per Standard Loan Policy ($175 for Expanded Coverage Residential Loan Policy)",
+      "commitmentRate_PR11": "$50-$100 per transaction, in addition to the policy rate; 20% cancellation charge (max $250) if no policy issues",
+      "closingProtectionCoverage_CP1": "Rating-bureau-set (Section 6, Form CP-24): $40 lender, $55 seller(s), $20 buyer(s)/borrower(s), $20 each additional applicant; $40 minimum; remitted entirely to the Insurer (not the Agent)"
+    },
+    "itemizedFees": {
+      "docPrep": "NOT regulated by the Manual (GP-4 excludes 'closing' services generally, which providers interpret to include doc prep); no OTIRB-set figure",
+      "processing": null,
+      "courier": "NOT regulated by the Manual (GP-4 excludes escrow/closing services from the rate); no OTIRB-set figure",
+      "wire": "NOT regulated by the Manual; no OTIRB-set figure",
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Examination charge is explicitly excluded from the rate by GP-4 ('title search, title examination... performed by the Insurer, or any of its approved attorneys or agents. Charges made for such services are in addition to the rates')",
+      "cpl": "$40 (lender) / $55 (seller) / $20 (buyer-borrower) / $20 (each additional applicant); $40 minimum -- see settlementFee.closingProtectionCoverage_CP1 above (Section 6, CP-1)",
+      "binder": "Title Guaranty (Record Products) rate: $3.50/thousand up to $100,000, +$3.00/thousand $100,001-$250,000, +$2.50/thousand above; $105 minimum (Section 4, RP-1) -- this is OTIRB's own 'Title Guaranty' record-product line, a substitute-for-insurance product used in the state's Torrens-adjacent judicial-report system, not identical to a 'binder' in the conventional sense but the closest Manual-rated analog",
+      "other": [
+        {
+          "name": "Preliminary Judicial Report (non-foreclosure)",
+          "amount": "$3.00/thousand of fair market value, $75 minimum (Section 4, RP-2)"
+        },
+        {
+          "name": "Preliminary Judicial Report (foreclosure)",
+          "amount": "$3.00/thousand of unpaid principal balance, $75 minimum"
+        },
+        {
+          "name": "Supplemental/Final Judicial Report",
+          "amount": "$50.00 flat (Section 4, RP-2.1)"
+        },
+        {
+          "name": "Title Guaranty Commitment",
+          "amount": "$50.00 (Section 4, RP-3)"
+        }
+      ]
+    },
+    "bundlingNotes": "OTIRB's GP-4 is the most direct 'no carve-out needed' unregulated-settlement-fee statement found in this survey: rather than creating a special attorney-only track (PA) or promulgating the settlement fee itself (NJ), Ohio's rating bureau simply states up front that search/examination/closing/escrow are never part of the regulated rate for ANY provider type -- Company, Agent, or approved attorney alike. This means the entire settlement/service-fee stack the task brief asked about is, structurally, 100% unregulated in Ohio; the OTIRB Manual is cited here purely for the premium reference and the one closing-adjacent item it does price (the CPL, Section 6).",
+    "transactionContext": "Applies uniformly statewide, all 88 counties, to all 26 OTIRB member insurers/agents' Owner's and Loan policy premiums alike; no purchase-vs-refinance distinction in the base rate (separate Refinance/Reissue rate rules apply based on prior-policy timing, not transaction type per se)."
+  },
+  {
+    "provider": "Landmark Title Agency South, Inc. (independent title & settlement agency; Dayton, OH [Montgomery County/Miami Valley], serving Southwest Ohio -- Butler, Clark, Clermont, Clinton, Champaign, Darke, Fairfield, Greene, Hamilton, Highland, Logan, Madison, Miami, Montgomery, Preble, Shelby, and Warren Counties per its own published conveyance-fee table)",
+    "sourceUrl": "https://landmarktitlesouth.com/rates-and-estimates",
+    "asOf": "Retrieved 2026-07-22 (page's own 'Recent Posts' sidebar references a 'July 2026 Property Tax Update,' indicating the page is actively maintained as of this session's retrieval date; no separate effective date stated for the fee table itself, which is captioned 'Rates and fees are subject to change without notice')",
+    "settlementFee": {
+      "purchase_closingFee": "$200.00 (buyer side; page's 'Purchase Fees' column)",
+      "refinance_closingFee": "$150.00",
+      "secondMortgagePiggyback_closingFee": "$125.00",
+      "seller_closingDisbursementFee": "$90.00 (page's 'Seller's Fees' column, separate line from the buyer-side Closing Fee above)",
+      "note": "This is the richest itemized, dollar-denominated, currently-published Ohio settlement-fee schedule located this session -- a genuine independent title/escrow agency publishing purchase, refinance, and second-mortgage closing-fee tiers side by side, plus a full ancillary-fee stack, directly on its own public 'Rates and Estimates' page. The page explicitly states title insurance premiums/endorsements are OTIRB-regulated while 'Settlement and service fees listed above are standard charges and may vary depending on transaction complexity' -- an accurate provider-side restatement of the OTIRB GP-4 unregulated-settlement-fee finding above."
+    },
+    "itemizedFees": {
+      "docPrep": "Deed Preparation (seller): $100.00",
+      "processing": "Print/Delivery Handling Fee: $50.00 (purchase and refinance); Recording Service Fee: $25.00",
+      "courier": "Expedite/Overnight/Courier Fee for Payoff (seller): $25.00",
+      "wire": "$40.00 per outgoing wire (seller-side line and separately listed under 'Miscellaneous Fees' as 'Wire Fee (per outgoing wire)')",
+      "edoc": null,
+      "eRecording": "Recording Service Fee: $25.00 (in addition to statutory Recording Fees: $34.00 first two pages, $8.00 each additional page)",
+      "notarySigning": "RON (Remote Online Notary -- PROOF) Notary Session (Seller): $100.00; Additional Session (Seller): $75.00; E-Signature Request (Buyer): No fee. Also: Out of Office Seller Signing: $40.00",
+      "searchExam": "Title Exam: $230.00 (purchase) / $180.00 (refinance) / $250.00 (with Attorney's Opinion); 24-Month Chain of Title: $35.00",
+      "cpl": "Lender Closing Protection Coverage: $40.00 (purchase and refinance) -- matches the OTIRB CP-1 $40 lender rate exactly, confirming compliance with the regulated CPL figure",
+      "binder": "Title Insurance Binder: $90.00 (purchase); Title Commitment Binder: $90.00 (refinance)",
+      "other": [
+        {
+          "name": "CertifID ID Verification (Buyer)",
+          "amount": "$15.00"
+        },
+        {
+          "name": "CertifID ID Verification (Seller)",
+          "amount": "$15.00"
+        },
+        {
+          "name": "Power of Attorney Preparation",
+          "amount": "$90.00"
+        },
+        {
+          "name": "Land Contract Preparation",
+          "amount": "$300.00"
+        },
+        {
+          "name": "Endorsement -- EPL / ARM / Balloon",
+          "amount": "$75.00 each"
+        },
+        {
+          "name": "Endorsement -- Comprehensive",
+          "amount": "$1.00/thousand, $150 typical"
+        },
+        {
+          "name": "Endorsement -- Survey / Condo / PUD",
+          "amount": "$50.00 each"
+        },
+        {
+          "name": "Endorsement -- Mechanic's Lien Deletion",
+          "amount": "$150.00"
+        },
+        {
+          "name": "Construction Draw (incl. title update)",
+          "amount": "$75.00"
+        },
+        {
+          "name": "Title Insured Draw with Endorsements (per draw)",
+          "amount": "$100.00"
+        },
+        {
+          "name": "Title Update Only",
+          "amount": "$75.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Landmark itemizes closing/settlement charges far more granularly than any other Ohio source located this session, cleanly separating buyer-side Closing Fee ($200 purchase / $150 refinance) from seller-side Closing/Disbursement Fee ($90) and Deed Prep ($100) -- a genuine buyer/seller fee-split data point matching the market's general practice pattern. Its $40 Lender CPL figure independently corroborates the OTIRB-regulated $40 lender rate byte-for-byte, the clearest example in this survey of a provider correctly passing through the one Ohio closing-adjacent charge that IS rate-regulated, while pricing everything else (Title Exam, Closing Fee, wire, courier, notary, doc prep) independently as the OTIRB Manual's GP-4 permits.",
+    "transactionContext": "Residential purchase, refinance, and second-mortgage/piggyback transactions; primary office in Dayton (Montgomery County/Miami Valley) with an explicitly published multi-county Southwest Ohio service area reaching into the Cincinnati/Hamilton County metro (one of the task brief's three target metros) via its own conveyance-fee table."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company — Estimated Rate/Fee Calculator (ortconline.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
+    "calculatorUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
+    "retrievalDate": "2026-07-22",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, residential resale, Sale transaction type, Loan Estimate calculation. Property location: Cuyahoga County, OH (Cleveland). County used: Cuyahoga (most populous county in this calculator's OH service footprint; Franklin/Columbus not served).",
+    "methodology": "Harvested via direct HTTP GET/POST against the calculator's ASP.NET WebForms postback mechanism (__VIEWSTATE/__EVENTVALIDATION), replicating the same sequential form submissions the browser's JS performs (state select -> county/city select -> Sales Price/Loan Amount -> Submit); no browser/JS execution was used or required. The 'Your Name', 'Your Company', and 'This estimate is being prepared for' fields were left blank throughout -- confirmed optional (no required-symbol asterisk in the form) -- no fabricated personal information was entered at any step.",
+    "settlementFee": {
+      "note": "Not a single line item in this tool's output; the closest analog is the 'Settlement Agent Fee' shown in Section C, split buyer/seller (buyer's share shown here). Settlement Agent Fee total (both parties): Title - Settlement Agent Fee (Total: $380.00)."
+    },
+    "itemizedFees": {
+      "cpl": "$40.00 (Closing Protection Letter Fee); $20.00 (Closing Protection Coverage)",
+      "processing": "$380.00 (Settlement Agent Fee, Total: $380.00)",
+      "binder": "$100.00 (Commitment Fee)",
+      "docPrep": "$100.00 (Document Processing Fee)",
+      "searchExam": "$50.00 (Special Tax Search)",
+      "notarySigning": "$75.00 (Notary/Signing Fee (Total: $75.00))",
+      "other": [
+        {
+          "name": "Title - Lender's Title Policy (Total: $1,300.00) [buyer's lender's title policy premium]",
+          "amount": "$1,300.00"
+        },
+        {
+          "name": "Title - Location Survey (Total: $175.00)",
+          "amount": "$175.00"
+        },
+        {
+          "name": "Recording Fees (Total: $252.00)",
+          "amount": "$252.00"
+        },
+        {
+          "name": "Title - Owner's Title Policy (Total: $1,012.50)",
+          "amount": "$506.25"
+        }
+      ]
+    },
+    "sectionTotals": "C: Services You Can Shop For: $2,240.00; E: Taxes and Other Government Fees: $252.00; H: Other: $506.25",
+    "bundlingNotes": "Old Republic's OH agency footprint in this calculator covers only 15 northern-Ohio counties (Ashland, Cuyahoga, Erie, Geauga, Huron, Lake, Lorain, Lucas, Medina, Ottawa, Portage, Stark, Summit, Wayne, Wood) -- Franklin County (Columbus, OH's most populous county) is NOT served by this tool, so Cuyahoga (Cleveland, the largest available county in this tool's footprint and OH's 2nd-most-populous county overall) was used as the highest-volume available proxy. Identical dollar figures were independently returned for Lorain County, confirming Old Republic prices this OH agency territory on a flat statewide (not county-tiered) basis. Owner's Title Policy note: full ALTA Owner's rate $2,187.50, plus concurrent-issue lender's charge of $125, less the full lender's policy premium of $1,300, netting the $506.25/$1,012.50 figures shown.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k purchase scenario; County used: Cuyahoga (most populous county in this calculator's OH service footprint; Franklin/Columbus not served)."
+  },
+  {
+    "provider": "Columbus Title Agency of Westerville, Inc. — Seller Netsheet Calculator (independent title/settlement agency; Westerville, OH, serving Franklin County/Columbus metro plus statewide Ohio per its own 88-county dropdown)",
+    "basis": "calculator",
+    "sourceUrl": "https://columbustitle.com/netsheets/",
+    "calculatorUrl": "https://columbustitle.com/netsheets/",
+    "endpointOrParams": "Static legacy HTML form + linked JS file https://columbustitle.com/netsheets/scripts/netsheet.js. No POST/submission required -- the seller-side fee fields are hardcoded dollar constants written by the page's own client-side JS (computeForm()/TitleCalc()/computeSellerTotals()), read directly from the fetched HTML/JS source without executing it.",
+    "stale": true,
+    "staleNote": "2026-09-01 freshness check: /netsheets/ (and every path variant tried -- /netsheets, /netsheets/index.htm, /netsheets/index.html, /Netsheets/index.htm) now returns a genuine WordPress 404 on this live, otherwise-working site (root domain still 200); the tool appears to have been taken down or relocated off this URL since the 2026-07-27 retrieval. OH remains well above the 3-provider threshold (5 calculator providers on file) even with this one marked stale.",
+    "retrievalDate": "2026-07-27",
+    "scenario": "$500,000 purchase price. This is a seller-side net sheet tool only -- it has no loan-amount/buyer field, so the standard scenario's $400,000 loan amount does not apply here. County: Franklin (Columbus, OH's actual most populous county -- available in the tool's own county dropdown, though the page defaults to Knox). Confirmed via the JS source that the flat service-fee constants below (search fee, seller closing fee) are identical across every county/zone the tool serves (`if/else` branches in computeForm() all resolve to the same dollar value) -- only the government conveyance/transfer fee varies by county.",
+    "methodology": "Fetched via plain HTTP GET of the static page and its linked JS -- no browser/JS execution needed, no personal data entered (the 'prepared by'/'prepared for seller'/property address fields are free-text and were left blank). This is the same discovery technique used for Modern Title Group (MI) and Independent Title & Escrow (VA/NetSheetCalc) in this catalog: view-source + read hardcoded fee constants directly from first-party JS rather than driving a live UI.",
+    "itemizedFees": {
+      "searchExam": "$275.00 (Title Search Fee -- flat statewide; confirmed via JS: `form.s_searchfee.value = formatNum(275)` unconditionally for every county branch)",
+      "processing": "$210.00 (Seller Closing Fee -- flat statewide; `form.s_sellclosefee.value = formatNum(210)` unconditionally for every county branch)",
+      "binder": "$50.00 (Title Binder Fee)",
+      "docPrep": "$85.00 (Doc Prep)",
+      "other": [
+        {
+          "name": "Owner's Title Insurance premium (tool's own retail rate, at $500,000 purchase price)",
+          "amount": "$2,515.63 (bracket-rate formula: $862.50 to $150k + $4.50/thousand $150k-$250k + $3.50/thousand $250k-$500k = $2,187.50 base, then the tool's own `Math.ceil(base * 115)/100` retail markup -- an exact match to OTIRB's own documented 'Homeowner's Policy variant: PR-1 rate +15%' already on file in this state's OTIRB entry above, a clean cross-source corroboration)"
+        },
+        {
+          "name": "County conveyance/transfer fee (Franklin County; a government tax, not a title-company fee)",
+          "amount": "$1,500.00 (Franklin County's own $3.00/thousand transfer-fee rate x $500,000, per the tool's CountyMultiplier table; seller-paid per Ohio custom)"
+        },
+        {
+          "name": "Buyer-side endorsement fee (hidden form field, appears vestigial/unused -- no visible buyer-side UI section found in this seller-only tool)",
+          "amount": "$100.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Discovered via this session's search for reusable Ohio-specific calculators after Old Republic's ortconline.com (which does not serve Franklin County) left OH below the 3-provider threshold. Columbus Title's own tool and Owl Creek Title's tool (harvested the same session, see below) run byte-for-byte identical JS (same TitleCalc()/computeForm() logic, same field names, same 88-county CountyMultiplier table) -- a shared white-label 'OH netsheet calculator' template licensed to multiple independent Ohio agencies (a smaller-scale analog to MyTitleRates.com/TitleCapture), but each agency's flat service-fee constants (search/closing/binder/docPrep) are independently configured and differ meaningfully between the two, confirming genuine per-provider evidence rather than a shared template with shared numbers.",
+    "transactionContext": "Seller-side settlement/service-fee schedule for a residential resale at $500,000 purchase price, Franklin County (Columbus)."
+  },
+  {
+    "provider": "Owl Creek Title Agency — Netsheet Calculator (independent title/settlement agency; Mount Vernon, OH [Knox County], statewide Ohio service area including Franklin County per its own 88-county dropdown)",
+    "basis": "calculator",
+    "sourceUrl": "http://owlcreektitle.com/netsheet",
+    "calculatorUrl": "http://owlcreektitle.com/netsheet",
+    "endpointOrParams": "Static HTML page with inline JS (same computeForm()/TitleCalc()/computeSellerTotals() engine as Columbus Title Agency above, served inline rather than as a linked file). No POST/submission required -- fee constants read directly from the fetched HTML/JS.",
+    "retrievalDate": "2026-07-27",
+    "scenario": "$500,000 purchase price. Seller-side net sheet tool only, no loan-amount/buyer field (same structural limitation as Columbus Title's tool above). County: Franklin (available in this tool's own dropdown; page defaults to Knox, the agency's home county). The flat service-fee constants below are confirmed identical regardless of which county is selected.",
+    "methodology": "Fetched via plain HTTP GET, no browser/JS execution, no personal data entered (same technique as Columbus Title Agency above).",
+    "itemizedFees": {
+      "searchExam": "$225.00 (Title Search Fee -- flat statewide)",
+      "processing": "$125.00 (Seller Closing Fee -- flat statewide)",
+      "binder": "$50.00 (Title Binder Fee)",
+      "docPrep": "$75.00 (Doc Prep)",
+      "other": [
+        {
+          "name": "Owner's Title Insurance premium (at $500,000 purchase price)",
+          "amount": "$2,515.63 (identical bracket-rate + 15% markup formula as Columbus Title Agency's tool -- confirms the two agencies share the same underlying calculator engine/template)"
+        },
+        {
+          "name": "Ship/courier fee (seller-side; appears twice in the form -- one editable $10.77 default and one readonly $25.00 -- both recorded as found)",
+          "amount": "$10.77 (editable default) / $25.00 (readonly)"
+        }
+      ]
+    },
+    "bundlingNotes": "Second agency found running the same shared OH netsheet-calculator template as Columbus Title Agency (see that entry's bundlingNotes) -- confirms this is a genuine multi-agency reusable platform, not a one-off. Owl Creek's own fee constants (search $225 vs. Columbus's $275; closing $125 vs. $210; doc prep $75 vs. $85) differ meaningfully from Columbus Title's, satisfying the 'each instance reflects its own real fee schedule' pattern already established for MyTitleRates.com/TitleCapture elsewhere in this survey. Combined with Old Republic's ortconline.com entry above, this brings OH to 3 calculator-basis providers, crossing the calculator-quoted threshold.",
+    "transactionContext": "Seller-side settlement/service-fee schedule for a residential resale at $500,000 purchase price; agency home county Knox (Mount Vernon), statewide service area."
+  },
+  {
+    "provider": "FNF-family underwriter (Chicago Title/Fidelity National Title/Commonwealth Land Title -- ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine; this tool's pre-selected default underwriter brand varies by request, and prior sessions confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=OH",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=OH (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-19",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Franklin County (Columbus, OH's most-populous county), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions.",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback), following this project's existing FNF recipe documented in CALCULATORS.md: GET the county-selection page, POST the county (own __EVENTTARGET), POST btnGeneralNext=Next, POST TranType$ddl=PropertyPurchase, POST AmountPurchase$txt=500000 then AmountLoan1$txt=400000 (each with its own __EVENTTARGET), tool defaults for all remaining policy questions, then POST btnFinish=Finish for the final Rate Summary. No personal-data fields exist anywhere in this flow. This is a richness pass applying the already-solved FNF recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers (this tool's OH footprint reaches Franklin County even though Old Republic's ortconline.com tool -- OH's existing calculator entry -- only covers 15 northern-Ohio counties and does not reach Franklin).",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2475.00 (Owner's Policy Total Policy Premium: Disclosure Amount $1,160.00 + Adjustment $1,315.00, concurrent-issue rate)",
+      "loanPolicyPremium": "$150.00 (Loan Policy Total Policy Premium, concurrent-issue rate)",
+      "other": [
+        {
+          "name": "Charge for Lender's Closing Protection Coverage",
+          "amount": "$40.00"
+        }
+      ],
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence."
+    },
+    "sectionTotals": "Grand Total (Owner's Policy Purchased): $2665.00.",
+    "bundlingNotes": "Harvested this session as a richness pass -- OH had already crossed the 3-provider threshold (Old Republic, Columbus Title Agency, Owl Creek Title Agency); this FNF entry is a 4th corroborating provider, applying the same generalized recipe already used for AR/CT/CO/MA/ND/VT/WY/RI/DE/SD/AK/NH/WV/ME.",
+    "transactionContext": "Owner's + Loan Policy concurrent-issue premiums plus Lender's Closing Protection Coverage for a $500,000 residential purchase / $400,000 loan, Franklin County (Columbus)."
+  },
+  {
+    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Franklin County (Columbus), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Harvested via WFG National Title's own public JSON API, `POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet`, fully solved and documented in this project's CALCULATORS.md (2026-08-08 entry) -- no browser/JS execution needed, no personal-data fields in the request shape (nested Properties/Loans arrays, TransactionProductType, SettlementStatementVersion: \"CD\"). Confirmed via the same API's public `GET /api/rates/State/GetCalculationEnabledStates` that OH is `isCalculationEnabled: true` before harvesting. Richness-pass application of an already-solved, previously-untried-for-this-state recipe, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "settlementFee": {
+      "note": "Premium-only result (no itemized settlement/search/doc-prep line items) -- consistent with WFG's own hardcoded fee-description table, which only itemizes HUD-style settlement fees for 7 states (WA, CA, TX, OR, AZ, NV, CO); every other state, including this one, returns only the Owner's Title Insurance Premium."
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,846.25",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's seller-net-sheet-only design)",
+      "other": [],
+      "note": "Premium-only result for this state (see settlementFee note)."
+    },
+    "sectionTotals": "Owner's Title Insurance Premium $2,846.25",
+    "bundlingNotes": "Discovered and solved 2026-08-08; applied here as a richness-pass 4th/5th calculator-basis provider for Ohio (already at 3-4 providers via other tools) since no prior session had run this already-solved recipe against this state. Property location for this request: Columbus, Ohio (Franklin County).",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Franklin County, Ohio."
+  }
+]
