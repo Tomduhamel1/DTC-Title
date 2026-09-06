@@ -3873,3 +3873,66 @@ bundle/network resolves them directly without disabling certificate validation; 
 blocked sources (CATIC CT, AZ DIFI, Jackson & Scott AL, `oahure.com` HI) each session with full
 browser-style headers via `curl`, not the generic WebFetch tool; (7) TitleCapture/Qualia Connect and
 myclosingcost.com remain the jsOnly targets queued for a future browser-driven session.
+
+## 2026-09-06 session — reduced freshness pass (next 5 oldest published sources: WA/VA/TN/GA/WI), blocked-source retries, AK/calculator-harvest still saturated; no `{stale: true}` changes
+
+Per the 2026-09-05 session's queued batch, this session ran the reduced freshness scope, blocked-source
+retries, and reconfirmed the calculator-harvest saturation state. No browser-driven capability is
+available in this session, so no attempt was made on AK or the jsOnly queue (TitleCapture/Qualia
+Connect, myclosingcost.com) — consistent with the standing recommendation not to re-attempt those
+without a browser session or a genuinely new lead.
+
+**5 next-oldest published sources re-verified, all live:**
+- **WA** — Grays Harbor Title Company escrow rate chart, `asOf` 2023-09-01
+  (`graysharbortitle.com/wp-content/uploads/2023/08/ghtitle-escrow-rates-2023.jpg`): HTTP 200.
+- **VA** — WFG National Title Insurance Company rate manual eff. 2023-09-01
+  (`wfgunderwriting.com/.../WFG%20Virginia%20Title%20Rates...9-1-2023.pdf`): HTTP 200.
+- **TN** — First National Title Insurance Company (FNTI) rate manual eff. 2024-05-27
+  (`documentpub.fnti.com/Documents/Tennessee/...Eff.%2005.27.2024.pdf`): HTTP 200 over plain `http://`
+  (this host's TLS chain gap only affects the `https://` variant — see below).
+- **GA** — Stewart Title Guaranty rate manual eff. 2024-07-08
+  (`virtualunderwriter.com/.../georgia-rate-manual_final_-eff-7-08-2024-2.pdf`): HTTP 200.
+- **WI** — First American/Southwest Title rate schedule, `asOf` 2024-07-10
+  (`southwest-title.com/wp-content/uploads/2019/11/SW-Title-Insurance.pdf`): first request 403
+  (Cloudflare bot-management), but two immediate retries with a standard browser `User-Agent` and an
+  explicit `Accept` header both returned HTTP 200 with valid PDF content (`cf-cache-status: HIT`,
+  `age: 320401` — a long-cached, clearly-live object). Same fluctuating-WAF pattern already established
+  for CATIC CT elsewhere in this project, not a dead link.
+
+No `{stale: true}` markings this session (0 confirmed-dead links).
+
+**Blocked-source retries**: CATIC CT (`catic.com/state-resources/connecticut`) HTTP 200 this run,
+continuing its established fluctuating pattern. Arizona DIFI (`difi.az.gov/title-insurance-rate-filings`)
+still HTTP 403, unchanged. Jackson & Scott AL (`realestatelclosings.com/closing-costs-calculator/`)
+still HTTP 403, unchanged. `oahure.com` (HI) still HTTP 403 (Cloudflare managed challenge), 5th
+consecutive session confirming the block — status unchanged. `flrules.elaws.us` (FL) returned HTTP 503
+this run (previously "connect-but-no-response") — still inconclusive, not marked stale pending a
+successful full response.
+
+**documentpub.fnti.com TLS gap re-checked**: the `https://` endpoint still fails with `unable to get
+local issuer certificate` against this session's CA bundle (confirmed via `curl -v`), same as every
+prior session. Per this session's standing instruction not to disable TLS/certificate verification,
+no insecure re-fetch was attempted this time; the plain `http://` TN PDF above (and, per the 2026-08-19
+session, the GA PDF) remain reachable over unencrypted HTTP as a workaround that doesn't require
+weakening TLS validation. A future session with a CA bundle that trusts this host's chain should
+confirm the FL/UT/VT PDFs directly.
+
+**Calculator harvest (priority 1): no new work.** Priority-1 remains fully saturated (36/36 in-scope
+scarce states at `calculator-quoted (3+ providers)`). AK remains the sole exception, now exhausted
+across 10+ consecutive sessions per the 2026-09-05 log; this session did not re-run a web search for
+new AK channels since the prior session already did so within the last day with no new result.
+
+**Session total**: 5 published-schedule sources re-verified (all live); 4 blocked sources retried
+(2 fluctuating-live, 2 unchanged-blocked, 1 unchanged-inconclusive); 0 `{stale: true}` changes; 0
+calculator harvests attempted (saturated / browser-only remainder).
+
+**Next session priority**: (1) AK remains the sole scarce state below the calculator-quoted threshold —
+needs a browser-driven session or a wholly new discovery channel, not another repeat web search; (2)
+continue the reduced-freshness rotation with the next batch of oldest published sources by `asOf` date
+after WA/VA/TN/GA/WI (round 4, started at VA per 2026-09-02, now also covers WA/TN/GA/WI — next up:
+check remaining round-4 states not yet re-verified this round); (3) retry `flrules.elaws.us` (FL)
+directly — still inconclusive (503) as of 2026-09-06; (4) re-verify `documentpub.fnti.com`'s FL/GA/UT/VT
+PDFs over HTTPS if a future session's CA bundle resolves the chain without disabling verification; (5)
+retry tracked blocked sources (CATIC CT, AZ DIFI, Jackson & Scott AL, `oahure.com` HI) each session with
+full browser-style headers via `curl`; (6) TitleCapture/Qualia Connect and myclosingcost.com remain the
+jsOnly targets queued for a future browser-driven session.
