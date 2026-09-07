@@ -3992,3 +3992,60 @@ harvest. Marked `{stale: true}` in OH.json. OH still has 5 calculator providers 
 
 Both are logged here (not just in their state JSON) so a future session doesn't re-attempt these
 exact URLs expecting them to still work.
+
+## 2026-09-07 session — AK: Old Republic's 2nd tool tried for the first time, confirmed login-gated (same category as CO/AR)
+
+Re-reading the 2026-08-21 nationwide Old Republic 2nd-tool richness pass ("closes out this recipe
+for every state ... except AK/DC, out of scope per the standing task brief"), noticed AK had never
+actually been *tried* against `ortratecalculator.oldrepublictitle.com` — it was scoped out of that
+session's batch, not tested and found blocked. This is a genuinely untried recipe for AK's 3rd
+calculator-basis provider, distinct from the web-search-based discovery channels already exhausted
+across 10 consecutive prior sessions.
+
+**Recipe attempted**: `GET https://ortratecalculator.oldrepublictitle.com/RateCalc.aspx?CallingApp=PUBLIC&Location=AK`
+with `Referer: https://oldrepublictitle.com/rate-calculator/?location=alaska` and a persistent
+cookie jar (the standard session-affinity fix used successfully for 18+ other states).
+
+**Result: HTTP 302 to `/Login.aspx?ReturnUrl=...Location=AK`** on the very first request — a clean
+consumer-login redirect, not a NoBot anti-bot rejection. This is the identical failure signature
+already catalogued for CO and AR ("confirmed genuinely login-gated on this specific tool ...
+distinct from a fixable anti-bot block, not pursued further") — AK joins that category. Also
+re-checked Old Republic's *other/first* tool (`ortconline.com/Web2/.../ratefeecalc/default.aspx`)
+against its `PropertyStateList` dropdown per the 2026-08-19 WV entry's cached enumeration
+(AZ/CA/HI/IN/MO/NM/NV/OH/OK/OR/TX/UT/WA) — AK is not and has never been on that list either.
+
+**AK now has both of Old Republic's public tools definitively ruled out** (one login-gated, one
+never covers AK's state list), closing off the one genuinely new lead this project had left
+un-investigated. AK stays at 2 of 3 calculator-basis providers (Stewart + FNF), now exhausted across
+11 consecutive sessions for every stateless-HTTP-reachable technique tried. No further standing
+retry is recommended without a browser-driven session (to drive myclosingcost.com's client-side
+calculator and capture its network calls) or a wholly new provider name not yet cross-referenced
+against NetSheetCalc/TitleTap/MyTitleRates/TitleClose.com/Old Republic/WFG/Stewart/FNF.
+
+## 2026-09-07 session — freshness spot-check (AK/AZ/CO/KY/LA published sources), blocked-source retries
+
+**14 published-schedule source URLs re-verified across AK/AZ/CO/KY/LA, all live** except two
+already-catalogued non-issues: Pioneer Title Agency's AZ PDF (`pioneertitleagency.com`) returned
+HTTP 202 with `sg-captcha: challenge` — the identical SiteGround bot-mitigation gate already
+documented for Flying S Title & Escrow's ID PDF (2026-08-28 entry), a known fluctuating-WAF pattern,
+not marked stale; `documentpub.fnti.com`'s AZ PDF failed local TLS chain verification (`unable to
+get local issuer certificate`), the same host-specific CA gap already tracked for this host's
+FL/GA/UT/VT PDFs — left unmarked per the standing instruction not to disable certificate validation.
+No new `{stale: true}` markings.
+
+**Blocked-source retries**: CATIC CT HTTP 200 (fluctuating pattern continues). Arizona DIFI still
+HTTP 403, unchanged. Jackson & Scott AL still HTTP 403, unchanged. `oahure.com` (HI) still HTTP 403
+(Cloudflare managed challenge), unchanged. NATIC (`natic.com/QuoteLink-Calculator.aspx`) failed a
+4th consecutive time (`Connection reset by peer` via the agent proxy this session) — now a
+consistently confirmed block across 4 separate days, no further retry planned absent a materially
+different network path.
+
+**Next session priority**: (1) AK is now fully exhausted on every known technique including both
+Old Republic tools — do not re-attempt without a browser-driven session or a genuinely new provider
+name; (2) priority-1 calculator harvest otherwise remains fully saturated (37/37 in-scope states);
+(3) continue the freshness rotation with the next batch of states not yet re-checked this round
+(round 4 has now covered FL/NM/IN/VT/HI/AR/DC/AL/IL/WY/KS/ID/GA/CT/NC/TN/ME/MD/WA/VA/WI/AK/AZ/CO/KY/LA
+— next up alphabetically: MA/MI/MN/MO/MS/ND/NE/NH/NV/OR/RI/SC/SD/UT/WV); (4) retry
+`flrules.elaws.us` (FL) — still not re-checked since its 2026-09-03 connect-but-no-response result;
+(5) TitleCapture/Qualia Connect and myclosingcost.com remain the jsOnly targets queued for a future
+browser-driven session.

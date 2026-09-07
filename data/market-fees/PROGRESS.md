@@ -3936,3 +3936,46 @@ PDFs over HTTPS if a future session's CA bundle resolves the chain without disab
 retry tracked blocked sources (CATIC CT, AZ DIFI, Jackson & Scott AL, `oahure.com` HI) each session with
 full browser-style headers via `curl`; (6) TitleCapture/Qualia Connect and myclosingcost.com remain the
 jsOnly targets queued for a future browser-driven session.
+
+## 2026-09-07 session — AK: Old Republic's 2nd tool tried for the first time (genuinely new lead), confirmed login-gated; freshness spot-check (AK/AZ/CO/KY/LA), blocked-source retries; no `{stale: true}` changes
+
+Per the standing mission state (calculator harvest fully saturated: 36/36 in-scope scarce states at
+`calculator-quoted (3+ providers)`, AK the sole exception, confirmed exhausted across 10 consecutive
+prior sessions), re-read the 2026-08-21 nationwide Old Republic 2nd-tool pass and noticed it had
+explicitly scoped AK *out* of that batch rather than testing and finding it blocked — a genuinely
+untried recipe distinct from the web-search channels already exhausted. Tried it this session: `GET
+ortratecalculator.oldrepublictitle.com/RateCalc.aspx?CallingApp=PUBLIC&Location=AK` (with Referer +
+persistent cookie jar, the standard session-affinity fix) returned an immediate HTTP 302 to
+`/Login.aspx` — a clean consumer-login gate, the same category already catalogued for CO/AR, not a
+fixable anti-bot block. Also re-confirmed Old Republic's other tool (`ortconline.com`'s
+`PropertyStateList`) still excludes AK entirely. Full technical detail in CALCULATORS.md's
+2026-09-07 entry. **AK now has both Old Republic tools definitively ruled out**, closing off the one
+genuinely new lead this project had left uninvestigated; AK stays at 2 of 3 providers, exhausted
+across 11 consecutive sessions. No further standing retry recommended without a browser-driven
+session or a wholly new provider name.
+
+**Freshness spot-check: AK/AZ/CO/KY/LA published sources** (14 source URLs): 12 confirmed live
+(HTTP 200); 1 hit the already-catalogued SiteGround `sg-captcha` fluctuating-WAF pattern (Pioneer
+Title Agency AZ PDF, same category as ID's Flying S Title PDF) — not marked stale; 1 hit the
+already-tracked `documentpub.fnti.com` TLS chain gap (AZ PDF) — left unmarked per the standing
+instruction not to disable certificate validation. 0 `{stale: true}` changes.
+
+**Blocked-source retries**: CATIC CT HTTP 200 (fluctuating pattern continues, unchanged). Arizona
+DIFI still HTTP 403, unchanged. Jackson & Scott AL still HTTP 403, unchanged. `oahure.com` (HI)
+still HTTP 403, unchanged. NATIC failed a 4th consecutive time (connection reset) — now a
+consistently confirmed block, no further retry planned absent a different network path.
+
+**Session total**: 14 published-schedule sources re-verified (12 live, 2 known non-issues); 4
+blocked sources retried (1 fluctuating-live, 3 unchanged-blocked/failed); 0 `{stale: true}` changes;
+1 new calculator-harvest lead tried and closed out for AK (login-gated, not a success, but resolves
+prior ambiguity).
+
+**Next session priority**: (1) AK is now fully exhausted on every known stateless-HTTP technique
+including both Old Republic tools — do not re-attempt without a browser-driven session or a
+genuinely new provider name, not another repeat web search; (2) priority-1 calculator harvest
+otherwise remains fully saturated (37/37 in-scope states); (3) continue the freshness rotation with
+the next batch of states not yet re-checked this round (round 4 has now covered
+FL/NM/IN/VT/HI/AR/DC/AL/IL/WY/KS/ID/GA/CT/NC/TN/ME/MD/WA/VA/WI/AK/AZ/CO/KY/LA — next up
+alphabetically: MA/MI/MN/MO/MS/ND/NE/NH/NV/OR/RI/SC/SD/UT/WV); (4) retry `flrules.elaws.us` (FL) —
+not re-checked since its 2026-09-03 connect-but-no-response result; (5) TitleCapture/Qualia Connect
+and myclosingcost.com remain the jsOnly targets queued for a future browser-driven session.
