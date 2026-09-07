@@ -4007,3 +4007,40 @@ Old Republic's 2nd tool now definitively ruled out); (2) priority-1 calculator h
 fully saturated (37/37); (3) continue round 4's freshness rotation with the next alphabetical batch:
 ND/NE/NH/NV/OR; (4) retry `flrules.elaws.us` (FL), not re-checked since 2026-09-03; (5) TitleCapture/
 Qualia Connect and myclosingcost.com remain jsOnly targets for a future browser-driven session.
+
+## 2026-09-07 session, continued — freshness rotation extended to ND/NE/NH/NV/OR (14 sources, all live); session wrap-up
+
+Continuing round 4's freshness rotation with the next alphabetical batch: ND, NE, NH, NV, OR.
+(NV's already-known-stale `wntco.com/calculator` was not re-checked — it's a calculator-basis
+source already marked `{stale: true}` on 2026-09-01, not a published-schedule source in scope for
+this pass.)
+
+**14 published-schedule source URLs re-verified, all confirmed live (HTTP 200):**
+- **ND** — Stewart/virtualunderwriter.com ND rate manual, WFG ND rate manual.
+- **NE** — FNTI NE rate manual (`documentpub.fnti.com`, `http://` variant), Stewart/
+  virtualunderwriter.com NE rate manual, WFG NE rate manual, First American NE rate sheet
+  (img1.wsimg.com).
+- **NH** — Stewart/virtualunderwriter.com NH rate manual, WFG NH rate manual.
+- **NV** — Nevada Division of Insurance escrow + title rate manuals (docs.nv.gov, both), Stewart/
+  virtualunderwriter.com NV schedule of charges.
+- **OR** — Oregon Land Title Association (OTIRO) rate manual (oregonlandtitle.com), Stewart/
+  virtualunderwriter.com OTIRO rate manual (2017 vintage, still resolving live), Cascade Title fee
+  schedule page.
+
+0 `{stale: true}` changes this batch.
+
+**Session total (all 3 batches tonight)**: 48 published-schedule source URLs re-verified across
+10 states (AK/AZ/CO/KY/LA, MA/MI/MN/MO/MS, ND/NE/NH/NV/OR) — 46 live, 2 hit the already-tracked
+`documentpub.fnti.com` TLS chain gap and 1 hit the already-tracked SiteGround captcha WAF pattern,
+neither marked stale; 0 new `{stale: true}` markings. Blocked-source retries (CATIC CT/AZ DIFI/
+Jackson & Scott AL/`oahure.com`/NATIC) all unchanged from established patterns. Calculator harvest:
+1 genuinely new lead tried for AK (Old Republic's 2nd tool, `Location=AK`) and closed out
+(login-gated) — priority-1 otherwise remains fully saturated (37/37 in-scope states); AK stays at
+2/3 providers, now exhausted on every known stateless-HTTP technique across 11 sessions.
+
+**Next session priority**: (1) AK needs a browser-driven session (myclosingcost.com's client-side
+calculator) or a wholly new provider name — no further stateless-HTTP techniques remain untried;
+(2) priority-1 otherwise fully saturated, no action needed; (3) continue round 4's freshness
+rotation with the next alphabetical batch: RI/SC/SD/UT/WV; (4) retry `flrules.elaws.us` (FL) —
+not re-checked since 2026-09-03's connect-but-no-response result; (5) TitleCapture/Qualia Connect
+and myclosingcost.com remain jsOnly targets for a future browser-driven session.
