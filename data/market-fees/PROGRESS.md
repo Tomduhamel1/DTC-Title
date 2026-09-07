@@ -3979,3 +3979,31 @@ FL/NM/IN/VT/HI/AR/DC/AL/IL/WY/KS/ID/GA/CT/NC/TN/ME/MD/WA/VA/WI/AK/AZ/CO/KY/LA �
 alphabetically: MA/MI/MN/MO/MS/ND/NE/NH/NV/OR/RI/SC/SD/UT/WV); (4) retry `flrules.elaws.us` (FL) —
 not re-checked since its 2026-09-03 connect-but-no-response result; (5) TitleCapture/Qualia Connect
 and myclosingcost.com remain the jsOnly targets queued for a future browser-driven session.
+
+## 2026-09-07 session, continued — freshness rotation extended to MA/MI/MN/MO/MS (20 sources, all live)
+
+Continuing round 4's freshness rotation past the AK/AZ/CO/KY/LA batch above, with the next 5
+alphabetical states not yet re-checked this round: MA, MI, MN, MO, MS.
+
+**20 published-schedule source URLs re-verified, 19 confirmed live (HTTP 200):**
+- **MA** — Stewart Title rate book PDF, plus 5 attorney/blog closing-cost pages (Lopisi Law,
+  Tim Sherman Law x2, Lazan Law, Cote Law): all HTTP 200.
+- **MI** — Stewart Michigan Residential Rate Manual (go.stewart.com), Title RA/First American MI
+  basic rate sheet, Sterling Title/First American MI Eagle rate sheets, WFG MI rate manual: all
+  HTTP 200. FNTI MI rate manual (`documentpub.fnti.com`) also HTTP 200 over its `http://` variant.
+- **MN** — Stewart/virtualunderwriter.com MN rate manual, WFG MN rate manual, Close At Title fee
+  page: all HTTP 200.
+- **MO** — WFG MO rate manual: HTTP 200. FNTI MO rate manual (`documentpub.fnti.com`, `https://`)
+  failed local TLS chain verification — the same already-tracked host-specific CA gap (FL/GA/UT/VT/
+  AZ/MI all previously logged), not a dead link; left unmarked per the standing instruction not to
+  disable certificate validation.
+- **MS** — Stewart/virtualunderwriter.com MS rate manual, WFG MS rate manual: both HTTP 200.
+
+0 `{stale: true}` changes. Titleservicesrochester.com's "fee-calculator" page (MN) also re-verified
+live (HTTP 200) though it's catalogued as a calculator-basis source, not a published schedule.
+
+**Next session priority**: (1) AK remains fully exhausted (see the earlier entry this session,
+Old Republic's 2nd tool now definitively ruled out); (2) priority-1 calculator harvest otherwise
+fully saturated (37/37); (3) continue round 4's freshness rotation with the next alphabetical batch:
+ND/NE/NH/NV/OR; (4) retry `flrules.elaws.us` (FL), not re-checked since 2026-09-03; (5) TitleCapture/
+Qualia Connect and myclosingcost.com remain jsOnly targets for a future browser-driven session.
