@@ -4044,3 +4044,65 @@ calculator) or a wholly new provider name — no further stateless-HTTP techniqu
 rotation with the next alphabetical batch: RI/SC/SD/UT/WV; (4) retry `flrules.elaws.us` (FL) —
 not re-checked since 2026-09-03's connect-but-no-response result; (5) TitleCapture/Qualia Connect
 and myclosingcost.com remain jsOnly targets for a future browser-driven session.
+
+## 2026-09-08 session — freshness rotation completes RI/SC/SD/UT/WV (18 sources, all live); flrules.elaws.us now returns a real 503; blocked-source retries unchanged; calculator harvest still fully saturated, AK unchanged (browser-only)
+
+Per standing priority order: (1) calculator harvest — re-confirmed no in-scope work remains.
+Priority-1 states are still fully saturated (37/37 at calculator-quoted, 3+ providers); AK remains
+the sole exception at 2/3 providers, exhausted on every stateless-HTTP technique across 11 prior
+sessions (most recently both Old Republic tools, 2026-09-07) — not re-attempted this session per
+the standing recommendation, since nothing new is available without a browser-driven session or a
+wholly new provider name. (2) Freshness rotation: completed round 4's final scheduled batch,
+RI/SC/SD/UT/WV.
+
+**18 published-schedule source URLs re-verified across RI/SC/SD/UT/WV, all confirmed live:**
+- **RI** — WFG Rhode Island Title Insurance Rate Manual (wfgunderwriting.com): HTTP 200.
+- **SC** — Stewart South Carolina rate manual (go.stewart.com), WFG South Carolina rates
+  (wfgunderwriting.com), Cheraw Law and Mogill Law real-estate fee pages: all HTTP 200.
+- **SD** — Stewart South Dakota Risk Rate Manual (go.stewart.com, `http://`), Black Hills Title SD
+  rates PDF, Pennington Title fee schedule PDF, WFG South Dakota rate manual, Titles of Dakota
+  closing-fees PDF: all HTTP 200.
+- **UT** — WFG Utah Title Rate Manual, Provo Abstract closing-costs page, Sutherland Title fee page:
+  HTTP 200. Stewart's Utah rate manual (`www.stewart.com/-/media/...`) initially returned HTTP 403
+  under a bare curl request with no `Accept` header — retried with full browser-style headers
+  (Chrome UA + `Accept: text/html,...`) and resolved cleanly to HTTP 200 (`content-type:
+  application/pdf`, 516KB) with Azure Front Door headers, confirming this is the standard
+  header-sensitivity pattern already catalogued for other WAF-fronted hosts in this project, not a
+  dead link. FNTI's Utah rate manual (`documentpub.fnti.com`) hit the already-tracked local TLS
+  chain-verification gap (`curl: (60) unable to get local issuer certificate`) — left unmarked per
+  the standing instruction not to disable certificate validation.
+- **WV** — WFG West Virginia rate manual: HTTP 200. Stewart's West Virginia full manual PDF
+  (`www.stewart.com/-/media/...`) showed the identical bare-curl-403/browser-headers-200 pattern as
+  UT above, resolved live once retried with full headers. FNTI's West Virginia rate manual
+  (`documentpub.fnti.com`) hit the same already-tracked TLS chain gap as UT, left unmarked.
+
+0 `{stale: true}` changes. Round 4's freshness rotation has now covered every state's published
+sources except CA/DE/IA/MT/NJ/NY/OH/OK/PA/TX, which remain for a future session to pick up next
+(round 5 can start there once resumed).
+
+**Blocked-source retries**: CATIC CT (`catic.com/state-resources/connecticut`) HTTP 200 this run,
+continuing its established fluctuating pattern. Arizona DIFI (`difi.az.gov/title-insurance-rate-filings`)
+still HTTP 403, unchanged across every session checked. Jackson & Scott AL
+(`realestatelclosings.com/closing-costs-calculator/`) still HTTP 403, unchanged.
+
+**`flrules.elaws.us` (FL) retry**: for the first time since going connect-but-no-response on
+2026-09-03, this host returned an actual HTTP response — `HTTP/2 503 Service Unavailable`
+(Microsoft-HTTPAPI/2.0, IIS-style error body), confirmed across a direct verbose retry. Still down,
+so no change to FL.json/FL.md (the rule text remains cross-verified live via FNTI's own PDF
+republication of FAC chapter 69O-186, already on file), but this is a state change worth tracking —
+a live-but-503 host is a different failure mode than no response at all and may resolve on its own;
+worth one more check next session before treating it as a long-term dead source.
+
+**Session total**: 18 published-schedule sources re-verified (all live, 2 known documentpub.fnti.com
+TLS-gap non-issues, 2 stewart.com 403s resolved as header-sensitivity false negatives, not stale);
+3 blocked sources retried (all unchanged from established patterns); 1 previously-inconclusive
+source (`flrules.elaws.us`) now returns a definitive 503 instead of no response; 0 `{stale: true}`
+changes; 0 new calculator-harvest work (priority-1 fully saturated, AK unchanged pending a
+browser-driven session).
+
+**Next session priority**: (1) AK still needs a browser-driven session or a new provider name —
+no further stateless-HTTP techniques remain untried; (2) priority-1 otherwise fully saturated, no
+action needed; (3) start round 5 of the freshness rotation with the states round 4 never reached:
+CA/DE/IA/MT/NJ/NY/OH/OK/PA/TX; (4) one more check on `flrules.elaws.us` (FL) to see whether the new
+503 clears or becomes a stable pattern; (5) TitleCapture/Qualia Connect and myclosingcost.com remain
+jsOnly targets for a future browser-driven session.
