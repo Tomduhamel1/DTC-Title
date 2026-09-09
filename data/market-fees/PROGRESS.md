@@ -4106,3 +4106,65 @@ action needed; (3) start round 5 of the freshness rotation with the states round
 CA/DE/IA/MT/NJ/NY/OH/OK/PA/TX; (4) one more check on `flrules.elaws.us` (FL) to see whether the new
 503 clears or becomes a stable pattern; (5) TitleCapture/Qualia Connect and myclosingcost.com remain
 jsOnly targets for a future browser-driven session.
+
+## 2026-09-09 session — freshness rotation round 5 begins (CA/DE/IA/MT/NJ, 25 sources, all live); blocked-source retries unchanged; calculator harvest still fully saturated, AK unchanged (browser-only)
+
+Per standing priority order: (1) calculator harvest — re-confirmed no in-scope work remains.
+Priority-1 states remain fully saturated (37/37 at calculator-quoted, 3+ providers); AK stays the
+sole exception at 2/3 providers. AK's exhaustion (11 consecutive sessions, every stateless-HTTP
+technique including both Old Republic tools, per the 2026-09-07 entry) was not re-attempted this
+session — nothing new is available without a browser-driven session (to drive myclosingcost.com's
+client-side calculator) or a wholly new provider name not already cross-referenced against
+NetSheetCalc/TitleTap/MyTitleRates/TitleClose.com/Old Republic/WFG/Stewart/FNF. (2) Freshness
+rotation: started round 5 with the batch round 4 never reached, alphabetically first 5 of the 10
+remaining states (CA/DE/IA/MT/NJ).
+
+**25 published-schedule source URLs re-verified across CA/DE/IA/MT/NJ, all confirmed live:**
+- **CA** — Chicago Title/Corinthian residential rate schedule (s3-us-west-1.amazonaws.com), First
+  American CA region-3 residential rates, PCT (Pacific Coast Title) escrow fee PDF
+  (documents.pct.com, `http://`), Stewart CA rate manual (virtualunderwriter.com), WFG California
+  Title and Escrow Rate Manual, Fidelity National Title rate book (realtor-info.com): all HTTP 200.
+- **DE** — DTIRB rate manual (virtualunderwriter.com), Lewis, Eckert, Milford & Associates FAQs
+  (lem.associates): both HTTP 200. Neither of DE's 2 published sources hit the previously-catalogued
+  `documentpub.fnti.com` TLS chain gap this round (DE's own source set doesn't route through that
+  host).
+- **IA** — Iowa Title Guaranty rate sheet (opportunityiowa.gov + cap.iowatitleguaranty.com),
+  Abstract Company lender-disclosure fee schedule PDF, Hopkins & Gansen law firm closings page,
+  Abstract Associates of Iowa fee page, Abstract & Title Services pricing page: all HTTP 200.
+- **MT** — Stewart Montana rate manual (virtualunderwriter.com), FNTI Montana rate manual
+  (documentpub.fnti.com — resolved live this run, no TLS gap encountered for this host/document
+  pairing), WFG Montana rate manual, First Montana Title escrow-services page, Pioneer Title Montana
+  Old Republic rate PDF, Montana Title & Escrow rate-schedule trifold: all HTTP 200.
+- **NJ** — NJLTA rate manual PDF (cdn.ymaws.com courtesy-copy host), Coastal Title Agency rates page,
+  Federated National fee list PDF, NJ Legal Services closing-attorney page: all HTTP 200. Y. Levin
+  Law's NJ real-estate-attorney page (`ylevinlaw.com`) returned HTTP 202 with `sg-captcha:
+  challenge` — the same SiteGround bot-mitigation gate already catalogued for Pioneer Title AZ and
+  Flying S Title ID (fluctuating WAF, not a dead link), left unmarked.
+
+0 `{stale: true}` changes. Round 5 has now covered CA/DE/IA/MT/NJ; NY/OH/OK/PA/TX remain for a
+future session to finish the round.
+
+**Blocked-source retries**: CATIC CT (`catic.com/state-resources/connecticut`) HTTP 200 this run,
+continuing its established fluctuating pattern. Arizona DIFI (`difi.az.gov/title-insurance-rate-filings`)
+still HTTP 403, unchanged across every session checked. Jackson & Scott AL
+(`realestatelclosings.com/closing-costs-calculator/`) still HTTP 403, unchanged.
+
+**`flrules.elaws.us` (FL) retry**: still HTTP 503 (2nd consecutive session at 503, previously
+connect-but-no-response before that) — no change to FL.json/FL.md, since the rule text remains
+cross-verified live via FNTI's own PDF republication of FAC chapter 69O-186. Two consecutive 503s
+now reads as a stable outage rather than a transient blip; not worth a 3rd check next session absent
+some other signal, but leaving the source unmarked since the evidence itself is independently
+corroborated elsewhere.
+
+**Session total**: 25 published-schedule sources re-verified (all live, 1 known sg-captcha WAF
+pattern, not stale); 3 blocked sources retried (all unchanged from established patterns); 1
+previously-503 source (`flrules.elaws.us`) still 503, now a 2nd consecutive occurrence; 0
+`{stale: true}` changes; 0 new calculator-harvest work (priority-1 fully saturated, AK unchanged
+pending a browser-driven session).
+
+**Next session priority**: (1) AK still needs a browser-driven session or a new provider name — no
+further stateless-HTTP techniques remain untried; (2) priority-1 otherwise fully saturated, no
+action needed; (3) finish round 5 of the freshness rotation with the remaining states:
+NY/OH/OK/PA/TX; (4) `flrules.elaws.us` (FL) now reads as a stable outage — a 3rd check is optional,
+not high-value; (5) TitleCapture/Qualia Connect and myclosingcost.com remain jsOnly targets for a
+future browser-driven session.
