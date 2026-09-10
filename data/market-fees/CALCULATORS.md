@@ -4049,3 +4049,18 @@ name; (2) priority-1 calculator harvest otherwise remains fully saturated (37/37
 `flrules.elaws.us` (FL) — still not re-checked since its 2026-09-03 connect-but-no-response result;
 (5) TitleCapture/Qualia Connect and myclosingcost.com remain the jsOnly targets queued for a future
 browser-driven session.
+
+## 2026-09-10 session — AK: NetSheetCalc marketing page checked, not a live instance, no new lead
+
+A fresh web search for AK-specific quote tools not yet cross-referenced surfaced
+`netsheetcalc.com/net-sheet-calculator-by-state/alaska-net-sheet-calculator/`. Fetched the raw HTML
+directly: it is NetSheetCalc's own generic WordPress marketing/landing page for the product (Divi
+theme, Contact Form 7, no embedded `app.netsheetcalc.com` iframe, no `app_id` parameter, no
+AK-specific calculator instance) — i.e. the vendor selling the white-label widget to title agencies,
+not an actual live per-agency AK calculator. This is a dead end, not a genuinely new provider; it
+does not close AK's 3rd-provider gap. AK remains at 2 of 3 calculator-basis providers (Stewart +
+FNF), now exhausted across every stateless-HTTP-reachable technique and every web-searchable lead
+found to date (12 consecutive sessions). No further standing retry is recommended without a
+browser-driven session (to drive myclosingcost.com's client-side calculator and capture its network
+calls, per the 2026-08-31 entry) or a wholly new provider name not yet cross-referenced against
+NetSheetCalc/TitleTap/MyTitleRates/TitleClose.com/Old Republic/WFG/Stewart/FNF.

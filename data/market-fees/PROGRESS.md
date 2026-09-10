@@ -4168,3 +4168,70 @@ action needed; (3) finish round 5 of the freshness rotation with the remaining s
 NY/OH/OK/PA/TX; (4) `flrules.elaws.us` (FL) now reads as a stable outage — a 3rd check is optional,
 not high-value; (5) TitleCapture/Qualia Connect and myclosingcost.com remain jsOnly targets for a
 future browser-driven session.
+
+## 2026-09-10 session — freshness rotation round 5 completes (NY/OH/OK/PA/TX, 37 sources, all live or known-pattern); blocked-source retries unchanged; calculator harvest re-confirmed saturated, AK unchanged (browser-only)
+
+Per standing priority order: (1) calculator harvest — re-confirmed no in-scope stateless-HTTP work
+remains. Priority-1 states remain fully saturated (37/37 at calculator-quoted, 3+ providers); AK
+stays the sole exception at 2/3 providers. One new lead was checked for AK's 3rd provider —
+`netsheetcalc.com/net-sheet-calculator-by-state/alaska-net-sheet-calculator/`, surfaced by a fresh
+web search — but it resolved to NetSheetCalc's own generic marketing/landing page for the product
+(no embedded `app.netsheetcalc.com` iframe, no app_id, no AK-specific instance), not a live
+per-agency calculator; closes out as a dead end, not a new provider. AK's 11-session stateless-HTTP
+exhaustion stands unchanged. (2) Freshness rotation: finished round 5 with the batch round 4/5
+hadn't yet reached, alphabetically last 5 states (NY/OH/OK/PA/TX) — **this completes round 5's full
+pass over every state's published sources.**
+
+**37 published-schedule source URLs re-verified across NY/OH/OK/PA/TX:**
+- **NY** — all 7 sources live (HTTP 200): TIRSA rate manual PDF (via ratecalculator.fnf.com host),
+  tirsa.org/rate-manual/, Tier One, Judicial Title, Metro Title, First International, World Wide
+  Land Transfer.
+- **OH** — Owl Creek Title netsheet page and Stewart's OTIRB rate manual PDF (go.stewart.com): HTTP
+  200. Columbus Title's `/netsheets/` page: still HTTP 404, unchanged from its 2026-09-01
+  `{stale: true}` marking (already reflected in OH.json). Landmark Title South
+  (`landmarktitlesouth.com/rates-and-estimates`): HTTP 202 with `sg-captcha: challenge`, the same
+  already-catalogued SiteGround fluctuating-WAF pattern seen for Pioneer Title AZ, Flying S Title
+  ID, and Y. Levin Law NJ — left unmarked.
+- **OK** — WFG Oklahoma rate table PDF, AmEagle Title's 3 Tulsa fee-sheet PDFs, and both Old
+  Republic Oklahoma fee-sheet PDFs: all HTTP 200. FNTI's Oklahoma rate manual
+  (`documentpub.fnti.com`) hit the already-catalogued local TLS chain-verification gap (`unable to
+  get local issuer certificate`, confirmed via verbose retry) — the same host-specific non-issue on
+  file for this host's FL/GA/UT/VT/AZ/MT PDFs; left unmarked per the standing instruction not to
+  disable certificate validation.
+- **PA** — all 8 published sources live (HTTP 200): ALT Title's 2 PA pages, Carbon Search &
+  Settlement PDF (cdn.hibuwebsites.com), PA Title Rating Bureau's 2 informational pages plus both
+  TIRBOP manual PDFs (2023 and 2024 versions), Pride Abstract's closing-fees article.
+- **TX** — all 13 published sources live (HTTP 200): GATCO, Patten Title, TLTA compliance-update
+  article, TTIGA guaranty-fees page, First Texas Title's 3 buyer/lender/seller pages, Independence
+  Title rate PDF, Republic Title rate PDF, TDI's 2 rate-order/proposal PDFs, Texas National Title
+  Corpus Christi PDF, Valero Title homepage.
+
+0 `{stale: true}` changes this batch (Columbus Title OH's prior stale marking is unchanged, not new).
+**Round 5 is now complete across all 50 states + DC** — every published source in the survey has
+been re-verified at least once since round 4 began. Round 6 should restart the rotation
+alphabetically from AK next session.
+
+**Blocked-source retries**: CATIC CT (`catic.com/state-resources/connecticut`) HTTP 200 this run,
+continuing its established fluctuating pattern. Arizona DIFI (`difi.az.gov/title-insurance-rate-filings`)
+still HTTP 403, unchanged across every session checked. Jackson & Scott AL
+(`realestatelclosings.com/closing-costs-calculator/`) still HTTP 403, unchanged.
+
+**`flrules.elaws.us` (FL) 3rd check**: still HTTP 503 (3rd consecutive session at 503) — now a
+confirmed stable outage, not worth further rechecking absent some other signal. No change to
+FL.json/FL.md; FL's rule-text evidence remains independently corroborated via FNTI's own PDF
+republication of FAC chapter 69O-186.
+
+**Session total**: 37 published-schedule sources re-verified (all live or matching an
+already-catalogued non-issue: 1 known-stale 404 unchanged, 1 sg-captcha WAF pattern, 1
+documentpub.fnti.com TLS gap); 3 blocked sources retried (all unchanged from established patterns);
+1 previously-503 source (`flrules.elaws.us`) now a 3rd consecutive 503, read as a stable outage; 0
+new `{stale: true}` markings; 0 new calculator-harvest work (priority-1 fully saturated; 1 AK lead
+checked via fresh web search and closed out as a dead end, not a live per-state instance).
+
+**Next session priority**: (1) AK still needs a browser-driven session or a wholly new provider name
+— every stateless-HTTP-reachable technique and every web-searchable lead (including today's
+NetSheetCalc marketing-page check) has now been exhausted; (2) priority-1 otherwise fully saturated,
+no action needed; (3) start round 6 of the freshness rotation from the top alphabetically (AK/AL/AR/
+AZ/CA...); (4) `flrules.elaws.us` (FL) is now a confirmed stable outage — no further rechecking
+needed unless some other signal changes; (5) TitleCapture/Qualia Connect and myclosingcost.com
+remain jsOnly targets for a future browser-driven session.
