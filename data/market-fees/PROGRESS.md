@@ -4235,3 +4235,44 @@ no action needed; (3) start round 6 of the freshness rotation from the top alpha
 AZ/CA...); (4) `flrules.elaws.us` (FL) is now a confirmed stable outage — no further rechecking
 needed unless some other signal changes; (5) TitleCapture/Qualia Connect and myclosingcost.com
 remain jsOnly targets for a future browser-driven session.
+
+## 2026-09-11 session — round 6 freshness rotation begins (AK/AL/AR, 7 sources, all live); blocked-source retries unchanged; calculator harvest re-confirmed saturated, AK unchanged (browser-only)
+
+Per standing priority order: (1) calculator harvest — re-confirmed no in-scope stateless-HTTP work
+remains. Priority-1 states remain fully saturated (37/37 at calculator-quoted, 3+ providers); AK
+stays the sole exception at 2/3 providers. Ran one fresh web search for a genuinely new AK provider
+name (`Alaska title insurance closing cost calculator net sheet 2026`) — every result was either
+already-catalogued (netsheetcalc.com's generic marketing page, myclosingcost.com, both previously
+ruled out/flagged jsOnly) or a third-party consumer estimate blog (HomeLight, ListWithClever,
+RealEstateWitch, AnytimeEstimate, iBuyer) rather than a provider's own quote calculator, out of
+scope per the harvest definition. AK's 11+ session stateless-HTTP exhaustion stands unchanged; still
+needs a browser-driven session or a wholly new provider name. (2) Freshness rotation: started round
+6 from the top alphabetically, per the 2026-09-10 session's recommendation — AK/AL/AR (reduced batch
+per tonight's scope).
+
+**7 published-schedule source URLs re-verified across AK/AL/AR, all confirmed live (HTTP 200):**
+- **AK** — Alyeska Title Guaranty escrow-rate PDF, Stewart Alaska rate manual PDF.
+- **AL** — WFG Alabama Manual of Title Insurance Premiums PDF, virtualunderwriter.com Alabama rate
+  manual PDF.
+- **AR** — Stewart Arkansas manual PDF (go.stewart.com), WFG Arkansas rates PDF, FNTI Arkansas rate
+  chart page (fnti.com).
+
+0 `{stale: true}` changes.
+
+**Blocked-source retries**: CATIC CT (`catic.com/state-resources/connecticut`) HTTP 200 this run,
+continuing its established fluctuating pattern. Arizona DIFI (`difi.az.gov/title-insurance-rate-filings`)
+still HTTP 403, unchanged across every session checked. Jackson & Scott AL
+(`realestatelclosings.com/closing-costs-calculator/`) still HTTP 403, unchanged.
+
+**Session total**: 7 published-schedule sources re-verified (all live); 3 blocked sources retried
+(all unchanged from established patterns); 0 new `{stale: true}` markings; 0 new calculator-harvest
+work (priority-1 fully saturated; 1 fresh AK web search checked and closed out, no new provider
+found).
+
+**Next session priority**: (1) AK still needs a browser-driven session or a wholly new provider name
+— every stateless-HTTP-reachable technique and every web-searchable lead has now been exhausted
+across 12 consecutive sessions; (2) priority-1 otherwise fully saturated, no action needed; (3)
+continue round 6 of the freshness rotation with the next alphabetical batch: AZ/CA/CO/CT/DC; (4)
+`flrules.elaws.us` (FL) remains a confirmed stable outage — no further rechecking needed unless some
+other signal changes; (5) TitleCapture/Qualia Connect and myclosingcost.com remain jsOnly targets
+for a future browser-driven session.
