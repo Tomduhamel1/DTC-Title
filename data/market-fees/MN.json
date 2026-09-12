@@ -1,0 +1,385 @@
+[
+  {
+    "provider": "Stewart Title Guaranty Company (underwriter Schedule of Charges)",
+    "sourceUrl": "https://www.virtualunderwriter.com/-/media/files/virtualunderwriter/imported/pdfs/minnesota-rate-manual_final-eff-7-30-2025.pdf",
+    "asOf": "2025-07-30",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Original Charge for Owner's/Leasehold Policies: $0-$150,000 @ $3.60/thousand; over $150,000-$300,000 add $2.95/thousand; over $300,000-$1,000,000 add $2.35/thousand; over $1,000,000 negotiable (not to exceed $2.50/thousand); minimum $200.00",
+        "ALTA Homeowner's Policy: 110% of Owner's Policy charge, minimum $220",
+        "Original Charge for Loan Policies: $0-$150,000 @ $3.10/thousand; over $150,000-$300,000 add $2.60/thousand; over $300,000-$500,000 add $2.35/thousand; over $500,000-$1,000,000 add $2.10/thousand; over $1,000,000 negotiable (not to exceed $2.25/thousand); minimum $200.00",
+        "ALTA Expanded Coverage Residential Loan Policy: 110% of Loan Policy charge, minimum $220",
+        "Refinance Charge for Loan Policies: $0-$250,000 @ $2.10/thousand; over $250,000-$500,000 add $1.30/thousand; over $500,000-$1,000,000 add $1.10/thousand; over $1,000,000 negotiable (not to exceed $2.25/thousand); minimum $200.00",
+        "Charge for Subordinate Commercial Mortgage Policies: same per-thousand schedule as Refinance Charge above",
+        "Contract for Deed Policy - Seller: 30% of Buyer's Policy charge (not to exceed Buyer's Policy amount); Contract for Deed Policy - Buyer: full Original Owner's Policy charge",
+        "ALTA Residential Limited Coverage Junior Loan Policy / Short Form: $125.00 up to $100,000, +$1.00/thousand thereafter",
+        "ALTA Residential Limited Coverage Mortgage Modification Policy: $125 up to $1,000,000; $250 up to $1,500,000; $350 up to $2,000,000; +$100 per $500,000 thereafter up to $20,000,000",
+        "ALTA Limited Pre-Foreclosure Policy: $2.00/thousand, minimum $100.00",
+        "Simultaneous Issuance of Owner's and Mortgage Loan Policies: Loan Policy flat charge of $150 per policy (up to Owner's Policy liability amount)",
+        "Simultaneous Issuance of Owner's and Leasehold Owner's Policies: Leasehold Policy charged at 30% of Owner's Policy charge, up to $1,000,000 Owner's Policy"
+      ]
+    },
+    "bundlingNotes": "General Provisions states verbatim: 'This manual contains the title insurance charges related to the face amount of liability assumed for each title insurance policy. It does not include other miscellaneous charges, which may be made by local attorneys, abstractors, settlement agents, or other title insurance companies and agencies.' No settlement/closing/escrow fee dollar amounts are published in this document by design.",
+    "transactionContext": "Statewide Minnesota; Owner's, Leasehold, Loan (purchase-money and refinance), Contract for Deed, and specialty policy premium rates; no settlement/closing fee published."
+  },
+  {
+    "provider": "WFG National Title Insurance Company (Manual of Title Insurance Premiums)",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/minnesota/rate-manuals/WFG%20Minnesota%20Rate%20Manual%20Effective%2010-15-2025.pdf",
+    "asOf": "2025-10-15",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Basic Rate Table (per $1,000 of liability): Owner's & Leasehold Owner's Policies $3.50 up to $250,000, $2.75 next $250,001-$500,000, $2.25 next $500,001-$1,000,000, $1.75 over $1,000,000 (max); minimum $200",
+        "Acquisition Loan Policies: $3.00/$2.50/$2.00/$1.50 (max) per thousand across the same liability tiers; minimum $200",
+        "Finance (Refinance) Loan Policies: $2.00/$1.75/$1.25/$1.00 (max) per thousand across the same liability tiers; minimum $200",
+        "Expanded Coverage (Homeowner's) Owner's/Loan Policy: 110% of Basic Rate",
+        "Simultaneous Issue - Owner's and Loan Policies: Loan Policy(ies) flat fee of $150.00 each (up to Owner's Policy liability); Owner's & Leasehold: leasehold policy at 60% of applicable rate, minimum $150",
+        "Lender's Special Rates (high-volume lenders, refinance only, one-to-four family residential): e.g. over-500-orders/month tier ranges from $275 ($0-$250,000 liability) to $2,200 ($4,000,001-$5,000,000 liability)",
+        "HE2 Home Equity 2nd Generation certificate charge: $45 (up to $250,000) to $300 (over $750,000 up to $1,000,000) per transaction",
+        "ALTA Residential Limited Coverage Junior Loan Policy: $112.50 up to $75,000; $150.00 $75,001-$100,000; $1.00/thousand $100,001-$1,000,000",
+        "Multiple-parcel/multiple-chain-of-title additional work charge: $200.00 per hour or per parcel"
+      ]
+    },
+    "bundlingNotes": "Section 1 Introduction states verbatim: 'The rates shown are the total title insurance fees charged the applicant including both the risk portion and the service or work portion, but do not include charges for title search, surveys, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant.'",
+    "transactionContext": "Statewide Minnesota; Owner's, Acquisition Loan, and Finance (refinance) Loan policy premium rates, Lender's Special Rates for high-volume refinance lenders, and endorsement pricing; no settlement/closing fee published."
+  },
+  {
+    "provider": "CloseAtTitle (independent title/escrow company, Minnesota & Wisconsin)",
+    "sourceUrl": "https://closeattitle.com/title-fees/",
+    "asOf": "2026-07-22",
+    "settlementFee": "Closing Fee: $395.00 (buyer/purchase); $425.00 (seller/sale); $395.00 (refinance)",
+    "itemizedFees": {
+      "docPrep": "$225.00 (buyer purchase and seller sale)",
+      "processing": null,
+      "courier": "Courier/Wire fee payoff: $75.00 per occurrence (buyer purchase, seller sale, and refinance)",
+      "wire": "Courier/Wire fee payoff: $75.00 per occurrence (buyer purchase, seller sale, and refinance) -- listed as a single combined line item",
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Title Services/Exam Fee: $695.00 (buyer purchase); $595.00 (seller sale)",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "County recording fees and Transfer Taxes are stated as additional, not included in any of the above figures",
+        "Page notes 'Additional fees may apply for additional closing services rendered'"
+      ]
+    },
+    "bundlingNotes": "Fees are published separately by transaction role (buyer purchase / seller sale / refinance) rather than as one bundled figure. Page states rates apply to 'the Minnesota Metropolitan area' with the caveat 'Fees may vary depending upon area,' implying different (unpublished) pricing outside the Twin Cities metro.",
+    "transactionContext": "Minnesota Metropolitan (Twin Cities) area; separate published schedules for buyer purchase, seller sale, and refinance transactions."
+  },
+  {
+    "provider": "Title Services, Inc. (Rochester, MN; subsidiary of the Dunlap Seeger law firm -- closing-attorney-affiliated title company)",
+    "sourceUrl": "https://www.titleservicesrochester.com/fee-calculator/",
+    "asOf": "2026-07-22",
+    "settlementFee": "Closing Fee: $275",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": "Express Delivery Fee: $40",
+      "wire": null,
+      "edoc": null,
+      "eRecording": "Recording Service Fee: $200",
+      "notarySigning": null,
+      "searchExam": "Title Evidence Fee: $200; Title Examination Fee: $235",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Plat Drawing Fee: $110",
+        "Government recording fees: $46 per document",
+        "Mortgage Registry Tax: mortgage amount x .0023",
+        "Conservation Fee: $5"
+      ]
+    },
+    "bundlingNotes": "Page explicitly labels the figures as 'representative of a typical transaction' and advises contacting the firm for transaction-specific questions -- treated as a published (if illustrative) fee schedule rather than a blind interactive calculator, since dollar amounts are displayed on the page itself without requiring form input.",
+    "transactionContext": "Rochester, MN metro area (Olmsted County); residential closing, title evidence/examination, and recording fees; company is a subsidiary of a local law firm (Dunlap Seeger), giving attorney-affiliated provider-type coverage."
+  },
+  {
+    "basis": "calculator",
+    "provider": "DCA Title (independent title/settlement company, serving Minnesota and Wisconsin)",
+    "sourceUrl": "https://www.dcatitle.com/calculator/",
+    "calculatorUrl": "https://www.dcatitle.com/calculator/",
+    "endpoint": "POST https://www.dcatitle.com/wp-admin/admin-ajax.php (action=dcatitle_calculator_results, plain WordPress admin-ajax POST, no auth/nonce required, no personal data)",
+    "retrievalDate": "2026-07-25",
+    "scenario": "$500,000 purchase price, $400,000 loan, Hennepin County (MN's most populous county, Minneapolis), residential purchase, buyer side, no lender policy endorsement, not manufactured housing",
+    "methodology": "DCA Title's own custom WordPress plugin ('dcatitle-calculator') computes a real, first-party itemized quote server-side and returns it via a plain admin-ajax.php POST (discovered by fetching the plugin's own dcatitle-calculator.js and reading its jQuery.ajax() call directly) -- no JS execution needed to reproduce, no browser required.",
+    "settlementFee": {
+      "closingServiceFee": "$350.00 (Title - Closing Service Fee)"
+    },
+    "itemizedFees": {
+      "searchExam": "$700.00 (Title - Search & Exam Fee; plus $100 for each additional parcel)",
+      "docPrep": null,
+      "processing": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "courier": null,
+      "wire": null,
+      "cpl": null,
+      "governmentRecording": "$92.00 (Government Recording Fee, based on 2 abstract documents at $46.00 per document)",
+      "conservationFee": "$5.00 (paid to county treasurer with the Mortgage Registration Tax)",
+      "mortgageRegistrationTax": "$960.00",
+      "titleInsurancePremium": {
+        "lendersPolicy": "$1,125.00",
+        "homeownersPolicyPremium_expandedCoverage": "$743.75"
+      }
+    },
+    "sectionTotals": "Title Charges: $350 (closing) + $1,125 (lender's title insurance) + $700 (search & exam) = $2,175.00. Taxes and Government Fees: $5 (conservation) + $92 (recording) + $960 (mortgage registration tax) = $1,057.00. Expanded Coverage and Endorsements: $743.75 (homeowner's policy premium, optional).",
+    "bundlingNotes": "First calculator-basis MN provider. MN's Mortgage Registration Tax ($960 at this loan amount, a state-specific ad valorem tax on recorded mortgages under Minn. Stat. 287.035) and Conservation Fee ($5, a per-document state fee) are unique line items not seen in most other states surveyed. DCA Title's own calculator also serves Wisconsin, but WI's county dropdown is hidden in the visible form and the server rejected every placeholder county value tried this session (empty string, 'N/A', 'None', 'All', 'Any', 'Statewide', and a valid Minnesota county name) -- the real WI county list appears to load dynamically via a mechanism not captured by a static HTML/JS fetch; logged in CALCULATORS.md as a follow-up target rather than jsOnly (the MN half of the same tool works perfectly via plain POST).",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k Hennepin County (Minneapolis) purchase scenario, buyer side."
+  },
+  {
+    "basis": "calculator",
+    "provider": "Knight Barry Title Group (independent, multi-state title agency; own ASP.NET rate calculator, agent for Stewart Title Guaranty Company)",
+    "sourceUrl": "https://www.knightbarry.com/rate-calculators",
+    "calculatorUrl": "https://dashboard.knightbarry.com/Rates/minnesota-rate-calculator.aspx",
+    "endpoint": "POST https://dashboard.knightbarry.com/Rates/minnesota-rate-calculator.aspx (ASP.NET WebForms __doPostBack/__VIEWSTATE replay, same plain-HTTP technique used for Old Republic's ortconline.com and FNF's ratecalculator.fnf.com -- no JS execution needed, no personal data)",
+    "retrievalDate": "2026-07-25",
+    "scenario": "$500,000 purchase price ($500,000 owner's policy liability), $400,000 loan policy liability, Hennepin County (Minneapolis, MN's most populous county), Purchase, Both Owner's and Loan Policy, Enhanced Homeowner's Policy, Residential, default underwriter (Stewart Title Guaranty via Knight Barry)",
+    "methodology": "Classic ASP.NET WebForms app (Telerik RadAjax controls present but the app accepts a plain full postback when async-specific headers are omitted, same as the other WebForms tools in this catalog). Recipe: (1) GET the page; (2) POST with ddCounties=<county id> (310=Hennepin) and matching __EVENTTARGET to select county; (3) POST with txtAmount=<sale/owner's liability>, txtTridLoanAmount=<loan/lender's liability>, and btnCalculate clicked (__EVENTTARGET empty) for the final quote, leaving all radio-button defaults (Purchase, Both Owner's+Loan, Enhanced Homeowner's, Residential, low-cost underwriter) as-is.",
+    "settlementFee": {
+      "loanClosingFee": "$400.00"
+    },
+    "itemizedFees": {
+      "searchExam": "$580.00 (Title Search and Exam Fee)",
+      "docPrep": null,
+      "processing": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "courier": null,
+      "wire": null,
+      "cpl": null,
+      "transactionSecurityFee_buyer": "$25.00",
+      "transactionSecurityFee_seller": "$25.00",
+      "governmentRecordingFeePerDoc": "$46.00",
+      "conservationFee": "$5.00",
+      "mortgageRegistrationTax": "$960.00",
+      "titleInsurancePremium": {
+        "loanPolicy_disclosed": "$1,090.00 (simultaneous-issue disclosed rate)",
+        "ownersPolicy_disclosed": "$657.75 (simultaneous-issue disclosed rate, Enhanced Homeowner's)",
+        "ownersPolicy_filed": "$1,597.75 (full filed rate reported to the underwriter)",
+        "loanPolicy_filed_simultaneous": "$150.00 (full filed simultaneous rate reported to the underwriter)"
+      }
+    },
+    "sectionTotals": "Disclosed buyer-side total: Loan Policy $1,090 + Owner's Policy $657.75 + Loan Closing Fee $400 + Transaction Security Fee (buyer) $25 + Search & Exam $580 + Recording $46 + Conservation $5 + Mortgage Registration Tax $960 = $3,763.75.",
+    "bundlingNotes": "This tool distinguishes between the 'disclosed' rate shown to consumers (reflecting simultaneous-issue discounting) and the full rate the agency reports to the underwriter under Minnesota Department of Commerce filed premiums ($1,597.75 owner's + $150 simultaneous loan) -- a useful cross-check against the state's filed-rate regime already documented in this survey. Second MN calculator-basis provider (see DCA Title above); MN now has 2 of the 3 providers needed to cross the calculator-quoted threshold.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k Hennepin County (Minneapolis) purchase scenario, buyer side, both owner's and loan policy, enhanced homeowner's coverage."
+  },
+  {
+    "provider": "Minnesota Secured Title (independent title agency; Austin, MN, operating statewide including Hennepin County) - via forms.titlemidwest.com's RateCalculator platform, tenant slug 'mnsecured'",
+    "basis": "calculator",
+    "sourceUrl": "https://www.mnsecuredtitle.com/Tools-Resources/Rate-Calculator",
+    "calculatorUrl": "https://forms.titlemidwest.com/RateCalculator/mnsecured/calculator.asp",
+    "endpointOrParams": "Plain unauthenticated JSON GET: https://forms.titlemidwest.com/RateCalculator/mnsecured/ajax.asp?loantype=p&purchamt=500000&loanamt=400000&payoff=n&county=27 (county=27 is Hennepin per the page's own <select id=\"loc_county\"> option list, MN's most populous county). loantype=p for Purchase, payoff=n (no prior loan payoff). No personal data fields exist anywhere in the calculator's HTML form.",
+    "retrievalDate": "2026-08-02",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Purchase transaction, Hennepin County (MN's most populous county).",
+    "methodology": "Found via Minnesota Secured Title's own site, which embeds the calculator in an <iframe>. The underlying calculator.js file's getPremiums()/ajaxUpdate() functions were read directly to find the plain jQuery $.ajax GET call and its exact parameter names -- no form submission or JS execution needed, no personal data requested at any point.",
+    "itemizedFees": {
+      "cpl": null,
+      "processing": null,
+      "notarySigning": null,
+      "docPrep": null,
+      "searchExam": "Title Examination: $0.00 (TitleExam field returned zero for this tier/county; Title Evidence $645.00 appears to be this tenant's search/abstract-equivalent line item instead)",
+      "other": [
+        {
+          "name": "Closing Fee",
+          "amount": "$345.00"
+        },
+        {
+          "name": "Title Evidence",
+          "amount": "$645.00"
+        },
+        {
+          "name": "Lender's Title Insurance Premium ($400,000 loan, simultaneous issue)",
+          "amount": "$1,087.50"
+        },
+        {
+          "name": "Owner's Title Insurance Premium ($500,000, simultaneous-issue tier)",
+          "amount": "$537.50"
+        },
+        {
+          "name": "Recording Services Fee",
+          "amount": "$25.00"
+        },
+        {
+          "name": "Courier Fee",
+          "amount": "$40.00"
+        },
+        {
+          "name": "Delivery Service Fee",
+          "amount": "$30.00"
+        },
+        {
+          "name": "Plat Services / Name & Assess Search",
+          "amount": "$0.00 each (both zero for this county/tier)"
+        }
+      ]
+    },
+    "sectionTotals": "pTotal (combined Lender's + Owner's Title Insurance premium): $1,625.00 (Tier 4 rate bracket, per the API's own 'Tier' field).",
+    "bundlingNotes": "This tenant's fee structure separates 'Title Evidence' ($645) from 'Title Examination' ($0 at this tier) -- the reverse of most other calculator-basis sources on file, where search/exam work is either bundled into a single line or zeroed with the cost folded into the evidence/abstract fee. Two optional endorsement line items (ARM $50, Manufactured Home $50) exist but are not applicable to the standard scenario (a plain single-family purchase) and were excluded. The platform itself ('Title Midwest', forms.titlemidwest.com/RateCalculator/<tenant-slug>/) is a shared multi-tenant calculator SaaS analogous to MyTitleRates.com/TitleTap -- worth checking for other MN or neighboring-state tenant slugs in a future session.",
+    "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Hennepin County -- MN's most populous county. This is MN's 3rd calculator-basis provider, crossing the 3-provider threshold."
+  },
+  {
+    "provider": "Rochester Title & Escrow (independent title agency; Rochester, MN, Olmsted County) - via forms.titlemidwest.com's RateCalculator platform, tenant slug 'RteCalc'",
+    "basis": "calculator",
+    "sourceUrl": "https://forms.titlemidwest.com/RateCalculator/RteCalc/Calculator.asp",
+    "calculatorUrl": "https://forms.titlemidwest.com/RateCalculator/RteCalc/Calculator.asp",
+    "endpointOrParams": "Plain unauthenticated JSON GET: https://forms.titlemidwest.com/RateCalculator/RteCalc/ajax.asp?loantype=p&purchamt=500000&loanamt=400000&payoff=n&county=<id> (loantype=p for Purchase, payoff=n for no prior-loan payoff). No personal data fields exist anywhere in the calculator's HTML form.",
+    "retrievalDate": "2026-08-10",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Purchase transaction. Hennepin County (MN's most populous, county=27) and two other large-metro counties (Dakota=19, Ramsey=62) all returned this tenant's 'Call For Rates' state (TitleEvidence: -1, Tier 4 -- the same generic fallback bracket) -- this tenant's own service footprint is evidently centered on southeastern MN, not the Twin Cities metro. Olmsted County (county=55, Rochester -- this agency's own home county) returned a fully-priced Tier 1 quote instead, substituted per the standard scenario's own 'largest county/city available in a given calculator's own service footprint' allowance.",
+    "methodology": "Found via forms.titlemidwest.com's open directory listing (the same platform already on file for Minnesota Secured Title and Missouri's Secured Title of Kansas City/Elite Title), under a previously-uncatalogued tenant slug 'RteCalc'. The page's own calculator.js file was read directly (same technique as the existing Minnesota Secured Title entry) to find its plain jQuery $.ajax GET call (url: 'ajax.asp') and exact parameter names -- no form submission or JS execution needed. Distinct from Minnesota Secured Title's 'mnsecured' tenant: querying the identical Hennepin County code (27) against this tenant returns 'Call For Rates' rather than a priced quote, confirming each tenant carries its own independently-configured county-tier fee table on this shared platform rather than a shared template.",
+    "itemizedFees": {
+      "cpl": null,
+      "processing": null,
+      "notarySigning": null,
+      "docPrep": null,
+      "searchExam": "Title Examination: $175.00; Name & Assessment Search: $50.00; Plat Services: $80.00 (all separately itemized, unlike the Minnesota Secured Title tenant which zeroes Title Examination for its own tier)",
+      "other": [
+        {
+          "name": "Title Evidence",
+          "amount": "$220.00"
+        },
+        {
+          "name": "Closing Fee",
+          "amount": "$175.00"
+        },
+        {
+          "name": "Recording Services Fee",
+          "amount": "$25.00"
+        },
+        {
+          "name": "Courier Fee",
+          "amount": "$40.00"
+        },
+        {
+          "name": "Delivery Service Fee",
+          "amount": "$40.00"
+        },
+        {
+          "name": "Lender's Title Insurance Premium ($400,000 loan, simultaneous issue)",
+          "amount": "$1,125.00"
+        },
+        {
+          "name": "Owner's Title Insurance Premium ($500,000, simultaneous-issue tier)",
+          "amount": "$587.50"
+        }
+      ]
+    },
+    "sectionTotals": "pTotal (combined Lender's + Owner's Title Insurance premium): $1,712.50 (Tier 1 rate bracket, per the API's own 'Tier' field).",
+    "bundlingNotes": "4th MN calculator-basis provider (MN was already calculator-quoted at 3 -- this is a richness addition, not a threshold crossing). County substituted from the standard scenario's default (Hennepin) to Olmsted per the calculator's own footprint, since Hennepin/Dakota/Ramsey all fell back to a generic 'Call For Rates' tier on this specific tenant. Fee split is broadly comparable to Minnesota Secured Title's ($1,712.50 vs. $1,625.00 combined premium; $220 Title Evidence here vs. $645 there), a useful cross-tenant variance data point on the same shared platform.",
+    "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Olmsted County (Rochester) -- this tenant's own priced service area, substituted for Hennepin per the standard scenario's footprint-substitution allowance."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company -- Stewart Rate Calculator, matched settlement office: Stewart Title Company - Minnesota Division (7701 France Avenue South, Suite #100, Edina, MN 53345)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true (LoanEstimate/QuoteType=3 flow) and https://www.stewartratecalculator.com/Quote/Netsheet?urlParams=&quotetype=2&branded=true (Netsheet/QuoteType=2 flow); both POST to the shared /api/SRC/quote endpoint",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Hennepin County (Minneapolis), residential resale, Sale/Purchase with Mortgage transaction type, BASIC coverage on both Owner's and Lender's policies. Richness-pass harvest applying an already-solved, previously state-limited recipe to a state not yet in Stewart's harvested-state list, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "methodology": "Harvested via Stewart's discoverable `/api/SRC/*` JSON REST API (stewartratecalculator.com), driven entirely by plain HTTP GET/POST (Python requests.Session(), cookie jar) with no browser/JS execution and no personal-data fields, replaying the full recipe documented in this project's CALCULATORS.md (2026-08-14 'SOLVED' entry): GET the LoanEstimate/Netsheet page to scrape a fresh antiforgery cookie + __RequestVerificationToken; GET /api/SRC/propertysearch to resolve the county FIPS code and a default zip; GET /api/SRC/providers to find the county's real settlement office(s) (used to set ProviderID on the QuoteType=3 flow so the itemized settlement-fee list is populated -- an empty ProviderID silently returns a null itemized list); GET /api/SRC/statesettings and /api/SRC/ernstlookup for state-level defaults; build the QuoteRequestRoot JSON by hand (Owner's Policy $500,000 / Lender's Policy $400,000, BASIC coverage, standard Sale/Purchase with Mortgage transaction); POST /api/SRC/quote twice -- QuoteType=2 (Netsheet, pageBuyerSeller=seller) for Recording/CFPB2015 transfer-tax figures, and QuoteType=3 (LoanEstimate, pageBuyerSeller=buyer, IsCalculatePremium=True, IsCalculateTitleServiceFee=True) for the itemized Pricing.TitleServiceFee.ItemizedTitleServiceFeeList settlement-fee line items. One new gotcha found and fixed this session: stewartratecalculator.com's bare apex domain 301-redirects every POST to the www subdomain, and that redirect's response body hangs indefinitely on this sandbox's proxied connection (a 30s+ read timeout with 0 bytes received) -- fixed by targeting https://www.stewartratecalculator.com directly, skipping the apex redirect entirely; this is an environment/proxy artifact, not a sign the endpoint is blocked. Also confirmed the documented /api/SRC/providers gotcha firsthand: for a single-provider county the response's `Provider` field is a bare object, not a one-element list -- must be normalized before indexing or ProviderID silently stays empty and every itemized-fee list comes back null (looks exactly like a genuine empty result).",
+    "settlementFee": {
+      "note": "$890.00 total, split buyer $295.00 / seller $595.00 (line item: 'Title Closing Fee')"
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1,452.50",
+      "loanPolicyPremium": "$1,090.00",
+      "other": [
+        {
+          "name": "Title Abstract Charge",
+          "amount": "$350.00 (buyer $350.00 / seller $0.00)"
+        },
+        {
+          "name": "Title Closing Fee",
+          "amount": "$890.00 (buyer $295.00 / seller $595.00)"
+        },
+        {
+          "name": "Title Examination Fee",
+          "amount": "$450.00 (buyer $450.00 / seller $0.00)"
+        }
+      ],
+      "note": "3 itemized settlement/closing-fee line item(s) returned via the QuoteType=3 flow."
+    },
+    "sectionTotals": "Owner's Policy Premium $1,452.50; Lender's Policy Premium $1,090.00; itemized settlement fees sum $1,690.00",
+    "bundlingNotes": "Combined deed/transfer/mortgage tax on QuoteType=2 (Netsheet) flow: $2,660.00 total -- MortgageTax $960.00; DeedTax $1,700.00.",
+    "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Hennepin County, Minnesota."
+  },
+  {
+    "provider": "WFG National Title Insurance Company \u2014 Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Hennepin County (Minneapolis), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Harvested via WFG National Title's own public JSON API, `POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet`, fully solved and documented in this project's CALCULATORS.md (2026-08-08 entry) -- no browser/JS execution needed, no personal-data fields in the request shape (nested Properties/Loans arrays, TransactionProductType, SettlementStatementVersion: \"CD\"). Confirmed via the same API's public `GET /api/rates/State/GetCalculationEnabledStates` that MN is `isCalculationEnabled: true` before harvesting. Richness-pass application of an already-solved, previously-untried-for-this-state recipe, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "settlementFee": {
+      "note": "Premium-only result (no itemized settlement/search/doc-prep line items) -- consistent with WFG's own hardcoded fee-description table, which only itemizes HUD-style settlement fees for 7 states (WA, CA, TX, OR, AZ, NV, CO); every other state, including this one, returns only the Owner's Title Insurance Premium."
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1,720.00",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's seller-net-sheet-only design)",
+      "other": [],
+      "note": "Premium-only result for this state (see settlementFee note)."
+    },
+    "sectionTotals": "Owner's Title Insurance Premium $1,720.00",
+    "bundlingNotes": "Discovered and solved 2026-08-08; applied here as a richness-pass 4th/5th calculator-basis provider for Minnesota (already at 3-4 providers via other tools) since no prior session had run this already-solved recipe against this state. Property location for this request: Minneapolis, Minnesota (Hennepin County).",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Hennepin County, Minnesota."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company \u2014 second rate calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://oldrepublictitle.com/rate-calculator/?location=minnesota",
+    "calculatorUrl": "https://oldrepublictitle.com/rate-calculator/?location=minnesota",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (RateCalc.aspx?CallingApp=PUBLIC&Location=MN, redirects to a session-scoped (S(...)F(...))/RateCalc.aspx?...Location=22..., statewide, no county selector). GET the page with Referer https://oldrepublictitle.com/rate-calculator/?location=minnesota (capture __VIEWSTATE/__EVENTVALIDATION), POST __EVENTTARGET=ddlPolicyCategory value 49 (PURCHASE / SALE), POST __EVENTTARGET=ddlPolicyType1 value 5182 (OWNERS - STANDARD), then POST __EVENTTARGET=btnCalculate with txtLiabilityAmt=500000, txtCrLiabilityAmt=400000. Same Referer-header-throughout fix documented for NH/WV/MI/PA/NJ/VA/TN/MD/WI; no personal data entered.",
+    "retrievalDate": "2026-08-21",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, statewide (no county selector in this tool), PURCHASE / SALE, OWNERS - STANDARD policy type.",
+    "methodology": "Direct HTTP GET/POST against the ASP.NET WebForms postback mechanism (Python requests.Session()), no browser/JS execution. No personal data entered. Richness pass applying this project's already-solved Old Republic 2nd-tool recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": {
+      "note": "This tool prices title insurance premiums only -- no settlement/closing/escrow service-fee line items are itemized (same structural limitation observed for this tool's other state entries elsewhere in this project)."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "LENDERS POLICY, insured amount $400,000.00 -- Lenders-Only standalone premium",
+          "amount": "$1,125.00"
+        },
+        {
+          "name": "LENDERS POLICY, Owners+Lenders combined (simultaneous) premium",
+          "amount": "$150.00"
+        },
+        {
+          "name": "OWNERS - STANDARD, insured amount $500,000.00, Owners+Lenders combined premium",
+          "amount": "$1,562.50"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, standalone-lenders-only",
+          "amount": "$1,125.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, Owners+Lenders combined",
+          "amount": "$1,712.50"
+        }
+      ]
+    },
+    "bundlingNotes": "Owner's $1,562.50/Lender's $1,125.00 are in the same range as, but not identical to, this state's already-on-file Stewart entry (Owner's $1,452.50/Lender's $1,090.00) -- genuine cross-underwriter market variation rather than a fetch error.",
+    "transactionContext": "Purchase/Sale simultaneous Owner's Standard + Lender's policy, statewide Minnesota, purchase with financing."
+  }
+]

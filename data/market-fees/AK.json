@@ -1,0 +1,128 @@
+[
+  {
+    "provider": "Alyeska Title Guaranty Agency, Inc. (independent, Anchorage & Wasilla)",
+    "sourceUrl": "https://alyeskatitle.com/downloads/rates-escrow.pdf",
+    "asOf": "Effective 2025-10-01",
+    "settlementFee": {
+      "note": "Genuine escrow/settlement fee schedule (not premium-only) -- rare among states surveyed. Alaska statute AS 21.66.460 requires title companies to file escrow/settlement/closing charge schedules with the Division of Insurance separately from title insurance premium rates, which appears to drive public availability of a document like this one.",
+      "escrowFeeFormula": "Base rate of $400.00 plus $1.60 per thousand of insurance liability up to $1,000,000.00, and $0.80 per thousand thereafter. Rounded up to the nearest dollar.",
+      "escrowFeeTable_sample": "At $50,000 insurance liability -> $480 escrow; $100,000 -> $560; $200,000 -> $720; $300,000 -> $880; $500,000 -> $1,200; $1,000,000 -> $2,000; $2,000,000 -> $2,800; $5,000,000 -> $5,200; $10,000,000 -> $9,200. Full $28,000-$10,000,000 tier table recorded in the source PDF.",
+      "residentialRefinanceFee": "$375.00 flat"
+    },
+    "itemizedFees": {
+      "other": []
+    },
+    "bundlingNotes": "Escrow rates shown are stated minimums, 'subject to change dependent upon the complexity of the transaction,' and apply only when the transaction is closed in conjunction with title insurance issued by or ordered through Alyeska. This is a pure escrow/closing fee schedule (not a title premium schedule) -- the only such static, dollar-denominated settlement-fee document found this session for Alaska, and one of the more granular escrow tables found across all states surveyed to date (rate increments as fine as $1,000 of liability from $28,000 to $126,000).",
+    "transactionContext": "Escrow fee for purchase transactions (tiered to insurance/liability amount) and a flat $375 fee for residential refinance transactions. Statewide (Anchorage & Wasilla branches), no further metro breakout."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://www.stewart.com/-/media/files/stewartdotcom/pdfs/states/alaska/alaska_manual_final_022017.pdf",
+    "asOf": "Last updated 2017-02-20",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/escrow fee schedule. Filed pursuant to AS 21.66.370 (the title-insurance-rate statute, distinct from AS 21.66.460 governing escrow/settlement/closing charges).",
+      "basicInsuranceRateTable_sample": "$1,000-$28,000 of insurance = flat $250.00 minimum; $50,000 -> $382.00; $100,000 -> $582.00. Above $100,000: $100,001-$500,000 add $3.00/thousand; $500,001-$750,000 add $2.50/thousand; $750,001-$2,000,000 add $2.00/thousand; $2,000,001-$5,000,000 add $1.25/thousand; over $5,000,000 add $1.20/thousand.",
+      "ownersStandardCoverage": "100% of Basic Insurance Rate, minimum $250",
+      "ownersExtendedCoverage": "135% of Basic Insurance Rate, minimum $250",
+      "homeownersPolicy": "110% of Basic Insurance Rate, minimum $250",
+      "loanStandardCoverage": "80% of Basic Insurance Rate, minimum $250",
+      "loanExtendedCoverage": "110% of Basic Insurance Rate, minimum $250",
+      "cancellationCharge": "$250 (fully creditable to a subsequent order on the same property within 12 months)"
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "Additional chain of title / separate parcel charge",
+          "amount": "$200 per separate parcel"
+        },
+        {
+          "name": "Guarantee (100% of Basic Title Insurance rate)",
+          "amount": "minimum $250"
+        }
+      ]
+    },
+    "bundlingNotes": "No settlement/escrow/closing charges appear anywhere in this 17-page manual -- it covers only title insurance premiums, reissue/concurrent-policy rates, and a full ALTA/CLTA endorsement price list. This is an older vintage (2017) than ideal; a newer Alaska Stewart filing was referenced in Virtual Underwriter bulletins (AK2025001 'New Alaska Rate Manual', AK2026001 effective April 2026) but the actual PDF for either could not be located or fetched this session -- only this 2017 filing was reachable via a working URL.",
+    "transactionContext": "Owner's (Standard, Extended, Homeowner's) and Loan (Standard, Extended) policy premium schedules, statewide, plus full ALTA/CLTA endorsement charges. No settlement/escrow/closing-service fee breakdown -- confirms the AK market convention (also seen in Alyeska's separate escrow schedule) of pricing title premium and escrow/settlement as two entirely separate filed documents."
+  },
+  {
+    "provider": "Stewart Title Company — Stewart Title of Alaska — Stewart Rate Calculator (stewartratecalculator.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true",
+    "endpointOrParams": "Genuine JSON REST API at /api/SRC/*, driven via plain HTTP GET/POST (no browser/JS execution) -- the recipe fully documented in CALCULATORS.md's 2026-08-14 entry, applied unmodified. Sequence: GET /api/SRC/transactiontypes?statecode=AK -> GET /api/SRC/propertysearch?value=Anchorage,%20AK (resolves Anchorage County) -> GET /api/SRC/statesettings?statecode=AK -> GET /api/SRC/providers?statecode=AK&countycode=<FIPS>&zipcode=<ZIP>&transactiontype=SALE -> GET /api/SRC/ernstlookup -> two POST /api/SRC/quote calls (QuoteType=3 for itemized settlement fees, QuoteType=2 for recording/transfer-tax), each form-urlencoded with a hand-built QuoteRequestRoot JSON. No personal-data fields required or entered.",
+    "retrievalDate": "2026-08-18",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Anchorage County (Anchorage), residential resale, Sale/Purchase with Mortgage transaction.",
+    "methodology": "Same nationwide-reusable Stewart /api/SRC/quote recipe already applied to WV/NH/ME/RI/DE/SD (see CALCULATORS.md's 2026-08-14 entry for the full technical writeup); zero recipe modification needed.",
+    "settlementFee": {
+      "note": "Title Closing Fee $1,381.00 total, split $690.50/$690.50 buyer/seller -- the largest single settlement-fee line item recorded anywhere in this entire survey -- plus Courier, Document Preparation, and Wire Transfer fees."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "Title Closing Fee (split $690.50 buyer / $690.50 seller)",
+          "amount": "$1,381.00"
+        },
+        {
+          "name": "Title Courier Fee (buyer)",
+          "amount": "$20.00"
+        },
+        {
+          "name": "Title Document Preparation Fee (split $25/$25)",
+          "amount": "$50.00"
+        },
+        {
+          "name": "Title Wire Transfer Fee (seller)",
+          "amount": "$25.00"
+        },
+        {
+          "name": "Owner's Policy (Basic) standalone premium, RateManual (QuoteType=3)",
+          "amount": "$1990.00"
+        },
+        {
+          "name": "Lender's Policy (Basic) standalone premium, RateManual (QuoteType=3)",
+          "amount": "$1336.00"
+        },
+        {
+          "name": "Lender's Policy (Basic) simultaneous-issue premium, RateManual (QuoteType=2)",
+          "amount": "$80.00"
+        },
+        {
+          "name": "Recording -- Mortgage fee",
+          "amount": "$140"
+        },
+        {
+          "name": "Recording -- Deed fee",
+          "amount": "$45"
+        },
+        {
+          "name": "Recording -- Release fee",
+          "amount": "$30"
+        },
+        {
+          "name": "Deed/transfer tax (state+county combined, per CFPB2015.CFPBTax breakdown)",
+          "amount": "$0.00 (Alaska has no state real estate transfer tax -- corroborates the published-schedule survey's existing finding of no AK deed/transfer tax anywhere; only nominal recording fees apply)"
+        }
+      ]
+    },
+    "bundlingNotes": "Settlement office/provider used: Stewart Title Company — Stewart Title of Alaska (Anchorage, AK) -- the specific settlement office returned by Stewart's own providers lookup for Anchorage County; itemization is provider-specific, not underwriter-wide, consistent with the pattern already documented for this recipe elsewhere in this project. WFG's own GetCalculationEnabledStates list does not include AK at all (confirmed via direct query this session), so WFG is not usable as an AK 2nd provider -- AK still needs 2 more calculator-basis providers to cross threshold. Alaska's own Stewart Title of Alaska office (not an out-of-state remote provider, unlike VT/WY above) returned the richest Title Closing Fee figure of any state harvested via this recipe to date, plausibly reflecting Alaska's genuinely higher cost-of-service baseline.",
+    "transactionContext": "Sale/Purchase with Mortgage, Basic Owner's + Lender's Policy, Anchorage County/Anchorage AK."
+  },
+  {
+    "provider": "FNF-family underwriter (Chicago Title/Fidelity National Title/Commonwealth Land Title -- ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine; this tool's pre-selected default underwriter brand varies by request, and prior sessions confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=AK",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=AK (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-18",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Anchorage (the standard-scenario county), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions, Concurrent Owner's+Loan rate eligibility answered Yes (the tool's own default first option).",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback), following this project's existing FNF recipe documented in CALCULATORS.md: GET the county-selection page, POST the county (own __EVENTTARGET), POST btnGeneralNext=Next, POST TranType$ddl=PropertyPurchase, POST AmountPurchase$txt=500000 then AmountLoan1$txt=400000 (each with its own __EVENTTARGET), auto-answer the revealed Concurrent-rate-eligibility question Yes, then POST btnFinish=Finish for the final Rate Summary. One correction to the prior recipe write-up worth flagging: the page also renders a hidden 'ctl00$btnDummy' submit button used only for Enter-key submission -- a naive first-submit-button-found selector picks this dummy button instead of the real 'Next'/'Finish' button and silently fails to advance the flow; always filter submit-button candidates for the actual button's own name substring ('Next'/'Finish') rather than taking the first match. No personal-data fields exist anywhere in this flow.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1910.25 (Owner's Policy Premium, concurrent-issue rate)",
+      "loanPolicyPremium": "$75.00 (Loan Policy Premium, concurrent-issue rate)",
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence."
+    },
+    "sectionTotals": "Grand Total (Owner's Policy Purchased): $1985.25.",
+    "bundlingNotes": "Harvested as part of this session's systematic FNF pass across every remaining below-threshold small/low-population state (ND/VT/WY/RI/DE/SD/AK), following the same technique already applied to the 2026-08-06 session's 8-state batch.",
+    "transactionContext": "Owner's + Loan Policy concurrent-issue premiums for a $500,000 residential purchase / $400,000 loan, Anchorage."
+  }
+]

@@ -1,0 +1,143 @@
+[
+  {
+    "provider": "Iowa Title Guaranty (ITG) — Residential Premium Rates (state guaranty program, division of the Iowa Finance Authority)",
+    "sourceUrl": "https://opportunityiowa.gov/media/5252/download?inline=",
+    "asOf": "Effective July 1, 2023",
+    "settlementFee": {
+      "note": "Iowa has NO private title insurance market for residential closings -- confirmed via First American's own 'Laws & Customs' reference and Iowa Finance Authority materials: Iowa is the only U.S. state with no title insurers licensed to write policies in-state. ITG is a state-run title guaranty program (not a private underwriter) and prices with a flat statewide rate rather than a tiered private-underwriter schedule.",
+      "lenderOnlyCoverage": "$0-$750,000 -> $175 flat; over $750,000 -> $175 + $1.00 per $1,000 over $750,000 (purchase and refinance identical)",
+      "ownerOnlyCoverage": "$0-$750,000 -> $175 flat; over $750,000 -> $175 + $1.00 per $1,000 over $750,000 (purchase only; N/A for refinance -- owner coverage persists through a refinance without a new certificate)",
+      "simultaneousCoverage": "$0-$750,000 -> $175 flat (based on the certificate with the higher coverage amount); over $750,000 -> $175 + $1.00 per $1,000 over $750,000 (purchase only; N/A refinance)",
+      "additionalConcurrentCoverage": "$35.00 (junior/HELOC issued with a lender certificate; both purchase and refinance)",
+      "closingProtectionLetter": "No additional premium",
+      "endorsements": "Most available for no additional premium; endorsements issued apart from the original transaction (e.g. Modification ALTA 11-06): $50.00"
+    },
+    "itemizedFees": {
+      "cpl": "No additional premium",
+      "other": [
+        { "name": "Additional Concurrent Coverage (junior/HELOC)", "amount": "$35.00" },
+        { "name": "Endorsement issued apart from original transaction", "amount": "$50.00" }
+      ]
+    },
+    "bundlingNotes": "Residential coverage available for single-family or multi-family dwellings of 4 units or less. Survey/RPIR required for lender coverage exceeding the FHFA conforming loan limit at Commitment Date.",
+    "transactionContext": "Purchase and Refinance, statewide flat rate (not metro-tiered)."
+  },
+  {
+    "provider": "Iowa Title Guaranty (ITG) — Commercial Pricing",
+    "sourceUrl": "https://cap.iowatitleguaranty.com/Public/ITGRateSheet.pdf",
+    "asOf": "PDF metadata creation date 2024-11-21 (undated on the document face)",
+    "settlementFee": {
+      "premium": "$1.00 per $1,000 of coverage ($250 minimum premium fee); simultaneous issuance $100.00",
+      "refinanceClosingFee": "$750.00",
+      "purchaseClosingFee": "$1,500.00 - $2,500.00",
+      "constructionDrawFee": "$400.00",
+      "endorsementFees_byTier": "<=$500k: $50/$100 (standard/special tier); >$500k-$1M: $100/$200; >$1M-$10M: $150/$300; >$10M: $200/$400",
+      "specialEndorsements": "Disbursement ALTA 33-06, Date Down: $350.00"
+    },
+    "itemizedFees": { "other": [] },
+    "bundlingNotes": "Footnote (verbatim): 'Third-party abstracting fees may apply and shall be payable directly to abstractor' -- commercial deals pass abstracting costs directly rather than bundling them.",
+    "transactionContext": "Commercial: Purchase, Refinance, and Construction Draw, statewide."
+  },
+  {
+    "provider": "Abstract & Title Guaranty Company (independent, Clinton & Maquoketa, IA)",
+    "sourceUrl": "https://www.abstractco.com/wp-content/uploads/2024-Lender-Disclosure-Fee-Schedule-2.pdf",
+    "asOf": "Effective January 1, 2024",
+    "settlementFee": {
+      "titleGuaranty900_901ForAttorneys": "$175.00 (if ATGC is not issuing the Title Guaranty Certificate)",
+      "titleGuaranty900_901ForLenders": "$225.00 (if ATGC is issuing the certificate)",
+      "combinationOralWrittenReport": "$150.00",
+      "combinationWrittenWrittenReport": "$185.00",
+      "writtenReportOfTitle": "$125.00",
+      "writtenReportOfTitleWithEasements": "$175.00",
+      "writtenUpdate": "$70.00",
+      "oralReportOfTitle": "$80.00",
+      "oralUpdate": "$45.00",
+      "writtenNameSearch": "$60.00",
+      "oralNameSearchPerSurname": "$35.00",
+      "oralUpdateNameSearch": "$25.00",
+      "residentialRefinancePreClosing": "$250.00",
+      "supplementalContinuationPostClosing": "$190.00"
+    },
+    "itemizedFees": {
+      "searchExam": "$60.00-$185.00 depending on report type (written/oral, combination)",
+      "other": [
+        { "name": "Residential Refinance Pre-Closing", "amount": "$250.00", "note": "available only if property was conveyed by Warranty Deed, Quit Claim Deed, Contract, or Change of Title" }
+      ]
+    },
+    "bundlingNotes": "Fully itemized by report type and by attorney-issued vs. lender-issued Title Guaranty certificate.",
+    "transactionContext": "Purchase and Refinance, itemized title-report/search fees; Clinton County / Jackson County, Iowa."
+  },
+  {
+    "provider": "Hastings & Gartin Law Group, LLP (closing-attorney firm, Des Moines metro / Polk County)",
+    "sourceUrl": "https://www.hglawia.com/areas-of-practice/real-estate/real-estate-closings/",
+    "asOf": "Page states fees current as of January 2026, subject to change",
+    "settlementFee": {
+      "settlementClosingFee": "$600.00 (additional $100 for a second mortgage)",
+      "titleOpinionResidential": "$250.00",
+      "titleOpinionForm900Refinance": "$150.00",
+      "deedPreparation": "$100.00-$150.00 depending on requirements",
+      "titleGuaranty": "$175.00 when purchase price is below $750,000 (pass-through of the ITG rate)",
+      "forSaleByOwnerAssistance": "$1,500.00 flat fee (full listing-through-closing process, not a standard closing fee)"
+    },
+    "itemizedFees": {
+      "courier": "$40.00 per FedEx package",
+      "docPrep": "$100.00-$150.00 (deed preparation)",
+      "other": []
+    },
+    "bundlingNotes": "Illustrates Iowa's typical closing-cost stack: Title Opinion + Settlement Fee + pass-through ITG Title Guaranty are itemized as three separate line items by the closing attorney.",
+    "transactionContext": "Purchase and Refinance; Des Moines, Iowa (Polk County)."
+  },
+  {
+    "provider": "Abstract Associates of Iowa, Inc. (independent, Fort Dodge, IA)",
+    "sourceUrl": "https://www.abstractassociatesofiowa.com/our-fees/",
+    "asOf": "No effective date stated on page; retrieval-date evidence, 2026-07-22",
+    "settlementFee": {
+      "lienSearchOrTitleReport": "$200.00",
+      "lienSearchWithFollowUpTitleReport": "$250.00",
+      "taxCertificateHolderLienSearch": "$300.00",
+      "tenYearLienSearch": "$300.00",
+      "preClosingSearch": "$50.00",
+      "postClosingCertification": "$200.00",
+      "form900TitleGuarantyPreClosing": "$200.00",
+      "form901TitleGuarantyPostClosing": "$50.00",
+      "finalAbstractPostClosing": "$200.00",
+      "deedSearchUpTo2Deeds": "$50.00",
+      "additionalDeedsPerSearch": "$25.00",
+      "newAbstractsAndContinuations": "Variable, priced per case -- quote-only"
+    },
+    "itemizedFees": {
+      "searchExam": "$50.00-$300.00 depending on search type",
+      "other": []
+    },
+    "bundlingNotes": "Verbatim: 'Our pricing will be determined per case, based on production activity' for the two variable line items (new abstracts, abstract continuations).",
+    "transactionContext": "Purchase (Form 900 pre-closing) and Refinance/post-closing (Form 901); Webster County, Iowa."
+  },
+  {
+    "provider": "Abstract & Title Services of Story County (independent, Ames, IA — only ILTA-certified title plant in Story County per its own site)",
+    "sourceUrl": "https://www.abstractandtitleservices.com/pricing",
+    "asOf": "No effective date stated; retrieval-date evidence, 2026-07-22 (cross-verified against /products-services)",
+    "settlementFee": {
+      "newRootOfTitleAbstractsResidential": "$1,300.00-$2,500.00 (most new abstracts)",
+      "abstractContinuationsPreliminaryResidential": "$550.00-$850.00",
+      "abstractContinuationsFinal": "typically $175.00",
+      "titleReportsResidential": "typically $200.00",
+      "titleReportsNonResidentialCommercial": "typically $400.00",
+      "form900": "$200.00",
+      "refinanceResidential": "$400.00",
+      "refinanceCommercialNonResidentialMultiResidential": "$750.00",
+      "preClosingSearchCertificate": "$75.00",
+      "postClosingSearchCertificate": "$75.00",
+      "personalLienSearch": "$100.00",
+      "mechanicsLienSearch": "$100.00-$150.00 (discrepancy between two pages on the same site, noted as-fetched)",
+      "escrowServicesAbstractsAndDeedsOnly": "$250.00"
+    },
+    "itemizedFees": {
+      "searchExam": "$75.00-$2,500.00 depending on search/abstract type",
+      "other": [
+        { "name": "Escrow services (abstracts and deeds only)", "amount": "$250.00" }
+      ]
+    },
+    "bundlingNotes": "Illustrates the largest single line-item swing found in Iowa: a brand-new Root of Title Abstract ($1,300-$2,500, rare) vs. a routine continuation ($550-$850) vs. a simple refinance search ($400) -- an order-of-magnitude difference driven by whether a full abstract must be built from scratch, a genuine Iowa-specific market characteristic (abstract-based title clearance) rather than provider price variation.",
+    "transactionContext": "Purchase (new abstract or continuation) and Refinance, itemized separately; Story County (Ames), Iowa."
+  }
+]
