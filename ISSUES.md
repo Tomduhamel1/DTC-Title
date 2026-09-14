@@ -49,6 +49,24 @@ only.
 
 ## Open
 
+### MACHINE: iCloud is evicting files inside the repo — disk 98% full (found 2026-09-14)
+Tom's laptop disk is at 98% (11 GiB free), so macOS "Optimize Mac Storage"
+is evicting iCloud-synced files under Documents — including **inside this
+repo's `.git`**: 3,100+ dataless files in `.git` (among them `config`,
+`index`, `packed-refs`) and ~45,000 in the working tree at time of writing.
+Symptoms: `git push`/`for-each-ref` hang for minutes in uninterruptible
+reads while iCloud rehydrates each evicted loose ref; eviction re-runs
+faster than downloads under disk pressure. One iCloud conflict duplicate
+(`.git/index 2`) already exists — iCloud sync is a known git-repo
+corruption vector.
+- **Fix (Tom):** free disk space, then either move `~/Documents/GitHub`
+  out of iCloud-synced scope or disable "Optimize Mac Storage" (or
+  Desktop & Documents sync). Until then, expect random multi-minute
+  hangs in any git or build command in this repo.
+- Mitigation applied 2026-09-14: `brctl download .git` requested;
+  wedged remote-tracking ref `origin/docs/parity-verdict` removed
+  (recreated by the next `git fetch`).
+
 ### LAUNCH BLOCKER: SES is in the sandbox — no real user can sign in (found 2026-08-17)
 `ProductionAccessEnabled: false` on account 621852467690 (us-east-1), and a
 prior production-access request was **DENIED** (case `177722805500436`). In
@@ -197,25 +215,17 @@ market evidence; IA $1,150 vs partial published market).
 The only remaining unverified trust badge — confirm accreditation is real or
 remove it.
 
-### FNTE calculator: IN & LA refinance quotes always fail — CONSTANT (found 2026-08-12)
-Every refinance quote for Indiana and Louisiana returns 500. This is
-constant, not transient: reproduced continuously over ~2 hours with retries,
-while purchase quotes for the same ZIPs succeed every time. Likely the
-FirstAm L2 path (neither state is in the calculator's centralized-rates
-list). Both are ON states, so customers hit this today.
-- Fix belongs to the FNTE team (details: `docs/FEE_CALCULATOR_REFI_SEARCH_GAP.md`).
-- Interim option: turn IN/LA refinance OFF in `src/lib/stateMaster.ts` so
-  visitors get the `/quote/unavailable` coming-soon page instead of an error.
-- After the fix, backfill generated data:
-  `npx tsx scripts/build-state-savings.ts IN,LA` and
-  `npx tsx scripts/build-state-matrix.ts IN,LA`.
-
-### FNTE calculator: NC fails intermittently — TRANSIENT (found 2026-08-12)
-North Carolina quotes fail randomly in BOTH purchase and refinance — the
-same request succeeds one minute and 500s the next. NC's fee-schedule row is
-well-formed, so it looks like infrastructure, not data. ON state →
-unpredictable customer errors. Backfill NC data after the fix (same subset
-commands as above, with `NC`).
+### FNTE calculator: NC failing — DEGRADED from flaky to mostly down (found 2026-08-12, updated 2026-09-14)
+Originally intermittent in both modes. Re-probed 2026-09-14: 4 of 5
+purchase attempts returned 500 — effectively down. NC's fee-schedule row is
+well-formed, so it looks like infrastructure, not data. NC is an ON state
+and the ONLY state with no engine-generated savings anchor (it falls back
+to national figures), so today an NC visitor usually gets the friendly
+"rates system unresponsive" notice instead of a quote.
+- Decision for Tom: turn NC OFF in `src/lib/stateMaster.ts` (visitors get
+  the /quote/unavailable coming-soon page + waitlist) or keep pressing FNTE.
+- After the fix: `npx tsx scripts/build-state-savings.ts NC` and
+  `npx tsx scripts/build-state-matrix.ts NC`.
 
 ### Upstream omits the refi title-search line in every state (found 2026-08-12)
 `AbstractorTitleSearchREFI` is unpopulated for all 51 rows in
@@ -242,6 +252,13 @@ Confirm with FNTE that these inversions are intentional.
   provenance survives.
 
 ## Resolved
+
+### FNTE calculator: IN & LA refinance 500s (found 2026-08-12, resolved upstream by 2026-08-14, confirmed 2026-09-14)
+Every IN/LA refinance quote returned 500 (constant; FirstAm L2 path
+suspected). Fixed on the FNTE side; anchors/matrix backfilled 2026-08-14
+(both states present in the generated data). Re-confirmed working on prod
+2026-09-14 (three consecutive successful IN refi quotes).
+
 
 ### FL restructure: $195 fee, Bucks excluded, bands re-based (resolved 2026-08-13)
 PRs #81/#82. Verified live: settlement $195, no credit line, exact
