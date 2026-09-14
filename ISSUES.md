@@ -49,6 +49,24 @@ only.
 
 ## Open
 
+### MACHINE: iCloud is evicting files inside the repo — disk 98% full (found 2026-09-14)
+Tom's laptop disk is at 98% (11 GiB free), so macOS "Optimize Mac Storage"
+is evicting iCloud-synced files under Documents — including **inside this
+repo's `.git`**: 3,100+ dataless files in `.git` (among them `config`,
+`index`, `packed-refs`) and ~45,000 in the working tree at time of writing.
+Symptoms: `git push`/`for-each-ref` hang for minutes in uninterruptible
+reads while iCloud rehydrates each evicted loose ref; eviction re-runs
+faster than downloads under disk pressure. One iCloud conflict duplicate
+(`.git/index 2`) already exists — iCloud sync is a known git-repo
+corruption vector.
+- **Fix (Tom):** free disk space, then either move `~/Documents/GitHub`
+  out of iCloud-synced scope or disable "Optimize Mac Storage" (or
+  Desktop & Documents sync). Until then, expect random multi-minute
+  hangs in any git or build command in this repo.
+- Mitigation applied 2026-09-14: `brctl download .git` requested;
+  wedged remote-tracking ref `origin/docs/parity-verdict` removed
+  (recreated by the next `git fetch`).
+
 ### LAUNCH BLOCKER: SES is in the sandbox — no real user can sign in (found 2026-08-17)
 `ProductionAccessEnabled: false` on account 621852467690 (us-east-1), and a
 prior production-access request was **DENIED** (case `177722805500436`). In
