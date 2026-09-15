@@ -49,6 +49,36 @@ only.
 
 ## Open
 
+### Onboarding follow-ups after the /open launch flow (found 2026-09-15)
+The open-a-file flow shipped (PR #92): every persona can open a real file
+from /open, it reuses the Garden/TPS write path, and the borrower dashboard
+now shows the escrow-officer card. Verified end-to-end on prod (web order →
+officer PATCH → officer in file). Remaining, in rough priority:
+- **SES sandbox still blocks sign-in for everyone unverified** — the /open
+  welcome email and magic links silently don't deliver. The whole dashboard
+  leg of onboarding is dead until the appeal (see the SES entry above).
+- **Garden must call the two endpoints** on every web order: ops email now
+  includes the closing id + instructions; the real fix is Garden storing the
+  id and calling `PATCH /api/tps/closings/{id}/details` (officer) and
+  `POST .../milestone` (docs/tps-integration.md).
+- No `gardenFileNumber` column on Closing — the only join key is our cuid.
+- `/api/orders/ingest` has no Zod validation (its three TPS siblings do);
+  a typo'd key from Garden is silently dropped with a 200.
+- Officer's TeammateClosing row is created with role 'unknown' (no
+  'escrow_officer' role in the enum) — officers show up oddly on teammate
+  dashboards.
+- Broker portal membership is still admin-grant-only (by design for beta) —
+  /open bypasses it for order intake, but "Request portal access" remains a
+  mailto with no queue.
+- `/api/professional/quotes` still writes null-company FeeQuotes that the
+  convert route structurally can't see (write-only data).
+- Nav "My dashboard" hardcodes /dashboard; works now because /dashboard
+  redirects professionals server-side, but a persona-aware nav would be
+  cleaner.
+- The e2e test file `77 Verification Way, Providence RI` (borrower
+  tomduhamel+launchtest@gmail.com, officer "Jordan Rivera") is live prod
+  data — useful as Tom's demo; delete when no longer wanted.
+
 ### MACHINE: iCloud is evicting files inside the repo — disk 98% full (found 2026-09-14)
 Tom's laptop disk is at 98% (11 GiB free), so macOS "Optimize Mac Storage"
 is evicting iCloud-synced files under Documents — including **inside this
