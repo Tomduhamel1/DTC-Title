@@ -75,7 +75,11 @@ export default function OrderByEmailCard({
       <div className="px-7 py-6 border-b border-gray-100">
         <h2 className="text-2xl font-black text-dark-900">Place an order — two ways</h2>
         <p className="text-sm text-gray-500 mt-1">
-          Most lenders just email us. Or find us in your existing platform.
+          Most lenders just email us. Or find us in your existing platform. You can
+          also{' '}
+          <a href="/open?role=lender" className="text-primary-700 font-semibold hover:underline">
+            open the file online →
+          </a>
         </p>
       </div>
 

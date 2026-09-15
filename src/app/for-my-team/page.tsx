@@ -161,13 +161,13 @@ Thanks,`,
               />
               <ActionCard
                 emoji="✉️"
-                title="Send the title order"
-                body="Email orders@betterclose.co with the borrower's details. We confirm within one business day."
-                cta={{ label: 'Email an order →', href: emailOrderHref }}
+                title="Open the file"
+                body="Two-minute online form with the borrower's details — the file lands on your dashboard and theirs. We confirm within one business day."
+                cta={{ label: 'Open the file online →', href: '/open' }}
                 helper={
                   isPersonalized
-                    ? "Pre-filled with your client's details from this invite."
-                    : 'Opens your mail app with a blank order template.'
+                    ? "Prefer email? The pre-filled template still works — orders@betterclose.co."
+                    : 'Prefer email? orders@betterclose.co works too.'
                 }
               />
               <ActionCard

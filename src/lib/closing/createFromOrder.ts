@@ -41,6 +41,9 @@ export interface CreateClosingFromOrderInput {
   placedByEmail?: string | number | null
   lenderContactEmail?: string | number | null
   orderingPartyEmail?: string | number | null
+  // Where the order came from. Defaults to 'inbound_order' (the TPS/Garden
+  // ingest); the public open-a-file form passes 'web_open_file'.
+  source?: string
 }
 
 export type CreateClosingFromOrderResult =
@@ -108,7 +111,7 @@ export async function createClosingFromOrder(
     lenderPhone: typeof lenderPhone === 'string' ? lenderPhone : null,
     lenderNmls: typeof lenderNmls === 'string' ? lenderNmls : null,
     status: 'active',
-    source: 'inbound_order',
+    source: typeof input.source === 'string' && input.source ? input.source : 'inbound_order',
   }
 
   // Resolve the teammate email TPS told us placed this order, normalising

@@ -215,7 +215,11 @@ function StateLevelSummary({
 // so post-login the broker builder hydrates from the public report.
 function BrokerNextSteps({ isLoggedIn }: { isLoggedIn: boolean }) {
   const sendHref = isLoggedIn ? BROKER_SEND_PATH : buildBrokerSignupHref(BROKER_SEND_PATH)
-  const openHref = isLoggedIn ? BROKER_OPEN_PATH : buildBrokerSignupHref(BROKER_OPEN_PATH)
+  // Primary goes to the public open-a-file form — it works with no portal
+  // membership, and /open prefills from the broker-estimate sessionStorage
+  // context. The gated builder convert stays available for onboarded members.
+  const openHref = '/open?role=broker'
+  const memberOpenHref = isLoggedIn ? BROKER_OPEN_PATH : buildBrokerSignupHref(BROKER_OPEN_PATH)
 
   return (
     <div className="bg-white rounded-3xl border border-gray-200 p-6 lg:p-7 shadow-sm">
@@ -243,7 +247,8 @@ function BrokerNextSteps({ isLoggedIn }: { isLoggedIn: boolean }) {
             </div>
             <div className="text-lg font-black">Open a closing from this estimate</div>
             <div className="text-sm text-emerald-50">
-              Convert this estimate into a BetterClose order.
+              Two-minute form, no portal account needed — we confirm within one
+              business day.
             </div>
           </div>
           <svg className="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
@@ -291,6 +296,13 @@ function BrokerNextSteps({ isLoggedIn }: { isLoggedIn: boolean }) {
           </svg>
         </div>
       </Link>
+
+      <p className="mt-4 text-center text-xs text-gray-500">
+        Portal member?{' '}
+        <Link href={memberOpenHref} className="text-primary-700 font-semibold hover:underline">
+          Convert in the broker builder →
+        </Link>
+      </p>
     </div>
   )
 }
