@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import ShareWithTeamSheet from './ShareWithTeamSheet'
 import AvailabilityStrip from './AvailabilityStrip'
@@ -21,6 +21,31 @@ export default function NextStepsPanel({
 }: NextStepsPanelProps) {
   const [shareOpen, setShareOpen] = useState(false)
   const isPre = mode === 'pre-quote'
+
+  // Prefill /open from the quote in sessionStorage so the borrower doesn't
+  // retype state/zip/amounts they just entered.
+  const [openHref, setOpenHref] = useState('/open')
+  useEffect(() => {
+    try {
+      const raw = sessionStorage.getItem('feeReport')
+      if (!raw) return
+      const r = JSON.parse(raw) as {
+        state?: string
+        zip?: string
+        transactionType?: string
+        homeValue?: number
+        loanAmount?: number
+      }
+      const q = new URLSearchParams()
+      if (r.state) q.set('state', r.state)
+      if (r.zip) q.set('zip', r.zip)
+      if (r.transactionType) q.set('type', r.transactionType)
+      if (r.homeValue) q.set('price', String(Math.round(r.homeValue)))
+      if (r.loanAmount) q.set('loan', String(Math.round(r.loanAmount)))
+      const qs = q.toString()
+      if (qs) setOpenHref(`/open?${qs}`)
+    } catch {}
+  }, [])
 
   return (
     <>
@@ -78,6 +103,35 @@ export default function NextStepsPanel({
             </svg>
           </div>
         </button>
+
+        {/* Open-my-file — the direct path to a real order */}
+        {!isPre && (
+          <Link
+            href={openHref}
+            className="block w-full mt-3 rounded-2xl border-2 border-emerald-300 hover:border-emerald-500 hover:bg-emerald-50/60 p-5 transition-colors group"
+          >
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h3 className="text-lg font-black text-emerald-700 mb-0.5">
+                  Open my file now
+                </h3>
+                <p className="text-sm text-gray-600">
+                  Ready to go? Start your closing today — your escrow officer&apos;s
+                  contact info appears on your dashboard as soon as the file opens.
+                </p>
+              </div>
+              <svg
+                className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1 group-hover:translate-x-1 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                strokeWidth={2.5}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </div>
+          </Link>
+        )}
 
         {/* Secondary tiles — different by mode */}
         <div className="grid sm:grid-cols-2 gap-3 mt-3">

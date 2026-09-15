@@ -8,6 +8,7 @@ import AccountSection, { type AccountStep } from './AccountSection'
 import EditableFields from './EditableFields'
 import LineItemList, { LineItem } from './LineItemList'
 import ContactRail from './ContactRail'
+import EscrowOfficerCard from './EscrowOfficerCard'
 
 interface ClosingShape {
   id: string
@@ -33,6 +34,12 @@ interface ClosingShape {
   titleUnderwriter: string | null
   titlePolicyNo: string | null
   closingLocation: string | null
+  escrowOfficerName: string | null
+  escrowOfficerTitle: string | null
+  escrowOfficerEmail: string | null
+  escrowOfficerPhone: string | null
+  escrowOfficerNmls: string | null
+  escrowOfficerPhotoUrl: string | null
   status: string
   milestones: { kind: string; status: string; completedAt: Date | string | null; metadata: string | null }[]
 }
@@ -273,8 +280,21 @@ export default function DashboardHome({ closing, userName, userEmail, accountSte
           </div>
         </div>
 
-        {/* Right rail — contact info, sticky on desktop */}
-        <ContactRail />
+        {/* Right rail — closing officer (once assigned) + contact info */}
+        <div className="space-y-4">
+          <EscrowOfficerCard
+            variant="rail"
+            officer={{
+              name: closing.escrowOfficerName,
+              title: closing.escrowOfficerTitle,
+              email: closing.escrowOfficerEmail,
+              phone: closing.escrowOfficerPhone,
+              nmls: closing.escrowOfficerNmls,
+              photoUrl: closing.escrowOfficerPhotoUrl,
+            }}
+          />
+          <ContactRail />
+        </div>
       </div>
     </div>
   )

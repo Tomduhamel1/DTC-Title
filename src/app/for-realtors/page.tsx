@@ -27,6 +27,8 @@ export const metadata = {
 // realtor-specific behavior later without changing this CTA.
 const PUBLIC_QUOTE_HREF = '/quote?source=realtor'
 const SIGN_IN_HREF = '/login?callbackUrl=/teammate/dashboard'
+// Public open-a-file form — how an agent actually opens title with us.
+const OPEN_FILE_HREF = '/open?role=realtor'
 
 // Company-credibility stats for the trust band — same values used across the
 // site. Labels are audience-neutral; "Closing coverage" (not "licensed
@@ -116,6 +118,12 @@ export default function RealtorsPage() {
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
+                </Link>
+                <Link
+                  href={OPEN_FILE_HREF}
+                  className="inline-flex items-center justify-center gap-2 whitespace-nowrap border-2 border-emerald-600 text-emerald-700 px-8 py-[14px] rounded-xl font-bold text-lg hover:bg-emerald-50 transition-colors"
+                >
+                  Open a file
                 </Link>
                 <Link
                   href={SIGN_IN_HREF}

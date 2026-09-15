@@ -26,6 +26,8 @@ const SIGN_IN_HREF = '/login?callbackUrl=/teammate/dashboard'
 const PUBLIC_QUOTE_HREF = '/quote?source=broker'
 // Broker-only quote builder (co-branding, save, send, convert). Gated.
 const CREATE_BROKER_QUOTE_HREF = '/login?callbackUrl=/teammate/quotes/new'
+// Public open-a-file form — no portal membership required.
+const OPEN_FILE_HREF = '/open?role=broker'
 
 const REQUEST_ACCESS_BODY = `Hi BetterClose team,
 
@@ -378,9 +380,15 @@ export default function BrokersPage() {
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-black text-dark-900 mb-3">Place orders your way</h2>
-            <p className="text-lg text-gray-600">Four ways to send BetterClose an order — pick what fits your workflow today.</p>
+            <p className="text-lg text-gray-600">Pick what fits your workflow today — every path opens a real file.</p>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
+            <OrderTile
+              icon={ICONS.clipboard}
+              title="Open a file online"
+              body="Two-minute form — borrower, property, amounts. No portal account needed; the file lands on your dashboard under your work email. We confirm within one business day."
+              cta={{ label: 'Open a file →', href: OPEN_FILE_HREF }}
+            />
             <OrderTile
               icon={ICONS.dashboard}
               title="Broker dashboard"

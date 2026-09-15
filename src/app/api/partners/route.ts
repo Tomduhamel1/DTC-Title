@@ -1,10 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
+import { getSession } from '@/lib/auth/session'
+import { isAdminEmail } from '@/lib/auth/admin'
+
+// Admin-only guard for route handlers (requireAdmin() redirects, which is
+// wrong inside an API route). Partner rows carry contact info and drive
+// referral routing — they were briefly world-writable; never again.
+async function requireAdminApi(): Promise<NextResponse | null> {
+  const session = await getSession()
+  const email = (session?.user as { email?: string } | undefined)?.email
+  if (!isAdminEmail(email)) {
+    return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
+  }
+  return null
+}
 
 /**
- * GET /api/partners - Get all partners
+ * GET /api/partners - Get all partners (admin only)
  */
 export async function GET() {
+  const denied = await requireAdminApi()
+  if (denied) return denied
   try {
     const partners = await prisma.partner.findMany({
       orderBy: [{ isActive: 'desc' }, { priority: 'desc' }],
@@ -21,9 +37,11 @@ export async function GET() {
 }
 
 /**
- * POST /api/partners - Create a new partner
+ * POST /api/partners - Create a new partner (admin only)
  */
 export async function POST(request: NextRequest) {
+  const denied = await requireAdminApi()
+  if (denied) return denied
   try {
     const body = await request.json()
 
@@ -50,9 +68,11 @@ export async function POST(request: NextRequest) {
 }
 
 /**
- * PATCH /api/partners - Update a partner
+ * PATCH /api/partners - Update a partner (admin only)
  */
 export async function PATCH(request: NextRequest) {
+  const denied = await requireAdminApi()
+  if (denied) return denied
   try {
     const body = await request.json()
     const { id, ...updateData } = body

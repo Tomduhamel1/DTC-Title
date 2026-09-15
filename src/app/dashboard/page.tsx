@@ -36,6 +36,19 @@ export default async function DashboardPage({
     redirect('/login?callbackUrl=/dashboard')
   }
 
+  // Persona routing: a broker/agent/lender who lands here (nav button, bare
+  // /login) belongs on the teammate dashboard — and must NOT get a spurious
+  // stub borrower Closing created for them. Borrowers with an owned closing
+  // are unaffected even if they also appear as a teammate elsewhere.
+  const [ownedClosing, brokerMembership, teammateCount] = await Promise.all([
+    prisma.closing.findFirst({ where: { userId: user.id }, select: { id: true } }),
+    prisma.brokerMembership.findFirst({ where: { userId: user.id }, select: { id: true } }),
+    prisma.teammateClosing.count({ where: { userId: user.id } }),
+  ])
+  if (!ownedClosing && (brokerMembership || teammateCount > 0)) {
+    redirect('/teammate/dashboard')
+  }
+
   const closing = await getOrCreateClosingForUser(user.id)
 
   // If we arrived here from the post-share sign-up funnel, claim the invite
