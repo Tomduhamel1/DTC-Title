@@ -1,0 +1,292 @@
+[
+  {
+    "provider": "First National Title Insurance Company (FNTI)",
+    "sourceUrl": "http://documentpub.fnti.com/Documents/Nebraska/Rate%20Manual/FNTI%20Nebraska%20Rate%20Manual%20Effective%20July%2031,%202023.pdf",
+    "asOf": "Effective July 31, 2023",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "$25.00 per letter, remitted entirely to FNTI (not shared with the agent); additional $25.00 for a second mortgage/HELOC by a different lender",
+      "binder": null,
+      "other": [
+        "Original Owner's/Loan/Leasehold Policy (Cass, Douglas, Sarpy, Washington, Dodge, Lancaster Counties): $150 minimum up to $20,000, then per-thousand tiers $3.50 down to $0.90",
+        "Original Owner's/Loan/Leasehold Policy (all other counties): $150 minimum up to $5,000, same per-thousand tiers",
+        "ALTA Homeowner's Policy: $175 minimum + per-thousand tiers $4.25 down to $1.25",
+        "Refinance rate: 60% of basic rate up to the previous first mortgage/deed of trust amount",
+        "Subdivision rate: 70% of basic rate (up to $1M), Large Subdivision rate: 60% (up to $500K)",
+        "Bulk Centralized Refinance Rate (100-order minimum): $380-$3,000 by liability tier",
+        "Bulk Centralized Refinance Rate (300-order minimum): $300-$1,050 by liability tier",
+        "SMART Policy (equity loan, 4 standard exceptions): $125-$275 by coverage tier, capped at $350,000 liability",
+        "Extensive ALTA endorsement fee schedule ($25-$200 per endorsement, several percentage-of-premium based)"
+      ]
+    },
+    "bundlingNotes": "General Rule F ('Risk Rate') explicitly states: 'The rates set forth herein do not include any charge made for title search, title examination, closing, or escrow services performed by the Insurer, or any of its approved attorneys or agents. Charges made for such services are in addition to the rates and charges set forth herein.' Zero settlement/service-fee dollar figures anywhere in the document.",
+    "transactionContext": "Owner's policy (purchase), loan policy (purchase, refinance, equity loan), subdivision/bulk-refinance programs -- premium calculation only."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://www.virtualunderwriter.com/-/media/files/virtualunderwriter/imported/pdfs/nebraska-manual-publish_final-eff-11-29-23.pdf",
+    "asOf": "Last Updated September 22, 2023; Effective November 29, 2023",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Included within the all-inclusive charge by definition (composed of the risk premium, searching charge, examination charge, and every other charge related to issuance)",
+      "cpl": "$25.00 per letter, entire amount remitted to Stewart; additional $25.00 for a second mortgage/HELOC by a different lender",
+      "binder": null,
+      "other": [
+        "Owner/Leasehold Owner Original Issue: $175 minimum up to $5,000, per-thousand tiers $3.50 down to $0.90",
+        "Loan/Leasehold Loan Original Issue: $150 minimum up to $5,000, same per-thousand tiers",
+        "Refinance Charge: 70% of original issue charge up to the face amount of the mortgage being refinanced",
+        "Subdivision Rate: 70% of basic rate up to $1M (5-year window, 5+ buildable lots)",
+        "Secondary Market Short Form Residential Loan Policy: $350-$750 flat by liability tier (up to $1.5M)",
+        "ALTA Homeowner's Policy / Expanded Coverage Loan Policy: $125-$175 minimum + per-thousand tiers $4.25 down to $1.25",
+        "Article 9 Comprehensive Plus Policy (UCC/personal property collateral): $500 minimum + per-thousand tiers down to $0.50",
+        "Stewart Master Residential Loan Policy Schedules A&B (equity loans only): $25-$125 by liability tier, capped at $500,000",
+        "Modification Guarantee / ALTA Residential Limited Coverage Mortgage Modification Policy: $150 flat, $25 per continuation/down-date",
+        "ALTA Residential Limited Coverage Junior Loan Policy: $150-$250, capped at $300,000 mortgage face amount"
+      ]
+    },
+    "bundlingNotes": "General Provisions section explicitly states the rate 'is an all-inclusive fee composed of the risk premium, searching charge, examination charge, and every other charge related to the issuance of the title insurance policy,' but then clarifies: 'If the agent performs closings or is requested by the purchaser to extend the abstract in addition to the title insurance, these nonrelated items can be charged for, but are not shown as a part of the charge for the policy.' Zero settlement/closing/escrow dollar figures anywhere in the document.",
+    "transactionContext": "Owner's policy (purchase), loan policy (purchase, refinance, home equity, secondary-market), subdivision, UCC/personal-property collateral -- premium calculation only."
+  },
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/nebraska/rates/Nebraska%20Title%20Insurance%20Rates%20Effective%205-1-2023.pdf",
+    "asOf": "Effective May 1, 2023",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Included within the total title insurance fee by definition (fee includes the risk portion, search/examination and service or work portion)",
+      "cpl": "$25.00, entire amount payable to WFG",
+      "binder": null,
+      "other": [
+        "Basic Rate Table: $150 minimum up to $5,000, per-thousand tiers $3.50 down to $0.90",
+        "Standard Coverage Owner's/Loan Policy: 100% of Basic Rate; Expanded Coverage (Homeowner's) Owner's Policy: 125%; Expanded Coverage Loan Policy: 110%",
+        "Refinance of property already owned by borrower: 60% of Basic Rate (Standard) / 75% (Expanded), $100 minimum",
+        "Second/subordinate mortgage: 60% of Basic Rate",
+        "Standard/Large Subdivision Rate: 70%/60% of Basic Rate, $100 minimum",
+        "Lender's Special Rates (volume-based, 100/200/300/500-order minimums): $275-$3,600 by liability tier",
+        "Master Home Equity Loan/HE2 Policy certificates: $45-$300 per transaction by liability tier",
+        "ALTA Residential Limited Coverage Junior Loan Policy: $110 flat up to $250,000",
+        "Mortgage Protection Guarantee / Mortgage Modification Policy: $125-$350 by liability tier, capped at $2M",
+        "Extensive endorsement fee schedule ($25-$150 per endorsement typical, some liability-based)"
+      ]
+    },
+    "bundlingNotes": "Introduction states explicitly: 'The rates shown are the total title insurance fees charged the applicant including the risk portion, search/examination and service or work portion, but do not include charges for surveys, escrow, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant.' Master Home Equity Loan Policy section separately reaffirms this pricing 'does not include any charges for title searches, examinations, legal fees, property reports, credit reports, recording fees, other charges, or other monies advanced.' Zero settlement/closing/escrow dollar figures anywhere in the document.",
+    "transactionContext": "Owner's policy (purchase), loan policy (purchase, refinance, second mortgage, home equity), subdivision, lender volume programs -- premium calculation only."
+  },
+  {
+    "provider": "First American Title Insurance Company (distributed via Builders Title, an independent Omaha title/escrow agency)",
+    "sourceUrl": "https://img1.wsimg.com/blobby/go/209a294d-effc-4247-aa1f-112233965f89/downloads/First%20American%20Rate%20Sheet%20Front.pdf",
+    "asOf": "Effective March 1, 2019",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Basic Owner's/Loan Rate, Eagle Owner's/Loan Rate, and Residential Refinance Rate columns spanning $5,000 to $2,000,000 in graduated increments (e.g., $150,000 coverage: Basic $558, Eagle $614, Refinance $335)",
+        "Basic Rates: $150 minimum up to $5,000, per-thousand tiers $3.50 down to $0.90 (matching the statewide filed structure)",
+        "Standard Subdivision Rate: 70% of Basic Rate up to $1,000,000; Large Subdivision Rate: 60% up to $500,000, both with a $100 minimum",
+        "Construction Loan Policy/Owner's Policy combination: 100% of the larger policy's applicable rate"
+      ]
+    },
+    "bundlingNotes": "Footer explicitly states: 'This is not a complete Schedule of Fees. All fees are subject to State sales tax as applicable... Above pricing does not include recording fees, mortgage registration tax or consenting fee. As with any insurance contract, the insuring provisions express the coverage afforded by the policy and there are exceptions, exclusions and conditions to coverage that limit or narrow the coverage afforded by the policy.' Zero settlement/closing/escrow service-fee dollar figures found in either the front or back page of this 2-page rate sheet; distributed by an independent Omaha title agency (Builders Title) that does not separately publish its own escrow/closing fee schedule.",
+    "transactionContext": "Owner's policy (purchase, Basic and Eagle/enhanced coverage), loan policy (purchase and refinance), subdivision, construction loan -- premium calculation only."
+  },
+  {
+    "provider": "Nebraska Title Company (independent title agency; statewide, including Omaha/Douglas County -- NE's most populous) - via forms.titlemidwest.com's Title Midwest platform, tenant slug 'nebtitlecoratecalc'",
+    "basis": "calculator",
+    "sourceUrl": "https://forms.titlemidwest.com/titlemidwestForms/RateCalculator/nebtitlecoratecalc/",
+    "calculatorUrl": "https://forms.titlemidwest.com/titlemidwestForms/RateCalculator/nebtitlecoratecalc/",
+    "endpointOrParams": "Unlike the classic-ASP/ajax.asp tenants on this same platform (MN, MO -- see MN.json/MO.json), this tenant is a Vue.js single-page app with NO server-side rate API at all -- every figure is computed entirely client-side from rate-table constants embedded directly in the page's own inline <script> (Old Republic-branded bracket-rate formulas: getOldRepublicBasic()/getOldRepublicExpanded() functions, plus flat constants for endorsements/CPL/recording/simultaneous-issue). Fetched via plain HTTP GET (no execution needed) and the formulas replicated by hand from the literal JS source: Owner's Expanded Premium at $500,000 = 175 + min(max(500-10,0),40)*4.25 + min(max(500-50,0),50)*3.75 + min(max(500-100,0),900)*2.75 = $1,632.50 (thousands = ceil(purchasePrice/1000) = 500). Lender's premium uses the flat simultaneousIssue constant ($75) since the $400,000 loan does not exceed the $500,000 purchase price.",
+    "retrievalDate": "2026-08-02",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, 'Purchase with Loan' transaction type, Expanded (default) title insurance coverage, Buyer-pays-both-policies (default), Omaha/Douglas County preferred location (NE's most populous county/metro).",
+    "methodology": "Found via this session's Title Midwest platform discovery (see MN.json's Minnesota Secured Title entry for the initial find) -- located directly in the platform's own open directory listing. All rate-table constants and formulas were read directly from the page's unminified inline <script> (the tool ships its full Old Republic-branded bracket-rate logic client-side, unobfuscated) rather than executing any JavaScript. The calculator's own 'Escrow Settlement Fee' field defaults to $0.00 and is a blank user-fillable input, not a company-preset value -- left blank/not reported here since it does not represent Nebraska Title Company's own disclosed fee (unlike every other flat constant in this entry, which IS hardcoded in the tool's own source). No personal data fields are required to view the fee schedule itself (name/address/prepared-by fields exist but are optional report-labeling fields, not gates).",
+    "itemizedFees": {
+      "cpl": "$25.00 (Closing Protection Letter, fixed constant)",
+      "processing": null,
+      "notarySigning": null,
+      "docPrep": null,
+      "searchExam": null,
+      "other": [
+        {
+          "name": "Owner's Title Insurance Premium (Expanded coverage, $500,000, Old Republic-branded rate table)",
+          "amount": "$1,632.50"
+        },
+        {
+          "name": "Lender's Title Insurance Premium (simultaneous issue, $400,000 loan does not exceed purchase price)",
+          "amount": "$75.00"
+        },
+        {
+          "name": "Endorsements (fixed constant, loan transactions only)",
+          "amount": "$75.00"
+        },
+        {
+          "name": "Recording Fees (fixed constant, loan/refinance transactions; $10.00 for cash transactions)",
+          "amount": "$150.00"
+        }
+      ]
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "This tool notably does NOT disclose a company-set Escrow/Closing/Settlement Fee -- that field defaults to $0.00 and is left for the user/agent to fill in manually, unlike every other calculator-basis source on file for other states, which all disclose a company-configured settlement/closing fee constant or formula. This may reflect Nebraska's closing-fee market being genuinely unpublished even by companies with an otherwise-public premium calculator (consistent with NE's published-schedule survey finding zero settlement-fee dollar figures anywhere). The tool also supports 'Basic' vs. 'Expanded' coverage and Buyer/Seller/Split policy-payer toggles as user-selectable options (not fixed per-company defaults), and a Douglas/Sarpy-specific real-estate-tax-proration toggle distinct from the fee schedule itself.",
+    "transactionContext": "Calculator-derived premium + fixed-ancillary-fee figures for the standard $500k/$400k purchase scenario, Omaha/Douglas County -- NE's most populous county. This is NE's 1st calculator-basis provider (2 more needed to cross the 3-provider threshold)."
+  },
+  {
+    "provider": "Commonwealth Land Title Insurance Company (national FNF-family underwriter; ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine -- this tool's pre-selected default underwriter brand varies by request; prior sessions (CT, AR) confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=NE",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=NE (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-06",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Douglas County (NE's most-populous county per the standard scenario), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions. No Loan Policy line appeared despite the $400,000 loan amount entered; a $25.00 Closing Protection Letter charge is itemized separately (tool asked 'Is a Closing Protection Letter requested for this transaction?', answered Yes as the standard-scenario default).",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback) against the classic __doPostBack/__VIEWSTATE WebForms flow, replaying the recipe already on file in this project's CALCULATORS.md (FNF family section) and previously used for CT/CO/AR: (1) GET ?ID=FNF&state=NE to capture hidden __VIEWSTATE/__EVENTVALIDATION fields and the county dropdown; (2) POST the county selection (own __EVENTTARGET); (3) POST the tool's own pre-selected default underwriter plus btnGeneralNext=Next to advance to the Amounts step; (4) POST TranType$ddl=PropertyPurchase (own __EVENTTARGET) to reveal the Purchase Amount field; (5) POST AmountPurchase$txt=500000 and AmountLoan1$txt=400000 together (own __EVENTTARGET on the loan field) to reveal any further conditional questions; (6) auto-answered any newly-revealed required Yes/No radio question with its first listed option, then POST btnFinish=Finish for the final Rate Summary. No personal data fields exist anywhere in this flow (only county/underwriter/transaction-type/dollar-amount fields).",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1,257.50 (ALTA Standard/Homeowner's Coverage Owner's Policy, $500,000 liability amount)",
+      "loanPolicyPremium": null,
+      "cpl": "$25.00",
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence."
+    },
+    "sectionTotals": "Total Charges for the Policy: $1,257.50. Grand Total: $1,282.50.",
+    "bundlingNotes": "Part of this project's ongoing 2026-08-06 calculator-harvest pass applying the FNF national rate calculator (already confirmed in-scope for premium-only evidence as of the 2026-08-05 CT session) across every remaining below-threshold scarce state where the tool's own county dropdown confirms coverage.",
+    "transactionContext": "Owner's Policy premium for a $500,000 residential purchase, Douglas County, NE. No Loan Policy line appeared despite the $400,000 loan amount entered; a $25.00 Closing Protection Letter charge is itemized separately (tool asked 'Is a Closing Protection Letter requested for this transaction?', answered Yes as the standard-scenario default)."
+  },
+  {
+    "provider": "WFG National Title Insurance Company \u2014 Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-08",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Douglas County (NE's most-populous/standard-scenario county), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Solved this session by extracting the calculator's own Angular \"sellerNetForm\" component logic from its lazy-loaded route chunk (webpack chunk 7, hash 8a01902021d264bdb338 -- fetched by replaying the runtime bundle's own chunk-hash map, since this route is not referenced in the shell page's main.js until a user actually clicks into the seller-net-sheet flow). This resolved the 2026-08-07 session's blocker: `POST /api/rates/fees/estimatefeesforsellernet` was 500ing with unhelpful ProblemDetails errors because the guessed flat `PropertyState`/`PropertyCounty`/`PropertyCity` fields (borrowed from the sibling, differently-shaped `sellernet/calculate` endpoint's own validation-error field names) do not match this endpoint's real schema. The component's own `prepareCalculateFeeRequest()` method reveals the actual required body: `Properties: [{City, County, IsPrimary: true, State}]` (nested, not flat), `Loans: [{LienPosition: 0, LoanAmount}]`, `TransactionProductType: {ProductTypeId: 0, TransactionTypeId: 0}` (0/0 confirmed correct for this flow, not a placeholder), `calculateTaxRequest: {}` (an empty class instance), `SettlementStatementVersion: \"CD\"`, and empty arrays/objects for `premiumDiscounts`/`Endorsements`/`PriorLenderPolicy`/`PriorOwnerPolicy`. Driven via a plain Content-Type: application/json HTTP POST, no browser/JS execution needed. Confirmed via `GET /api/rates/State/GetCalculationEnabledStates` (also public, no auth) that this one API has `isCalculationEnabled: true` for 47 states + DC -- a single new, genuinely distinct 5th major-underwriter source (WFG National Title, a separate corporate family from FNF/Old Republic/Stewart/First American, all already on file elsewhere in this survey) usable across nearly every remaining below-threshold scarce state in one technique. No personal-data field (name/email/phone) exists anywhere in this request shape. Separately confirmed via static inspection of the same chunk's hardcoded `feesConfiguration` sort-weight table that WFG has only itemized its settlement/closing HUD-fee line items for 7 states (WA, CA, TX, OR, AZ, NV, CO) -- for every other state (including this one) the tool returns a premium-only result (Owner's Title Insurance Premium, no settlement/search/doc-prep breakdown), which per this project's 2026-08-05 FNF scoping correction is still valid, dated calculator-harvest evidence.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1,573.00",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's sellernet/seller-side-only design; not pursued further as out of scope for the seller-net flow)",
+      "other": [],
+      "note": "Premium-only result -- no itemized settlement/search/doc-prep breakdown appears for this state in this tool (see methodology: only WA/CA/TX/OR/AZ/NV/CO have configured HUD-fee line items in WFG's own fee-description table)."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "Property location for this request: Omaha, NE (Douglas County). Discovered and harvested in the same 2026-08-08 session across 8 below-threshold scarce states at once (OR, NM, CT, NE, MS, LA, UT, SC) using one newly-solved API -- see CALCULATORS.md's 2026-08-08 entry for the full technical recipe and the complete list of states affected.",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Douglas County, NE."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company -- Stewart Rate Calculator, matched settlement office: Stewart Title Company (1055 North 115th Street, Suite 300, Omaha, NE 68154)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true (LoanEstimate/QuoteType=3 flow) and https://www.stewartratecalculator.com/Quote/Netsheet?urlParams=&quotetype=2&branded=true (Netsheet/QuoteType=2 flow); both POST to the shared /api/SRC/quote endpoint",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Douglas County (Omaha), residential resale, Sale/Purchase with Mortgage transaction type, BASIC coverage on both Owner's and Lender's policies. Richness-pass harvest applying an already-solved, previously state-limited recipe to a state not yet in Stewart's harvested-state list, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "methodology": "Harvested via Stewart's discoverable `/api/SRC/*` JSON REST API (stewartratecalculator.com), driven entirely by plain HTTP GET/POST (Python requests.Session(), cookie jar) with no browser/JS execution and no personal-data fields, replaying the full recipe documented in this project's CALCULATORS.md (2026-08-14 'SOLVED' entry): GET the LoanEstimate/Netsheet page to scrape a fresh antiforgery cookie + __RequestVerificationToken; GET /api/SRC/propertysearch to resolve the county FIPS code and a default zip; GET /api/SRC/providers to find the county's real settlement office(s) (used to set ProviderID on the QuoteType=3 flow so the itemized settlement-fee list is populated -- an empty ProviderID silently returns a null itemized list); GET /api/SRC/statesettings and /api/SRC/ernstlookup for state-level defaults; build the QuoteRequestRoot JSON by hand (Owner's Policy $500,000 / Lender's Policy $400,000, BASIC coverage, standard Sale/Purchase with Mortgage transaction); POST /api/SRC/quote twice -- QuoteType=2 (Netsheet, pageBuyerSeller=seller) for Recording/CFPB2015 transfer-tax figures, and QuoteType=3 (LoanEstimate, pageBuyerSeller=buyer, IsCalculatePremium=True, IsCalculateTitleServiceFee=True) for the itemized Pricing.TitleServiceFee.ItemizedTitleServiceFeeList settlement-fee line items. One new gotcha found and fixed this session: stewartratecalculator.com's bare apex domain 301-redirects every POST to the www subdomain, and that redirect's response body hangs indefinitely on this sandbox's proxied connection (a 30s+ read timeout with 0 bytes received) -- fixed by targeting https://www.stewartratecalculator.com directly, skipping the apex redirect entirely; this is an environment/proxy artifact, not a sign the endpoint is blocked. Also confirmed the documented /api/SRC/providers gotcha firsthand: for a single-provider county the response's `Provider` field is a bare object, not a one-element list -- must be normalized before indexing or ProviderID silently stays empty and every itemized-fee list comes back null (looks exactly like a genuine empty result).",
+    "settlementFee": {
+      "note": "$650.00 total, split buyer $325.00 / seller $325.00 (line item: 'Title Closing Fee')"
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1,282.50",
+      "loanPolicyPremium": "$1,057.50",
+      "other": [
+        {
+          "name": "Title Closing Fee",
+          "amount": "$650.00 (buyer $325.00 / seller $325.00)"
+        },
+        {
+          "name": "Title Courier Fee",
+          "amount": "$30.00 (buyer $15.00 / seller $15.00)"
+        },
+        {
+          "name": "Title Electronic Document Delivery Fee",
+          "amount": "$3.50 (buyer $3.50 / seller $0.00)"
+        },
+        {
+          "name": "Title Wire Transfer Fee",
+          "amount": "$10.00 (buyer $10.00 / seller $0.00)"
+        }
+      ],
+      "note": "4 itemized settlement/closing-fee line item(s) returned via the QuoteType=3 flow."
+    },
+    "sectionTotals": "Owner's Policy Premium $1,282.50; Lender's Policy Premium $1,057.50; itemized settlement fees sum $693.50",
+    "bundlingNotes": "Combined deed/transfer/mortgage tax on QuoteType=2 (Netsheet) flow: $1,660.00 total -- DeedTax $1,660.00.",
+    "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Douglas County, Nebraska."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company \u2014 second rate calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://oldrepublictitle.com/rate-calculator/?location=nebraska",
+    "calculatorUrl": "https://oldrepublictitle.com/rate-calculator/?location=nebraska",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (RateCalc.aspx?CallingApp=PUBLIC&Location=NE, redirects to a session-scoped (S(...)F(...))/RateCalc.aspx?...Location=26...). GET the page with Referer https://oldrepublictitle.com/rate-calculator/?location=nebraska (capture __VIEWSTATE/__EVENTVALIDATION), POST __EVENTTARGET=ddlCounty value 055 (DOUGLAS), POST __EVENTTARGET=ddlPolicyCategory value 5 (SIMULTANEOUS LOAN & OWNERS), POST __EVENTTARGET=ddlPolicyType1 value 10238 (OWNERS - BASIC), POST __EVENTTARGET=ddlPolicyType2 value 10240 (SIMULT LOAN), then POST __EVENTTARGET=btnCalculate with txtLiabilityAmt=500000, txtCrLiabilityAmt=400000. Same Referer-header-throughout fix documented for NH/WV/MI/PA/NJ/VA/TN/MD/WI/MN/AL/MA/IN; no personal data entered.",
+    "retrievalDate": "2026-08-21",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Douglas County (Omaha), SIMULTANEOUS LOAN & OWNERS BASIC policy category.",
+    "methodology": "Direct HTTP GET/POST against the ASP.NET WebForms postback mechanism (Python requests.Session()), no browser/JS execution. No personal data entered. Richness pass applying this project's already-solved Old Republic 2nd-tool recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": {
+      "note": "This tool prices title insurance premiums only -- no settlement/closing/escrow service-fee line items are itemized, but it does return a genuine Closing Protection Letter fee (see itemizedFees below)."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "SIMULT LOAN, insured amount $400,000.00 -- Lenders-Only standalone premium",
+          "amount": "$1,057.50"
+        },
+        {
+          "name": "SIMULT LOAN, Owners+Lenders combined (simultaneous) premium",
+          "amount": "$75.00"
+        },
+        {
+          "name": "OWNERS - BASIC, insured amount $500,000.00, Owners+Lenders combined premium",
+          "amount": "$1,257.50"
+        },
+        {
+          "name": "Closing Protection Letter fee, standalone-lenders-only",
+          "amount": "$25.00"
+        },
+        {
+          "name": "Closing Protection Letter fee, Owners+Lenders combined",
+          "amount": "$25.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, standalone-lenders-only",
+          "amount": "$1,057.50"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, Owners+Lenders combined",
+          "amount": "$1,332.50"
+        },
+        {
+          "name": "Total Premium & Endorsement & Fees/Taxes, standalone-lenders-only",
+          "amount": "$1,082.50"
+        },
+        {
+          "name": "Total Premium & Endorsement & Fees/Taxes, Owners+Lenders combined",
+          "amount": "$1,357.50"
+        }
+      ]
+    },
+    "bundlingNotes": "Lenders-Only standalone premium ($1,057.50) is byte-identical to this state's already-on-file Stewart entry's Lender's Policy Premium ($1,057.50) -- a strong 2-way convergence.",
+    "transactionContext": "Simultaneous Owner's Basic + Loan policy plus a $25.00 CPL fee, Douglas County (Omaha) Nebraska, purchase with financing."
+  }
+]

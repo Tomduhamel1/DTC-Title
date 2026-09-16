@@ -1,0 +1,238 @@
+[
+  {
+    "provider": "Florida Office of Insurance Regulation (OIR) — Florida Administrative Code Rule 69O-186.003, Title Insurance Rates (REGULATORY/PROMULGATED, not provider-set)",
+    "sourceUrl": "https://flrules.elaws.us/fac/69o-186.003/ (rule text summary) cross-verified against https://documentpub.fnti.com/Documents/Florida/Rate%20Manual/Florida%20Chapter%2069O-186%20Title%20Insurance%20Rates%20and%20Rules.pdf (First National Title Insurance Company's own republication of the full FAC chapter 69O-186 text, fetched and machine-read this session via PDF text extraction)",
+    "asOf": "Rule effective 2002-01-27 (subsections (1)-(4) effective 2002-07-01); still the controlling promulgated rate as of this session (2026-07-22) -- no superseding rate order located",
+    "settlementFee": {
+      "note": "TITLE INSURANCE PREMIUMS in Florida are fixed by Fla. Stat. §627.782/§627.7825 and Florida Administrative Code 69O-186.003, and are UNIFORM across every title insurer/agent in the state at a given liability amount. This is not a provider-set price and is included here for regulatory context. Independently confirmed identical across two separately-sourced documents this session (flrules.elaws.us's rule summary and FNTI's own PDF republication of the FAC text, both showing the same per-thousand rates and minimums).",
+      "ownerLeaseholdAndMortgagePremium": "$0-$100,000 of liability: $5.75 per thousand. $100,000-$1,000,000, add $5.00 per thousand. $1,000,000-$5,000,000, add $2.50 per thousand. $5,000,000-$10,000,000, add $2.25 per thousand. Over $10,000,000, add $2.00 per thousand.",
+      "minimumPremium": "$100.00 for all conveyances except multiple conveyances; $60.00 for multiple conveyances on the same property",
+      "reissueRates": "Up to $100,000: $3.30/thousand; $100,000-$1M add $3.00/thousand; $1M-$10M add $2.00/thousand; over $10M add $1.50/thousand. Minimum $100.00.",
+      "simultaneousIssueMortgagePolicy": "Minimum $25.00 when not exceeding the owner's policy amount",
+      "minimumInsurerRetention": "30% of risk premium (35%-40% at higher liability tiers per the table above)",
+      "sampleCalculatedPremiums_fromProviderPages": "Cross-checked against provider restatements of the same table this session: $100,000 liability = $575.00 (VyStar Title Agency); $150,000 = $825.00 and $200,000 = $1,075.00 (Palm Beach Title & Escrow); $500,000 = $2,575.00 and $1,000,000 = $5,075.00 (VyStar Title Agency) -- all consistent with the promulgated formula above, no discrepancies found across any of the 5+ independent provider restatements encountered this session."
+    },
+    "itemizedFees": {
+      "other": [
+        { "name": "Closing services fee bundling requirement (regulatory finding, not a fee itself)", "amount": "Per Fla. Stat./DFS guidance confirmed at myfloridacfo.com this session: the 'closing services fee' line on the settlement statement must include ALL fees and charges made by the title agency to close the transaction -- postage, notary services, copies, digital documents, document preparation, and storage fees may NOT be itemized as separate line items; they must be bundled into one figure. DFS explicitly does not regulate the AMOUNT of this fee, only its presentation." }
+      ]
+    },
+    "bundlingNotes": "FL is a promulgated-rate state: the premium is identical for every title insurer/agent in Florida at a given liability amount and effective date, confirmed by cross-checking the OIR rule text against five independent provider restatements of the same table (VyStar Title Agency, Palm Beach Title & Escrow, Atlantic Title Firm, Leading Edge Title of Central Florida, Location Title & Escrow) -- all numerically identical to the FAC 69O-186.003 formula, with zero discrepancies. Because the premium is fixed, it carries NO market signal about provider competitiveness -- the settlement/closing/escrow fee (documented in the entries below) is the only place FL title companies compete on price, and Florida's own DFS regulatory guidance confirms that Florida uniquely REQUIRES ancillary items (notary, postage, copies, doc prep, storage) to be bundled into one non-itemized 'closing services fee' line rather than broken out separately -- a structural difference from itemization-heavy states like TX, and the likely reason so many FL provider fee pages quote a single flat number rather than a granular itemized list.",
+    "transactionContext": "Applies uniformly to Owner's, Leasehold, and Mortgage title insurance premiums statewide, all metros, all provider types (national-brand underwriters, independent agents, attorneys). Premium calculation depends only on policy liability/face amount, not purchase-vs-refinance transaction type."
+  },
+  {
+    "provider": "Full Service Title & Escrow, LLC (independent, Miami Lakes, FL -- Miami-Dade/Broward metro)",
+    "sourceUrl": "https://fullservicetitle.com/html/fee_sheet.html",
+    "asOf": "Effective January 1, 2010 (no newer version found; page still live and current as of this session)",
+    "settlementFee": {
+      "purchase_buyerSettlementFee": "$395.00",
+      "purchase_sellerSettlementFee": "$595.00",
+      "refinance_settlementFee": "$595.00",
+      "simultaneousSecondMortgage_settlementFee": "$295.00"
+    },
+    "itemizedFees": {
+      "docPrep": "Seller's Document Preparation: $350.00 (third-party/variable fee)",
+      "processing": null,
+      "courier": "Included in settlement fee (purchase: wires and courier fees included; simultaneous 2nd mortgage: 1 wire/courier included)",
+      "wire": "Additional wire transfers beyond the included amount: $25.00 each",
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Included in settlement fee (title abstract/search and title examination both stated as 'Included')",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        { "name": "Title Insurance - Mortgage (Lender's) Policy", "amount": "$25.00" },
+        { "name": "Survey (estimate, third-party)", "amount": "$425.00" },
+        { "name": "Estoppel letters (estimate, third-party)", "amount": "$100.00-$400.00" }
+      ]
+    },
+    "bundlingNotes": "Explicitly bundles title search, title examination, and (up to 2) wires/courier fees INTO the flat settlement/closing fee rather than itemizing them separately -- a direct, provider-level confirmation of the FL DFS closing-services-fee bundling convention documented in the regulatory entry above. Settlement fee is higher for seller/refinance ($595) than for buyer-purchase ($395), and lower still for a simultaneous second-mortgage-only closing ($295).",
+    "transactionContext": "Distinct settlement fees published for: purchase (buyer side $395, seller side $595), refinance ($595), and simultaneous second mortgage ($295). Miami-Dade/Broward metro (Miami Lakes-based)."
+  },
+  {
+    "provider": "Leading Edge Title of Central Florida (independent, Winter Park / Winter Springs / Lake Mary, FL -- Orlando metro)",
+    "sourceUrl": "https://letcf.com/estimated-closing-costs",
+    "asOf": "Retrieved 2026-07-22; no explicit effective date stated on the page (described as current pricing)",
+    "settlementFee": {
+      "sellerSide_financedPurchase_settlementFee": "$495",
+      "buyerSide_financedPurchase_settlementFee": "$675",
+      "buyerSide_cashPurchase_settlementFee": "$295"
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Search Fee (seller side): $75; Municipal Lien Search (seller side): $150",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        { "name": "Simultaneous Issue (buyer, financed)", "amount": "$350" },
+        { "name": "Endorsements (buyer, financed)", "amount": "$50" },
+        { "name": "Survey (standard lot)", "amount": "$275" },
+        { "name": "Florida Form 9 Endorsement", "amount": "10% of total policy premium" }
+      ]
+    },
+    "bundlingNotes": "One of the more itemized FL fee sheets found this session (search fee and municipal lien search broken out separately from the settlement fee on the seller side, rather than bundled) -- notably different from the Miami-Dade convention (Full Service Title) of bundling search/exam into the flat fee. Buyer-financed settlement fee ($675) is more than double the buyer-cash settlement fee ($295), a large within-provider purchase-financing-type spread not seen at other FL providers in this survey. Page explicitly notes discounts available for veterans, first responders, educators, and repeat customers, and that 'some prices may vary.'",
+    "transactionContext": "Separate seller (financed) and buyer (financed vs. cash) fee schedules; Orlando metro (Winter Park/Winter Springs/Lake Mary branches, Seminole/Orange County area)."
+  },
+  {
+    "provider": "Title Company of Florida (independent, Jacksonville, FL)",
+    "sourceUrl": "https://titlecompanyofflorida.com/cheapest-title-company-jacksonville/",
+    "asOf": "Retrieved 2026-07-22; no explicit effective date stated (described as current pricing / promotional offer)",
+    "settlementFee": {
+      "sellerSettlementFee_starting": "$250 (self-described as 'starts at')",
+      "sellerSettlementFee_promotional": "$350 (stated as applying to 'qualifying residential transactions,' excludes probate/trust/commercial/complex cases)"
+    },
+    "itemizedFees": {
+      "other": []
+    },
+    "bundlingNotes": "Explicitly positions itself as a low-cost outlier, self-describing its seller settlement fee as 'one of the lowest in the entire state' and directly naming a competitor range ('most title companies charge anywhere from $495 to $695+') -- direct, provider-stated evidence of the price competition the completion contract expects to find on the FL settlement-fee side, and the lowest settlement-fee floor found in this survey. No buyer-side figure or itemized ancillary-fee breakdown published on this page.",
+    "transactionContext": "Seller-side settlement fee for residential purchase transactions; Jacksonville / Duval County metro, North Florida."
+  },
+  {
+    "provider": "Atlantic Title Firm (independent, statewide Florida -- all 67 counties)",
+    "sourceUrl": "https://atlantictitlefirm.com/florida-closing-cost-calculator",
+    "asOf": "Page dated/labeled for 2026",
+    "settlementFee": {
+      "settlementFee_range": "$450-$950 (stated as 'typically range from $450-$950 depending on complexity' -- the firm's own general guidance rather than a single flat quoted figure)"
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Title Search & Examination: $125 flat (explicitly advertised as a '48-hour title search turnaround -- flat $125 search fee')",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        { "name": "Lender's Title Insurance (simultaneous-issue discount)", "amount": "$25 minimum" },
+        { "name": "Recording Fees (state-uniform, cited by the firm)", "amount": "$10 first page + $8.50/additional page; typical residential closing $120-$250 total" }
+      ]
+    },
+    "bundlingNotes": "The one exact, single dollar figure this provider publishes for its own service (as opposed to describing state-mandated or general-market figures) is the $125 flat title search & examination fee -- called out specifically as a differentiator ('48-hour turnaround'). The $450-$950 settlement-fee figure is presented as a market-typical range rather than the firm's own flat quote, so it is weighted as softer evidence than the flat search fee.",
+    "transactionContext": "Statewide Florida (all 67 counties); no metro-specific breakout published."
+  },
+  {
+    "provider": "Palm Beach Title & Escrow Co. (independent, Boca Raton, FL -- Palm Beach/Broward metro)",
+    "sourceUrl": "https://www.palmbeachtitle.com/faqs",
+    "asOf": "Page copyright 2022; no other effective date stated",
+    "settlementFee": {
+      "sellerClosingFee": "$450",
+      "buyerClosingFee_cashOrNoMortgage": "$395",
+      "buyerClosingFee_withMortgage": "$750"
+    },
+    "itemizedFees": {
+      "docPrep": "Included in the $395 buyer closing fee (stated explicitly: 'the $395 closing Fee includes the title examination, document preparation, notary, and closing')",
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": "Included in the $395 buyer closing fee (see docPrep note)",
+      "searchExam": "Title Search: $200 flat; title exam included in the $395 closing fee",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        { "name": "Recording (first page)", "amount": "$6" },
+        { "name": "Recording (each additional page)", "amount": "$4.50" }
+      ]
+    },
+    "bundlingNotes": "Direct, explicit confirmation of the FL DFS closing-services-fee bundling convention (title exam, doc prep, and notary are all stated as included within the single $395 buyer closing fee, not itemized separately) -- while the $200 title search is broken out as its own separate line. Buyer's closing fee with a mortgage ($750) is nearly double the cash/no-mortgage buyer closing fee ($395), a within-provider financing-type spread of similar magnitude to Leading Edge Title of Central Florida's Orlando-market spread.",
+    "transactionContext": "Separate seller, buyer-cash, and buyer-with-mortgage closing fee schedules; Boca Raton-based, serving Palm Beach and Broward counties."
+  },
+  {
+    "provider": "Florida's Title Insurance Company (FTIC) (independent underwriter/agency, Fort Lauderdale-Hollywood, FL -- Broward metro, serves Broward/Miami/West Palm Beach)",
+    "sourceUrl": "https://www.ftic.net/buying-calculator/ (fee-positioning page) and https://www.ftic.net/wp-content/uploads/2018/06/A2-Borrower-Buyer-CD.pdf (FTIC's own published sample/illustrative Closing Disclosure, fetched and machine-read this session via PDF text extraction; property at 987 Somewhere Street, Hollywood, FL 33020, a Broward County address, sale price $337,500 / loan $180,000)",
+    "asOf": "Buying-calculator page retrieved 2026-07-22; sample Closing Disclosure PDF undated internally, hosted at a 2018-06 upload path",
+    "settlementFee": {
+      "settlementFee_fromSampleCD": "$800.00 ('Title - Settlement Fee' line, paid to Florida's Title Insurance Company)",
+      "ancillaryFeesPositioning_fromCalculatorPage": "FTIC's own fee-calculator/marketing page explicitly lists Wire Fees: $0.00, Fed/Ex-Courier-Overnight Shipping: $0.00, Notary Fee (in-house): $0.00, Recording Service Fee: $0.00, and 'Escrow Service Fee': $0.00 -- i.e., FTIC explicitly markets itself as not charging separately for these ancillary items, distinct from and in addition to the $800 core settlement fee shown in the sample CD."
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": "$0.00 (explicitly advertised as not charged)",
+      "wire": "$0.00 (explicitly advertised as not charged)",
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": "$0.00 (in-house notary, explicitly advertised as not charged)",
+      "searchExam": "Title Search: $135.00 (paid to Fidelity National Title Insurance Co. as underwriter, per the sample CD)",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        { "name": "Lender's Title Insurance (promulgated premium, per sample CD)", "amount": "$1,097.50" },
+        { "name": "Owner's Title Insurance -- optional (promulgated premium, per sample CD)", "amount": "$893.75" },
+        { "name": "Municipal Lien Search (per sample CD)", "amount": "$148.00" },
+        { "name": "Recording Fees (per sample CD)", "amount": "$213.50 total ($31.50 deed + $182.00 mortgage)" }
+      ]
+    },
+    "bundlingNotes": "FTIC explicitly positions itself as a no-junk-fee provider on ancillary items (wire/courier/notary/recording-service/escrow-service all advertised at $0.00), directly analogous to Valero Title's positioning in the TX survey -- but still charges an $800 core settlement/closing fee, confirmed by an independently-verifiable, dollar-denominated sample Closing Disclosure that FTIC itself publishes for consumer education. This combination (real $0 ancillary-fee advertising + a real, non-zero core settlement fee visible in their own illustrative CD) is the most granular, internally-consistent picture of a single provider's fee philosophy found in this FL survey.",
+    "transactionContext": "Sample transaction is a financed purchase (FHA box checked, $337,500 sale price / $180,000 loan) in Hollywood, FL (Broward County); FTIC also serves Miami-Dade and West Palm Beach per its own site."
+  },
+  {
+    "provider": "Express Title Services Group, Inc. (independent, Miami, FL -- Miami-Dade metro; real settlement agent named on a sample Closing Disclosure hosted at theclosingcompany.net)",
+    "sourceUrl": "https://www.theclosingcompany.net/wp-content/uploads/2018/02/SAMPLE-Closing-Disclosure-Form-.pdf (fetched and machine-read this session via PDF text extraction; property at 10375 SW 154 Cir Ct, Unit 84, Miami, FL 33196, a Miami-Dade County address, sale price $225,000 / loan $180,000, dated 10/06/2017)",
+    "asOf": "Document dated 2017-10-06; hosted/served as a live 'sample' as of this session (2026-07-22)",
+    "settlementFee": {
+      "settlementOrClosingFee_borrowerBuyer": "$1,250.00 (to Express Title Services Group, Inc.)",
+      "settlementOrClosingFee_seller": "$750.00 (to Express Title Services Group, Inc.)"
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": "$9.00 (to SimpliFile)",
+      "notarySigning": null,
+      "searchExam": "Title Search: $125.00 (to Chicago Title Insurance Company, underwriter); Lien Search: $250.00 (to Priority Lien Search, Inc.)",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        { "name": "Lender's Title Insurance (promulgated premium)", "amount": "$975.00" },
+        { "name": "Owner's Title Insurance -- optional (promulgated premium)", "amount": "$525.00" },
+        { "name": "ALTA Endorsement 4.1-06 (Condominium)", "amount": "$25.00" },
+        { "name": "ALTA Endorsement 8.1-06 (Environmental Protection Lien)", "amount": "$25.00" },
+        { "name": "ALTA Endorsement 9-06 (Restrictions, Encroachments, Minerals)", "amount": "$150.00" },
+        { "name": "Recording Fees", "amount": "$190.00 ($18.50 deed + $171.50 mortgage)" }
+      ]
+    },
+    "bundlingNotes": "ANOMALY FLAGGED FOR TRANSPARENCY: this sample Closing Disclosure is hosted on The Closing Company's website (theclosingcompany.net) but the document's own settlement-agent field names a different real company, Express Title Services Group, Inc. (10261 SW 72 Street, Suite C101, Miami, FL 33173), as the party actually paid the $1,250/$750 settlement fees. This session treats the document's own internal settlement-agent field as authoritative and attributes the fee data to Express Title Services Group rather than to The Closing Company (which has its own, separately-attributed entry below from a different sample document). This is by far the highest settlement-fee figure found in this FL survey ($1,250 buyer-side), on a comparatively modest $225,000 sale price -- notably higher than every other Miami-Dade source in this survey, though still a genuine, dollar-denominated, condominium-unit transaction rather than an extrapolation.",
+    "transactionContext": "Financed purchase of a condominium unit (Miami-Dade County, Unit 84 at a multi-unit address), sale price $225,000, loan $180,000, dated October 2017."
+  },
+  {
+    "provider": "The Closing Company, Inc. (independent, Miami, FL -- Miami-Dade metro)",
+    "sourceUrl": "https://www.theclosingcompany.net/wp-content/uploads/2018/02/sample-HUD1-Florida.pdf (fetched and machine-read this session via PDF text extraction; property transaction with settlement agent 'The Closing Company, Inc.,' 9425 Sunset Drive, Suite 124, Miami, FL 33173, phone 305-271-0100, sale price $749,000, dated 02/03/2017)",
+    "asOf": "Document dated 2017-02-03; hosted/served as a live 'sample' as of this session (2026-07-22)",
+    "settlementFee": {
+      "settlementOrClosingFee_approximate": "$950.00 (line-item labeled 'Settlement or closing fee' on the HUD-1; the older HUD-1 format's multi-column layout made precise borrower-vs-seller-side attribution difficult to parse with full confidence from the extracted text, so this figure is reported as the clearly identifiable settlement-fee amount rather than split by side)"
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": "Wire/Courier: $50.00 (approximate, per line-item extraction)",
+      "wire": "Combined with courier above ($50.00 line item), not separately broken out on this HUD-1",
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Municipal Lien Search (APPROX): $200.00",
+      "cpl": null,
+      "binder": "Title insurance binder line item present on the form but no dollar figure was clearly extractable from this document",
+      "other": [
+        { "name": "Recording fees (Deed)", "amount": "$27.00" },
+        { "name": "Recording fees (Mortgage/Releases, approximate per extraction)", "amount": "$4,494.00 (this figure is unusually large relative to typical FL recording fees and may include state doc-stamp/transfer-tax amounts that were not cleanly separable from the recording-fee line during PDF text extraction -- flagged as a lower-confidence figure)" },
+        { "name": "Real estate commission (context, not a title fee)", "amount": "$44,940.00 total (6% of $749,000 sale price)" }
+      ]
+    },
+    "bundlingNotes": "This is an older-format HUD-1 (pre-2015 TRID form) rather than a modern Closing Disclosure, and its dense multi-column 'Paid from Borrower's/Seller's Funds' layout did not extract cleanly to linear text -- the $950 settlement fee and $200 municipal lien search figures are reported with reasonable confidence, but several other line items (particularly the $4,494 recording-fee figure) carry a real risk of being a taxes/doc-stamp figure misattributed to recording during extraction, and are flagged as such rather than asserted with full confidence. Notably, this is a much higher-value transaction ($749,000 sale price) than any other source in this FL survey, consistent with its correspondingly higher settlement fee ($950) sitting above the more typical $250-$800 range seen on smaller transactions from other providers.",
+    "transactionContext": "High-value ($749,000) residential purchase, Miami-Dade County, dated February 2017; buyer represented by Opulence International Realty LLC / One Sotheby's International Realty (a luxury-market brokerage), consistent with the above-average transaction size."
+  }
+]

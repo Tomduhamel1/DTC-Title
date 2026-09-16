@@ -1,0 +1,182 @@
+[
+  {
+    "provider": "Idaho Department of Insurance — filed SHORT-TERM (purchase/closing) escrow rates, statewide by county and licensed title agent",
+    "sourceUrl": "https://doi.idaho.gov/short-term-escrow-rates/",
+    "asOf": "Rates effective as of April 15, 2026",
+    "settlementFee": {
+      "note": "Regulator-compiled disclosure of every licensed Idaho title agent's filed escrow (settlement) rate structure under IDAPA 18.05.01.022, which requires annual filing (due March 15, effective April 15) of minimum escrow rates by county. This is the closest analog to a settlement-fee schedule found for Idaho -- structured as Base Rate + Rate per $1,000 of price/loan + Minimum Rate, filed separately for purchase and refinance where the agent files both.",
+      "formula": "Escrow fee = Base Rate + (Rate per $1,000 x price/loan amount in thousands), subject to the filed Minimum Rate.",
+      "byCountyProvider": {
+        "Ada (Boise)": [
+          { "provider": "Alliance Title & Escrow, LLC", "base": 150.00, "perThousand": 3.00, "minimum": 150.00 },
+          { "provider": "Alliance Title & Escrow, LLC (refinance)", "perThousand": 3.00, "minimum": 100.00 },
+          { "provider": "AmeriTitle, LLC", "note": "no escrows filed for this county" },
+          { "provider": "Empire Title & Escrow", "base": 150.00, "perThousand": 3.00, "minimum": 150.00 },
+          { "provider": "Fidelity National Title", "perThousand": 3.50, "minimum": 150.00 },
+          { "provider": "Fidelity National Title (refinance)", "perThousand": 3.00, "minimum": 150.00 },
+          { "provider": "First American Title Insurance Co.", "perThousand": 3.50, "minimum": 150.00 },
+          { "provider": "First American Title Insurance Co. (refinance)", "perThousand": 3.00, "minimum": 100.00 },
+          { "provider": "Pioneer Title Company", "base": 150.00, "perThousand": 3.00, "minimum": 150.00 },
+          { "provider": "Pioneer Title Company (refinance)", "perThousand": 3.00, "minimum": 100.00 },
+          { "provider": "Stewart Title Company", "base": 150.00, "perThousand": 3.00, "minimum": 150.00 },
+          { "provider": "TitleFact, Inc.", "base": 150.00, "perThousand": 3.00, "minimum": 150.00 },
+          { "provider": "TitleOne", "base": 150.00, "perThousand": 3.00, "minimum": 150.00 },
+          { "provider": "Venture Title & Escrow Company", "base": 150.00, "perThousand": 3.00, "minimum": 150.00 }
+        ],
+        "Kootenai (Coeur d'Alene)": [
+          { "provider": "Alliance Title & Escrow, LLC", "base": 150.00, "perThousand": 3.00, "minimum": 300.00 },
+          { "provider": "First American Title Insurance Co.", "base": 100.00, "perThousand": 3.00, "minimum": 300.00 },
+          { "provider": "Flying S Title and Escrow of Idaho", "base": 100.00, "perThousand": 3.00, "minimum": 500.00 },
+          { "provider": "Kootenai County Title Company, Inc.", "base": 100.00, "perThousand": 3.00, "minimum": 200.00 },
+          { "provider": "NexTitle North Idaho, LLC", "base": 150.00, "perThousand": 3.00, "minimum": 500.00 },
+          { "provider": "North Idaho Title Ins.", "base": 35.00, "perThousand": 3.00, "minimum": 200.00 },
+          { "provider": "Pioneer Title Company", "base": 100.00, "perThousand": 3.00, "minimum": 500.00 },
+          { "provider": "Ticor Title", "perThousand": 3.00, "minimum": 200.00 },
+          { "provider": "TitleOne", "base": 100.00, "perThousand": 3.00, "minimum": 500.00 }
+        ],
+        "Bonneville (Idaho Falls)": [
+          { "provider": "Alliance Title & Escrow, LLC", "base": 150.00, "perThousand": 3.00, "minimum": 400.00 },
+          { "provider": "AmeriTitle, LLC", "base": 150.00, "perThousand": 3.00, "minimum": 400.00 },
+          { "provider": "Flying S Title and Escrow", "base": 100.00, "perThousand": 3.00, "minimum": 400.00 },
+          { "provider": "Pioneer Title Company", "base": 100.00, "perThousand": 3.00, "minimum": 300.00 },
+          { "provider": "TitleOne", "base": 100.00, "perThousand": 3.00, "minimum": 400.00 }
+        ],
+        "Twin Falls": [
+          { "provider": "AmeriTitle, LLC", "base": 100.00, "perThousand": 3.50, "minimum": 300.00 },
+          { "provider": "Flying S Title and Escrow", "base": 100.00, "perThousand": 3.50, "minimum": 500.00 },
+          { "provider": "Pioneer Title Company", "base": 100.00, "perThousand": 3.50, "minimum": 300.00 },
+          { "provider": "TitleFact, Inc.", "base": 100.00, "perThousand": 3.50, "minimum": 300.00 },
+          { "provider": "TitleOne", "base": 100.00, "perThousand": 3.50, "minimum": 300.00 }
+        ],
+        "Bannock (Pocatello)": [
+          { "provider": "Alliance Title & Escrow, LLC", "base": 150.00, "perThousand": 3.00, "minimum": 400.00 },
+          { "provider": "AmeriTitle, LLC", "base": 150.00, "perThousand": 3.00, "minimum": 400.00 },
+          { "provider": "Flying S Title and Escrow", "base": 150.00, "perThousand": 3.00, "minimum": 500.00 },
+          { "provider": "Pioneer Title Company", "base": 150.00, "perThousand": 3.00, "minimum": 350.00 },
+          { "provider": "TitleOne", "base": 150.00, "perThousand": 3.00, "minimum": 400.00 }
+        ]
+      }
+    },
+    "itemizedFees": { "other": [] },
+    "bundlingNotes": "Footnote on the source document: 'Escrow services may be offered or conducted in other counties within Idaho.' No further itemization (doc prep, courier, wire, etc.) is broken out in this filing -- it is a base+per-thousand+minimum escrow-fee structure only, filed by the title agent as its escrow closing charge, distinct from the title insurance premium.",
+    "transactionContext": "Standard purchase (short-term) escrow/closing fee, tiered to sale price / loan amount, by county. Refinance filed separately where noted. Covers Ada (Boise), Kootenai (Coeur d'Alene), Bonneville (Idaho Falls), Twin Falls, and Bannock (Pocatello) counties; full 44-county statewide table exists in the source but only the 5 target metro counties are extracted here."
+  },
+  {
+    "provider": "Idaho Department of Insurance — filed LONG-TERM (contract/installment) escrow rates, statewide by county and licensed title agent",
+    "sourceUrl": "https://doi.idaho.gov/long-term-escrow-rates/",
+    "asOf": "Rates effective as of April 15, 2026",
+    "settlementFee": {
+      "note": "Companion regulator filing to the short-term escrow rates, covering long-term/contract escrow servicing (e.g., land-contract or seller-financed installment escrow), a different product from a standard purchase closing. Included for completeness since it is filed under the same IDAPA 18.05.01.022 regime and is a genuine dollar-denominated escrow rate structure.",
+      "formula": "Base Rate + (Rate per $1,000) + Minimum Rate; 'Rates Do Not Include Miscellaneous Long Term or Other Escrow Servicing Fees' per the source document.",
+      "byCountyProvider": {
+        "Ada (Boise)": [
+          { "provider": "Alliance Title & Escrow, LLC", "base": 50.00, "perThousand": 2.00, "minimum": 100.00, "note": "+$75 with reserves" },
+          { "provider": "Pioneer Title Company", "base": 50.00, "perThousand": 2.00, "minimum": 100.00 },
+          { "provider": "TitleOne", "base": 50.00, "perThousand": 2.50, "minimum": 125.00 },
+          { "provider": "TitleFact, Inc.", "base": 50.00, "perThousand": 3.00, "minimum": 150.00 }
+        ],
+        "Kootenai (Coeur d'Alene)": [
+          { "provider": "Kootenai County Title Company", "base": 75.00, "perThousand": 0.75, "minimum": 75.00 },
+          { "provider": "Pioneer Title Company", "base": 50.00, "perThousand": 2.00, "minimum": 150.00 }
+        ],
+        "Bonneville (Idaho Falls)": [
+          { "provider": "Pioneer Title Company", "base": 50.00, "perThousand": 2.00, "minimum": 250.00 },
+          { "provider": "AmeriTitle, LLC", "base": 50.00, "perThousand": 2.00, "minimum": 200.00, "note": "+$75 with reserves" }
+        ]
+      }
+    },
+    "itemizedFees": { "other": [] },
+    "bundlingNotes": "Explicitly excludes 'Miscellaneous Long Term or Other Escrow Servicing Fees' per the source document -- these are base contract-escrow-setup rates only, not the full servicing cost.",
+    "transactionContext": "Long-term/contract (installment) escrow servicing, not a standard one-time purchase closing. Recorded for completeness; not used in the standard purchase/refinance service-stack range comparison."
+  },
+  {
+    "provider": "First American Title Insurance Company (national-brand underwriter)",
+    "sourceUrl": "https://www.fste.com/wp-content/uploads/2024/05/Idaho_2024FATICORateSheet.pdf",
+    "asOf": "Effective April 11, 2024; rates apply to qualifying transactions closed on or after 2024-05-01",
+    "settlementFee": {
+      "note": "Title insurance PREMIUM schedule only, not a settlement/escrow fee schedule. Document states verbatim: 'This is not a complete Schedule of Fees. To see a complete Schedule of Fees, please contact your local First American Title office.'",
+      "ownersRateTable_sample": "$100,000 -> $688; $200,000 -> $1,028; $300,000 -> $1,368; $500,000 -> $1,878",
+      "lendersAdditionalRateTable_sample": "$100,000 -> $207; $200,000 -> $309; $300,000 -> $411; $500,000 -> $564"
+    },
+    "itemizedFees": { "other": [] },
+    "bundlingNotes": "Premium-only; settlement/escrow fee explicitly excluded and referred to local office quote.",
+    "transactionContext": "Owner's and Lender's title insurance premium, statewide, by liability amount."
+  },
+  {
+    "provider": "First American Title Insurance Company (republished by Pioneer Title Co., Boise, ID)",
+    "sourceUrl": "https://www.pioneertitleco.com/wp-content/uploads/2026/01/PTC-FATCo-Full-Standard-Rates.pdf",
+    "asOf": "Updated October 2024",
+    "settlementFee": {
+      "note": "Title insurance PREMIUM schedule only. Independently corroborates the FSTE-distributed First American rate sheet (same session, different distribution channel) -- identical figures.",
+      "ownersRateTable_sample": "$100,000 -> $688; $300,000 -> $1,368; $500,000 -> $1,878",
+      "lendersAdditionalRateTable_sample": "$100,000 -> $207; $300,000 -> $411; $500,000 -> $564"
+    },
+    "itemizedFees": { "other": [] },
+    "bundlingNotes": "Premium-only; identical to the FSTE-distributed First American schedule, corroborating consistency across distribution channels.",
+    "transactionContext": "Owner's and Lender's title insurance premium, statewide, by liability amount."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company (national-brand underwriter)",
+    "sourceUrl": "https://www.stewart.com/-/media/files/stewartdotcom/pdfs/states/idaho/ratemanualidahostewartmanual12082020effdateof012021.pdf",
+    "asOf": "Last updated 2020-12-08; effective 2021-01-20",
+    "settlementFee": {
+      "note": "Title insurance PREMIUM schedule only. Rate excludes 'settlement fee, trustee fee, attorney fee, surveying fee, inspection fee, document fee, closing fee, escrow fee or any other fee associated with escrow' (verbatim).",
+      "basicRateFormula": "$0-$10,000 flat $215.00 minimum; $10k-$30k +$6.60/1000; $30k-$50k +$6.05/1000; $50k-$100k +$3.85/1000; $100k-$300k +$3.30/1000; $300k-$1M +$2.47/1000.",
+      "calculatedFromFormula_sample": "$100,000 ~= $660.50; $300,000 ~= $1,320.50; $500,000 ~= $1,814.50 (calculated from the published per-thousand formula; the appendix total-price lookup table referenced in the document was not independently extractable)",
+      "cplFee": "$25.00 per transaction"
+    },
+    "itemizedFees": {
+      "cpl": "$25.00 per transaction",
+      "other": []
+    },
+    "bundlingNotes": "Premium-only; explicit exclusion list for settlement/escrow-adjacent charges, the most detailed exclusion language found among Idaho underwriter manuals.",
+    "transactionContext": "Owner's and Loan title insurance premium, statewide, by liability amount. Older vintage (2020/2021) than Stewart's 2026 Pioneer-republished schedule below."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company (republished by Pioneer Title Co., Boise, ID)",
+    "sourceUrl": "https://www.pioneertitleco.com/wp-content/uploads/2026/02/PTC-Stewart-Full-Standard-Rates-202602.pdf",
+    "asOf": "Updated February 2026",
+    "settlementFee": {
+      "note": "Title insurance PREMIUM schedule only. Materially newer and higher than Stewart's own 2020/2021 manual above -- now numerically identical to First American's current schedule, suggesting Idaho agency-issued premiums have converged across underwriters as of 2024-2026.",
+      "ownersRateTable_sample": "$100,000 -> $688; $300,000 -> $1,368; $500,000 -> $1,878"
+    },
+    "itemizedFees": { "other": [] },
+    "bundlingNotes": "Premium-only. Notable finding: this 2026 Stewart schedule is now identical to First American's schedule, up from Stewart's own 2021 computed figures (~$660.50 at $100k vs. $688 now) -- roughly a 4% premium increase for Stewart between the 2021 and 2026 filings at the $100k tier.",
+    "transactionContext": "Owner's title insurance premium, statewide, by liability amount."
+  },
+  {
+    "provider": "Old Republic National Title Insurance Company (republished by Pioneer Title Co., Boise, ID)",
+    "sourceUrl": "https://www.pioneertitleco.com/wp-content/uploads/2026/01/PTC-Old-Republic-Full-Standard-Rates.pdf",
+    "asOf": "Updated October 2024",
+    "settlementFee": {
+      "note": "Title insurance PREMIUM schedule only. Sits on a distinctly lower schedule than First American/current Stewart, closer to Stewart's older (2021) computed figures -- confirms real inter-underwriter premium variation persists in Idaho despite it being a filed-rate state.",
+      "ownersRateTable_sample": "$100,000 -> $661; $150,000 -> $826; $300,000 -> $1,321; $500,000 -> $1,815",
+      "lendersAdditionalRateTable_sample": "$100,000 -> $199; $150,000 -> $248; $300,000 -> $397; $500,000 -> $545"
+    },
+    "itemizedFees": { "other": [] },
+    "bundlingNotes": "Premium-only.",
+    "transactionContext": "Owner's and Lender's title insurance premium, statewide, by liability amount."
+  },
+  {
+    "provider": "WFG National Title Insurance Company (national-brand underwriter)",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/idaho/rates/WFG%20Idaho%20Rate%20Manual%20-%20HE2%20Effective%209-28-17.pdf",
+    "asOf": "Effective 2017-09-28 (oldest source in this set; no newer WFG Idaho filing was locatable)",
+    "settlementFee": {
+      "note": "Title insurance PREMIUM schedule only. Rate 'includes both the risk portion and the service or work portion, but does not include charges for surveys, escrow closing services, recording fees, or other moneys advanced on behalf of an applicant' (verbatim).",
+      "basicRateFormula": "$10,000 or under: minimum $200.00; $10k-$30k +$6.00/1000; $30k-$50k +$5.50/1000; $50k-$100k +$3.50/1000; $100k-$300k +$3.00/1000; $300k-$1M +$2.25/1000.",
+      "improvedResidentialLoanRate": "up to $100k = $200 + $5.00/1000; $100k-$300k = $700 + $3.00/1000 above $100k"
+    },
+    "itemizedFees": {
+      "cpl": "$25.00 per issuance",
+      "other": [
+        { "name": "Simultaneous issue fee (owner's + loan policy)", "amount": "$75.00" },
+        { "name": "Additional chain of title", "amount": "$100.00 ($50.00 if previously insured)" },
+        { "name": "Cancellation charge", "amount": "20% of basic schedule, minimum 50% of minimum charge" },
+        { "name": "Reissue rate, owner's policy within 2 years", "amount": "75% of basic schedule" },
+        { "name": "Reissue rate, loan policy within 2 years", "amount": "50% of basic schedule" }
+      ]
+    },
+    "bundlingNotes": "Premium-only; explicit exclusion of escrow closing services. Oldest-vintage document found for Idaho (2017); no newer WFG Idaho filing was locatable despite searching.",
+    "transactionContext": "Owner's and Loan title insurance premium plus endorsement/ancillary charge list, statewide, by liability amount."
+  }
+]
