@@ -96,3 +96,55 @@ already enabled at the account level.
    the UI rather than from CloudWatch. The failure mode that cost us time
    here was that *every* cause — bad from-address, IAM denial, sandbox
    restriction — presented identically as "Could not send email."
+
+---
+
+## 2026-09-22 — Trust & Safety follow-up: the "related account" question
+
+AWS replied to the appeal asking why we cannot send from a related account
+that already has increased sending limits. Investigation from this laptop:
+the related account is **711798022106** (Servist), which has SES production
+access **in eu-west-1 only** (50,000/day quota) — granted during early
+setup of that product and unused because Servist has not launched.
+This account (621852467690, BetterClose) and that one share an owner (Tom),
+which is what AWS's linkage detection saw. The honest, complete answer
+below. Paste it as the case reply in Support Center:
+
+### Paste-ready reply
+
+Thank you for the follow-up — happy to explain, and you identified the
+relationship correctly.
+
+The other account you found (711798022106) belongs to Servist, a separate
+software venture I own that has not launched yet. Its SES production
+access (in eu-west-1) was set up while preparing that product, and it is
+unused simply because the business itself is pre-launch. It was not
+abandoned and is not related to this request.
+
+This account (621852467690) belongs to BetterClose, a consumer title and
+settlement brand of First National Title & Escrow, a licensed title
+agency. BetterClose is launching now, and this request covers its
+transactional email only: passwordless sign-in links and closing/order
+notifications sent from the verified betterclose.co domain to people who
+are named parties to their own real-estate transaction.
+
+I keep these two businesses in separate AWS accounts deliberately, in
+line with AWS's multi-account guidance: separate billing, separate IAM
+and security boundaries, and separate sender reputations. Sending
+betterclose.co production mail from a dormant, unrelated company's
+account would entangle the reputation and credentials of two ventures
+that have nothing to do with each other — and the existing access is in
+eu-west-1, while all BetterClose infrastructure (Amplify, SES identity,
+DKIM) runs in us-east-1.
+
+Both ventures will send their own transactional mail: Servist will use
+its existing eu-west-1 access from its own domain when it launches, and
+BetterClose needs production access in us-east-1 for betterclose.co now.
+Neither account can appropriately send on the other's behalf — different
+company, different domain, different region, different infrastructure.
+
+The use-case details from my original request stand: low volume
+(hundreds of messages/day at launch), every recipient is the initiator
+of the message or a party to their transaction, account-level
+suppression is enabled, and there is no marketing or acquisition mail in
+this workload.
