@@ -9,6 +9,23 @@ the two sides together.
 
 ---
 
+## 0. Contract updates (2026-09-22)
+
+Two additions since the original spec — both backward-compatible:
+
+1. **`gardenFileNumber`** (string, unique) is now accepted by
+   `POST /api/orders/ingest` and is the **highest-priority dedupe key**: a
+   push carrying a file number that BC has seen lands on that same closing,
+   before any email/phone/property matching. Send it on every push.
+2. **`escrowOfficer`** (same block as Flow C: `{name, title, email, phone,
+   nmls, photoUrl}`) is now accepted directly by `POST /api/orders/ingest` —
+   Garden can open a file with the officer already assigned in ONE call.
+   Flow C's PATCH remains for later officer changes. Same null semantics:
+   omitted key untouched, null clears.
+3. Ingest now validates its body. Unknown keys are still accepted (the order
+   never fails on a typo) but are returned in `ignoredKeys` and logged —
+   watch for that field during integration testing.
+
 ## 1. Overview
 
 Two independent systems share files:

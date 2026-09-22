@@ -59,6 +59,15 @@ export default async function AdminClosingsPage({ searchParams }: { searchParams
       <div className="max-w-6xl mx-auto">
         <AdminHeader admin={admin} active="closings" />
 
+        <div className="flex justify-end mb-3">
+          <Link
+            href="/admin/closings/new"
+            className="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold px-4 py-2 rounded-lg"
+          >
+            + Open a file (email/phone order)
+          </Link>
+        </div>
+
         <form method="get" className="flex flex-wrap items-center gap-2 mb-3">
           <input
             type="text"

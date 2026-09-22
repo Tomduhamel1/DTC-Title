@@ -83,6 +83,7 @@ export async function getOrCreateClosingForUser(userId: string) {
  *
  * When a lender emails an order or the title software pushes one, this function
  * is called to find an existing closing/user to attach to. Match priority:
+ *   0. gardenFileNumber (exact — Garden's own order number)
  *   1. exact borrowerEmail
  *   2. last-10-digit phone
  *   3. normalized property address key
@@ -94,7 +95,18 @@ export async function resolveClosingForOrder(input: {
   borrowerEmail?: string | null
   borrowerPhone?: string | null
   propertyAddress?: string | null
+  gardenFileNumber?: string | null
 }) {
+  // Garden's file number is the authoritative join key when present — a
+  // re-push for the same Garden file must land on the same closing even if
+  // the borrower contact fields changed.
+  if (input.gardenFileNumber) {
+    const byFileNo = await prisma.closing.findUnique({
+      where: { gardenFileNumber: input.gardenFileNumber },
+    })
+    if (byFileNo) return { closing: byFileNo, matchedBy: 'garden_file_number' as const }
+  }
+
   if (input.borrowerEmail) {
     const byEmail = await prisma.closing.findFirst({
       where: { borrowerEmail: input.borrowerEmail.toLowerCase() },

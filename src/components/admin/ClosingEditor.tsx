@@ -39,6 +39,13 @@ interface ClosingShape {
   titleUnderwriter: string | null
   titlePolicyNo: string | null
   closingLocation: string | null
+  escrowOfficerName: string | null
+  escrowOfficerTitle: string | null
+  escrowOfficerEmail: string | null
+  escrowOfficerPhone: string | null
+  escrowOfficerNmls: string | null
+  escrowOfficerPhotoUrl: string | null
+  gardenFileNumber: string | null
   milestones: MilestoneShape[]
 }
 
@@ -159,6 +166,33 @@ export default function ClosingEditor({ closing }: { closing: ClosingShape }) {
         </Grid>
       </Section>
 
+      <Section title="Escrow officer (shows on every dashboard)">
+        <p className="text-xs text-gray-500 mb-3">
+          Normally pushed by Garden when the file is opened. Set or correct it
+          here when the automated handoff hasn&apos;t happened — the borrower
+          and their team see this card immediately.
+        </p>
+        <Grid>
+          <TextField label="Name" value={draft.escrowOfficerName} onChange={(v) => onField('escrowOfficerName', v)} />
+          <TextField label="Title" value={draft.escrowOfficerTitle} onChange={(v) => onField('escrowOfficerTitle', v)} />
+          <TextField label="Email" type="email" value={draft.escrowOfficerEmail} onChange={(v) => onField('escrowOfficerEmail', v)} />
+          <TextField label="Direct phone" type="tel" value={draft.escrowOfficerPhone} onChange={(v) => onField('escrowOfficerPhone', v)} />
+          <TextField label="NMLS" value={draft.escrowOfficerNmls} onChange={(v) => onField('escrowOfficerNmls', v)} />
+          <TextField label="Photo URL" value={draft.escrowOfficerPhotoUrl} onChange={(v) => onField('escrowOfficerPhotoUrl', v)} />
+        </Grid>
+      </Section>
+
+      <Section title="Garden link">
+        <Grid>
+          <TextField label="Garden file #" value={draft.gardenFileNumber} onChange={(v) => onField('gardenFileNumber', v)} />
+        </Grid>
+        <p className="text-xs text-gray-500 mt-2">
+          Garden&apos;s own order number — used to reconcile and dedupe pushes
+          from Garden. BetterClose&apos;s id for API callbacks is{' '}
+          <code className="font-mono">{closing.id}</code>.
+        </p>
+      </Section>
+
       <Section title="Closing status (overall)">
         <SelectField
           label="Status"
@@ -262,6 +296,9 @@ function initialDraft(c: ClosingShape): Record<string, string> {
     'lenderName','lenderCompany','lenderEmail','lenderPhone','lenderNmls',
     'agentName','agentCompany','agentEmail','agentPhone',
     'titleUnderwriter','titlePolicyNo','closingLocation',
+    'escrowOfficerName','escrowOfficerTitle','escrowOfficerEmail',
+    'escrowOfficerPhone','escrowOfficerNmls','escrowOfficerPhotoUrl',
+    'gardenFileNumber',
   ] as const
   for (const k of keys) {
     const v = (c as unknown as Record<string, unknown>)[k]

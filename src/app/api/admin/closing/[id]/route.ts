@@ -26,6 +26,13 @@ const ALLOWED_FIELDS = [
   'titleUnderwriter',
   'titlePolicyNo',
   'closingLocation',
+  'escrowOfficerName',
+  'escrowOfficerTitle',
+  'escrowOfficerEmail',
+  'escrowOfficerPhone',
+  'escrowOfficerNmls',
+  'escrowOfficerPhotoUrl',
+  'gardenFileNumber',
   'status',
 ] as const
 
