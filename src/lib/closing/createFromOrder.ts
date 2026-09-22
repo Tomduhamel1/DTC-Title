@@ -44,13 +44,15 @@ export interface CreateClosingFromOrderInput {
   // Where the order came from. Defaults to 'inbound_order' (the TPS/Garden
   // ingest); the public open-a-file form passes 'web_open_file'.
   source?: string
+  // Garden's own file/order number — dedupe/reconciliation key (unique).
+  gardenFileNumber?: string | number | null
 }
 
 export type CreateClosingFromOrderResult =
   | {
       matched: true
       closingId: string
-      matchedBy: 'email' | 'user_email' | 'phone' | 'property'
+      matchedBy: 'garden_file_number' | 'email' | 'user_email' | 'phone' | 'property'
       teammateLinked: boolean
     }
   | {
@@ -91,6 +93,12 @@ export async function createClosingFromOrder(
     borrowerEmail: typeof borrowerEmail === 'string' ? borrowerEmail.toLowerCase() : null,
     borrowerPhone: typeof borrowerPhone === 'string' ? borrowerPhone : null,
     propertyAddress: typeof propertyAddress === 'string' ? propertyAddress : null,
+    gardenFileNumber:
+      typeof input.gardenFileNumber === 'string' && input.gardenFileNumber
+        ? input.gardenFileNumber
+        : typeof input.gardenFileNumber === 'number'
+          ? String(input.gardenFileNumber)
+          : null,
   })
 
   const baseData = {
@@ -112,6 +120,12 @@ export async function createClosingFromOrder(
     lenderNmls: typeof lenderNmls === 'string' ? lenderNmls : null,
     status: 'active',
     source: typeof input.source === 'string' && input.source ? input.source : 'inbound_order',
+    gardenFileNumber:
+      typeof input.gardenFileNumber === 'string' && input.gardenFileNumber
+        ? input.gardenFileNumber
+        : typeof input.gardenFileNumber === 'number'
+          ? String(input.gardenFileNumber)
+          : null,
   }
 
   // Resolve the teammate email TPS told us placed this order, normalising

@@ -338,6 +338,11 @@ model Closing {
   status String  @default("pending")
   source String?
 
+  // Garden's own file/order number — the reconciliation key between the two
+  // systems. Set by Garden on ingest (or by ops in admin). Unique when
+  // present; our cuid `id` remains the canonical key for API callbacks.
+  gardenFileNumber String? @unique
+
   // Snapshot of the fee report at the moment this closing was marked `closed`.
   // Frozen so the final-summary email and any post-close dashboard view show
   // the actual savings the customer locked in, not whatever the live fee API

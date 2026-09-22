@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 import { prisma } from '@/lib/db'
+import { applyEscrowOfficer } from '@/lib/closing/officer'
 
 // PATCH /api/tps/closings/[id]/details
 //
@@ -64,14 +65,6 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
 
   const data: Record<string, string | null> = {}
   const eo = parsed.data.escrowOfficer
-  if (eo) {
-    if ('name' in eo) data.escrowOfficerName = eo.name ?? null
-    if ('title' in eo) data.escrowOfficerTitle = eo.title ?? null
-    if ('email' in eo) data.escrowOfficerEmail = eo.email ?? null
-    if ('phone' in eo) data.escrowOfficerPhone = eo.phone ?? null
-    if ('nmls' in eo) data.escrowOfficerNmls = eo.nmls ?? null
-    if ('photoUrl' in eo) data.escrowOfficerPhotoUrl = eo.photoUrl ?? null
-  }
   const tt = parsed.data.title
   if (tt) {
     if ('underwriter' in tt) data.titleUnderwriter = tt.underwriter ?? null
@@ -81,31 +74,17 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
     data.closingLocation = parsed.data.closingLocation ?? null
   }
 
-  if (Object.keys(data).length === 0) {
-    return NextResponse.json({ ok: true, updated: 0 })
+  // Officer writes go through the shared helper (same semantics: absent key
+  // untouched, null clears) so ingest-with-officer and this route can never
+  // drift apart.
+  const officerFieldsSet = eo ? await applyEscrowOfficer(closing.id, eo) : 0
+
+  if (Object.keys(data).length > 0) {
+    await prisma.closing.update({
+      where: { id: closing.id },
+      data,
+    })
   }
 
-  await prisma.closing.update({
-    where: { id: closing.id },
-    data,
-  })
-
-  // If TPS just assigned a new escrow officer with an email, that email is
-  // also a teammate of the file — surface them in the teammate index so
-  // they show up if they ever log in.
-  if (eo?.email) {
-    try {
-      const { upsertTeammateClosing } = await import('@/lib/teammate/match')
-      await upsertTeammateClosing({
-        closingId: closing.id,
-        email: eo.email,
-        role: 'unknown',
-      })
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error('[tps/details] escrow-officer teammate upsert failed', err)
-    }
-  }
-
-  return NextResponse.json({ ok: true, updated: Object.keys(data).length })
+  return NextResponse.json({ ok: true, updated: Object.keys(data).length + officerFieldsSet })
 }
