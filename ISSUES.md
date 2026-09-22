@@ -107,6 +107,13 @@ reports it as `AccessDenied` naming the *recipient* ARN — which reads like
 an IAM problem and is not one.
 - **Fix:** appeal the denied case. Draft justification ready in
   `docs/SES_PRODUCTION_ACCESS_APPEAL.md`.
+- **Status 2026-09-22:** appeal filed; Trust & Safety asked about a related
+  account (711798022106 — Servist, Tom's separate pre-launch venture with
+  unused eu-west-1 production access). Reply sent same day (paste-ready text
+  in the appeal doc, "2026-09-22" section) explaining the two ventures each
+  need their own sending. AWS says ~24h to respond; watch the case so it
+  doesn't auto-resolve. On approval: re-test sign-in with an unverified
+  outside address, then remove one-off verified identities.
 - **Interim:** `aws ses verify-email-identity --email-address <addr>` per
   person (they must click AWS's confirmation). Done for
   `steve@firstnte.com` 2026-08-17 — verified, and his sign-in is
