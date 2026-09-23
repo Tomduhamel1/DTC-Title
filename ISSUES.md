@@ -57,13 +57,20 @@ officer PATCH → officer in file). Remaining, in rough priority:
 - **SES sandbox still blocks sign-in for everyone unverified** — the /open
   welcome email and magic links silently don't deliver. The whole dashboard
   leg of onboarding is dead until the appeal (see the SES entry above).
-- **Garden-side push: built; live connection DEFERRED (Tom, 2026-09-22)** —
-  Garden's integration is implemented (outbox worker, diff sync, admin sync
-  page) and merging, but `BC_ORDER_INGEST_SECRET` is intentionally NOT set
-  on Render yet, so no pushes flow. To go live: paste the rotated secret
-  (`~/Desktop/bc-order-ingest-secret-for-render.txt` on Tom's laptop) into
-  Render, then run Garden's `backend/scripts/betterclose/acceptanceTest.js`.
-  Until then, ops uses /admin/closings/new (Mode B of the runbook).
+- **Garden-side push: SHIPPED DARK 2026-09-22** — merged to Garden
+  release/prod (their PR #843, commit 3d2c536), migration run on prod, both
+  services deployed. Worker confirmed idling cleanly with the secret unset
+  ("Not configured — idle" on Garden's Admin › BetterClose Sync page); new
+  Garden orders queue in its outbox from now on and drain automatically at
+  go-live. **Go-live (5 min, whenever Tom wants):** (1) set
+  `BC_ORDER_INGEST_SECRET` on Render from
+  `~/Desktop/bc-order-ingest-secret-for-render.txt` (then delete the file),
+  (2) restart the Garden backend (worker reads the secret at boot),
+  (3) run `backend/scripts/betterclose/acceptanceTest.js` and watch the
+  sync page's failed list during the first drain — the queued backlog
+  pushes all at once, which also fires welcome/invite emails for those
+  files (delivery still subject to the SES sandbox). Until then, ops uses
+  /admin/closings/new (Mode B of the runbook).
 - Spec history: handed off 2026-09-22 — self-contained
   implementation prompt in `docs/GARDEN_INTEGRATION_PROMPT.md` (Tom's Garden
   session is building it). BC side is DONE and prod-verified: ingest accepts
