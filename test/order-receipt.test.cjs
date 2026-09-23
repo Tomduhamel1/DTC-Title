@@ -104,7 +104,7 @@ test('real public route sends a receipt and separate ops handoff, not an opened-
   assert.equal(h.sent[0].to, 'borrower@example.invalid');
   assert.match(h.sent[0].subject, /received your title order request/);
   assert.equal(h.sent[1].to, 'orders@betterclose.co');
-  assert.match(h.sent[1].textBody, /Open the file in Garden/);
+  assert.match(h.sent[1].textBody, /Garden Create New Order/);
   assert.equal(logs[0].kind, 'web:open-file:ops');
   assert.ok(h.sent.every(m => !/^Title ordered/.test(m.subject)));
 });

@@ -8,8 +8,8 @@ Pro means broker, real estate agent, or lender.
 
 | Entry path | What exists first | How BetterClose identifies the file |
 | --- | --- | --- |
-| Pro emails operations; Garden opens a file | Garden order; Pro may have no BC account or property | Exact Garden file number creates/reuses the BC closing. A trusted Pro association may have no user ID. |
-| BetterClose website or Pro portal request | BC request/closing | The eventual Garden handoff must carry that explicit BC ID and bind the return to it. This automated same-file handoff is NOT implemented yet. |
+| Pro emails operations; Garden opens a file | Garden order; Pro may have no BC account or property | Stable Garden UUID plus exact file number creates/reuses the BC closing. A trusted Pro association may have no user ID. |
+| BetterClose website or Pro portal request | BC request/closing | Operations handoff carries its explicit request ID. Paired Garden draft adds review/confirmation before initial file creation. The v3 return reuses this record; contact guessing is never used. |
 
 No email/address/phone guessing is added. Existing admin-only legacy matching
 is unchanged; it is not the missing explicit two-system handoff. An email
@@ -93,10 +93,33 @@ required for private dashboard access.
 - **At-least-once, not exactly-once:** provider acceptance followed by a process
   crash before recording success can still resend on recovery.
 
+## Explicit binding added in this draft
+
+`POST /api/orders/ingest` accepts `gardenOrderId` and optional
+`betterCloseRequestId`. Both IDs and the file number are acknowledged by v3.
+The request ID is an existing Closing.id, not a new order number paradigm.
+Missing requests or identities resolving to different rows refuse atomically.
+Nonblank conflicting property/contact/amount/date fields still refuse; identity
+confirmation does not authorize overwriting them. Owner, quote, permission,
+milestones and Pro memberships are preserved. Linking itself sends no email.
+
+Stable UUID/file binding is unique and immutable, including under concurrent
+admin writes; its time/source are recorded. The Garden draft records the
+selecting operator/time. Existing unbound v2 records can adopt v3 identity once;
+v2 cannot later alter a bound record. Receiver must deploy before the sender.
+Neither migration backfills records or links by email, address or phone.
+
+The paired Garden UI selects the request **before** the initial order insert,
+avoiding a worker race that a post-save linking button would introduce. It
+does not create Garden files unattended or merge existing duplicates. Public
+form Pro roles remain untrusted until Garden ordering-contact confirmation;
+merely selecting their request does not silently grant Pro permissions.
+
 ## Not finished / not authorized by this draft
 
-1. Automated BetterClose -> Garden request handoff and validated explicit-ID
-   return binding. BC-first must not be enabled assuming contacts will correlate.
+1. Unattended BetterClose -> Garden file creation and repairs/merges for files
+   already created independently. File opening remains an explicit staff action;
+   the request-link implementation requires the paired Garden draft release.
 2. Actual EO email identities, mailbox ownership, and controlled reply verification.
 3. General Pro request receipts and durable retries for existing web receipts,
    invitations, and internal operations handoff messages.
@@ -117,5 +140,5 @@ code's permission checks.
 Do not activate broad syncing until explicit-ID handoff (for BC-first), verified
 EO routes/photo coverage, recipient access, retry monitoring and historical
 first-sync behavior have passed the agreed acceptance test. No live customers,
-secrets, production DB writes, mailbox provisioning or Garden code changes were
-used for the local tests.
+secrets, production DB writes or mailbox provisioning were used for the local
+tests. Paired Garden code changes are isolated in their own draft/worktree.

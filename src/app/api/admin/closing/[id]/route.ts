@@ -47,6 +47,12 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
   if (!closing) return NextResponse.json({ error: 'not found' }, { status: 404 })
 
   const fields = body as Record<string, unknown>
+  if (['gardenOrderId', 'gardenLinkedAt', 'gardenLinkSource'].some(key => key in fields)) {
+    return NextResponse.json({ error: 'garden_binding_managed_by_integration' }, { status: 400 })
+  }
+  if (closing.gardenOrderId && 'gardenFileNumber' in fields && fields.gardenFileNumber !== closing.gardenFileNumber) {
+    return NextResponse.json({ error: 'garden_binding_cannot_be_reassigned' }, { status: 409 })
+  }
   const data: Record<string, unknown> = {}
   for (const key of ALLOWED_FIELDS) {
     if (key in fields) data[key] = fields[key]

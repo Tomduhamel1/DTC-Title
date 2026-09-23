@@ -66,7 +66,7 @@ export async function sendBrokerConversionOpsEmail(
     : null
   const matchedLine = d.matched
     ? 'Borrower matched an existing BetterClose account/closing.'
-    : 'A new borrower record was created (orphan branch); borrower was sent a welcome email.'
+    : 'A new BetterClose request was created. Automatic borrower file emails are off by default.'
 
   // Derived order summary fields.
   const txnLabel = d.transactionType
@@ -112,10 +112,11 @@ export async function sendBrokerConversionOpsEmail(
   <div style="max-width:600px;margin:0 auto;background:#fff;border-radius:16px;padding:32px;border:1px solid #e2e8f0;line-height:1.6;font-size:15px;">
     <div style="font-size:11px;font-weight:700;letter-spacing:0.2em;color:#0f172a;margin-bottom:16px;">BETTERCLOSE · BROKER ORDER HANDOFF</div>
     <h1 style="font-size:22px;font-weight:800;margin:0 0 8px 0;">New title order from a broker conversion</h1>
-    <p style="margin:0 0 20px 0;color:#b45309;font-weight:700;">Garden linkage is not automated — ops must open and handle this file manually.</p>
+    <p style="margin:0 0 20px 0;color:#b45309;font-weight:700;">Operations must open the file in Garden. Review and confirm the BetterClose request ID in Create New Order before saving.</p>
 
     <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;color:#64748b;margin:18px 0 6px;">TRANSACTION</div>
     <table style="font-size:14px;border-collapse:collapse;">
+      ${row('BetterClose request ID', d.closingId)}
       ${row('Type', txnLabel)}
       ${row(amountLabel, amountUsd)}
     </table>
@@ -155,7 +156,7 @@ export async function sendBrokerConversionOpsEmail(
 
     <hr style="border:none;border-top:1px solid #e2e8f0;margin:24px 0;">
     <p style="font-size:12px;color:#94a3b8;">
-      This is a temporary ops handoff until Garden push exists. Manual handling is still required. Reply to this email if anything looks wrong.
+      File creation remains an operations task. If Garden already has the file, review its existing link instead of creating a duplicate.
     </p>
   </div>
 </body>
@@ -163,7 +164,8 @@ export async function sendBrokerConversionOpsEmail(
 
   const textLines = [
     'New title order from a broker conversion.',
-    'GARDEN LINKAGE IS NOT AUTOMATED — ops must open and handle this file manually.',
+    'Operations must open the file in Garden. Review and confirm the BetterClose request ID in Create New Order before saving.',
+    `BetterClose request ID: ${d.closingId}`,
     '',
     'TRANSACTION',
     txnLabel ? `  Type: ${txnLabel}` : null,
@@ -196,7 +198,7 @@ export async function sendBrokerConversionOpsEmail(
     matchedLine,
     `Converted at ${d.convertedAt.toISOString()}.`,
     '',
-    'This is a temporary ops handoff until Garden push exists. Manual handling is still required.',
+    'File creation remains an operations task. If Garden already has the file, review its existing link instead of creating a duplicate.',
   ].filter((l) => l !== null)
   const textBody = textLines.join('\n')
 

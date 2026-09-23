@@ -23,7 +23,6 @@ export async function GET(_req: Request, { params }: { params: { id: string } })
       milestones: true,
       user: { select: { id: true, name: true, email: true, phone: true } },
       teammates: {
-        where: { userId: { not: null } },
         select: { matchedEmail: true, role: true, muted: true },
       },
     },
@@ -48,6 +47,10 @@ export async function GET(_req: Request, { params }: { params: { id: string } })
     ok: true,
     closing: {
       id: closing.id,
+      gardenFileNumber: closing.gardenFileNumber,
+      gardenOrderId: closing.gardenOrderId,
+      gardenLinkedAt: closing.gardenLinkedAt,
+      gardenLinkSource: closing.gardenLinkSource,
       status: closing.status,
       source: closing.source,
       createdAt: closing.createdAt,

@@ -78,6 +78,9 @@ export async function applyMilestoneTransition(
         status, completedAt: status === 'done' ? m.completedAt || new Date() : null,
         ...(status === 'done' && !m.deliveryPreparedAt ? { deliveryPreparedAt: new Date() } : {}),
       } })
+      if (kind === 'title_ordered' && status === 'done' && c.status === 'pending') {
+        await tx.closing.update({ where: { id: closingId }, data: { status: 'active' } })
+      }
       if (kind === 'closed' && status === 'done' && !c.closedAt) {
         await tx.closing.update({ where: { id: closingId }, data: { status: 'closed', closedAt: new Date(),
           ...(fees ? { snapshotFeeReport: fees as unknown as Prisma.InputJsonValue } : {}) } })

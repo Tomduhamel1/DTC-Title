@@ -7,12 +7,15 @@ import { ingestGardenOrder, IngestConflict, IngestPending } from '@/lib/closing/
  * Auth: shared secret in `Authorization: Bearer <ORDER_INGEST_SECRET>`.
  *
  * Flow:
- *   1. Resolve ONLY the exact Garden file number; contacts are not file IDs.
+ *   1. Resolve explicit BC request ID, Garden UUID and/or exact Garden file
+ *      number; conflicting identities refuse. Contacts are not file IDs.
  *   2. Fill blanks; reject conflicting nonblank fields without overwriting.
  *   3. Atomically commit the closing, officer and teammate association.
  *   4. Retire legacy opening emails. The milestone endpoint separately queues
  *      the permission-aware opening notification; ingest sends no email.
- * Contract v2 acknowledges applied state. Unknown keys fail before writes.
+ * Contract v3 acknowledges the stable Garden UUID and optional request ID.
+ * Legacy v2 remains accepted only for records not yet bound to a Garden UUID.
+ * Unknown keys fail before writes.
  */
 
 const Officer = z.object({
@@ -51,6 +54,8 @@ const Body = z.object({
   lenderContactEmail: email,
   orderingPartyEmail: email,
   gardenFileNumber: z.union([z.string().trim().min(1), z.number().finite()]).transform(String),
+  gardenOrderId: z.string().uuid().optional(),
+  betterCloseRequestId: z.string().trim().min(1).max(64).regex(/^[a-zA-Z0-9_-]+$/).optional(),
   source: z.string().optional(),
   escrowOfficer: Officer.optional(),
 })
@@ -87,6 +92,9 @@ export async function POST(req: Request) {
     )
   }
   if (ignoredKeys.length) return NextResponse.json({ error: 'unknown_fields', fields: ignoredKeys }, { status: 400 })
+  if (parsed.data.betterCloseRequestId && !parsed.data.gardenOrderId) {
+    return NextResponse.json({ error: 'garden_order_id_required' }, { status: 400 })
+  }
   try {
     return NextResponse.json(await ingestGardenOrder(parsed.data))
   } catch (err) {
