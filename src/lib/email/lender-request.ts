@@ -5,6 +5,7 @@
  */
 
 import { sendEmail } from '@/lib/aws/ses'
+import { emailButton, escapeEmailHtml as escapeHtml, renderEmail } from './layout'
 
 export interface LenderRequestEmailData {
   lenderEmail: string
@@ -43,32 +44,22 @@ function renderHtml(d: LenderRequestEmailData & { greeting: string; client: stri
     ? `<p style="border-left:3px solid #cbd5e1;padding:8px 12px;color:#475569;font-style:italic;background:#f8fafc;">"${escapeHtml(d.note)}"</p>`
     : ''
 
-  return `<!DOCTYPE html>
-<html>
-<body style="font-family:-apple-system,Segoe UI,Inter,sans-serif;background:#f8fafc;color:#0f172a;padding:32px 16px;">
-  <div style="max-width:560px;margin:0 auto;background:#fff;border-radius:16px;padding:36px 32px;border:1px solid #e2e8f0;line-height:1.6;font-size:15px;">
-    <div style="font-size:11px;font-weight:700;letter-spacing:0.2em;color:#0f172a;margin-bottom:24px;">BETTERCLOSE</div>
-    <p>${d.greeting}</p>
+  return renderEmail({
+    title: "Your client's closing",
+    contentHtml: `<p>${escapeHtml(d.greeting)}</p>
     <p><strong>${escapeHtml(d.client)} is using BetterClose for title and settlement on their upcoming closing</strong> and asked us to send you everything you need to place the order.</p>
     <p>BetterClose uses the same A-rated underwriters you already work with (First American, AmTrust, Westcor, Old Republic) and integrates with SmartFees, Encompass, Qualia, and ResWare. Same coverage, transparent flat-rate pricing.</p>
     ${savings}
     ${note}
-    <p style="margin:28px 0;">
-      <a href="${d.reviewUrl}" style="display:inline-block;background:#059669;color:#fff;text-decoration:none;padding:14px 28px;border-radius:8px;font-weight:700;">Get the order details →</a>
-    </p>
+    ${emailButton(d.reviewUrl, 'Get the order details →')}
     <p>If you have questions about the file, reply to this email — we'll get back to you in minutes, not days.</p>
     <p style="margin-top:28px;">
       Thanks,<br>
       The BetterClose Team<br>
       <span style="color:#94a3b8;font-style:italic;">On behalf of ${escapeHtml(d.client)}</span>
-    </p>
-    <hr style="border:none;border-top:1px solid #e2e8f0;margin:28px 0;">
-    <p style="font-size:12px;color:#94a3b8;font-style:italic;">
-      Sent at the request of ${escapeHtml(d.client)}${d.clientEmail ? ` (${d.clientEmail})` : ''}.
-    </p>
-  </div>
-</body>
-</html>`
+    </p>`,
+    footerHtml: `Sent at the request of ${escapeHtml(d.client)}${d.clientEmail ? ` (${escapeHtml(d.clientEmail)})` : ''}.`,
+  })
 }
 
 function renderText(d: LenderRequestEmailData & { greeting: string; client: string; reviewUrl: string }) {
@@ -92,13 +83,4 @@ On behalf of ${d.client}
 
 ---
 Sent at the request of ${d.client}${d.clientEmail ? ` (${d.clientEmail})` : ''}.`
-}
-
-function escapeHtml(s: string) {
-  return s
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;')
 }

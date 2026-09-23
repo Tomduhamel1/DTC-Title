@@ -5,6 +5,7 @@
 
 import { sendEmail } from '@/lib/aws/ses'
 import { MILESTONE_LABELS, MILESTONE_DESCRIPTIONS, type MilestoneKind } from '@/lib/closing'
+import { emailButton, emailMeta, escapeEmailHtml as escapeHtml, renderEmail } from './layout'
 
 const dryRun = () => process.env.AUTH_EMAIL_DRY_RUN === 'true'
 
@@ -45,25 +46,19 @@ export async function sendClosingUpdateEmail(d: ClosingUpdateEmailData): Promise
   const body = KIND_BODY[d.milestoneKind]
   const subject = `${MILESTONE_LABELS[d.milestoneKind]} · BetterClose`
   const propertyLine = d.propertyAddress
-    ? `<p style="color:#64748b;font-size:13px;margin-top:4px;">${escapeHtml(d.propertyAddress)}</p>`
+    ? emailMeta(d.propertyAddress)
     : ''
 
-  const html = `<!DOCTYPE html>
-<html><body style="font-family:-apple-system,Segoe UI,Inter,sans-serif;background:#f8fafc;color:#0f172a;padding:32px 16px;">
-  <div style="max-width:560px;margin:0 auto;background:#fff;border-radius:16px;padding:36px 32px;border:1px solid #e2e8f0;line-height:1.6;font-size:15px;">
-    <div style="font-size:11px;font-weight:700;letter-spacing:0.2em;color:#0f172a;margin-bottom:12px;">BETTERCLOSE</div>
-    <p>${greeting}</p>
-    <h1 style="font-size:26px;font-weight:900;color:#0f172a;margin:8px 0 4px;">${headline}</h1>
+  const html = renderEmail({
+    title: headline,
+    contentHtml: `<p>${escapeHtml(greeting)}</p>
     ${propertyLine}
     <p style="margin-top:18px;">${body}</p>
-    <p style="margin-top:14px;color:#64748b;font-size:13px;">${escapeHtml(MILESTONE_DESCRIPTIONS[d.milestoneKind])}</p>
-    <p style="margin:28px 0;">
-      <a href="${d.dashboardUrl}" style="display:inline-block;background:#059669;color:#fff;text-decoration:none;padding:12px 22px;border-radius:8px;font-weight:700;">View your closing →</a>
-    </p>
-    <p style="color:#64748b;font-size:13px;">Questions? Reply to this email — a real person will get back to you.</p>
-    <p style="margin-top:28px;">— The BetterClose Team</p>
-  </div>
-</body></html>`
+    ${emailMeta(MILESTONE_DESCRIPTIONS[d.milestoneKind])}
+    ${emailButton(d.dashboardUrl, 'View your closing →')}
+    <p style="margin-top:28px;">— The BetterClose Team</p>`,
+    footerHtml: 'Questions? Reply to this email — a real person will get back to you.',
+  })
 
   const text = `${greeting}
 
@@ -94,13 +89,4 @@ Questions? Reply to this email — a real person will get back to you.
     htmlBody: html,
     textBody: text,
   })
-}
-
-function escapeHtml(s: string) {
-  return s
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;')
 }

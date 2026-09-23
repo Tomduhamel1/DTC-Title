@@ -1,0 +1,312 @@
+{
+  "_baseline": "a5903757e21ae92f8816bef44cd89b63ebf18ab9; only expected changes: BetterClose brand and absent support phone placeholder",
+  "welcome": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "Your BetterClose dashboard is ready",
+    "textBody": "Hi Morgan,\n\nYour closing team just opened your title order with BetterClose for 123 Example Lane, Suite 2, Austin, TX. We've created a dashboard so you can track every step — loan locked, title ordered, title issued, and closed.\n\nOpen your dashboard: https://betterclose.example.invalid/welcome?email=recipient%40example.invalid\n\nOne-tap sign-in. No password to remember.\n\nWelcome,\nThe BetterClose Team\n\nQuestions? Reply to this email.",
+    "links": [
+      "https://betterclose.example.invalid/welcome?email=recipient%40example.invalid"
+    ]
+  },
+  "welcome-lender": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "Your BetterClose dashboard is ready",
+    "textBody": "Hi Morgan,\n\nYour lender from Example Mortgage just opened your title order with BetterClose for 123 Example Lane, Suite 2, Austin, TX. We've created a dashboard so you can track every step — loan locked, title ordered, title issued, and closed.\n\nOpen your dashboard: https://betterclose.example.invalid/welcome?email=recipient%40example.invalid\n\nOne-tap sign-in. No password to remember.\n\nWelcome,\nThe BetterClose Team\n\nQuestions? Reply to this email.",
+    "links": [
+      "https://betterclose.example.invalid/welcome?email=recipient%40example.invalid"
+    ]
+  },
+  "welcome-broker": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "Your BetterClose dashboard is ready",
+    "textBody": "Hi Morgan,\n\nYour broker just opened your title order with BetterClose for 123 Example Lane, Suite 2, Austin, TX. We've created a dashboard so you can track every step — loan locked, title ordered, title issued, and closed.\n\nOpen your dashboard: https://betterclose.example.invalid/welcome?email=recipient%40example.invalid\n\nOne-tap sign-in. No password to remember.\n\nWelcome,\nThe BetterClose Team\n\nQuestions? Reply to this email.",
+    "links": [
+      "https://betterclose.example.invalid/welcome?email=recipient%40example.invalid"
+    ]
+  },
+  "welcome-realtor": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "Your BetterClose dashboard is ready",
+    "textBody": "Hi Morgan,\n\nYour real estate agent just opened your title order with BetterClose for 123 Example Lane, Suite 2, Austin, TX. We've created a dashboard so you can track every step — loan locked, title ordered, title issued, and closed.\n\nOpen your dashboard: https://betterclose.example.invalid/welcome?email=recipient%40example.invalid\n\nOne-tap sign-in. No password to remember.\n\nWelcome,\nThe BetterClose Team\n\nQuestions? Reply to this email.",
+    "links": [
+      "https://betterclose.example.invalid/welcome?email=recipient%40example.invalid"
+    ]
+  },
+  "welcome-unknown": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "Your BetterClose dashboard is ready",
+    "textBody": "Hi Morgan,\n\nYour closing team just opened your title order with BetterClose for 123 Example Lane, Suite 2, Austin, TX. We've created a dashboard so you can track every step — loan locked, title ordered, title issued, and closed.\n\nOpen your dashboard: https://betterclose.example.invalid/welcome?email=recipient%40example.invalid\n\nOne-tap sign-in. No password to remember.\n\nWelcome,\nThe BetterClose Team\n\nQuestions? Reply to this email.",
+    "links": [
+      "https://betterclose.example.invalid/welcome?email=recipient%40example.invalid"
+    ]
+  },
+  "welcome-minimal": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "Your BetterClose dashboard is ready",
+    "textBody": "Hi,\n\nYour closing team just opened your title order with BetterClose. We've created a dashboard so you can track every step — loan locked, title ordered, title issued, and closed.\n\nOpen your dashboard: https://betterclose.example.invalid/welcome?email=recipient%40example.invalid\n\nOne-tap sign-in. No password to remember.\n\nWelcome,\nThe BetterClose Team\n\nQuestions? Reply to this email.",
+    "links": [
+      "https://betterclose.example.invalid/welcome?email=recipient%40example.invalid"
+    ]
+  },
+  "borrower-loan_locked": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "Loan locked · BetterClose",
+    "textBody": "Hi Morgan,\n\nYour loan is locked.\n123 Example Lane, Suite 2, Austin, TX\n\nYour lender finalized your interest rate. From here, we'll wait for the title order to come through and then start your search.\n\nYour lender finalizes your interest rate.\n\nView your closing: https://betterclose.example.invalid/dashboard?file=synthetic&source=email\n\nQuestions? Reply to this email — a real person will get back to you.\n\n— The BetterClose Team",
+    "links": [
+      "https://betterclose.example.invalid/dashboard?file=synthetic&source=email"
+    ]
+  },
+  "borrower-title_ordered": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "Title ordered · BetterClose",
+    "textBody": "Hi Morgan,\n\nYour title order is in.\n123 Example Lane, Suite 2, Austin, TX\n\nYour closing team opened your title order with BetterClose. We're starting on it now — most searches finish within a few business days.\n\nYour closing team opened your title order with BetterClose.\n\nView your closing: https://betterclose.example.invalid/dashboard?file=synthetic&source=email\n\nQuestions? Reply to this email — a real person will get back to you.\n\n— The BetterClose Team",
+    "links": [
+      "https://betterclose.example.invalid/dashboard?file=synthetic&source=email"
+    ]
+  },
+  "borrower-title_search": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "Title search complete · BetterClose",
+    "textBody": "Hi Morgan,\n\nTitle search is complete.\n123 Example Lane, Suite 2, Austin, TX\n\nWe've completed the title search and confirmed clean title — no liens, no surprises. Next up: issuing the policy.\n\nWe confirm clean title — no liens, no surprises.\n\nView your closing: https://betterclose.example.invalid/dashboard?file=synthetic&source=email\n\nQuestions? Reply to this email — a real person will get back to you.\n\n— The BetterClose Team",
+    "links": [
+      "https://betterclose.example.invalid/dashboard?file=synthetic&source=email"
+    ]
+  },
+  "borrower-title_issued": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "Title issued · BetterClose",
+    "textBody": "Hi Morgan,\n\nYour title insurance is issued.\n123 Example Lane, Suite 2, Austin, TX\n\nYour title insurance policy has been issued by an A-rated underwriter. You are protected. The last step is closing day itself.\n\nTitle insurance is issued by an A-rated underwriter.\n\nView your closing: https://betterclose.example.invalid/dashboard?file=synthetic&source=email\n\nQuestions? Reply to this email — a real person will get back to you.\n\n— The BetterClose Team",
+    "links": [
+      "https://betterclose.example.invalid/dashboard?file=synthetic&source=email"
+    ]
+  },
+  "borrower-closed": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "Closed · BetterClose",
+    "textBody": "Hi Morgan,\n\nYou're closed!\n123 Example Lane, Suite 2, Austin, TX\n\nFunds have been disbursed and the deed is recorded. Welcome home — or, if you're refinancing, congrats on the new loan.\n\nFunds disbursed. Keys handed over. Done.\n\nView your closing: https://betterclose.example.invalid/dashboard?file=synthetic&source=email\n\nQuestions? Reply to this email — a real person will get back to you.\n\n— The BetterClose Team",
+    "links": [
+      "https://betterclose.example.invalid/dashboard?file=synthetic&source=email"
+    ]
+  },
+  "teammate-lender": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "Title ordered · 123 Example Lane, Suite 2, Austin, TX",
+    "textBody": "Hi Alex,\n\nTitle order opened.\nMorgan Example · 123 Example Lane, Suite 2, Austin, TX\n\nBetterClose has the order and the title search is underway. Most searches finish within a few business days.\n\nOpen file: https://betterclose.example.invalid/teammate/dashboard/synthetic?file=synthetic&source=email\n\nQuestions? Reply to this email — a real person will get back to you.\n\n— The BetterClose Team",
+    "links": [
+      "https://betterclose.example.invalid/teammate/dashboard/synthetic?file=synthetic&source=email"
+    ]
+  },
+  "invite-lender": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "You're on a BetterClose file · 123 Example Lane, Suite 2, Austin, TX",
+    "textBody": "Hi,\n\nYou've been listed as the lender on a BetterClose closing file for Morgan Example for 123 Example Lane, Suite 2, Austin, TX.\n\nSign in with this email to see milestones in real time, share documents, and stay in sync with the rest of the team.\n\nOpen the file: https://betterclose.example.invalid/login?callbackUrl=%2Fteammate%2Fdashboard%2Fsynthetic%2Ffile\n\nOne-tap sign-in. No password to remember.\n\n— The BetterClose Team\n\nGot this by mistake? You can ignore it — no account will be created unless you sign in.",
+    "links": [
+      "https://betterclose.example.invalid/login?callbackUrl=%2Fteammate%2Fdashboard%2Fsynthetic%2Ffile"
+    ]
+  },
+  "teammate-broker": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "Title ordered · 123 Example Lane, Suite 2, Austin, TX",
+    "textBody": "Hi Alex,\n\nTitle order opened.\nMorgan Example · 123 Example Lane, Suite 2, Austin, TX\n\nBetterClose has the order and the title search is underway. Most searches finish within a few business days.\n\nOpen file: https://betterclose.example.invalid/teammate/dashboard/synthetic?file=synthetic&source=email\n\nQuestions? Reply to this email — a real person will get back to you.\n\n— The BetterClose Team",
+    "links": [
+      "https://betterclose.example.invalid/teammate/dashboard/synthetic?file=synthetic&source=email"
+    ]
+  },
+  "invite-broker": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "You're on a BetterClose file · 123 Example Lane, Suite 2, Austin, TX",
+    "textBody": "Hi,\n\nYou've been listed as the broker on a BetterClose closing file for Morgan Example for 123 Example Lane, Suite 2, Austin, TX.\n\nSign in with this email to see milestones in real time, share documents, and stay in sync with the rest of the team.\n\nOpen the file: https://betterclose.example.invalid/login?callbackUrl=%2Fteammate%2Fdashboard%2Fsynthetic%2Ffile\n\nOne-tap sign-in. No password to remember.\n\n— The BetterClose Team\n\nGot this by mistake? You can ignore it — no account will be created unless you sign in.",
+    "links": [
+      "https://betterclose.example.invalid/login?callbackUrl=%2Fteammate%2Fdashboard%2Fsynthetic%2Ffile"
+    ]
+  },
+  "teammate-realtor": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "Title ordered · 123 Example Lane, Suite 2, Austin, TX",
+    "textBody": "Hi Alex,\n\nTitle order opened.\nMorgan Example · 123 Example Lane, Suite 2, Austin, TX\n\nBetterClose has the order and the title search is underway. Most searches finish within a few business days.\n\nOpen file: https://betterclose.example.invalid/teammate/dashboard/synthetic?file=synthetic&source=email\n\nQuestions? Reply to this email — a real person will get back to you.\n\n— The BetterClose Team",
+    "links": [
+      "https://betterclose.example.invalid/teammate/dashboard/synthetic?file=synthetic&source=email"
+    ]
+  },
+  "invite-realtor": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "You're on a BetterClose file · 123 Example Lane, Suite 2, Austin, TX",
+    "textBody": "Hi,\n\nYou've been listed as the real estate agent on a BetterClose closing file for Morgan Example for 123 Example Lane, Suite 2, Austin, TX.\n\nSign in with this email to see milestones in real time, share documents, and stay in sync with the rest of the team.\n\nOpen the file: https://betterclose.example.invalid/login?callbackUrl=%2Fteammate%2Fdashboard%2Fsynthetic%2Ffile\n\nOne-tap sign-in. No password to remember.\n\n— The BetterClose Team\n\nGot this by mistake? You can ignore it — no account will be created unless you sign in.",
+    "links": [
+      "https://betterclose.example.invalid/login?callbackUrl=%2Fteammate%2Fdashboard%2Fsynthetic%2Ffile"
+    ]
+  },
+  "teammate-unknown": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "Title ordered · 123 Example Lane, Suite 2, Austin, TX",
+    "textBody": "Hi Alex,\n\nTitle order opened.\nMorgan Example · 123 Example Lane, Suite 2, Austin, TX\n\nBetterClose has the order and the title search is underway. Most searches finish within a few business days.\n\nOpen file: https://betterclose.example.invalid/teammate/dashboard/synthetic?file=synthetic&source=email\n\nQuestions? Reply to this email — a real person will get back to you.\n\n— The BetterClose Team",
+    "links": [
+      "https://betterclose.example.invalid/teammate/dashboard/synthetic?file=synthetic&source=email"
+    ]
+  },
+  "invite-unknown": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "You're on a BetterClose file · 123 Example Lane, Suite 2, Austin, TX",
+    "textBody": "Hi,\n\nYou've been listed as the closing team on a BetterClose closing file for Morgan Example for 123 Example Lane, Suite 2, Austin, TX.\n\nSign in with this email to see milestones in real time, share documents, and stay in sync with the rest of the team.\n\nOpen the file: https://betterclose.example.invalid/login?callbackUrl=%2Fteammate%2Fdashboard%2Fsynthetic%2Ffile\n\nOne-tap sign-in. No password to remember.\n\n— The BetterClose Team\n\nGot this by mistake? You can ignore it — no account will be created unless you sign in.",
+    "links": [
+      "https://betterclose.example.invalid/login?callbackUrl=%2Fteammate%2Fdashboard%2Fsynthetic%2Ffile"
+    ]
+  },
+  "portal-verified": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "You're set up on BetterClose · Example Mortgage",
+    "textBody": "Hi Alex,\n\nYou've been added to Example Mortgage on BetterClose, with broker/LO portal access.\n\nSign in: https://betterclose.example.invalid/login?callbackUrl=%2Fteammate%2Fdashboard\n\nOnce you're in, you can:\n  - Create instant fee quotes for your borrowers.\n  - Share quotes with a public-view link and see when borrowers open them.\n  - Your company is verified, so you can convert approved quotes into BetterClose closings.\n  - Track every active file in your pipeline.\n\nTo create your first quote, sign in and choose Quotes -> New quote.\n\nOne-tap sign-in. No password to remember.\n\n— The BetterClose Team\n\nYou're receiving this because an admin added your email to a BetterClose broker company. If this is a surprise, reply to this email and we'll sort it out.",
+    "links": [
+      "https://betterclose.example.invalid/login?callbackUrl=%2Fteammate%2Fdashboard"
+    ]
+  },
+  "portal-unverified": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "You're set up on BetterClose · Example Mortgage",
+    "textBody": "Hi Alex,\n\nYou've been added to Example Mortgage on BetterClose, with broker/LO portal access.\n\nSign in: https://betterclose.example.invalid/login?callbackUrl=%2Fteammate%2Fdashboard\n\nOnce you're in, you can:\n  - Create instant fee quotes for your borrowers.\n  - Share quotes with a public-view link and see when borrowers open them.\n  - Create and send quotes now. Quote-to-closing conversion unlocks once BetterClose verifies your company.\n  - Track every active file in your pipeline.\n\nTo create your first quote, sign in and choose Quotes -> New quote.\n\nOne-tap sign-in. No password to remember.\n\n— The BetterClose Team\n\nYou're receiving this because an admin added your email to a BetterClose broker company. If this is a surprise, reply to this email and we'll sort it out.",
+    "links": [
+      "https://betterclose.example.invalid/login?callbackUrl=%2Fteammate%2Fdashboard"
+    ]
+  },
+  "portal-minimal": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "You're set up on BetterClose",
+    "textBody": "Hi,\n\nYou've been added to BetterClose with broker/LO portal access.\n\nSign in: https://betterclose.example.invalid/login?callbackUrl=%2Fteammate%2Fdashboard\n\nOnce you're in, you can:\n  - Create instant fee quotes for your borrowers.\n  - Share quotes with a public-view link and see when borrowers open them.\n  - Create and send quotes now. Quote-to-closing conversion unlocks once BetterClose verifies your company.\n  - Track every active file in your pipeline.\n\nTo create your first quote, sign in and choose Quotes -> New quote.\n\nOne-tap sign-in. No password to remember.\n\n— The BetterClose Team\n\nYou're receiving this because an admin added your email to a BetterClose broker company. If this is a surprise, reply to this email and we'll sort it out.",
+    "links": [
+      "https://betterclose.example.invalid/login?callbackUrl=%2Fteammate%2Fdashboard"
+    ]
+  },
+  "quote-savings": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "Your BetterClose title & settlement quote",
+    "textBody": "Your BetterClose quote\n\nHi Morgan,\n\nAlex Example at Example Mortgage prepared a BetterClose title & settlement quote for you showing estimated savings on your closing.\n\nProperty: 123 Example Lane, Suite 2, Austin, TX\n\nEstimated savings at closing: $400 (vs. the typical market range)\n\nView your quote: https://betterclose.example.invalid/quote/view/synthetic?token=abc%2B123&source=email\n\nThis is an estimate based on the property and loan details provided. Final fees are determined at closing and may vary; some items are set by state/county or the lender and are not negotiable. Title insurance underwritten by A-rated underwriters.\n\nQuestions? Reply to this email — a real person will get back to you.\n\n— The BetterClose Team",
+    "links": [
+      "https://betterclose.example.invalid/quote/view/synthetic?token=abc%2B123&source=email"
+    ]
+  },
+  "quote-no-fees": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "Your BetterClose title & settlement quote",
+    "textBody": "Your BetterClose quote\n\nHi Morgan,\n\nAlex Example at Example Mortgage prepared a BetterClose title & settlement quote for you showing estimated savings on your closing.\n\nProperty: 123 Example Lane, Suite 2, Austin, TX\n\nView your quote: https://betterclose.example.invalid/quote/view/synthetic?token=abc%2B123&source=email\n\nThis is an estimate based on the property and loan details provided. Final fees are determined at closing and may vary; some items are set by state/county or the lender and are not negotiable. Title insurance underwritten by A-rated underwriters.\n\nQuestions? Reply to this email — a real person will get back to you.\n\n— The BetterClose Team",
+    "links": [
+      "https://betterclose.example.invalid/quote/view/synthetic?token=abc%2B123&source=email"
+    ]
+  },
+  "quote-malformed": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "Your BetterClose title & settlement quote",
+    "textBody": "Your BetterClose quote\n\nHi Morgan,\n\nAlex Example at Example Mortgage prepared a BetterClose title & settlement quote for you showing estimated savings on your closing.\n\nProperty: 123 Example Lane, Suite 2, Austin, TX\n\nView your quote: https://betterclose.example.invalid/quote/view/synthetic?token=abc%2B123&source=email\n\nThis is an estimate based on the property and loan details provided. Final fees are determined at closing and may vary; some items are set by state/county or the lender and are not negotiable. Title insurance underwritten by A-rated underwriters.\n\nQuestions? Reply to this email — a real person will get back to you.\n\n— The BetterClose Team",
+    "links": [
+      "https://betterclose.example.invalid/quote/view/synthetic?token=abc%2B123&source=email"
+    ]
+  },
+  "quote-zero": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "Your BetterClose title & settlement quote",
+    "textBody": "Your BetterClose quote\n\nHi Morgan,\n\nAlex Example at Example Mortgage prepared a BetterClose title & settlement quote for you showing estimated savings on your closing.\n\nProperty: 123 Example Lane, Suite 2, Austin, TX\n\nView your quote: https://betterclose.example.invalid/quote/view/synthetic?token=abc%2B123&source=email\n\nThis is an estimate based on the property and loan details provided. Final fees are determined at closing and may vary; some items are set by state/county or the lender and are not negotiable. Title insurance underwritten by A-rated underwriters.\n\nQuestions? Reply to this email — a real person will get back to you.\n\n— The BetterClose Team",
+    "links": [
+      "https://betterclose.example.invalid/quote/view/synthetic?token=abc%2B123&source=email"
+    ]
+  },
+  "completed-savings": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "You're closed! · Your BetterClose savings",
+    "textBody": "Hi Morgan,\n\nYou're closed.\n123 Example Lane, Suite 2, Austin, TX\n\nFunds have been disbursed and the deed is recorded. If you bought, the keys are yours. If you refinanced, the new loan is in place. Either way, this part is done.\n\n\nSave at closing: $400\nSave over the loan: $910 (assumes you borrow less or get better loan pricing because your closing costs are lower; based on 6.5% over 30 years).\n\nA few things over the next few weeks:\n- Title insurance policy will arrive by mail from the underwriter.\n- Recorded deed will arrive from the county. File it safely.\n- Dashboard stays open: https://betterclose.example.invalid/dashboard?file=synthetic&source=email\n\nThank you for choosing BetterClose.\n\n— The BetterClose Team",
+    "links": [
+      "https://betterclose.example.invalid/dashboard?file=synthetic&source=email"
+    ]
+  },
+  "completed-no-fees": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "You're closed! · Your BetterClose savings",
+    "textBody": "Hi Morgan,\n\nYou're closed.\n123 Example Lane, Suite 2, Austin, TX\n\nFunds have been disbursed and the deed is recorded. If you bought, the keys are yours. If you refinanced, the new loan is in place. Either way, this part is done.\n\n\nA few things over the next few weeks:\n- Title insurance policy will arrive by mail from the underwriter.\n- Recorded deed will arrive from the county. File it safely.\n- Dashboard stays open: https://betterclose.example.invalid/dashboard?file=synthetic&source=email\n\nThank you for choosing BetterClose.\n\n— The BetterClose Team",
+    "links": [
+      "https://betterclose.example.invalid/dashboard?file=synthetic&source=email"
+    ]
+  },
+  "completed-zero": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "You're closed! · Your BetterClose savings",
+    "textBody": "Hi Morgan,\n\nYou're closed.\n123 Example Lane, Suite 2, Austin, TX\n\nFunds have been disbursed and the deed is recorded. If you bought, the keys are yours. If you refinanced, the new loan is in place. Either way, this part is done.\n\n\nSave at closing: $0\nSave over the loan: $0 (assumes you borrow less or get better loan pricing because your closing costs are lower; based on 6.5% over 30 years).\n\nA few things over the next few weeks:\n- Title insurance policy will arrive by mail from the underwriter.\n- Recorded deed will arrive from the county. File it safely.\n- Dashboard stays open: https://betterclose.example.invalid/dashboard?file=synthetic&source=email\n\nThank you for choosing BetterClose.\n\n— The BetterClose Team",
+    "links": [
+      "https://betterclose.example.invalid/dashboard?file=synthetic&source=email"
+    ]
+  },
+  "lender-request": {
+    "to": "recipient@example.invalid",
+    "cc": [
+      "borrower@example.invalid"
+    ],
+    "replyTo": "help@example.invalid",
+    "subject": "Morgan Example is using BetterClose for title & settlement on their closing",
+    "textBody": "Hi Alex,\n\nMorgan Example is using BetterClose for title and settlement on their upcoming closing and asked us to send you everything you need to place the order.\n\nBetterClose uses the same A-rated underwriters you already work with (First American, AmTrust, Westcor, Old Republic) and integrates with SmartFees, Encompass, Qualia, and ResWare. Same coverage, transparent flat-rate pricing.\n\nEstimated savings for Morgan Example on this closing: $1,000 over the life of the loan, on the same A-rated underwriters.\n\n\"Please review this example.\"\n\nGet the order details: https://betterclose.example.invalid/for-my-team?ref=synthetic-123\n\nIf you have questions about the file, reply to this email — we'll get back to you in minutes, not days.\n\nThanks,\nThe BetterClose Team\nOn behalf of Morgan Example\n\n---\nSent at the request of Morgan Example (borrower@example.invalid).",
+    "links": [
+      "https://betterclose.example.invalid/for-my-team?ref=synthetic-123"
+    ]
+  },
+  "lender-minimal": {
+    "to": "recipient@example.invalid",
+    "replyTo": "help@example.invalid",
+    "subject": "Your client is using BetterClose for title & settlement on their closing",
+    "textBody": "Hi there,\n\nYour client is using BetterClose for title and settlement on their upcoming closing and asked us to send you everything you need to place the order.\n\nBetterClose uses the same A-rated underwriters you already work with (First American, AmTrust, Westcor, Old Republic) and integrates with SmartFees, Encompass, Qualia, and ResWare. Same coverage, transparent flat-rate pricing.\n\nGet the order details: https://betterclose.example.invalid/for-my-team?ref=synthetic-123\n\nIf you have questions about the file, reply to this email — we'll get back to you in minutes, not days.\n\nThanks,\nThe BetterClose Team\nOn behalf of Your client\n\n---\nSent at the request of Your client.",
+    "links": [
+      "https://betterclose.example.invalid/for-my-team?ref=synthetic-123"
+    ]
+  },
+  "partner-referral": {
+    "to": [
+      "recipient@example.invalid"
+    ],
+    "from": "BetterClose <noreply@betterclose.co>",
+    "subject": "New Mortgage Referral - Morgan Example",
+    "textBody": "New Mortgage Referral - Morgan Example\nReferral ID: SYNTHETIC-REFERRAL\n\nHi Alex Example,\n\nYou have received a new mortgage referral from BetterClose.\n\nCONTACT INFORMATION\nName: Morgan Example\nEmail: borrower@example.invalid\nPhone: 212-555-0100\nPreferred Contact: Email\n\nLOAN PREFERENCES\nCredit Band: Good (670-739)\nProperty Type: Single Family\nOccupancy: Primary Residence\nTerm Preference: 30 Year Fixed\nLoan Amount: $320,000\nDown Payment: 20%\n\nADDITIONAL NOTES\nPlease contact by email.\n\n\nNEXT STEPS\nPlease reach out to this client within 24 hours according to their contact preference.\n\n---\nThis referral was generated by BetterClose's mortgage platform.",
+    "links": []
+  },
+  "partner-minimal": {
+    "to": [
+      "recipient@example.invalid"
+    ],
+    "from": "BetterClose <noreply@betterclose.co>",
+    "subject": "New Mortgage Referral - Morgan Example",
+    "textBody": "New Mortgage Referral - Morgan Example\nReferral ID: SYNTHETIC-REFERRAL\n\nHi Alex Example,\n\nYou have received a new mortgage referral from BetterClose.\n\nCONTACT INFORMATION\nName: Morgan Example\nEmail: borrower@example.invalid\nPhone: Not provided\nPreferred Contact: Email\n\nLOAN PREFERENCES\nCredit Band: Good (670-739)\nProperty Type: Single Family\nOccupancy: Primary Residence\nTerm Preference: 30 Year Fixed\nLoan Amount: Not specified\nDown Payment: 20%\n\n\n\nNEXT STEPS\nPlease reach out to this client within 24 hours according to their contact preference.\n\n---\nThis referral was generated by BetterClose's mortgage platform.",
+    "links": []
+  },
+  "sign-in": {
+    "to": "recipient@example.invalid",
+    "from": "noreply@betterclose.co",
+    "subject": "Sign in to BetterClose",
+    "textBody": "Sign in to BetterClose\n\nClick the link below to sign in:\nhttps://betterclose.example.invalid/api/auth/callback/email?token=synthetic%2Btoken&email=recipient%40example.invalid&callbackUrl=%2Fdashboard\n\nIf you didn't request this, you can safely ignore this email.\n— BetterClose",
+    "links": [
+      "https://betterclose.example.invalid/api/auth/callback/email?token=synthetic%2Btoken&email=recipient%40example.invalid&callbackUrl=%2Fdashboard"
+    ]
+  }
+}
