@@ -4,6 +4,7 @@ const { PrismaClient } = require('@prisma/client');
 const { createHarness } = require('./helpers/role-journey-harness.cjs');
 const fs = require('node:fs');
 const path = require('node:path');
+const { isIP } = require('node:net');
 const target = new URL(process.env.DATABASE_URL || 'http://missing');
 assert.ok(['127.0.0.1', 'localhost'].includes(target.hostname));
 assert.match(target.pathname, /^\/garden_ldi_betterclose_journeys(?:_[a-z0-9]+)*$/);
@@ -39,7 +40,13 @@ before(async () => {
   const [identity] = await prisma.$queryRawUnsafe('SELECT current_database() AS db, current_user AS role, inet_server_addr()::text AS host');
   assert.equal(identity.db, target.pathname.slice(1));
   assert.equal(identity.role, decodeURIComponent(target.username));
-  assert.ok(['127.0.0.1/32', '127.0.0.1', '::1/128', '::1'].includes(identity.host));
+  // The client still connects to localhost, but GitHub forwards that port to
+  // its disposable Docker service. Compare the server to docker inspect's
+  // exact service address, not an arbitrary private-network allowlist.
+  const containerHost = process.env.GITHUB_ACTIONS === 'true' ? process.env.BC_TEST_POSTGRES_ADDR : undefined;
+  const loopback = ['127.0.0.1/32', '127.0.0.1', '::1/128', '::1'].includes(identity.host);
+  assert.ok(loopback || (containerHost && isIP(containerHost) &&
+    identity.host.replace(/\/\d+$/, '') === containerHost), 'Unexpected test database server address');
   verifiedTarget = true;
 });
 beforeEach(() => { h.setActor(null); h.sent.length = 0; });

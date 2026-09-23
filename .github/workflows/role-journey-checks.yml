@@ -46,6 +46,13 @@ jobs:
           cache: npm
       - run: npm ci --ignore-scripts --no-audit --no-fund
       - run: npx prisma generate
+      - name: Identify this job's disposable PostgreSQL service
+        env:
+          POSTGRES_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          container_addr="$(docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$POSTGRES_CONTAINER_ID")"
+          test -n "$container_addr"
+          echo "BC_TEST_POSTGRES_ADDR=$container_addr" >> "$GITHUB_ENV"
       - run: npx prisma migrate deploy
       - name: Use runner Chrome, with no browser download
         run: |

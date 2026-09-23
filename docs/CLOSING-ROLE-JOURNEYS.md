@@ -50,6 +50,8 @@ including false success on refused sends and stuck submission on network errors.
 Real local scratch databases are restricted to localhost and `garden_ldi_*`;
 the new role suite verifies database name, role and server address before fixture
 writes. Fixtures use run-specific synthetic IDs and `example.invalid` recipients.
+In GitHub CI the server address is checked against `docker inspect` for that
+job's disposable PostgreSQL service, whose port is forwarded to localhost.
 Only those fixtures are removed afterward. Existing shared dependencies are reused
 without reinstallation or regeneration after verifying lock/schema equality.
 
