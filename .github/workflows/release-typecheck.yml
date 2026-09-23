@@ -22,6 +22,7 @@ jobs:
       - run: npm run test:email-design
   email-layout:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -29,5 +30,11 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci --ignore-scripts --no-audit --no-fund
-      - run: node node_modules/puppeteer/install.mjs
-      - run: npm run test:email-layout
+      # The hosted runner already includes Chrome. Avoid an unbounded download
+      # of Puppeteer's legacy bundled browser before any test can even start.
+      - name: Verify the runner browser and run every offline layout test
+        run: |
+          browser_path="$(command -v google-chrome)"
+          test -x "$browser_path"
+          "$browser_path" --version
+          PUPPETEER_EXECUTABLE_PATH="$browser_path" npm run test:email-layout
