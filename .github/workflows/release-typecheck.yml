@@ -19,3 +19,15 @@ jobs:
       - run: npx prisma generate
       - run: npm run typecheck
       - run: npm run test:release-types
+      - run: npm run test:email-design
+  email-layout:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: node node_modules/puppeteer/install.mjs
+      - run: npm run test:email-layout

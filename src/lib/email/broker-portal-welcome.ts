@@ -10,6 +10,7 @@
 // SES, matching teammate-invite.ts / broker-quote.ts / closing-update.ts.
 
 import { sendEmail } from '@/lib/aws/ses'
+import { emailButton, escapeEmailHtml as escapeHtml, renderEmail } from './layout'
 
 const dryRun = () => process.env.AUTH_EMAIL_DRY_RUN === 'true'
 
@@ -50,17 +51,12 @@ export async function sendBrokerPortalWelcomeEmail(
     ? 'Your company is verified, so you can convert approved quotes into BetterClose closings.'
     : 'Create and send quotes now. Quote-to-closing conversion unlocks once BetterClose verifies your company.'
 
-  const htmlBody = `<!DOCTYPE html>
-<html>
-<body style="font-family:-apple-system,Segoe UI,Inter,sans-serif;background:#f8fafc;color:#0f172a;padding:32px 16px;">
-  <div style="max-width:560px;margin:0 auto;background:#fff;border-radius:16px;padding:36px 32px;border:1px solid #e2e8f0;line-height:1.6;font-size:15px;">
-    <div style="font-size:11px;font-weight:700;letter-spacing:0.2em;color:#0f172a;margin-bottom:24px;">BETTERCLOSE · BROKER PORTAL</div>
-    <h1 style="font-size:24px;font-weight:800;margin:0 0 16px 0;">You're set up on the broker portal</h1>
-    <p>${greeting}</p>
+  const htmlBody = renderEmail({
+    title: "You're set up on the broker portal",
+    context: 'Broker portal',
+    contentHtml: `<p>${escapeHtml(greeting)}</p>
     <p>${introSentence}</p>
-    <p style="margin:28px 0;">
-      <a href="${signInUrl}" style="display:inline-block;background:#059669;color:#fff;text-decoration:none;padding:14px 28px;border-radius:8px;font-weight:700;">Sign in to broker dashboard →</a>
-    </p>
+    ${emailButton(signInUrl, 'Sign in to broker dashboard →')}
     <p style="margin-top:24px;">Once you're in, you can:</p>
     <ul style="padding-left:20px;margin:8px 0 0 0;">
       <li style="margin:6px 0;">Create instant fee quotes for your borrowers.</li>
@@ -72,14 +68,9 @@ export async function sendBrokerPortalWelcomeEmail(
       To create your first quote, sign in and choose <strong>Quotes → New quote</strong>.
     </p>
     <p style="color:#64748b;font-size:13px;">One-tap sign-in. No password to remember.</p>
-    <p style="margin-top:28px;">— The BetterClose Team</p>
-    <hr style="border:none;border-top:1px solid #e2e8f0;margin:28px 0;">
-    <p style="font-size:12px;color:#94a3b8;">
-      You're receiving this because an admin added your email to a BetterClose broker company. If this is a surprise, reply to this email and we'll sort it out.
-    </p>
-  </div>
-</body>
-</html>`
+    <p style="margin-top:28px;">— The BetterClose Team</p>`,
+    footerHtml: "You're receiving this because an admin added your email to a BetterClose broker company. If this is a surprise, reply to this email and we'll sort it out.",
+  })
 
   const textBody = `${greeting}
 
@@ -122,13 +113,4 @@ You're receiving this because an admin added your email to a BetterClose broker 
     htmlBody,
     textBody,
   })
-}
-
-function escapeHtml(s: string) {
-  return s
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;')
 }
