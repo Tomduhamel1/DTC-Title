@@ -138,8 +138,14 @@ an IAM problem and is not one.
   distinguishable error so the next outage is diagnosable without
   CloudWatch.
 
-### Production secrets need rotation (found 2026-08-17)
-The Amplify `main` branch environment was read in full during a support
+### Production secrets need rotation (found 2026-08-17, 1 of 5 done 2026-09-22)
+**ORDER_INGEST_SECRET rotated 2026-09-22** (before wiring it into Garden's
+Render env — verified: new value authenticates, old/bogus 401). Remaining
+four: `DATABASE_URL` (Neon password), `NEXTAUTH_SECRET` (signs out all
+sessions — quiet window), `APP_AWS_ACCESS_KEY_ID`/`APP_AWS_SECRET_ACCESS_KEY`
+(highest priority — standing credential usable outside the app).
+
+Original note: The Amplify `main` branch environment was read in full during a support
 session, putting live production secrets into a chat transcript:
 `DATABASE_URL` (Neon password), `NEXTAUTH_SECRET`, `ORDER_INGEST_SECRET`,
 and the `APP_AWS_ACCESS_KEY_ID`/`APP_AWS_SECRET_ACCESS_KEY` pair. Rotate
