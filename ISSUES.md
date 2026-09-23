@@ -57,7 +57,14 @@ officer PATCH → officer in file). Remaining, in rough priority:
 - **SES sandbox still blocks sign-in for everyone unverified** — the /open
   welcome email and magic links silently don't deliver. The whole dashboard
   leg of onboarding is dead until the appeal (see the SES entry above).
-- **Garden-side push: spec handed off 2026-09-22** — self-contained
+- **Garden-side push: built; live connection DEFERRED (Tom, 2026-09-22)** —
+  Garden's integration is implemented (outbox worker, diff sync, admin sync
+  page) and merging, but `BC_ORDER_INGEST_SECRET` is intentionally NOT set
+  on Render yet, so no pushes flow. To go live: paste the rotated secret
+  (`~/Desktop/bc-order-ingest-secret-for-render.txt` on Tom's laptop) into
+  Render, then run Garden's `backend/scripts/betterclose/acceptanceTest.js`.
+  Until then, ops uses /admin/closings/new (Mode B of the runbook).
+- Spec history: handed off 2026-09-22 — self-contained
   implementation prompt in `docs/GARDEN_INTEGRATION_PROMPT.md` (Tom's Garden
   session is building it). BC side is DONE and prod-verified: ingest accepts
   `gardenFileNumber` (unique, top-priority dedupe key) + inline
