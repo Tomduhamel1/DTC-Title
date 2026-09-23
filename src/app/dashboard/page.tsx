@@ -1,4 +1,5 @@
-import { redirect } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
+import Link from 'next/link'
 import NavigationCredible from '@/components/NavigationCredible'
 import FooterComprehensive from '@/components/FooterComprehensive'
 import { requireUser } from '@/lib/auth/session'
@@ -29,11 +30,20 @@ function formatSentDetail(invite: { createdAt: Date; channel: string; lenderEmai
 export default async function DashboardPage({
   searchParams,
 }: {
-  searchParams?: { claim?: string; variant?: string }
+  searchParams?: { claim?: string; variant?: string; closingId?: string | string[] }
 }) {
+  const requestedClosingId = searchParams?.closingId
+  if (requestedClosingId !== undefined &&
+      (typeof requestedClosingId !== 'string' || !requestedClosingId.trim())) notFound()
+
   const user = await requireUser()
   if (!user) {
-    redirect('/login?callbackUrl=/dashboard')
+    const query = new URLSearchParams()
+    if (typeof requestedClosingId === 'string') query.set('closingId', requestedClosingId)
+    if (typeof searchParams?.claim === 'string') query.set('claim', searchParams.claim)
+    if (searchParams?.variant === 'unified') query.set('variant', 'unified')
+    const callbackUrl = '/dashboard' + (query.size ? `?${query}` : '')
+    redirect(`/login?callbackUrl=${encodeURIComponent(callbackUrl)}`)
   }
 
   // Persona routing: a broker/agent/lender who lands here (nav button, bare
@@ -45,30 +55,42 @@ export default async function DashboardPage({
     prisma.brokerMembership.findFirst({ where: { userId: user.id }, select: { id: true } }),
     prisma.teammateClosing.count({ where: { userId: user.id } }),
   ])
-  if (!ownedClosing && (brokerMembership || teammateCount > 0)) {
+  const isProfessional = !!brokerMembership || teammateCount > 0
+  if (requestedClosingId === undefined && !ownedClosing && isProfessional) {
     redirect('/teammate/dashboard')
   }
 
-  const closing = await getOrCreateClosingForUser(user.id)
+  // A link selects a file; it never grants access or falls back to another file.
+  const closing = typeof requestedClosingId === 'string'
+    ? await prisma.closing.findFirst({
+      where: { id: requestedClosingId, userId: user.id },
+      include: { milestones: true },
+    })
+    : await getOrCreateClosingForUser(user.id)
+  if (!closing) notFound()
+
+  const ownedClosings = await prisma.closing.findMany({
+    where: { userId: user.id },
+    orderBy: [{ createdAt: 'desc' }, { id: 'desc' }],
+    select: { id: true, propertyAddress: true, gardenFileNumber: true, status: true },
+  })
 
   // If we arrived here from the post-share sign-up funnel, claim the invite
   // (anonymous when sent) onto this user + closing before reading state.
   const claimRefId = searchParams?.claim
-  if (claimRefId) {
-    const invite = await prisma.lenderRequest.findUnique({
-      where: { refId: claimRefId },
-      select: { id: true, userId: true },
+  if (typeof claimRefId === 'string' && claimRefId) {
+    // Do not move an invitation from another file when switching dashboards.
+    await prisma.lenderRequest.updateMany({
+      where: { refId: claimRefId, AND: [
+        { OR: [{ userId: null }, { userId: user.id }] },
+        { OR: [{ closingId: null }, { closingId: closing.id }] },
+      ] },
+      data: { userId: user.id, closingId: closing.id },
     })
-    if (invite && (!invite.userId || invite.userId === user.id)) {
-      await prisma.lenderRequest.update({
-        where: { id: invite.id },
-        data: { userId: user.id, closingId: closing.id },
-      })
-    }
   }
 
   const latestInvite = await prisma.lenderRequest.findFirst({
-    where: { userId: user.id },
+    where: { userId: user.id, closingId: closing.id },
     orderBy: { createdAt: 'desc' },
   })
 
@@ -113,6 +135,33 @@ export default async function DashboardPage({
       <div className="h-20" />
       <main className="bg-gray-100 min-h-[calc(100vh-5rem)] py-10 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+            <p className="text-sm font-semibold text-gray-700">Your borrower dashboard</p>
+            {isProfessional && (
+              <Link href="/teammate/dashboard" className="text-sm font-semibold text-emerald-700 underline">
+                View your professional closings
+              </Link>
+            )}
+          </div>
+          {ownedClosings.length > 1 && (
+            <form action="/dashboard" method="get" className="mb-6 rounded-xl border border-gray-200 bg-white p-4">
+              <label htmlFor="borrower-closing" className="mb-2 block text-sm font-semibold text-gray-700">Your closing</label>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <select id="borrower-closing" name="closingId" defaultValue={closing.id}
+                  className="min-w-0 flex-1 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm">
+                  {ownedClosings.map(item => (
+                    <option key={item.id} value={item.id}>
+                      {item.propertyAddress || 'Closing without property address'}
+                      {item.gardenFileNumber ? ` — File ${item.gardenFileNumber}` : ''}
+                      {item.status === 'closed' ? ' (Completed)' : ''}
+                    </option>
+                  ))}
+                </select>
+                {searchParams?.variant === 'unified' && <input type="hidden" name="variant" value="unified" />}
+                <button type="submit" className="rounded-lg bg-emerald-700 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-800">View closing</button>
+              </div>
+            </form>
+          )}
           {needsOnboarding ? (
             <OnboardingForm closingId={closing.id} userName={user.name} userEmail={user.email} />
           ) : searchParams?.variant === 'unified' ? (

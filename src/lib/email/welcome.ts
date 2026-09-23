@@ -12,6 +12,7 @@ export interface PlacingParty {
 
 export interface WelcomeEmailData {
   borrowerEmail: string
+  closingId?: string
   borrowerName?: string
   propertyAddress?: string
   baseUrl: string
@@ -39,7 +40,8 @@ function placingPartySentencePrefix(p?: PlacingParty): string {
 
 export async function sendWelcomeEmail(d: WelcomeEmailData): Promise<string> {
   const greeting = d.borrowerName ? `Hi ${d.borrowerName.split(' ')[0]},` : 'Hi,'
-  const claimUrl = `${d.baseUrl}/welcome?email=${encodeURIComponent(d.borrowerEmail)}`
+  const claimUrl = `${d.baseUrl}/welcome?email=${encodeURIComponent(d.borrowerEmail)}` +
+    (d.closingId ? `&closingId=${encodeURIComponent(d.closingId)}` : '')
   const property = d.propertyAddress ? ` for <strong>${escapeHtml(d.propertyAddress)}</strong>` : ''
   const propertyText = d.propertyAddress ? ` for ${d.propertyAddress}` : ''
   const placingPrefix = placingPartySentencePrefix(d.placingParty)

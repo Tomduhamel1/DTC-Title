@@ -113,7 +113,7 @@ export async function applyMilestoneTransition(
   if (goingToDone && !wasDone && !milestone.notifiedAt) {
     const recipient = closing.borrowerEmail || closing.user?.email
     const baseUrl = process.env.NEXTAUTH_URL || 'https://www.betterclose.co'
-    const dashboardUrl = `${baseUrl}/dashboard`
+    const dashboardUrl = `${baseUrl}/dashboard?closingId=${encodeURIComponent(closing.id)}`
     const dryRun = process.env.AUTH_EMAIL_DRY_RUN === 'true'
 
     if (recipient) {

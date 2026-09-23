@@ -1,0 +1,61 @@
+name: Closing role journeys
+on:
+  pull_request:
+    paths:
+      - 'src/app/dashboard/**'
+      - 'src/app/welcome/**'
+      - 'src/app/teammate/**'
+      - 'src/app/api/closing/**'
+      - 'src/app/api/teammate/**'
+      - 'src/components/dashboard/**'
+      - 'src/components/lender-request/TrackThisClosingPrompt.tsx'
+      - 'src/lib/auth/**'
+      - 'src/lib/closing*'
+      - 'src/lib/closing/**'
+      - 'src/lib/teammate/**'
+      - 'src/lib/email/**'
+      - 'prisma/**'
+      - 'package*.json'
+      - 'test/role-journeys*'
+      - 'test/sign-in-journeys*'
+      - 'test/helpers/role-journey-harness.cjs'
+      - '.github/workflows/role-journey-checks.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  journeys:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: garden_ldi_betterclose_journeys
+        ports: ['5432:5432']
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    env:
+      DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5432/garden_ldi_betterclose_journeys
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npx prisma generate
+      - name: Identify this job's disposable PostgreSQL service
+        env:
+          POSTGRES_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          container_addr="$(docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$POSTGRES_CONTAINER_ID")"
+          test -n "$container_addr"
+          echo "BC_TEST_POSTGRES_ADDR=$container_addr" >> "$GITHUB_ENV"
+      - run: npx prisma migrate deploy
+      - name: Use runner Chrome, with no browser download
+        run: |
+          chrome_path="$(command -v google-chrome)"
+          echo "PUPPETEER_EXECUTABLE_PATH=$chrome_path" >> "$GITHUB_ENV"
+      - run: node --test test/role-journeys.pg.test.cjs test/sign-in-journeys.browser.test.cjs
