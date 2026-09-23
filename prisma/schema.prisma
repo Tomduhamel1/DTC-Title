@@ -357,6 +357,7 @@ model Closing {
   lenderRequests LenderRequest[]
   teammates      TeammateClosing[]
   notifications  NotificationLog[]
+  ingestDeliveries IngestDelivery[]
   // Back-relation only — the FK lives on FeeQuote.convertedClosingId.
   // Adding this here is required by Prisma but adds NO column to Closing.
   feeQuote       FeeQuote?
@@ -384,6 +385,28 @@ model Milestone {
 
   @@unique([closingId, kind])
   @@index([closingId])
+}
+
+// Durable retry state for Garden ingestion notifications. Sending is at-least-
+// once: an SES success followed by a process crash before sentAt may resend.
+model IngestDelivery {
+  id String @id @default(cuid())
+  closingId String
+  closing Closing @relation(fields: [closingId], references: [id], onDelete: Cascade)
+  kind String
+  recipient String
+  payload Json
+  status String @default("pending")
+  leaseToken String?
+  leaseUntil DateTime?
+  sentAt DateTime?
+  attempts Int @default(0)
+  lastError String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([closingId, kind, recipient])
+  @@index([status, leaseUntil])
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

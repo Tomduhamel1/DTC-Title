@@ -1,26 +1,17 @@
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
-import { createClosingFromOrder } from '@/lib/closing/createFromOrder'
-import { applyEscrowOfficer } from '@/lib/closing/officer'
+import { ingestGardenOrder, IngestConflict, IngestPending } from '@/lib/closing/gardenIngest'
 
 /**
  * Accepts an inbound order from Garden/TPS (or manual ops tooling).
  * Auth: shared secret in `Authorization: Bearer <ORDER_INGEST_SECRET>`.
  *
  * Flow:
- *   1. Try to resolve to an existing closing (gardenFileNumber, then
- *      email/phone/property).
- *   2. Matched: attach + fill in any blanks (never clobbers existing values).
- *   3. Unmatched: create a new orphan Closing AND send a welcome email so the
- *      borrower can sign in and claim it. The placing teammate gets a
- *      dashboard-invite email keyed to their work address.
- *   4. If `escrowOfficer` is present, the officer is set in the same call —
- *      so Garden can open a file with the officer already assigned in one
- *      request instead of ingest + details PATCH.
- *
- * Validation is deliberately tolerant (unknown keys are ACCEPTED but reported
- * back in `ignoredKeys` and logged) — a typo'd field from Garden should be
- * loudly visible, not a silent no-op, but it should never fail the order.
+ *   1. Resolve ONLY the exact Garden file number; contacts are not file IDs.
+ *   2. Fill blanks; reject conflicting nonblank fields without overwriting.
+ *   3. Atomically commit the closing, officer, teammate and email intents.
+ *   4. Send pending notifications; return 503 until those intents complete.
+ * Contract v2 acknowledges applied state. Unknown keys fail before writes.
  */
 
 const Officer = z.object({
@@ -32,30 +23,33 @@ const Officer = z.object({
   photoUrl: z.string().url().nullable().optional(),
 })
 
-const str = z.union([z.string(), z.number()]).nullable().optional()
+const str = z.string().trim().nullable().optional()
+const email = z.string().trim().email().nullable().optional()
 const Body = z.object({
-  borrowerEmail: str,
+  borrowerEmail: email,
   borrowerName: str,
-  borrowerPhone: str,
+  borrowerPhone: z.string().trim().refine(v => !v || v.replace(/[^0-9]/g, '').length >= 10,
+    'Expected at least ten phone digits').nullable().optional(),
   propertyAddress: str,
   propertyCity: str,
   propertyState: str,
   propertyZip: str,
   propertyType: str,
-  closingDate: str,
-  salePrice: z.number().nullable().optional(),
-  loanAmount: z.number().nullable().optional(),
+  closingDate: z.string().refine(v => /^\d{4}-\d{2}-\d{2}$/.test(v) && Number(v.slice(0, 4)) > 0 && Number.isFinite(Date.parse(v)) &&
+    new Date(v).toISOString().slice(0, 10) === v, 'Expected a real YYYY-MM-DD date').nullable().optional(),
+  salePrice: z.number().finite().nullable().optional(),
+  loanAmount: z.number().finite().nullable().optional(),
   lenderName: str,
   lenderCompany: str,
-  lenderEmail: str,
+  lenderEmail: email,
   lenderPhone: str,
   lenderNmls: str,
-  teammateEmail: str,
+  teammateEmail: email,
   teammateRole: str,
-  placedByEmail: str,
-  lenderContactEmail: str,
-  orderingPartyEmail: str,
-  gardenFileNumber: str,
+  placedByEmail: email,
+  lenderContactEmail: email,
+  orderingPartyEmail: email,
+  gardenFileNumber: z.union([z.string().trim().min(1), z.number().finite()]).transform(String),
   source: z.string().optional(),
   escrowOfficer: Officer.optional(),
 })
@@ -79,7 +73,7 @@ export async function POST(req: Request) {
   const ignoredKeys = Object.keys(raw).filter((k) => !KNOWN_KEYS.has(k))
   if (ignoredKeys.length > 0) {
     // eslint-disable-next-line no-console
-    console.warn('[orders/ingest] unknown keys ignored:', ignoredKeys.join(', '))
+    console.warn('[orders/ingest] unknown keys rejected:', ignoredKeys.join(', '))
   }
 
   const parsed = Body.safeParse(
@@ -91,38 +85,16 @@ export async function POST(req: Request) {
       { status: 400 },
     )
   }
-  const { escrowOfficer, ...order } = parsed.data
-
-  const result = await createClosingFromOrder(order)
-
-  let officerFieldsSet = 0
-  if (escrowOfficer) {
-    try {
-      officerFieldsSet = await applyEscrowOfficer(result.closingId, escrowOfficer)
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error('[orders/ingest] escrow officer apply failed', err)
-    }
+  if (ignoredKeys.length) return NextResponse.json({ error: 'unknown_fields', fields: ignoredKeys }, { status: 400 })
+  try {
+    return NextResponse.json(await ingestGardenOrder(parsed.data))
+  } catch (err) {
+    if (err instanceof IngestConflict) return NextResponse.json({
+      ok: false, error: 'field_conflict', fields: err.fields,
+    }, { status: 409 })
+    // Includes serialization / unique-key races: retry the SAME file, never
+    // fall back to a different closing. Do not leak DB errors or contact data.
+    return NextResponse.json({ ok: false, error: err instanceof IngestPending
+      ? 'notification_pending' : 'ingest_incomplete' }, { status: 503 })
   }
-
-  if (result.matched) {
-    return NextResponse.json({
-      ok: true,
-      matchedBy: result.matchedBy,
-      closingId: result.closingId,
-      teammateLinked: result.teammateLinked,
-      officerFieldsSet,
-      ...(ignoredKeys.length ? { ignoredKeys } : {}),
-    })
-  }
-
-  return NextResponse.json({
-    ok: true,
-    matchedBy: null,
-    closingId: result.closingId,
-    welcomeEmailedTo: result.welcomeEmailedTo,
-    teammateLinked: result.teammateLinked,
-    officerFieldsSet,
-    ...(ignoredKeys.length ? { ignoredKeys } : {}),
-  })
 }
