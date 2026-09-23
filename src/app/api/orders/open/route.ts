@@ -8,10 +8,9 @@ import { sendOpenFileOpsEmail } from '@/lib/email/open-file-ops'
 
 // Public open-a-file endpoint behind the /open form. Any persona (borrower,
 // broker, realtor, lender) can place an order; the shared createClosingFromOrder
-// path gives it identical Closing+Milestone seeding, identity matching,
-// welcome-email, and TeammateClosing attribution to a Garden/TPS-ingested
-// order. Ops gets an email to open the file in Garden; Garden's details PATCH
-// then fills in the escrow officer on the dashboard.
+// path seeds a NEW Closing and its milestones, welcome email and teammates.
+// Contact details supplied publicly never select or grant access to an
+// existing file. Ops must explicitly correlate any duplicate submission.
 
 const Body = z
   .object({
@@ -111,7 +110,7 @@ export async function POST(req: NextRequest) {
     teammateEmail: isProfessional ? d.submitterEmail ?? null : null,
     teammateRole: isProfessional ? (d.role === 'lender' ? 'lender' : d.role) : null,
     source: 'web_open_file',
-  })
+  }, { matchExisting: false })
 
   const ops = await sendOpenFileOpsEmail({
     closingId: result.closingId,

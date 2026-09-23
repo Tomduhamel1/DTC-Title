@@ -95,6 +95,15 @@ officer PATCH → officer in file). Remaining, in rough priority:
   (tomduhamel+launchtest@gmail.com) and `88 Handoff Lane, Providence RI`
   (tomduhamel+gardentest@gmail.com, gardenFileNumber GDN-TEST-2026-0922).
 
+### Intake / invitation access boundaries — pending review/deployment (2026-09-23)
+The isolated `fix/public-intake-claim-access` patch separates public and broker
+intake from existing-file contact matching and checks verified recipient identity
+and existing ownership atomically for teammate invitation claims. It does not
+rewrite existing records or resolve historical memberships. See
+`docs/INTAKE-ACCESS-BOUNDARIES.md` for behavior, tests and release boundaries.
+This patch is NOT deployed. Keep rollout separate from code review; a full-app
+authorization audit and the other launch gates are not replaced by these tests.
+
 ### MACHINE: iCloud is evicting files inside the repo — disk 98% full (found 2026-09-14)
 Tom's laptop disk is at 98% (11 GiB free), so macOS "Optimize Mac Storage"
 is evicting iCloud-synced files under Documents — including **inside this

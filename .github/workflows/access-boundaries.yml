@@ -1,0 +1,31 @@
+name: Intake and invitation access
+on:
+  pull_request:
+    paths: ['src/lib/closing/**', 'src/lib/teammate/**', 'src/app/api/orders/**', 'src/app/api/admin/closings/**', 'src/app/api/broker/quotes/**', 'src/app/teammate/**', 'prisma/**', 'test/access-boundaries*', '.github/workflows/access-boundaries.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  access:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: garden_ldi_betterclose_access
+        ports: ['5432:5432']
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    env:
+      DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5432/garden_ldi_betterclose_access
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npx prisma generate
+      - run: npx prisma migrate deploy
+      - run: node --test test/access-boundaries.pg.test.cjs

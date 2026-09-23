@@ -9,7 +9,7 @@ import { logNotification } from '@/lib/notificationLog'
 //
 // Convert a saved FeeQuote into a real Closing. Reuses createClosingFromOrder
 // (PR 1) so the resulting Closing is shaped identically to one TPS would
-// create — same 5-milestone seeding, same identity-resolution rules, same
+// create — same 5-milestone seeding, but NO contact-based existing-file match,
 // welcome-email-on-orphan-branch, same TeammateClosing-upsert behavior.
 //
 // Eligibility (in order — each failure short-circuits before any write):
@@ -221,7 +221,7 @@ export async function POST(_req: Request, { params }: { params: { id: string } }
         // by the helper using the broker user's email.
         teammateEmail: ctx.email,
         teammateRole: 'broker',
-      })
+      }, { matchExisting: false })
 
       // Compare-and-set FeeQuote: use updateMany so the predicate
       // `convertedClosingId: null` can be expressed. count=0 means a

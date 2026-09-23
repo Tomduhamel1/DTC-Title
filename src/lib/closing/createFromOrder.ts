@@ -64,6 +64,9 @@ export type CreateClosingFromOrderResult =
 
 export async function createClosingFromOrder(
   input: CreateClosingFromOrderInput,
+  // Server-side policy, never part of the submitted order body. Public and
+  // broker intake cannot authorize access to an existing file by its contacts.
+  options: { matchExisting?: boolean } = {},
 ): Promise<CreateClosingFromOrderResult> {
   const {
     borrowerEmail,
@@ -89,17 +92,19 @@ export async function createClosingFromOrder(
     orderingPartyEmail,
   } = input
 
-  const match = await resolveClosingForOrder({
-    borrowerEmail: typeof borrowerEmail === 'string' ? borrowerEmail.toLowerCase() : null,
-    borrowerPhone: typeof borrowerPhone === 'string' ? borrowerPhone : null,
-    propertyAddress: typeof propertyAddress === 'string' ? propertyAddress : null,
-    gardenFileNumber:
-      typeof input.gardenFileNumber === 'string' && input.gardenFileNumber
-        ? input.gardenFileNumber
-        : typeof input.gardenFileNumber === 'number'
-          ? String(input.gardenFileNumber)
-          : null,
-  })
+  const match = options.matchExisting === false
+    ? { closing: null, matchedBy: null }
+    : await resolveClosingForOrder({
+      borrowerEmail: typeof borrowerEmail === 'string' ? borrowerEmail.toLowerCase() : null,
+      borrowerPhone: typeof borrowerPhone === 'string' ? borrowerPhone : null,
+      propertyAddress: typeof propertyAddress === 'string' ? propertyAddress : null,
+      gardenFileNumber:
+        typeof input.gardenFileNumber === 'string' && input.gardenFileNumber
+          ? input.gardenFileNumber
+          : typeof input.gardenFileNumber === 'number'
+            ? String(input.gardenFileNumber)
+            : null,
+    })
 
   const baseData = {
     propertyAddress: typeof propertyAddress === 'string' ? propertyAddress : null,
