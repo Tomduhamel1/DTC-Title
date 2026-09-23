@@ -7,7 +7,7 @@
     "build": "next build",
     "typecheck": "tsc --noEmit --incremental false",
     "test:release-types": "node --test test/release-types.test.cjs",
-    "test:email-design": "node --test test/email-design.test.cjs",
+    "test:email-design": "node --test test/email-design.test.cjs test/order-receipt.test.cjs",
     "test:email-layout": "node --test test/email-layout.test.cjs",
     "preview:email": "node scripts/preview-emails.cjs",
     "start": "next start -p 5273",

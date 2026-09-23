@@ -49,6 +49,18 @@ only.
 
 ## Open
 
+### Order receipt versus Garden file opening — correction prepared (2026-09-23)
+
+`fix/order-receipt-email-sequence` replaces the existing initial web/broker
+borrower welcome with clear request-received copy, and makes Garden/ops
+dashboard welcomes neutral. It does not add an extra email or assert a
+milestone. "Title ordered" remains a separate completed-milestone notification.
+This is not released or an integration activation. See
+`docs/ORDER-EMAIL-SEQUENCE.md` for exact recipients/triggers and outstanding
+handoff, delivery-retry, professional completion and historical-sync gaps.
+In particular, existing milestone delivery marks notified even after a caught
+failure, and excludes professionals at closing; those are not fixed here.
+
 ### Borrower file navigation and sign-in feedback — implemented, not released (2026-09-23)
 
 Branch `fix/closing-role-journeys` preserves completed borrower files, adds

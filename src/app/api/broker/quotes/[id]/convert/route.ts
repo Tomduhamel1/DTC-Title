@@ -221,7 +221,7 @@ export async function POST(_req: Request, { params }: { params: { id: string } }
         // by the helper using the broker user's email.
         teammateEmail: ctx.email,
         teammateRole: 'broker',
-      }, { matchExisting: false })
+      }, { matchExisting: false, welcomePurpose: 'request_received' })
 
       // Compare-and-set FeeQuote: use updateMany so the predicate
       // `convertedClosingId: null` can be expressed. count=0 means a

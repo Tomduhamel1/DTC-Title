@@ -110,7 +110,7 @@ export async function POST(req: NextRequest) {
     teammateEmail: isProfessional ? d.submitterEmail ?? null : null,
     teammateRole: isProfessional ? (d.role === 'lender' ? 'lender' : d.role) : null,
     source: 'web_open_file',
-  }, { matchExisting: false })
+  }, { matchExisting: false, welcomePurpose: 'request_received' })
 
   const ops = await sendOpenFileOpsEmail({
     closingId: result.closingId,

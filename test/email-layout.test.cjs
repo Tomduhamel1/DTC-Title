@@ -1,14 +1,14 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
-const { cases, capture } = require('./helpers/email-capture.cjs');
+const { cases, receiptCases, capture } = require('./helpers/email-capture.cjs');
 const { openEmailBrowser, offlinePage, layoutFacts } = require('./helpers/email-browser.cjs');
 
-test('all 34 real email variants have matching desktop/mobile chrome without overflow or external requests', async () => {
+test('all 40 real email variants have matching desktop/mobile chrome without overflow or external requests', async () => {
   const browser = await openEmailBrowser();
   try {
     const { page, requestCount } = await offlinePage(browser);
     let checked = 0;
-    for (const spec of cases) {
+    for (const spec of [...cases, ...receiptCases]) {
       const { sent } = await capture(spec);
       for (const width of [800, 375, 320]) {
         await page.setViewport({ width, height: 1000 });
@@ -32,7 +32,7 @@ test('all 34 real email variants have matching desktop/mobile chrome without ove
         checked++;
       }
     }
-    assert.equal(checked, 102);
+    assert.equal(checked, 120);
     assert.equal(requestCount(), 0);
   } finally { await browser.close(); }
 });
@@ -42,8 +42,8 @@ test('long contact fields stay readable at 320px even when an email client strip
   try {
     const { page, requestCount } = await offlinePage(browser);
     await page.setViewport({ width: 320, height: 1000 });
-    for (const id of ['welcome', 'teammate-realtor', 'portal-verified', 'partner-referral']) {
-      const spec = cases.find(s => s.id === id);
+    for (const id of ['welcome', 'receipt', 'teammate-realtor', 'portal-verified', 'partner-referral']) {
+      const spec = [...cases, ...receiptCases].find(s => s.id === id);
       const long = 'LongSyntheticName'.repeat(18);
       const data = { ...spec.data, propertyAddress: long, borrowerName: long, memberName: long, leadEmail: long + '@example.invalid', notes: long };
       const { sent } = await capture({ ...spec, data });

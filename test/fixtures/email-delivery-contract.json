@@ -4,7 +4,7 @@
     "to": "recipient@example.invalid",
     "replyTo": "help@example.invalid",
     "subject": "Your BetterClose dashboard is ready",
-    "textBody": "Hi Morgan,\n\nYour closing team just opened your title order with BetterClose for 123 Example Lane, Suite 2, Austin, TX. We've created a dashboard so you can track every step — loan locked, title ordered, title issued, and closed.\n\nOpen your dashboard: https://betterclose.example.invalid/welcome?email=recipient%40example.invalid\n\nOne-tap sign-in. No password to remember.\n\nWelcome,\nThe BetterClose Team\n\nQuestions? Reply to this email.",
+    "textBody": "Hi Morgan,\n\nYour closing team shared your title order details with BetterClose for 123 Example Lane, Suite 2, Austin, TX. Your dashboard is ready to follow updates from your closing team. A separate title-order update confirms when the file is opened.\n\nOpen your dashboard: https://betterclose.example.invalid/welcome?email=recipient%40example.invalid\n\nOne-tap sign-in. No password to remember.\n\nWelcome,\nThe BetterClose Team\n\nQuestions? Reply to this email.",
     "links": [
       "https://betterclose.example.invalid/welcome?email=recipient%40example.invalid"
     ]
@@ -13,7 +13,7 @@
     "to": "recipient@example.invalid",
     "replyTo": "help@example.invalid",
     "subject": "Your BetterClose dashboard is ready",
-    "textBody": "Hi Morgan,\n\nYour lender from Example Mortgage just opened your title order with BetterClose for 123 Example Lane, Suite 2, Austin, TX. We've created a dashboard so you can track every step — loan locked, title ordered, title issued, and closed.\n\nOpen your dashboard: https://betterclose.example.invalid/welcome?email=recipient%40example.invalid\n\nOne-tap sign-in. No password to remember.\n\nWelcome,\nThe BetterClose Team\n\nQuestions? Reply to this email.",
+    "textBody": "Hi Morgan,\n\nYour lender from Example Mortgage shared your title order details with BetterClose for 123 Example Lane, Suite 2, Austin, TX. Your dashboard is ready to follow updates from your closing team. A separate title-order update confirms when the file is opened.\n\nOpen your dashboard: https://betterclose.example.invalid/welcome?email=recipient%40example.invalid\n\nOne-tap sign-in. No password to remember.\n\nWelcome,\nThe BetterClose Team\n\nQuestions? Reply to this email.",
     "links": [
       "https://betterclose.example.invalid/welcome?email=recipient%40example.invalid"
     ]
@@ -22,7 +22,7 @@
     "to": "recipient@example.invalid",
     "replyTo": "help@example.invalid",
     "subject": "Your BetterClose dashboard is ready",
-    "textBody": "Hi Morgan,\n\nYour broker just opened your title order with BetterClose for 123 Example Lane, Suite 2, Austin, TX. We've created a dashboard so you can track every step — loan locked, title ordered, title issued, and closed.\n\nOpen your dashboard: https://betterclose.example.invalid/welcome?email=recipient%40example.invalid\n\nOne-tap sign-in. No password to remember.\n\nWelcome,\nThe BetterClose Team\n\nQuestions? Reply to this email.",
+    "textBody": "Hi Morgan,\n\nYour broker shared your title order details with BetterClose for 123 Example Lane, Suite 2, Austin, TX. Your dashboard is ready to follow updates from your closing team. A separate title-order update confirms when the file is opened.\n\nOpen your dashboard: https://betterclose.example.invalid/welcome?email=recipient%40example.invalid\n\nOne-tap sign-in. No password to remember.\n\nWelcome,\nThe BetterClose Team\n\nQuestions? Reply to this email.",
     "links": [
       "https://betterclose.example.invalid/welcome?email=recipient%40example.invalid"
     ]
@@ -31,7 +31,7 @@
     "to": "recipient@example.invalid",
     "replyTo": "help@example.invalid",
     "subject": "Your BetterClose dashboard is ready",
-    "textBody": "Hi Morgan,\n\nYour real estate agent just opened your title order with BetterClose for 123 Example Lane, Suite 2, Austin, TX. We've created a dashboard so you can track every step — loan locked, title ordered, title issued, and closed.\n\nOpen your dashboard: https://betterclose.example.invalid/welcome?email=recipient%40example.invalid\n\nOne-tap sign-in. No password to remember.\n\nWelcome,\nThe BetterClose Team\n\nQuestions? Reply to this email.",
+    "textBody": "Hi Morgan,\n\nYour real estate agent shared your title order details with BetterClose for 123 Example Lane, Suite 2, Austin, TX. Your dashboard is ready to follow updates from your closing team. A separate title-order update confirms when the file is opened.\n\nOpen your dashboard: https://betterclose.example.invalid/welcome?email=recipient%40example.invalid\n\nOne-tap sign-in. No password to remember.\n\nWelcome,\nThe BetterClose Team\n\nQuestions? Reply to this email.",
     "links": [
       "https://betterclose.example.invalid/welcome?email=recipient%40example.invalid"
     ]
@@ -40,7 +40,7 @@
     "to": "recipient@example.invalid",
     "replyTo": "help@example.invalid",
     "subject": "Your BetterClose dashboard is ready",
-    "textBody": "Hi Morgan,\n\nYour closing team just opened your title order with BetterClose for 123 Example Lane, Suite 2, Austin, TX. We've created a dashboard so you can track every step — loan locked, title ordered, title issued, and closed.\n\nOpen your dashboard: https://betterclose.example.invalid/welcome?email=recipient%40example.invalid\n\nOne-tap sign-in. No password to remember.\n\nWelcome,\nThe BetterClose Team\n\nQuestions? Reply to this email.",
+    "textBody": "Hi Morgan,\n\nYour closing team shared your title order details with BetterClose for 123 Example Lane, Suite 2, Austin, TX. Your dashboard is ready to follow updates from your closing team. A separate title-order update confirms when the file is opened.\n\nOpen your dashboard: https://betterclose.example.invalid/welcome?email=recipient%40example.invalid\n\nOne-tap sign-in. No password to remember.\n\nWelcome,\nThe BetterClose Team\n\nQuestions? Reply to this email.",
     "links": [
       "https://betterclose.example.invalid/welcome?email=recipient%40example.invalid"
     ]
@@ -49,7 +49,7 @@
     "to": "recipient@example.invalid",
     "replyTo": "help@example.invalid",
     "subject": "Your BetterClose dashboard is ready",
-    "textBody": "Hi,\n\nYour closing team just opened your title order with BetterClose. We've created a dashboard so you can track every step — loan locked, title ordered, title issued, and closed.\n\nOpen your dashboard: https://betterclose.example.invalid/welcome?email=recipient%40example.invalid\n\nOne-tap sign-in. No password to remember.\n\nWelcome,\nThe BetterClose Team\n\nQuestions? Reply to this email.",
+    "textBody": "Hi,\n\nYour closing team shared your title order details with BetterClose. Your dashboard is ready to follow updates from your closing team. A separate title-order update confirms when the file is opened.\n\nOpen your dashboard: https://betterclose.example.invalid/welcome?email=recipient%40example.invalid\n\nOne-tap sign-in. No password to remember.\n\nWelcome,\nThe BetterClose Team\n\nQuestions? Reply to this email.",
     "links": [
       "https://betterclose.example.invalid/welcome?email=recipient%40example.invalid"
     ]

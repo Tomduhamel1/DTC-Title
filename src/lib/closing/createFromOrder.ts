@@ -5,13 +5,14 @@ import {
   normalizePropertyKey,
   resolveClosingForOrder,
 } from '@/lib/closing'
-import { sendWelcomeEmail } from '@/lib/email/welcome'
+import { sendWelcomeEmail, type WelcomeEmailData } from '@/lib/email/welcome'
 import { sendTeammateInviteEmail } from '@/lib/email/teammate-invite'
 import { upsertTeammateClosing } from '@/lib/teammate/match'
 import type { TeammateRole } from '@/lib/professional/pronoun'
 
 // Shared write path for inbound orders. Used by:
-//   - POST /api/orders/ingest (TPS / title-software integration)
+//   - public intake, broker quote conversion and authenticated ops intake
+// Garden ingest has its own strict identity and durable-delivery path.
 //
 // Extracted verbatim from the route handler so future callers (e.g. a
 // broker-originated quote-to-order conversion) can produce identical
@@ -66,7 +67,7 @@ export async function createClosingFromOrder(
   input: CreateClosingFromOrderInput,
   // Server-side policy, never part of the submitted order body. Public and
   // broker intake cannot authorize access to an existing file by its contacts.
-  options: { matchExisting?: boolean } = {},
+  options: { matchExisting?: boolean; welcomePurpose?: WelcomeEmailData['purpose'] } = {},
 ): Promise<CreateClosingFromOrderResult> {
   const {
     borrowerEmail,
@@ -211,6 +212,7 @@ export async function createClosingFromOrder(
     const baseUrl = process.env.NEXTAUTH_URL || 'https://betterclose.co'
     try {
       await sendWelcomeEmail({
+        purpose: options.welcomePurpose,
         closingId: created.id,
         borrowerEmail: baseData.borrowerEmail,
         borrowerName: typeof borrowerName === 'string' ? borrowerName : undefined,
