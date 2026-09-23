@@ -1,5 +1,9 @@
 # BetterClose ↔ TPS Integration Spec
 
+**Current Garden contract:** [GARDEN-INGEST-V2.md](GARDEN-INGEST-V2.md)
+supersedes the legacy ingest matching and notification-success behavior below.
+Read its migration and paired-rollout requirements before activation.
+
 This document is the contract between the BetterClose customer-facing app
 (this repo) and the TPS title-production system. It's the source of truth
 for the API endpoints, payload shapes, and message sequencing that wire

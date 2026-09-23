@@ -1,4 +1,5 @@
 import { prisma } from '@/lib/db'
+import type { Prisma } from '@prisma/client'
 import { upsertTeammateClosing } from '@/lib/teammate/match'
 
 // Shared escrow-officer write path, used by:
@@ -23,6 +24,7 @@ export interface EscrowOfficerInput {
 export async function applyEscrowOfficer(
   closingId: string,
   eo: EscrowOfficerInput,
+  db: Prisma.TransactionClient = prisma,
 ): Promise<number> {
   const data: Record<string, string | null> = {}
   if ('name' in eo) data.escrowOfficerName = eo.name ?? null
@@ -34,17 +36,12 @@ export async function applyEscrowOfficer(
 
   if (Object.keys(data).length === 0) return 0
 
-  await prisma.closing.update({ where: { id: closingId }, data })
+  await db.closing.update({ where: { id: closingId }, data })
 
   // The officer is also a teammate of the file — surface them in the teammate
   // index so the file appears on their dashboard if they ever sign in.
   if (eo.email) {
-    try {
-      await upsertTeammateClosing({ closingId, email: eo.email, role: 'unknown' })
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error('[closing/officer] escrow-officer teammate upsert failed', err)
-    }
+    await upsertTeammateClosing({ closingId, email: eo.email, role: 'unknown' }, db)
   }
 
   return Object.keys(data).length

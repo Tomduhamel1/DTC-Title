@@ -1,4 +1,5 @@
 import { prisma } from '@/lib/db'
+import type { Prisma } from '@prisma/client'
 
 // Email-matching logic for teammate-side attribution. Used in three places:
 //   1. NextAuth signin — claim orphan TeammateClosing rows for the new user.
@@ -54,21 +55,21 @@ export async function upsertTeammateClosing(opts: {
   closingId: string
   email: string
   role?: TeammateRole
-}): Promise<UpsertTeammateClosingResult | null> {
+}, db: Prisma.TransactionClient = prisma): Promise<UpsertTeammateClosingResult | null> {
   const matchedEmail = normaliseEmail(opts.email)
   if (!matchedEmail) return null
 
-  const existingUser = await prisma.user.findUnique({
+  const existingUser = await db.user.findUnique({
     where: { email: matchedEmail },
     select: { id: true },
   })
 
-  const existingRow = await prisma.teammateClosing.findUnique({
+  const existingRow = await db.teammateClosing.findUnique({
     where: { matchedEmail_closingId: { matchedEmail, closingId: opts.closingId } },
     select: { id: true, userId: true, role: true },
   })
 
-  const upserted = await prisma.teammateClosing.upsert({
+  const upserted = await db.teammateClosing.upsert({
     where: { matchedEmail_closingId: { matchedEmail, closingId: opts.closingId } },
     create: {
       closingId: opts.closingId,

@@ -49,6 +49,20 @@ only.
 
 ## Open
 
+### Garden integration hardening — pending review/deployment (2026-09-23)
+
+Branch fix/garden-integration-identity-ack prevents distinct Garden files from
+matching by contact details, refuses conflicting nonblank field updates, and
+commits officer/teammate changes with durable notification intents. Paired
+Garden sender changes require v2 acknowledgments and queued manual pushes.
+See docs/GARDEN-INGEST-V2.md. This is NOT deployed or activated.
+
+Remaining release gates: verify SES production access and outstanding credential
+rotations, review the broader borrower/teammate access and explicit lead-linking
+workflow, agree any overwrite/reassignment policy, and obtain rollout approval.
+Full TypeScript checking still reports 10 pre-existing errors identical to main;
+the focused PostgreSQL tests do not substitute for a full-app build/security audit.
+
 ### Onboarding follow-ups after the /open launch flow (found 2026-09-15)
 The open-a-file flow shipped (PR #92): every persona can open a real file
 from /open, it reuses the Garden/TPS write path, and the borrower dashboard
