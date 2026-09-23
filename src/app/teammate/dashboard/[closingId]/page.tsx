@@ -9,6 +9,8 @@ import { prisma } from '@/lib/db'
 import { getProfessionalContext } from '@/lib/professional'
 import TeammateTabs from '@/components/teammate/TeammateTabs'
 import MuteToggle from '../MuteToggle'
+import BorrowerEmailSetting from '@/components/teammate/BorrowerEmailSetting'
+import { borrowerMayReceive, PRO_ROLES } from '@/lib/closing/notificationPolicy'
 
 export const dynamic = 'force-dynamic'
 
@@ -19,7 +21,8 @@ interface PageProps {
 // Read-only view of a Closing for a teammate (lender / broker / realtor).
 // Only renders if the signed-in user has a TeammateClosing row pointing
 // at this closing — otherwise 404. No edit affordances on the borrower's
-// fields; the mute toggle is the only interactive control.
+// fields. Notification controls are separate: own-email mute, and borrower
+// automatic-email permission for a server-authorized Pro on this file.
 
 export default async function TeammateClosingDetailPage({ params }: PageProps) {
   const user = await requireUser()
@@ -97,6 +100,9 @@ export default async function TeammateClosingDetailPage({ params }: PageProps) {
           </div>
 
           <div className="space-y-4">
+            {membership.mayManageBorrowerEmails && PRO_ROLES.includes(membership.role) && (
+              <BorrowerEmailSetting closingId={c.id} initialEnabled={borrowerMayReceive(c, c.borrowerEmail || '')} />
+            )}
             {/* Closing Progress */}
             <MilestoneTimeline milestones={c.milestones} closingDate={c.closingDate} />
 

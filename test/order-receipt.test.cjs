@@ -60,7 +60,7 @@ test('intake helper sends one receipt, leaves milestones pending and does not ca
   } });
   const result = await h.load('src/lib/closing/createFromOrder.ts').createClosingFromOrder({
     borrowerEmail: 'borrower@example.invalid', propertyAddress: 'Synthetic Lane',
-  }, { matchExisting: false, welcomePurpose: 'request_received' });
+  }, { matchExisting: false, welcomePurpose: 'request_received', borrowerInitiated: true });
   assert.equal(result.closingId, 'synthetic-new-request');
   assert.equal(writes.length, 1);
   assert.equal(writes[0].gardenFileNumber, null);
@@ -71,11 +71,11 @@ test('intake helper sends one receipt, leaves milestones pending and does not ca
   // Harness has no network capability and refuses unapproved dependencies.
 });
 
-test('both public and broker intake select receipt mode in server code; ops does not', () => {
-  for (const file of ['src/app/api/orders/open/route.ts', 'src/app/api/broker/quotes/[id]/convert/route.ts']) {
-    const source = fs.readFileSync(path.resolve(__dirname, '..', file), 'utf8');
-    assert.match(source, /matchExisting: false, welcomePurpose: 'request_received'/, file);
-  }
+test('only borrower public intake selects receipt mode; broker and ops do not opt borrowers in', () => {
+  const source = fs.readFileSync(path.resolve(__dirname, '../src/app/api/orders/open/route.ts'), 'utf8');
+  assert.match(source, /borrowerInitiated: d.role === 'borrower'/);
+  const broker = fs.readFileSync(path.resolve(__dirname, '../src/app/api/broker/quotes/[id]/convert/route.ts'), 'utf8');
+  assert.doesNotMatch(broker, /borrowerInitiated|welcomePurpose/);
   const admin = fs.readFileSync(path.resolve(__dirname, '../src/app/api/admin/closings/route.ts'), 'utf8');
   assert.doesNotMatch(admin, /welcomePurpose/);
 });
@@ -115,7 +115,18 @@ test('caller-supplied intake data cannot turn a receipt into an opened-file emai
   } });
   await h.load('src/lib/closing/createFromOrder.ts').createClosingFromOrder({
     borrowerEmail: 'borrower@example.invalid', purpose: 'title_ordered', welcomePurpose: 'dashboard_ready',
-  }, { matchExisting: false, welcomePurpose: 'request_received' });
+  }, { matchExisting: false, welcomePurpose: 'request_received', borrowerInitiated: true });
   assert.equal(h.sent.length, 1);
   assert.match(h.sent[0].subject, /received your title order request/);
+});
+
+test('Pro-created request does not email the borrower, even with forged permission fields', async () => {
+  const h = createHarness({ mocks: {
+    '@/lib/db': { prisma: { closing: { create: async ({ data }) => ({ id: 'synthetic', ...data }) } } },
+  } });
+  const result = await h.load('src/lib/closing/createFromOrder.ts').createClosingFromOrder({
+    borrowerEmail: 'borrower@example.invalid', borrowerInitiated: true, borrowerEmailsEnabled: true,
+  }, { matchExisting: false });
+  assert.equal(h.sent.length, 0);
+  assert.equal(result.welcomeEmailedTo, null);
 });

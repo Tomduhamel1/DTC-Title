@@ -9,8 +9,9 @@ import { ingestGardenOrder, IngestConflict, IngestPending } from '@/lib/closing/
  * Flow:
  *   1. Resolve ONLY the exact Garden file number; contacts are not file IDs.
  *   2. Fill blanks; reject conflicting nonblank fields without overwriting.
- *   3. Atomically commit the closing, officer, teammate and email intents.
- *   4. Send pending notifications; return 503 until those intents complete.
+ *   3. Atomically commit the closing, officer and teammate association.
+ *   4. Retire legacy opening emails. The milestone endpoint separately queues
+ *      the permission-aware opening notification; ingest sends no email.
  * Contract v2 acknowledges applied state. Unknown keys fail before writes.
  */
 

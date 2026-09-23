@@ -1,5 +1,7 @@
 import { notFound, redirect } from 'next/navigation'
 import Link from 'next/link'
+import BorrowerEmailSetting from '@/components/teammate/BorrowerEmailSetting'
+import { borrowerMayReceive } from '@/lib/closing/notificationPolicy'
 import NavigationCredible from '@/components/NavigationCredible'
 import FooterComprehensive from '@/components/FooterComprehensive'
 import { requireUser } from '@/lib/auth/session'
@@ -162,6 +164,8 @@ export default async function DashboardPage({
               </div>
             </form>
           )}
+          <div className="mb-6"><BorrowerEmailSetting closingId={closing.id} self
+            initialEnabled={borrowerMayReceive(closing, closing.borrowerEmail || '')} /></div>
           {needsOnboarding ? (
             <OnboardingForm closingId={closing.id} userName={user.name} userEmail={user.email} />
           ) : searchParams?.variant === 'unified' ? (

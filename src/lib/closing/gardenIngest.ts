@@ -1,11 +1,8 @@
-import { randomUUID } from 'crypto'
 import { Prisma } from '@prisma/client'
 import { prisma } from '@/lib/db'
 import { MILESTONE_KINDS, normalizePhoneKey, normalizePropertyKey } from '@/lib/closing'
 import { applyEscrowOfficer, type EscrowOfficerInput } from '@/lib/closing/officer'
 import { upsertTeammateClosing, type TeammateRole } from '@/lib/teammate/match'
-import { sendWelcomeEmail, type WelcomeEmailData } from '@/lib/email/welcome'
-import { sendTeammateInviteEmail, type TeammateInviteEmailData } from '@/lib/email/teammate-invite'
 import type { CreateClosingFromOrderInput } from '@/lib/closing/createFromOrder'
 
 export class IngestConflict extends Error {
@@ -58,62 +55,27 @@ export async function ingestGardenOrder(input: CreateClosingFromOrderInput & { e
         ...data, gardenFileNumber, status: 'active', source: 'garden',
         milestones: { create: MILESTONE_KINDS.map(kind => ({ kind })) },
       } })
-    const queue = async (kind: string, recipient: string, payload: object) => tx.ingestDelivery.upsert({
-      where: { closingId_kind_recipient: { closingId: closing.id, kind, recipient } },
-      create: { closingId: closing.id, kind, recipient, payload: payload as Prisma.InputJsonValue },
-      update: {},
-    })
-    if ((!existing || !existing.borrowerEmail) && borrowerEmail) await queue('welcome', borrowerEmail, {
-      closingId: closing.id,
-      borrowerEmail, borrowerName: text(input.borrowerName), propertyAddress: fields.propertyAddress,
-      baseUrl: process.env.NEXTAUTH_URL || 'https://www.betterclose.co',
-      placingParty: { role: teammateRole, lenderCompany: fields.lenderCompany },
-    })
+    // Identity only. Opening emails are sent by the milestone delivery path.
     let teammateLinked = false
     if (teammateEmail) {
-      const linked = await upsertTeammateClosing({ closingId: closing.id, email: teammateEmail, role: teammateRole }, tx)
+      const linked = await upsertTeammateClosing({ closingId: closing.id, email: teammateEmail, role: teammateRole,
+        ...(['broker', 'realtor', 'lender'].includes(teammateRole) ? { mayManageBorrowerEmails: true } : {}) }, tx)
       if (!linked) throw new Error('Teammate association was not created')
       teammateLinked = true
-      if (linked.created && !linked.linkedToUser) await queue('teammate_invite', teammateEmail, {
-        email: teammateEmail, role: linked.role, closingId: closing.id,
-        placingBorrowerName: text(input.borrowerName), propertyAddress: fields.propertyAddress,
-      })
     }
     const officerFieldsSet = input.escrowOfficer ? await applyEscrowOfficer(closing.id, input.escrowOfficer, tx) : 0
     return { closingId: closing.id, matchedBy: existing ? 'garden_file_number' : null, teammateLinked, officerFieldsSet }
   }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable })
-  // Commit the closing AND delivery intent before contacting email. An email
-  // failure cannot erase the intent; subsequent Garden retries drain it.
+  // Cancel superseded legacy opening messages; this ingest never sends email.
+  // The separate opening milestone queues the permission-aware EO introduction.
   await deliverIngestNotifications(result.closingId)
   return { ok: true, contractVersion: 2, ingestApplied: true, gardenFileNumber, ...result }
 }
 
 export async function deliverIngestNotifications(closingId: string) {
-  const pending = await prisma.ingestDelivery.findMany({ where: { closingId, status: { not: 'sent' } } })
-  for (const item of pending) {
-    const now = new Date()
-    const leaseToken = randomUUID()
-    const claimed = await prisma.ingestDelivery.updateMany({
-      where: { id: item.id, OR: [{ status: 'pending' }, { status: 'sending', leaseUntil: { lt: now } }] },
-      data: { status: 'sending', leaseToken, leaseUntil: new Date(now.getTime() + 5 * 60_000), attempts: { increment: 1 } },
-    })
-    if (!claimed.count) continue
-    try {
-      const messageId = item.kind === 'welcome'
-        // The durable row is authoritative, including legacy queued payloads
-        // created before welcome links included a closing ID.
-        ? await sendWelcomeEmail({ ...(item.payload as unknown as WelcomeEmailData), closingId: item.closingId })
-        : await sendTeammateInviteEmail(item.payload as unknown as TeammateInviteEmailData)
-      // A dry-run is not delivery.
-      if (!messageId) throw new Error('Email was not accepted by the provider')
-      await prisma.ingestDelivery.updateMany({ where: { id: item.id, leaseToken }, data: {
-        status: 'sent', sentAt: new Date(), leaseToken: null, leaseUntil: null, lastError: null,
-      } })
-    } catch (_) {
-      await prisma.ingestDelivery.updateMany({ where: { id: item.id, leaseToken }, data: {
-        status: 'pending', leaseToken: null, leaseUntil: null, lastError: 'email_send_failed',
-      } })
-    }
-  }
-  if (await prisma.ingestDelivery.count({ where: { closingId, status: { not: 'sent' } } })) throw new IngestPending()
+  // Retire unsent legacy opening emails. Milestones use their own namespace.
+  await prisma.ingestDelivery.updateMany({
+    where: { closingId, kind: { in: ['welcome', 'teammate_invite'] }, status: { in: ['pending', 'sending'] } },
+    data: { status: 'cancelled', leaseToken: null, leaseUntil: null, lastError: 'superseded_by_pro_first_policy' },
+  })
 }

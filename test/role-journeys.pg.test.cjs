@@ -9,7 +9,7 @@ const target = new URL(process.env.DATABASE_URL || 'http://missing');
 assert.ok(['127.0.0.1', 'localhost'].includes(target.hostname));
 assert.match(target.pathname, /^\/garden_ldi_betterclose_journeys(?:_[a-z0-9]+)*$/);
 const prisma = new PrismaClient();
-const h = createHarness(prisma);
+const h = createHarness(prisma, { env: { BC_EO_REPLY_ROUTES: JSON.stringify({ 'officer@example.invalid': 'synthetic-officer@betterclose.co' }) } });
 const prefix = 'bcj-' + Date.now() + '-';
 let seq = 0, verifiedTarget = false;
 const id = () => prefix + (++seq);
@@ -196,25 +196,26 @@ test('account progression uses invitations for the selected file only', async ()
   assert.ok(!html.includes(unrelatedEmail));
 });
 
-test('ingest welcome and regular intake welcome identify their exact closing', async () => {
+test('Garden ingest suppresses borrower welcome; self-request receipt identifies its exact closing', async () => {
   const borrowerEmail = email();
   const result = await h.load('src/lib/closing/gardenIngest.ts').ingestGardenOrder({ gardenFileNumber: id(), borrowerEmail, propertyAddress: 'Synthetic Garden Address' });
-  const welcome = h.sent.find(message => message.to === borrowerEmail);
-  assert.ok(welcome.htmlBody.includes('closingId=' + result.closingId));
+  assert.equal(h.sent.length, 0);
   h.sent.length = 0;
   const publicEmail = email();
-  const opened = await h.load('src/lib/closing/createFromOrder.ts').createClosingFromOrder({ borrowerEmail: publicEmail, propertyAddress: 'Synthetic Public Address' }, { matchExisting: false });
+  const opened = await h.load('src/lib/closing/createFromOrder.ts').createClosingFromOrder({ borrowerEmail: publicEmail, propertyAddress: 'Synthetic Public Address' }, { matchExisting: false, borrowerInitiated: true });
   assert.ok(h.sent.find(message => message.to === publicEmail).htmlBody.includes('closingId=' + opened.closingId));
 });
 
 test('milestone fanout keeps separate borrower/professional destinations and respects mute', async () => {
   const borrower = await user(); const agent = await user(); const broker = await user(); const lender = await user();
-  const c = await closing({ userId: borrower.id, borrowerEmail: borrower.email });
+  const c = await closing({ userId: borrower.id, borrowerEmail: borrower.email,
+    ...h.load('src/lib/closing/notificationPolicy.ts').borrowerPermission(borrower.email, borrower.id, 'borrower', true),
+    escrowOfficerName: 'Synthetic Officer', escrowOfficerEmail: 'officer@example.invalid', escrowOfficerPhotoUrl: 'https://images.example.invalid/officer.png' });
   for (const [u, kind, muted] of [[agent, 'realtor', false], [broker, 'broker', false], [lender, 'lender', true]]) {
-    await prisma.teammateClosing.create({ data: { userId: u.id, matchedEmail: u.email, closingId: c.id, role: kind, muted } });
+    await prisma.teammateClosing.create({ data: { userId: u.id, matchedEmail: u.email, closingId: c.id, role: kind, muted, mayManageBorrowerEmails: true } });
   }
   const result = await h.load('src/lib/closing-milestone.ts').applyMilestoneTransition({ closingId: c.id, kind: 'title_ordered', status: 'done', origin: 'tps' });
-  assert.equal(result.ok, true);
+  assert.equal(result.ok, true, JSON.stringify(await prisma.ingestDelivery.findMany({ where: { closingId: c.id } })));
   assert.deepEqual(h.sent.map(m => m.to).sort(), [borrower.email, agent.email, broker.email].sort());
   assert.ok(h.sent.find(m => m.to === borrower.email).htmlBody.includes('/dashboard?closingId=' + c.id));
   for (const u of [agent, broker]) assert.ok(h.sent.find(m => m.to === u.email).htmlBody.includes('/teammate/dashboard/' + c.id));
@@ -224,7 +225,8 @@ test('milestone fanout keeps separate borrower/professional destinations and res
 });
 
 test('completed email targets the closed file even if a newer transaction exists', async () => {
-  const u = await user(); const c = await closing({ userId: u.id, borrowerEmail: u.email, createdAt: new Date('2026-01-01') });
+  const u = await user(); const c = await closing({ userId: u.id, borrowerEmail: u.email, createdAt: new Date('2026-01-01'),
+    ...h.load('src/lib/closing/notificationPolicy.ts').borrowerPermission(u.email, u.id, 'borrower', true) });
   await closing({ userId: u.id, borrowerEmail: u.email, createdAt: new Date('2026-02-01') });
   await h.load('src/lib/closing-milestone.ts').applyMilestoneTransition({ closingId: c.id, kind: 'closed', status: 'done' });
   assert.ok(h.sent.find(m => m.to === u.email).htmlBody.includes('/dashboard?closingId=' + c.id));
@@ -280,16 +282,15 @@ test('unassigned invitation can still attach to the selected owned file exactly 
   assert.equal((await prisma.lenderRequest.findUnique({ where: { id: invite.id } })).closingId, file.id);
 });
 
-for (const payloadId of [undefined, 'incorrect-payload-id']) test(`queued welcome uses its durable row's file ID (payload ${payloadId || 'legacy'})`, async () => {
+for (const payloadId of [undefined, 'incorrect-payload-id']) test(`legacy queued welcome is cancelled regardless of payload file ID (${payloadId || 'legacy'})`, async () => {
   const c = await closing();
   await prisma.ingestDelivery.create({ data: { closingId: c.id, kind: 'welcome', recipient: c.borrowerEmail,
     payload: { borrowerEmail: c.borrowerEmail, baseUrl: 'https://betterclose.example.invalid', ...(payloadId ? { closingId: payloadId } : {}) } } });
   await h.load('src/lib/closing/gardenIngest.ts').deliverIngestNotifications(c.id);
-  assert.equal(h.sent.length, 1);
-  assert.ok(h.sent[0].htmlBody.includes('closingId=' + c.id));
-  assert.ok(!h.sent[0].htmlBody.includes('incorrect-payload-id'));
+  assert.equal(h.sent.length, 0);
+  assert.equal((await prisma.ingestDelivery.findFirst({ where: { closingId: c.id } })).status, 'cancelled');
   await h.load('src/lib/closing/gardenIngest.ts').deliverIngestNotifications(c.id);
-  assert.equal(h.sent.length, 1);
+  assert.equal(h.sent.length, 0);
 });
 
 test('legacy welcome callers without a file ID keep a working generic welcome URL', async () => {

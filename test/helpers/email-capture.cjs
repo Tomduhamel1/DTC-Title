@@ -42,6 +42,7 @@ function createHarness({ root = defaultRoot, env = {}, mocks: overrides = {}, fa
     }).outputText;
     function localRequire(name) {
       if (Object.hasOwn(mocks, name)) return mocks[name];
+      if (name === 'crypto') return require(name);
       let candidate;
       if (name.startsWith('@/')) candidate = path.join(root, 'src', name.slice(2));
       else if (name.startsWith('.')) candidate = path.resolve(path.dirname(absolute), name);

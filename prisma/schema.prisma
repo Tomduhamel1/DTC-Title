@@ -309,6 +309,15 @@ model Closing {
   borrowerEmail String?
   borrowerPhone String?
 
+  // File-specific automatic-email permission. Never inferred from contact
+  // presence, Pro subscription/mute, or old account ownership.
+  borrowerEmailsEnabled Boolean @default(false)
+  borrowerEmailPermissionRecipient String?
+  borrowerEmailPermissionBy String?
+  borrowerEmailPermissionSource String?
+  borrowerEmailPermissionAt DateTime?
+  borrowerEmailPermissionVersion String?
+
   lenderName    String?
   lenderCompany String?
   lenderEmail   String?
@@ -378,6 +387,7 @@ model Milestone {
   status      String    @default("pending") // pending | active | done
   completedAt DateTime?
   notifiedAt  DateTime? // when the user was emailed about this milestone reaching `done`
+  deliveryPreparedAt DateTime? // intent preparation, distinct from provider acceptance
   metadata    Json?
 
   createdAt DateTime @default(now())
@@ -480,6 +490,9 @@ model TeammateClosing {
   // Per-client mute. When true, milestone notifications to this teammate
   // for this closing are suppressed (and logged as status=skipped).
   muted Boolean @default(false)
+  // Granted by trusted Garden ingest / authenticated order conversion, never
+  // by the self-editable display role.
+  mayManageBorrowerEmails Boolean @default(false)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

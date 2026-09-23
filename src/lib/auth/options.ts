@@ -5,6 +5,7 @@ import { prisma } from '@/lib/db'
 import { sendEmail } from '@/lib/aws/ses'
 import { rateLimit } from '@/lib/rate-limit'
 import { renderMagicLinkEmail } from '@/lib/email/magic-link'
+import { borrowerPermission } from '@/lib/closing/notificationPolicy'
 
 const dryRun = process.env.AUTH_EMAIL_DRY_RUN === 'true'
 
@@ -80,6 +81,13 @@ export const authOptions: NextAuthOptions = {
         await prisma.closing.updateMany({
           where: { userId: null, borrowerEmail: user.email.toLowerCase() },
           data: { userId: user.id },
+        })
+        // Only this borrower's self-initiated requests. Claiming a Pro-created
+        // file or having an older account is not automatic-email consent.
+        await prisma.closing.updateMany({
+          where: { userId: user.id, borrowerEmail: user.email.toLowerCase(),
+            source: 'web_borrower', borrowerEmailPermissionAt: null },
+          data: borrowerPermission(user.email, user.id, 'borrower', true),
         })
       } catch (e) {
         // eslint-disable-next-line no-console

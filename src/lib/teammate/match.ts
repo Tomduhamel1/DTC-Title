@@ -55,6 +55,7 @@ export async function upsertTeammateClosing(opts: {
   closingId: string
   email: string
   role?: TeammateRole
+  mayManageBorrowerEmails?: boolean
 }, db: Prisma.TransactionClient = prisma): Promise<UpsertTeammateClosingResult | null> {
   const matchedEmail = normaliseEmail(opts.email)
   if (!matchedEmail) return null
@@ -76,6 +77,7 @@ export async function upsertTeammateClosing(opts: {
       matchedEmail,
       role: opts.role ?? 'unknown',
       userId: existingUser?.id ?? null,
+      mayManageBorrowerEmails: opts.mayManageBorrowerEmails === true,
     },
     update: {
       // If we now have a User record, link it (handles the case where the
@@ -83,6 +85,7 @@ export async function upsertTeammateClosing(opts: {
       ...(existingUser?.id ? { userId: existingUser.id } : {}),
       // Don't clobber a previously inferred role with 'unknown'.
       ...(opts.role && opts.role !== 'unknown' ? { role: opts.role } : {}),
+      ...(opts.mayManageBorrowerEmails !== undefined ? { mayManageBorrowerEmails: opts.mayManageBorrowerEmails } : {}),
     },
     select: { userId: true, role: true },
   })

@@ -87,7 +87,7 @@ test('same file repeats use the same closing and do not resend completed emails'
   assert.equal(second.matchedBy, 'garden_file_number');
   assert.equal(second.officerFieldsSet, 2);
   assert.equal(second.teammateLinked, true);
-  assert.equal(sent.length, 2);
+  assert.equal(sent.length, 0);
 });
 test('conflicting nonblank amounts/dates return field names without overwriting or adding teammates', async () => {
   const p = payload();
@@ -115,20 +115,19 @@ test('officer failure rolls back new closing, teammate and email intent; retry s
   failOfficer = false;
   assert.equal((await POST(request(p))).status, 200);
 });
-test('failed emails persist pending intents and retry on existing closing without duplication', async () => {
+test('ingest only associates the file; an unavailable email provider cannot send a borrower welcome', async () => {
   const p = payload({ teammateEmail: 'agent@example.invalid' });
   failEmail = true;
   const res = await POST(request(p));
-  assert.equal(res.status, 503);
-  assert.equal((await res.json()).error, 'notification_pending');
+  assert.equal(res.status, 200);
   const row = await prisma.closing.findUnique({ where: { gardenFileNumber: p.gardenFileNumber } });
-  assert.equal(await prisma.ingestDelivery.count({ where: { closingId: row.id, status: 'pending' } }), 2);
+  assert.equal(await prisma.ingestDelivery.count({ where: { closingId: row.id } }), 0);
   failEmail = false;
   const done = await ingestGardenOrder(p);
   assert.equal(done.closingId, row.id);
-  assert.equal(sent.length, 2);
+  assert.equal(sent.length, 0);
   await ingestGardenOrder(p);
-  assert.equal(sent.length, 2);
+  assert.equal(sent.length, 0);
 });
 test('teammate failure rolls back all ingest writes rather than claiming teammateLinked', async () => {
   const p = payload({ teammateEmail: 'agent@example.invalid' });
@@ -137,17 +136,20 @@ test('teammate failure rolls back all ingest writes rather than claiming teammat
   assert.equal(await prisma.closing.count({ where: { gardenFileNumber: p.gardenFileNumber } }), 0);
   assert.equal(sent.length, 0);
 });
-test('first borrower email arriving later creates one durable welcome intent', async () => {
+test('borrower contact arriving later never creates automatic email permission or welcome', async () => {
   const p = payload({ borrowerEmail: undefined });
   const first = await ingestGardenOrder(p);
   assert.equal(sent.length, 0);
   await ingestGardenOrder({ ...p, borrowerEmail: 'late@example.invalid' });
-  assert.equal(sent.length, 1);
-  assert.equal(await prisma.ingestDelivery.count({ where: { closingId: first.closingId, kind: 'welcome' } }), 1);
+  assert.equal(sent.length, 0);
+  assert.equal(await prisma.ingestDelivery.count({ where: { closingId: first.closingId, kind: 'welcome' } }), 0);
+  assert.equal((await prisma.closing.findUnique({ where: { id: first.closingId } })).borrowerEmailsEnabled, false);
 });
-test('dry-run without provider acceptance stays pending', async () => {
+test('ingest does not need an email provider or falsely record a sent email', async () => {
   dryRun = true;
-  await assert.rejects(ingestGardenOrder(payload()), IngestPending);
+  const result = await ingestGardenOrder(payload());
+  assert.equal(await prisma.ingestDelivery.count({ where: { closingId: result.closingId } }), 0);
+  assert.equal(sent.length, 0);
 });
 test('concurrent identical ingests never create two closings; retriable races settle', async () => {
   const p = payload();
@@ -156,7 +158,7 @@ test('concurrent identical ingests never create two closings; retriable races se
   const final = await POST(request(p));
   assert.equal(final.status, 200);
   assert.equal(await prisma.closing.count({ where: { gardenFileNumber: p.gardenFileNumber } }), 1);
-  assert.equal(sent.filter(([kind]) => kind === 'welcome').length, 1);
+  assert.equal(sent.filter(([kind]) => kind === 'welcome').length, 0);
 });
 test('unbound legacy lead is never automatically claimed by shared borrower identity', async () => {
   const lead = await prisma.closing.create({ data: { borrowerEmail: 'repeat@example.invalid' } });
@@ -174,17 +176,13 @@ test('authentication fails closed', async () => {
   assert.equal((await POST(request(p, 'wrong'))).status, 401);
   assert.equal(await prisma.closing.count({ where: { gardenFileNumber: p.gardenFileNumber } }), 0);
 });
-test('active notification lease is not stolen; expired lease is recoverable', async () => {
+test('unsent legacy welcome is cancelled rather than delivered under the new policy', async () => {
   const p = payload();
-  failEmail = true; await assert.rejects(ingestGardenOrder(p), IngestPending);
+  await ingestGardenOrder(p);
   const c = await prisma.closing.findUnique({ where: { gardenFileNumber: p.gardenFileNumber } });
-  await prisma.ingestDelivery.updateMany({ where: { closingId: c.id }, data: {
-    status: 'sending', leaseToken: 'old-worker', leaseUntil: new Date(Date.now() + 60000),
-  } });
-  failEmail = false;
-  await assert.rejects(deliverIngestNotifications(c.id), IngestPending);
-  assert.equal(sent.length, 0);
-  await prisma.ingestDelivery.updateMany({ where: { closingId: c.id }, data: { leaseUntil: new Date(0) } });
+  await prisma.ingestDelivery.create({ data: { closingId: c.id, kind: 'welcome', recipient: p.borrowerEmail,
+    payload: {}, status: 'pending' } });
   await deliverIngestNotifications(c.id);
-  assert.equal(sent.length, 1);
+  assert.equal(sent.length, 0);
+  assert.equal((await prisma.ingestDelivery.findFirst({ where: { closingId: c.id } })).status, 'cancelled');
 });

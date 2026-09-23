@@ -28,7 +28,7 @@ for (const spec of cases) test(`${spec.id}: shared design and unchanged delivery
 test('every external template uses the shared layout; internal ops are deliberately excluded', () => {
   const dir = path.resolve(__dirname, '../src/lib/email');
   const actual = fs.readdirSync(dir).filter(name => name.endsWith('.ts') && !name.endsWith('-ops.ts') && name !== 'layout.ts').sort();
-  assert.deepEqual(actual, ['broker-portal-welcome.ts', 'broker-quote.ts', 'closing-completed.ts', 'closing-update-teammate.ts', 'closing-update.ts', 'lender-request.ts', 'magic-link.ts', 'partner-referral.ts', 'teammate-invite.ts', 'welcome.ts'].sort());
+  assert.deepEqual(actual, ['broker-portal-welcome.ts', 'broker-quote.ts', 'closing-completed.ts', 'closing-update-teammate.ts', 'closing-update.ts', 'eo-introduction.ts', 'lender-request.ts', 'magic-link.ts', 'partner-referral.ts', 'teammate-invite.ts', 'welcome.ts'].sort());
   for (const name of actual) {
     const source = fs.readFileSync(path.join(dir, name), 'utf8');
     assert.match(source, /renderEmail\(/, name);

@@ -67,7 +67,7 @@ export async function createClosingFromOrder(
   input: CreateClosingFromOrderInput,
   // Server-side policy, never part of the submitted order body. Public and
   // broker intake cannot authorize access to an existing file by its contacts.
-  options: { matchExisting?: boolean; welcomePurpose?: WelcomeEmailData['purpose'] } = {},
+  options: { matchExisting?: boolean; welcomePurpose?: WelcomeEmailData['purpose']; borrowerInitiated?: boolean; proMayManageBorrowerEmails?: boolean } = {},
 ): Promise<CreateClosingFromOrderResult> {
   const {
     borrowerEmail,
@@ -125,7 +125,7 @@ export async function createClosingFromOrder(
     lenderPhone: typeof lenderPhone === 'string' ? lenderPhone : null,
     lenderNmls: typeof lenderNmls === 'string' ? lenderNmls : null,
     status: 'active',
-    source: typeof input.source === 'string' && input.source ? input.source : 'inbound_order',
+    source: options.borrowerInitiated === true ? 'web_borrower' : typeof input.source === 'string' && input.source ? input.source : 'inbound_order',
     gardenFileNumber:
       typeof input.gardenFileNumber === 'string' && input.gardenFileNumber
         ? input.gardenFileNumber
@@ -208,7 +208,9 @@ export async function createClosingFromOrder(
     },
   })
 
-  if (baseData.borrowerEmail) {
+  // A contact address is NOT permission. Only a borrower-requested receipt
+  // is sent here. Ongoing permission needs a verified action or trusted Pro.
+  if (baseData.borrowerEmail && options.borrowerInitiated === true) {
     const baseUrl = process.env.NEXTAUTH_URL || 'https://betterclose.co'
     try {
       await sendWelcomeEmail({
@@ -236,6 +238,7 @@ export async function createClosingFromOrder(
         closingId: created.id,
         email: teammateEmailResolved,
         role: teammateRoleResolved,
+        mayManageBorrowerEmails: options.proMayManageBorrowerEmails === true,
       })
       if (upsertResult && upsertResult.created && !upsertResult.linkedToUser) {
         try {
@@ -260,7 +263,7 @@ export async function createClosingFromOrder(
   return {
     matched: false,
     closingId: created.id,
-    welcomeEmailedTo: baseData.borrowerEmail,
+    welcomeEmailedTo: options.borrowerInitiated === true ? baseData.borrowerEmail : null,
     teammateLinked: Boolean(teammateEmailResolved),
   }
 }
