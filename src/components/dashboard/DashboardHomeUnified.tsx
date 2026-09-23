@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { signOut } from 'next-auth/react'
-import MilestoneTimeline from './MilestoneTimeline'
+import MilestoneTimeline, { type Milestone } from './MilestoneTimeline'
 import SectionShell from './SectionShell'
 import StatusNode, { type StepStatus } from './StatusNode'
 import {
@@ -51,7 +51,7 @@ interface ClosingShape {
   escrowOfficerNmls: string | null
   escrowOfficerPhotoUrl: string | null
   status: string
-  milestones: { kind: string; status: string; completedAt: Date | string | null; metadata: string | null }[]
+  milestones: Milestone[]
 }
 
 interface DashboardHomeUnifiedProps {

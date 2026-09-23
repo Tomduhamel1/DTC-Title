@@ -2,12 +2,13 @@
 
 import { MILESTONE_KINDS, MILESTONE_LABELS, MILESTONE_DESCRIPTIONS, type MilestoneKind } from '@/lib/closing'
 import StatusNode from './StatusNode'
+import type { Prisma } from '@prisma/client'
 
-interface Milestone {
+export interface Milestone {
   kind: string
   status: string
   completedAt?: Date | string | null
-  metadata?: string | null
+  metadata?: Prisma.JsonValue
 }
 
 interface MilestoneTimelineProps {
@@ -108,4 +109,3 @@ export default function MilestoneTimeline({ milestones, closingDate }: Milestone
     </div>
   )
 }
-
