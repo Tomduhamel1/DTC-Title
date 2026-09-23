@@ -5,6 +5,7 @@ import FooterComprehensive from '@/components/FooterComprehensive'
 import { requireUser } from '@/lib/auth/session'
 import { prisma } from '@/lib/db'
 import { claimTeammateClosingsForUser } from '@/lib/teammate/match'
+import { claimTeammateInvitation } from '@/lib/teammate/claimInvitation'
 import {
   MILESTONE_KINDS,
   MILESTONE_LABELS,
@@ -27,46 +28,16 @@ export default async function TeammateDashboardPage({ searchParams }: PageProps)
     redirect('/login?callbackUrl=/teammate/dashboard')
   }
 
-  // If we arrived from a /for-my-team -> sign-up funnel, retroactively bind
-  // the LenderRequest to this user (mirrors borrower-side claim in
-  // src/app/dashboard/page.tsx). Idempotent.
+  // A reference is not authority: the verified recipient must match, and
+  // existing ownership must never be reassigned to a different account.
   const claimRefId = searchParams?.claim
+  let claimUnavailable = false
   if (claimRefId) {
     try {
-      const invite = await prisma.lenderRequest.findUnique({
-        where: { refId: claimRefId },
-        select: { id: true, closingId: true, lenderEmail: true },
-      })
-      if (invite) {
-        // Also create / update the TeammateClosing row for this invite if
-        // we have a closing on it.
-        if (invite.closingId && invite.lenderEmail) {
-          // Role is set to 'unknown' here on purpose. The borrower's invite
-          // flow is role-agnostic — they invite "their closing team", not a
-          // specifically-classified professional. The signed-in professional
-          // self-identifies their role from /teammate/dashboard's banner
-          // (see RoleSelfIdentifyBanner + RoleSelfIdentifyPicker). On the
-          // update path we deliberately don't touch role: a TPS-ingested
-          // role or a previously self-identified role wins.
-          await prisma.teammateClosing.upsert({
-            where: {
-              matchedEmail_closingId: {
-                matchedEmail: invite.lenderEmail.toLowerCase(),
-                closingId: invite.closingId,
-              },
-            },
-            create: {
-              userId: user.id,
-              closingId: invite.closingId,
-              matchedEmail: invite.lenderEmail.toLowerCase(),
-              role: 'unknown',
-            },
-            update: { userId: user.id },
-          })
-        }
-      }
+      claimUnavailable = !(await claimTeammateInvitation(user.id, claimRefId))
     } catch {
-      /* swallow — claim is best-effort */
+      // Fail closed without displaying invite/customer details on errors.
+      claimUnavailable = true
     }
   }
 
@@ -130,6 +101,12 @@ export default async function TeammateDashboardPage({ searchParams }: PageProps)
       <main className="bg-gray-100 min-h-[calc(100vh-5rem)] py-10 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
           <TeammateTabs active="files" isBrokerMember={isBrokerMember} />
+          {claimUnavailable && (
+            <p role="status" className="mb-4 rounded-xl border border-gray-200 bg-white p-4 text-sm text-gray-700">
+              This invitation is not available for this account. Sign in with the email address
+              it was sent to, or contact your closing team for help.
+            </p>
+          )}
           <div className="mb-8 flex items-baseline justify-between flex-wrap gap-3">
             <div>
               <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-1">
