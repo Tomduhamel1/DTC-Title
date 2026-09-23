@@ -64,6 +64,7 @@ export async function ingestGardenOrder(input: CreateClosingFromOrderInput & { e
       update: {},
     })
     if ((!existing || !existing.borrowerEmail) && borrowerEmail) await queue('welcome', borrowerEmail, {
+      closingId: closing.id,
       borrowerEmail, borrowerName: text(input.borrowerName), propertyAddress: fields.propertyAddress,
       baseUrl: process.env.NEXTAUTH_URL || 'https://www.betterclose.co',
       placingParty: { role: teammateRole, lenderCompany: fields.lenderCompany },
@@ -99,7 +100,9 @@ export async function deliverIngestNotifications(closingId: string) {
     if (!claimed.count) continue
     try {
       const messageId = item.kind === 'welcome'
-        ? await sendWelcomeEmail(item.payload as unknown as WelcomeEmailData)
+        // The durable row is authoritative, including legacy queued payloads
+        // created before welcome links included a closing ID.
+        ? await sendWelcomeEmail({ ...(item.payload as unknown as WelcomeEmailData), closingId: item.closingId })
         : await sendTeammateInviteEmail(item.payload as unknown as TeammateInviteEmailData)
       // A dry-run is not delivery.
       if (!messageId) throw new Error('Email was not accepted by the provider')

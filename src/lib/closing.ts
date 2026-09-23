@@ -42,15 +42,24 @@ export function normalizePhoneKey(phone: string | null | undefined): string | nu
 }
 
 /**
- * Get a user's primary (most recent active) closing, or create a stub one if none exist.
+ * Prefer a user's most recent active/pending closing, then their most recent
+ * completed closing. Create a stub only if they have no owned closings at all.
  * Always seeds the 5 milestone rows so the timeline renders even on a brand-new account.
  */
 export async function getOrCreateClosingForUser(userId: string) {
   let closing = await prisma.closing.findFirst({
     where: { userId, status: { in: ['pending', 'active'] } },
-    orderBy: { createdAt: 'desc' },
+    orderBy: [{ createdAt: 'desc' }, { id: 'desc' }],
     include: { milestones: true },
   })
+
+  if (!closing) {
+    closing = await prisma.closing.findFirst({
+      where: { userId },
+      orderBy: [{ createdAt: 'desc' }, { id: 'desc' }],
+      include: { milestones: true },
+    })
+  }
 
   if (!closing) {
     closing = await prisma.closing.create({

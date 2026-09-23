@@ -49,6 +49,17 @@ only.
 
 ## Open
 
+### Borrower file navigation and sign-in feedback — implemented, not released (2026-09-23)
+
+Branch `fix/closing-role-journeys` preserves completed borrower files, adds
+ownership-checked file selection, targets welcome/milestone links to the exact
+closing, scopes invitation progress to that file, and makes failed sign-in
+requests show a retry message instead of a false success confirmation. Separate
+borrower/broker/lender/realtor identities are covered with real local PostgreSQL
+and actual rendered components. See `docs/CLOSING-ROLE-JOURNEYS.md` for evidence
+and test boundaries. No production activation or delivery is authorized by this
+change; release remains pending review.
+
 ### Garden integration hardening — pending review/deployment (2026-09-23)
 
 Branch fix/garden-integration-identity-ack prevents distinct Garden files from

@@ -211,6 +211,7 @@ export async function createClosingFromOrder(
     const baseUrl = process.env.NEXTAUTH_URL || 'https://betterclose.co'
     try {
       await sendWelcomeEmail({
+        closingId: created.id,
         borrowerEmail: baseData.borrowerEmail,
         borrowerName: typeof borrowerName === 'string' ? borrowerName : undefined,
         propertyAddress: baseData.propertyAddress || undefined,

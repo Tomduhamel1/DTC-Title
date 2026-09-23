@@ -11,6 +11,7 @@ export default function TrackThisClosingPrompt({ prefilledEmail }: Props) {
   const [email, setEmail] = useState(prefilledEmail || '')
   const [submitting, setSubmitting] = useState(false)
   const [sent, setSent] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   if (sent) {
     return (
@@ -27,16 +28,23 @@ export default function TrackThisClosingPrompt({ prefilledEmail }: Props) {
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!valid) return
+    if (!valid || submitting) return
     setSubmitting(true)
+    setError(null)
     let callbackUrl = '/dashboard'
     try {
       const claim = sessionStorage.getItem('pendingInviteClaim')
       if (claim) callbackUrl = `/dashboard?claim=${encodeURIComponent(claim)}`
     } catch {}
-    await signIn('email', { email, callbackUrl, redirect: false })
-    setSent(true)
-    setSubmitting(false)
+    try {
+      const result = await signIn('email', { email, callbackUrl, redirect: false })
+      if (!result?.ok || result.error) throw new Error('Sign-in request failed')
+      setSent(true)
+    } catch {
+      setError("We couldn't send your sign-in link. Please try again.")
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -57,6 +65,8 @@ export default function TrackThisClosingPrompt({ prefilledEmail }: Props) {
       <form onSubmit={onSubmit} className="flex gap-2">
         <input
           type="email"
+          aria-label="Your email"
+          disabled={submitting}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@example.com"
@@ -71,6 +81,7 @@ export default function TrackThisClosingPrompt({ prefilledEmail }: Props) {
           {submitting ? '…' : 'Track →'}
         </button>
       </form>
+      {error && <p role="alert" className="mt-2 text-sm text-red-700">{error}</p>}
       <p className="text-[11px] text-gray-500 mt-2 text-center">
         We'll email you a one-tap sign-in link. No password.
       </p>

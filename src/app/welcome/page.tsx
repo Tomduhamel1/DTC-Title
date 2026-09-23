@@ -9,20 +9,30 @@ import FooterComprehensive from '@/components/FooterComprehensive'
 function WelcomeInner() {
   const searchParams = useSearchParams()
   const prefilledEmail = searchParams.get('email') || ''
+  const closingId = searchParams.get('closingId')
 
   const [email, setEmail] = useState(prefilledEmail)
   const [submitting, setSubmitting] = useState(false)
   const [sent, setSent] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const valid = email.includes('@')
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!valid) return
+    if (!valid || submitting) return
     setSubmitting(true)
-    await signIn('email', { email, callbackUrl: '/dashboard', redirect: false })
-    setSent(true)
-    setSubmitting(false)
+    setError(null)
+    const callbackUrl = closingId ? `/dashboard?closingId=${encodeURIComponent(closingId)}` : '/dashboard'
+    try {
+      const result = await signIn('email', { email, callbackUrl, redirect: false })
+      if (!result?.ok || result.error) throw new Error('Sign-in request failed')
+      setSent(true)
+    } catch {
+      setError("We couldn't send your sign-in link. Please try again.")
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -41,7 +51,7 @@ function WelcomeInner() {
               </div>
               <h1 className="text-3xl font-black text-dark-900 mb-2">Welcome to BetterClose</h1>
               <p className="text-sm text-gray-600">
-                Your lender placed your title order with us. Create your dashboard to track it.
+                Your closing team placed your title order with us. Sign in to track it.
               </p>
             </div>
 
@@ -55,17 +65,20 @@ function WelcomeInner() {
             ) : (
               <form onSubmit={onSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+                  <label htmlFor="welcome-email" className="block text-sm font-semibold text-gray-700 mb-1.5">
                     Your email
                   </label>
                   <input
+                    id="welcome-email"
                     type="email"
+                    disabled={submitting}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none"
                   />
                 </div>
+                {error && <p role="alert" className="text-sm text-red-700">{error}</p>}
                 <button
                   type="submit"
                   disabled={!valid || submitting}
