@@ -5,13 +5,8 @@ const nextConfig = {
   experimental: {
     instrumentationHook: true,
   },
-  // Skip type-check + lint during production build. We have legacy files
-  // (test specs without test runner types, *-backup-*.tsx, HeroOptionB
-  // referencing dropped schema fields) that would block the build for the
-  // beta. Type-check still runs locally via `npx tsc --noEmit`.
-  typescript: {
-    ignoreBuildErrors: true,
-  },
+  // Type checking is enabled for production builds and in CI. Lint remains
+  // unchanged here; its separate legacy cleanup is outside this fix.
   eslint: {
     ignoreDuringBuilds: true,
   },

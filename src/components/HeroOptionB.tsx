@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from 'react'
 import { useSavings } from '@/contexts/SavingsContext'
-import { getInitialSavings, type TransactionType } from '@/lib/savingsCalculator'
+import { getInitialSavings } from '@/lib/savingsCalculator'
+
+type TransactionType = Parameters<typeof getInitialSavings>[0]
 
 export default function HeroOptionB() {
   const { savings, setSavings } = useSavings()
@@ -73,17 +75,17 @@ export default function HeroOptionB() {
                 {formatCurrency(savings.totalSavings)}
               </div>
               <div className="text-xl md:text-2xl font-bold mb-6">
-                on title insurance
+                on closing costs
               </div>
               <div className="flex justify-center gap-8 text-sm md:text-base">
                 <div>
-                  <div className="text-emerald-100">They charge</div>
-                  <div className="font-bold text-xl">{formatCurrency(savings.avgPrice)}</div>
+                  <div className="text-emerald-100">Illustrative average closing costs</div>
+                  <div className="font-bold text-xl">{formatCurrency(savings.averageClosingCost)}</div>
                 </div>
                 <div className="text-4xl font-bold">→</div>
                 <div>
-                  <div className="text-emerald-100">We charge</div>
-                  <div className="font-bold text-xl">{formatCurrency(savings.ourPrice)}</div>
+                  <div className="text-emerald-100">Estimated closing costs</div>
+                  <div className="font-bold text-xl">{formatCurrency(savings.estimatedClosingCost)}</div>
                 </div>
               </div>
             </div>

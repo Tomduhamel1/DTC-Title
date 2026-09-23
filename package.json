@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev -p 5273",
     "build": "next build",
+    "typecheck": "tsc --noEmit --incremental false",
+    "test:release-types": "node --test test/release-types.test.cjs",
     "start": "next start -p 5273",
     "lint": "next lint",
     "db:up": "docker compose up -d postgres",

@@ -8,7 +8,6 @@ import { rateLimit } from '@/lib/rate-limit'
 const dryRun = process.env.AUTH_EMAIL_DRY_RUN === 'true'
 
 export const authOptions: NextAuthOptions = {
-  // @ts-expect-error — adapter typing differs slightly between @auth/prisma-adapter and next-auth v4 but works at runtime
   adapter: PrismaAdapter(prisma),
   session: { strategy: 'database' },
   pages: {
