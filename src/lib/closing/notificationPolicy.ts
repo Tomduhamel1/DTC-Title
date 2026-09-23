@@ -29,19 +29,40 @@ export type OfficerIntroduction = { name: string; title: string; photoUrl: strin
 // Operator-maintained allowlist ONLY after mailbox/forwarding and controlled
 // reply verification. Garden/admin contact data cannot declare itself verified.
 // Keys: actual Garden EO email. Values: working EO-owned @betterclose.co alias.
-export function verifiedOfficer(closing: {
+type OfficerFields = {
   escrowOfficerName: string | null; escrowOfficerTitle: string | null;
   escrowOfficerEmail: string | null; escrowOfficerPhotoUrl: string | null;
   escrowOfficerPhone: string | null;
-}): OfficerIntroduction | null {
+}
+
+// Shared by delivery and the read-only operator check. Config presence is not
+// proof of mailbox ownership, photo availability or provider delivery.
+export function officerConfiguration(closing: OfficerFields): { officer: OfficerIntroduction | null; issues: string[] } {
+  const issues: string[] = []
+  const name = closing.escrowOfficerName?.trim()
+  const email = normalizeEmail(closing.escrowOfficerEmail)
+  if (!name || /[\r\n]/.test(name)) issues.push('Add the assigned Escrow Officer name.')
+  if (!email) issues.push('Add the assigned Escrow Officer email.')
+  let photo: URL | undefined
+  try {
+    photo = new URL(closing.escrowOfficerPhotoUrl || '')
+    if (photo.protocol !== 'https:' || photo.username || photo.password) throw new Error('invalid')
+  } catch { issues.push('Add a valid HTTPS photo for the assigned Escrow Officer.') }
+  let reply: unknown
   try {
     const routes = JSON.parse(process.env.BC_EO_REPLY_ROUTES || '{}')
-    const reply = routes[normalizeEmail(closing.escrowOfficerEmail)]
-    if (typeof reply !== 'string' || !/^[a-z0-9.!#$%&'*+\-/=?^_`{|}~]+@betterclose\.co$/i.test(reply)) return null
-    const name = closing.escrowOfficerName?.trim()
-    const photo = new URL(closing.escrowOfficerPhotoUrl || '')
-    if (!name || /[\r\n]/.test(name) || photo.protocol !== 'https:' || photo.username || photo.password) return null
-    return { name, title: closing.escrowOfficerTitle || 'Escrow Officer',
-      photoUrl: photo.href, replyEmail: reply.toLowerCase(), phone: closing.escrowOfficerPhone }
-  } catch { return null }
+    if (!routes || typeof routes !== 'object' || Array.isArray(routes)) throw new Error('invalid')
+    reply = Object.hasOwn(routes, email) ? routes[email] : undefined
+    if (typeof reply !== 'string' || !/^[a-z0-9.!#$%&'*+\-/=?^_`{|}~]+@betterclose\.co$/i.test(reply)) {
+      issues.push('Configure the EO BetterClose reply address after verifying its mailbox or forwarding.')
+    }
+  } catch { issues.push('Correct the server EO reply-routing configuration.') }
+  return { issues, officer: issues.length ? null : {
+    name: name!, title: closing.escrowOfficerTitle || 'Escrow Officer',
+    photoUrl: photo!.href, replyEmail: (reply as string).toLowerCase(), phone: closing.escrowOfficerPhone,
+  } }
+}
+
+export function verifiedOfficer(closing: OfficerFields): OfficerIntroduction | null {
+  return officerConfiguration(closing).officer
 }

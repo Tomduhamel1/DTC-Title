@@ -75,6 +75,15 @@ introduction as pending; no invented officer/shared mailbox or false reply
 promise. Unregistered Pros receive the introduction; verified sign-in remains
 required for private dashboard access.
 
+Authorized Garden operators can use **Check notification setup** on a linked
+file. The authenticated TPS GET adds `notificationReadiness` (version 1): EO
+configuration gaps from the same validator used by delivery, trusted/unmuted Pro
+count, current borrower permission, opening-event state and grouped milestone
+intent counts. It never leases, queues, retries, sends or alters a record. Counts
+are advisory and can change during delivery. Provider acceptance is not inbox
+delivery; this check cannot verify SES production access, photo availability or
+actual mailbox/forwarding. It exposes no recipient list or raw delivery error.
+
 ## Delivery and retries
 
 - Milestone changes and per-recipient intents commit together. Closing state and
@@ -126,7 +135,8 @@ merely selecting their request does not silently grant Pro permissions.
 4. First-sync historical/backlog policy: importing already-progressed files can
    prepare multiple completed milestones. This is not a bulk rollout approval.
 5. SES production-access/deliverability verification. The earlier read-only check
-   reported sandbox restrictions; this draft did not change or recheck them.
+   was reverified September 23: sandbox restrictions remain. No SES setting or
+   support case was changed. Use `docs/INTEGRATION-LAUNCH-CHECKLIST.md`.
 
 ## Release gates
 

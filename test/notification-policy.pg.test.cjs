@@ -55,6 +55,55 @@ after(async () => {
   await prisma.$disconnect();
 });
 
+test('read-only readiness matches delivery gates, counts intents, and never sends or mutates', async () => {
+  const c = await closing({ escrowOfficerPhotoUrl: null });
+  const p = await pro(c);
+  await pro(c, { muted: true }); await pro(c, { mayManageBorrowerEmails: false });
+  await pro(c, { matchedEmail: c.borrowerEmail }); await pro(c, { matchedEmail: c.escrowOfficerEmail });
+  assert.equal((await advance(c)).status, 503);
+  const before = { closing: await reload(c), deliveries: await rows(c) };
+  const get = token => h.load('src/app/api/tps/closings/[id]/route.ts').GET(
+    new Request('https://local.invalid/read', { headers: { authorization: 'Bearer ' + token } }), { params: { id: c.id } });
+  assert.equal((await get('wrong')).status, 401);
+  const result = await (await get('synthetic-only')).json();
+  const r = result.closing.notificationReadiness;
+  assert.equal(r.version, 1); assert.equal(r.eoIntroduction.configurationReady, false);
+  assert.deepEqual(r.eoIntroduction.issues, ['Add a valid HTTPS photo for the assigned Escrow Officer.']);
+  assert.equal(r.eligibleProCount, 1); assert.equal(r.borrowerUpdatesEnabled, false);
+  assert.equal(r.openingEventRecorded, true); assert.equal(r.deliveryVerified, false);
+  assert.deepEqual(r.milestoneDeliveries, { pending: 1, sending: 0, sent: 0, cancelled: 0 });
+  assert.ok(!JSON.stringify(r).includes(p.matchedEmail));
+  assert.deepEqual(await reload(c), before.closing); assert.deepEqual(await rows(c), before.deliveries);
+  assert.equal(h.sent.length, 0);
+  await prisma.closing.update({ where: { id: c.id }, data: { escrowOfficerPhotoUrl: eo.escrowOfficerPhotoUrl } });
+  const configured = (await (await get('synthetic-only')).json()).closing.notificationReadiness;
+  assert.equal(configured.eoIntroduction.configurationReady, true);
+  assert.equal(configured.milestoneDeliveries.pending, 1, 'checking does not drain the queued introduction');
+  assert.equal(h.sent.length, 0);
+  assert.equal((await advance(c)).ok, true); assert.equal(h.sent.length, 1);
+  const sent = (await (await get('synthetic-only')).json()).closing.notificationReadiness;
+  assert.equal(sent.milestoneDeliveries.sent, 1); assert.equal(sent.deliveryVerified, false);
+});
+
+test('readiness identifies missing route, permission mismatch and dry-run without leaking configuration', async () => {
+  const c = await closing({ gardenFileNumber: null, escrowOfficerName: null, escrowOfficerEmail: null });
+  const get = () => h.load('src/app/api/tps/closings/[id]/route.ts').GET(
+    new Request('https://local.invalid/read', { headers: { authorization: 'Bearer synthetic-only' } }), { params: { id: c.id } });
+  await prisma.closing.update({ where: { id: c.id }, data: { ...permission(c), borrowerEmail: email() } });
+  try {
+    h.env.AUTH_EMAIL_DRY_RUN = 'true'; h.env.BC_EO_REPLY_ROUTES = 'private-invalid-value';
+    const r = (await (await get()).json()).closing.notificationReadiness;
+    assert.equal(r.eoIntroduction.configurationReady, false); assert.equal(r.eoIntroduction.issues.length, 4);
+    assert.equal(r.eligibleProCount, 0); assert.equal(r.borrowerUpdatesEnabled, false); assert.equal(r.dryRun, true);
+    assert.equal(r.openingEventRecorded, false); assert.equal(r.deliveryVerified, false);
+    assert.ok(!JSON.stringify(r).includes('private-invalid-value')); assert.equal(h.sent.length, 0);
+    for (const mapping of ['null', '[]', '{}']) {
+      h.env.BC_EO_REPLY_ROUTES = mapping;
+      assert.equal((await (await get()).json()).closing.notificationReadiness.eoIntroduction.configurationReady, false);
+    }
+  } finally { h.env.AUTH_EMAIL_DRY_RUN = 'false'; }
+});
+
 test('Garden-first requires no existing BC account or property; ingest sends nothing', async () => {
   const borrowerEmail = email(), teammateEmail = email(), gardenFileNumber = id();
   const result = await h.load('src/lib/closing/gardenIngest.ts').ingestGardenOrder({

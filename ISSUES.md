@@ -356,6 +356,18 @@ Confirm with FNTE that these inversions are intentional.
 - Liberty Title quote documents: archive to `data/market-fees/` so comp
   provenance survives.
 
+### Garden integration activation prerequisites (checked 2026-09-23)
+
+Paired draft PRs #106 (BetterClose) and Garden #848 add Pro-first notifications,
+explicit request binding and a read-only notification-setup check. Not deployed.
+SES remains sandboxed (`ProductionAccessEnabled=false`), despite verified domain
+and DKIM. `BC_EO_REPLY_ROUTES` is absent from the current app/main branch variable
+names; actual receiving mailboxes and photos still need verification. The AWS
+Support API requires a paid support subscription in this account; use the existing
+support-console case rather than treating that API error as a new SES denial.
+Garden's already-queued events need review before activation; `BC_SYNC_SINCE`
+does not filter the existing queue. See `docs/INTEGRATION-LAUNCH-CHECKLIST.md`.
+
 ## Resolved
 
 ### FNTE calculator: IN & LA refinance 500s (found 2026-08-12, resolved upstream by 2026-08-14, confirmed 2026-09-14)
