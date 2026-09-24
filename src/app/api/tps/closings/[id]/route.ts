@@ -11,7 +11,8 @@ import { notificationReadiness } from '@/lib/closing/notificationReadiness'
 //
 // Auth: shared secret in `Authorization: Bearer <ORDER_INGEST_SECRET>`.
 
-export async function GET(_req: Request, { params }: { params: { id: string } }) {
+export async function GET(_req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const auth = _req.headers.get('authorization') || ''
   const expected = `Bearer ${process.env.ORDER_INGEST_SECRET || ''}`
   if (!process.env.ORDER_INGEST_SECRET || auth !== expected) {

@@ -10,7 +10,10 @@ CI and serving versions. Do not conflate a deployed receiver with enabled syncin
   acceptance, default-off borrower coverage and duplicate-binding/race coverage.
 - Resolve the remaining Next.js/Puppeteer security upgrade work before launch.
   Compatible dependency patches reduce but do not clear the audit; see
-  `DEPENDENCY-SECURITY-20260923.md`. Green functional CI is not security clearance.
+  `DEPENDENCY-SECURITY-20260923.md`. The separate stacked runtime upgrade clears
+  the current production dependency audit in its isolated tree; it still needs
+  review and approved hosting verification. See `RUNTIME-UPGRADE-20260923.md`.
+  Green functional CI is not security clearance.
 - Verify both repositories' migration status before schema-dependent code runs.
   No automatic database reset, linking backfill or cleanup. Garden's request-link
   down migration intentionally refuses when bindings exist.

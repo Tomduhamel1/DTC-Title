@@ -15,7 +15,7 @@ import { borrowerMayReceive, PRO_ROLES } from '@/lib/closing/notificationPolicy'
 export const dynamic = 'force-dynamic'
 
 interface PageProps {
-  params: { closingId: string }
+  params: Promise<{ closingId: string }>
 }
 
 // Read-only view of a Closing for a teammate (lender / broker / realtor).
@@ -24,7 +24,8 @@ interface PageProps {
 // fields. Notification controls are separate: own-email mute, and borrower
 // automatic-email permission for a server-authorized Pro on this file.
 
-export default async function TeammateClosingDetailPage({ params }: PageProps) {
+export default async function TeammateClosingDetailPage(props: PageProps) {
+  const params = await props.params;
   const user = await requireUser()
   if (!user) {
     redirect(`/login?callbackUrl=/teammate/dashboard/${params.closingId}`)

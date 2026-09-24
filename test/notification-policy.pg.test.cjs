@@ -32,7 +32,7 @@ const advance = (c, kind = 'title_ordered', status = 'done') =>
 const drain = c => h.load('src/lib/closing/milestoneDelivery.ts').deliverMilestoneNotifications(c.id);
 const setPermission = (c, body) => h.load('src/app/api/closings/[id]/borrower-notifications/route.ts').PATCH(
   new Request('https://betterclose.example.invalid/test', { method: 'PATCH',
-    headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) }), { params: { id: c.id } });
+    headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) }), { params: Promise.resolve({ id: c.id }) });
 const reload = c => prisma.closing.findUniqueOrThrow({ where: { id: c.id } });
 const permission = c => policy.borrowerPermission(c.borrowerEmail, 'synthetic-actor', 'pro', true);
 const rows = c => prisma.ingestDelivery.findMany({ where: { closingId: c.id } });
@@ -63,7 +63,7 @@ test('read-only readiness matches delivery gates, counts intents, and never send
   assert.equal((await advance(c)).status, 503);
   const before = { closing: await reload(c), deliveries: await rows(c) };
   const get = token => h.load('src/app/api/tps/closings/[id]/route.ts').GET(
-    new Request('https://local.invalid/read', { headers: { authorization: 'Bearer ' + token } }), { params: { id: c.id } });
+    new Request('https://local.invalid/read', { headers: { authorization: 'Bearer ' + token } }), { params: Promise.resolve({ id: c.id }) });
   assert.equal((await get('wrong')).status, 401);
   const result = await (await get('synthetic-only')).json();
   const r = result.closing.notificationReadiness;
@@ -88,7 +88,7 @@ test('read-only readiness matches delivery gates, counts intents, and never send
 test('readiness identifies missing route, permission mismatch and dry-run without leaking configuration', async () => {
   const c = await closing({ gardenFileNumber: null, escrowOfficerName: null, escrowOfficerEmail: null });
   const get = () => h.load('src/app/api/tps/closings/[id]/route.ts').GET(
-    new Request('https://local.invalid/read', { headers: { authorization: 'Bearer synthetic-only' } }), { params: { id: c.id } });
+    new Request('https://local.invalid/read', { headers: { authorization: 'Bearer synthetic-only' } }), { params: Promise.resolve({ id: c.id }) });
   await prisma.closing.update({ where: { id: c.id }, data: { ...permission(c), borrowerEmail: email() } });
   try {
     h.env.AUTH_EMAIL_DRY_RUN = 'true'; h.env.BC_EO_REPLY_ROUTES = 'private-invalid-value';
@@ -178,7 +178,7 @@ test('only verified owner or trusted Pro on this file can change permission; rol
   h.setActor(b); assert.equal((await setPermission(c, { enabled: true })).status, 404);
   h.setActor(a);
   const request = new Request('https://betterclose.example.invalid/test', { method: 'PATCH', body: JSON.stringify({ role: 'broker' }) });
-  assert.equal((await h.load('src/app/api/teammate/closings/[id]/role/route.ts').PATCH(request, { params: { id: member.id } })).status, 200);
+  assert.equal((await h.load('src/app/api/teammate/closings/[id]/role/route.ts').PATCH(request, { params: Promise.resolve({ id: member.id }) })).status, 200);
   assert.equal((await setPermission(c, { enabled: true })).status, 404);
   await prisma.teammateClosing.update({ where: { id: member.id }, data: { mayManageBorrowerEmails: true } });
   assert.equal((await setPermission(c, { enabled: true, userId: b.id })).status, 400);
@@ -332,7 +332,7 @@ test('permission audit failure rolls back the permission change', async () => {
   const isolated = createHarness(wrapped); isolated.setActor(owner);
   const route = isolated.load('src/app/api/closings/[id]/borrower-notifications/route.ts');
   await assert.rejects(route.PATCH(new Request('https://betterclose.example.invalid/test', {
-    method: 'PATCH', body: JSON.stringify({ enabled: true }) }), { params: { id: c.id } }), /synthetic audit failure/);
+    method: 'PATCH', body: JSON.stringify({ enabled: true }) }), { params: Promise.resolve({ id: c.id }) }), /synthetic audit failure/);
   const stored = await reload(c);
   assert.equal(stored.borrowerEmailsEnabled, false); assert.equal(stored.borrowerEmailPermissionVersion, null);
 });

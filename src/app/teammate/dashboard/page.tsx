@@ -19,10 +19,11 @@ import MuteToggle from './MuteToggle'
 export const dynamic = 'force-dynamic'
 
 interface PageProps {
-  searchParams?: { claim?: string }
+  searchParams?: Promise<{ claim?: string }>
 }
 
-export default async function TeammateDashboardPage({ searchParams }: PageProps) {
+export default async function TeammateDashboardPage(props: PageProps) {
+  const searchParams = await props.searchParams;
   const user = await requireUser()
   if (!user) {
     redirect('/login?callbackUrl=/teammate/dashboard')

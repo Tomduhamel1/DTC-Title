@@ -150,7 +150,7 @@ test('legacy exact file may adopt v3 identity once; missing UUID afterward canno
 test('readback includes binding and unregistered Pro, but requires integration auth', async () => {
   const p = payload({ teammateEmail: 'no-account@example.invalid', teammateRole: 'broker' });
   const c = await (await post(p)).json();
-  const get = token => h.load('src/app/api/tps/closings/[id]/route.ts').GET(request({}, token), { params: { id: c.closingId } });
+  const get = token => h.load('src/app/api/tps/closings/[id]/route.ts').GET(request({}, token), { params: Promise.resolve({ id: c.closingId }) });
   assert.equal((await get('bad')).status, 401);
   const result = await (await get('synthetic-only')).json();
   assert.equal(result.closing.gardenOrderId, p.gardenOrderId);
@@ -161,7 +161,7 @@ test('readback includes binding and unregistered Pro, but requires integration a
 test('admin edit and direct database writes cannot silently reassign an established binding', async () => {
   const p = payload(); const result = await (await post(p)).json();
   h.setActor({ id: 'synthetic-admin', email: 'admin@example.invalid' });
-  const patch = body => h.load('src/app/api/admin/closing/[id]/route.ts').PATCH(request(body), { params: { id: result.closingId } });
+  const patch = body => h.load('src/app/api/admin/closing/[id]/route.ts').PATCH(request(body), { params: Promise.resolve({ id: result.closingId }) });
   assert.equal((await patch({ gardenFileNumber: id() })).status, 409);
   assert.equal((await patch({ gardenFileNumber: null })).status, 409);
   assert.equal((await patch({ gardenOrderId: randomUUID() })).status, 400);

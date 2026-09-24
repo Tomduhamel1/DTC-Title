@@ -381,6 +381,18 @@ support-console case rather than treating that API error as a new SES denial.
 Garden's already-queued events need review before activation; `BC_SYNC_SINCE`
 does not filter the existing queue. See `docs/INTEGRATION-LAUNCH-CHECKLIST.md`.
 
+### Supported framework bridge and PDF hosting verification (2026-09-23)
+
+A stacked, unmerged runtime upgrade prepares Next 15.5.26 / React 19, Node 22
+and Puppeteer 25.12.0. Its production dependency audit has zero current findings;
+this is not a deployed fix or a full security review. Next 15's documented
+two-year maintenance window ends around October 21, 2026. Recheck Amplify's
+Next 16 support and plan the next supported-host/runtime step before that date.
+Do not silently switch hosts or select an undocumented hosting combination.
+The PDF generator has no current application caller; production Chromium
+provisioning remains unverified, and no server-PDF route was activated.
+See `docs/RUNTIME-UPGRADE-20260923.md` for evidence and release conditions.
+
 ## Resolved
 
 ### FNTE calculator: IN & LA refinance 500s (found 2026-08-12, resolved upstream by 2026-08-14, confirmed 2026-09-14)

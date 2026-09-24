@@ -5,13 +5,13 @@ const fs = require('node:fs');
 const path = require('node:path');
 const ts = require('typescript');
 const { openEmailBrowser, offlinePage } = require('./helpers/email-browser.cjs');
+const { installReact } = require('./helpers/react-browser.cjs');
 test('borrower control is default-off; waits for success, preserves state on failure, and uses the exact file', async () => {
   const browser = await openEmailBrowser();
   try {
     const { page } = await offlinePage(browser);
     await page.setContent('<!doctype html><div id="root"></div>');
-    for (const pkg of ['react', 'react-dom']) await page.addScriptTag({ content: fs.readFileSync(
-      path.join(path.dirname(require.resolve(pkg + '/package.json')), 'umd', pkg + '.development.js'), 'utf8') });
+    await installReact(page);
     const code = ts.transpileModule(fs.readFileSync(path.resolve(__dirname,
       '../src/components/teammate/BorrowerEmailSetting.tsx'), 'utf8'), { compilerOptions: {
         module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.React, esModuleInterop: true } }).outputText;

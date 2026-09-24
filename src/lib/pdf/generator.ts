@@ -94,8 +94,11 @@ export async function generatePdfFromHtml(html: string): Promise<Buffer> {
 
     // Set HTML content
     await page.setContent(html, {
-      waitUntil: 'networkidle0',
+      waitUntil: 'load',
     })
+    // Puppeteer 25 separates setContent lifecycle events from network idleness.
+    // Preserve the former wait for late assets before capturing the PDF.
+    await page.waitForNetworkIdle({ idleTime: 500, timeout: 30000 })
 
     // Generate PDF
     const pdf = await page.pdf({

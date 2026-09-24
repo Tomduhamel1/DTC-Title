@@ -2,9 +2,6 @@ const { withSentryConfig } = require('@sentry/nextjs')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    instrumentationHook: true,
-  },
   // Type checking is enabled for production builds and in CI. Lint remains
   // unchanged here; its separate legacy cleanup is outside this fix.
   eslint: {

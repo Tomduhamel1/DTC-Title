@@ -4,12 +4,12 @@ import PageWrapper from './PageWrapper'
 
 export const dynamic = 'force-dynamic'
 
-export default function Page() {
+export default async function Page() {
   // Touching cookies() opts the route into per-request rendering and makes
   // Next emit Cache-Control: private, no-store. Without this, Amplify's
   // CloudFront pins / for a year and the middleware's bypass-cookie rewrite
   // never gets a chance to run for returning visitors.
-  cookies()
+  await cookies()
 
   return (
     <Suspense fallback={

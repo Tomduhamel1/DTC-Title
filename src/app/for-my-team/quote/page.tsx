@@ -40,7 +40,7 @@ export const metadata = {
 }
 
 interface PageProps {
-  searchParams?: { ref?: string }
+  searchParams?: Promise<{ ref?: string }>
 }
 
 const REQUEST_PORTAL_ACCESS_BODY = `Hi BetterClose team,
@@ -55,7 +55,8 @@ How you found us:
 
 Thanks,`
 
-export default async function ProfessionalQuotePage({ searchParams }: PageProps) {
+export default async function ProfessionalQuotePage(props: PageProps) {
+  const searchParams = await props.searchParams;
   const refId = searchParams?.ref
   const ctx = await getLenderRequestContext(refId)
   const { subject, body } = buildOrderMailto(ctx)

@@ -11,7 +11,8 @@ import { prisma } from '@/lib/db'
 
 const Body = z.object({ muted: z.boolean() })
 
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+export async function PATCH(req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const user = await requireUser()
   if (!user) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
