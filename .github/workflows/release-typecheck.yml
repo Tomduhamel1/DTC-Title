@@ -19,6 +19,7 @@ jobs:
       - run: npx prisma generate
       - run: npm run typecheck
       - run: npm run test:release-types
+      - run: npm run test:auth-security
       - run: npm run test:email-design
   email-layout:
     runs-on: ubuntu-latest
