@@ -23,7 +23,8 @@ import type { FeeReport } from '@/lib/feeReport'
 // that never happened. If SES fails the response is 502 and the caller can
 // retry.
 
-export async function POST(_req: Request, { params }: { params: { id: string } }) {
+export async function POST(_req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const ctx = await requireBrokerMember()
   if (!ctx) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 })

@@ -10,7 +10,8 @@ import { requireBrokerMember } from '@/lib/auth/session'
 // Quotes at companies the caller does NOT belong to return 404 (not 403)
 // so quote-id existence is not leaked.
 
-export async function GET(_req: Request, { params }: { params: { id: string } }) {
+export async function GET(_req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const ctx = await requireBrokerMember()
   if (!ctx) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
@@ -73,7 +74,8 @@ const PatchBody = z
   })
   .strict()
 
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+export async function PATCH(req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const ctx = await requireBrokerMember()
   if (!ctx) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 })

@@ -2,6 +2,9 @@
   "name": "truefee-closing",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "^22.12.0 || ^24.0.0"
+  },
   "scripts": {
     "dev": "next dev -p 5273",
     "build": "next build",
@@ -11,6 +14,8 @@
     "test:aws-compatibility": "node --test test/aws-dependency-compatibility.test.cjs",
     "test:email-design": "node --test test/email-design.test.cjs test/order-receipt.test.cjs",
     "test:email-layout": "node --test test/email-layout.test.cjs test/eo-introduction.browser.test.cjs",
+    "test:pdf-runtime": "node --test test/pdf-runtime.browser.test.cjs",
+    "test:http-runtime": "node --test test/runtime-http.pg.test.cjs",
     "preview:email": "node scripts/preview-emails.cjs",
     "start": "next start -p 5273",
     "lint": "next lint",
@@ -28,21 +33,25 @@
     "@aws-sdk/s3-request-presigner": "^3.1139.0",
     "@prisma/client": "^5.7.0",
     "@sentry/nextjs": "^10.75.3",
-    "next": "14.0.4",
+    "next": "15.5.26",
     "next-auth": "^4.24.15",
-    "puppeteer": "^21.6.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "puppeteer": "^25.12.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "zod": "^3.22.4"
   },
+  "overrides": {
+    "postcss": "$postcss"
+  },
   "devDependencies": {
-    "@types/node": "^20.10.5",
-    "@types/react": "^18.2.45",
-    "@types/react-dom": "^18.2.18",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "autoprefixer": "^10.4.16",
     "eslint": "^8.56.0",
-    "eslint-config-next": "14.0.4",
-    "postcss": "^8.4.32",
+    "esbuild": "^0.28.2",
+    "eslint-config-next": "15.5.26",
+    "postcss": "8.5.28",
     "prisma": "^5.7.0",
     "tailwindcss": "^3.3.6",
     "typescript": "^5.3.3"

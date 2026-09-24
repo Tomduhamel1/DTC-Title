@@ -18,11 +18,13 @@ on:
       - 'src/lib/email/**'
       - 'prisma/**'
       - 'package*.json'
+      - '.nvmrc'
       - 'test/role-journeys*'
       - 'test/notification-policy*'
       - 'test/borrower-notifications*'
       - 'test/sign-in-journeys*'
       - 'test/helpers/role-journey-harness.cjs'
+      - 'test/helpers/react-browser.cjs'
       - '.github/workflows/role-journey-checks.yml'
   workflow_dispatch:
 permissions:
@@ -46,7 +48,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version-file: .nvmrc
           cache: npm
       - run: npm ci --ignore-scripts --no-audit --no-fund
       - run: npx prisma generate

@@ -68,7 +68,8 @@ interface ConvertSuccess {
   }
 }
 
-export async function POST(_req: Request, { params }: { params: { id: string } }) {
+export async function POST(_req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const ctx = await requireBrokerMember()
   if (!ctx) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 })

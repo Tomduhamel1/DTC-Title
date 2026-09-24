@@ -29,11 +29,12 @@ function formatSentDetail(invite: { createdAt: Date; channel: string; lenderEmai
   return `Sent ${date} via ${via}${recipient}.`
 }
 
-export default async function DashboardPage({
-  searchParams,
-}: {
-  searchParams?: { claim?: string; variant?: string; closingId?: string | string[] }
-}) {
+export default async function DashboardPage(
+  props: {
+    searchParams?: Promise<{ claim?: string; variant?: string; closingId?: string | string[] }>
+  }
+) {
+  const searchParams = await props.searchParams;
   const requestedClosingId = searchParams?.closingId
   if (requestedClosingId !== undefined &&
       (typeof requestedClosingId !== 'string' || !requestedClosingId.trim())) notFound()

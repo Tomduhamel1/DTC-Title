@@ -16,7 +16,8 @@ const Body = z.object({
   status: z.enum(['pending', 'active', 'done']),
 })
 
-export async function POST(req: Request, { params }: { params: { id: string } }) {
+export async function POST(req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const auth = req.headers.get('authorization') || ''
   const expected = `Bearer ${process.env.ORDER_INGEST_SECRET || ''}`
   if (!process.env.ORDER_INGEST_SECRET || auth !== expected) {

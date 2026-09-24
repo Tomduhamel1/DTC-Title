@@ -4,7 +4,7 @@ const fs = require('node:fs');
 async function openEmailBrowser() {
   const macChrome = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
   // Fresh disposable headless profile; never the user's Chrome profile/session.
-  const browser = await puppeteer.launch({ headless: 'new',
+  const browser = await puppeteer.launch({ headless: true,
     executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || (process.platform === 'darwin' && fs.existsSync(macChrome) ? macChrome : undefined),
     args: process.env.CI ? ['--no-sandbox', '--disable-setuid-sandbox'] : [],
   });

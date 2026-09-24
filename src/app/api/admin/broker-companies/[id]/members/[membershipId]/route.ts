@@ -12,8 +12,9 @@ import { requireAdmin } from '@/lib/auth/admin'
 
 export async function DELETE(
   _req: Request,
-  { params }: { params: { id: string; membershipId: string } },
+  props: { params: Promise<{ id: string; membershipId: string }> }
 ) {
+  const params = await props.params;
   await requireAdmin()
 
   // Verify the membership belongs to this company — avoids cross-company

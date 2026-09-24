@@ -6,7 +6,8 @@ import { borrowerPermission, normalizeEmail, PRO_ROLES } from '@/lib/closing/not
 
 const Body = z.object({ enabled: z.boolean() }).strict()
 
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+export async function PATCH(req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const actor = await requireUser()
   if (!actor) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
   const parsed = Body.safeParse(await req.json().catch(() => null))

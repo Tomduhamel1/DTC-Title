@@ -39,7 +39,8 @@ const Body = z
   })
   .strict()
 
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+export async function PATCH(req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const auth = req.headers.get('authorization') || ''
   const expected = `Bearer ${process.env.ORDER_INGEST_SECRET || ''}`
   if (!process.env.ORDER_INGEST_SECRET || auth !== expected) {
