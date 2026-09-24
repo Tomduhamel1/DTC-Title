@@ -2,6 +2,7 @@ import { notFound, redirect } from 'next/navigation'
 import Link from 'next/link'
 import BorrowerEmailSetting from '@/components/teammate/BorrowerEmailSetting'
 import { borrowerMayReceive } from '@/lib/closing/notificationPolicy'
+import { officerPhotoUrl } from '@/lib/closing/officerPhoto'
 import NavigationCredible from '@/components/NavigationCredible'
 import FooterComprehensive from '@/components/FooterComprehensive'
 import { requireUser } from '@/lib/auth/session'
@@ -131,6 +132,7 @@ export default async function DashboardPage(
   ]
 
   const needsOnboarding = !closing.propertyAddress && !latestInvite && !orderPlaced
+  const displayClosing = { ...closing, escrowOfficerPhotoUrl: officerPhotoUrl(closing) }
 
   return (
     <>
@@ -171,14 +173,14 @@ export default async function DashboardPage(
             <OnboardingForm closingId={closing.id} userName={user.name} userEmail={user.email} />
           ) : searchParams?.variant === 'unified' ? (
             <DashboardHomeUnified
-              closing={closing}
+              closing={displayClosing}
               userName={user.name}
               userEmail={user.email}
               accountSteps={accountSteps}
             />
           ) : (
             <DashboardHome
-              closing={closing}
+              closing={displayClosing}
               userName={user.name}
               userEmail={user.email}
               accountSteps={accountSteps}

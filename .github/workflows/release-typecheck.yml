@@ -21,6 +21,7 @@ jobs:
       - run: npm run test:auth-security
       - run: npm run test:aws-compatibility
       - run: npm run test:email-design
+      - run: npm run test:eo-photos
       - run: npm audit --omit=dev --audit-level=low
   email-layout:
     runs-on: ubuntu-latest

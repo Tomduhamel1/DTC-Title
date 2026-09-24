@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { MILESTONE_KINDS } from '@/lib/closing'
 import { notificationReadiness } from '@/lib/closing/notificationReadiness'
+import { officerPhotoUrl } from '@/lib/closing/officerPhoto'
 
 // GET /api/tps/closings/[id]
 // Read-only snapshot of a Closing for the TPS side. Returns everything TPS
@@ -106,7 +107,7 @@ export async function GET(_req: Request, props: { params: Promise<{ id: string }
         email: closing.escrowOfficerEmail,
         phone: closing.escrowOfficerPhone,
         nmls: closing.escrowOfficerNmls,
-        photoUrl: closing.escrowOfficerPhotoUrl,
+        photoUrl: officerPhotoUrl(closing),
       },
       closingLocation: closing.closingLocation,
       notificationReadiness: notificationReadiness(closing, deliveryGroups),
