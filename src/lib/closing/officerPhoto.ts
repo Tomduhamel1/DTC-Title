@@ -1,7 +1,9 @@
 // Server-side, owner-approved headshots. Match the assigned Garden employee's
 // exact email, never a first name or a borrower/Pro contact. Resolve on reads so
 // existing and future files benefit without rewriting any closing records.
-const APPROVED_PHOTOS: Readonly<Record<string, string>> = Object.freeze({
+// The purity annotation lets the production bundler discard this registry when
+// a client imports unrelated shared milestone constants through closing.ts.
+const APPROVED_PHOTOS: Readonly<Record<string, string>> = /*#__PURE__*/ Object.freeze({
   'kdeyton@firstnte.com': 'kristen-deyton-ec0e43a7.jpg',
   'steve@firstnte.com': 'steve-patti-7e73be41.jpg',
   'nmicciche@firstnte.com': 'nicole-micciche-af371149.jpg',

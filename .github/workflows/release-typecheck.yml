@@ -79,4 +79,5 @@ jobs:
           echo "PUPPETEER_EXECUTABLE_PATH=$(command -v google-chrome)" >> "$GITHUB_ENV"
       - run: npx prisma migrate deploy
       - run: npm run build
+      - run: node --test test/officer-photos-build.test.cjs
       - run: npm run test:http-runtime
