@@ -49,6 +49,19 @@ only.
 
 ## Open
 
+### Dependency audit — compatible fixes prepared, major upgrades remain (2026-09-23)
+
+The user-approved production dependency audit found 49 flagged packages.
+Compatible auth/AWS/monitoring/transitive patches on PR #106 reduce this to 8
+(1 critical, 7 high), all through Next.js/Puppeteer. These patches are not live.
+The actual old auth implementation fails six new security regression cases;
+the patched implementation passes all ten. SDK transport/signing coverage and
+existing PG/browser/build checks pass. Next 14 is unsupported; Puppeteer is also
+used for runtime PDFs, so neither remaining root may be hidden or dismissed as
+test-only. See `docs/DEPENDENCY-SECURITY-20260923.md` for versions, upstream
+sources, proof and the separate framework/browser upgrade requirements. No
+production compromise is established by a dependency audit.
+
 ### Order receipt versus Garden file opening — correction prepared (2026-09-23)
 
 `fix/order-receipt-email-sequence` replaces the existing initial web/broker
