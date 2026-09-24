@@ -35,8 +35,25 @@ export async function applyEscrowOfficer(
   if ('photoUrl' in eo) data.escrowOfficerPhotoUrl = eo.photoUrl ?? null
 
   if (Object.keys(data).length === 0) return 0
+  const acknowledged = Object.keys(data).length
 
-  await db.closing.update({ where: { id: closingId }, data })
+  if ('email' in eo) {
+    const current = await db.closing.findUniqueOrThrow({ where: { id: closingId }, select: { escrowOfficerEmail: true } })
+    const normalized = (v: string | null | undefined) => v?.trim().toLowerCase() || null
+    if (normalized(current.escrowOfficerEmail) !== normalized(eo.email)) {
+      // A new officer must not inherit the previous person's photo/contact
+      // card when Garden has no photo field to send. Hold the intro until the
+      // new profile is verified; omitted fields are preserved only SAME-officer.
+      for (const [inputKey, field] of Object.entries({ name: 'escrowOfficerName', title: 'escrowOfficerTitle',
+        phone: 'escrowOfficerPhone', nmls: 'escrowOfficerNmls', photoUrl: 'escrowOfficerPhotoUrl' })) {
+        if (!(inputKey in eo)) data[field] = null
+      }
+    }
+    const changed = await db.closing.updateMany({ where: { id: closingId, escrowOfficerEmail: current.escrowOfficerEmail }, data })
+    if (changed.count !== 1) throw new Error('Officer changed concurrently; retry assignment')
+  } else {
+    await db.closing.update({ where: { id: closingId }, data })
+  }
 
   // The officer is also a teammate of the file — surface them in the teammate
   // index so the file appears on their dashboard if they ever sign in.
@@ -44,5 +61,5 @@ export async function applyEscrowOfficer(
     await upsertTeammateClosing({ closingId, email: eo.email, role: 'unknown' }, db)
   }
 
-  return Object.keys(data).length
+  return acknowledged
 }

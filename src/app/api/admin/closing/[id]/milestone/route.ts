@@ -14,7 +14,8 @@ const Body = z.object({
   status: z.enum(['pending', 'active', 'done']),
 })
 
-export async function POST(req: Request, { params }: { params: { id: string } }) {
+export async function POST(req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   await requireAdmin()
   const json = await req.json().catch(() => null)
   const parsed = Body.safeParse(json)

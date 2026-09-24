@@ -49,6 +49,31 @@ only.
 
 ## Open
 
+### Dependency audit — compatible fixes prepared, major upgrades remain (2026-09-23)
+
+The user-approved production dependency audit found 49 flagged packages.
+Compatible auth/AWS/monitoring/transitive patches on PR #106 reduce this to 8
+(1 critical, 7 high), all through Next.js/Puppeteer. These patches are not live.
+The actual old auth implementation fails six new security regression cases;
+the patched implementation passes all ten. SDK transport/signing coverage and
+existing PG/browser/build checks pass. Next 14 is unsupported; Puppeteer is also
+used for runtime PDFs, so neither remaining root may be hidden or dismissed as
+test-only. See `docs/DEPENDENCY-SECURITY-20260923.md` for versions, upstream
+sources, proof and the separate framework/browser upgrade requirements. No
+production compromise is established by a dependency audit.
+
+### Order receipt versus Garden file opening — correction prepared (2026-09-23)
+
+`fix/order-receipt-email-sequence` replaces the existing initial web/broker
+borrower welcome with clear request-received copy, and makes Garden/ops
+dashboard welcomes neutral. It does not add an extra email or assert a
+milestone. "Title ordered" remains a separate completed-milestone notification.
+This is not released or an integration activation. See
+`docs/ORDER-EMAIL-SEQUENCE.md` for exact recipients/triggers and outstanding
+handoff, delivery-retry, professional completion and historical-sync gaps.
+In particular, existing milestone delivery marks notified even after a caught
+failure, and excludes professionals at closing; those are not fixed here.
+
 ### Borrower file navigation and sign-in feedback — implemented, not released (2026-09-23)
 
 Branch `fix/closing-role-journeys` preserves completed borrower files, adds
@@ -343,6 +368,30 @@ Confirm with FNTE that these inversions are intentional.
 - BetterClose Bucks: counsel review of the credit structure.
 - Liberty Title quote documents: archive to `data/market-fees/` so comp
   provenance survives.
+
+### Garden integration activation prerequisites (checked 2026-09-23)
+
+Paired draft PRs #106 (BetterClose) and Garden #848 add Pro-first notifications,
+explicit request binding and a read-only notification-setup check. Not deployed.
+SES remains sandboxed (`ProductionAccessEnabled=false`), despite verified domain
+and DKIM. `BC_EO_REPLY_ROUTES` is absent from the current app/main branch variable
+names; actual receiving mailboxes and photos still need verification. The AWS
+Support API requires a paid support subscription in this account; use the existing
+support-console case rather than treating that API error as a new SES denial.
+Garden's already-queued events need review before activation; `BC_SYNC_SINCE`
+does not filter the existing queue. See `docs/INTEGRATION-LAUNCH-CHECKLIST.md`.
+
+### Supported framework bridge and PDF hosting verification (2026-09-23)
+
+A stacked, unmerged runtime upgrade prepares Next 15.5.26 / React 19, Node 22
+and Puppeteer 25.12.0. Its production dependency audit has zero current findings;
+this is not a deployed fix or a full security review. Next 15's documented
+two-year maintenance window ends around October 21, 2026. Recheck Amplify's
+Next 16 support and plan the next supported-host/runtime step before that date.
+Do not silently switch hosts or select an undocumented hosting combination.
+The PDF generator has no current application caller; production Chromium
+provisioning remains unverified, and no server-PDF route was activated.
+See `docs/RUNTIME-UPGRADE-20260923.md` for evidence and release conditions.
 
 ## Resolved
 

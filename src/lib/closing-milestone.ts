@@ -5,29 +5,12 @@
 // snapshot, idempotency tracking).
 
 import { prisma } from '@/lib/db'
-import { MILESTONE_LABELS, type MilestoneKind } from './closing'
-import { sendClosingUpdateEmail } from './email/closing-update'
-import { sendClosingUpdateTeammateEmail } from './email/closing-update-teammate'
-import { sendClosingCompletedEmail } from './email/closing-completed'
+import { type MilestoneKind } from './closing'
+import { Prisma } from '@prisma/client'
+import { borrowerMayReceive, normalizeEmail, PRO_ROLES } from '@/lib/closing/notificationPolicy'
+import { deliverMilestoneNotifications } from '@/lib/closing/milestoneDelivery'
 import { fetchElendFeeEstimate } from './elendCalc'
 import type { FeeReport } from './feeReport'
-import { logNotification } from './notificationLog'
-import type { TeammateRole } from './professional/pronoun'
-
-function firstName(name?: string | null): string | null {
-  if (!name) return null
-  return name.split(' ')[0] || null
-}
-
-function fullAddress(c: {
-  propertyAddress: string | null
-  propertyCity: string | null
-  propertyState: string | null
-  propertyZip: string | null
-}): string | null {
-  const parts = [c.propertyAddress, c.propertyCity, c.propertyState, c.propertyZip].filter(Boolean)
-  return parts.length ? parts.join(', ') : null
-}
 
 async function buildSnapshotFeeReport(input: {
   propertyZip: string | null
@@ -79,197 +62,57 @@ export async function applyMilestoneTransition(
   input: ApplyMilestoneTransitionInput,
 ): Promise<ApplyMilestoneTransitionResult | { ok: false; error: string; status?: number }> {
   const { closingId, kind, status } = input
-  const origin = input.origin ?? 'admin'
-
-  const closing = await prisma.closing.findUnique({
-    where: { id: closingId },
-    include: {
-      milestones: true,
-      user: { select: { id: true, email: true, name: true } },
-    },
-  })
-  if (!closing) {
-    return { ok: false, error: 'not found', status: 404 }
-  }
-
-  let milestone = closing.milestones.find((m) => m.kind === kind)
-  if (!milestone) {
-    milestone = await prisma.milestone.create({
-      data: { closingId: closing.id, kind, status: 'pending' },
-    })
-  }
-
-  const wasDone = milestone.status === 'done'
-  const goingToDone = status === 'done'
-
-  const completedAt = goingToDone ? milestone.completedAt || new Date() : milestone.completedAt
-  await prisma.milestone.update({
-    where: { id: milestone.id },
-    data: { status, completedAt: goingToDone ? completedAt : null },
-  })
-
-  let emailed = false
+  const before = await prisma.closing.findUnique({ where: { id: closingId } })
+  if (!before) return { ok: false, error: 'not found', status: 404 }
+  // External fee lookup outside the short write transaction.
+  const fees = kind === 'closed' && status === 'done' && !before.closedAt
+    ? await buildSnapshotFeeReport(before) : null
   let snapshotted = false
-  if (goingToDone && !wasDone && !milestone.notifiedAt) {
-    const recipient = closing.borrowerEmail || closing.user?.email
-    const baseUrl = process.env.NEXTAUTH_URL || 'https://www.betterclose.co'
-    const dashboardUrl = `${baseUrl}/dashboard?closingId=${encodeURIComponent(closing.id)}`
-    const dryRun = process.env.AUTH_EMAIL_DRY_RUN === 'true'
-
-    if (recipient) {
-      if (kind === 'closed') {
-        const snapshot = await buildSnapshotFeeReport(closing)
-        await prisma.closing.update({
-          where: { id: closing.id },
-          data: {
-            status: 'closed',
-            closedAt: new Date(),
-            snapshotFeeReport: snapshot ? (snapshot as unknown as object) : undefined,
-          },
-        })
-        snapshotted = !!snapshot
-
-        const subject = "You're closed! · Your BetterClose savings"
-        try {
-          const messageId = await sendClosingCompletedEmail({
-            to: recipient,
-            borrowerFirstName: firstName(closing.user?.name),
-            propertyAddress: fullAddress(closing),
-            feeReport: snapshot,
-            dashboardUrl,
-          })
-          emailed = true
-          await logNotification({
-            userId: closing.user?.id || null,
-            closingId: closing.id,
-            kind: `${origin}:milestone:closed`,
-            recipient,
-            subject,
-            status: dryRun ? 'skipped' : 'sent',
-            providerMessageId: messageId,
-          })
-        } catch (err) {
-          // eslint-disable-next-line no-console
-          console.error('[closing-milestone] closing-completed email failed:', err)
-          await logNotification({
-            userId: closing.user?.id || null,
-            closingId: closing.id,
-            kind: `${origin}:milestone:closed`,
-            recipient,
-            subject,
-            status: 'failed',
-            error: err instanceof Error ? err.message : String(err),
-          })
-        }
-      } else {
-        const subject = `${MILESTONE_LABELS[kind]} · BetterClose`
-        try {
-          const messageId = await sendClosingUpdateEmail({
-            to: recipient,
-            borrowerFirstName: firstName(closing.user?.name),
-            milestoneKind: kind,
-            propertyAddress: fullAddress(closing),
-            dashboardUrl,
-          })
-          emailed = true
-          await logNotification({
-            userId: closing.user?.id || null,
-            closingId: closing.id,
-            kind: `${origin}:milestone:${kind}`,
-            recipient,
-            subject,
-            status: dryRun ? 'skipped' : 'sent',
-            providerMessageId: messageId,
-          })
-        } catch (err) {
-          // eslint-disable-next-line no-console
-          console.error('[closing-milestone] closing-update email failed:', err)
-          await logNotification({
-            userId: closing.user?.id || null,
-            closingId: closing.id,
-            kind: `${origin}:milestone:${kind}`,
-            recipient,
-            subject,
-            status: 'failed',
-            error: err instanceof Error ? err.message : String(err),
-          })
-        }
+  try {
+    await prisma.$transaction(async tx => {
+      const c = await tx.closing.findUniqueOrThrow({ where: { id: closingId } })
+      const m = await tx.milestone.upsert({ where: { closingId_kind: { closingId, kind } },
+        create: { closingId, kind, status: 'pending' }, update: {} })
+      const prepare = status === 'done' && m.status !== 'done' && !m.deliveryPreparedAt && !m.notifiedAt
+      await tx.milestone.update({ where: { id: m.id }, data: {
+        status, completedAt: status === 'done' ? m.completedAt || new Date() : null,
+        ...(status === 'done' && !m.deliveryPreparedAt ? { deliveryPreparedAt: new Date() } : {}),
+      } })
+      if (kind === 'title_ordered' && status === 'done' && c.status === 'pending') {
+        await tx.closing.update({ where: { id: closingId }, data: { status: 'active' } })
       }
-
-      // Teammate fanout — same email, same milestone, but to anyone named
-      // on the file (lender / broker / realtor) who has a BetterClose
-      // account and hasn't muted this client.
-      if (kind !== 'closed') {
-        try {
-          const teammates = await prisma.teammateClosing.findMany({
-            where: { closingId: closing.id, userId: { not: null } },
-            include: { user: { select: { id: true, email: true, name: true } } },
-          })
-          for (const t of teammates) {
-            if (!t.user?.email) continue
-            if (recipient && t.user.email.toLowerCase() === recipient.toLowerCase()) continue
-
-            const teammateDashboardUrl = `${baseUrl}/teammate/dashboard/${closing.id}`
-            const teammateSubject = `${MILESTONE_LABELS[kind]} · ${fullAddress(closing) || 'BetterClose'}`
-            const teammateRole = ((t.role as TeammateRole) ?? 'unknown') as TeammateRole
-
-            if (t.muted) {
-              await logNotification({
-                userId: t.user.id,
-                closingId: closing.id,
-                kind: `teammate:milestone_skipped:${kind}`,
-                recipient: t.user.email,
-                subject: teammateSubject,
-                status: 'skipped',
-              })
-              continue
-            }
-
-            try {
-              const messageId = await sendClosingUpdateTeammateEmail({
-                to: t.user.email,
-                recipientFirstName: firstName(t.user.name),
-                role: teammateRole,
-                milestoneKind: kind,
-                propertyAddress: fullAddress(closing),
-                borrowerName: closing.user?.name ?? null,
-                teammateDashboardUrl,
-              })
-              await logNotification({
-                userId: t.user.id,
-                closingId: closing.id,
-                kind: `teammate:milestone:${kind}`,
-                recipient: t.user.email,
-                subject: teammateSubject,
-                status: dryRun ? 'skipped' : 'sent',
-                providerMessageId: messageId,
-              })
-            } catch (err) {
-              // eslint-disable-next-line no-console
-              console.error('[closing-milestone] teammate milestone email failed:', err)
-              await logNotification({
-                userId: t.user.id,
-                closingId: closing.id,
-                kind: `teammate:milestone:${kind}`,
-                recipient: t.user.email,
-                subject: teammateSubject,
-                status: 'failed',
-                error: err instanceof Error ? err.message : String(err),
-              })
-            }
-          }
-        } catch (err) {
-          // eslint-disable-next-line no-console
-          console.error('[closing-milestone] teammate fanout failed:', err)
-        }
+      if (kind === 'closed' && status === 'done' && !c.closedAt) {
+        await tx.closing.update({ where: { id: closingId }, data: { status: 'closed', closedAt: new Date(),
+          ...(fees ? { snapshotFeeReport: fees as unknown as Prisma.InputJsonValue } : {}) } })
+        snapshotted = Boolean(fees)
       }
-
-      await prisma.milestone.update({
-        where: { id: milestone.id },
-        data: { notifiedAt: new Date() },
-      })
-    }
+      if (!prepare) return // No historical replay on enabling permission or retries.
+      const queue = async (audience: string, recipient: string) => {
+        const deliveryKind = 'milestone:' + kind + ':' + audience
+        await tx.ingestDelivery.upsert({ where: {
+          closingId_kind_recipient: { closingId, kind: deliveryKind, recipient },
+        }, create: { closingId, kind: deliveryKind, recipient,
+          payload: { kind, audience, permissionVersion: c.borrowerEmailPermissionVersion } }, update: {} })
+      }
+      const recipient = normalizeEmail(c.borrowerEmail)
+      if (borrowerMayReceive(c, recipient)) await queue('borrower', recipient)
+      const pros = await tx.teammateClosing.findMany({ where: { closingId,
+        role: { in: PRO_ROLES }, muted: false, mayManageBorrowerEmails: true } })
+      for (const pro of pros) {
+        const email = normalizeEmail(pro.matchedEmail)
+        if (email && email !== recipient && email !== normalizeEmail(c.escrowOfficerEmail)) await queue('pro', email)
+      }
+    }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable })
+    const delivery = await deliverMilestoneNotifications(closingId)
+    if (delivery.pending) return { ok: false, error: 'notification_pending', status: 503 }
+    const accepted = await prisma.ingestDelivery.count({ where: { closingId,
+      kind: { startsWith: 'milestone:' + kind + ':' }, status: 'sent' } })
+    if (accepted) await prisma.milestone.update({ where: { closingId_kind: { closingId, kind } },
+      data: { notifiedAt: new Date() } })
+    return { ok: true, closingId, kind, status, emailed: delivery.sent > 0, snapshotted }
+  } catch {
+    // A transient transaction/queue error must be retried, never acknowledged
+    // as a successful send. No database/contact details in the API response.
+    return { ok: false, error: 'notification_pending', status: 503 }
   }
-
-  return { ok: true, closingId: closing.id, kind, status, emailed, snapshotted }
 }

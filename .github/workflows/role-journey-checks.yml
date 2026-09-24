@@ -6,8 +6,10 @@ on:
       - 'src/app/welcome/**'
       - 'src/app/teammate/**'
       - 'src/app/api/closing/**'
+      - 'src/app/api/closings/**'
       - 'src/app/api/teammate/**'
       - 'src/components/dashboard/**'
+      - 'src/components/teammate/**'
       - 'src/components/lender-request/TrackThisClosingPrompt.tsx'
       - 'src/lib/auth/**'
       - 'src/lib/closing*'
@@ -16,9 +18,13 @@ on:
       - 'src/lib/email/**'
       - 'prisma/**'
       - 'package*.json'
+      - '.nvmrc'
       - 'test/role-journeys*'
+      - 'test/notification-policy*'
+      - 'test/borrower-notifications*'
       - 'test/sign-in-journeys*'
       - 'test/helpers/role-journey-harness.cjs'
+      - 'test/helpers/react-browser.cjs'
       - '.github/workflows/role-journey-checks.yml'
   workflow_dispatch:
 permissions:
@@ -42,7 +48,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version-file: .nvmrc
           cache: npm
       - run: npm ci --ignore-scripts --no-audit --no-fund
       - run: npx prisma generate
@@ -58,4 +64,7 @@ jobs:
         run: |
           chrome_path="$(command -v google-chrome)"
           echo "PUPPETEER_EXECUTABLE_PATH=$chrome_path" >> "$GITHUB_ENV"
-      - run: node --test test/role-journeys.pg.test.cjs test/sign-in-journeys.browser.test.cjs
+      # Both PG suites own rows in this job's one database; serialize suites
+      # so unrelated fixture cleanup does not trip PostgreSQL SSI predicates.
+      # The notification suite separately exercises real concurrent requests.
+      - run: node --test --test-concurrency=1 test/role-journeys.pg.test.cjs test/notification-policy.pg.test.cjs test/sign-in-journeys.browser.test.cjs test/borrower-notifications.browser.test.cjs

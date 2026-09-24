@@ -9,7 +9,7 @@ const target = new URL(process.env.DATABASE_URL || 'http://missing');
 assert.ok(['127.0.0.1', 'localhost'].includes(target.hostname));
 assert.match(target.pathname, /^\/garden_ldi_betterclose_journeys(?:_[a-z0-9]+)*$/);
 const prisma = new PrismaClient();
-const h = createHarness(prisma);
+const h = createHarness(prisma, { env: { BC_EO_REPLY_ROUTES: JSON.stringify({ 'officer@example.invalid': 'synthetic-officer@betterclose.co' }) } });
 const prefix = 'bcj-' + Date.now() + '-';
 let seq = 0, verifiedTarget = false;
 const id = () => prefix + (++seq);
@@ -20,7 +20,7 @@ const closing = data => prisma.closing.create({ data: { id: id(), borrowerEmail:
   milestones: { create: ['loan_locked', 'title_ordered', 'title_search', 'title_issued', 'closed'].map(kind => ({ kind })) }, ...data } });
 const borrowerPage = props => h.load('src/app/dashboard/page.tsx').default(props || {});
 const teamPage = () => h.load('src/app/teammate/dashboard/page.tsx').default({});
-const detail = closingId => h.load('src/app/teammate/dashboard/[closingId]/page.tsx').default({ params: { closingId } });
+const detail = closingId => h.load('src/app/teammate/dashboard/[closingId]/page.tsx').default({ params: Promise.resolve({ closingId }) });
 const login = async u => {
   await h.load('src/lib/auth/options.ts').authOptions.events.signIn({ user: u });
   h.setActor(u);
@@ -28,8 +28,8 @@ const login = async u => {
 const request = body => new Request('https://betterclose.example.invalid/synthetic', {
   method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
 const update = body => h.load('src/app/api/closing/update/route.ts').POST(request(body));
-const mute = (membership, value) => h.load('src/app/api/teammate/closings/[id]/mute/route.ts').PATCH(request({ muted: value }), { params: { id: membership } });
-const role = (membership, value) => h.load('src/app/api/teammate/closings/[id]/role/route.ts').PATCH(request({ role: value }), { params: { id: membership } });
+const mute = (membership, value) => h.load('src/app/api/teammate/closings/[id]/mute/route.ts').PATCH(request({ muted: value }), { params: Promise.resolve({ id: membership }) });
+const role = (membership, value) => h.load('src/app/api/teammate/closings/[id]/role/route.ts').PATCH(request({ role: value }), { params: Promise.resolve({ id: membership }) });
 function preview(name, tree) {
   if (!process.env.BC_JOURNEY_PREVIEW_DIR) return;
   const directory = path.resolve(process.env.BC_JOURNEY_PREVIEW_DIR);
@@ -144,7 +144,7 @@ test('explicit borrower file selection opens that owned file, not the newest fil
   const u = await user(); h.setActor(u);
   const a = await closing({ userId: u.id, createdAt: new Date('2026-01-01') });
   const b = await closing({ userId: u.id, createdAt: new Date('2026-02-01') });
-  const tree = await borrowerPage({ searchParams: { closingId: a.id } });
+  const tree = await borrowerPage({ searchParams: Promise.resolve({ closingId: a.id }) });
   preview('borrower-two-closings', tree);
   const selected = findClosing(tree);
   assert.equal(selected.id, a.id);
@@ -167,13 +167,13 @@ function findClosing(node) {
 test('explicit unrelated, missing or malformed borrower file refuses without a fallback write', async () => {
   const u = await user(); const privateFile = await closing(); h.setActor(u);
   for (const closingId of [privateFile.id, 'missing', '', ['first', 'second']]) {
-    await assert.rejects(borrowerPage({ searchParams: { closingId } }), /NOT_FOUND/);
+    await assert.rejects(borrowerPage({ searchParams: Promise.resolve({ closingId }) }), /NOT_FOUND/);
   }
   assert.equal(await prisma.closing.count({ where: { userId: u.id } }), 0);
 });
 
 test('sign-in redirect retains the specific borrower file', async () => {
-  await assert.rejects(borrowerPage({ searchParams: { closingId: 'synthetic-file' } }), error => {
+  await assert.rejects(borrowerPage({ searchParams: Promise.resolve({ closingId: 'synthetic-file' }) }), error => {
     const url = new URL(error.message.replace('REDIRECT:', ''), 'https://betterclose.example.invalid');
     return url.pathname === '/login' && url.searchParams.get('callbackUrl') === '/dashboard?closingId=synthetic-file';
   });
@@ -192,29 +192,30 @@ test('account progression uses invitations for the selected file only', async ()
   const a = await closing({ userId: u.id, status: 'pending' }); const b = await closing({ userId: u.id });
   const unrelatedEmail = email();
   await prisma.lenderRequest.create({ data: { id: id(), refId: id(), userId: u.id, closingId: b.id, channel: 'we_email', lenderEmail: unrelatedEmail, source: 'dashboard_account' } });
-  const html = h.render(await borrowerPage({ searchParams: { closingId: a.id } }));
+  const html = h.render(await borrowerPage({ searchParams: Promise.resolve({ closingId: a.id }) }));
   assert.ok(!html.includes(unrelatedEmail));
 });
 
-test('ingest welcome and regular intake welcome identify their exact closing', async () => {
+test('Garden ingest suppresses borrower welcome; self-request receipt identifies its exact closing', async () => {
   const borrowerEmail = email();
   const result = await h.load('src/lib/closing/gardenIngest.ts').ingestGardenOrder({ gardenFileNumber: id(), borrowerEmail, propertyAddress: 'Synthetic Garden Address' });
-  const welcome = h.sent.find(message => message.to === borrowerEmail);
-  assert.ok(welcome.htmlBody.includes('closingId=' + result.closingId));
+  assert.equal(h.sent.length, 0);
   h.sent.length = 0;
   const publicEmail = email();
-  const opened = await h.load('src/lib/closing/createFromOrder.ts').createClosingFromOrder({ borrowerEmail: publicEmail, propertyAddress: 'Synthetic Public Address' }, { matchExisting: false });
+  const opened = await h.load('src/lib/closing/createFromOrder.ts').createClosingFromOrder({ borrowerEmail: publicEmail, propertyAddress: 'Synthetic Public Address' }, { matchExisting: false, borrowerInitiated: true });
   assert.ok(h.sent.find(message => message.to === publicEmail).htmlBody.includes('closingId=' + opened.closingId));
 });
 
 test('milestone fanout keeps separate borrower/professional destinations and respects mute', async () => {
   const borrower = await user(); const agent = await user(); const broker = await user(); const lender = await user();
-  const c = await closing({ userId: borrower.id, borrowerEmail: borrower.email });
+  const c = await closing({ userId: borrower.id, borrowerEmail: borrower.email,
+    ...h.load('src/lib/closing/notificationPolicy.ts').borrowerPermission(borrower.email, borrower.id, 'borrower', true),
+    escrowOfficerName: 'Synthetic Officer', escrowOfficerEmail: 'officer@example.invalid', escrowOfficerPhotoUrl: 'https://images.example.invalid/officer.png' });
   for (const [u, kind, muted] of [[agent, 'realtor', false], [broker, 'broker', false], [lender, 'lender', true]]) {
-    await prisma.teammateClosing.create({ data: { userId: u.id, matchedEmail: u.email, closingId: c.id, role: kind, muted } });
+    await prisma.teammateClosing.create({ data: { userId: u.id, matchedEmail: u.email, closingId: c.id, role: kind, muted, mayManageBorrowerEmails: true } });
   }
   const result = await h.load('src/lib/closing-milestone.ts').applyMilestoneTransition({ closingId: c.id, kind: 'title_ordered', status: 'done', origin: 'tps' });
-  assert.equal(result.ok, true);
+  assert.equal(result.ok, true, JSON.stringify(await prisma.ingestDelivery.findMany({ where: { closingId: c.id } })));
   assert.deepEqual(h.sent.map(m => m.to).sort(), [borrower.email, agent.email, broker.email].sort());
   assert.ok(h.sent.find(m => m.to === borrower.email).htmlBody.includes('/dashboard?closingId=' + c.id));
   for (const u of [agent, broker]) assert.ok(h.sent.find(m => m.to === u.email).htmlBody.includes('/teammate/dashboard/' + c.id));
@@ -224,12 +225,13 @@ test('milestone fanout keeps separate borrower/professional destinations and res
 });
 
 test('completed email targets the closed file even if a newer transaction exists', async () => {
-  const u = await user(); const c = await closing({ userId: u.id, borrowerEmail: u.email, createdAt: new Date('2026-01-01') });
+  const u = await user(); const c = await closing({ userId: u.id, borrowerEmail: u.email, createdAt: new Date('2026-01-01'),
+    ...h.load('src/lib/closing/notificationPolicy.ts').borrowerPermission(u.email, u.id, 'borrower', true) });
   await closing({ userId: u.id, borrowerEmail: u.email, createdAt: new Date('2026-02-01') });
   await h.load('src/lib/closing-milestone.ts').applyMilestoneTransition({ closingId: c.id, kind: 'closed', status: 'done' });
   assert.ok(h.sent.find(m => m.to === u.email).htmlBody.includes('/dashboard?closingId=' + c.id));
   h.setActor(u);
-  assert.equal(findClosing(await borrowerPage({ searchParams: { closingId: c.id } })).id, c.id);
+  assert.equal(findClosing(await borrowerPage({ searchParams: Promise.resolve({ closingId: c.id }) })).id, c.id);
 });
 
 test('default dashboard prefers active work while completed file is explicitly selectable without mutation', async () => {
@@ -237,7 +239,7 @@ test('default dashboard prefers active work while completed file is explicitly s
   const active = await closing({ userId: u.id, createdAt: new Date('2026-01-01') });
   const done = await closing({ userId: u.id, status: 'closed', closedAt: new Date(), createdAt: new Date('2026-02-01') });
   assert.equal(findClosing(await borrowerPage()).id, active.id);
-  const selected = await borrowerPage({ searchParams: { closingId: done.id, variant: 'unified' } });
+  const selected = await borrowerPage({ searchParams: Promise.resolve({ closingId: done.id, variant: 'unified' }) });
   assert.equal(findClosing(selected).id, done.id);
   assert.ok(h.render(selected).includes('name="variant" value="unified"'));
   assert.deepEqual(await prisma.closing.findUnique({ where: { id: done.id } }), done);
@@ -256,7 +258,7 @@ test('professional membership and a matching borrower email do not grant borrowe
   const u = await user(), owner = await user(); h.setActor(u);
   const file = await closing({ userId: owner.id, borrowerEmail: u.email });
   await prisma.teammateClosing.create({ data: { userId: u.id, matchedEmail: u.email, closingId: file.id } });
-  await assert.rejects(borrowerPage({ searchParams: { closingId: file.id } }), /NOT_FOUND/);
+  await assert.rejects(borrowerPage({ searchParams: Promise.resolve({ closingId: file.id }) }), /NOT_FOUND/);
   assert.equal(await prisma.closing.count({ where: { userId: u.id } }), 0);
 });
 
@@ -265,7 +267,7 @@ test('selection never reassigns invitations already linked to another file or an
   const a = await closing({ userId: u.id }), b = await closing({ userId: u.id });
   for (const data of [{ userId: u.id, closingId: b.id }, { userId: other.id, closingId: null }, { userId: null, closingId: b.id }]) {
     const invite = await prisma.lenderRequest.create({ data: { id: id(), refId: id(), channel: 'copy_link', source: 'dashboard_account', ...data } });
-    await borrowerPage({ searchParams: { closingId: a.id, claim: invite.refId } });
+    await borrowerPage({ searchParams: Promise.resolve({ closingId: a.id, claim: invite.refId }) });
     assert.deepEqual(await prisma.lenderRequest.findUnique({ where: { id: invite.id } }), invite);
   }
 });
@@ -273,23 +275,22 @@ test('selection never reassigns invitations already linked to another file or an
 test('unassigned invitation can still attach to the selected owned file exactly once', async () => {
   const u = await user(); h.setActor(u); const file = await closing({ userId: u.id });
   const invite = await prisma.lenderRequest.create({ data: { id: id(), refId: id(), channel: 'copy_link', source: 'dashboard_account' } });
-  await borrowerPage({ searchParams: { closingId: file.id, claim: invite.refId } });
+  await borrowerPage({ searchParams: Promise.resolve({ closingId: file.id, claim: invite.refId }) });
   const attached = await prisma.lenderRequest.findUnique({ where: { id: invite.id } });
   assert.equal(attached.userId, u.id); assert.equal(attached.closingId, file.id);
-  await borrowerPage({ searchParams: { closingId: file.id, claim: invite.refId } });
+  await borrowerPage({ searchParams: Promise.resolve({ closingId: file.id, claim: invite.refId }) });
   assert.equal((await prisma.lenderRequest.findUnique({ where: { id: invite.id } })).closingId, file.id);
 });
 
-for (const payloadId of [undefined, 'incorrect-payload-id']) test(`queued welcome uses its durable row's file ID (payload ${payloadId || 'legacy'})`, async () => {
+for (const payloadId of [undefined, 'incorrect-payload-id']) test(`legacy queued welcome is cancelled regardless of payload file ID (${payloadId || 'legacy'})`, async () => {
   const c = await closing();
   await prisma.ingestDelivery.create({ data: { closingId: c.id, kind: 'welcome', recipient: c.borrowerEmail,
     payload: { borrowerEmail: c.borrowerEmail, baseUrl: 'https://betterclose.example.invalid', ...(payloadId ? { closingId: payloadId } : {}) } } });
   await h.load('src/lib/closing/gardenIngest.ts').deliverIngestNotifications(c.id);
-  assert.equal(h.sent.length, 1);
-  assert.ok(h.sent[0].htmlBody.includes('closingId=' + c.id));
-  assert.ok(!h.sent[0].htmlBody.includes('incorrect-payload-id'));
+  assert.equal(h.sent.length, 0);
+  assert.equal((await prisma.ingestDelivery.findFirst({ where: { closingId: c.id } })).status, 'cancelled');
   await h.load('src/lib/closing/gardenIngest.ts').deliverIngestNotifications(c.id);
-  assert.equal(h.sent.length, 1);
+  assert.equal(h.sent.length, 0);
 });
 
 test('legacy welcome callers without a file ID keep a working generic welcome URL', async () => {
@@ -300,7 +301,7 @@ test('legacy welcome callers without a file ID keep a working generic welcome UR
 });
 
 test('unauthenticated invitation redirect preserves claim and selected file without an external redirect', async () => {
-  await assert.rejects(borrowerPage({ searchParams: { closingId: 'file/one', claim: 'claim&one', variant: 'unified' } }), error => {
+  await assert.rejects(borrowerPage({ searchParams: Promise.resolve({ closingId: 'file/one', claim: 'claim&one', variant: 'unified' }) }), error => {
     const loginUrl = new URL(error.message.replace('REDIRECT:', ''), 'https://betterclose.example.invalid');
     const callback = new URL(loginUrl.searchParams.get('callbackUrl'), 'https://betterclose.example.invalid');
     return callback.pathname === '/dashboard' && callback.origin === 'https://betterclose.example.invalid' &&

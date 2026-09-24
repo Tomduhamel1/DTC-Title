@@ -5,15 +5,19 @@ const ts = require('typescript');
 const React = require('react');
 const { renderToStaticMarkup } = require('react-dom/server');
 
-function createHarness(prisma) {
+function createHarness(prisma, options = {}) {
   const root = path.resolve(process.env.BC_TEST_SOURCE_ROOT || path.join(__dirname, '../..'));
   let actor = null;
   const sent = [], modules = new Map();
   const syntheticProcess = { env: { NEXTAUTH_URL: 'https://betterclose.example.invalid',
-    ORDER_INGEST_SECRET: 'synthetic-only', AUTH_EMAIL_DRY_RUN: 'false' } };
+    ORDER_INGEST_SECRET: 'synthetic-only', AUTH_EMAIL_DRY_RUN: 'false', ...options.env } };
   const mocks = {
     '@/lib/db': { prisma },
-    '@/lib/aws/ses': { sendEmail: async data => { sent.push(structuredClone(data)); return 'synthetic-accepted'; } },
+    '@/lib/aws/ses': { sendEmail: async data => {
+      const accepted = options.send ? await options.send(data) : 'synthetic-accepted';
+      if (accepted) sent.push(structuredClone(data));
+      return accepted;
+    } },
     '@/lib/elendCalc': { fetchElendFeeEstimate: async () => null },
     '@auth/prisma-adapter': { PrismaAdapter: () => ({}) },
     'next-auth/providers/email': options => options,
@@ -51,6 +55,6 @@ function createHarness(prisma) {
       syntheticProcess, () => { throw new Error('Network forbidden'); });
     return mod.exports;
   }
-  return { load, sent, setActor: value => { actor = value; }, render: renderToStaticMarkup };
+  return { load, sent, env: syntheticProcess.env, setActor: value => { actor = value; }, render: renderToStaticMarkup };
 }
 module.exports = { createHarness };

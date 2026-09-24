@@ -62,11 +62,15 @@ export async function getOrCreateClosingForUser(userId: string) {
   }
 
   if (!closing) {
+    const { borrowerPermission } = await import('@/lib/closing/notificationPolicy')
+    const owner = await prisma.user.findUnique({ where: { id: userId } })
     closing = await prisma.closing.create({
       data: {
         userId,
         source: 'user_signup',
         status: 'pending',
+        ...(owner?.emailVerified ? { borrowerEmail: owner.email,
+          ...borrowerPermission(owner.email, owner.id, 'borrower', true) } : {}),
         milestones: {
           create: MILESTONE_KINDS.map((kind) => ({ kind })),
         },
@@ -98,7 +102,7 @@ export async function getOrCreateClosingForUser(userId: string) {
  *   3. normalized property address key
  *
  * If nothing matches, the caller should create a new orphan Closing (userId=null)
- * and trigger the welcome-email flow on the borrowerEmail.
+ * without treating that contact address as automatic-email permission.
  */
 export async function resolveClosingForOrder(input: {
   borrowerEmail?: string | null

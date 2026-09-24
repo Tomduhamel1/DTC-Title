@@ -46,6 +46,7 @@ interface ClosingShape {
   escrowOfficerNmls: string | null
   escrowOfficerPhotoUrl: string | null
   gardenFileNumber: string | null
+  gardenOrderId?: string | null
   milestones: MilestoneShape[]
 }
 
@@ -184,7 +185,9 @@ export default function ClosingEditor({ closing }: { closing: ClosingShape }) {
 
       <Section title="Garden link">
         <Grid>
-          <TextField label="Garden file #" value={draft.gardenFileNumber} onChange={(v) => onField('gardenFileNumber', v)} />
+          {draft.gardenOrderId
+            ? <div><p className="text-sm text-slate-500">Garden file # (linked)</p><p>{draft.gardenFileNumber}</p></div>
+            : <TextField label="Garden file #" value={draft.gardenFileNumber} onChange={(v) => onField('gardenFileNumber', v)} />}
         </Grid>
         <p className="text-xs text-gray-500 mt-2">
           Garden&apos;s own order number — used to reconcile and dedupe pushes

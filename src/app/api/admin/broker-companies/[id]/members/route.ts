@@ -21,7 +21,8 @@ const Body = z.object({
   role: z.enum(['owner', 'member']).optional(),
 })
 
-export async function POST(req: Request, { params }: { params: { id: string } }) {
+export async function POST(req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   await requireAdmin()
 
   const json = await req.json().catch(() => null)

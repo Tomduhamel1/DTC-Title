@@ -1,7 +1,6 @@
 name: Release typecheck
 on:
   pull_request:
-    branches: [main]
   push:
     branches: [main]
 permissions:
@@ -13,21 +12,70 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version-file: .nvmrc
           cache: npm
       - run: npm ci --ignore-scripts --no-audit --no-fund
       - run: npx prisma generate
       - run: npm run typecheck
       - run: npm run test:release-types
+      - run: npm run test:auth-security
+      - run: npm run test:aws-compatibility
       - run: npm run test:email-design
+      - run: npm audit --omit=dev --audit-level=low
   email-layout:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version-file: .nvmrc
           cache: npm
       - run: npm ci --ignore-scripts --no-audit --no-fund
-      - run: node node_modules/puppeteer/install.mjs
-      - run: npm run test:email-layout
+      # The hosted runner already includes Chrome. Avoid an unbounded download
+      # of Puppeteer's bundled browser before any test can even start.
+      - name: Verify the runner browser and run every offline layout test
+        run: |
+          browser_path="$(command -v google-chrome)"
+          test -x "$browser_path"
+          "$browser_path" --version
+          PUPPETEER_EXECUTABLE_PATH="$browser_path" npm run test:email-layout
+      - name: Install PDF inspection tools
+        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y poppler-utils
+      - name: Verify both real PDF generator paths
+        run: PUPPETEER_EXECUTABLE_PATH="$(command -v google-chrome)" npm run test:pdf-runtime
+  production-runtime:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: garden_ldi_betterclose_journeys_runtime
+        ports: ['5432:5432']
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    env:
+      DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5432/garden_ldi_betterclose_journeys_runtime
+      NEXT_TELEMETRY_DISABLED: '1'
+      PUPPETEER_SKIP_DOWNLOAD: 'true'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      # Match the deployment's deterministic install, including postinstall.
+      - run: npm ci --no-audit --no-fund
+      - name: Identify this job's disposable PostgreSQL service
+        env:
+          POSTGRES_CONTAINER_ID: ${{ job.services.postgres.id }}
+        run: |
+          container_addr="$(docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$POSTGRES_CONTAINER_ID")"
+          test -n "$container_addr"
+          echo "BC_TEST_POSTGRES_ADDR=$container_addr" >> "$GITHUB_ENV"
+          echo "PUPPETEER_EXECUTABLE_PATH=$(command -v google-chrome)" >> "$GITHUB_ENV"
+      - run: npx prisma migrate deploy
+      - run: npm run build
+      - run: npm run test:http-runtime

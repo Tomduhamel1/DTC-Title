@@ -35,10 +35,11 @@ export const metadata = {
 }
 
 interface Props {
-  searchParams?: { ref?: string }
+  searchParams?: Promise<{ ref?: string }>
 }
 
-export default async function ForMyTeamPage({ searchParams }: Props) {
+export default async function ForMyTeamPage(props: Props) {
+  const searchParams = await props.searchParams;
   const refId = searchParams?.ref
   const ctx = await getLenderRequestContext(refId)
   const { subject, body } = buildOrderMailto(ctx)

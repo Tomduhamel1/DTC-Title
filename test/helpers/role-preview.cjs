@@ -10,7 +10,7 @@ async function main() {
   const cssDirectory = path.resolve(__dirname, '../../.next/static/css');
   const css = fs.readdirSync(cssDirectory).filter(file => file.endsWith('.css'))
     .map(file => fs.readFileSync(path.join(cssDirectory, file), 'utf8')).join('\n');
-  const browser = await puppeteer.launch({ headless: 'new', executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
+  const browser = await puppeteer.launch({ headless: true, executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
     args: ['--no-sandbox', '--disable-background-networking', '--disable-component-update'] });
   try {
     for (const name of ['borrower-two-closings', 'borrower-and-professional']) {

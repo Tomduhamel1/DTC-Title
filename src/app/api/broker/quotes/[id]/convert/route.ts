@@ -68,7 +68,8 @@ interface ConvertSuccess {
   }
 }
 
-export async function POST(_req: Request, { params }: { params: { id: string } }) {
+export async function POST(_req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const ctx = await requireBrokerMember()
   if (!ctx) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
@@ -221,7 +222,7 @@ export async function POST(_req: Request, { params }: { params: { id: string } }
         // by the helper using the broker user's email.
         teammateEmail: ctx.email,
         teammateRole: 'broker',
-      }, { matchExisting: false })
+      }, { matchExisting: false, proMayManageBorrowerEmails: true })
 
       // Compare-and-set FeeQuote: use updateMany so the predicate
       // `convertedClosingId: null` can be expressed. count=0 means a

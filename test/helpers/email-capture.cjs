@@ -42,6 +42,7 @@ function createHarness({ root = defaultRoot, env = {}, mocks: overrides = {}, fa
     }).outputText;
     function localRequire(name) {
       if (Object.hasOwn(mocks, name)) return mocks[name];
+      if (name === 'crypto') return require(name);
       let candidate;
       if (name.startsWith('@/')) candidate = path.join(root, 'src', name.slice(2));
       else if (name.startsWith('.')) candidate = path.resolve(path.dirname(absolute), name);
@@ -109,4 +110,8 @@ function contract(message) {
   return { ...Object.fromEntries(Object.entries(envelope).filter(([, value]) => value !== undefined)),
     links: [...htmlBody.matchAll(/href="([^"]*)"/g)].map(m => decodeHtml(m[1])) };
 }
-module.exports = { createHarness, capture, invoke, cases, contract, decodeHtml, feeReport };
+const receiptCases = cases.filter(spec => spec.id.startsWith('welcome')).map(spec => ({
+  ...spec, id: spec.id.replace('welcome', 'receipt'),
+  data: { ...spec.data, purpose: 'request_received', closingId: 'synthetic-receipt' },
+}));
+module.exports = { createHarness, capture, invoke, cases, receiptCases, contract, decodeHtml, feeReport };

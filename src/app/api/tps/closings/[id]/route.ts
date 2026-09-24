@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { MILESTONE_KINDS } from '@/lib/closing'
+import { notificationReadiness } from '@/lib/closing/notificationReadiness'
 
 // GET /api/tps/closings/[id]
 // Read-only snapshot of a Closing for the TPS side. Returns everything TPS
@@ -10,7 +11,8 @@ import { MILESTONE_KINDS } from '@/lib/closing'
 //
 // Auth: shared secret in `Authorization: Bearer <ORDER_INGEST_SECRET>`.
 
-export async function GET(_req: Request, { params }: { params: { id: string } }) {
+export async function GET(_req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const auth = _req.headers.get('authorization') || ''
   const expected = `Bearer ${process.env.ORDER_INGEST_SECRET || ''}`
   if (!process.env.ORDER_INGEST_SECRET || auth !== expected) {
@@ -23,8 +25,7 @@ export async function GET(_req: Request, { params }: { params: { id: string } })
       milestones: true,
       user: { select: { id: true, name: true, email: true, phone: true } },
       teammates: {
-        where: { userId: { not: null } },
-        select: { matchedEmail: true, role: true, muted: true },
+        select: { matchedEmail: true, role: true, muted: true, mayManageBorrowerEmails: true },
       },
     },
   })
@@ -32,6 +33,13 @@ export async function GET(_req: Request, { params }: { params: { id: string } })
   if (!closing) {
     return NextResponse.json({ error: 'not found' }, { status: 404 })
   }
+
+  // Counts only: no recipient addresses, delivery payloads or provider errors.
+  // Reading this endpoint must never claim a lease or attempt a notification.
+  const deliveryGroups = await prisma.ingestDelivery.groupBy({
+    by: ['status'], where: { closingId: closing.id, kind: { startsWith: 'milestone:' } },
+    _count: { _all: true },
+  })
 
   // Normalise milestones into the canonical 5-step shape TPS expects.
   const byKind = new Map(closing.milestones.map((m) => [m.kind, m]))
@@ -48,6 +56,10 @@ export async function GET(_req: Request, { params }: { params: { id: string } })
     ok: true,
     closing: {
       id: closing.id,
+      gardenFileNumber: closing.gardenFileNumber,
+      gardenOrderId: closing.gardenOrderId,
+      gardenLinkedAt: closing.gardenLinkedAt,
+      gardenLinkSource: closing.gardenLinkSource,
       status: closing.status,
       source: closing.source,
       createdAt: closing.createdAt,
@@ -97,6 +109,7 @@ export async function GET(_req: Request, { params }: { params: { id: string } })
         photoUrl: closing.escrowOfficerPhotoUrl,
       },
       closingLocation: closing.closingLocation,
+      notificationReadiness: notificationReadiness(closing, deliveryGroups),
       milestones,
       teammates: closing.teammates.map((t) => ({
         email: t.matchedEmail,

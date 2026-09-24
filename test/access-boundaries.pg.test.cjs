@@ -174,9 +174,9 @@ test('broker conversion creates its own file and simultaneous same-quote retries
     borrowerName: 'Synthetic Borrower', borrowerEmail: existing.borrowerEmail,
     propertyAddress: '99 New Property', propertyCity: 'Test City', propertyState: 'TX', propertyZip: '75001',
     expiresAt: new Date(Date.now() + 86400000) } });
-  assert.equal((await convert(request({}), { params: { id: quote.id } })).status, 401);
+  assert.equal((await convert(request({}), { params: Promise.resolve({ id: quote.id }) })).status, 401);
   currentBroker = { userId: broker.id, email: broker.email, memberships: [{ companyId: company.id }] };
-  const responses = await Promise.all(Array.from({ length: 4 }, () => convert(request({}), { params: { id: quote.id } })));
+  const responses = await Promise.all(Array.from({ length: 4 }, () => convert(request({}), { params: Promise.resolve({ id: quote.id }) })));
   responses.forEach(res => assert.equal(res.status, 200));
   const bodies = await Promise.all(responses.map(res => res.json()));
   assert.equal(new Set(bodies.map(body => body.closingId)).size, 1);
@@ -306,16 +306,16 @@ test('claim cannot overwrite an owner assigned by a concurrent transaction', asy
 });
 test('actual page denies forwarded invitations without leaking the intended recipient', async () => {
   const { c, invite } = await invitation(); currentUser = await user();
-  const html = renderToStaticMarkup(await Page({ searchParams: { claim: invite.refId } }));
+  const html = renderToStaticMarkup(await Page({ searchParams: Promise.resolve({ claim: invite.refId }) }));
   assert.match(html, /This invitation is not available for this account/);
   assert.doesNotMatch(html, new RegExp(invite.lenderEmail));
   assert.equal(await prisma.teammateClosing.count({ where: { closingId: c.id } }), 0);
 });
 test('actual page permits intended user and redirects an unauthenticated visitor', async () => {
   const { u, invite, c } = await invitation();
-  await assert.rejects(Page({ searchParams: { claim: invite.refId } }), /REDIRECT:\/login/);
+  await assert.rejects(Page({ searchParams: Promise.resolve({ claim: invite.refId }) }), /REDIRECT:\/login/);
   currentUser = u;
-  const html = renderToStaticMarkup(await Page({ searchParams: { claim: invite.refId } }));
+  const html = renderToStaticMarkup(await Page({ searchParams: Promise.resolve({ claim: invite.refId }) }));
   assert.doesNotMatch(html, /This invitation is not available/);
   assert.equal(await prisma.teammateClosing.count({ where: { closingId: c.id, userId: u.id } }), 1);
 });
@@ -325,7 +325,7 @@ test('claim errors show only generic help and grant no membership', async () => 
   const original = module.claimTeammateInvitation;
   module.claimTeammateInvitation = async () => { throw new Error('private database detail'); };
   try {
-    const html = renderToStaticMarkup(await Page({ searchParams: { claim: invite.refId } }));
+    const html = renderToStaticMarkup(await Page({ searchParams: Promise.resolve({ claim: invite.refId }) }));
     assert.match(html, /This invitation is not available for this account/);
     assert.doesNotMatch(html, /private database detail/);
     assert.equal(await prisma.teammateClosing.count({ where: { closingId: c.id } }), 0);

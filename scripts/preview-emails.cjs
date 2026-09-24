@@ -2,10 +2,10 @@
 // All recipients/data are synthetic; browser network requests are aborted.
 const fs = require('node:fs');
 const path = require('node:path');
-const { cases, capture } = require('../test/helpers/email-capture.cjs');
+const { cases, receiptCases, capture } = require('../test/helpers/email-capture.cjs');
 const { openEmailBrowser, offlinePage } = require('../test/helpers/email-browser.cjs');
 const out = path.resolve(process.argv[2] || '/tmp/betterclose-email-preview');
-const selected = ['welcome', 'borrower-title_ordered', 'sign-in', 'teammate-broker', 'invite-realtor', 'portal-verified', 'quote-savings', 'completed-savings', 'lender-request', 'partner-referral'];
+const selected = ['receipt', 'welcome', 'borrower-title_ordered', 'sign-in', 'teammate-broker', 'invite-realtor', 'portal-verified', 'quote-savings', 'completed-savings', 'lender-request', 'partner-referral'];
 
 (async () => {
   fs.mkdirSync(out, { recursive: true });
@@ -13,7 +13,7 @@ const selected = ['welcome', 'borrower-title_ordered', 'sign-in', 'teammate-brok
   try {
     const { page, requestCount } = await offlinePage(browser);
     for (const id of selected) {
-      const { sent } = await capture(cases.find(s => s.id === id));
+      const { sent } = await capture([...cases, ...receiptCases].find(s => s.id === id));
       fs.writeFileSync(path.join(out, id + '.html'), sent[0].htmlBody);
       for (const [label, width] of [['desktop', 800], ['mobile', 375]]) {
         await page.setViewport({ width, height: 1000 });

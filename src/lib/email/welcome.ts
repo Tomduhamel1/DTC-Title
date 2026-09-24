@@ -16,12 +16,14 @@ export interface WelcomeEmailData {
   borrowerName?: string
   propertyAddress?: string
   baseUrl: string
-  // Optional structured placing-party. If omitted, copy defaults to "Your
-  // closing team just opened your title order..."
+  // Only server-side intake callers select receipt copy. A dashboard welcome
+  // is not evidence of the Garden title_ordered milestone, including pre-open.
+  purpose?: 'request_received' | 'dashboard_ready'
+  // Optional structured placing-party, never inferred from a borrower's role.
   placingParty?: PlacingParty
 }
 
-// Build the sentence prefix for "${prefix} just opened your title order...".
+// Build the attribution prefix without asserting that the file is open.
 // Only the lender case opts into the company-name suffix — brokers/realtors/
 // unknown never append a lender company even if one was passed.
 function placingPartySentencePrefix(p?: PlacingParty): string {
@@ -46,13 +48,21 @@ export async function sendWelcomeEmail(d: WelcomeEmailData): Promise<string> {
   const propertyText = d.propertyAddress ? ` for ${d.propertyAddress}` : ''
   const placingPrefix = placingPartySentencePrefix(d.placingParty)
 
-  const subject = 'Your BetterClose dashboard is ready'
+  const isReceipt = d.purpose === 'request_received'
+  const receiptLead = d.placingParty && d.placingParty.role !== 'unknown'
+    ? `${placingPrefix} submitted your title order request with BetterClose`
+    : "We've received your title order request"
+  const lead = isReceipt ? receiptLead : `${placingPrefix} shared your title order details with BetterClose`
+  const explanation = isReceipt
+    ? 'This confirms receipt of the request; your closing team still needs to open the file. Your BetterClose dashboard is ready to follow updates from your closing team.'
+    : 'Your dashboard is ready to follow updates from your closing team. A separate title-order update confirms when the file is opened.'
+  const subject = isReceipt ? 'We received your title order request · BetterClose' : 'Your BetterClose dashboard is ready'
   // Do not print the support-number placeholder as a real contact option.
   const supportText = `Questions? Reply to this email${SUPPORT_PHONE_TEL ? ` or call ${SUPPORT_PHONE_DISPLAY}` : ''}.`
   const htmlBody = renderEmail({
-    title: 'Your closing is with BetterClose',
+    title: isReceipt ? 'Your title order request was received' : 'Your BetterClose dashboard is ready',
     contentHtml: `<p>${escapeHtml(greeting)}</p>
-    <p>${escapeHtml(placingPrefix)} just opened your title order with BetterClose${property}. We've created a dashboard so you can track every step — loan locked, title ordered, title issued, and closed.</p>
+    <p>${escapeHtml(lead)}${property}. ${escapeHtml(explanation)}</p>
     ${emailButton(claimUrl, 'Open my dashboard →')}
     <p>One-tap sign-in. No password to remember.</p>
     <p style="margin-top:28px;">
@@ -64,7 +74,7 @@ export async function sendWelcomeEmail(d: WelcomeEmailData): Promise<string> {
 
   const textBody = `${greeting}
 
-${placingPrefix} just opened your title order with BetterClose${propertyText}. We've created a dashboard so you can track every step — loan locked, title ordered, title issued, and closed.
+${lead}${propertyText}. ${explanation}
 
 Open your dashboard: ${claimUrl}
 

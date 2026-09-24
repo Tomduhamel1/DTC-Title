@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { Suspense, useState, useEffect, useCallback } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import FileUpload from '@/components/FileUpload'
@@ -8,6 +8,10 @@ import FileUpload from '@/components/FileUpload'
 type Step = 'contact' | 'address' | 'property' | 'financial' | 'documents'
 
 export default function StartPage() {
+  return <Suspense fallback={<div className="min-h-screen" />}><StartContent /></Suspense>
+}
+
+function StartContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [currentStep, setCurrentStep] = useState<Step>('contact')

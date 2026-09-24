@@ -6,10 +6,11 @@ const fs = require('node:fs');
 const path = require('node:path');
 const ts = require('typescript');
 const puppeteer = require('puppeteer');
+const { installReact } = require('./helpers/react-browser.cjs');
 const root = path.resolve(process.env.BC_TEST_SOURCE_ROOT || path.join(__dirname, '..'));
 let browser;
 before(async () => {
-  browser = await puppeteer.launch({ headless: 'new',
+  browser = await puppeteer.launch({ headless: true,
     executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
     args: ['--no-sandbox', '--disable-background-networking', '--disable-component-update'] });
 });
@@ -20,10 +21,7 @@ async function mount(kind, legacy = false) {
   await page.setRequestInterception(true);
   page.on('request', req => req.abort());
   await page.setContent('<!doctype html><html><body><div id="root"></div></body></html>');
-  for (const pkg of ['react', 'react-dom']) {
-    await page.addScriptTag({ content: fs.readFileSync(path.join(path.dirname(require.resolve(pkg + '/package.json')),
-      'umd', pkg + '.development.js'), 'utf8') });
-  }
+  await installReact(page);
   const filename = kind === 'welcome' ? 'src/app/welcome/page.tsx' : 'src/components/lender-request/TrackThisClosingPrompt.tsx';
   const code = ts.transpileModule(fs.readFileSync(path.join(root, filename), 'utf8'), {
     compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.React, esModuleInterop: true },

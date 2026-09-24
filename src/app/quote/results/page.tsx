@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
@@ -24,6 +24,10 @@ function buildBrokerSignupHref(callbackPath: string) {
 }
 
 export default function QuoteResultsPage() {
+  return <Suspense fallback={<div className="min-h-screen" />}><QuoteResultsContent /></Suspense>
+}
+
+function QuoteResultsContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const { status: authStatus } = useSession()

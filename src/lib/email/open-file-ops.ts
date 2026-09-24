@@ -61,7 +61,7 @@ export async function sendOpenFileOpsEmail(
     ['Loan amount', d.loanAmount ? `$${Math.round(d.loanAmount).toLocaleString()}` : null],
     ['Target closing date', d.closingDate],
     ['Notes', d.notes],
-    ['BetterClose closing id', d.closingId],
+    ['BetterClose request ID', d.closingId],
     ['Matched existing file', d.matched ? 'yes — merged into existing closing' : 'no — new file'],
   ]
 
@@ -74,8 +74,8 @@ export async function sendOpenFileOpsEmail(
     '',
     `Admin: ${adminUrl}`,
     '',
-    `Open the file in Garden, then push the escrow officer via`,
-    `PATCH /api/tps/closings/${d.closingId}/details (see docs/tps-integration.md).`,
+    `In Garden Create New Order, review and confirm this BetterClose request ID BEFORE saving: ${d.closingId}.`,
+    `If Garden already has the file, stop and review the existing link; do not create another file.`,
   ].join('\n')
 
   const htmlBody = `
@@ -91,8 +91,8 @@ export async function sendOpenFileOpsEmail(
           .join('')}
       </table>
       <p><a href="${adminUrl}">Open in admin</a></p>
-      <p style="color:#64748b">Open the file in Garden, then push the escrow officer via
-      <code>PATCH /api/tps/closings/${d.closingId}/details</code> (docs/tps-integration.md).</p>
+      <p style="color:#64748b">In Garden Create New Order, review and confirm this BetterClose request ID <b>before saving</b>:
+      <code>${esc(d.closingId)}</code>. If Garden already has the file, review the existing link; do not create another file.</p>
     </div>`
 
   try {
