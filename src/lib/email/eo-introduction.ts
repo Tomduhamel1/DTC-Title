@@ -13,7 +13,7 @@ export async function sendEOIntroductionEmail(d: {
     htmlBody: renderEmail({ title: 'Your file is open',
       contentHtml: `${emailMeta(`${d.propertyAddress} · File ${d.gardenFileNumber}`)}
       <p>Meet your assigned Escrow Officer:</p>
-      <img src="${esc(eo.photoUrl)}" alt="${esc(eo.name)}" width="112" height="112" style="border-radius:56px;object-fit:cover;display:block;max-width:100%;">
+      <img src="${esc(eo.photoUrl)}" alt="${esc(eo.name)}" width="112" height="112" style="border-radius:56px;object-fit:cover;object-position:center 30%;display:block;max-width:100%;">
       <p><strong>${esc(eo.name)}</strong><br>${esc(eo.title)}${eo.phone ? `<br>${esc(eo.phone)}` : ''}<br>${esc(eo.replyEmail)}</p>
       <p>${esc(eo.name)} will be reaching out to coordinate next steps. You can reply directly to this email to reach them.</p>
       ${emailButton(d.dashboardUrl, 'View file →')}

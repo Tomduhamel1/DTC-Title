@@ -1,4 +1,5 @@
 import { randomUUID } from 'crypto'
+import { officerPhotoUrl } from './officerPhoto'
 export const PRO_ROLES = ['broker', 'realtor', 'lender']
 export const normalizeEmail = (value: string | null | undefined) => value?.trim().toLowerCase() || ''
 
@@ -45,7 +46,7 @@ export function officerConfiguration(closing: OfficerFields): { officer: Officer
   if (!email) issues.push('Add the assigned Escrow Officer email.')
   let photo: URL | undefined
   try {
-    photo = new URL(closing.escrowOfficerPhotoUrl || '')
+    photo = new URL(officerPhotoUrl(closing) || '')
     if (photo.protocol !== 'https:' || photo.username || photo.password) throw new Error('invalid')
   } catch { issues.push('Add a valid HTTPS photo for the assigned Escrow Officer.') }
   let reply: unknown

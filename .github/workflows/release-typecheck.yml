@@ -21,6 +21,7 @@ jobs:
       - run: npm run test:auth-security
       - run: npm run test:aws-compatibility
       - run: npm run test:email-design
+      - run: npm run test:eo-photos
       - run: npm audit --omit=dev --audit-level=low
   email-layout:
     runs-on: ubuntu-latest
@@ -78,4 +79,5 @@ jobs:
           echo "PUPPETEER_EXECUTABLE_PATH=$(command -v google-chrome)" >> "$GITHUB_ENV"
       - run: npx prisma migrate deploy
       - run: npm run build
+      - run: node --test test/officer-photos-build.test.cjs
       - run: npm run test:http-runtime

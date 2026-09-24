@@ -11,6 +11,7 @@ import TeammateTabs from '@/components/teammate/TeammateTabs'
 import MuteToggle from '../MuteToggle'
 import BorrowerEmailSetting from '@/components/teammate/BorrowerEmailSetting'
 import { borrowerMayReceive, PRO_ROLES } from '@/lib/closing/notificationPolicy'
+import { officerPhotoUrl } from '@/lib/closing/officerPhoto'
 
 export const dynamic = 'force-dynamic'
 
@@ -57,7 +58,7 @@ export default async function TeammateClosingDetailPage(props: PageProps) {
     email: c.escrowOfficerEmail,
     phone: c.escrowOfficerPhone,
     nmls: c.escrowOfficerNmls,
-    photoUrl: c.escrowOfficerPhotoUrl,
+    photoUrl: officerPhotoUrl(c),
   }
 
   const fmtMoney = (n: number | null) =>
