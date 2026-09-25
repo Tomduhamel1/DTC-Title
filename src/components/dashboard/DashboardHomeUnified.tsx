@@ -1,4 +1,5 @@
 'use client'
+import FileWorkspace from './FileWorkspace'
 
 import { useState } from 'react'
 import { signOut } from 'next-auth/react'
@@ -219,6 +220,7 @@ export default function DashboardHomeUnified({
 
           {/* Your dedicated officer — pairs with Settlement Agent */}
           <EscrowOfficerCard officer={escrowOfficer} variant="main" />
+          <FileWorkspace closingId={closing.id} />
 
           {/* 2. Lender */}
           <SectionShell

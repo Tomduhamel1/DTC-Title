@@ -39,6 +39,7 @@ const Body = z.object({
   propertyState: str,
   propertyZip: str,
   propertyType: str,
+  transactionType: z.enum(['purchase', 'refinance']).nullable().optional(),
   closingDate: z.string().refine(v => /^\d{4}-\d{2}-\d{2}$/.test(v) && Number(v.slice(0, 4)) > 0 && Number.isFinite(Date.parse(v)) &&
     new Date(v).toISOString().slice(0, 10) === v, 'Expected a real YYYY-MM-DD date').nullable().optional(),
   salePrice: z.number().finite().nullable().optional(),

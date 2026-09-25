@@ -4,6 +4,7 @@ import { requireBrokerMember } from '@/lib/auth/session'
 import { createClosingFromOrder } from '@/lib/closing/createFromOrder'
 import { sendBrokerConversionOpsEmail } from '@/lib/email/broker-conversion-ops'
 import { logNotification } from '@/lib/notificationLog'
+import { ensureInitialEstimate } from '@/lib/fileWorkspace/estimates'
 
 // POST /api/broker/quotes/[id]/convert
 //
@@ -218,11 +219,12 @@ export async function POST(_req: Request, props: { params: Promise<{ id: string 
         propertyZip: quote.propertyZip,
         salePrice: input?.homeValue ?? null,
         loanAmount: input?.loanAmount ?? null,
+        transactionType: input?.transactionType ?? null,
         // Broker-attribution → TeammateClosing(role='broker') is upserted
         // by the helper using the broker user's email.
         teammateEmail: ctx.email,
         teammateRole: 'broker',
-      }, { matchExisting: false, proMayManageBorrowerEmails: true })
+      }, { matchExisting: false, proMayManageBorrowerEmails: true, deferEstimate: true })
 
       // Compare-and-set FeeQuote: use updateMany so the predicate
       // `convertedClosingId: null` can be expressed. count=0 means a
@@ -338,6 +340,9 @@ export async function POST(_req: Request, props: { params: Promise<{ id: string 
     if (missingFields && missingFields.length > 0) body.missingFields = missingFields
     return NextResponse.json(body, { status: outcome.status })
   }
+
+  // Capture only after the source quote's link has committed.
+  await ensureInitialEstimate(outcome.closingId)
 
   // Best-effort internal ops handoff email — fires EXACTLY ONCE per genuine
   // conversion. outcome.opsEmail is populated only on the alreadyConverted=false

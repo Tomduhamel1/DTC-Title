@@ -14,12 +14,15 @@ on:
       - 'src/lib/auth/**'
       - 'src/lib/closing*'
       - 'src/lib/closing/**'
+      - 'src/lib/fileWorkspace/**'
+      - 'src/app/api/tps/closings/**'
       - 'src/lib/teammate/**'
       - 'src/lib/email/**'
       - 'prisma/**'
       - 'package*.json'
       - '.nvmrc'
       - 'test/role-journeys*'
+      - 'test/file-workspace*'
       - 'test/notification-policy*'
       - 'test/borrower-notifications*'
       - 'test/sign-in-journeys*'
@@ -68,3 +71,4 @@ jobs:
       # so unrelated fixture cleanup does not trip PostgreSQL SSI predicates.
       # The notification suite separately exercises real concurrent requests.
       - run: node --test --test-concurrency=1 test/role-journeys.pg.test.cjs test/notification-policy.pg.test.cjs test/sign-in-journeys.browser.test.cjs test/borrower-notifications.browser.test.cjs
+      - run: node --test --test-concurrency=1 test/file-workspace.pg.test.cjs test/file-workspace-storage.test.cjs test/file-workspace.browser.test.cjs

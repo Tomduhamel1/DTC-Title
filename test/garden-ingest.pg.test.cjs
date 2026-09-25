@@ -15,6 +15,7 @@ let seq = 0, failEmail = false, failOfficer = false, failTeammate = false, dryRu
 const sent = [];
 const mocks = {
   '@/lib/db': { prisma },
+  '@/lib/elendCalc': { fetchElendFeeEstimate: async () => { throw new Error('Live pricing forbidden in integration regression tests'); } },
   '@/lib/email/welcome': { sendWelcomeEmail: async data => {
     if (failEmail) throw new Error('synthetic SES refusal');
     if (dryRun) return null;

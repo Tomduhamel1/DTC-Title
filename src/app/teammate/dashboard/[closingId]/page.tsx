@@ -12,6 +12,7 @@ import MuteToggle from '../MuteToggle'
 import BorrowerEmailSetting from '@/components/teammate/BorrowerEmailSetting'
 import { borrowerMayReceive, PRO_ROLES } from '@/lib/closing/notificationPolicy'
 import { officerPhotoUrl } from '@/lib/closing/officerPhoto'
+import FileWorkspace from '@/components/dashboard/FileWorkspace'
 
 export const dynamic = 'force-dynamic'
 
@@ -110,6 +111,7 @@ export default async function TeammateClosingDetailPage(props: PageProps) {
 
             {/* Escrow Officer */}
             <EscrowOfficerCard officer={escrowOfficer} variant="main" />
+            <FileWorkspace closingId={c.id} />
 
             {/* Transaction snapshot */}
             <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-5">

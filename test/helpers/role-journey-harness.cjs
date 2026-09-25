@@ -18,7 +18,13 @@ function createHarness(prisma, options = {}) {
       if (accepted) sent.push(structuredClone(data));
       return accepted;
     } },
-    '@/lib/elendCalc': { fetchElendFeeEstimate: async () => null },
+    '@/lib/elendCalc': { fetchElendFeeEstimate: options.estimate || (async () => null) },
+    '@/lib/fileWorkspace/storage': options.storage || {
+      storageEnabled: () => false,
+      signUpload: async () => { throw new Error('Live storage forbidden'); },
+      verifyUpload: async () => { throw new Error('Live storage forbidden'); },
+      signDownload: async () => { throw new Error('Live storage forbidden'); },
+    },
     '@auth/prisma-adapter': { PrismaAdapter: () => ({}) },
     'next-auth/providers/email': options => options,
     'next-auth': { getServerSession: async () => actor ? { user: actor } : null },
