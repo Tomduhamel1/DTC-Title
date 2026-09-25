@@ -50,11 +50,11 @@ test('milestone timeline accepts JSON metadata without displaying internal metad
   const Timeline = load('src/components/dashboard/MilestoneTimeline.tsx').default;
   for (const metadata of [null, 'private-marker', 123, true, { internal: 'private-marker' }, ['private-marker']]) {
     const html = renderToStaticMarkup(React.createElement(Timeline, {
-      milestones: MILESTONE_KINDS.map((kind, index) => ({
-        kind, status: index === 0 ? 'done' : 'pending', metadata,
+      milestones: MILESTONE_KINDS.map((kind) => ({
+        kind, status: kind === 'title_ordered' ? 'done' : 'pending', metadata,
       })),
     }));
-    assert.match(html, /1 of 5 milestones complete/);
+    assert.match(html, /1 of 4 milestones complete/);
     assert.doesNotMatch(html, /private-marker/);
   }
 });

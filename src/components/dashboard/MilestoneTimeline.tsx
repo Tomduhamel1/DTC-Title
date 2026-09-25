@@ -1,6 +1,7 @@
 'use client'
 
-import { MILESTONE_KINDS, MILESTONE_LABELS, MILESTONE_DESCRIPTIONS, type MilestoneKind } from '@/lib/closing'
+import { MILESTONE_LABELS, MILESTONE_DESCRIPTIONS } from '@/lib/closing'
+import { CUSTOMER_MILESTONE_KINDS, customerMilestoneProgress } from '@/lib/closing/customerMilestones'
 import StatusNode from './StatusNode'
 import type { Prisma } from '@prisma/client'
 
@@ -17,12 +18,7 @@ interface MilestoneTimelineProps {
 }
 
 export default function MilestoneTimeline({ milestones, closingDate }: MilestoneTimelineProps) {
-  // Index by kind for quick lookup
-  const byKind = new Map(milestones.map((m) => [m.kind, m]))
-  const doneCount = milestones.filter((m) => m.status === 'done').length
-  const activeIndex = milestones.findIndex((m) => m.status === 'active')
-
-  const fillPct = (doneCount / MILESTONE_KINDS.length) * 100
+  const { byKind, doneCount, totalCount, fillPct } = customerMilestoneProgress(milestones)
 
   return (
     <div className="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
@@ -34,9 +30,9 @@ export default function MilestoneTimeline({ milestones, closingDate }: Milestone
           <h3 className="text-xl font-black text-dark-900">
             {doneCount === 0
               ? 'Ready when your closing team opens the order'
-              : doneCount === MILESTONE_KINDS.length
+              : doneCount === totalCount
               ? 'Closed!'
-              : `${doneCount} of ${MILESTONE_KINDS.length} milestones complete`}
+              : `${doneCount} of ${totalCount} milestones complete`}
           </h3>
         </div>
         {closingDate && (
@@ -64,11 +60,10 @@ export default function MilestoneTimeline({ milestones, closingDate }: Milestone
           />
 
           <ol className="space-y-5">
-            {MILESTONE_KINDS.map((kind, idx) => {
+            {CUSTOMER_MILESTONE_KINDS.map((kind) => {
               const m = byKind.get(kind)
               const status: 'done' | 'active' | 'pending' =
-                (m?.status as 'done' | 'active' | 'pending') ||
-                (idx === activeIndex ? 'active' : 'pending')
+                m?.status === 'done' || m?.status === 'active' ? m.status : 'pending'
 
               return (
                 <li key={kind} className="relative pl-10">
@@ -85,14 +80,14 @@ export default function MilestoneTimeline({ milestones, closingDate }: Milestone
                           : 'font-semibold text-dark-900'
                       }`}
                     >
-                      {MILESTONE_LABELS[kind as MilestoneKind]}
+                      {MILESTONE_LABELS[kind]}
                     </div>
                     <div
                       className={`text-[12px] mt-0.5 ${
                         status === 'pending' ? 'text-gray-400' : 'text-gray-500'
                       }`}
                     >
-                      {MILESTONE_DESCRIPTIONS[kind as MilestoneKind]}
+                      {MILESTONE_DESCRIPTIONS[kind]}
                     </div>
                     {status === 'done' && m?.completedAt && (
                       <div className="text-[11px] text-emerald-700 font-semibold mt-1">

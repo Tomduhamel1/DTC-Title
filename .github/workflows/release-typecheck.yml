@@ -18,6 +18,7 @@ jobs:
       - run: npx prisma generate
       - run: npm run typecheck
       - run: npm run test:release-types
+      - run: npm run test:customer-milestones
       - run: npm run test:auth-security
       - run: npm run test:aws-compatibility
       - run: npm run test:email-design
@@ -41,6 +42,7 @@ jobs:
           test -x "$browser_path"
           "$browser_path" --version
           PUPPETEER_EXECUTABLE_PATH="$browser_path" npm run test:email-layout
+          PUPPETEER_EXECUTABLE_PATH="$browser_path" node --test test/customer-milestones.browser.test.cjs
       - name: Install PDF inspection tools
         run: sudo apt-get update && sudo apt-get install --no-install-recommends -y poppler-utils
       - name: Verify both real PDF generator paths

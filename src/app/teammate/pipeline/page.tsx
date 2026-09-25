@@ -6,10 +6,10 @@ import TeammateTabs from '@/components/teammate/TeammateTabs'
 import { requireUser, requireBrokerMember } from '@/lib/auth/session'
 import { prisma } from '@/lib/db'
 import {
-  MILESTONE_KINDS,
   MILESTONE_LABELS,
   type MilestoneKind,
 } from '@/lib/closing'
+import { customerMilestoneProgress } from '@/lib/closing/customerMilestones'
 
 // Broker pipeline view — read-only.
 //
@@ -203,9 +203,7 @@ function PipelineRow({
       .filter(Boolean)
       .join(', ') || 'Property TBD'
 
-  const doneCount = closing.milestones.filter((m) => m.status === 'done').length
-  const totalCount = MILESTONE_KINDS.length
-  const activeMilestone = closing.milestones.find((m) => m.status === 'active')
+  const { doneCount, totalCount, activeMilestone } = customerMilestoneProgress(closing.milestones)
   const stageLabel = activeMilestone
     ? MILESTONE_LABELS[activeMilestone.kind as MilestoneKind] ||
       activeMilestone.kind

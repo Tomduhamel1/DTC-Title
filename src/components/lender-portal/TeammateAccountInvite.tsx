@@ -14,15 +14,15 @@ const SAMPLE_FILES = [
     borrower: 'sarah.chen@example.com',
     status: 'Title search complete',
     closingDate: 'May 14',
-    progress: 0.6,
+    progress: 0.5,
   },
   {
     role: 'Realtor',
     address: '900 N Lake Shore Dr #2401, Chicago, IL 60611',
     borrower: 'mike.alvarez@example.com',
-    status: 'Loan locked',
+    status: 'Title ordered',
     closingDate: 'May 22',
-    progress: 0.4,
+    progress: 0.25,
   },
   {
     role: 'Lender',
@@ -30,7 +30,7 @@ const SAMPLE_FILES = [
     borrower: 'jordan.kim@example.com',
     status: 'Order received',
     closingDate: 'Jun 03',
-    progress: 0.2,
+    progress: 0,
   },
 ]
 
