@@ -32,12 +32,21 @@ export default function FileWorkspace({ closingId }: { closingId: string }) {
   async function action(body: unknown) {
     const response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
     const result = await response.json()
-    if (!response.ok) throw new Error(result.error || 'The request could not be completed')
+    if (!response.ok) throw Object.assign(new Error(result.error || 'The request could not be completed'), { code: result.code })
     return result
   }
   async function run(work: () => Promise<void>) {
     setBusy(true); setError(''); setNotice('')
-    try { await work(); if (currentFile.current === closingId) await refresh() } catch (e) { if (currentFile.current === closingId) setError(e instanceof Error ? e.message : 'Please try again') }
+    try { await work(); if (currentFile.current === closingId) await refresh() } catch (e) {
+      if (currentFile.current === closingId) {
+        if (e instanceof Error && (e as Error & { code?: string }).code === 'DOCUMENT_SCAN_PENDING') {
+          setNotice(e.message)
+          // Expose the existing pending row and its Verify upload control. The
+          // user must not have to upload the same bytes again or see an outage.
+          try { await refresh() } catch { if (currentFile.current === closingId) setError('Unable to refresh the document list. Please retry.') }
+        } else setError(e instanceof Error ? e.message : 'Please try again')
+      }
+    }
     finally { if (currentFile.current === closingId) setBusy(false) }
   }
   async function upload(file: File) {

@@ -21,6 +21,7 @@ test('actual file workspace shows saved versions, explicit recipients and failur
       window.fixture = fixture; window.calls = []; window.fail = false;
       window.fetch = async (url, options) => {
         window.calls.push({ url, body: options?.body ? JSON.parse(options.body) : null });
+        if (options?.method === 'POST' && window.pendingScan) return { ok: false, json: async () => ({ error: 'Upload received. The security scan is still running. Use Verify upload shortly. No email was sent.', code: 'DOCUMENT_SCAN_PENDING' }) };
         if (options?.method === 'POST') return { ok: !window.fail, json: async () => window.fail ? { error: 'Sharing could not be saved. No permissions changed.' } : {} };
         return { ok: true, json: async () => structuredClone(window.fixture) };
       };
@@ -40,6 +41,25 @@ test('actual file workspace shows saved versions, explicit recipients and failur
     assert.deepEqual(share, { action: 'share', documentId: 'd1', revision: 2, recipientUserIds: ['borrower'] });
     await page.evaluate(() => { window.fail = false; [...document.querySelectorAll('button')].find(b => b.textContent === 'Save sharing').click(); });
     await page.waitForSelector('[role=status]');
+    // A normal scan wait is a status, not an outage or false success. Refreshing
+    // exposes the same pending upload instead of asking for another copy.
+    await page.evaluate(() => {
+      window.fixture.documents[0] = { ...window.fixture.documents[0], status: 'pending', canConfirm: true };
+      window.mountFile('pending-scan-file');
+    });
+    await page.waitForFunction(() => [...document.querySelectorAll('button')].some(b => b.textContent === 'Verify upload'));
+    await page.evaluate(() => { window.pendingScan = true; [...document.querySelectorAll('button')].find(b => b.textContent === 'Verify upload').click(); });
+    await page.waitForFunction(() => document.querySelector('[role=status]')?.textContent.includes('security scan is still running'));
+    assert.equal(await page.$('[role=alert]'), null);
+    assert.equal(await page.$$eval('button', nodes => nodes.filter(n => n.textContent === 'Download').length), 0);
+    const scanCalls = await page.evaluate(() => window.calls.filter(c => c.url.includes('pending-scan-file')));
+    assert.ok(scanCalls.filter(c => !c.body).length >= 2, 'Pending response must refresh the visible list');
+    assert.deepEqual(scanCalls.find(c => c.body).body, { action: 'confirm', documentId: 'd1', revision: 2 });
+    await page.evaluate(() => {
+      window.pendingScan = false; window.fixture.documents[0] = { ...window.fixture.documents[0], status: 'uploaded', canConfirm: false };
+      [...document.querySelectorAll('button')].find(b => b.textContent === 'Verify upload').click();
+    });
+    await page.waitForFunction(() => [...document.querySelectorAll('button')].some(b => b.textContent === 'Download'));
     const cssDir = path.resolve('.next/static/css');
     if (fs.existsSync(cssDir)) for (const name of fs.readdirSync(cssDir).filter(n => n.endsWith('.css'))) await page.addStyleTag({ content: fs.readFileSync(path.join(cssDir, name), 'utf8') });
     if (fs.existsSync(cssDir)) assert.notEqual(await page.$eval('h2', el => getComputedStyle(el).color), 'rgb(255, 255, 255)', 'White card headings must not inherit the marketing page white text');

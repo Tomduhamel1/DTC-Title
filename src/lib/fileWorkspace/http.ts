@@ -26,7 +26,7 @@ export async function workspaceRequest(req: Request, closingId: string, garden =
     }
     return reply(await documentAction(closingId, actor, body))
   } catch (err) {
-    if (err instanceof WorkspaceError) return reply({ error: err.message }, err.status)
+    if (err instanceof WorkspaceError) return reply({ error: err.message, ...(err.code ? { code: err.code } : {}) }, err.status)
     // Deliberately omit S3 URLs, bucket names, file data and provider/DB details.
     return reply({ error: 'The file workspace is temporarily unavailable. Please refresh and try again.' }, 503)
   }
