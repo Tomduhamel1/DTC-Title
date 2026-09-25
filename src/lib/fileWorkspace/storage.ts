@@ -31,10 +31,19 @@ export async function signUpload(input: { key: string; mimeType: string; size: n
 
 export async function verifyUpload(input: { key: string; mimeType: string; size: number; sha256: string }) {
   const { Bucket, client } = config()
-  const head = await client.send(new HeadObjectCommand({ Bucket, Key: input.key, ChecksumMode: 'ENABLED' }))
+  // The bucket deliberately refuses HEAD/GET until the scanner attests a clean
+  // version. Read the scan result first so that normal waiting isn't an outage.
+  const scan = await client.send(new GetObjectTaggingCommand({ Bucket, Key: input.key }))
+  const result = scan.TagSet?.find(tag => tag.Key === 'GuardDutyMalwareScanStatus')?.Value
+  if (!result) throw new WorkspaceError(409,
+    'Upload received. The security scan is still running. Use Verify upload shortly. No email was sent.', 'DOCUMENT_SCAN_PENDING')
+  if (result !== 'NO_THREATS_FOUND') throw new WorkspaceError(409,
+    'This document did not pass the security scan and cannot be shared or downloaded. Please contact the closing team.', 'DOCUMENT_SCAN_FAILED')
+  if (!scan.VersionId || scan.VersionId === 'null') throw new WorkspaceError(409, 'Upload verification failed; the file has not been published')
+  const head = await client.send(new HeadObjectCommand({ Bucket, Key: input.key, VersionId: scan.VersionId, ChecksumMode: 'ENABLED' }))
   if (head.ContentLength !== input.size || head.ContentType !== input.mimeType ||
       head.ChecksumSHA256 !== Buffer.from(input.sha256, 'hex').toString('base64') ||
-      !head.VersionId || head.VersionId === 'null') {
+      head.VersionId !== scan.VersionId) {
     throw new WorkspaceError(409, 'Upload verification failed; the file has not been published')
   }
   return head.VersionId

@@ -124,6 +124,19 @@ test('failed upload verification and security scan never yield a downloadable UR
   const result = await h.call(c, { action: 'download', documentId: d.id }); assert.equal(result.status, 503); assert.equal(result.body.url, undefined);
 });
 
+test('pending scan is a typed wait state, not an outage or a confirmed publication', async () => {
+  const admin = await user(); const c = await file(); const h = harness(admin); h.setActor(admin);
+  const started = await h.call(c, begin); const d = started.body.document;
+  const { WorkspaceError } = h.load('src/lib/fileWorkspace/access.ts');
+  h.storage.verifyUpload = async () => { throw new WorkspaceError(409, 'Upload received. The security scan is still running.', 'DOCUMENT_SCAN_PENDING'); };
+  const waiting = await h.call(c, { action: 'confirm', documentId: d.id, revision: d.revision });
+  assert.equal(waiting.status, 409); assert.equal(waiting.body.code, 'DOCUMENT_SCAN_PENDING');
+  assert.equal(waiting.body.url, undefined);
+  const stored = await prisma.closingDocument.findUnique({ where: { id: d.id } });
+  assert.equal(stored.status, 'pending'); assert.equal(stored.revision, d.revision); assert.equal(stored.storageVersion, null);
+  assert.deepEqual(stored.recipientUserIds, []); assert.deepEqual(h.sent, []);
+});
+
 test('Garden must authenticate AND match closing/order/file identity; source retry does not create another document', async () => {
   const admin = await user(); const orderId = '44444444-4444-4444-8444-444444444444';
   const c = await file({ gardenOrderId: orderId, gardenFileNumber: id(), gardenLinkedAt: new Date(), gardenLinkSource: 'garden_first' }); const h = harness(admin);

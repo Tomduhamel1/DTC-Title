@@ -49,6 +49,21 @@ only.
 
 ## Open
 
+### File upload scan wait looks like an outage — correction prepared (2026-09-25)
+
+Live synthetic acceptance of the new private workspace confirmed that an upload
+can finish before its GuardDuty result is ready. The bucket correctly denies HEAD
+until clean, but the application showed a generic unavailable error and needed a
+list refresh before Verify upload appeared. The bytes stayed private; verification
+and download succeeded after the scan. `fix/document-scan-pending` checks scan
+status first, pins verification to the attested immutable version, returns a typed
+wait state, and refreshes the pending row with a neutral status message. Non-clean
+results still block sharing/downloads. This correction is not deployed yet.
+
+The live synthetic estimate initially failed, then succeeded on retry using the
+existing fee engine/provider. No cause for the first provider failure was proven;
+no pricing policy or fallback was changed and no invented total was saved.
+
 ### Dependency audit — compatible fixes prepared, major upgrades remain (2026-09-23)
 
 The user-approved production dependency audit found 49 flagged packages.

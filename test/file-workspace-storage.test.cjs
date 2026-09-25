@@ -5,8 +5,8 @@ const ts = require('typescript');
 function harness() {
   const state = { env: { BC_DOCUMENTS_ENABLED: 'true', BC_DOCUMENT_BUCKET: 'synthetic-private' }, commands: [], signed: [], reply: {} };
   class Command { constructor(input) { this.input = input; } }
-  class S3Client { async send(command) { state.commands.push(command.input); return state.reply; } }
-  class WorkspaceError extends Error { constructor(status, msg) { super(msg); this.status = status; } }
+  class S3Client { async send(command) { state.commands.push(command.input); return state.replies?.length ? state.replies.shift() : state.reply; } }
+  class WorkspaceError extends Error { constructor(status, msg, code) { super(msg); this.status = status; this.code = code; } }
   const mocks = { '@aws-sdk/client-s3': { S3Client, PutObjectCommand: Command, HeadObjectCommand: Command, GetObjectTaggingCommand: Command, GetObjectCommand: Command },
     '@aws-sdk/s3-request-presigner': { getSignedUrl: async (_, command, options) => { state.signed.push({ input: command.input, options }); return 'https://synthetic.invalid'; } },
     './access': { WorkspaceError } };
@@ -24,11 +24,31 @@ test('private upload signing locks size/checksum/content type/encryption and pre
   assert.ok(signed.options.signableHeaders.has('content-type'));
 });
 test('confirmation refuses wrong checksum, size, content type and unversioned objects', async () => {
-  const h = harness(); const valid = { ContentLength: 4, ContentType: input.mimeType, ChecksumSHA256: Buffer.from(input.sha256, 'hex').toString('base64'), VersionId: 'version-1' };
+  const h = harness(); const valid = { TagSet: [{ Key: 'GuardDutyMalwareScanStatus', Value: 'NO_THREATS_FOUND' }], ContentLength: 4, ContentType: input.mimeType, ChecksumSHA256: Buffer.from(input.sha256, 'hex').toString('base64'), VersionId: 'version-1' };
   for (const delta of [{ ContentLength: 5 }, { ContentType: 'text/html' }, { ChecksumSHA256: 'wrong' }, { VersionId: undefined }, { VersionId: 'null' }]) {
     h.state.reply = { ...valid, ...delta }; await assert.rejects(h.verifyUpload(input), e => e.status === 409);
   }
   h.state.reply = valid; assert.equal(await h.verifyUpload(input), 'version-1');
+  assert.equal(h.state.commands.at(-1).VersionId, 'version-1');
+});
+test('confirmation distinguishes pending/failed scans and never tries HEAD before a clean version', async () => {
+  const h = harness(); h.state.reply = { VersionId: 'version-1', TagSet: [] };
+  await assert.rejects(h.verifyUpload(input), e => e.status === 409 && e.code === 'DOCUMENT_SCAN_PENDING');
+  assert.equal(h.state.commands.length, 1); assert.equal(h.state.signed.length, 0);
+  for (const scan of ['THREATS_FOUND', 'UNSUPPORTED', 'ACCESS_DENIED', 'FAILED', 'UNEXPECTED_STATUS']) {
+    h.state.reply = { VersionId: 'version-1', TagSet: [{ Key: 'GuardDutyMalwareScanStatus', Value: scan }] };
+    const before = h.state.commands.length;
+    await assert.rejects(h.verifyUpload(input), e => e.status === 409 && e.code === 'DOCUMENT_SCAN_FAILED');
+    assert.equal(h.state.commands.length, before + 1); assert.equal(h.state.signed.length, 0);
+  }
+});
+test('confirmation pins HEAD to the attested version and rejects a mismatched returned version', async () => {
+  const h = harness(); h.state.replies = [
+    { VersionId: 'clean-1', TagSet: [{ Key: 'GuardDutyMalwareScanStatus', Value: 'NO_THREATS_FOUND' }] },
+    { VersionId: 'other-2', ContentLength: 4, ContentType: input.mimeType, ChecksumSHA256: Buffer.from(input.sha256, 'hex').toString('base64') },
+  ];
+  await assert.rejects(h.verifyUpload(input), e => e.status === 409);
+  assert.equal(h.state.commands.at(-1).VersionId, 'clean-1');
 });
 test('only successful malware scan on the exact version permits a 60 second attachment download', async () => {
   const h = harness(); const download = { key: input.key, version: 'immutable-1', fileName: 'synthetic.pdf' };
