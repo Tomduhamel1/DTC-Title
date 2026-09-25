@@ -548,7 +548,6 @@ function MockLineItem({
 
 function DashboardPreviewMockup() {
   const milestones: { label: string; state: 'done' | 'active' | 'pending' }[] = [
-    { label: 'Loan locked', state: 'done' },
     { label: 'Title ordered', state: 'done' },
     { label: 'Title search', state: 'active' },
     { label: 'Title issued', state: 'pending' },
@@ -723,7 +722,7 @@ function DashboardMockup() {
             tone="emerald"
             borrower="Miguel Alvarez"
             address="900 N Lake Shore Dr, Chicago IL"
-            status="Loan locked"
+            status="Title ordered"
           />
           <MockRow
             role="Mortgage broker"

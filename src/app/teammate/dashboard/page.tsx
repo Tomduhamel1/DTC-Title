@@ -7,10 +7,10 @@ import { prisma } from '@/lib/db'
 import { claimTeammateClosingsForUser } from '@/lib/teammate/match'
 import { claimTeammateInvitation } from '@/lib/teammate/claimInvitation'
 import {
-  MILESTONE_KINDS,
   MILESTONE_LABELS,
   type MilestoneKind,
 } from '@/lib/closing'
+import { customerMilestoneProgress } from '@/lib/closing/customerMilestones'
 import { getProfessionalContext } from '@/lib/professional'
 import TeammateTabs from '@/components/teammate/TeammateTabs'
 import RoleSelfIdentifyBanner from '@/components/teammate/RoleSelfIdentifyBanner'
@@ -196,9 +196,7 @@ function FileRow({ membership }: { membership: MembershipRow }) {
     .filter(Boolean)
     .join(', ') || 'Property TBD'
 
-  const doneCount = c.milestones.filter((m) => m.status === 'done').length
-  const totalCount = MILESTONE_KINDS.length
-  const activeMilestone = c.milestones.find((m) => m.status === 'active')
+  const { doneCount, totalCount, activeMilestone } = customerMilestoneProgress(c.milestones)
   const currentLabel = activeMilestone
     ? MILESTONE_LABELS[activeMilestone.kind as MilestoneKind] || activeMilestone.kind
     : c.status === 'closed'

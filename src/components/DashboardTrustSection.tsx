@@ -7,7 +7,7 @@ import { SUPPORT_PHONE_DISPLAY } from '@/lib/contact'
 // hand-rendered mockup of the two cards a customer cares most about during
 // closing — the closing-progress timeline and their assigned escrow officer.
 // We don't import the real dashboard components because (a) they require auth
-// + Prisma and (b) we want fixed sample state (3 of 5 milestones, "Jamie Doe"
+// + Prisma and (b) we want fixed sample state (2 of 4 milestones, "Jamie Doe"
 // assigned) regardless of who's viewing the marketing page.
 
 const SAMPLE_OFFICER = {
@@ -30,14 +30,8 @@ interface SampleMilestone {
 
 const SAMPLE_MILESTONES: SampleMilestone[] = [
   {
-    label: 'Loan locked',
-    description: 'Your lender finalizes your interest rate.',
-    status: 'done',
-    completedDate: '5/4/2026',
-  },
-  {
     label: 'Title ordered',
-    description: 'Your lender or you placed the order with BetterClose.',
+    description: 'Your closing team opened your title order with BetterClose.',
     status: 'done',
     completedDate: '5/4/2026',
   },

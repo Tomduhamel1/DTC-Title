@@ -10,6 +10,7 @@
     "build": "next build",
     "typecheck": "tsc --noEmit --incremental false",
     "test:release-types": "node --test test/release-types.test.cjs",
+    "test:customer-milestones": "node --test test/customer-milestones.test.cjs",
     "test:auth-security": "node --test test/auth-dependency-security.test.cjs",
     "test:aws-compatibility": "node --test test/aws-dependency-compatibility.test.cjs",
     "test:email-design": "node --test test/email-design.test.cjs test/order-receipt.test.cjs",
