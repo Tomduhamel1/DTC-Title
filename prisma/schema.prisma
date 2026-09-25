@@ -302,6 +302,8 @@ model Closing {
   propertyZip        String?
   propertyAddressKey String?
   propertyType       String?
+  // Kept separate from propertyType (single_family/condo/etc.). No inferred default.
+  transactionType    String?
   salePrice          Float?
   loanAmount         Float?
   closingDate        DateTime?
@@ -374,12 +376,69 @@ model Closing {
   // Back-relation only — the FK lives on FeeQuote.convertedClosingId.
   // Adding this here is required by Prisma but adds NO column to Closing.
   feeQuote       FeeQuote?
+  fileDocuments ClosingDocument[]
+  estimateVersions ClosingEstimateVersion[]
 
   @@index([userId])
   @@index([propertyAddressKey])
   @@index([borrowerPhone])
   @@index([borrowerEmail])
   @@index([status])
+}
+
+// Private, file-scoped documents. Legacy Lead.Document is intentionally separate.
+model ClosingDocument {
+  id String @id @default(cuid())
+  closingId String
+  closing Closing @relation(fields: [closingId], references: [id], onDelete: Cascade)
+  origin String
+  sourceDocumentId String?
+  sourceVersion String?
+  fileName String
+  fileSize Int
+  mimeType String
+  sha256 String
+  storageKey String @unique
+  storageVersion String?
+  uploaderId String
+  recipientUserIds String[] @default([])
+  status String @default("pending")
+  revision Int @default(1)
+  uploadExpiresAt DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  events ClosingDocumentEvent[]
+
+  @@index([closingId, createdAt])
+  @@unique([closingId, sourceDocumentId, sourceVersion])
+}
+
+model ClosingDocumentEvent {
+  id String @id @default(cuid())
+  documentId String
+  document ClosingDocument @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  actorId String
+  kind String
+  metadata Json
+  createdAt DateTime @default(now())
+  @@index([documentId, createdAt])
+}
+
+// Append-only snapshots: a recalculation never overwrites the original estimate.
+model ClosingEstimateVersion {
+  id String @id @default(cuid())
+  closingId String
+  closing Closing @relation(fields: [closingId], references: [id], onDelete: Cascade)
+  revision Int
+  source String
+  sourceQuoteId String?
+  inputHash String
+  inputJson Json
+  outputJson Json
+  assumptions String[] @default([])
+  actorId String
+  createdAt DateTime @default(now())
+  @@unique([closingId, revision])
 }
 
 model Milestone {

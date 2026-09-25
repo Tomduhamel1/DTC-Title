@@ -4,6 +4,7 @@ import { prisma } from '@/lib/db'
 import { requireAdmin } from '@/lib/auth/admin'
 import { AdminHeader, StatusPill } from '@/components/admin/AdminChrome'
 import ClosingEditor from '@/components/admin/ClosingEditor'
+import FileWorkspace from '@/components/dashboard/FileWorkspace'
 import { computeTotals, formatCurrency, type FeeReport } from '@/lib/feeReport'
 
 export const dynamic = 'force-dynamic'
@@ -163,6 +164,7 @@ export default async function AdminClosingDetailPage({ params }: { params: Promi
         )}
 
         <ClosingEditor closing={editorClosing} />
+        <div className="mt-6"><FileWorkspace closingId={id} /></div>
 
         <div className="bg-white rounded-2xl border border-gray-200 mt-6 overflow-hidden">
           <div className="px-5 py-3 border-b border-gray-100 flex items-baseline justify-between">

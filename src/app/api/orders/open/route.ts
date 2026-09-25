@@ -98,6 +98,7 @@ export async function POST(req: NextRequest) {
     propertyState: d.propertyState,
     propertyZip: d.propertyZip,
     propertyType: d.transactionType,
+    transactionType: d.transactionType,
     closingDate: d.closingDate ?? null,
     salePrice: d.salePrice ?? null,
     loanAmount: d.loanAmount ?? null,

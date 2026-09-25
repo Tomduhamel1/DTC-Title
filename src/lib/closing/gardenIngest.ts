@@ -4,6 +4,7 @@ import { MILESTONE_KINDS, normalizePhoneKey, normalizePropertyKey } from '@/lib/
 import { applyEscrowOfficer, type EscrowOfficerInput } from '@/lib/closing/officer'
 import { upsertTeammateClosing, type TeammateRole } from '@/lib/teammate/match'
 import type { CreateClosingFromOrderInput } from '@/lib/closing/createFromOrder'
+import { ensureInitialEstimate } from '@/lib/fileWorkspace/estimates'
 
 export class IngestConflict extends Error {
   constructor(public fields: string[]) { super('Existing BetterClose values differ; review field ownership before retrying') }
@@ -36,6 +37,7 @@ export async function ingestGardenOrder(input: CreateClosingFromOrderInput & {
   const teammateRole: TeammateRole = ['lender', 'broker', 'realtor'].includes(String(input.teammateRole))
     ? input.teammateRole as TeammateRole : teammateEmail && teammateEmail === email(input.lenderEmail) ? 'lender' : 'unknown'
   const fields = {
+    transactionType: input.transactionType ?? null,
     propertyAddress: text(input.propertyAddress), propertyCity: text(input.propertyCity),
     propertyState: text(input.propertyState), propertyZip: text(input.propertyZip),
     propertyAddressKey: normalizePropertyKey(text(input.propertyAddress)),
@@ -94,6 +96,7 @@ export async function ingestGardenOrder(input: CreateClosingFromOrderInput & {
   // Cancel superseded legacy opening messages; this ingest never sends email.
   // The separate opening milestone queues the permission-aware EO introduction.
   await deliverIngestNotifications(result.closingId)
+  await ensureInitialEstimate(result.closingId)
   return { ok: true, contractVersion: gardenOrderId ? 3 : 2, ingestApplied: true, gardenFileNumber,
     ...(gardenOrderId ? { gardenOrderId, betterCloseRequestId: requestId } : {}), ...result }
 }

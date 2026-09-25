@@ -9,6 +9,7 @@ import EditableFields from './EditableFields'
 import LineItemList, { LineItem } from './LineItemList'
 import ContactRail from './ContactRail'
 import EscrowOfficerCard from './EscrowOfficerCard'
+import FileWorkspace from './FileWorkspace'
 
 interface ClosingShape {
   id: string
@@ -114,6 +115,7 @@ export default function DashboardHome({ closing, userName, userEmail, accountSte
         <div className="space-y-4 min-w-0">
           {/* 1. Account / invite status */}
           <AccountSection accountSteps={accountSteps} />
+          <FileWorkspace closingId={closing.id} />
 
           {/* 2. Closing progress */}
           <SectionShell title="Closing Progress" icon={<ProgressIcon />}>

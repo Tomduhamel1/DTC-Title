@@ -9,6 +9,7 @@ import { sendWelcomeEmail, type WelcomeEmailData } from '@/lib/email/welcome'
 import { sendTeammateInviteEmail } from '@/lib/email/teammate-invite'
 import { upsertTeammateClosing } from '@/lib/teammate/match'
 import type { TeammateRole } from '@/lib/professional/pronoun'
+import { ensureInitialEstimate } from '@/lib/fileWorkspace/estimates'
 
 // Shared write path for inbound orders. Used by:
 //   - public intake, broker quote conversion and authenticated ops intake
@@ -20,6 +21,7 @@ import type { TeammateRole } from '@/lib/professional/pronoun'
 // and TeammateClosing attribution without re-implementing the logic.
 
 export interface CreateClosingFromOrderInput {
+  transactionType?: 'purchase' | 'refinance' | null
   borrowerEmail?: string | number | null
   borrowerName?: string | number | null
   borrowerPhone?: string | number | null
@@ -67,7 +69,7 @@ export async function createClosingFromOrder(
   input: CreateClosingFromOrderInput,
   // Server-side policy, never part of the submitted order body. Public and
   // broker intake cannot authorize access to an existing file by its contacts.
-  options: { matchExisting?: boolean; welcomePurpose?: WelcomeEmailData['purpose']; borrowerInitiated?: boolean; proMayManageBorrowerEmails?: boolean } = {},
+  options: { matchExisting?: boolean; welcomePurpose?: WelcomeEmailData['purpose']; borrowerInitiated?: boolean; proMayManageBorrowerEmails?: boolean; deferEstimate?: boolean } = {},
 ): Promise<CreateClosingFromOrderResult> {
   const {
     borrowerEmail,
@@ -108,6 +110,7 @@ export async function createClosingFromOrder(
     })
 
   const baseData = {
+    transactionType: input.transactionType ?? null,
     propertyAddress: typeof propertyAddress === 'string' ? propertyAddress : null,
     propertyCity: typeof propertyCity === 'string' ? propertyCity : null,
     propertyState: typeof propertyState === 'string' ? propertyState : null,
@@ -192,6 +195,7 @@ export async function createClosingFromOrder(
       }
     }
 
+    if (!options.deferEstimate) await ensureInitialEstimate(updated.id)
     return {
       matched: true,
       closingId: updated.id,
@@ -260,6 +264,7 @@ export async function createClosingFromOrder(
     }
   }
 
+  if (!options.deferEstimate) await ensureInitialEstimate(created.id)
   return {
     matched: false,
     closingId: created.id,

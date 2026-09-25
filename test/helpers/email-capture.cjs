@@ -19,6 +19,7 @@ function createHarness({ root = defaultRoot, env = {}, mocks: overrides = {}, fa
   const mocks = {
     '@/lib/aws/ses': { sendEmail: deliver },
     '@/lib/db': { prisma: new Proxy({}, { get() { throw new Error('Database access forbidden'); } }) },
+    '@/lib/elendCalc': { fetchElendFeeEstimate: async () => { throw new Error('Live pricing forbidden'); } },
     '@auth/prisma-adapter': { PrismaAdapter: () => ({}) },
     'next-auth/providers/email': options => options,
     '@aws-sdk/client-ses': {
@@ -42,7 +43,7 @@ function createHarness({ root = defaultRoot, env = {}, mocks: overrides = {}, fa
     }).outputText;
     function localRequire(name) {
       if (Object.hasOwn(mocks, name)) return mocks[name];
-      if (name === 'crypto') return require(name);
+      if (['crypto', 'zod', '@prisma/client'].includes(name)) return require(name);
       let candidate;
       if (name.startsWith('@/')) candidate = path.join(root, 'src', name.slice(2));
       else if (name.startsWith('.')) candidate = path.resolve(path.dirname(absolute), name);
