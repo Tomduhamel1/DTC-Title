@@ -6,6 +6,11 @@ Nicole Micciche's headshots on September 24, 2026. Originals are served from
 No retouching, resampling or re-encoding is applied. Display cards frame the
 original with `object-fit: cover` and `object-position: center 30%`.
 
+The owner also supplied Brittany Arrington's headshot on September 24, 2026.
+Her assigned employee email was verified against the active Garden record with
+a read-only lookup. Although the supplied filename ends in `.PNG`, the original
+bytes are JPEG; the versioned public copy uses `.jpg` without re-encoding.
+
 `src/lib/closing/officerPhoto.ts` is the shared server-side resolver for both
 borrower dashboards, the professional file dashboard, the authenticated TPS
 snapshot/readiness check, and the Pro introduction email. It selects only by the

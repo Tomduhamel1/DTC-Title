@@ -7,6 +7,7 @@ const APPROVED_PHOTOS: Readonly<Record<string, string>> = /*#__PURE__*/ Object.f
   'kdeyton@firstnte.com': 'kristen-deyton-ec0e43a7.jpg',
   'steve@firstnte.com': 'steve-patti-7e73be41.jpg',
   'nmicciche@firstnte.com': 'nicole-micciche-af371149.jpg',
+  'barrington@firstnte.com': 'brittany-arrington-e9d3a3b8.jpg',
 })
 
 export function officerPhotoUrl(officer: {

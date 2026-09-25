@@ -11,10 +11,11 @@ const photos = [
   ['Kristen Deyton', 'kdeyton@firstnte.com', 'kristen-deyton-ec0e43a7.jpg'],
   ['Steve Patti', 'steve@firstnte.com', 'steve-patti-7e73be41.jpg'],
   ['Nicole Micciche', 'nmicciche@firstnte.com', 'nicole-micciche-af371149.jpg'],
+  ['Brittany Arrington', 'barrington@firstnte.com', 'brittany-arrington-e9d3a3b8.jpg'],
 ];
 const root = path.resolve(__dirname, '..');
 
-test('all three actual headshots render on dashboard cards and EO email at desktop/mobile; no live network or messages', async () => {
+test('all approved headshots render on dashboard cards and EO email at desktop/mobile; no live network or messages', async () => {
   const css = execFileSync(process.execPath, [require.resolve('tailwindcss/lib/cli.js'), '--minify'], {
     cwd: root, input: '@tailwind base; @tailwind components; @tailwind utilities;', encoding: 'utf8',
   });
@@ -71,6 +72,6 @@ test('all three actual headshots render on dashboard cards and EO email at deskt
       }
     }
     assert.equal(forbiddenRequests, 0);
-    assert.equal(h.sent.length, 3, 'Only three intercepted synthetic messages; no SES dependency');
+    assert.equal(h.sent.length, photos.length, 'Only intercepted synthetic messages; no SES dependency');
   } finally { await browser.close(); }
 });

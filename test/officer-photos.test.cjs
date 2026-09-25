@@ -9,6 +9,7 @@ const photos = [
   ['Kristen Deyton', 'kdeyton@firstnte.com', 'kristen-deyton-ec0e43a7.jpg', 'ec0e43a777874a976ddfbb4224347c4d4a2cf1ac1bf70c583b00099b060e2de1'],
   ['Steve Patti', 'steve@firstnte.com', 'steve-patti-7e73be41.jpg', '7e73be4193cf6edbc59c38daf0360313278d54b29f591536f80e4bd23c212839'],
   ['Nicole Micciche', 'nmicciche@firstnte.com', 'nicole-micciche-af371149.jpg', 'af371149d22438d4f8b748fc8f07f55056665b817f2845a719630556632445fc'],
+  ['Brittany Arrington', 'barrington@firstnte.com', 'brittany-arrington-e9d3a3b8.jpg', 'e9d3a3b860a2647a7b58c5f783a7dea35ad4020a7be1f72a6afd2ad22e28e9ef'],
 ];
 const url = file => 'https://betterclose.co/images/escrow-officers/' + file;
 const emptyDb = new Proxy({}, { get() { throw new Error('Database access forbidden'); } });

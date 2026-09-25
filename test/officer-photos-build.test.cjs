@@ -15,7 +15,7 @@ test('production build keeps the complete EO directory on the server, not in pub
   const clients = jsFiles(path.join(root, '.next/static'));
   const servers = jsFiles(path.join(root, '.next/server'));
   assert.ok(clients.length && servers.length, 'Run the real production build first');
-  const directory = /kdeyton@firstnte\.com|steve@firstnte\.com|nmicciche@firstnte\.com/;
+  const directory = /kdeyton@firstnte\.com|steve@firstnte\.com|nmicciche@firstnte\.com|barrington@firstnte\.com/;
   assert.deepEqual(clients.filter(file => directory.test(fs.readFileSync(file, 'utf8'))), []);
   assert.ok(servers.some(file => directory.test(fs.readFileSync(file, 'utf8'))), 'Resolver must be present in the deployed server code');
 });
