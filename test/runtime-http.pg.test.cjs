@@ -90,9 +90,10 @@ after(async () => {
       await exited; clearTimeout(force);
     }
     if (verifiedTarget) {
-      await prisma.verificationToken.deleteMany({ where: { identifier: { startsWith: prefix } } });
+      await prisma.verificationToken.deleteMany({ where: { OR: [{ identifier: { startsWith: prefix } },
+        { identifier: { startsWith: 'file-access:v1:', contains: prefix } }] } });
       await prisma.closing.deleteMany({ where: { id: { startsWith: prefix } } });
-      await prisma.user.deleteMany({ where: { id: { startsWith: prefix } } });
+      await prisma.user.deleteMany({ where: { OR: [{ id: { startsWith: prefix } }, { email: { startsWith: prefix } }] } });
     }
   } finally { await prisma.$disconnect(); }
 });
@@ -135,6 +136,78 @@ test('real magic-link sign-in validates CSRF, creates a session and rejects toke
   assert.match(reused.headers.get('location'), /error=Verification/);
   assert.doesNotMatch(captureCookies(reused), /next-auth.session-token=[^;]/);
   assert.equal(await prisma.verificationToken.count({ where: { identifier: actors.borrower.email } }), 0);
+});
+
+test('notification link completes real NextAuth first-time Pro sign-in without another email, preserving exact-file permissions', async () => {
+  const {createHarness}=require('./helpers/role-journey-harness.cjs');
+  const h=createHarness(prisma,{env:{NEXTAUTH_URL:origin,NEXTAUTH_SECRET:prefix+'synthetic-auth-secret'}});
+  const access=h.load('src/lib/auth/fileAccess.ts');
+  const email=prefix+'new-pro@example.invalid';
+  await prisma.teammateClosing.create({data:{closingId:owned.id,matchedEmail:email,role:'lender',mayManageBorrowerEmails:true}});
+  const link=await access.createFileAccessLink(owned.id,email),url=new URL(link);
+  const token=new URLSearchParams(url.hash.slice(1)).get('key');
+  for(let i=0;i<3;i++){
+    const landing=await request(url.pathname);assert.equal(landing.status,200);
+    const html=await landing.text();assert.match(html,/View your file/);
+    assert.ok(!html.includes(owned.propertyAddress));assert.ok(!html.includes(email));assert.ok(!html.includes(token));
+    assert.match(landing.headers.get('cache-control'),/no-store/);
+    assert.equal(landing.headers.get('referrer-policy'),'no-referrer');assert.equal(landing.headers.get('x-frame-options'),'DENY');
+  }
+  assert.equal((await request('/api/file-access/'+owned.id)).status,405);
+  const countBefore=await prisma.closing.count();const logAt=serverLog.length;
+  const redeemed=await request('/api/file-access/'+owned.id,{method:'POST',headers:{origin,'content-type':'application/json'},body:JSON.stringify({token})});
+  assert.equal(redeemed.status,200);const callback=(await redeemed.json()).url;
+  const signedIn=await request(callback);assert.equal(signedIn.status,302);
+  assert.equal(signedIn.headers.get('location'),origin+'/teammate/dashboard/'+owned.id);
+  const cookies=captureCookies(signedIn);assert.match(cookies,/next-auth.session-token=/);
+  const session=await(await request('/api/auth/session',{headers:{cookie:cookies}})).json();assert.equal(session.user.email,email);
+  const member=await prisma.teammateClosing.findFirst({where:{closingId:owned.id,matchedEmail:email}});assert.equal(member.userId,session.user.id);
+  const dashboard=await request('/teammate/dashboard/'+owned.id,{headers:{cookie:cookies}});assert.ok((await dashboard.text()).includes(owned.propertyAddress));
+  const denied=await request('/teammate/dashboard/'+foreign.id,{headers:{cookie:cookies}});const deniedBody=await denied.text();
+  assert.ok(denied.status===404||deniedBody.includes('NEXT_HTTP_ERROR_FALLBACK;404'));assert.ok(!deniedBody.includes(foreign.propertyAddress));
+  assert.equal((await request(url.pathname,{headers:{cookie:cookies}})).headers.get('location'),'/teammate/dashboard/'+owned.id);
+  const replay=await request('/api/file-access/'+owned.id,{method:'POST',headers:{origin,'content-type':'application/json'},body:JSON.stringify({token})});
+  assert.equal(replay.status,410);assert.ok(!(await replay.text()).includes(email));
+  assert.match((await request(callback)).headers.get('location'),/error=Verification/);
+  assert.equal(await prisma.closing.count(),countBefore,'Signing in must not create a borrower file');
+  assert.doesNotMatch(serverLog.slice(logAt),/magic-link \(dry run\)/,'No second authentication email');
+  assert.ok(!serverLog.includes(token),'Never log a file access credential');
+});
+
+test('compiled access endpoint enforces origin and live revocation; file login uses contextual copy',async()=>{
+  const {createHarness}=require('./helpers/role-journey-harness.cjs');
+  const h=createHarness(prisma,{env:{NEXTAUTH_URL:origin,NEXTAUTH_SECRET:prefix+'synthetic-auth-secret'}});
+  const email=prefix+'revoked@example.invalid';
+  const membership=await prisma.teammateClosing.create({data:{closingId:owned.id,matchedEmail:email,role:'broker',mayManageBorrowerEmails:true}});
+  const link=await h.load('src/lib/auth/fileAccess.ts').createFileAccessLink(owned.id,email);
+  const token=new URLSearchParams(new URL(link).hash.slice(1)).get('key');
+  assert.equal((await request('/api/file-access/'+owned.id,{method:'POST',headers:{origin:'https://evil.invalid','content-type':'application/json'},body:JSON.stringify({token})})).status,403);
+  await prisma.teammateClosing.delete({where:{id:membership.id}});
+  assert.equal((await request('/api/file-access/'+owned.id,{method:'POST',headers:{origin,'content-type':'application/json'},body:JSON.stringify({token})})).status,410);
+  assert.equal(await prisma.user.count({where:{email}}),0);
+  const login=await request('/login?callbackUrl='+encodeURIComponent('/teammate/dashboard/'+owned.id));
+  const html=await login.text();assert.match(html,/View your file/);assert.match(html,/No password or prior account needed/);
+});
+
+test('a different signed-in account gets an explicit switch notice and becomes only the verified recipient',async()=>{
+  const {createHarness}=require('./helpers/role-journey-harness.cjs');
+  const h=createHarness(prisma,{env:{NEXTAUTH_URL:origin,NEXTAUTH_SECRET:prefix+'synthetic-auth-secret'}});
+  const email=prefix+'switch-pro@example.invalid';
+  await prisma.teammateClosing.create({data:{closingId:owned.id,matchedEmail:email,role:'realtor',mayManageBorrowerEmails:true}});
+  const link=await h.load('src/lib/auth/fileAccess.ts').createFileAccessLink(owned.id,email),url=new URL(link);
+  const oldCookie=cookie('other');
+  const landing=await request(url.pathname,{headers:{cookie:oldCookie}});
+  assert.match(await landing.text(),/Continuing will switch to the account that received this email/);
+  const redeemed=await request('/api/file-access/'+owned.id,{method:'POST',headers:{origin,'content-type':'application/json',cookie:oldCookie},
+    body:JSON.stringify({token:new URLSearchParams(url.hash.slice(1)).get('key')})});
+  assert.equal(redeemed.status,200);
+  const signedIn=await request((await redeemed.json()).url,{headers:{cookie:oldCookie}});
+  assert.equal(signedIn.status,302);
+  const session=await(await request('/api/auth/session',{headers:{cookie:captureCookies(signedIn)}})).json();
+  assert.equal(session.user.email,email);assert.notEqual(session.user.id,actors.other.id);
+  assert.equal(await prisma.teammateClosing.count({where:{closingId:owned.id,userId:actors.other.id}}),0);
+  assert.equal(await prisma.teammateClosing.count({where:{closingId:foreign.id,userId:session.user.id}}),0);
+  assert.equal((await prisma.closing.findUnique({where:{id:owned.id}})).userId,actors.borrower.id);
 });
 
 test('compiled borrower dashboard awaits search parameters and refuses another file without fallback writes', async () => {

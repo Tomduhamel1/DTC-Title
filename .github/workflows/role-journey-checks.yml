@@ -12,6 +12,9 @@ on:
       - 'src/components/teammate/**'
       - 'src/components/lender-request/TrackThisClosingPrompt.tsx'
       - 'src/lib/auth/**'
+      - 'src/app/file-access/**'
+      - 'src/app/api/file-access/**'
+      - 'test/file-access*'
       - 'src/lib/closing*'
       - 'src/lib/closing/**'
       - 'src/lib/fileWorkspace/**'
@@ -70,5 +73,5 @@ jobs:
       # Both PG suites own rows in this job's one database; serialize suites
       # so unrelated fixture cleanup does not trip PostgreSQL SSI predicates.
       # The notification suite separately exercises real concurrent requests.
-      - run: node --test --test-concurrency=1 test/role-journeys.pg.test.cjs test/notification-policy.pg.test.cjs test/sign-in-journeys.browser.test.cjs test/borrower-notifications.browser.test.cjs
+      - run: node --test --test-concurrency=1 test/file-access.pg.test.cjs test/role-journeys.pg.test.cjs test/notification-policy.pg.test.cjs test/sign-in-journeys.browser.test.cjs test/borrower-notifications.browser.test.cjs
       - run: node --test --test-concurrency=1 test/file-workspace.pg.test.cjs test/file-workspace-storage.test.cjs test/file-workspace.browser.test.cjs

@@ -24,6 +24,7 @@ const FUNCTIONAL_PREFIXES = [
   '/dashboard',
   '/teammate',
   '/login',
+  '/file-access',
   '/quote',
   '/api',
   '/for-my-team',

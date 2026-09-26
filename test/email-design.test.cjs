@@ -5,6 +5,30 @@ const path = require('node:path');
 const { createHarness, capture, invoke, cases, contract, decodeHtml } = require('./helpers/email-capture.cjs');
 const baseline = require('./fixtures/email-delivery-contract.json');
 
+test('personal Pro file links explain passwordless access and forwarding risk in both email formats', async () => {
+  const h = createHarness();
+  const link = 'https://betterclose.example.invalid/file-access/synthetic-file#key=' + 'a'.repeat(64);
+  await h.load('src/lib/email/eo-introduction.ts').sendEOIntroductionEmail({
+    to: 'pro@example.invalid', propertyAddress: 'Synthetic Access Lane', gardenFileNumber: 'TEST-ONLY',
+    dashboardUrl: link, officer: { name: 'Synthetic Officer', title: 'Escrow Officer',
+      replyEmail: 'eo@example.invalid', photoUrl: 'https://example.invalid/eo.jpg' },
+  });
+  await h.load('src/lib/email/closing-update-teammate.ts').sendClosingUpdateTeammateEmail({
+    to: 'pro@example.invalid', role: 'lender', milestoneKind: 'title_ordered', teammateDashboardUrl: link,
+  });
+  assert.equal(h.sent.length, 2);
+  for (const message of h.sent) {
+    assert.match(message.htmlBody, /View my file/);
+    for (const body of [message.htmlBody, message.textBody]) {
+      assert.match(body, /No password or account setup needed/);
+      assert.match(body, /works once and expires after 24 hours/);
+      assert.match(body, /Please don’t forward it/);
+      assert.ok(body.includes(link));
+      assert.doesNotMatch(body, /Verified sign-in is required/);
+    }
+  }
+});
+
 for (const spec of cases) test(`${spec.id}: shared design and unchanged delivery/content/link contract`, async () => {
   const { sent } = await capture(spec);
   assert.equal(sent.length, 1);

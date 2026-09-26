@@ -49,6 +49,7 @@ before(async () => {
 beforeEach(() => { h.sent.length = 0; h.setActor(null); failRecipient = null; acceptance = 'synthetic-accepted'; h.env.BC_EO_REPLY_ROUTES = routes; });
 after(async () => {
   if (verified) {
+    await prisma.verificationToken.deleteMany({ where: { identifier: { startsWith: 'file-access:v1:', contains: prefix } } });
     await prisma.closing.deleteMany({ where: { OR: [{ id: { startsWith: prefix } }, { gardenFileNumber: { startsWith: prefix } }, { borrowerEmail: { startsWith: prefix } }] } });
     await prisma.user.deleteMany({ where: { id: { startsWith: prefix } } });
   }
@@ -123,7 +124,7 @@ test('Garden-first requires no existing BC account or property; ingest sends not
   assert.match(h.sent[0].htmlBody, /Synthetic Officer/);
   assert.match(h.sent[0].htmlBody, /images.example.invalid\/eo.png/);
   assert.match(h.sent[0].htmlBody, /reply without creating an account/);
-  assert.match(h.sent[0].htmlBody, new RegExp('/teammate/dashboard/' + c.id));
+  assert.match(h.sent[0].htmlBody, new RegExp('/file-access/' + c.id + '#key=[a-f0-9]{64}'));
   await advance(c); assert.equal(h.sent.length, 1);
 });
 

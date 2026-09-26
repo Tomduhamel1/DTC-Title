@@ -18,7 +18,7 @@ export default function VerifyRequestPage() {
           </div>
           <h1 className="text-3xl font-black text-dark-900 mb-2">Check your email</h1>
           <p className="text-gray-600 mb-6 leading-relaxed">
-            We sent a sign-in link. Tap the link in the email to access your dashboard.
+            We sent a secure access link. Tap it to continue where you left off.
             <br />
             The link expires in 24 hours.
           </p>

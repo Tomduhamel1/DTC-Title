@@ -8,6 +8,7 @@ import { sendClosingCompletedEmail } from '@/lib/email/closing-completed'
 import { sendEOIntroductionEmail } from '@/lib/email/eo-introduction'
 import type { TeammateRole } from '@/lib/professional/pronoun'
 import type { FeeReport } from '@/lib/feeReport'
+import { createFileAccessLink } from '@/lib/auth/fileAccess'
 
 // Durable per-recipient intents. At-least-once: provider acceptance followed
 // by a process crash before recording sent may resend. Never claim exactly-once.
@@ -53,15 +54,16 @@ export async function deliverMilestoneNotifications(closingId: string) {
           normalizeEmail(c.escrowOfficerEmail) === item.recipient) {
           await finish('cancelled', 'pro_unsubscribed_or_no_longer_eligible'); continue
         }
-        const dashboardUrl = `${base}/teammate/dashboard/${encodeURIComponent(c.id)}`
         if (p.kind === 'title_ordered') {
           const officer = verifiedOfficer(c)
           if (!officer || !c.gardenFileNumber) {
             await finish('pending', 'eo_introduction_not_ready'); continue
           }
+          const dashboardUrl = await createFileAccessLink(c.id, item.recipient)
           messageId = await sendEOIntroductionEmail({ to: item.recipient, propertyAddress: address,
             gardenFileNumber: c.gardenFileNumber, dashboardUrl, officer })
         } else {
+          const dashboardUrl = await createFileAccessLink(c.id, item.recipient)
           messageId = await sendClosingUpdateTeammateEmail({ to: item.recipient,
             recipientFirstName: member.user?.name?.split(' ')[0], role: member.role as TeammateRole,
             milestoneKind: p.kind, propertyAddress: address, borrowerName: c.user?.name,

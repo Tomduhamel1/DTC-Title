@@ -24,6 +24,22 @@ const nextConfig = {
   async headers() {
     return [
       {
+        source: '/file-access/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'no-store, private' },
+          { key: 'Referrer-Policy', value: 'no-referrer' },
+          { key: 'X-Frame-Options', value: 'DENY' },
+          { key: 'X-Robots-Tag', value: 'noindex, nofollow' },
+        ],
+      },
+      {
+        source: '/api/file-access/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'no-store, private' },
+          { key: 'Referrer-Policy', value: 'no-referrer' },
+        ],
+      },
+      {
         source: '/',
         headers: [
           { key: 'Cache-Control', value: 'no-store, must-revalidate' },
@@ -52,6 +68,7 @@ const nextConfig = {
         source: '/api/auth/:path*',
         headers: [
           { key: 'Cache-Control', value: 'no-store, must-revalidate' },
+          { key: 'Referrer-Policy', value: 'no-referrer' },
         ],
       },
     ]
