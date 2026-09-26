@@ -21,7 +21,7 @@ export function borrowerMayReceive(closing: Permission, recipient: string, versi
     (kind === undefined || Boolean(closing.borrowerEmailTypes?.includes(kind)))
 }
 
-export function borrowerPermission(email: string, actorId: string, source: 'pro' | 'borrower', enabled: boolean) {
+export function borrowerPermission(email: string, actorId: string, source: 'pro' | 'borrower' | 'pro_pending', enabled: boolean) {
   return { borrowerEmailsEnabled: enabled, borrowerEmailPermissionRecipient: normalizeEmail(email),
     borrowerEmailPermissionBy: actorId, borrowerEmailPermissionSource: source,
     borrowerEmailPermissionAt: new Date(), borrowerEmailPermissionVersion: randomUUID() }

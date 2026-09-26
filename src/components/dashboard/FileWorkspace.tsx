@@ -13,7 +13,7 @@ type Workspace = { enabled: boolean; documents: FileDocument[]; canManage: boole
 const panel = 'bg-white rounded-2xl border border-gray-200 shadow-sm p-5'
 const button = 'rounded-lg border border-gray-300 px-3 py-2 text-sm font-semibold hover:bg-gray-50 disabled:opacity-50'
 const documentButton = 'inline-flex min-h-11 items-center rounded-lg border border-gray-300 px-3 py-2 text-sm font-semibold hover:bg-gray-50 disabled:opacity-50 md:min-h-0 md:px-2 md:py-1.5 md:text-xs'
-const documentCell = 'block min-w-0 pb-2 md:table-cell md:py-3 md:pr-3 md:align-top'
+const documentCell = 'block min-w-0 pb-2 md:table-cell md:py-3 md:pr-3 md:align-middle'
 
 export default function FileWorkspace({ closingId }: { closingId: string }) {
   const [data, setData] = useState<Workspace | null>(null)
@@ -98,7 +98,7 @@ export default function FileWorkspace({ closingId }: { closingId: string }) {
                 {doc.uploadedAt ? <><time dateTime={doc.uploadedAt}>{new Date(doc.uploadedAt).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' })}</time><span className="md:hidden"> (your local time)</span></> : <span>{doc.status === 'pending' ? 'Not confirmed' : 'Not recorded'}</span>}
               </td>
               <td className={`${documentCell} text-xs text-gray-600`}>{doc.status === 'uploaded' ? 'Uploaded' : doc.status === 'revoked' ? 'Sharing revoked' : 'Upload not yet confirmed'}</td>
-              <td className="block pb-1 md:table-cell md:py-3 md:align-top"><div className="flex flex-wrap gap-2">
+              <td className="block pb-1 md:table-cell md:py-3 md:align-middle"><div className="flex flex-wrap gap-2">
                 {doc.canPreview && doc.status === 'uploaded' && <a className={documentButton} href={`/api/closings/${encodeURIComponent(closingId)}/documents/${encodeURIComponent(doc.id)}/preview`} target="_blank" rel="noopener noreferrer" aria-label={`View ${doc.fileName} (opens in a new tab)`}>View</a>}
                 {doc.status === 'uploaded' && <button className={documentButton} disabled={busy} onClick={() => run(async () => { const result = await action({ action: 'download', documentId: doc.id }); window.location.assign(result.url) })}>Download</button>}
                 {doc.canConfirm && <button className={documentButton} disabled={busy} onClick={() => run(async () => { await action({ action: 'confirm', documentId: doc.id, revision: doc.revision }) })}>Verify upload</button>}

@@ -442,6 +442,114 @@ test('borrower-initiated permission and legacy all-events permissions survive; u
   await advance(c, 'closed'); assert.equal(h.sent.length, 1);
 });
 
+test('recipientless choices persist without email; adding an address requires confirmation and never replays past events', async () => {
+  const u = await user(), c = await closing({ borrowerEmail: null });
+  await pro(c, { userId: u.id, matchedEmail: u.email });
+  assert.equal((await choose(c, ['title_search', 'title_issued'])).status, 401);
+  h.setActor(await user()); assert.equal((await choose(c, ['title_search'])).status, 404);
+  h.setActor(u);
+  assert.equal((await setPermission(c, { enabled: true })).status, 409, 'Legacy enable still requires a recipient');
+  const saved = await (await choose(c, ['title_search', 'title_issued'])).json();
+  assert.equal(saved.enabled, false); assert.equal(saved.pendingRecipientConfirmation, true);
+  assert.deepEqual(saved.types, ['title_search', 'title_issued']);
+  const draft = await reload(c);
+  assert.equal(draft.borrowerEmailPermissionSource, 'pro_pending');
+  assert.equal(draft.borrowerEmailPermissionRecipient, '');
+  assert.equal(policy.borrowerMayReceive(draft, 'future@example.invalid'), false);
+  assert.equal(h.sent.length, 0);
+  assert.equal((await choose(c, ['closed'])).status, 409, 'Pending preferences are version-protected');
+  const recipient = email();
+  await prisma.closing.update({ where: { id: c.id }, data: { borrowerEmail: recipient } });
+  await advance(c, 'title_search');
+  assert.ok(h.sent.every(message => message.to !== recipient), 'New address does not activate saved choices');
+  assert.equal((await choose(c, ['title_search', 'title_issued'], draft)).status, 409, 'Old screen cannot approve a new recipient');
+  const now = await reload(c), beforeConfirm = h.sent.length;
+  const active = await (await choose(c, now.borrowerEmailTypes, now)).json();
+  assert.equal(active.enabled, true); assert.equal(active.pendingRecipientConfirmation, false);
+  assert.notEqual(active.version, saved.version);
+  assert.equal(h.sent.length, beforeConfirm, 'Confirmation save sends no email');
+  await drain(c); await advance(c, 'title_search');
+  assert.ok(h.sent.every(message => message.to !== recipient), 'No previous-event replay after confirmation');
+  await advance(c, 'title_issued');
+  assert.equal(h.sent.filter(message => message.to === recipient).length, 1, 'Next selected event sends once');
+});
+
+test('ordering account defaults win over other participants and seed pending choices before a borrower exists', async () => {
+  const orderer = await user({ borrowerEmailDefaults: ['title_search'] }), other = await user({ borrowerEmailDefaults: ['closed'] });
+  const seed = h.load('src/lib/closing/notificationDefaults.ts').seedNewFileBorrowerDefaults;
+  const c = await closing({ borrowerEmail: null });
+  await pro(c, { userId: other.id, matchedEmail: other.email });
+  await pro(c, { userId: orderer.id, matchedEmail: orderer.email });
+  await prisma.$transaction(tx => seed(tx, c.id, orderer.email));
+  const draft = await reload(c);
+  assert.deepEqual(draft.borrowerEmailTypes, ['title_search']);
+  assert.equal(draft.borrowerEmailsEnabled, false); assert.equal(draft.borrowerEmailPermissionSource, 'pro_pending');
+  assert.equal(draft.borrowerEmailPermissionBy, orderer.id);
+  await prisma.user.update({ where: { id: orderer.id }, data: { borrowerEmailDefaults: ['closed'] } });
+  await prisma.$transaction(tx => seed(tx, c.id, orderer.email));
+  assert.deepEqual(await reload(c), draft, 'Later defaults cannot rewrite a file draft');
+  const unknownOrderer = await closing(); await pro(unknownOrderer, { userId: other.id, matchedEmail: other.email });
+  await prisma.$transaction(tx => seed(tx, unknownOrderer.id, 'not-linked@example.invalid'));
+  assert.equal((await reload(unknownOrderer)).borrowerEmailsEnabled, false, 'No fallback to another participant');
+  assert.equal(h.sent.length, 0);
+});
+
+test('new Garden-first file without borrower copies ordering defaults and later ingest cannot activate or replace them', async () => {
+  const u = await user({ borrowerEmailDefaults: ['title_search', 'closed'] });
+  const ingest = h.load('src/lib/closing/gardenIngest.ts').ingestGardenOrder;
+  const payload = { gardenFileNumber: id(), teammateEmail: u.email, teammateRole: 'lender' };
+  const created = await ingest(payload), c = await reload({ id: created.closingId });
+  assert.equal(c.borrowerEmailsEnabled, false); assert.equal(c.borrowerEmailPermissionSource, 'pro_pending');
+  assert.deepEqual(c.borrowerEmailTypes, ['title_search', 'closed']);
+  await prisma.user.update({ where: { id: u.id }, data: { borrowerEmailDefaults: ['title_ordered'] } });
+  await ingest({ ...payload, borrowerEmail: email() });
+  const later = await reload(c);
+  assert.deepEqual(later.borrowerEmailTypes, c.borrowerEmailTypes);
+  assert.equal(later.borrowerEmailPermissionVersion, c.borrowerEmailPermissionVersion);
+  assert.equal(policy.borrowerMayReceive(later, later.borrowerEmail), false);
+  assert.equal(h.sent.length, 0);
+});
+
+test('actual lender page exposes choices with account defaults, preserving explicit off and legacy disabled data', async () => {
+  const u = await user({ borrowerEmailDefaults: ['closed'] }), c = await closing({ borrowerEmail: null });
+  await pro(c, { userId: u.id, matchedEmail: u.email }); h.setActor(u);
+  const page = h.load('src/app/teammate/dashboard/[closingId]/page.tsx').default;
+  const render = async () => h.render(await page({ params: Promise.resolve({ closingId: c.id }) }));
+  const html = await render();
+  assert.match(html, /Borrower \/ buyer updates/); assert.match(html, /Use my defaults/);
+  assert.equal((html.match(/type="checkbox"/g) || []).length, 4);
+  assert.equal((html.match(/checked=""/g) || []).length, 1);
+  assert.doesNotMatch(html, /\bPros?\b|authorized Pros|before choosing/);
+  assert.equal((await reload(c)).borrowerEmailPermissionVersion, null, 'Rendering never writes preferences');
+  await setPermission(c, { enabled: false });
+  const off = await render();
+  assert.equal((off.match(/checked=""/g) || []).length, 0, 'Legacy disabled all-event metadata is not a pending preference');
+  assert.equal(h.sent.length, 0);
+});
+
+test('concurrent pending saves use compare-and-set; only one succeeds', async () => {
+  const u = await user(), c = await closing({ borrowerEmail: null });
+  await pro(c, { userId: u.id, matchedEmail: u.email }); h.setActor(u);
+  const results = await Promise.all([choose(c, ['closed']), choose(c, ['title_search'])]);
+  assert.deepEqual(results.map(r => r.status).sort(), [200, 409]);
+  const stored = await reload(c);
+  assert.equal(stored.borrowerEmailsEnabled, false); assert.equal(stored.borrowerEmailPermissionSource, 'pro_pending');
+  assert.equal(await prisma.notificationLog.count({ where: { closingId: c.id, kind: 'borrower_preferences:pending_recipient' } }), 1);
+  assert.equal(h.sent.length, 0);
+});
+
+test('first explicit all-off save is recorded even when the row already has no selected types', async () => {
+  const u = await user({ borrowerEmailDefaults: ['closed'] }), c = await closing({ borrowerEmail: null, borrowerEmailTypes: [] });
+  await pro(c, { userId: u.id, matchedEmail: u.email }); h.setActor(u);
+  const result = await (await choose(c, [])).json();
+  assert.ok(result.version); assert.equal(result.enabled, false);
+  const stored = await reload(c);
+  assert.equal(stored.borrowerEmailPermissionSource, 'pro');
+  assert.deepEqual(stored.borrowerEmailTypes, []);
+  const html = h.render(await h.load('src/app/teammate/dashboard/[closingId]/page.tsx').default({ params: Promise.resolve({ closingId: c.id }) }));
+  assert.equal((html.match(/checked=""/g) || []).length, 0, 'Defaults cannot reappear after explicitly saving all off');
+});
+
 test('milestone emails do not assert lien-free title, recording, disbursement or an invented policy sequence', async () => {
   const c = await closing({ ...policy.borrowerPermission('person@example.invalid', 'test', 'pro', true), borrowerEmail: 'person@example.invalid' });
   await pro(c);
