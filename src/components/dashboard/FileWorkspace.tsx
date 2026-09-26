@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react'
 import { formatCurrency, type FeeReport } from '@/lib/feeReport'
 
 type FileDocument = { id: string; fileName: string; fileSize: number; status: string; revision: number;
@@ -12,6 +12,8 @@ type Workspace = { enabled: boolean; documents: FileDocument[]; canManage: boole
     basis: { transactionType: string | null; zip: string | null; homeValue: number | null; loanAmount: number | null } } }
 const panel = 'bg-white rounded-2xl border border-gray-200 shadow-sm p-5'
 const button = 'rounded-lg border border-gray-300 px-3 py-2 text-sm font-semibold hover:bg-gray-50 disabled:opacity-50'
+const documentButton = 'inline-flex min-h-11 items-center rounded-lg border border-gray-300 px-3 py-2 text-sm font-semibold hover:bg-gray-50 disabled:opacity-50 md:min-h-0 md:px-2 md:py-1.5 md:text-xs'
+const documentCell = 'block min-w-0 pb-2 md:table-cell md:py-3 md:pr-3 md:align-top'
 
 export default function FileWorkspace({ closingId }: { closingId: string }) {
   const [data, setData] = useState<Workspace | null>(null)
@@ -77,29 +79,41 @@ export default function FileWorkspace({ closingId }: { closingId: string }) {
         </div>
         <p className="my-3 text-sm text-gray-600">Uploads are private to you and the closing team. The closing team controls which documents are shared with other people on this file.</p>
         {!data.uploadsEnabled && <p className="text-sm text-amber-800">Secure document uploads are not enabled yet.</p>}
-        {!data.documents.length ? <p className="py-5 text-sm text-gray-500">No documents shared with you yet.</p> : <ul className="divide-y divide-gray-100">
-          {data.documents.map(doc => <li key={doc.id} className="py-4">
-            <div className="flex flex-wrap items-start justify-between gap-3">
-              <div className="min-w-0"><p className="font-semibold break-words">{doc.fileName}</p><p className="text-xs text-gray-500">{Math.ceil(doc.fileSize / 1024)} KB · {doc.status === 'uploaded' ? 'Uploaded' : doc.status === 'revoked' ? 'Sharing revoked' : 'Upload not yet confirmed'}</p>
-                {doc.uploadedBy && <p className="mt-1 text-sm text-gray-600">{doc.uploadedAt ? 'Uploaded' : 'Submitted'} by {doc.uploadedBy.name}{doc.uploadedBy.name !== doc.uploadedBy.role ? ` · ${doc.uploadedBy.role}` : ''}</p>}
-                {doc.uploadedAt && <p className="text-xs text-gray-500"><time dateTime={doc.uploadedAt}>{new Date(doc.uploadedAt).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' })}</time> (your local time)</p>}
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {doc.canPreview && doc.status === 'uploaded' && <a className={button} href={`/api/closings/${encodeURIComponent(closingId)}/documents/${encodeURIComponent(doc.id)}/preview`} target="_blank" rel="noopener noreferrer" aria-label={`View ${doc.fileName} (opens in a new tab)`}>View</a>}
-                {doc.status === 'uploaded' && <button className={button} disabled={busy} onClick={() => run(async () => { const result = await action({ action: 'download', documentId: doc.id }); window.location.assign(result.url) })}>Download</button>}
-                {doc.canConfirm && <button className={button} disabled={busy} onClick={() => run(async () => { await action({ action: 'confirm', documentId: doc.id, revision: doc.revision }) })}>Verify upload</button>}
-                {data.canManage && doc.status === 'uploaded' && <button className={button} disabled={busy} onClick={() => { setSharing(doc.id); setRecipients(doc.recipientUserIds || []) }}>Manage sharing</button>}
-                {data.canManage && doc.status !== 'revoked' && <button className={button} disabled={busy} onClick={() => run(async () => { await action({ action: 'revoke', documentId: doc.id, revision: doc.revision }); setNotice('Further downloads are blocked. Previously downloaded copies cannot be recalled; an already-issued download link expires within 60 seconds.') })}>Revoke access</button>}
-              </div>
-            </div>
-            {sharing === doc.id && <fieldset className="mt-3 rounded-xl bg-gray-50 p-4"><legend className="text-sm font-bold">Who can see this document?</legend>
+        {!data.documents.length ? <p className="py-5 text-sm text-gray-500">No documents shared with you yet.</p> : <table className="block w-full table-fixed text-left text-sm md:table">
+          <caption className="sr-only">File documents</caption>
+          <thead className="hidden text-xs text-gray-500 md:table-header-group"><tr>
+            <th scope="col" className="w-[30%] pb-2 pr-3 font-medium">Document</th>
+            <th scope="col" className="w-[18%] pb-2 pr-3 font-medium">Uploaded by</th>
+            <th scope="col" className="w-[20%] pb-2 pr-3 font-medium">Uploaded <span className="block font-normal">Your local time</span></th>
+            <th scope="col" className="w-[12%] pb-2 pr-3 font-medium">Status</th>
+            <th scope="col" className="w-[20%] pb-2 font-medium">Actions</th>
+          </tr></thead>
+          <tbody className="block md:table-row-group">{data.documents.map(doc => <Fragment key={doc.id}>
+            <tr className="block border-t border-gray-100 py-3 md:table-row md:py-0" data-document-row>
+              <td className={documentCell}><p className="font-semibold break-words">{doc.fileName}</p><p className="text-xs text-gray-500">{Math.ceil(doc.fileSize / 1024)} KB</p></td>
+              <td className={documentCell}>
+                {doc.uploadedBy ? <><span className="text-xs text-gray-500 md:hidden">{doc.uploadedAt ? 'Uploaded' : 'Submitted'} by </span><span className="break-words">{doc.uploadedBy.name}</span>{doc.uploadedBy.name !== doc.uploadedBy.role && <span className="block text-xs text-gray-500">{doc.uploadedBy.role}</span>}</> : <span className="text-gray-500">Not available</span>}
+              </td>
+              <td className={`${documentCell} text-xs text-gray-600`}>
+                {doc.uploadedAt ? <><time dateTime={doc.uploadedAt}>{new Date(doc.uploadedAt).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' })}</time><span className="md:hidden"> (your local time)</span></> : <span>{doc.status === 'pending' ? 'Not confirmed' : 'Not recorded'}</span>}
+              </td>
+              <td className={`${documentCell} text-xs text-gray-600`}>{doc.status === 'uploaded' ? 'Uploaded' : doc.status === 'revoked' ? 'Sharing revoked' : 'Upload not yet confirmed'}</td>
+              <td className="block pb-1 md:table-cell md:py-3 md:align-top"><div className="flex flex-wrap gap-2">
+                {doc.canPreview && doc.status === 'uploaded' && <a className={documentButton} href={`/api/closings/${encodeURIComponent(closingId)}/documents/${encodeURIComponent(doc.id)}/preview`} target="_blank" rel="noopener noreferrer" aria-label={`View ${doc.fileName} (opens in a new tab)`}>View</a>}
+                {doc.status === 'uploaded' && <button className={documentButton} disabled={busy} onClick={() => run(async () => { const result = await action({ action: 'download', documentId: doc.id }); window.location.assign(result.url) })}>Download</button>}
+                {doc.canConfirm && <button className={documentButton} disabled={busy} onClick={() => run(async () => { await action({ action: 'confirm', documentId: doc.id, revision: doc.revision }) })}>Verify upload</button>}
+                {data.canManage && doc.status === 'uploaded' && <button className={documentButton} disabled={busy} onClick={() => { setSharing(doc.id); setRecipients(doc.recipientUserIds || []) }}>Manage sharing</button>}
+                {data.canManage && doc.status !== 'revoked' && <button className={documentButton} disabled={busy} onClick={() => run(async () => { await action({ action: 'revoke', documentId: doc.id, revision: doc.revision }); setNotice('Further downloads are blocked. Previously downloaded copies cannot be recalled; an already-issued download link expires within 60 seconds.') })}>Revoke access</button>}
+              </div></td>
+            </tr>
+            {sharing === doc.id && <tr className="block md:table-row"><td colSpan={5} className="block pb-3 md:table-cell"><fieldset className="rounded-xl bg-gray-50 p-4"><legend className="text-sm font-bold">Who can see this document?</legend>
               <p className="mb-2 text-xs text-gray-600">The uploader and closing team retain access. Only people who have signed in and are linked to this file appear below.</p>
               {data.recipients.map(r => <label key={r.id} className="my-2 flex gap-2 text-sm"><input type="checkbox" checked={recipients.includes(r.id)} onChange={e => setRecipients(e.target.checked ? [...recipients, r.id] : recipients.filter(id => id !== r.id))} />{r.label}</label>)}
               <button className={button} disabled={busy} onClick={() => run(async () => { await action({ action: 'share', documentId: doc.id, revision: doc.revision, recipientUserIds: recipients }); setSharing(null); setNotice('Document sharing updated. No email was sent.') })}>Save sharing</button>{' '}
               <button className={button} onClick={() => setSharing(null)}>Cancel</button>
-            </fieldset>}
-          </li>)}
-        </ul>}
+            </fieldset></td></tr>}
+          </Fragment>)}</tbody>
+        </table>}
       </section>
       <section className={panel} aria-label="Closing estimate">
         <h2 className="text-lg font-bold">Closing estimate</h2>
