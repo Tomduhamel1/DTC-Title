@@ -70,6 +70,7 @@ before(async () => {
     env: { PATH: process.env.PATH, NODE_ENV: 'production', DATABASE_URL: target.href,
       NEXTAUTH_URL: origin, NEXTAUTH_SECRET: prefix + 'synthetic-auth-secret', AUTH_EMAIL_DRY_RUN: 'true',
       ORDER_INGEST_SECRET: syntheticSecret, ADMIN_EMAILS: 'admin@example.invalid',
+      BC_FILE_WORKSPACE_ENABLED: 'true', BC_DOCUMENTS_ENABLED: 'false',
       COMING_SOON_MODE: 'true', COMING_SOON_BYPASS_KEY: prefix + 'synthetic-preview', NEXT_TELEMETRY_DISABLED: '1' },
     stdio: ['ignore', 'pipe', 'pipe'],
   });
@@ -295,4 +296,33 @@ test('production client pages hydrate through Suspense with their original query
       await page.close();
     }
   } finally { await browser.close(); }
+});
+
+test('compiled settings and file preferences use real sessions, preserve files, and reject stale/cross-site saves', async () => {
+  const endpoint = '/api/settings/borrower-notifications';
+  assert.equal((await request('/settings')).status, 307);
+  const saveDefaults = (body, actor = 'pro', extra = {}) => request(endpoint, { method: 'PATCH',
+    headers: { cookie: cookie(actor), origin, 'content-type': 'application/json', ...extra }, body: JSON.stringify(body) });
+  assert.equal((await saveDefaults({ types: ['closed'], expectedTypes: [] }, 'missing')).status, 401);
+  assert.equal((await saveDefaults({ types: ['closed'], expectedTypes: [] }, 'pro', { origin: 'https://outside.invalid' })).status, 403);
+  assert.equal((await saveDefaults({ types: ['closed'], expectedTypes: [] })).status, 200);
+  assert.equal((await saveDefaults({ types: ['title_search'], expectedTypes: [] })).status, 409);
+  assert.equal((await prisma.closing.findUniqueOrThrow({ where: { id: owned.id } })).borrowerEmailsEnabled, false);
+  await prisma.teammateClosing.updateMany({ where: { closingId: owned.id, userId: actors.pro.id }, data: { mayManageBorrowerEmails: true } });
+  const page = await request('/settings', { headers: { cookie: cookie('pro') } });
+  assert.equal(page.status, 200); assert.match(await page.text(), /Borrower email defaults for new files/);
+  assert.match(page.headers.get('cache-control'), /no-store/);
+  const body = { types: ['title_search'], expectedVersion: null, recipient: actors.borrower.email };
+  const saveFile = actor => request('/api/closings/' + owned.id + '/borrower-notifications', { method: 'PATCH',
+    headers: { cookie: cookie(actor), origin, 'content-type': 'application/json' }, body: JSON.stringify(body) });
+  assert.equal((await saveFile('other')).status, 404); assert.equal((await saveFile('pro')).status, 200);
+  assert.equal((await saveFile('pro')).status, 409);
+  assert.equal(await prisma.ingestDelivery.count({ where: { closingId: owned.id } }), 0);
+  const pending = await prisma.closingDocument.create({ data: { id: prefix + 'document', closingId: owned.id,
+    origin: 'participant', uploaderId: actors.pro.id, fileName: 'synthetic.pdf', mimeType: 'application/pdf',
+    fileSize: 42, sha256: 'a'.repeat(64), storageKey: prefix + 'private', uploadExpiresAt: new Date(Date.now() + 60000) } });
+  const preview = actor => request('/api/closings/' + owned.id + '/documents/' + pending.id + '/preview', { headers: { cookie: cookie(actor) } });
+  assert.equal((await preview('missing')).status, 401); assert.equal((await preview('other')).status, 404);
+  const denied = await preview('pro'); assert.equal(denied.status, 409); assert.equal(denied.headers.get('location'), null);
+  assert.match(denied.headers.get('cache-control'), /no-store/);
 });

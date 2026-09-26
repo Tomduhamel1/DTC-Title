@@ -1,5 +1,5 @@
 {
-  "_baseline": "a5903757e21ae92f8816bef44cd89b63ebf18ab9; only expected changes: BetterClose brand and absent support phone placeholder",
+  "_baseline": "a5903757e21ae92f8816bef44cd89b63ebf18ab9; BetterClose brand and absent support phone placeholder; 2026-09-26: six milestone/completion copy corrections remove unsupported title/recording/disbursement claims; recipients, Reply-To, subjects and links unchanged",
   "welcome": {
     "to": "recipient@example.invalid",
     "replyTo": "help@example.invalid",
@@ -76,7 +76,7 @@
     "to": "recipient@example.invalid",
     "replyTo": "help@example.invalid",
     "subject": "Title search complete · BetterClose",
-    "textBody": "Hi Morgan,\n\nTitle search is complete.\n123 Example Lane, Suite 2, Austin, TX\n\nWe've completed the title search and confirmed clean title — no liens, no surprises. Next up: issuing the policy.\n\nWe confirm clean title — no liens, no surprises.\n\nView your closing: https://betterclose.example.invalid/dashboard?file=synthetic&source=email\n\nQuestions? Reply to this email — a real person will get back to you.\n\n— The BetterClose Team",
+    "textBody": "Hi Morgan,\n\nTitle search is complete.\n123 Example Lane, Suite 2, Austin, TX\n\nYour closing team has recorded the title-search milestone. Your escrow officer can explain the title commitment, any requirements or exceptions, and the next steps toward closing.\n\nThe closing team reviews the title commitment, requirements and exceptions.\n\nView your closing: https://betterclose.example.invalid/dashboard?file=synthetic&source=email\n\nQuestions? Reply to this email — a real person will get back to you.\n\n— The BetterClose Team",
     "links": [
       "https://betterclose.example.invalid/dashboard?file=synthetic&source=email"
     ]
@@ -85,7 +85,7 @@
     "to": "recipient@example.invalid",
     "replyTo": "help@example.invalid",
     "subject": "Title issued · BetterClose",
-    "textBody": "Hi Morgan,\n\nYour title insurance is issued.\n123 Example Lane, Suite 2, Austin, TX\n\nYour title insurance policy has been issued by an A-rated underwriter. You are protected. The last step is closing day itself.\n\nTitle insurance is issued by an A-rated underwriter.\n\nView your closing: https://betterclose.example.invalid/dashboard?file=synthetic&source=email\n\nQuestions? Reply to this email — a real person will get back to you.\n\n— The BetterClose Team",
+    "textBody": "Hi Morgan,\n\nYour title insurance is issued.\n123 Example Lane, Suite 2, Austin, TX\n\nYour closing team has recorded issuance of the title insurance policy. Ask your escrow officer about the policy and any remaining steps.\n\nThe closing team records issuance of the title insurance policy.\n\nView your closing: https://betterclose.example.invalid/dashboard?file=synthetic&source=email\n\nQuestions? Reply to this email — a real person will get back to you.\n\n— The BetterClose Team",
     "links": [
       "https://betterclose.example.invalid/dashboard?file=synthetic&source=email"
     ]
@@ -94,7 +94,7 @@
     "to": "recipient@example.invalid",
     "replyTo": "help@example.invalid",
     "subject": "Closed · BetterClose",
-    "textBody": "Hi Morgan,\n\nYou're closed!\n123 Example Lane, Suite 2, Austin, TX\n\nFunds have been disbursed and the deed is recorded. Welcome home — or, if you're refinancing, congrats on the new loan.\n\nFunds disbursed. Keys handed over. Done.\n\nView your closing: https://betterclose.example.invalid/dashboard?file=synthetic&source=email\n\nQuestions? Reply to this email — a real person will get back to you.\n\n— The BetterClose Team",
+    "textBody": "Hi Morgan,\n\nYou're closed!\n123 Example Lane, Suite 2, Austin, TX\n\nYour closing team has marked the file closed. Your escrow officer can confirm disbursement, recording and delivery of your final documents.\n\nThe closing team marks the file closed. Ask your escrow officer about recording and disbursement status.\n\nView your closing: https://betterclose.example.invalid/dashboard?file=synthetic&source=email\n\nQuestions? Reply to this email — a real person will get back to you.\n\n— The BetterClose Team",
     "links": [
       "https://betterclose.example.invalid/dashboard?file=synthetic&source=email"
     ]
@@ -238,7 +238,7 @@
     "to": "recipient@example.invalid",
     "replyTo": "help@example.invalid",
     "subject": "You're closed! · Your BetterClose savings",
-    "textBody": "Hi Morgan,\n\nYou're closed.\n123 Example Lane, Suite 2, Austin, TX\n\nFunds have been disbursed and the deed is recorded. If you bought, the keys are yours. If you refinanced, the new loan is in place. Either way, this part is done.\n\n\nSave at closing: $400\nSave over the loan: $910 (assumes you borrow less or get better loan pricing because your closing costs are lower; based on 6.5% over 30 years).\n\nA few things over the next few weeks:\n- Title insurance policy will arrive by mail from the underwriter.\n- Recorded deed will arrive from the county. File it safely.\n- Dashboard stays open: https://betterclose.example.invalid/dashboard?file=synthetic&source=email\n\nThank you for choosing BetterClose.\n\n— The BetterClose Team",
+    "textBody": "Hi Morgan,\n\nYou're closed.\n123 Example Lane, Suite 2, Austin, TX\n\nYour closing team has marked the file closed. Your escrow officer can confirm disbursement, recording and delivery of your final documents.\n\n\nSave at closing: $400\nSave over the loan: $910 (assumes you borrow less or get better loan pricing because your closing costs are lower; based on 6.5% over 30 years).\n\nYour closing team can help with the next steps:\n- Ask your escrow officer when and how your title policy and recorded documents will be delivered.\n- Keep your final documents somewhere safe.\n- Dashboard stays open: https://betterclose.example.invalid/dashboard?file=synthetic&source=email\n\nThank you for choosing BetterClose.\n\n— The BetterClose Team",
     "links": [
       "https://betterclose.example.invalid/dashboard?file=synthetic&source=email"
     ]
@@ -247,7 +247,7 @@
     "to": "recipient@example.invalid",
     "replyTo": "help@example.invalid",
     "subject": "You're closed! · Your BetterClose savings",
-    "textBody": "Hi Morgan,\n\nYou're closed.\n123 Example Lane, Suite 2, Austin, TX\n\nFunds have been disbursed and the deed is recorded. If you bought, the keys are yours. If you refinanced, the new loan is in place. Either way, this part is done.\n\n\nA few things over the next few weeks:\n- Title insurance policy will arrive by mail from the underwriter.\n- Recorded deed will arrive from the county. File it safely.\n- Dashboard stays open: https://betterclose.example.invalid/dashboard?file=synthetic&source=email\n\nThank you for choosing BetterClose.\n\n— The BetterClose Team",
+    "textBody": "Hi Morgan,\n\nYou're closed.\n123 Example Lane, Suite 2, Austin, TX\n\nYour closing team has marked the file closed. Your escrow officer can confirm disbursement, recording and delivery of your final documents.\n\n\nYour closing team can help with the next steps:\n- Ask your escrow officer when and how your title policy and recorded documents will be delivered.\n- Keep your final documents somewhere safe.\n- Dashboard stays open: https://betterclose.example.invalid/dashboard?file=synthetic&source=email\n\nThank you for choosing BetterClose.\n\n— The BetterClose Team",
     "links": [
       "https://betterclose.example.invalid/dashboard?file=synthetic&source=email"
     ]
@@ -256,7 +256,7 @@
     "to": "recipient@example.invalid",
     "replyTo": "help@example.invalid",
     "subject": "You're closed! · Your BetterClose savings",
-    "textBody": "Hi Morgan,\n\nYou're closed.\n123 Example Lane, Suite 2, Austin, TX\n\nFunds have been disbursed and the deed is recorded. If you bought, the keys are yours. If you refinanced, the new loan is in place. Either way, this part is done.\n\n\nSave at closing: $0\nSave over the loan: $0 (assumes you borrow less or get better loan pricing because your closing costs are lower; based on 6.5% over 30 years).\n\nA few things over the next few weeks:\n- Title insurance policy will arrive by mail from the underwriter.\n- Recorded deed will arrive from the county. File it safely.\n- Dashboard stays open: https://betterclose.example.invalid/dashboard?file=synthetic&source=email\n\nThank you for choosing BetterClose.\n\n— The BetterClose Team",
+    "textBody": "Hi Morgan,\n\nYou're closed.\n123 Example Lane, Suite 2, Austin, TX\n\nYour closing team has marked the file closed. Your escrow officer can confirm disbursement, recording and delivery of your final documents.\n\n\nSave at closing: $0\nSave over the loan: $0 (assumes you borrow less or get better loan pricing because your closing costs are lower; based on 6.5% over 30 years).\n\nYour closing team can help with the next steps:\n- Ask your escrow officer when and how your title policy and recorded documents will be delivered.\n- Keep your final documents somewhere safe.\n- Dashboard stays open: https://betterclose.example.invalid/dashboard?file=synthetic&source=email\n\nThank you for choosing BetterClose.\n\n— The BetterClose Team",
     "links": [
       "https://betterclose.example.invalid/dashboard?file=synthetic&source=email"
     ]

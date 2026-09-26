@@ -239,6 +239,9 @@ model User {
   accountType   String    @default("borrower")
   createdAt     DateTime  @default(now())
 
+  // Explicit Pro choices, copied only when a new file is created.
+  borrowerEmailDefaults String[] @default([])
+
   accounts          Account[]
   sessions          Session[]
   closings          Closing[]          @relation("UserClosings")
@@ -314,6 +317,9 @@ model Closing {
   // File-specific automatic-email permission. Never inferred from contact
   // presence, Pro subscription/mute, or old account ownership.
   borrowerEmailsEnabled Boolean @default(false)
+  // The permission gate above remains authoritative. Default preserves legacy
+  // opt-ins; a new file still starts OFF unless explicitly authorized.
+  borrowerEmailTypes String[] @default(["loan_locked", "title_ordered", "title_search", "title_issued", "closed"])
   borrowerEmailPermissionRecipient String?
   borrowerEmailPermissionBy String?
   borrowerEmailPermissionSource String?

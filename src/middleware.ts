@@ -22,6 +22,7 @@ import type { NextRequest } from 'next/server'
 // claims.
 const FUNCTIONAL_PREFIXES = [
   '/dashboard',
+  '/settings',
   '/teammate',
   '/login',
   '/file-access',

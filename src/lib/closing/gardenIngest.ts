@@ -5,6 +5,7 @@ import { applyEscrowOfficer, type EscrowOfficerInput } from '@/lib/closing/offic
 import { upsertTeammateClosing, type TeammateRole } from '@/lib/teammate/match'
 import type { CreateClosingFromOrderInput } from '@/lib/closing/createFromOrder'
 import { ensureInitialEstimate } from '@/lib/fileWorkspace/estimates'
+import { seedNewFileBorrowerDefaults } from './notificationDefaults'
 
 export class IngestConflict extends Error {
   constructor(public fields: string[]) { super('Existing BetterClose values differ; review field ownership before retrying') }
@@ -90,6 +91,7 @@ export async function ingestGardenOrder(input: CreateClosingFromOrderInput & {
       teammateLinked = true
     }
     const officerFieldsSet = input.escrowOfficer ? await applyEscrowOfficer(closing.id, input.escrowOfficer, tx) : 0
+    if (!existing) await seedNewFileBorrowerDefaults(tx, closing.id)
     return { closingId: closing.id, matchedBy: byRequest ? 'betterclose_request_id' :
       byOrder ? 'garden_order_id' : byFile ? 'garden_file_number' : null, teammateLinked, officerFieldsSet }
   }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable })

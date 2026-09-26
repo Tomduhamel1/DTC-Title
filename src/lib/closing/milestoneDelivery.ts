@@ -39,7 +39,7 @@ export async function deliverMilestoneNotifications(closingId: string) {
       if (p.audience === 'borrower') {
         // Re-read at delivery/retry. Revoking and re-enabling cannot release an
         // old intent because each explicit permission change has a new version.
-        if (!borrowerMayReceive(c, item.recipient, p.permissionVersion ?? null)) {
+        if (!borrowerMayReceive(c, item.recipient, p.permissionVersion ?? null, p.kind)) {
           await finish('cancelled', 'borrower_permission_changed'); continue
         }
         const common = { to: item.recipient, borrowerFirstName: c.user?.name?.split(' ')[0],

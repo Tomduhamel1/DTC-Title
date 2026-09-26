@@ -4,7 +4,8 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { formatCurrency, type FeeReport } from '@/lib/feeReport'
 
 type FileDocument = { id: string; fileName: string; fileSize: number; status: string; revision: number;
-  origin: string; canConfirm: boolean; recipientUserIds?: string[] }
+  origin: string; canConfirm: boolean; canPreview?: boolean; uploadedAt?: string | null;
+  uploadedBy?: { name: string; role: string }; recipientUserIds?: string[] }
 type Version = { revision: number; source: string; report: FeeReport; assumptions: string[]; createdAt: string }
 type Workspace = { enabled: boolean; documents: FileDocument[]; canManage: boolean; uploadsEnabled: boolean;
   recipients: { id: string; label: string }[]; estimates: { versions: Version[]; closed: boolean; missingFields: string[];
@@ -79,8 +80,12 @@ export default function FileWorkspace({ closingId }: { closingId: string }) {
         {!data.documents.length ? <p className="py-5 text-sm text-gray-500">No documents shared with you yet.</p> : <ul className="divide-y divide-gray-100">
           {data.documents.map(doc => <li key={doc.id} className="py-4">
             <div className="flex flex-wrap items-start justify-between gap-3">
-              <div className="min-w-0"><p className="font-semibold break-words">{doc.fileName}</p><p className="text-xs text-gray-500">{Math.ceil(doc.fileSize / 1024)} KB · {doc.status === 'uploaded' ? 'Uploaded' : doc.status === 'revoked' ? 'Sharing revoked' : 'Upload not yet confirmed'}</p></div>
+              <div className="min-w-0"><p className="font-semibold break-words">{doc.fileName}</p><p className="text-xs text-gray-500">{Math.ceil(doc.fileSize / 1024)} KB · {doc.status === 'uploaded' ? 'Uploaded' : doc.status === 'revoked' ? 'Sharing revoked' : 'Upload not yet confirmed'}</p>
+                {doc.uploadedBy && <p className="mt-1 text-sm text-gray-600">{doc.uploadedAt ? 'Uploaded' : 'Submitted'} by {doc.uploadedBy.name}{doc.uploadedBy.name !== doc.uploadedBy.role ? ` · ${doc.uploadedBy.role}` : ''}</p>}
+                {doc.uploadedAt && <p className="text-xs text-gray-500"><time dateTime={doc.uploadedAt}>{new Date(doc.uploadedAt).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' })}</time> (your local time)</p>}
+              </div>
               <div className="flex flex-wrap gap-2">
+                {doc.canPreview && doc.status === 'uploaded' && <a className={button} href={`/api/closings/${encodeURIComponent(closingId)}/documents/${encodeURIComponent(doc.id)}/preview`} target="_blank" rel="noopener noreferrer" aria-label={`View ${doc.fileName} (opens in a new tab)`}>View</a>}
                 {doc.status === 'uploaded' && <button className={button} disabled={busy} onClick={() => run(async () => { const result = await action({ action: 'download', documentId: doc.id }); window.location.assign(result.url) })}>Download</button>}
                 {doc.canConfirm && <button className={button} disabled={busy} onClick={() => run(async () => { await action({ action: 'confirm', documentId: doc.id, revision: doc.revision }) })}>Verify upload</button>}
                 {data.canManage && doc.status === 'uploaded' && <button className={button} disabled={busy} onClick={() => { setSharing(doc.id); setRecipients(doc.recipientUserIds || []) }}>Manage sharing</button>}

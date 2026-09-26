@@ -37,6 +37,11 @@ function load(file) {
   const localRequire = name => {
     if (mocks[name]) return mocks[name];
     if (name.startsWith('@/')) return load('src/' + name.slice(2) + '.ts');
+    if (name.startsWith('.')) {
+      const local = path.resolve(path.dirname(absolute), name + '.ts');
+      assert.ok(local.startsWith(path.resolve(__dirname, '../src') + path.sep));
+      return load(local);
+    }
     if (['crypto', '@prisma/client', 'next/server', 'zod'].includes(name)) return require(name);
     throw new Error('Unapproved test dependency: ' + name);
   };

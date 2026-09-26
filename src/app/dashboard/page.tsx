@@ -168,7 +168,9 @@ export default async function DashboardPage(
             </form>
           )}
           <div className="mb-6"><BorrowerEmailSetting closingId={closing.id} self
-            initialEnabled={borrowerMayReceive(closing, closing.borrowerEmail || '')} /></div>
+            initialEnabled={borrowerMayReceive(closing, closing.borrowerEmail || '')}
+            initialTypes={closing.borrowerEmailTypes} initialVersion={closing.borrowerEmailPermissionVersion}
+            recipient={closing.borrowerEmail || ''} /></div>
           {needsOnboarding ? (
             <OnboardingForm closingId={closing.id} userName={user.name} userEmail={user.email} />
           ) : searchParams?.variant === 'unified' ? (

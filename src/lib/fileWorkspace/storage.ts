@@ -49,7 +49,12 @@ export async function verifyUpload(input: { key: string; mimeType: string; size:
   return head.VersionId
 }
 
-export async function signDownload(input: { key: string; version: string; fileName: string }) {
+export const PREVIEW_MIME_TYPES = ['application/pdf', 'image/jpeg', 'image/png']
+
+export async function signDownload(input: { key: string; version: string; fileName: string; previewMimeType?: string }) {
+  if (input.previewMimeType && !PREVIEW_MIME_TYPES.includes(input.previewMimeType)) {
+    throw new WorkspaceError(400, 'Preview is available for PDFs and images. Download this document instead.')
+  }
   const { Bucket, client } = config()
   const scan = await client.send(new GetObjectTaggingCommand({ Bucket, Key: input.key, VersionId: input.version }))
   if (!scan.TagSet?.some(tag => tag.Key === 'GuardDutyMalwareScanStatus' && tag.Value === 'NO_THREATS_FOUND')) {
@@ -57,7 +62,8 @@ export async function signDownload(input: { key: string; version: string; fileNa
   }
   const filename = input.fileName.replace(/[^a-zA-Z0-9._ -]/g, '_').slice(0, 180)
   return getSignedUrl(client, new GetObjectCommand({ Bucket, Key: input.key, VersionId: input.version,
-    ResponseContentDisposition: `attachment; filename="${filename}"`, ResponseContentType: 'application/octet-stream',
+    ResponseContentDisposition: `${input.previewMimeType ? 'inline' : 'attachment'}; filename="${filename}"`,
+    ResponseContentType: input.previewMimeType || 'application/octet-stream',
     ResponseCacheControl: 'private, no-store',
   }), { expiresIn: 60 })
 }

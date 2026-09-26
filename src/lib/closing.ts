@@ -21,9 +21,9 @@ export const MILESTONE_LABELS: Record<MilestoneKind, string> = {
 export const MILESTONE_DESCRIPTIONS: Record<MilestoneKind, string> = {
   loan_locked: 'Your lender finalizes your interest rate.',
   title_ordered: 'Your closing team opened your title order with BetterClose.',
-  title_search: 'We confirm clean title — no liens, no surprises.',
-  title_issued: 'Title insurance is issued by an A-rated underwriter.',
-  closed: 'Funds disbursed. Keys handed over. Done.',
+  title_search: 'The closing team reviews the title commitment, requirements and exceptions.',
+  title_issued: 'The closing team records issuance of the title insurance policy.',
+  closed: 'The closing team marks the file closed. Ask your escrow officer about recording and disbursement status.',
 }
 
 export function normalizePropertyKey(address: string | null | undefined): string | null {

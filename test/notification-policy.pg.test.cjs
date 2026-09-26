@@ -32,7 +32,7 @@ const advance = (c, kind = 'title_ordered', status = 'done') =>
 const drain = c => h.load('src/lib/closing/milestoneDelivery.ts').deliverMilestoneNotifications(c.id);
 const setPermission = (c, body) => h.load('src/app/api/closings/[id]/borrower-notifications/route.ts').PATCH(
   new Request('https://betterclose.example.invalid/test', { method: 'PATCH',
-    headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) }), { params: Promise.resolve({ id: c.id }) });
+    headers: { 'content-type': 'application/json', origin: 'https://betterclose.example.invalid' }, body: JSON.stringify(body) }), { params: Promise.resolve({ id: c.id }) });
 const reload = c => prisma.closing.findUniqueOrThrow({ where: { id: c.id } });
 const permission = c => policy.borrowerPermission(c.borrowerEmail, 'synthetic-actor', 'pro', true);
 const rows = c => prisma.ingestDelivery.findMany({ where: { closingId: c.id } });
@@ -333,7 +333,7 @@ test('permission audit failure rolls back the permission change', async () => {
   const isolated = createHarness(wrapped); isolated.setActor(owner);
   const route = isolated.load('src/app/api/closings/[id]/borrower-notifications/route.ts');
   await assert.rejects(route.PATCH(new Request('https://betterclose.example.invalid/test', {
-    method: 'PATCH', body: JSON.stringify({ enabled: true }) }), { params: Promise.resolve({ id: c.id }) }), /synthetic audit failure/);
+    method: 'PATCH', headers: { origin: 'https://betterclose.example.invalid' }, body: JSON.stringify({ enabled: true }) }), { params: Promise.resolve({ id: c.id }) }), /synthetic audit failure/);
   const stored = await reload(c);
   assert.equal(stored.borrowerEmailsEnabled, false); assert.equal(stored.borrowerEmailPermissionVersion, null);
 });
@@ -352,4 +352,121 @@ test('notification intent failure rolls back transition; retry cannot lose the o
   const m = await prisma.milestone.findUnique({ where: { closingId_kind: { closingId: c.id, kind: 'title_ordered' } } });
   assert.equal(m.status, 'pending'); assert.equal(m.deliveryPreparedAt, null); assert.equal(isolated.sent.length, 0);
   assert.equal((await advance(c)).ok, true); assert.equal(h.sent.length, 1);
+});
+
+const choose = (c, types, snapshot = c) => setPermission(c, { types,
+  expectedVersion: snapshot.borrowerEmailPermissionVersion, recipient: snapshot.borrowerEmail || '' });
+const defaults = body => h.load('src/app/api/settings/borrower-notifications/route.ts').PATCH(
+  new Request('https://betterclose.example.invalid/api/settings/borrower-notifications', {
+    method: 'PATCH', headers: { origin: 'https://betterclose.example.invalid' }, body: JSON.stringify(body) }));
+
+test('type choices gate both creation and retry; Pro messages stay independent and saves send nothing', async () => {
+  const u = await user(), c = await closing(); await pro(c, { userId: u.id, matchedEmail: u.email }); h.setActor(u);
+  assert.equal((await choose(c, ['title_search'])).status, 200);
+  assert.equal(h.sent.length, 0);
+  await advance(c, 'title_ordered'); assert.deepEqual(h.sent.map(m => m.to), [u.email]);
+  failRecipient = c.borrowerEmail;
+  await advance(c, 'title_search');
+  const stored = await reload(c);
+  assert.equal((await choose(c, ['closed'], stored)).status, 200);
+  failRecipient = null; await drain(c);
+  assert.ok(h.sent.every(m => m.to !== c.borrowerEmail));
+  const borrower = (await rows(c)).filter(r => r.recipient === c.borrowerEmail);
+  assert.equal(borrower.length, 1); assert.equal(borrower[0].status, 'cancelled');
+  await advance(c, 'closed'); assert.equal(h.sent.filter(m => m.to === c.borrowerEmail).length, 1);
+});
+
+test('file preference changes refuse stale versions, changed recipients, outside users and cross-origin posts', async () => {
+  const a = await user(), b = await user(), c = await closing();
+  await pro(c, { userId: a.id, matchedEmail: a.email }); await pro(c, { userId: b.id, matchedEmail: b.email });
+  h.setActor(a); assert.equal((await choose(c, ['closed'])).status, 200);
+  h.setActor(b); assert.equal((await choose(c, ['title_search'])).status, 409);
+  const current = await reload(c); assert.deepEqual(current.borrowerEmailTypes, ['closed']);
+  await prisma.closing.update({ where: { id: c.id }, data: { borrowerEmail: email() } });
+  assert.equal((await choose(c, ['title_search'], current)).status, 409);
+  h.setActor(await user()); assert.equal((await choose(c, [])).status, 404);
+  h.setActor(a);
+  const route = h.load('src/app/api/closings/[id]/borrower-notifications/route.ts');
+  const response = await route.PATCH(new Request('https://betterclose.example.invalid/test', { method: 'PATCH',
+    headers: { origin: 'https://outside.invalid' }, body: JSON.stringify({ enabled: true }) }), { params: Promise.resolve({ id: c.id }) });
+  assert.equal(response.status, 403);
+  assert.equal(h.sent.length, 0);
+});
+
+test('saved defaults are self-scoped, future-only and never silently rewrite existing or recipientless files', async () => {
+  const u = await user(), otherUser = await user(), existing = await closing();
+  await pro(existing, { userId: u.id, matchedEmail: u.email });
+  assert.equal((await defaults({ types: ['closed'], expectedTypes: [] })).status, 401);
+  h.setActor(u);
+  assert.equal((await defaults({ types: ['closed'], expectedTypes: [], userId: otherUser.id })).status, 400);
+  assert.equal((await defaults({ types: ['title_ordered', 'closed'], expectedTypes: [] })).status, 200);
+  assert.equal((await defaults({ types: ['title_search'], expectedTypes: [] })).status, 409);
+  assert.equal((await reload(existing)).borrowerEmailsEnabled, false);
+  assert.deepEqual((await prisma.user.findUniqueOrThrow({ where: { id: otherUser.id } })).borrowerEmailDefaults, []);
+  const ingest = h.load('src/lib/closing/gardenIngest.ts').ingestGardenOrder;
+  const payload = { gardenFileNumber: id(), borrowerEmail: email(), teammateEmail: u.email, teammateRole: 'lender' };
+  const fresh = await ingest(payload), c = await reload({ id: fresh.closingId });
+  assert.equal(c.borrowerEmailsEnabled, true); assert.deepEqual(c.borrowerEmailTypes, ['title_ordered', 'closed']);
+  assert.equal((await defaults({ types: [], expectedTypes: ['title_ordered', 'closed'] })).status, 200);
+  await ingest(payload); assert.deepEqual((await reload(c)).borrowerEmailTypes, ['title_ordered', 'closed']);
+  const missing = await ingest({ ...payload, gardenFileNumber: id(), borrowerEmail: undefined });
+  await defaults({ types: ['closed'], expectedTypes: [] });
+  await ingest({ ...payload, gardenFileNumber: (await reload({ id: missing.closingId })).gardenFileNumber });
+  assert.equal((await reload({ id: missing.closingId })).borrowerEmailsEnabled, false);
+  assert.equal(h.sent.length, 0);
+});
+
+test('conflicting Pro defaults stay off; unanimous verified choices seed once; unknown identities cannot opt in', async () => {
+  const a = await user({ borrowerEmailDefaults: ['closed'] }), b = await user({ borrowerEmailDefaults: ['title_search'] });
+  const seed = h.load('src/lib/closing/notificationDefaults.ts').seedNewFileBorrowerDefaults;
+  const c = await closing();
+  await pro(c, { userId: a.id, matchedEmail: a.email }); await pro(c, { userId: b.id, matchedEmail: b.email });
+  await prisma.$transaction(tx => seed(tx, c.id)); assert.equal((await reload(c)).borrowerEmailsEnabled, false);
+  await prisma.user.update({ where: { id: b.id }, data: { borrowerEmailDefaults: ['closed'] } });
+  await prisma.$transaction(tx => seed(tx, c.id)); assert.equal((await reload(c)).borrowerEmailsEnabled, true);
+  h.setActor(a); await choose(c, [], await reload(c));
+  await prisma.$transaction(tx => seed(tx, c.id)); assert.equal((await reload(c)).borrowerEmailsEnabled, false);
+  const unverified = await user({ emailVerified: null, borrowerEmailDefaults: ['closed'] }), d = await closing();
+  await pro(d, { userId: unverified.id, matchedEmail: unverified.email });
+  await prisma.$transaction(tx => seed(tx, d.id)); assert.equal((await reload(d)).borrowerEmailsEnabled, false);
+});
+
+test('borrower-initiated permission and legacy all-events permissions survive; unsupported choices are refused', async () => {
+  const u = await user(), c = await closing({ userId: u.id, borrowerEmail: u.email, ...policy.borrowerPermission(u.email, u.id, 'borrower', true) });
+  h.setActor(u);
+  assert.deepEqual(c.borrowerEmailTypes, [...kinds]);
+  assert.equal((await choose(c, ['loan_locked'])).status, 400);
+  assert.equal((await choose(c, ['closed'])).status, 200);
+  assert.equal((await reload(c)).borrowerEmailPermissionSource, 'borrower');
+  await advance(c, 'title_search'); assert.equal(h.sent.length, 0);
+  await advance(c, 'closed'); assert.equal(h.sent.length, 1);
+});
+
+test('milestone emails do not assert lien-free title, recording, disbursement or an invented policy sequence', async () => {
+  const c = await closing({ ...policy.borrowerPermission('person@example.invalid', 'test', 'pro', true), borrowerEmail: 'person@example.invalid' });
+  await pro(c);
+  for (const kind of ['title_search', 'title_issued', 'closed']) await advance(c, kind);
+  assert.equal(h.sent.length, 6);
+  for (const message of h.sent) {
+    assert.doesNotMatch(message.htmlBody + message.textBody, /clean title|no liens|no surprises|A-rated|Funds have been disbursed|deed is recorded|Up next is policy issuance|last step is closing day/i);
+  }
+});
+
+test('additive migration preserves legacy opt-ins and versions while new user defaults stay off', async () => {
+  const fs = require('node:fs');
+  const sql = fs.readFileSync('prisma/migrations/20260926050000_borrower_notification_choices/migration.sql', 'utf8');
+  await prisma.$transaction(async tx => {
+    // Transaction-owned TEMP tables shadow names only on this connection; all
+    // disappear at commit. Never alter the actual test application's tables.
+    await tx.$executeRawUnsafe('CREATE TEMP TABLE "User" (id text PRIMARY KEY) ON COMMIT DROP');
+    await tx.$executeRawUnsafe('CREATE TEMP TABLE "Closing" (id text PRIMARY KEY, "borrowerEmailsEnabled" boolean, "borrowerEmailPermissionVersion" text) ON COMMIT DROP');
+    await tx.$executeRawUnsafe(`INSERT INTO pg_temp."User" VALUES ('legacy-pro')`);
+    await tx.$executeRawUnsafe(`INSERT INTO pg_temp."Closing" VALUES ('on', true, 'keep-on'), ('off', false, 'keep-off')`);
+    for (const statement of sql.split(';').filter(value => value.trim())) await tx.$executeRawUnsafe(statement);
+    const users = await tx.$queryRawUnsafe('SELECT * FROM pg_temp."User"');
+    assert.deepEqual(users[0].borrowerEmailDefaults, []);
+    const files = await tx.$queryRawUnsafe('SELECT * FROM pg_temp."Closing" ORDER BY id');
+    assert.deepEqual(files.map(c => [c.id, c.borrowerEmailsEnabled, c.borrowerEmailPermissionVersion]), [['off', false, 'keep-off'], ['on', true, 'keep-on']]);
+    assert.ok(files.every(c => JSON.stringify(c.borrowerEmailTypes) === JSON.stringify(kinds)));
+  });
 });

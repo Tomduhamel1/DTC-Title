@@ -103,15 +103,21 @@ export default async function TeammateClosingDetailPage(props: PageProps) {
           </div>
 
           <div className="space-y-4">
-            {membership.mayManageBorrowerEmails && PRO_ROLES.includes(membership.role) && (
-              <BorrowerEmailSetting closingId={c.id} initialEnabled={borrowerMayReceive(c, c.borrowerEmail || '')} />
-            )}
             {/* Closing Progress */}
             <MilestoneTimeline milestones={c.milestones} closingDate={c.closingDate} />
 
             {/* Escrow Officer */}
             <EscrowOfficerCard officer={escrowOfficer} variant="main" />
             <FileWorkspace closingId={c.id} />
+
+            {membership.mayManageBorrowerEmails && PRO_ROLES.includes(membership.role) && (
+              <details className="rounded-2xl border border-gray-200 bg-white p-5">
+                <summary className="cursor-pointer font-semibold">Notifications for this file</summary>
+                <div className="mt-4"><BorrowerEmailSetting closingId={c.id} initialEnabled={borrowerMayReceive(c, c.borrowerEmail || '')}
+                  initialTypes={c.borrowerEmailTypes} initialVersion={c.borrowerEmailPermissionVersion} recipient={c.borrowerEmail || ''} /></div>
+                <Link href="/settings" className="mt-3 inline-block text-sm text-emerald-700">Set defaults for new files →</Link>
+              </details>
+            )}
 
             {/* Transaction snapshot */}
             <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-5">

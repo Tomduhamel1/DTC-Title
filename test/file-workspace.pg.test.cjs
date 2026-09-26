@@ -35,6 +35,56 @@ function harness(admin) {
   return { ...h, call, storage, storageCalls, estimates };
 }
 const begin = { action: 'begin', fileName: 'synthetic.pdf', fileSize: 42, mimeType: 'application/pdf', sha256: 'a'.repeat(64) };
+
+test('preview and uploader/time use authorized documents, exact verified bytes and truthful identity', async () => {
+  const admin = await user('Staff Person'), lender = await user('Lender Person'), stranger = await user('Other');
+  const c = await file(), other = await file(), h = harness(admin);
+  await prisma.teammateClosing.create({ data: { closingId: c.id, userId: lender.id, matchedEmail: lender.email, role: 'lender' } });
+  h.setActor(lender);
+  const pending = (await h.call(c, begin)).body.document;
+  let listed = (await h.call(c)).body.documents[0];
+  assert.equal(listed.uploadedAt, null); assert.equal(listed.canPreview, false);
+  assert.deepEqual(listed.uploadedBy, { name: 'Lender Person', role: 'Lender' });
+  assert.equal((await h.call(c, { action: 'preview', documentId: pending.id })).status, 409);
+  await h.call(c, { action: 'confirm', documentId: pending.id, revision: pending.revision });
+  const event = await prisma.closingDocumentEvent.findFirst({ where: { documentId: pending.id, kind: 'upload_verified' } });
+  listed = (await h.call(c)).body.documents[0];
+  assert.equal(listed.uploadedAt, event.createdAt.toISOString()); assert.equal(listed.canPreview, true);
+  assert.doesNotMatch(JSON.stringify(listed), new RegExp(lender.id + '|immutable-version|storageKey|actorId|recipientUserIds'));
+  const route = h.load('src/app/api/closings/[id]/documents/[documentId]/preview/route.ts');
+  const preview = (file = c) => route.GET(new Request('https://betterclose.example.invalid/preview'), {
+    params: Promise.resolve({ id: file.id, documentId: pending.id }) });
+  const response = await preview(); assert.equal(response.status, 307);
+  assert.equal(response.headers.get('location'), 'https://private.invalid/download');
+  assert.equal(response.headers.get('referrer-policy'), 'no-referrer');
+  assert.equal(response.headers.get('cache-control'), 'private, no-store');
+  assert.equal(h.storageCalls.at(-1)[1].previewMimeType, 'application/pdf');
+  assert.equal(h.storageCalls.at(-1)[1].version, 'immutable-version');
+  assert.equal((await preview(other)).status, 404);
+  h.setActor(stranger); assert.equal((await preview()).status, 404);
+  h.setActor(null); assert.equal((await preview()).status, 401);
+  h.setActor(lender); h.env.BC_FILE_WORKSPACE_ENABLED = 'false'; assert.equal((await preview()).status, 404);
+  h.env.BC_FILE_WORKSPACE_ENABLED = 'true';
+  const revoke = h.storage.signDownload;
+  h.storage.signDownload = async input => { await prisma.closingDocument.update({ where: { id: pending.id }, data: {
+    status: 'revoked', revision: { increment: 1 }, recipientUserIds: [] } }); return revoke(input); };
+  assert.equal((await preview()).status, 409, 'Concurrent revocation prevents a new redirect');
+  assert.equal(h.sent.length, 0);
+});
+
+test('Garden identity is labelled honestly without exposing internal operator IDs; no preview for Office documents', async () => {
+  const admin = await user(), c = await file(), h = harness(admin); h.setActor(admin);
+  const doc = await prisma.closingDocument.create({ data: { closingId: c.id, origin: 'garden', uploaderId: 'garden:17',
+    sourceDocumentId: '00000000-0000-4000-8000-000000000017', sourceVersion: 'test-v1',
+    fileName: 'synthetic.docx', fileSize: 10, mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    sha256: 'a'.repeat(64), storageKey: id(), storageVersion: 'v1', status: 'uploaded', uploadExpiresAt: new Date() } });
+  const listed = (await h.call(c)).body.documents[0];
+  assert.deepEqual(listed.uploadedBy, { name: 'Closing team (Garden)', role: 'Closing team (Garden)' });
+  assert.equal(listed.uploadedAt, null); assert.equal(listed.canPreview, false);
+  assert.doesNotMatch(JSON.stringify(listed), /garden:17/);
+  assert.equal((await h.call(c, { action: 'preview', documentId: doc.id })).status, 400);
+  assert.equal(h.storageCalls.length, 0);
+});
 async function uploaded(h, c) {
   const started = await h.call(c, begin); assert.equal(started.status, 200);
   const d = started.body.document;

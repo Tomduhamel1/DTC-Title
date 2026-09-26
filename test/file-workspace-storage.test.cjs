@@ -67,6 +67,23 @@ test('disabled or missing dedicated bucket never falls back to the public assets
   await assert.rejects(h.signUpload(input), e => e.status === 503); assert.equal(h.state.signed.length, 0);
 });
 
+test('previews allow only clean exact-version PDFs/images inline and retain private 60 second expiry', async () => {
+  const h = harness(); const input = { key: 'synthetic/key', version: 'v1', fileName: 'document.pdf' };
+  for (const mime of ['text/html', 'image/svg+xml', 'text/plain'])
+    await assert.rejects(h.signDownload({ ...input, previewMimeType: mime }), e => e.status === 400);
+  assert.equal(h.state.commands.length, 0);
+  await assert.rejects(h.signDownload({ ...input, previewMimeType: 'application/pdf' }), e => e.status === 409);
+  assert.equal(h.state.signed.length, 0);
+  h.state.reply = { TagSet: [{ Key: 'GuardDutyMalwareScanStatus', Value: 'NO_THREATS_FOUND' }] };
+  for (const mime of ['application/pdf', 'image/png', 'image/jpeg']) {
+    await h.signDownload({ ...input, previewMimeType: mime });
+    const signed = h.state.signed.at(-1);
+    assert.equal(signed.input.ResponseContentType, mime); assert.match(signed.input.ResponseContentDisposition, /^inline;/);
+    assert.equal(signed.input.VersionId, 'v1'); assert.equal(signed.input.ResponseCacheControl, 'private, no-store');
+    assert.equal(signed.options.expiresIn, 60);
+  }
+});
+
 test('installed AWS SDK actually signs the overwrite guard, content type, size and checksum headers (offline)', async () => {
   const code = ts.transpileModule(fs.readFileSync('src/lib/fileWorkspace/storage.ts', 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 } }).outputText;
   const output = {};
