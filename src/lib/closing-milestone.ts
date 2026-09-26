@@ -95,7 +95,7 @@ export async function applyMilestoneTransition(
           payload: { kind, audience, permissionVersion: c.borrowerEmailPermissionVersion } }, update: {} })
       }
       const recipient = normalizeEmail(c.borrowerEmail)
-      if (borrowerMayReceive(c, recipient)) await queue('borrower', recipient)
+      if (borrowerMayReceive(c, recipient, undefined, kind)) await queue('borrower', recipient)
       const pros = await tx.teammateClosing.findMany({ where: { closingId,
         role: { in: PRO_ROLES }, muted: false, mayManageBorrowerEmails: true } })
       for (const pro of pros) {

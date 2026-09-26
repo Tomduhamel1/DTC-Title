@@ -117,7 +117,7 @@ export default function NavigationCredible() {
                       Closing dashboard
                     </a>
                     <a
-                      href="/dashboard#contacts"
+                      href="/settings"
                       className="block px-4 py-2 text-sm font-medium text-dark-900 hover:bg-gray-50"
                     >
                       My settings

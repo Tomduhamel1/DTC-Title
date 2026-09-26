@@ -9,14 +9,16 @@ type Permission = {
   borrowerEmailPermissionAt?: Date | null
   borrowerEmailPermissionVersion?: string | null
   borrowerEmail?: string | null
+  borrowerEmailTypes?: string[]
 }
 
-export function borrowerMayReceive(closing: Permission, recipient: string, version?: string | null) {
+export function borrowerMayReceive(closing: Permission, recipient: string, version?: string | null, kind?: string) {
   return closing.borrowerEmailsEnabled === true && Boolean(normalizeEmail(recipient)) &&
     normalizeEmail(closing.borrowerEmail) === normalizeEmail(recipient) &&
     normalizeEmail(closing.borrowerEmailPermissionRecipient) === normalizeEmail(recipient) &&
     Boolean(closing.borrowerEmailPermissionAt && closing.borrowerEmailPermissionVersion) &&
-    (version === undefined || version === closing.borrowerEmailPermissionVersion)
+    (version === undefined || version === closing.borrowerEmailPermissionVersion) &&
+    (kind === undefined || Boolean(closing.borrowerEmailTypes?.includes(kind)))
 }
 
 export function borrowerPermission(email: string, actorId: string, source: 'pro' | 'borrower', enabled: boolean) {

@@ -25,11 +25,11 @@ const KIND_BODY: Record<MilestoneKind, string> = {
   title_ordered:
     'BetterClose has the order and the title search is underway. Most searches finish within a few business days.',
   title_search:
-    'We confirmed clean title — no liens, no surprises. Up next is policy issuance.',
+    'The closing team has recorded the title-search milestone. The escrow officer can explain the title commitment, any requirements or exceptions, and the next steps toward closing.',
   title_issued:
-    'The title insurance policy has been issued by an A-rated underwriter. Closing day is the last step.',
+    'The closing team has recorded issuance of the title insurance policy. Contact the escrow officer about the policy and any remaining steps.',
   closed:
-    'Funds have been disbursed and the deed is recorded. This file is complete.',
+    'The closing team has marked the file closed. Contact the escrow officer to confirm disbursement, recording and delivery of final documents.',
 }
 
 export interface TeammateMilestoneEmailData {

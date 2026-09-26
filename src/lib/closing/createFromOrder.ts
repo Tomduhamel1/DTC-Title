@@ -264,6 +264,10 @@ export async function createClosingFromOrder(
     }
   }
 
+  if (options.proMayManageBorrowerEmails === true) {
+    const { seedNewFileBorrowerDefaults } = await import('./notificationDefaults')
+    await prisma.$transaction(tx => seedNewFileBorrowerDefaults(tx, created.id))
+  }
   if (!options.deferEstimate) await ensureInitialEstimate(created.id)
   return {
     matched: false,
