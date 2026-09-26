@@ -47,6 +47,7 @@ export default async function TeammateClosingDetailPage(props: PageProps) {
   // Read-only: drives whether the broker-only tabs render in the bar above.
   const professional = await getProfessionalContext(user.id)
   const isBrokerMember = professional?.isBrokerMember ?? false
+  const account = await prisma.user.findUniqueOrThrow({ where: { id: user.id }, select: { borrowerEmailDefaults: true } })
 
   const c = membership.closing
   const fullAddress = [c.propertyAddress, c.propertyCity, c.propertyState, c.propertyZip]
@@ -111,12 +112,10 @@ export default async function TeammateClosingDetailPage(props: PageProps) {
             <FileWorkspace closingId={c.id} />
 
             {membership.mayManageBorrowerEmails && PRO_ROLES.includes(membership.role) && (
-              <details className="rounded-2xl border border-gray-200 bg-white p-5">
-                <summary className="cursor-pointer font-semibold">Notifications for this file</summary>
-                <div className="mt-4"><BorrowerEmailSetting closingId={c.id} initialEnabled={borrowerMayReceive(c, c.borrowerEmail || '')}
-                  initialTypes={c.borrowerEmailTypes} initialVersion={c.borrowerEmailPermissionVersion} recipient={c.borrowerEmail || ''} /></div>
-                <Link href="/settings" className="mt-3 inline-block text-sm text-emerald-700">Set defaults for new files →</Link>
-              </details>
+              <BorrowerEmailSetting closingId={c.id} initialEnabled={borrowerMayReceive(c, c.borrowerEmail || '')}
+                initialTypes={c.borrowerEmailTypes} initialVersion={c.borrowerEmailPermissionVersion}
+                initialPending={Boolean(c.borrowerEmailPermissionSource === 'pro_pending' && !c.borrowerEmailsEnabled && c.borrowerEmailTypes.length)}
+                accountDefaults={account.borrowerEmailDefaults} recipient={c.borrowerEmail || ''} />
             )}
 
             {/* Transaction snapshot */}

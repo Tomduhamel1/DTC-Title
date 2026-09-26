@@ -91,7 +91,7 @@ export async function ingestGardenOrder(input: CreateClosingFromOrderInput & {
       teammateLinked = true
     }
     const officerFieldsSet = input.escrowOfficer ? await applyEscrowOfficer(closing.id, input.escrowOfficer, tx) : 0
-    if (!existing) await seedNewFileBorrowerDefaults(tx, closing.id)
+    if (!existing) await seedNewFileBorrowerDefaults(tx, closing.id, teammateEmail)
     return { closingId: closing.id, matchedBy: byRequest ? 'betterclose_request_id' :
       byOrder ? 'garden_order_id' : byFile ? 'garden_file_number' : null, teammateLinked, officerFieldsSet }
   }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable })

@@ -127,6 +127,11 @@ test('many documents use aligned desktop columns and readable mobile rows, prese
         const cells = [...row.cells].map(el => { const r = el.getBoundingClientRect(); return { x:r.x, y:r.y, right:r.right, bottom:r.bottom }; });
         const headings = [...document.querySelectorAll('section[aria-label="Documents"] th')].map(el => el.getBoundingClientRect().x);
         return { width:document.documentElement.scrollWidth, cells, headings, height:row.getBoundingClientRect().height,
+          verticalAlign:[...row.cells].map(el => getComputedStyle(el).verticalAlign),
+          contentCenters:[row.cells[2].querySelector('time'), row.cells[4].querySelector('div')].map(el => {
+            const r = el.getBoundingClientRect(), c = el.closest('td').getBoundingClientRect();
+            return Math.abs((r.top + r.bottom) / 2 - (c.top + c.bottom) / 2);
+          }),
           rowDisplay:getComputedStyle(row).display, actionHeight:row.querySelector('a').getBoundingClientRect().height,
           overflow:[...document.querySelectorAll('[data-document-row] td')].some(el => el.scrollWidth > el.clientWidth + 1) };
       });
@@ -134,6 +139,8 @@ test('many documents use aligned desktop columns and readable mobile rows, prese
       assert.equal(facts.overflow, false, `No cell overflow, including long names, at ${width}px`);
       if (width >= 768) {
         assert.equal(facts.rowDisplay, 'table-row');
+        assert.ok(facts.verticalAlign.every(value => value === 'middle'), 'Every desktop document cell is vertically centered');
+        assert.ok(facts.contentCenters.every(delta => delta <= 3), `Short metadata and actions sit at cell centers: ${facts.contentCenters}`);
         assert.ok(facts.cells.every(c => Math.abs(c.y - facts.cells[0].y) < 1), 'All five cells occupy one desktop row');
         assert.ok(facts.cells.every((c,i) => Math.abs(c.x - facts.headings[i]) < 1), 'Columns align with headings');
         if (width >= 1024) assert.ok(facts.height <= 76, `Ordinary lender rows stay compact (${facts.height}px)`);

@@ -3,9 +3,14 @@
 ## Where to find it
 
 - **My dashboard → My settings:** borrower email defaults for future files.
-- **File → Notifications for this file:** choose File opened, Title search
+- **File → Borrower / buyer updates:** choose File opened, Title search
   update, Title policy issued and File closed independently. This is below the
-  file's progress, officer and documents, not an opening-page instruction card.
+  file's progress, officer and documents. The controls are visible without
+  expanding a disclosure, including when the borrower email is not yet present.
+- **Use my defaults:** selects the signed-in user's saved account choices;
+  nothing is applied until Save file preferences. Existing file choices always
+  take precedence on initial render. A never-configured file previews current
+  account defaults but does not save them merely by rendering.
 - **Documents → View:** opens a scanned PDF/JPEG/PNG in a new tab. Download remains
   available, including for other formats. No change to who can share documents.
 
@@ -14,13 +19,15 @@
 Defaults are OFF for existing and new users until saved. Editing defaults never
 changes existing files, contact details, Pro subscriptions or queued events.
 New Garden-first files and trusted Pro quote/intake creation copy saved defaults
-only when a verified, authorized Pro is already associated and a borrower email
-is present. Unregistered/unverified Pros and missing borrowers leave emails OFF.
+only when a verified, authorized ordering account is already associated. With a
+borrower email present, these defaults apply to that address. Without an address,
+the choices are saved as a draft and emails remain OFF.
 An existing request later linked to Garden retains its original file settings.
 
-Multiple-Pro initial-default policy: all eligible Pros must have identical,
-nonempty defaults; otherwise leave the file OFF. No arbitrary first/last Pro
-wins. This is a conservative implementation assumption pending owner feedback.
+Creation paths pass the ordering contact explicitly; that account's defaults
+take precedence over other participants. If the orderer is not known, all
+eligible participants must have identical nonempty defaults; otherwise leave
+the file OFF. An unknown/unverified orderer cannot fall back to a different user.
 Later participant/default changes never re-seed the file. Authorized Pros share
 one file preference set; the latest explicit successful save applies. New UI
 sends the permission version and borrower identity and refuses stale saves.
@@ -30,8 +37,15 @@ all-event opt-ins and borrower-initiated permissions are preserved by migration.
 Both event preparation and delivery/retry check the selected type and existing
 recipient-bound permission. Every changed choice rotates the permission version,
 invalidating older queued borrower intents. Saves never send or replay email.
-Opening a file with no borrower displays a clear explanation, not an unusable
-toggle. Loan-rate notifications are not offered in the title-file UI. A new save
+Missing borrower email no longer hides the controls: saving choices stores
+`borrowerEmailTypes` with `borrowerEmailsEnabled=false`, an empty permission
+recipient and source `pro_pending`. A later Garden sync may fill the contact but
+does not activate these choices. The user must review that address and explicitly
+save again; recipient/version compare-and-set rejects the old recipientless page.
+The pending marker distinguishes real drafts from legacy disabled rows whose
+types default to every event. No schema migration or historical backfill is
+needed. Legacy boolean enable still refuses a missing recipient.
+Loan-rate notifications are not offered in the title-file UI. A new save
 of the four visible choices intentionally replaces any legacy loan-rate choice.
 
 The My settings link formerly went to `/dashboard#contacts`; that destination is
@@ -42,6 +56,7 @@ inspected current source/history; do not claim that one was deleted.
 ## Documents and copy
 
 Names and role labels are resolved only for uploaders of authorized documents.
+Desktop document cells use vertically centered compact columns; mobile stacks.
 The timestamp is the first `upload_verified` event, not intent creation. Missing
 verification history has no invented timestamp. Garden currently supplies an
 internal operator ID, not a verified staff display name: these rows say

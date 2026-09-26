@@ -82,7 +82,11 @@ function pageHarness(milestones) {
   const db = guard({
     user: guard({ findUnique: async ({ where }) => ({ ...actor, id: where.id, accountType: 'professional',
       brokerMemberships: [{ id: 'synthetic-broker-membership', role: 'member', createdAt: new Date(),
-        company: { id: 'synthetic-company', name: 'Synthetic Brokerage', slug: 'synthetic', verifiedAt: null } }] }) }),
+        company: { id: 'synthetic-company', name: 'Synthetic Brokerage', slug: 'synthetic', verifiedAt: null } }] }),
+      findUniqueOrThrow: async input => {
+        assert.deepEqual(input, { where: { id: actor.id }, select: { borrowerEmailDefaults: true } }, 'Read only the signed-in account defaults');
+        return { borrowerEmailDefaults: [] };
+      } }),
     teammateClosing: guard({
       // Existing dashboard orphan-claim operation is intercepted, never executed.
       updateMany: async input => { calls.push(input); return { count: 0 }; },

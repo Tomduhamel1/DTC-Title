@@ -310,7 +310,7 @@ test('compiled settings and file preferences use real sessions, preserve files, 
   assert.equal((await prisma.closing.findUniqueOrThrow({ where: { id: owned.id } })).borrowerEmailsEnabled, false);
   await prisma.teammateClosing.updateMany({ where: { closingId: owned.id, userId: actors.pro.id }, data: { mayManageBorrowerEmails: true } });
   const page = await request('/settings', { headers: { cookie: cookie('pro') } });
-  assert.equal(page.status, 200); assert.match(await page.text(), /Borrower email defaults for new files/);
+  assert.equal(page.status, 200); assert.match(await page.text(), /Borrower \/ buyer email defaults/);
   assert.match(page.headers.get('cache-control'), /no-store/);
   const body = { types: ['title_search'], expectedVersion: null, recipient: actors.borrower.email };
   const saveFile = actor => request('/api/closings/' + owned.id + '/borrower-notifications', { method: 'PATCH',
@@ -325,4 +325,29 @@ test('compiled settings and file preferences use real sessions, preserve files, 
   assert.equal((await preview('missing')).status, 401); assert.equal((await preview('other')).status, 404);
   const denied = await preview('pro'); assert.equal(denied.status, 409); assert.equal(denied.headers.get('location'), null);
   assert.match(denied.headers.get('cache-control'), /no-store/);
+});
+
+test('compiled recipientless file exposes choices and persists them without activating delivery or accepting a stale recipient', async () => {
+  const c = await prisma.closing.create({ data: { id: prefix + 'pending-recipient', source: 'garden',
+    propertyAddress: '789 Synthetic Pending Lane',
+    teammates: { create: { userId: actors.pro.id, matchedEmail: actors.pro.email, role: 'lender', mayManageBorrowerEmails: true } } } });
+  const route = '/api/closings/' + c.id + '/borrower-notifications';
+  const body = { types: ['closed'], expectedVersion: null, recipient: '' };
+  const save = (data, actor = 'pro') => request(route, { method: 'PATCH', headers: {
+    cookie: cookie(actor), origin, 'content-type': 'application/json' }, body: JSON.stringify(data) });
+  const file = await request('/teammate/dashboard/' + c.id, { headers: { cookie: cookie('pro') } });
+  assert.equal(file.status, 200); const html = await file.text();
+  assert.match(html, /Borrower \/ buyer updates/); assert.match(html, /Use my defaults/);
+  assert.doesNotMatch(html, /authorized Pros|before choosing borrower updates/);
+  assert.equal((await save(body, 'other')).status, 404);
+  const result = await save(body); assert.equal(result.status, 200);
+  const saved = await result.json(); assert.equal(saved.pendingRecipientConfirmation, true);
+  const stored = await prisma.closing.findUniqueOrThrow({ where: { id: c.id } });
+  assert.equal(stored.borrowerEmailsEnabled, false); assert.equal(stored.borrowerEmailPermissionSource, 'pro_pending');
+  assert.deepEqual(stored.borrowerEmailTypes, ['closed']);
+  await prisma.closing.update({ where: { id: c.id }, data: { borrowerEmail: actors.borrower.email } });
+  assert.equal((await save({ ...body, expectedVersion: saved.version })).status, 409);
+  const confirmed = await save({ ...body, expectedVersion: saved.version, recipient: actors.borrower.email });
+  assert.equal(confirmed.status, 200); assert.equal((await confirmed.json()).enabled, true);
+  assert.equal(await prisma.ingestDelivery.count({ where: { closingId: c.id } }), 0, 'Preference saves do not queue or replay events');
 });

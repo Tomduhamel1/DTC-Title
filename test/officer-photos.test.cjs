@@ -82,7 +82,11 @@ function pageHarness(photo) {
       findFirst: async ({ where }) => where.userId === actor.id && where.closingId === c.id
         ? { id: 'synthetic-membership', closing: c, muted: false, mayManageBorrowerEmails: false } : null }),
     lenderRequest: readOnly({ findFirst: async () => null }),
-    user: readOnly({ findUnique: async () => ({ ...actor, accountType: 'professional', brokerMemberships: [] }) }),
+    user: readOnly({ findUnique: async () => ({ ...actor, accountType: 'professional', brokerMemberships: [] }),
+      findUniqueOrThrow: async input => {
+        assert.deepEqual(input, { where: { id: actor.id }, select: { borrowerEmailDefaults: true } });
+        return { borrowerEmailDefaults: [] };
+      } }),
     ingestDelivery: readOnly({ groupBy: async () => [] }),
   });
   const harness = createHarness(db); harness.setActor(actor);
