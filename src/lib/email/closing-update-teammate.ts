@@ -51,6 +51,8 @@ export async function sendClosingUpdateTeammateEmail(
   const label = roleLabel(d.role)
   const fileLabel = d.propertyAddress || d.borrowerName || 'BetterClose file'
   const subject = `${MILESTONE_LABELS[d.milestoneKind]} · ${fileLabel}`
+  const personalAccess = new URL(d.teammateDashboardUrl).pathname.startsWith('/file-access/')
+  const accessNote = 'No password or account setup needed. This personal access link works once and expires after 24 hours. Please don’t forward it.'
 
   const subline = [
     d.borrowerName || null,
@@ -69,7 +71,8 @@ export async function sendClosingUpdateTeammateEmail(
     contentHtml: `<p>${escapeHtml(greeting)}</p>
     ${sublineHtml}
     <p style="margin-top:18px;">${body}</p>
-    ${emailButton(d.teammateDashboardUrl, 'Open file →')}
+    ${emailButton(d.teammateDashboardUrl, personalAccess ? 'View my file →' : 'Open file →')}
+    ${personalAccess ? `<p>${accessNote}</p>` : ''}
     <p style="margin-top:28px;">— The BetterClose Team</p>`,
     footerHtml: 'Questions? Reply to this email — a real person will get back to you.',
   })
@@ -82,7 +85,7 @@ ${headline}${sublineText ? `\n${sublineText}` : ''}
 
 ${body}
 
-Open file: ${d.teammateDashboardUrl}
+Open file: ${d.teammateDashboardUrl}${personalAccess ? `\n\n${accessNote}` : ''}
 
 Questions? Reply to this email — a real person will get back to you.
 

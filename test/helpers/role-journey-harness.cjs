@@ -10,6 +10,7 @@ function createHarness(prisma, options = {}) {
   let actor = null;
   const sent = [], modules = new Map();
   const syntheticProcess = { env: { NEXTAUTH_URL: 'https://betterclose.example.invalid',
+    NEXTAUTH_SECRET: 'isolated-test-auth-secret-not-for-production',
     ORDER_INGEST_SECRET: 'synthetic-only', AUTH_EMAIL_DRY_RUN: 'false', ...options.env } };
   const mocks = {
     '@/lib/db': { prisma },

@@ -10,6 +10,8 @@ function LoginInner() {
   const searchParams = useSearchParams()
   const callbackUrl = searchParams.get('callbackUrl') || '/dashboard'
   const error = searchParams.get('error')
+  const isFileAccess = /^\/teammate\/dashboard\/[A-Za-z0-9_-]+$/.test(callbackUrl) ||
+    /^\/dashboard\?closingId=[A-Za-z0-9_-]+$/.test(callbackUrl)
   // Broker-funnel signup variant — when ?mode=signup&source=broker is present
   // (set by /quote/results CTAs when the broker is logged out), swap headline,
   // subhead, CTA label, and add a reassurance line about preserving the
@@ -42,11 +44,12 @@ function LoginInner() {
                 BetterClose
               </div>
               <h1 className="text-3xl font-black text-dark-900 mb-2">
-                {isBrokerSignup ? 'Create your broker account' : 'Sign in'}
+                {isBrokerSignup ? 'Create your broker account' : isFileAccess ? 'View your file' : 'Sign in'}
               </h1>
               <p className="text-sm text-gray-600">
                 {isBrokerSignup
                   ? 'Save this estimate, send it to your borrower, or open the closing.'
+                  : isFileAccess ? 'Use the email that received your file update or that you used to place the order. No password or prior account needed.'
                   : "We'll email you a one-tap link. No password needed."}
               </p>
             </div>
@@ -56,7 +59,7 @@ function LoginInner() {
                 {error === 'EmailSignin'
                   ? 'Could not send email. Please try again or contact us.'
                   : error === 'Verification'
-                  ? 'That sign-in link has expired. Request a new one below.'
+                  ? 'That access link has expired or already been used. Request a new one below.'
                   : 'Something went wrong. Please try again.'}
               </div>
             )}
@@ -85,10 +88,10 @@ function LoginInner() {
                 {submitting
                   ? isBrokerSignup
                     ? 'Sending setup link…'
-                    : 'Sending sign-in link…'
+                    : isFileAccess ? 'Sending access link…' : 'Sending sign-in link…'
                   : isBrokerSignup
                   ? 'Email me a setup link →'
-                  : 'Email me a sign-in link →'}
+                  : isFileAccess ? 'Email me a secure access link →' : 'Email me a sign-in link →'}
               </button>
             </form>
 

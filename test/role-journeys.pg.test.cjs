@@ -52,6 +52,7 @@ before(async () => {
 beforeEach(() => { h.setActor(null); h.sent.length = 0; });
 after(async () => {
   if (verifiedTarget) {
+    await prisma.verificationToken.deleteMany({ where: { identifier: { startsWith: 'file-access:v1:', contains: prefix } } });
     await prisma.lenderRequest.deleteMany({ where: { id: { startsWith: prefix } } });
     await prisma.closing.deleteMany({ where: { OR: [{ id: { startsWith: prefix } }, { gardenFileNumber: { startsWith: prefix } }, { borrowerEmail: { startsWith: prefix } }, { userId: { startsWith: prefix } }] } });
     await prisma.brokerCompany.deleteMany({ where: { id: { startsWith: prefix } } });
@@ -218,7 +219,7 @@ test('milestone fanout keeps separate borrower/professional destinations and res
   assert.equal(result.ok, true, JSON.stringify(await prisma.ingestDelivery.findMany({ where: { closingId: c.id } })));
   assert.deepEqual(h.sent.map(m => m.to).sort(), [borrower.email, agent.email, broker.email].sort());
   assert.ok(h.sent.find(m => m.to === borrower.email).htmlBody.includes('/dashboard?closingId=' + c.id));
-  for (const u of [agent, broker]) assert.ok(h.sent.find(m => m.to === u.email).htmlBody.includes('/teammate/dashboard/' + c.id));
+  for (const u of [agent, broker]) assert.ok(h.sent.find(m => m.to === u.email).htmlBody.includes('/file-access/' + c.id + '#key='));
   h.sent.length = 0;
   await h.load('src/lib/closing-milestone.ts').applyMilestoneTransition({ closingId: c.id, kind: 'title_ordered', status: 'done' });
   assert.equal(h.sent.length, 0);
