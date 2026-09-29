@@ -64,8 +64,10 @@ export default function HomePageOriginal({ hideSavingsCards = false, useAlternat
               <a href="tel:1-800-316-9508" className="hidden lg:flex items-center gap-3 text-dark-800 hover:text-primary-600 font-medium transition-colors group">
                 <div className="relative">
                   <img
-                    src="/operator-face.png"
-                    alt="Customer service representative"
+                    src="/images/marketing/nicole-operator-v1.webp"
+                    alt="Nicole — BetterClose support"
+                    width={64}
+                    height={64}
                     className="w-16 h-16 rounded-full object-cover border-3 border-primary-400 shadow-lg"
                   />
                   <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-emerald-500 rounded-full border-3 border-white flex items-center justify-center shadow-md">

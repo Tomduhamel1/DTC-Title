@@ -7,18 +7,16 @@ import { SUPPORT_PHONE_DISPLAY } from '@/lib/contact'
 // hand-rendered mockup of the two cards a customer cares most about during
 // closing — the closing-progress timeline and their assigned escrow officer.
 // We don't import the real dashboard components because (a) they require auth
-// + Prisma and (b) we want fixed sample state (2 of 4 milestones, "Jamie Doe"
+// + Prisma and (b) we want fixed sample state (2 of 4 milestones, "Nicole"
 // assigned) regardless of who's viewing the marketing page.
 
 const SAMPLE_OFFICER = {
-  name: 'Jamie Doe',
-  title: 'Senior Escrow Officer',
-  email: 'jamie.doe@betterclose.co',
+  name: 'Nicole',
+  title: 'Escrow Officer',
+  email: 'nicole@betterclose.co',
   phone: SUPPORT_PHONE_DISPLAY,
-  nmls: '2184593',
-  // Tight face-area crop matches the dashboard photo styling.
-  photoUrl:
-    'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=512&h=512&fit=facearea&facepad=2.5',
+  // Public marketing identity only; actual file assignments remain unchanged.
+  photoUrl: '/images/marketing/nicole-portrait-v1.webp',
 }
 
 interface SampleMilestone {
@@ -273,7 +271,6 @@ function DashboardMockup() {
                     width={80}
                     height={80}
                     className="object-cover object-[center_30%] w-full h-full"
-                    unoptimized
                   />
                 </div>
                 <div className="font-bold text-dark-900 text-[12px] leading-tight">
@@ -282,7 +279,6 @@ function DashboardMockup() {
                 <div className="text-[10px] text-gray-500 leading-tight mt-0.5">
                   {SAMPLE_OFFICER.title}
                 </div>
-                <div className="text-[8px] text-gray-400 mt-0.5">NMLS #{SAMPLE_OFFICER.nmls}</div>
               </div>
               <div className="mt-3 space-y-1 text-[10px] text-center">
                 <div className="text-emerald-700 font-medium truncate">

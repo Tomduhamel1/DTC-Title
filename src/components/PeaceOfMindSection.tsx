@@ -15,8 +15,10 @@ export default function PeaceOfMindSection() {
             <div className="flex items-center justify-center gap-6">
               <div className="relative">
                 <img
-                  src="/operator-face.png"
-                  alt="Your dedicated closing specialist"
+                  src="/images/marketing/nicole-operator-v1.webp"
+                  alt="Nicole — BetterClose closing specialist"
+                  width={192}
+                  height={192}
                   className="w-48 h-48 rounded-2xl object-cover border-4 border-primary-500 shadow-2xl"
                 />
                 <div className="absolute -bottom-3 -right-3 bg-emerald-500 text-white px-4 py-2 rounded-full shadow-xl flex items-center gap-2 border-4 border-white">
