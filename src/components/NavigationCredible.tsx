@@ -10,7 +10,7 @@ import { SUPPORT_PHONE_DISPLAY, SUPPORT_PHONE_TEL } from '@/lib/contact'
 import ShareWithTeamSheet from './lender-request/ShareWithTeamSheet'
 
 const MARKETING_LINKS = [
-  { href: '/how-it-works', label: 'How It Works' },
+  { href: '/', label: 'Home' },
   { href: '/for-brokers', label: 'Mortgage Brokers' },
   { href: '/for-realtors', label: 'Real Estate Agents' },
   { href: '/for-lenders', label: 'Lenders' },
@@ -19,6 +19,8 @@ const MARKETING_LINKS = [
 
 export default function NavigationCredible() {
   const pathname = usePathname()
+  // The protected preview route renders the same homepage.
+  const activePath = pathname === '/preview' ? '/' : pathname
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [shareOpen, setShareOpen] = useState(false)
   const [accountMenuOpen, setAccountMenuOpen] = useState(false)
@@ -56,8 +58,8 @@ export default function NavigationCredible() {
               <Link
                 key={link.href}
                 href={link.href}
-                aria-current={pathname === link.href ? 'page' : undefined}
-                className={`inline-flex h-10 items-center font-medium decoration-2 underline-offset-8 transition-colors hover:text-primary-700 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-600 ${pathname === link.href ? 'text-primary-700 underline' : 'text-dark-800'}`}
+                aria-current={activePath === link.href ? 'page' : undefined}
+                className={`inline-flex h-10 items-center font-medium decoration-2 underline-offset-8 transition-colors hover:text-primary-700 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-600 ${activePath === link.href ? 'text-primary-700 underline' : 'text-dark-800'}`}
               >
                 <span>{link.label}</span>
               </Link>
@@ -174,9 +176,9 @@ export default function NavigationCredible() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  aria-current={pathname === link.href ? 'page' : undefined}
+                  aria-current={activePath === link.href ? 'page' : undefined}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`block py-2 font-medium decoration-2 underline-offset-8 transition-colors hover:text-primary-700 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-600 ${pathname === link.href ? 'text-primary-700 underline' : 'text-dark-800'}`}
+                  className={`block py-2 font-medium decoration-2 underline-offset-8 transition-colors hover:text-primary-700 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-600 ${activePath === link.href ? 'text-primary-700 underline' : 'text-dark-800'}`}
                 >
                   {link.label}
                 </Link>
