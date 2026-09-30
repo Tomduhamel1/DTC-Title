@@ -48,6 +48,7 @@ test('lender content fits phone, tablet and desktop using the established site d
           headingStyle: {fontSize: getComputedStyle(document.querySelector('h1')).fontSize, weight: getComputedStyle(document.querySelector('h1')).fontWeight},
           actions: [...document.querySelectorAll('main a')].map(el => ({text: el.innerText, right: el.getBoundingClientRect().right, left: el.getBoundingClientRect().left})),
           hero: document.querySelector('main section').innerText,
+          workflow: document.querySelector('#place-an-order').innerText,
         };
       });
       assert.ok(layout.scrollWidth <= width, `${width}: no horizontal overflow`);
@@ -56,6 +57,9 @@ test('lender content fits phone, tablet and desktop using the established site d
       assert.equal(layout.headingStyle.weight, '900');
       for (const action of layout.actions) assert.ok(action.left >= 0 && action.right <= width, `${width}: ${action.text} fits`);
       assert.doesNotMatch(layout.hero, /\bAPI\b/);
+      assert.doesNotMatch(layout.hero, /Encompass/);
+      assert.match(layout.workflow, /Custom lender APIs/);
+      assert.match(layout.workflow, /one-touch title ordering and document exchange/);
       await page.click('a[href="#place-an-order"]');
       const headingTop = await page.$eval('#order-heading', el => el.getBoundingClientRect().top);
       assert.ok(headingTop >= 80 && headingTop < 900, `${width}: order anchor clears fixed header`);

@@ -5,7 +5,7 @@ import { SUPPORT_PHONE_DISPLAY, SUPPORT_PHONE_TEL } from '@/lib/contact'
 
 export const metadata = {
   title: 'BetterClose · Title & Closing for Lenders',
-  description: 'Title and settlement for lenders, with Encompass integration, email ordering, clear estimates and a dedicated closing team.',
+  description: 'Title and settlement for lenders: clear estimates, a dedicated closing team, Encompass ordering and document exchange, and custom API discussions.',
 }
 
 // Reuse the existing professional estimate flow, which also serves lenders.
@@ -59,6 +59,10 @@ function EmailIcon() {
   return <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75} aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
 }
 
+function CodeIcon() {
+  return <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75} aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M8 7l-5 5 5 5m8-10l5 5-5 5M14 4l-4 16" /></svg>
+}
+
 export default function LendersPage() {
   return (
     <div className="min-h-screen bg-white">
@@ -74,43 +78,42 @@ export default function LendersPage() {
                 <span className="text-primary-600">Our closing team.</span>
               </h1>
               <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-                Get a clear title and settlement estimate, order through Encompass or email,
-                and work with an escrow officer who knows your file.
+                Give your borrowers clear title and settlement estimates, work with an escrow
+                officer who knows your file, and keep shared documents and file information in one place.
               </p>
               <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                 <Link href={QUOTE_HREF} className="inline-flex items-center justify-center gap-2 whitespace-nowrap bg-emerald-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-emerald-700 transition-colors shadow-lg">Get estimate <ArrowIcon /></Link>
                 <a href="#place-an-order" className="text-base font-semibold text-primary-700 hover:underline whitespace-nowrap">How to order</a>
               </div>
-              <p className="text-sm text-gray-500 mt-4">No login required for an estimate. Order through Encompass or email when you’re ready.</p>
+              <p className="text-sm text-gray-500 mt-4">No login required for an estimate. Connect with our closing team when you’re ready.</p>
             </div>
-            <aside aria-labelledby="integration-heading" className="bg-white rounded-2xl shadow-2xl p-7 border border-gray-200">
-              <div className="text-center text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-5">YOUR EXISTING WORKFLOW</div>
-              <h2 id="integration-heading" className="text-4xl font-black text-primary-600 text-center mb-3">Encompass</h2>
-              <p className="text-lg text-gray-600 text-center mb-8">Encompass integration available</p>
+            <aside aria-labelledby="closing-support-heading" className="bg-white rounded-2xl shadow-2xl p-7 border border-gray-200">
+              <div className="text-center text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-5">YOUR BETTERCLOSE EXPERIENCE</div>
+              <h2 id="closing-support-heading" className="text-4xl font-black text-primary-600 text-center mb-3">A real team behind your closing.</h2>
+              <p className="text-lg text-gray-600 text-center mb-8">Title and settlement support for your team and your borrowers.</p>
               <ul className="space-y-3 mb-8">
-                {['Work from your existing loan platform.', 'Email an order when that’s easier.', 'Connect with your assigned escrow officer.'].map(item => (
+                {['Itemized title and settlement estimates.', 'An escrow officer assigned to your file.', 'Shared documents and file information.'].map(item => (
                   <li key={item} className="flex items-start gap-3">
                     <div className="flex-shrink-0 w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center mt-0.5" aria-hidden="true"><svg className="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg></div>
                     <div className="text-base text-gray-800 leading-relaxed">{item}</div>
                   </li>
                 ))}
               </ul>
-              <p className="text-[11px] text-gray-400 leading-relaxed mt-4">Contact our team to confirm Encompass setup for your organization.</p>
             </aside>
           </div>
           </div>
         </section>
 
         <section id="place-an-order" aria-labelledby="order-heading" className="scroll-mt-24 py-16 bg-white">
-          <div className="container mx-auto px-4 max-w-5xl">
+          <div className="container mx-auto px-4 max-w-6xl">
             <div className="text-center mb-12">
-              <h2 id="order-heading" className="text-4xl font-black text-dark-900 mb-3">Place orders your way</h2>
-              <p className="text-lg text-gray-600">Use Encompass, or send the order directly to our team.</p>
+              <h2 id="order-heading" className="text-4xl font-black text-dark-900 mb-3">Ordering &amp; integrations</h2>
+              <p className="text-lg text-gray-600">Order through an available integration or email. Talk to us about a custom connection.</p>
             </div>
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-3 gap-6">
               <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
-                <div className="flex items-start gap-3 mb-3"><span className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center"><WorkflowIcon /></span><h3 className="text-lg font-bold text-dark-900 leading-tight pt-2">Work through Encompass</h3></div>
-                <p className="text-sm text-gray-600 leading-relaxed mb-4">BetterClose integrates with Encompass. Contact our team for help getting started and confirming the setup for your organization.</p>
+                <div className="flex items-start gap-3 mb-3"><span className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center"><WorkflowIcon /></span><h3 className="text-lg font-bold text-dark-900 leading-tight pt-2">Encompass integration</h3></div>
+                <p className="text-sm text-gray-600 leading-relaxed mb-4">Available today: one-touch title ordering and document exchange through Encompass. Contact our team to confirm setup for your organization.</p>
                 <a href={ENCOMPASS_HREF} className="inline-flex items-center text-sm font-bold text-primary-700 hover:text-primary-800 hover:underline">Ask about Encompass →</a>
               </div>
               <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
@@ -122,6 +125,12 @@ export default function LendersPage() {
                 </p>
                 <a href={EMAIL_ORDER_HREF} className="inline-flex items-center text-sm font-bold text-primary-700 hover:text-primary-800 hover:underline">Email an order →</a>
                 <p className="mt-3 text-xs text-gray-500">Opens your email app with an order template.</p>
+              </div>
+              <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+                <div className="flex items-start gap-3 mb-3"><span className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center"><CodeIcon /></span><h3 className="text-lg font-bold text-dark-900 leading-tight pt-2">Custom lender APIs</h3></div>
+                <p className="text-sm text-gray-600 leading-relaxed mb-4">Need a direct connection to your own systems? We can discuss building a custom API for your lending team. Scope, security requirements and availability would be agreed before development.</p>
+                <a href={CUSTOM_INTEGRATION_HREF} className="inline-flex items-center text-sm font-bold text-primary-700 hover:text-primary-800 hover:underline">Discuss a custom API →</a>
+                <p className="mt-3 text-xs text-gray-500">Custom development, not an existing self-service API.</p>
               </div>
             </div>
           </div>
@@ -153,11 +162,6 @@ export default function LendersPage() {
             <div className="max-w-3xl mx-auto bg-white border border-gray-200 rounded-2xl shadow-sm p-7">
               <h2 id="lender-contact-heading" className="text-2xl font-black text-dark-900 mb-2">Let’s talk about your next closing.</h2><p className="text-base text-gray-700 leading-relaxed mb-5">Questions about ordering or working with BetterClose? We’re here to help.</p>
               <a href={`tel:${SUPPORT_PHONE_TEL}`} className="inline-flex items-center gap-2 bg-emerald-600 text-white font-bold text-base px-6 py-3 rounded-lg hover:bg-emerald-700 transition-colors shadow">Call {SUPPORT_PHONE_DISPLAY}</a>
-            </div>
-            <div className="max-w-3xl mx-auto mt-10">
-              <h2 className="text-lg font-bold text-dark-900 mb-2">Need a custom integration?</h2>
-              <p className="mt-2 text-sm leading-relaxed text-gray-600">Have a lender-specific workflow? We can discuss whether a custom API integration would be a fit. Scope and availability would be agreed separately; we don’t currently offer self-service API access.</p>
-              <a href={CUSTOM_INTEGRATION_HREF} className="mt-3 inline-block text-sm font-semibold text-primary-700 hover:underline">Discuss your workflow</a>
             </div>
           </div>
         </section>
