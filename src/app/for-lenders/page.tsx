@@ -1,190 +1,171 @@
-'use client'
-
+import Link from 'next/link'
 import NavigationCredible from '@/components/NavigationCredible'
 import FooterComprehensive from '@/components/FooterComprehensive'
-import PortalWaitlist from '@/components/professional/PortalWaitlist'
-import Link from 'next/link'
-import { estimateCostBasis } from '@/lib/stateSavings'
+import { SUPPORT_PHONE_DISPLAY, SUPPORT_PHONE_TEL } from '@/lib/contact'
 
-// Sample API-response numbers derive from the shared savings model (GA,
-// $500k purchase) so the example stays consistent with every other surface.
-// GA is a filed-rate state — promulgated states (e.g. TX) would show no
-// premium savings, which makes a poor illustrative example.
-const SAMPLE_BASIS = estimateCostBasis(500000, 'purchase', 'GA')
+export const metadata = {
+  title: 'BetterClose · Title & Closing for Lenders',
+  description: 'Title and settlement for lenders: clear estimates, a dedicated closing team, Encompass ordering and document exchange, and custom API discussions.',
+}
+
+// Reuse the existing professional estimate flow, which also serves lenders.
+const QUOTE_HREF = '/quote?source=broker'
+const ENCOMPASS_HREF = `mailto:orders@betterclose.co?subject=${encodeURIComponent('Encompass integration — lender inquiry')}`
+const CUSTOM_INTEGRATION_HREF = `mailto:partners@betterclose.co?subject=${encodeURIComponent('Custom lender integration inquiry')}`
+const EMAIL_ORDER_HREF = `mailto:orders@betterclose.co?subject=${encodeURIComponent('New title order')}&body=${encodeURIComponent(`Hi BetterClose team,
+
+Please open a new title file:
+
+Borrower(s):
+Property address:
+City, State, Zip:
+Estimated closing date:
+Loan amount:
+Transaction type: (purchase / refinance)
+Sale price (if purchase):
+
+Lender / loan officer name:
+Company:
+Phone:
+
+Anything else we should know:
+
+Thanks,`)}`
+
+const CLOSING_STEPS = [
+  { title: 'Start with a clear estimate', description: 'Review title and settlement costs for your borrower’s property and loan scenario.' },
+  { title: 'Send your title order', description: 'Use the Encompass integration or email our closing team.' },
+  { title: 'Work with your escrow officer', description: 'Your file-opening email introduces the person handling your closing.' },
+] as const
+
+const BENEFITS = [
+  { title: 'Know the costs', description: 'Get an itemized estimate before you place the order. Review the details with your borrower as the file develops.' },
+  { title: 'Know your closing team', description: 'Connect with the escrow officer assigned to your file for questions, documents and next steps.' },
+  { title: 'Keep the file together', description: 'View shared documents and file information in BetterClose, without digging through an email thread.' },
+] as const
+
+// Presentation follows /for-brokers: primary-blue hero/type, emerald primary
+// CTA, white bordered order tiles, blue numbered steps and neutral sections.
+// Keep the lender-specific copy separate from that established visual style.
+function ArrowIcon() {
+  return <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+}
+
+function WorkflowIcon() {
+  return <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75} aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M4 6h11M4 12h11M4 18h7m5-2l3 3m0 0l3-3m-3 3V8" /></svg>
+}
+
+function EmailIcon() {
+  return <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75} aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+}
+
+function CodeIcon() {
+  return <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.75} aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M8 7l-5 5 5 5m8-10l5 5-5 5M14 4l-4 16" /></svg>
+}
 
 export default function LendersPage() {
   return (
     <div className="min-h-screen bg-white">
       <NavigationCredible />
-      <div className="h-20"></div>
-
-      {/* Hero */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-white">
-        <div className="container mx-auto px-4 max-w-6xl">
+      <main className="pt-20">
+        <section aria-labelledby="lender-heading" className="py-20 bg-gradient-to-br from-primary-50 to-white">
+          <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="inline-block bg-blue-100 text-blue-700 px-4 py-1 rounded-full text-sm font-bold mb-4">
-                FOR LENDERS
-              </div>
-              <h1 className="text-5xl md:text-6xl font-black text-dark-900 mb-6 leading-tight">
-                Title Insurance Your Borrowers Will <span className="text-blue-600">Thank You For</span>
+              <div className="inline-block bg-primary-100 text-primary-700 px-4 py-1 rounded-full text-sm font-bold mb-4">FOR LENDERS &amp; LOAN OFFICERS</div>
+              <h1 id="lender-heading" className="text-4xl md:text-5xl font-black text-dark-900 mb-5 leading-tight">
+                Your lending workflow.{' '}
+                <span className="text-primary-600">Our closing team.</span>
               </h1>
-              <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                API-first integration. Instant quotes. Happier borrowers. Faster closings. Reduce closing costs and improve satisfaction scores.
+              <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+                Give your borrowers clear title and settlement estimates, work with an escrow
+                officer who knows your file, and keep shared documents and file information in one place.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href="mailto:api@betterclose.co"
-                  className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition-colors shadow-lg"
-                >
-                  Request API Access
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
-                <a
-                  href="mailto:api@betterclose.co"
-                  className="inline-flex items-center justify-center gap-2 bg-white border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-50 transition-colors"
-                >
-                  Schedule Technical Demo
-                </a>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                <Link href={QUOTE_HREF} className="inline-flex items-center justify-center gap-2 whitespace-nowrap bg-emerald-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-emerald-700 transition-colors shadow-lg">Get estimate <ArrowIcon /></Link>
+                <a href="#place-an-order" className="text-base font-semibold text-primary-700 hover:underline whitespace-nowrap">How to order</a>
               </div>
+              <p className="text-sm text-gray-500 mt-4">No login required for an estimate. Connect with our closing team when you’re ready.</p>
             </div>
+            <aside aria-labelledby="closing-support-heading" className="bg-white rounded-2xl shadow-2xl p-7 border border-gray-200">
+              <div className="text-center text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-5">YOUR BETTERCLOSE EXPERIENCE</div>
+              <h2 id="closing-support-heading" className="text-4xl font-black text-primary-600 text-center mb-3">A real team behind your closing.</h2>
+              <p className="text-lg text-gray-600 text-center mb-8">Title and settlement support for your team and your borrowers.</p>
+              <ul className="space-y-3 mb-8">
+                {['Itemized title and settlement estimates.', 'An escrow officer assigned to your file.', 'Shared documents and file information.'].map(item => (
+                  <li key={item} className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center mt-0.5" aria-hidden="true"><svg className="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg></div>
+                    <div className="text-base text-gray-800 leading-relaxed">{item}</div>
+                  </li>
+                ))}
+              </ul>
+            </aside>
+          </div>
+          </div>
+        </section>
 
-            <div className="bg-white rounded-2xl shadow-2xl p-8 border-2 border-blue-200">
-              <div className="text-center mb-6">
-                <div className="text-5xl font-black text-blue-600 mb-2">API-First</div>
-                <div className="text-lg text-gray-600">Seamless Integration</div>
+        <section id="place-an-order" aria-labelledby="order-heading" className="scroll-mt-24 py-16 bg-white">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="text-center mb-12">
+              <h2 id="order-heading" className="text-4xl font-black text-dark-900 mb-3">Ordering &amp; integrations</h2>
+              <p className="text-lg text-gray-600">Order through an available integration or email. Talk to us about a custom connection.</p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+                <div className="flex items-start gap-3 mb-3"><span className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center"><WorkflowIcon /></span><h3 className="text-lg font-bold text-dark-900 leading-tight pt-2">Encompass integration</h3></div>
+                <p className="text-sm text-gray-600 leading-relaxed mb-4">Available today: one-touch title ordering and document exchange through Encompass. Contact our team to confirm setup for your organization.</p>
+                <a href={ENCOMPASS_HREF} className="inline-flex items-center text-sm font-bold text-primary-700 hover:text-primary-800 hover:underline">Ask about Encompass →</a>
               </div>
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <div className="text-dark-900">
-                    <strong>Quick Quote API</strong> for instant estimates
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <div className="text-dark-900">
-                    <strong>Advanced Quote API</strong> for detailed scenarios
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <div className="text-dark-900">
-                    <strong>TPS integration</strong> for order submission
-                  </div>
-                </div>
+              <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+                <div className="flex items-start gap-3 mb-3"><span className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center"><EmailIcon /></span><h3 className="text-lg font-bold text-dark-900 leading-tight pt-2">Email your title order</h3></div>
+                <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                  Send your property and loan details to{' '}
+                  <a href={EMAIL_ORDER_HREF} className="break-words font-semibold text-primary-700 hover:underline">orders@betterclose.co</a>.
+                  You don’t need a BetterClose account to send an order.
+                </p>
+                <a href={EMAIL_ORDER_HREF} className="inline-flex items-center text-sm font-bold text-primary-700 hover:text-primary-800 hover:underline">Email an order →</a>
+                <p className="mt-3 text-xs text-gray-500">Opens your email app with an order template.</p>
+              </div>
+              <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+                <div className="flex items-start gap-3 mb-3"><span className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center"><CodeIcon /></span><h3 className="text-lg font-bold text-dark-900 leading-tight pt-2">Custom lender APIs</h3></div>
+                <p className="text-sm text-gray-600 leading-relaxed mb-4">Need a direct connection to your own systems? We can discuss building a custom API for your lending team. Scope, security requirements and availability would be agreed before development.</p>
+                <a href={CUSTOM_INTEGRATION_HREF} className="inline-flex items-center text-sm font-bold text-primary-700 hover:text-primary-800 hover:underline">Discuss a custom API →</a>
+                <p className="mt-3 text-xs text-gray-500">Custom development, not an existing self-service API.</p>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* API Preview */}
-      <section className="py-16 bg-gray-900 text-white">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <h2 className="text-4xl font-black text-center mb-4">
-            Simple, Powerful API
-          </h2>
-          <p className="text-xl text-gray-400 text-center mb-12">
-            Integrate title insurance ordering into your lending platform in minutes
-          </p>
+        <section aria-labelledby="closing-path-heading" className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="text-center mb-12"><h2 id="closing-path-heading" className="text-4xl font-black text-dark-900 mb-3">A straightforward path to closing</h2><p className="text-lg text-gray-600">From your first estimate to your assigned closing team.</p></div>
+            <ol className="grid md:grid-cols-3 gap-6">
+              {CLOSING_STEPS.map((step, index) => <li key={step.title} className="text-center md:text-left"><div aria-hidden="true" className="w-12 h-12 bg-primary-600 text-white rounded-full flex items-center justify-center text-xl font-black mb-4 mx-auto md:mx-0">{index + 1}</div><h3 className="font-bold text-base mb-2 text-dark-900">{step.title}</h3><p className="text-sm text-gray-600 leading-relaxed">{step.description}</p></li>)}
+            </ol>
+          </div>
+        </section>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Request */}
-            <div>
-              <div className="bg-gray-800 rounded-t-lg px-4 py-2 font-mono text-sm text-gray-400">
-                REQUEST
-              </div>
-              <div className="bg-gray-950 rounded-b-lg p-6 font-mono text-sm overflow-x-auto">
-                <pre className="text-emerald-400">
-{`POST /api/quote/quick
-
-{
-  "homeValue": 500000,
-  "state": "GA",
-  "transactionType": "purchase"
-}`}
-                </pre>
-              </div>
+        <section aria-labelledby="support-heading" className="py-16 bg-gradient-to-b from-white to-gray-50">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="text-center mb-12"><h2 id="support-heading" className="text-4xl font-black text-dark-900 mb-3">Why lenders use BetterClose</h2><p className="text-lg text-gray-600">Clear costs. A real person. One place for your file.</p></div>
+            <div className="grid md:grid-cols-3 gap-8">
+              {BENEFITS.map(benefit => (
+                <div key={benefit.title} className="text-center md:text-left"><div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary-50 text-primary-600 mb-3" aria-hidden="true"><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M9 12l2 2 4-4m6 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div><h3 className="text-lg font-bold text-dark-900 mb-2">{benefit.title}</h3><p className="text-sm text-gray-600 leading-relaxed">{benefit.description}</p></div>
+              ))}
             </div>
+            <p className="mt-8 text-sm text-gray-600 text-center">Already have a file with us?{' '}<Link href="/login?callbackUrl=/teammate/dashboard" className="font-semibold text-primary-700 hover:underline">View your files</Link>.</p>
+          </div>
+        </section>
 
-            {/* Response */}
-            <div>
-              <div className="bg-gray-800 rounded-t-lg px-4 py-2 font-mono text-sm text-gray-400">
-                RESPONSE
-              </div>
-              <div className="bg-gray-950 rounded-b-lg p-6 font-mono text-sm overflow-x-auto">
-                <pre className="text-blue-400">
-{`{
-  "ourPrice": ${SAMPLE_BASIS.ourTotal},
-  "typicalLow": ${SAMPLE_BASIS.typicalTotal},
-  "savings": ${SAMPLE_BASIS.saveAtClosing}
-}`}
-                </pre>
-              </div>
+        <section aria-labelledby="lender-contact-heading" className="py-16 bg-white">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <div className="max-w-3xl mx-auto bg-white border border-gray-200 rounded-2xl shadow-sm p-7">
+              <h2 id="lender-contact-heading" className="text-2xl font-black text-dark-900 mb-2">Let’s talk about your next closing.</h2><p className="text-base text-gray-700 leading-relaxed mb-5">Questions about ordering or working with BetterClose? We’re here to help.</p>
+              <a href={`tel:${SUPPORT_PHONE_TEL}`} className="inline-flex items-center gap-2 bg-emerald-600 text-white font-bold text-base px-6 py-3 rounded-lg hover:bg-emerald-700 transition-colors shadow">Call {SUPPORT_PHONE_DISPLAY}</a>
             </div>
           </div>
-
-          <div className="mt-12 text-center">
-            <a
-              href="mailto:api@betterclose.co"
-              className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition-colors shadow-lg"
-            >
-              Request Full API Documentation
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits for Lenders */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-4xl font-black text-center text-dark-900 mb-12">
-            Benefits for Lenders
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { icon: '💰', title: 'Reduce Closing Costs', desc: 'Lower total closing costs improve borrower satisfaction and loan approvals' },
-              { icon: '⚡', title: 'Streamline Workflow', desc: 'API integration automates title ordering and eliminates manual processes' },
-              { icon: '📊', title: 'Bulk Pricing', desc: 'Volume discounts available for high-volume lenders' },
-              { icon: '✅', title: 'Compliance Reporting', desc: 'Automated compliance documentation and audit trails' },
-              { icon: '🔔', title: 'Webhook Notifications', desc: 'Real-time status updates pushed to your system' },
-              { icon: '🤝', title: 'Dedicated Support', desc: 'Technical account managers for integration and ongoing support' }
-            ].map((item, idx) => (
-              <div key={idx} className="bg-blue-50 p-6 rounded-xl border border-blue-100">
-                <div className="text-4xl mb-3">{item.icon}</div>
-                <h3 className="font-bold text-lg mb-2 text-dark-900">{item.title}</h3>
-                <p className="text-gray-700 text-sm">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Portal Waitlist */}
-      <PortalWaitlist
-        title="Developer Portal Coming Soon"
-        description="Access API documentation, test environment, integration guides, and webhook management all in one developer portal."
-        portalType="lender"
-      />
-
+        </section>
+      </main>
       <FooterComprehensive />
     </div>
   )
