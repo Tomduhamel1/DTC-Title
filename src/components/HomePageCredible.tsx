@@ -43,14 +43,11 @@ export default function HomePageCredible({ heroVersion = 'A' }: HomePageCredible
           <HeroOptionA />
         )}
 
-        {/* Trust Strip — pillars + stats (moved up to anchor the value prop) */}
-        <TrustStripSection />
+        {/* Keep the Team You Trust — immediately after the hero */}
+        <TeamTrustSection />
 
         {/* Fee Estimate Preview */}
         <FeeReportPreviewSection />
-
-        {/* Team Trust Section */}
-        <TeamTrustSection />
 
         {/* Dashboard + dedicated escrow officer trust section
             (replaces the old PeaceOfMindSection on the magic-reveal homepage) */}
@@ -64,6 +61,9 @@ export default function HomePageCredible({ heroVersion = 'A' }: HomePageCredible
 
         {/* Underwriter Logos */}
         <UnderwriterLogos />
+
+        {/* Why BetterClose — directly below Backed By */}
+        <TrustStripSection />
 
         {/* FAQ Section */}
         <FAQSection />
