@@ -7,7 +7,7 @@ const React = require('react');
 const { createHarness } = require('./helpers/role-journey-harness.cjs');
 const { openEmailBrowser } = require('./helpers/email-browser.cjs');
 
-test('lender page and navigation fit phone, tablet and desktop without live requests', async () => {
+test('lender content fits phone, tablet and desktop using the established site design', async () => {
   const root = path.resolve(__dirname, '..');
   const css = execFileSync(process.execPath, [require.resolve('tailwindcss/lib/cli.js'), '--minify'], {
     cwd: root, input: '@tailwind base; @tailwind components; @tailwind utilities;', encoding: 'utf8',
@@ -44,16 +44,16 @@ test('lender page and navigation fit phone, tablet and desktop without live requ
         const box = selector => { const r = document.querySelector(selector).getBoundingClientRect(); return { left: r.left, right: r.right, top: r.top, bottom: r.bottom, width: r.width, height: r.height }; };
         return {
           scrollWidth: document.documentElement.scrollWidth,
-          heading: box('h1'), share: box('button[aria-label="Send to my team"]'), nav: box('header nav'),
-          shareText: document.querySelector('button[aria-label="Send to my team"]').innerText,
+          heading: box('h1'),
+          headingStyle: {fontSize: getComputedStyle(document.querySelector('h1')).fontSize, weight: getComputedStyle(document.querySelector('h1')).fontWeight},
           actions: [...document.querySelectorAll('main a')].map(el => ({text: el.innerText, right: el.getBoundingClientRect().right, left: el.getBoundingClientRect().left})),
           hero: document.querySelector('main section').innerText,
         };
       });
       assert.ok(layout.scrollWidth <= width, `${width}: no horizontal overflow`);
       assert.ok(layout.heading.width > 250 && layout.heading.left >= 0 && layout.heading.right <= width);
-      assert.ok(layout.share.top >= layout.nav.top && layout.share.bottom <= layout.nav.bottom, `${width}: share button fits header`);
-      assert.equal(layout.shareText, width < 640 ? 'Share' : 'Send to my team');
+      assert.equal(layout.headingStyle.fontSize, width < 768 ? '36px' : '48px');
+      assert.equal(layout.headingStyle.weight, '900');
       for (const action of layout.actions) assert.ok(action.left >= 0 && action.right <= width, `${width}: ${action.text} fits`);
       assert.doesNotMatch(layout.hero, /\bAPI\b/);
       await page.click('a[href="#place-an-order"]');

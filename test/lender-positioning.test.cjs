@@ -15,7 +15,7 @@ test('lender page leads with real closing services, Encompass and email ordering
   assert.match(hero, /Your lending workflow/);
   assert.match(hero, /Our closing team/);
   assert.match(hero, /Encompass integration available/);
-  assert.match(hero, /Get a quote/);
+  assert.match(hero, /Get estimate/);
   assert.match(hero, /href="#place-an-order"/);
   assert.match(main, /id="place-an-order"/);
   assert.match(main, /You don’t need a BetterClose account to send an order/);
@@ -57,17 +57,32 @@ test('page has semantic landmarks and responsive layout without a new service de
   assert.match(main, /<ol\b/);
   assert.match(main, /lg:grid-cols-2/);
   assert.match(main, /md:grid-cols-2/);
-  assert.match(main, /flex-col gap-3 sm:flex-row/);
+  assert.match(main, /flex flex-col sm:flex-row sm:items-center gap-4/);
   assert.equal(h.sent.length, 0);
 });
 
-test('shared mobile share control stays compact without changing its action or accessible name', () => {
-  const Nav = h.load('src/components/NavigationCredible.tsx').default;
-  const nav = h.render(React.createElement(Nav));
-  assert.match(nav, /aria-label="Send to my team"/);
-  assert.match(nav, /class="sm:hidden" aria-hidden="true">Share</);
-  assert.match(nav, /class="hidden sm:inline" aria-hidden="true">Send to my team</);
-  assert.match(nav, /whitespace-nowrap/);
-  const source = fs.readFileSync(path.resolve(__dirname, '../src/components/NavigationCredible.tsx'), 'utf8');
-  assert.ok(source.includes('onClick={() => setShareOpen(true)}'));
+test('lender presentation matches established broker and realtor design patterns', () => {
+  const broker = fs.readFileSync(path.resolve(__dirname, '../src/app/for-brokers/page.tsx'), 'utf8');
+  const realtor = fs.readFileSync(path.resolve(__dirname, '../src/app/for-realtors/page.tsx'), 'utf8');
+  const classes = [
+    'py-20 bg-gradient-to-br from-primary-50 to-white',
+    'container mx-auto px-4 max-w-6xl',
+    'grid lg:grid-cols-2 gap-12 items-center',
+    'inline-block bg-primary-100 text-primary-700 px-4 py-1 rounded-full text-sm font-bold mb-4',
+    'text-4xl md:text-5xl font-black text-dark-900 mb-5 leading-tight',
+    'text-lg text-gray-700 mb-8 leading-relaxed',
+    'inline-flex items-center justify-center gap-2 whitespace-nowrap bg-emerald-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-emerald-700 transition-colors shadow-lg',
+    'bg-white rounded-2xl shadow-2xl p-7 border border-gray-200',
+    'text-center mb-12',
+  ];
+  for (const value of classes) {
+    assert.ok(broker.includes('className="' + value + '"'), 'Broker design reference: ' + value);
+    assert.ok(realtor.includes('className="' + value + '"'), 'Realtor design reference: ' + value);
+    assert.ok(main.includes('class="' + value + '"'), 'Lender design parity: ' + value);
+  }
+  const orderTile = 'bg-white rounded-2xl border border-gray-200 shadow-sm p-6';
+  assert.ok(broker.includes('className="' + orderTile + '"'));
+  assert.ok(main.includes('class="' + orderTile + '"'));
+  assert.doesNotMatch(main, /from-emerald-50|via-white|lg:text-6xl|bg-dark-900|tracking-tight|text-emerald-800/);
+  assert.match(hero, /<span class="text-primary-600">Our closing team/);
 });
