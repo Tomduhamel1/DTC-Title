@@ -27,7 +27,8 @@ test('shared navigation renders the new operator avatar without changing support
   const html = h.render(React.createElement(Component));
   assert.ok(html.includes(`src="${operator}"`));
   assert.ok(html.includes('alt="Nicole — BetterClose support"'));
-  assert.ok(html.includes('href="tel:1-800-316-9508"'));
+  assert.ok(html.includes('href="tel:+18883780745"'));
+  assert.ok(html.includes('888-378-0745'));
   assert.match(html, /overflow-hidden rounded-full/);
   assert.match(html, /origin-top scale-150/);
   assert.doesNotMatch(html, /operator-face\.png|micciche/i);

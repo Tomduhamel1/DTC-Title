@@ -1,3 +1,5 @@
+import { SUPPORT_PHONE_DISPLAY, SUPPORT_PHONE_TEL } from '@/lib/contact'
+
 // Friendly notice for when the upstream rate calculator fails (5xx/timeout).
 // Deliberately NOT styled as an error: the visitor did nothing wrong and the
 // outage is usually temporary — so this reads as a helpful note with a
@@ -23,8 +25,8 @@ export default function CalculatorUnresponsiveNotice({ stateName }: { stateName?
           </p>
           <p className="mt-1 text-sm text-gray-700 leading-relaxed">
             Please try again in a moment. If the error persists, call us at{' '}
-            <a href="tel:+18003169508" className="font-semibold text-primary-700 whitespace-nowrap">
-              1-800-316-9508
+            <a href={`tel:${SUPPORT_PHONE_TEL}`} className="font-semibold text-primary-700 whitespace-nowrap">
+              {SUPPORT_PHONE_DISPLAY}
             </a>{' '}
             and we&rsquo;ll get you your quote!
           </p>

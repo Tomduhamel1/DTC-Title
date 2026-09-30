@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { SUPPORT_PHONE_DISPLAY, SUPPORT_PHONE_TEL } from '@/lib/contact'
 
 export default function FooterComprehensive() {
   return (
@@ -105,11 +106,11 @@ export default function FooterComprehensive() {
             <h3 className="text-white font-bold text-lg mb-4">Contact Us</h3>
             <ul className="space-y-3">
               <li>
-                <a href="tel:1-800-316-9508" className="hover:text-primary-400 transition-colors flex items-center gap-2">
+                <a href={`tel:${SUPPORT_PHONE_TEL}`} className="hover:text-primary-400 transition-colors flex items-center gap-2">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                   </svg>
-                  1-800-316-9508
+                  {SUPPORT_PHONE_DISPLAY}
                 </a>
               </li>
               <li>
@@ -130,7 +131,7 @@ export default function FooterComprehensive() {
                     BetterClose<br />
                     1300 Division Road, Unit 306<br />
                     West Warwick, RI 02893<br />
-                    (401) 847-3080
+                    {SUPPORT_PHONE_DISPLAY}
                   </span>
                 </div>
               </li>

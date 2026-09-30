@@ -62,7 +62,7 @@ test('all approved headshots render on dashboard cards and EO email at desktop/m
           assert.equal(image.alt, name); assert.equal(image.src, officer.photoUrl);
           assert.ok(image.naturalWidth > 300, 'Actual supplied photograph loaded');
           assert.equal(image.width, image.height, 'Circular frame must not distort the headshot');
-          assert.equal(image.fit, 'cover'); assert.equal(image.position, '50% 30%');
+          assert.equal(image.fit, 'cover'); assert.equal(image.position, '50% 0%');
         }
         if (surface === 'email') assert.equal(images[0].width, 112);
         if (process.env.BC_EO_PHOTO_PREVIEW_DIR) {

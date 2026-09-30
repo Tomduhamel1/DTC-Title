@@ -10,6 +10,7 @@ import SavingsExamples from '@/components/SavingsExamples'
 import TrustStripSection from '@/components/TrustStripSection'
 import TrueFeelogo from '@/components/TrueFeelogo'
 import NavOperatorPortrait from '@/components/NavOperatorPortrait'
+import { SUPPORT_PHONE_DISPLAY, SUPPORT_PHONE_TEL } from '@/lib/contact'
 import HomePageContent from '@/components/HomePageContent'
 import TeamTrustSection from '@/components/TeamTrustSection'
 import PeaceOfMindSection from '@/components/PeaceOfMindSection'
@@ -62,7 +63,7 @@ export default function HomePageOriginal({ hideSavingsCards = false, useAlternat
 
             {/* Right: Contact & CTA */}
             <div className="flex items-center space-x-6">
-              <a href="tel:1-800-316-9508" className="hidden lg:flex items-center gap-3 text-dark-800 hover:text-primary-600 font-medium transition-colors group">
+              <a href={`tel:${SUPPORT_PHONE_TEL}`} className="hidden lg:flex items-center gap-3 text-dark-800 hover:text-primary-600 font-medium transition-colors group">
                 <div className="relative">
                   <NavOperatorPortrait />
                   <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-emerald-500 rounded-full border-3 border-white flex items-center justify-center shadow-md">
@@ -73,7 +74,7 @@ export default function HomePageOriginal({ hideSavingsCards = false, useAlternat
                 </div>
                 <div className="text-left">
                   <div className="text-xs text-gray-500 font-medium">Talk to a real person</div>
-                  <div className="font-bold text-lg text-primary-600 group-hover:text-primary-700">1.800.316.9508</div>
+                  <div className="font-bold text-lg text-primary-600 group-hover:text-primary-700">{SUPPORT_PHONE_DISPLAY}</div>
                 </div>
               </a>
               <Link href="/login" className="text-dark-800 hover:text-primary-600 font-semibold transition-colors">
