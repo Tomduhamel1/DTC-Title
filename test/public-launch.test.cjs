@@ -49,7 +49,9 @@ test('marketing switch opens public routes and can still restore the Coming Soon
 
 test('old Coming Soon URL redirects home only after the marketing gate is off', () => {
   const h = createHarness(noDb);
-  const page = h.load('src/app/coming-soon/page.tsx').default;
+  const module = h.load('src/app/coming-soon/page.tsx');
+  assert.equal(module.dynamic, 'force-dynamic', 'Do not bake the build-time gate into the runtime response');
+  const page = module.default;
   h.env.COMING_SOON_MODE = 'true';
   assert.match(h.render(React.createElement(page)), /BetterClose is launching soon/);
   h.env.COMING_SOON_MODE = 'false';

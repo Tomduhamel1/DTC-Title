@@ -1,6 +1,10 @@
 import TrueFeelogo from '@/components/TrueFeelogo'
 import { redirect } from 'next/navigation'
 
+// Evaluate the release switch at runtime; do not prerender a redirect using
+// the build environment and then serve it when the runtime gate is enabled.
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: 'BetterClose — Coming soon',
   description: 'BetterClose is launching soon. Save thousands on your closing costs with the same A-rated underwriters you already trust.',
