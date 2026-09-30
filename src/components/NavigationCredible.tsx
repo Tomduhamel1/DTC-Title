@@ -132,9 +132,11 @@ export default function NavigationCredible() {
             ) : (
               <button
                 onClick={() => setShareOpen(true)}
-                className="bg-emerald-600 text-white px-5 py-2.5 rounded-md font-semibold hover:bg-emerald-700 transition-colors shadow-md hover:shadow-lg"
+                aria-label="Send to my team"
+                className="bg-emerald-600 text-white px-3 sm:px-5 py-2.5 rounded-md font-semibold whitespace-nowrap hover:bg-emerald-700 transition-colors shadow-md hover:shadow-lg"
               >
-                Send to my team
+                <span className="sm:hidden" aria-hidden="true">Share</span>
+                <span className="hidden sm:inline" aria-hidden="true">Send to my team</span>
               </button>
             )}
 
