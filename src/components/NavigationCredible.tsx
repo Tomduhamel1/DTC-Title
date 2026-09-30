@@ -10,7 +10,7 @@ import { SUPPORT_PHONE_DISPLAY, SUPPORT_PHONE_TEL } from '@/lib/contact'
 import ShareWithTeamSheet from './lender-request/ShareWithTeamSheet'
 
 const MARKETING_LINKS = [
-  { href: '/#how-it-works', label: 'How It Works' },
+  { href: '/how-it-works', label: 'How It Works' },
   { href: '/for-brokers', label: 'Mortgage Brokers' },
   { href: '/for-realtors', label: 'Real Estate Agents' },
   { href: '/for-lenders', label: 'Lenders' },

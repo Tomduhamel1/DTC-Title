@@ -17,7 +17,7 @@ export default function FooterComprehensive() {
                 </Link>
               </li>
               <li>
-                <Link href="/#how-it-works" className="hover:text-primary-400 transition-colors">
+                <Link href="/how-it-works" className="hover:text-primary-400 transition-colors">
                   How It Works
                 </Link>
               </li>
