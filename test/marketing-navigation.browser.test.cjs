@@ -10,6 +10,7 @@ const { openEmailBrowser } = require('./helpers/email-browser.cjs');
 const root = path.resolve(__dirname, '..');
 const source = fs.readFileSync(path.join(root, 'src/components/NavigationCredible.tsx'), 'utf8');
 const mocks = {
+  'next/navigation': `export const usePathname=()=>window.navPath || '/for-lenders';`,
   'next-auth/react': `import React from 'react'; export const Auth=React.createContext({status:'loading'}); export const useSession=()=>React.useContext(Auth); export const signOut=options=>window.actions.push(['signOut',options]);`,
   'next/link': `import React from 'react'; export default function Link({href,onClick,children,...props}) {return <a {...props} href={href} onClick={event=>{event.preventDefault();window.actions.push(['route',href]);onClick?.(event)}}>{children}</a>}`,
   './lender-request/ShareWithTeamSheet': `import React from 'react'; export default ({open,onClose,source})=>open?<div role="dialog" aria-label="Share with team" data-source={source}><button onClick={onClose}>Close sharing</button></div>:null;`,
@@ -24,13 +25,30 @@ const code = build({ stdin: { contents: `import React from 'react'; import {crea
 
 test('marketing pages share one header and internal links use client navigation', async () => {
   assert.ok((await code).length > 0, 'Offline header fixture compiles');
-  for (const file of ['src/components/HomePageCredible.tsx', 'src/app/for-brokers/page.tsx', 'src/app/for-realtors/page.tsx', 'src/app/for-lenders/page.tsx', 'src/app/security/page.tsx']) {
+  for (const file of ['src/components/HomePageCredible.tsx', 'src/app/how-it-works/page.tsx', 'src/app/for-brokers/page.tsx', 'src/app/for-realtors/page.tsx', 'src/app/for-lenders/page.tsx', 'src/app/security/page.tsx']) {
     const page = fs.readFileSync(path.join(root,file),'utf8');
     assert.equal((page.match(/<NavigationCredible\s*\/>/g)||[]).length,1,file);
   }
   assert.match(source, /import Link from 'next\/link'/);
   assert.doesNotMatch(source, /<a\s[^>]*href=["']\//, 'No full-page reloads for internal header links');
-  for (const href of ['/#how-it-works','/for-brokers','/for-realtors','/for-lenders','/security']) assert.ok(source.includes(href));
+  for (const href of ['/how-it-works','/for-brokers','/for-realtors','/for-lenders','/security']) assert.ok(source.includes(href));
+  assert.doesNotMatch(source, /\/#how-it-works/);
+  assert.match(fs.readFileSync(path.join(root,'src/components/FooterComprehensive.tsx'),'utf8'), /href="\/how-it-works"/);
+});
+
+test('How It Works is a standalone page reusing the existing section and actions', () => {
+  const React=require('react');
+  const h=require('./helpers/role-journey-harness.cjs').createHarness(new Proxy({}, {get(){throw new Error('No database access')}}));
+  const Page=h.load('src/app/how-it-works/page.tsx').default;
+  const html=h.render(React.createElement(Page));
+  assert.equal((html.match(/<h1\b/g)||[]).length,1);
+  assert.match(html, /<h1[^>]*>How it works<\/h1>/);
+  for (const text of ['Alert Your Team','Track Progress','Close &amp; Save','Send BetterClose to my team']) assert.ok(html.includes(text));
+  assert.match(html, /href="\/quote"/);
+  assert.equal(h.sent.length,0);
+  const Section=h.load('src/components/HowItWorksSection.tsx').default;
+  const homeSection=h.render(React.createElement(Section));
+  assert.match(homeSection, /<h2[^>]*>How it works<\/h2>/, 'Homepage retains its section heading');
 });
 
 test('header geometry is stable through session resolution at every responsive breakpoint', async () => {
@@ -58,11 +76,14 @@ test('header geometry is stable through session resolution at every responsive b
           const header=document.querySelector('[data-bc-marketing-nav]');
           return {width:document.documentElement.scrollWidth,height:header.getBoundingClientRect().height,
             slots:['logo','links','actions','login','phone','account'].map(key=>({key,...rect(document.querySelector('[data-nav-'+key+']'))})),
-            labels:[...header.querySelectorAll('[data-nav-links] a,[data-nav-login] a,[data-nav-account] button')].filter(e=>e.getBoundingClientRect().width).map(e=>({text:e.textContent,lines:e.getBoundingClientRect().height/parseFloat(getComputedStyle(e).lineHeight),left:e.getBoundingClientRect().left,right:e.getBoundingClientRect().right})),
+            labels:[...header.querySelectorAll('[data-nav-links] a span,[data-nav-login] a,[data-nav-account] button')].filter(e=>e.getBoundingClientRect().width).map(e=>({text:e.textContent,lines:e.getBoundingClientRect().height/parseFloat(getComputedStyle(e).lineHeight),left:e.getBoundingClientRect().left,right:e.getBoundingClientRect().right})),
+            links:[...header.querySelectorAll('[data-nav-links] a')].filter(e=>e.getBoundingClientRect().width).map(e=>({left:e.getBoundingClientRect().left,right:e.getBoundingClientRect().right,height:e.getBoundingClientRect().height,border:getComputedStyle(e).borderTopWidth,background:getComputedStyle(e).backgroundColor,radius:getComputedStyle(e).borderRadius,shadow:getComputedStyle(e).boxShadow})),
+            wordmarkCenter:(()=>{const r=header.querySelector('[data-nav-logo] text').getBoundingClientRect();return r.y+r.height/2})(),
             menuVisible:document.querySelector('[aria-controls="marketing-mobile-menu"]').getBoundingClientRect().width>0};
         });
         assert.equal(facts.width,width,`${width}/${state}: no horizontal overflow`);
         assert.equal(facts.height,80,`${width}/${state}: constant header height`);
+        assert.ok(Math.abs(facts.wordmarkCenter-40)<0.5,`${width}/${state}: logo text centered, not just its SVG box`);
         assert.equal(facts.menuVisible,width<1280);
         if (!baseline) baseline=facts.slots; else assert.deepEqual(facts.slots,baseline,`${width}/${state}: account resolution must not move any nav group`);
         for (const label of facts.labels) {
@@ -70,9 +91,32 @@ test('header geometry is stable through session resolution at every responsive b
           // Account buttons are a deliberate 44px touch target; links stay one line.
           if (!/dashboard|team|Account/.test(label.text)) assert.equal(label.lines,1,`${width}: ${label.text} must not wrap`);
         }
+        for (let index=0;index<facts.links.length;index++) {
+          const link=facts.links[index];
+          assert.equal(link.height,40,'Comfortable click target without a button surface');
+          assert.equal(link.border,'0px','Navigation links must not be outlined buttons');
+          assert.equal(link.background,'rgba(0, 0, 0, 0)','Navigation links have no filled surface');
+          assert.equal(link.radius,'0px','No pill/button corners');
+          assert.equal(link.shadow,'none','No button shadows');
+          if (index) assert.ok(link.left-facts.links[index-1].right>=32,'Plain links have clear separation');
+        }
       }
     }
     await page.setViewport({width:1280,height:900}); await mount('authenticated');
+    for (const route of ['/how-it-works','/for-lenders','/for-brokers','/for-realtors','/security','/']) {
+      await page.evaluate(path=>{window.navPath=path},route); await mount('authenticated');
+      await page.waitForFunction(path=>path==='/'?document.querySelectorAll('[data-nav-links] [aria-current]').length===0:document.querySelector('[data-nav-links] [aria-current]')?.getAttribute('href')===path,{},route);
+      const current=await page.$$eval('[data-nav-links] [aria-current="page"]',els=>els.map(e=>e.getAttribute('href')));
+      assert.deepEqual(current,route==='/'?[]:[route]);
+      const underlined=await page.$$eval('[data-nav-links] a',els=>els.filter(e=>getComputedStyle(e).textDecorationLine==='underline').map(e=>e.getAttribute('href')));
+      assert.deepEqual(underlined,current,'Current page uses an underline, not a button background');
+    }
+    await page.click('[data-nav-links] a[href="/how-it-works"]');
+    assert.deepEqual(await page.evaluate(()=>window.actions.at(-1)),['route','/how-it-works']);
+    await page.evaluate(()=>{window.navPath='/how-it-works'}); await mount('authenticated');
+    await page.mouse.move(1000,200);
+    await page.waitForFunction(()=>document.querySelector('[data-nav-links] a[href="/how-it-works"]').getAttribute('aria-current')==='page');
+    assert.equal(await page.$eval('[data-nav-links] a[href="/how-it-works"]',e=>getComputedStyle(e).textDecorationLine),'underline','How It Works stays underlined after hover leaves');
     await page.click('[aria-controls="marketing-account-menu"]');
     await page.waitForSelector('#marketing-account-menu');
     assert.equal(await page.$eval('[aria-controls="marketing-account-menu"]',e=>e.getAttribute('aria-expanded')),'true');
@@ -85,7 +129,13 @@ test('header geometry is stable through session resolution at every responsive b
     await page.click('[role="dialog"] button');
     await page.setViewport({width:375,height:900});
     await page.click('[aria-controls="marketing-mobile-menu"]'); await page.waitForSelector('#marketing-mobile-menu');
-    for (const href of ['/#how-it-works','/for-brokers','/for-realtors','/for-lenders','/security','/login']) assert.ok(await page.$('#marketing-mobile-menu a[href="'+href+'"]'));
+    for (const href of ['/how-it-works','/for-brokers','/for-realtors','/for-lenders','/security','/login']) assert.ok(await page.$('#marketing-mobile-menu a[href="'+href+'"]'));
+    const mobileStyles=await page.$$eval('#marketing-mobile-menu a',els=>els.map(e=>({border:getComputedStyle(e).borderTopWidth,background:getComputedStyle(e).backgroundColor,radius:getComputedStyle(e).borderRadius})));
+    for (const style of mobileStyles) assert.deepEqual(style,{border:'0px',background:'rgba(0, 0, 0, 0)',radius:'0px'},'Mobile navigation also uses plain links');
+    await page.click('#marketing-mobile-menu a[href="/how-it-works"]');
+    await page.waitForSelector('#marketing-mobile-menu',{hidden:true});
+    await page.click('[aria-controls="marketing-mobile-menu"]');
+    assert.equal(await page.$eval('#marketing-mobile-menu a[href="/how-it-works"]',e=>e.getAttribute('aria-current')),'page');
     await page.click('#marketing-mobile-menu a[href="/for-lenders"]');
     await page.waitForSelector('#marketing-mobile-menu',{hidden:true});
     assert.deepEqual(await page.evaluate(()=>window.actions.at(-1)),['route','/for-lenders']);

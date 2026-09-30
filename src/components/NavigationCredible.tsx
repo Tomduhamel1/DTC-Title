@@ -3,13 +3,14 @@
 import { useEffect, useRef, useState } from 'react'
 import { useSession, signOut } from 'next-auth/react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import TrueFeelogo from './TrueFeelogo'
 import NavOperatorPortrait from './NavOperatorPortrait'
 import { SUPPORT_PHONE_DISPLAY, SUPPORT_PHONE_TEL } from '@/lib/contact'
 import ShareWithTeamSheet from './lender-request/ShareWithTeamSheet'
 
 const MARKETING_LINKS = [
-  { href: '/#how-it-works', label: 'How It Works' },
+  { href: '/how-it-works', label: 'How It Works' },
   { href: '/for-brokers', label: 'Mortgage Brokers' },
   { href: '/for-realtors', label: 'Real Estate Agents' },
   { href: '/for-lenders', label: 'Lenders' },
@@ -17,6 +18,7 @@ const MARKETING_LINKS = [
 ] as const
 
 export default function NavigationCredible() {
+  const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [shareOpen, setShareOpen] = useState(false)
   const [accountMenuOpen, setAccountMenuOpen] = useState(false)
@@ -49,8 +51,17 @@ export default function NavigationCredible() {
           </div>
 
           {/* Center: Desktop Navigation */}
-          <div data-nav-links className="hidden xl:flex shrink-0 items-center gap-4 whitespace-nowrap">
-            {MARKETING_LINKS.map(link => <Link key={link.href} href={link.href} className="text-dark-800 hover:text-primary-600 font-medium transition-colors">{link.label}</Link>)}
+          <div data-nav-links className="hidden xl:flex shrink-0 items-center gap-8 whitespace-nowrap">
+            {MARKETING_LINKS.map(link => (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={pathname === link.href ? 'page' : undefined}
+                className={`inline-flex h-10 items-center font-medium decoration-2 underline-offset-8 transition-colors hover:text-primary-700 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-600 ${pathname === link.href ? 'text-primary-700 underline' : 'text-dark-800'}`}
+              >
+                <span>{link.label}</span>
+              </Link>
+            ))}
           </div>
 
           {/* Right */}
@@ -159,7 +170,17 @@ export default function NavigationCredible() {
         {mobileMenuOpen && (
           <div id="marketing-mobile-menu" className="xl:hidden border-t border-gray-200 py-4 pb-6 max-h-[calc(100dvh-5rem)] overflow-y-auto">
             <div className="space-y-3">
-              {MARKETING_LINKS.map(link => <Link key={link.href} href={link.href} onClick={() => setMobileMenuOpen(false)} className="block text-dark-800 hover:text-primary-600 font-medium py-2">{link.label}</Link>)}
+              {MARKETING_LINKS.map(link => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={pathname === link.href ? 'page' : undefined}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`block py-2 font-medium decoration-2 underline-offset-8 transition-colors hover:text-primary-700 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-600 ${pathname === link.href ? 'text-primary-700 underline' : 'text-dark-800'}`}
+                >
+                  {link.label}
+                </Link>
+              ))}
               {signedIn ? (
                 <>
                   <Link href="/dashboard" className="block text-dark-800 hover:text-primary-600 font-bold py-2">
