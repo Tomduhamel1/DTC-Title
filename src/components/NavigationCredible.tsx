@@ -2,10 +2,19 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useSession, signOut } from 'next-auth/react'
+import Link from 'next/link'
 import TrueFeelogo from './TrueFeelogo'
 import NavOperatorPortrait from './NavOperatorPortrait'
 import { SUPPORT_PHONE_DISPLAY, SUPPORT_PHONE_TEL } from '@/lib/contact'
 import ShareWithTeamSheet from './lender-request/ShareWithTeamSheet'
+
+const MARKETING_LINKS = [
+  { href: '/#how-it-works', label: 'How It Works' },
+  { href: '/for-brokers', label: 'Mortgage Brokers' },
+  { href: '/for-realtors', label: 'Real Estate Agents' },
+  { href: '/for-lenders', label: 'Lenders' },
+  { href: '/security', label: 'Security' },
+] as const
 
 export default function NavigationCredible() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -27,50 +36,33 @@ export default function NavigationCredible() {
   }, [accountMenuOpen])
 
   return (
-    <header className="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
-      <div className="container mx-auto px-6">
-        <nav className="flex justify-between items-center h-20">
+    <header data-bc-marketing-nav className="bg-white shadow-sm fixed top-0 left-0 right-0 z-50" onKeyDown={(event) => {
+      if (event.key === 'Escape') { setMobileMenuOpen(false); setAccountMenuOpen(false) }
+    }}>
+      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6">
+        <nav aria-label="Main navigation" className="flex justify-between items-center gap-4 h-20 text-sm">
           {/* Left: Logo */}
-          <div className="flex items-center space-x-2">
-            <a href="/" className="hover:opacity-80 transition-opacity">
-              <TrueFeelogo className="h-10" />
-            </a>
+          <div data-nav-logo className="flex shrink-0 items-center">
+            <Link href="/" aria-label="BetterClose home" className="hover:opacity-80 transition-opacity">
+              <TrueFeelogo className="h-9 sm:h-10 w-[162px] sm:w-[180px]" />
+            </Link>
           </div>
 
           {/* Center: Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-6">
-            <a href="/#how-it-works" className="text-dark-800 hover:text-primary-600 font-medium transition-colors">
-              How It Works
-            </a>
-            <a href="/for-brokers" className="text-dark-800 hover:text-primary-600 font-medium transition-colors">
-              Mortgage Brokers
-            </a>
-            <a href="/for-realtors" className="text-dark-800 hover:text-primary-600 font-medium transition-colors">
-              Real Estate Agents
-            </a>
-            <a href="/for-lenders" className="text-dark-800 hover:text-primary-600 font-medium transition-colors">
-              Lenders
-            </a>
-            <a href="/security" className="text-dark-800 hover:text-primary-600 font-medium transition-colors">
-              Security
-            </a>
+          <div data-nav-links className="hidden xl:flex shrink-0 items-center gap-4 whitespace-nowrap">
+            {MARKETING_LINKS.map(link => <Link key={link.href} href={link.href} className="text-dark-800 hover:text-primary-600 font-medium transition-colors">{link.label}</Link>)}
           </div>
 
           {/* Right */}
-          <div className="flex items-center space-x-5">
-            {/* Logged out: Login link, then phone, then "Send to my team" */}
-            {!signedIn && (
-              <a
-                href="/login"
-                className="hidden sm:inline-block text-dark-800 hover:text-primary-600 font-semibold transition-colors"
-              >
-                Log in
-              </a>
-            )}
+          <div data-nav-actions className="flex shrink-0 items-center gap-3 whitespace-nowrap">
+            {/* Reserve the same space while loading, signed in, or signed out. */}
+            <div data-nav-login className="hidden sm:flex w-11 h-5 shrink-0 items-center">
+              {status === 'unauthenticated' && <Link href="/login" className="text-dark-800 hover:text-primary-600 font-semibold transition-colors">Log in</Link>}
+            </div>
 
             {/* Phone — desktop only */}
-            <a href={`tel:${SUPPORT_PHONE_TEL}`} className="hidden xl:flex items-center gap-3 text-dark-800 hover:text-primary-600 font-medium transition-colors group">
-              <div className="relative">
+            <a data-nav-phone href={`tel:${SUPPORT_PHONE_TEL}`} className="hidden xl:flex w-[196px] shrink-0 items-center gap-2 text-dark-800 hover:text-primary-600 font-medium transition-colors group">
+              <div className="relative shrink-0">
                 <NavOperatorPortrait />
                 <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-emerald-500 rounded-full border-3 border-white flex items-center justify-center shadow-md">
                   <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -80,16 +72,21 @@ export default function NavigationCredible() {
               </div>
               <div className="text-left">
                 <div className="text-xs text-gray-500 font-medium">Talk to a real person</div>
-                <div className="font-bold text-lg text-primary-600 group-hover:text-primary-700">{SUPPORT_PHONE_DISPLAY}</div>
+                <div className="font-bold text-base text-primary-600 group-hover:text-primary-700">{SUPPORT_PHONE_DISPLAY}</div>
               </div>
             </a>
 
             {/* Logged in: My dashboard menu. Logged out: Send to my team CTA. */}
-            {signedIn ? (
+            <div data-nav-account className="hidden sm:block w-40 shrink-0">
+            {status === 'loading' ? (
+              <button disabled aria-label="Loading account" className="h-11 w-full rounded-md bg-emerald-600 text-white font-semibold">Account</button>
+            ) : signedIn ? (
               <div className="relative" ref={accountMenuRef}>
                 <button
                   onClick={() => setAccountMenuOpen((v) => !v)}
-                  className="bg-emerald-600 text-white px-5 py-2.5 rounded-md font-semibold hover:bg-emerald-700 transition-colors shadow-md hover:shadow-lg flex items-center gap-2"
+                  aria-expanded={accountMenuOpen}
+                  aria-controls="marketing-account-menu"
+                  className="bg-emerald-600 text-white h-11 w-full px-4 rounded-md font-semibold hover:bg-emerald-700 transition-colors shadow-md hover:shadow-lg flex items-center justify-center gap-2"
                 >
                   My dashboard
                   <svg className={`w-4 h-4 transition-transform ${accountMenuOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
@@ -97,7 +94,7 @@ export default function NavigationCredible() {
                   </svg>
                 </button>
                 {accountMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl border border-gray-200 shadow-xl py-1.5 z-50">
+                  <div id="marketing-account-menu" className="absolute right-0 mt-2 w-56 bg-white rounded-xl border border-gray-200 shadow-xl py-1.5 z-50">
                     {session?.user?.email && (
                       <div className="px-4 py-2 border-b border-gray-100">
                         <div className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
@@ -108,18 +105,18 @@ export default function NavigationCredible() {
                         </div>
                       </div>
                     )}
-                    <a
+                    <Link
                       href="/dashboard"
                       className="block px-4 py-2 text-sm font-medium text-dark-900 hover:bg-gray-50"
                     >
                       Closing dashboard
-                    </a>
-                    <a
+                    </Link>
+                    <Link
                       href="/settings"
                       className="block px-4 py-2 text-sm font-medium text-dark-900 hover:bg-gray-50"
                     >
                       My settings
-                    </a>
+                    </Link>
                     <button
                       onClick={() => signOut({ callbackUrl: '/' })}
                       className="w-full text-left px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 border-t border-gray-100"
@@ -132,16 +129,20 @@ export default function NavigationCredible() {
             ) : (
               <button
                 onClick={() => setShareOpen(true)}
-                className="bg-emerald-600 text-white px-5 py-2.5 rounded-md font-semibold hover:bg-emerald-700 transition-colors shadow-md hover:shadow-lg"
+                className="bg-emerald-600 text-white h-11 w-full px-4 rounded-md font-semibold hover:bg-emerald-700 transition-colors shadow-md hover:shadow-lg"
               >
                 Send to my team
               </button>
             )}
+            </div>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden text-dark-800 hover:text-primary-600 transition-colors"
+              aria-label={mobileMenuOpen ? 'Close navigation' : 'Open navigation'}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="marketing-mobile-menu"
+              className="xl:hidden flex h-11 w-11 shrink-0 items-center justify-center text-dark-800 hover:text-primary-600 transition-colors"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {mobileMenuOpen ? (
@@ -156,28 +157,15 @@ export default function NavigationCredible() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden border-t border-gray-200 py-4 pb-6">
+          <div id="marketing-mobile-menu" className="xl:hidden border-t border-gray-200 py-4 pb-6 max-h-[calc(100dvh-5rem)] overflow-y-auto">
             <div className="space-y-3">
-              <a href="/#how-it-works" className="block text-dark-800 hover:text-primary-600 font-medium transition-colors py-2">
-                How It Works
-              </a>
-              <a href="/for-brokers" className="block text-dark-800 hover:text-primary-600 font-medium py-2">
-                Mortgage Brokers
-              </a>
-              <a href="/for-realtors" className="block text-dark-800 hover:text-primary-600 font-medium py-2">
-                Real Estate Agents
-              </a>
-              <a href="/for-lenders" className="block text-dark-800 hover:text-primary-600 font-medium py-2">
-                Lenders
-              </a>
-              <a href="/security" className="block text-dark-800 hover:text-primary-600 font-medium py-2">
-                Security & Protection
-              </a>
+              {MARKETING_LINKS.map(link => <Link key={link.href} href={link.href} onClick={() => setMobileMenuOpen(false)} className="block text-dark-800 hover:text-primary-600 font-medium py-2">{link.label}</Link>)}
               {signedIn ? (
                 <>
-                  <a href="/dashboard" className="block text-dark-800 hover:text-primary-600 font-bold py-2">
+                  <Link href="/dashboard" className="block text-dark-800 hover:text-primary-600 font-bold py-2">
                     My dashboard
-                  </a>
+                  </Link>
+                  <Link href="/settings" className="block text-dark-800 hover:text-primary-600 font-bold py-2">My settings</Link>
                   <button
                     onClick={() => signOut({ callbackUrl: '/' })}
                     className="block text-red-600 font-bold py-2"
@@ -185,11 +173,14 @@ export default function NavigationCredible() {
                     Log out
                   </button>
                 </>
-              ) : (
-                <a href="/login" className="block text-dark-800 hover:text-primary-600 font-bold py-2">
+              ) : status === 'unauthenticated' ? (
+                <>
+                <Link href="/login" className="block text-dark-800 hover:text-primary-600 font-bold py-2">
                   Log in
-                </a>
-              )}
+                </Link>
+                <button onClick={() => { setMobileMenuOpen(false); setShareOpen(true) }} className="block text-primary-700 font-bold py-2">Send to my team</button>
+                </>
+              ) : null}
               <a href={`tel:${SUPPORT_PHONE_TEL}`} className="block text-primary-600 font-bold py-2">
                 📞 Call {SUPPORT_PHONE_DISPLAY}
               </a>
