@@ -25,7 +25,7 @@ jobs:
       - run: npm run test:eo-photos
       - run: node --test test/marketing-portraits.test.cjs test/company-phone.test.cjs test/lender-positioning.test.cjs
       - run: node --test test/public-launch.test.cjs
-      - run: node --test test/contact-options.test.cjs
+      - run: node --test test/contact-options.test.cjs test/homepage-section-order.test.cjs
       - run: npm audit --omit=dev --audit-level=low
   email-layout:
     runs-on: ubuntu-latest
