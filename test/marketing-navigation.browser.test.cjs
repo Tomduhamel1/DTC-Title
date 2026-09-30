@@ -4,7 +4,7 @@ const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const { buildSync } = require('esbuild');
+const { build } = require('esbuild');
 const { openEmailBrowser } = require('./helpers/email-browser.cjs');
 
 const root = path.resolve(__dirname, '..');
@@ -14,15 +14,16 @@ const mocks = {
   'next/link': `import React from 'react'; export default function Link({href,onClick,children,...props}) {return <a {...props} href={href} onClick={event=>{event.preventDefault();window.actions.push(['route',href]);onClick?.(event)}}>{children}</a>}`,
   './lender-request/ShareWithTeamSheet': `import React from 'react'; export default ({open,onClose,source})=>open?<div role="dialog" aria-label="Share with team" data-source={source}><button onClick={onClose}>Close sharing</button></div>:null;`,
 };
-const code = buildSync({ stdin: { contents: `import React from 'react'; import {createRoot} from 'react-dom/client'; import {Auth} from 'next-auth/react'; import Nav from './src/components/NavigationCredible';
+const code = build({ stdin: { contents: `import React from 'react'; import {createRoot} from 'react-dom/client'; import {Auth} from 'next-auth/react'; import Nav from './src/components/NavigationCredible';
   window.actions=[]; const root=createRoot(document.getElementById('root')); window.mount=status=>root.render(<Auth.Provider value={{status,data:status==='authenticated'?{user:{email:'synthetic@example.invalid'}}:null}}><Nav /></Auth.Provider>);`,
-  resolveDir: root, sourcefile: 'synthetic-nav.tsx' }, bundle: true, write: false, platform: 'browser', format: 'iife', jsx: 'automatic',
+  resolveDir: root, sourcefile: 'synthetic-nav.tsx', loader: 'tsx' }, bundle: true, write: false, platform: 'browser', format: 'iife', jsx: 'automatic',
   define: { 'process.env.NODE_ENV': '"development"' }, plugins: [{name:'isolated-services',setup(build) {
     build.onResolve({filter:/.*/}, args => Object.hasOwn(mocks,args.path)?{path:args.path,namespace:'nav-mock'}:null);
     build.onLoad({filter:/.*/,namespace:'nav-mock'}, args=>({contents:mocks[args.path],loader:'tsx',resolveDir:root}));
-  }}] }).outputFiles[0].text;
+  }}] }).then(result=>result.outputFiles[0].text);
 
-test('marketing pages share one header and internal links use client navigation', () => {
+test('marketing pages share one header and internal links use client navigation', async () => {
+  assert.ok((await code).length > 0, 'Offline header fixture compiles');
   for (const file of ['src/components/HomePageCredible.tsx', 'src/app/for-brokers/page.tsx', 'src/app/for-realtors/page.tsx', 'src/app/for-lenders/page.tsx', 'src/app/security/page.tsx']) {
     const page = fs.readFileSync(path.join(root,file),'utf8');
     assert.equal((page.match(/<NavigationCredible\s*\/>/g)||[]).length,1,file);
@@ -45,7 +46,7 @@ test('header geometry is stable through session resolution at every responsive b
       denied.push(req.url()); return req.abort();
     });
     await page.setContent('<!doctype html><html><head><base href="https://preview.example.invalid"><meta name="viewport" content="width=device-width,initial-scale=1"><style>'+css.css+'</style></head><body><div id="root"></div><main style="padding-top:100px">Synthetic page</main></body></html>');
-    await page.addScriptTag({content:code});
+    await page.addScriptTag({content:await code});
     const mount = async state => { await page.evaluate(s=>window.mount(s),state); await page.waitForFunction(s=>s==='loading'?!!document.querySelector('[aria-label="Loading account"]'):s==='authenticated'?document.querySelector('[data-nav-account]').textContent.includes('My dashboard'):document.querySelector('[data-nav-account]').textContent.includes('Send to my team'),{},state); };
     for (const width of [320,375,639,640,768,1024,1279,1280,1440,1536]) {
       await page.setViewport({width,height:900});
