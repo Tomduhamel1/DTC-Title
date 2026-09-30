@@ -36,8 +36,8 @@ test('lender content fits phone, tablet and desktop using the established site d
       if (request.url() === 'https://preview.example.invalid/for-lenders') {
         return request.respond({ status: 200, contentType: 'text/html; charset=utf-8', body: html });
       }
-      if (request.url() === 'https://preview.example.invalid/images/marketing/nicole-operator-v1.webp') {
-        return request.respond({ status: 200, contentType: 'image/webp', body: fs.readFileSync(path.join(root, 'public/images/marketing/nicole-operator-v1.webp')) });
+      if (['https://preview.example.invalid/images/marketing/nicole-operator-v1.webp', 'https://preview.example.invalid/images/marketing/nicole-portrait-v1.webp'].includes(request.url())) {
+        return request.respond({ status: 200, contentType: 'image/webp', body: fs.readFileSync(path.join(root, 'public', new URL(request.url()).pathname)) });
       }
       const logoPath = new URL(request.url()).pathname;
       if (new URL(request.url()).origin === 'https://preview.example.invalid' && logos.has(logoPath)) {

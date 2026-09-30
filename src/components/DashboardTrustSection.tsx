@@ -112,7 +112,7 @@ export default function DashboardTrustSection() {
                     Live progress tracking
                   </div>
                   <div className="text-gray-600 mt-0.5">
-                    Every milestone — loan lock, title search, issuance, closing — checked off in
+                    Every milestone — title ordered, title search, issuance, closing — checked off in
                     real time. No more wondering where your file stands.
                   </div>
                 </div>
@@ -190,7 +190,7 @@ function DashboardMockup() {
           </span>
         </div>
 
-        <div className="bg-gray-50 p-4 sm:p-5 grid grid-cols-[1fr_180px] gap-4">
+        <div className="bg-gray-50 p-4 sm:p-5 grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_180px] gap-4">
           {/* Closing Progress card */}
           <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
             <div className="px-4 py-3 border-b border-gray-100 flex items-center gap-2">

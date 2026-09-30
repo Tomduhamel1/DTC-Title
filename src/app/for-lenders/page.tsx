@@ -3,6 +3,7 @@ import NavigationCredible from '@/components/NavigationCredible'
 import FooterComprehensive from '@/components/FooterComprehensive'
 import RotatingSavingsPill from '@/components/RotatingSavingsPill'
 import UnderwriterLogos from '@/components/UnderwriterLogos'
+import DashboardTrustSection from '@/components/DashboardTrustSection'
 import { SUPPORT_PHONE_DISPLAY, SUPPORT_PHONE_TEL } from '@/lib/contact'
 import { formatCurrency, LIFETIME_RATE_PCT, LIFETIME_TERM_YEARS } from '@/lib/feeReport'
 import { estimateCostBasis, estimateSavings } from '@/lib/stateSavings'
@@ -145,6 +146,8 @@ export default function LendersPage() {
             </div>
           </div>
         </section>
+
+        <DashboardTrustSection />
 
         <section id="place-an-order" aria-labelledby="order-heading" className="scroll-mt-24 py-16 bg-white">
           <div className="container mx-auto px-4 max-w-6xl">

@@ -107,6 +107,20 @@ test('page has semantic landmarks and responsive layout without a new service de
   assert.equal(h.sent.length, 0);
 });
 
+test('lender page uses the same real-people progress section as the agent page and homepage', () => {
+  // React may hoist image preload links ahead of the actual section.
+  const shared = h.render(React.createElement(h.load('src/components/DashboardTrustSection.tsx').default)).match(/<section\b[\s\S]*<\/section>/)[0];
+  assert.ok(main.includes(shared), 'Reuse the complete shared section, not a separate imitation');
+  assert.match(shared, /Real people\./);
+  assert.match(shared, /Real-time progress\./);
+  assert.match(shared, />Nicole</);
+  assert.match(shared, /2 of 4 milestones complete/);
+  assert.doesNotMatch(shared, /loan lock/i);
+  for (const file of ['src/app/for-realtors/page.tsx', 'src/components/HomePageCredible.tsx']) {
+    assert.match(fs.readFileSync(path.resolve(__dirname, '..', file), 'utf8'), /<DashboardTrustSection\s*\/>/);
+  }
+});
+
 test('lender presentation matches established broker and realtor design patterns', () => {
   const broker = fs.readFileSync(path.resolve(__dirname, '../src/app/for-brokers/page.tsx'), 'utf8');
   const realtor = fs.readFileSync(path.resolve(__dirname, '../src/app/for-realtors/page.tsx'), 'utf8');
@@ -129,7 +143,7 @@ test('lender presentation matches established broker and realtor design patterns
   const orderTile = 'bg-white rounded-2xl border border-gray-200 shadow-sm p-6';
   assert.ok(broker.includes('className="' + orderTile + '"'));
   assert.ok(main.includes('class="' + orderTile + '"'));
-  assert.doesNotMatch(main, /from-emerald-50|via-white|lg:text-6xl|bg-dark-900|tracking-tight/);
+  assert.doesNotMatch(hero, /from-emerald-50|via-white|lg:text-6xl|bg-dark-900|tracking-tight/);
   assert.match(hero, /<span class="text-primary-600">Make your loan offer stand out/);
   const savingsTile = 'rounded-xl border border-emerald-100 bg-emerald-50/70 p-4 text-center';
   for (const reference of [broker, realtor]) assert.ok(reference.includes('className="' + savingsTile + '"'));
