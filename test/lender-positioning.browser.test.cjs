@@ -24,6 +24,11 @@ test('lender page and navigation fit phone, tablet and desktop without live requ
     const page = await browser.newPage();
     await page.setRequestInterception(true);
     page.on('request', request => {
+      // Chrome requests a site icon even though this isolated page has none.
+      // Satisfy it locally; every other unexpected request remains forbidden.
+      if (request.url() === 'https://preview.example.invalid/favicon.ico') {
+        return request.respond({ status: 204, body: '' });
+      }
       if (request.url() === 'https://preview.example.invalid/for-lenders') {
         return request.respond({ status: 200, contentType: 'text/html; charset=utf-8', body: html });
       }
