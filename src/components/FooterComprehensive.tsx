@@ -87,7 +87,7 @@ export default function FooterComprehensive() {
               </li>
               <li>
                 <Link href="/licenses" className="hover:text-primary-400 transition-colors">
-                  State Licenses
+                  Licensing Information
                 </Link>
               </li>
               <li>
@@ -142,15 +142,11 @@ export default function FooterComprehensive() {
         {/* Licensing & Compliance Bar */}
         <div className="border-t border-gray-800 pt-8 mb-8">
           <div className="text-sm text-gray-400 mb-4">
-            <strong className="text-white">State Licenses:</strong> Directly licensed in 34 states.
-            Closings in the remaining 16 states are completed via licensed
-            workshare partners.*{' '}
+            <strong className="text-white">Licensing information:</strong>{' '}
+            Contact our team for licensing details and service availability for your state.{' '}
             <Link href="/licenses" className="text-primary-400 hover:text-primary-300 underline">
-              See all state licenses →
+              Request licensing information →
             </Link>
-            <div className="text-xs text-gray-500 mt-2">
-              *Same BetterClose pricing and digital experience either way.
-            </div>
           </div>
 
           {/* Underwriter Logos */}

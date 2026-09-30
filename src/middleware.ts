@@ -13,10 +13,9 @@ import type { NextRequest } from 'next/server'
 //      Combined with the admin email allowlist this means admins can browse
 //      the real site without a separate bypass key.
 
-// Route-posture note (launch safety): /licenses still contains placeholder
-// license numbers. /for-lenders now describes Encompass/email ordering rather
-// than an unlaunched API product. Both retain their existing coming-soon gate;
-// correcting marketing copy is not authorization to change release access.
+// This is a marketing release gate, not file/API authorization. Protected
+// routes enforce their own session and membership checks whether it is on or
+// off. State-specific quote availability is also independent of this gate.
 const FUNCTIONAL_PREFIXES = [
   '/dashboard',
   '/settings',

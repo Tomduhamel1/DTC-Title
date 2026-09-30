@@ -43,10 +43,9 @@ hours.
 
 - NextAuth **magic links** (no passwords), sent via SES from
   `noreply@betterclose.co`.
-- **SES is in the SANDBOX and a production-access request was DENIED**
-  (case `177722805500436`). In the sandbox SES delivers only to *verified*
-  addresses, so real users cannot sign in. **This is launch-blocking.**
-  Appeal text: `docs/SES_PRODUCTION_ACCESS_APPEAL.md`.
+- **SES production access was verified enabled on 2026-09-30 in us-east-1**;
+  sending enabled, enforcement HEALTHY. Earlier sandbox denial/appeal notes
+  are historical. Recheck `aws sesv2 get-account` before relying on this state.
 - **Debugging trap:** the sandbox refusal comes back as `AccessDenied`
   naming the **recipient's** ARN, which looks exactly like an IAM problem.
   NextAuth then shows every failure as the same opaque `EmailSignin`
@@ -79,9 +78,15 @@ hours.
 `/quote`, `/admin`, `/api`, auth, and dashboard stay live. Preview bypass:
 `https://www.betterclose.co/?preview=<COMING_SOON_BYPASS_KEY>` (sets a
 30-day cookie, lands on `/preview`); any signed-in session also bypasses.
-Keep `COMING_SOON_MODE` and `COMING_SOON_BYPASS_KEY` set — with them
-missing the gate fails **open**, exposing `/licenses` (placeholder license
-numbers) and `/for-lenders` (advertises a non-live API).
+The owner authorized public launch on 2026-09-30 by setting the production
+branch's `COMING_SOON_MODE=false` and rebuilding. Verify actual deployed config
+and release status; source authorization is not deployment evidence. Preserve
+the preview key and all unrelated settings. The switch can restore the marketing
+gate without changing private-file authorization. `/licenses` now provides a
+contact page rather than an unverified licensing list; `/for-lenders` describes
+available Encompass/email ordering and custom API work by arrangement.
+State-specific quote availability is separate: do not enable unoffered states
+or remove Garden integration test restrictions as part of a marketing launch.
 
 ## Database
 
