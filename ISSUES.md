@@ -49,6 +49,17 @@ only.
 
 ## Open
 
+### Footer Privacy / Terms links have no approved destination (2026-09-30)
+
+The live footer links use `#`; no approved policy text was found in the checkout.
+The owner authorized BetterClose-specific drafts for review on September 30.
+`fix/quote-summary-and-policy-links` adds draft `/privacy` and `/terms` pages,
+corrects footer destinations, and includes visible publication checklists and
+noindex metadata. Do not merge/deploy these pages or remove draft notices before
+approval. The legal operator, company-wide sharing, retention, applicable privacy
+rights/notices, and acceptance process need business/legal review. No agreement
+is recorded for existing users. Drafts are not legal-compliance certification.
+
 ### File upload scan wait looks like an outage — correction prepared (2026-09-25)
 
 Live synthetic acceptance of the new private workspace confirmed that an upload

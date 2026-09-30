@@ -76,14 +76,14 @@ export default function FooterComprehensive() {
             <h3 className="text-white font-bold text-lg mb-4">Legal & Compliance</h3>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="hover:text-primary-400 transition-colors">
+                <Link href="/privacy" className="hover:text-primary-400 transition-colors">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-primary-400 transition-colors">
+                <Link href="/terms" className="hover:text-primary-400 transition-colors">
                   Terms of Service
-                </a>
+                </Link>
               </li>
               <li>
                 <Link href="/licenses" className="hover:text-primary-400 transition-colors">
