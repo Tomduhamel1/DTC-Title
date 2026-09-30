@@ -20,6 +20,10 @@ test('lender content fits phone, tablet and desktop using the established site d
     '</style></head><body>' + h.render(React.createElement(React.Fragment, null, React.createElement(Nav), React.createElement(Page), React.createElement(Footer))) + '</body></html>';
   const browser = await openEmailBrowser();
   const denied = [];
+  const logos = new Map([
+    ['/logos/FAF.png', 'image/png'], ['/logos/amtrust.jpg', 'image/jpeg'],
+    ['/logos/westcor.png', 'image/png'], ['/logos/catic_logo-1-768x137.png', 'image/png'],
+  ]);
   try {
     const page = await browser.newPage();
     await page.setRequestInterception(true);
@@ -35,6 +39,10 @@ test('lender content fits phone, tablet and desktop using the established site d
       if (request.url() === 'https://preview.example.invalid/images/marketing/nicole-operator-v1.webp') {
         return request.respond({ status: 200, contentType: 'image/webp', body: fs.readFileSync(path.join(root, 'public/images/marketing/nicole-operator-v1.webp')) });
       }
+      const logoPath = new URL(request.url()).pathname;
+      if (new URL(request.url()).origin === 'https://preview.example.invalid' && logos.has(logoPath)) {
+        return request.respond({ status: 200, contentType: logos.get(logoPath), body: fs.readFileSync(path.join(root, 'public', logoPath)) });
+      }
       denied.push(request.url()); return request.abort();
     });
     for (const width of [375, 768, 1280]) {
@@ -49,6 +57,7 @@ test('lender content fits phone, tablet and desktop using the established site d
           actions: [...document.querySelectorAll('main a')].map(el => ({text: el.innerText, right: el.getBoundingClientRect().right, left: el.getBoundingClientRect().left})),
           hero: document.querySelector('main section').innerText,
           workflow: document.querySelector('#place-an-order').innerText,
+          savings: [...document.querySelectorAll('[data-testid^="savings-"]')].map(el => ({text: el.textContent, fits: el.scrollWidth <= el.clientWidth, singleLine: el.getBoundingClientRect().height <= parseFloat(getComputedStyle(el).lineHeight) + 1, left: el.getBoundingClientRect().left, right: el.getBoundingClientRect().right})),
         };
       });
       assert.ok(layout.scrollWidth <= width, `${width}: no horizontal overflow`);
@@ -58,6 +67,11 @@ test('lender content fits phone, tablet and desktop using the established site d
       for (const action of layout.actions) assert.ok(action.left >= 0 && action.right <= width, `${width}: ${action.text} fits`);
       assert.doesNotMatch(layout.hero, /\bAPI\b/);
       assert.doesNotMatch(layout.hero, /Encompass/);
+      assert.match(layout.hero, /Give your borrowers lower closing costs/);
+      assert.match(layout.hero, /Save at closing/);
+      assert.match(layout.hero, /Save over the loan/);
+      assert.equal(layout.savings.length, 2);
+      for (const value of layout.savings) assert.ok(value.fits && value.singleLine && value.left >= 0 && value.right <= width, `${width}: savings figure ${value.text} fits on one line`);
       assert.match(layout.workflow, /Custom lender APIs/);
       assert.match(layout.workflow, /one-touch title ordering and document exchange/);
       await page.click('a[href="#place-an-order"]');
