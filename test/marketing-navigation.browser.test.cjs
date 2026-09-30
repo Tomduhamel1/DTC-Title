@@ -10,6 +10,7 @@ const { openEmailBrowser } = require('./helpers/email-browser.cjs');
 const root = path.resolve(__dirname, '..');
 const source = fs.readFileSync(path.join(root, 'src/components/NavigationCredible.tsx'), 'utf8');
 const mocks = {
+  'next/navigation': `export const usePathname=()=>window.navPath || '/for-lenders';`,
   'next-auth/react': `import React from 'react'; export const Auth=React.createContext({status:'loading'}); export const useSession=()=>React.useContext(Auth); export const signOut=options=>window.actions.push(['signOut',options]);`,
   'next/link': `import React from 'react'; export default function Link({href,onClick,children,...props}) {return <a {...props} href={href} onClick={event=>{event.preventDefault();window.actions.push(['route',href]);onClick?.(event)}}>{children}</a>}`,
   './lender-request/ShareWithTeamSheet': `import React from 'react'; export default ({open,onClose,source})=>open?<div role="dialog" aria-label="Share with team" data-source={source}><button onClick={onClose}>Close sharing</button></div>:null;`,
@@ -58,11 +59,14 @@ test('header geometry is stable through session resolution at every responsive b
           const header=document.querySelector('[data-bc-marketing-nav]');
           return {width:document.documentElement.scrollWidth,height:header.getBoundingClientRect().height,
             slots:['logo','links','actions','login','phone','account'].map(key=>({key,...rect(document.querySelector('[data-nav-'+key+']'))})),
-            labels:[...header.querySelectorAll('[data-nav-links] a,[data-nav-login] a,[data-nav-account] button')].filter(e=>e.getBoundingClientRect().width).map(e=>({text:e.textContent,lines:e.getBoundingClientRect().height/parseFloat(getComputedStyle(e).lineHeight),left:e.getBoundingClientRect().left,right:e.getBoundingClientRect().right})),
+            labels:[...header.querySelectorAll('[data-nav-links] a span,[data-nav-login] a,[data-nav-account] button')].filter(e=>e.getBoundingClientRect().width).map(e=>({text:e.textContent,lines:e.getBoundingClientRect().height/parseFloat(getComputedStyle(e).lineHeight),left:e.getBoundingClientRect().left,right:e.getBoundingClientRect().right})),
+            tabs:[...header.querySelectorAll('[data-nav-links] a')].filter(e=>e.getBoundingClientRect().width).map(e=>({left:e.getBoundingClientRect().left,right:e.getBoundingClientRect().right,height:e.getBoundingClientRect().height,border:getComputedStyle(e).borderTopWidth,background:getComputedStyle(e).backgroundColor})),
+            wordmarkCenter:(()=>{const r=header.querySelector('[data-nav-logo] text').getBoundingClientRect();return r.y+r.height/2})(),
             menuVisible:document.querySelector('[aria-controls="marketing-mobile-menu"]').getBoundingClientRect().width>0};
         });
         assert.equal(facts.width,width,`${width}/${state}: no horizontal overflow`);
         assert.equal(facts.height,80,`${width}/${state}: constant header height`);
+        assert.ok(Math.abs(facts.wordmarkCenter-40)<0.5,`${width}/${state}: logo text centered, not just its SVG box`);
         assert.equal(facts.menuVisible,width<1280);
         if (!baseline) baseline=facts.slots; else assert.deepEqual(facts.slots,baseline,`${width}/${state}: account resolution must not move any nav group`);
         for (const label of facts.labels) {
@@ -70,9 +74,22 @@ test('header geometry is stable through session resolution at every responsive b
           // Account buttons are a deliberate 44px touch target; links stay one line.
           if (!/dashboard|team|Account/.test(label.text)) assert.equal(label.lines,1,`${width}: ${label.text} must not wrap`);
         }
+        for (let index=0;index<facts.tabs.length;index++) {
+          const tab=facts.tabs[index];
+          assert.equal(tab.height,40,'Tab-sized target, not bare inline text');
+          assert.equal(tab.border,'1px','Each tab has a visible boundary');
+          assert.notEqual(tab.background,'rgba(0, 0, 0, 0)','Each tab has a distinct surface');
+          if (index) assert.ok(tab.left-facts.tabs[index-1].right>=4,'Separate tab surfaces never touch');
+        }
       }
     }
     await page.setViewport({width:1280,height:900}); await mount('authenticated');
+    for (const route of ['/for-lenders','/for-brokers','/for-realtors','/security','/']) {
+      await page.evaluate(path=>{window.navPath=path},route); await mount('authenticated');
+      await page.waitForFunction(path=>path==='/'?document.querySelectorAll('[data-nav-links] [aria-current]').length===0:document.querySelector('[data-nav-links] [aria-current]')?.getAttribute('href')===path,{},route);
+      const current=await page.$$eval('[data-nav-links] [aria-current="page"]',els=>els.map(e=>e.getAttribute('href')));
+      assert.deepEqual(current,route==='/'?[]:[route]);
+    }
     await page.click('[aria-controls="marketing-account-menu"]');
     await page.waitForSelector('#marketing-account-menu');
     assert.equal(await page.$eval('[aria-controls="marketing-account-menu"]',e=>e.getAttribute('aria-expanded')),'true');

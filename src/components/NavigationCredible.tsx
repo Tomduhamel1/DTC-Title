@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useSession, signOut } from 'next-auth/react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import TrueFeelogo from './TrueFeelogo'
 import NavOperatorPortrait from './NavOperatorPortrait'
 import { SUPPORT_PHONE_DISPLAY, SUPPORT_PHONE_TEL } from '@/lib/contact'
@@ -17,6 +18,7 @@ const MARKETING_LINKS = [
 ] as const
 
 export default function NavigationCredible() {
+  const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [shareOpen, setShareOpen] = useState(false)
   const [accountMenuOpen, setAccountMenuOpen] = useState(false)
@@ -49,8 +51,17 @@ export default function NavigationCredible() {
           </div>
 
           {/* Center: Desktop Navigation */}
-          <div data-nav-links className="hidden xl:flex shrink-0 items-center gap-4 whitespace-nowrap">
-            {MARKETING_LINKS.map(link => <Link key={link.href} href={link.href} className="text-dark-800 hover:text-primary-600 font-medium transition-colors">{link.label}</Link>)}
+          <div data-nav-links className="hidden xl:flex shrink-0 items-center gap-1 whitespace-nowrap">
+            {MARKETING_LINKS.map(link => (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={pathname === link.href ? 'page' : undefined}
+                className={`inline-flex h-10 items-center justify-center rounded-md border px-2 font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 ${pathname === link.href ? 'border-primary-200 bg-primary-50 text-primary-700' : 'border-gray-200 bg-gray-50 text-dark-800 hover:border-primary-200 hover:bg-primary-50 hover:text-primary-700'}`}
+              >
+                <span>{link.label}</span>
+              </Link>
+            ))}
           </div>
 
           {/* Right */}
@@ -159,7 +170,17 @@ export default function NavigationCredible() {
         {mobileMenuOpen && (
           <div id="marketing-mobile-menu" className="xl:hidden border-t border-gray-200 py-4 pb-6 max-h-[calc(100dvh-5rem)] overflow-y-auto">
             <div className="space-y-3">
-              {MARKETING_LINKS.map(link => <Link key={link.href} href={link.href} onClick={() => setMobileMenuOpen(false)} className="block text-dark-800 hover:text-primary-600 font-medium py-2">{link.label}</Link>)}
+              {MARKETING_LINKS.map(link => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={pathname === link.href ? 'page' : undefined}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`block rounded-md border px-3 py-2 font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-600 ${pathname === link.href ? 'border-primary-200 bg-primary-50 text-primary-700' : 'border-gray-200 bg-gray-50 text-dark-800 hover:border-primary-200 hover:bg-primary-50 hover:text-primary-700'}`}
+                >
+                  {link.label}
+                </Link>
+              ))}
               {signedIn ? (
                 <>
                   <Link href="/dashboard" className="block text-dark-800 hover:text-primary-600 font-bold py-2">
