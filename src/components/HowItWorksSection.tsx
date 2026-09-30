@@ -13,9 +13,8 @@ const TYPICAL_SAVE = formatCurrency(
   estimateSavings(500000, 'purchase', null).saveAtClosing,
 )
 
-export default function HowItWorksSection({ headingLevel = 'h2' }: { headingLevel?: 'h1' | 'h2' }) {
+export default function HowItWorksSection() {
   const [shareOpen, setShareOpen] = useState(false)
-  const Heading = headingLevel
 
   const steps = [
     {
@@ -61,9 +60,9 @@ export default function HowItWorksSection({ headingLevel = 'h2' }: { headingLeve
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <Heading className="text-4xl md:text-5xl font-black text-dark-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-black text-dark-900 mb-4">
             How it works
-          </Heading>
+          </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Three steps. The first one takes 30 seconds — and you don't even need a quote.
           </p>
