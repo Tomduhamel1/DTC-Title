@@ -6,6 +6,8 @@ import ChatInterface, { Message } from './ChatInterface'
 import Testimonials from './Testimonials'
 import UnderwriterLogos from './UnderwriterLogos'
 import TrustBadges from './TrustBadges'
+import NavOperatorPortrait from './NavOperatorPortrait'
+import { SUPPORT_PHONE_DISPLAY, SUPPORT_PHONE_TEL } from '@/lib/contact'
 import { calculateSavings, getInitialSavings, SavingsFactors } from '@/lib/savingsCalculator'
 
 // Item catalog with actual prices (singular form for multiples)
@@ -259,15 +261,9 @@ export default function StoryCalculator() {
             </div>
 
             <div className="flex items-center space-x-6">
-              <a href="tel:1-800-316-9508" className="hidden lg:flex items-center gap-3 text-dark-800 hover:text-primary-600 font-medium transition-colors group">
+              <a href={`tel:${SUPPORT_PHONE_TEL}`} className="hidden lg:flex items-center gap-3 text-dark-800 hover:text-primary-600 font-medium transition-colors group">
                 <div className="relative">
-                  <img
-                    src="/images/marketing/nicole-operator-v1.webp"
-                    alt="Nicole — BetterClose support"
-                    width={64}
-                    height={64}
-                    className="w-16 h-16 rounded-full object-cover border-3 border-primary-400 shadow-lg"
-                  />
+                  <NavOperatorPortrait />
                   <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-emerald-500 rounded-full border-3 border-white flex items-center justify-center shadow-md">
                     <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
@@ -276,7 +272,7 @@ export default function StoryCalculator() {
                 </div>
                 <div className="text-left">
                   <div className="text-xs text-gray-500 font-medium">Talk to a real person</div>
-                  <div className="font-bold text-lg text-primary-600 group-hover:text-primary-700">1.800.316.9508</div>
+                  <div className="font-bold text-lg text-primary-600 group-hover:text-primary-700">{SUPPORT_PHONE_DISPLAY}</div>
                 </div>
               </a>
               <Link href="/quote" className="bg-primary-600 text-white px-5 py-2.5 rounded-md font-semibold hover:bg-primary-700 transition-colors">
@@ -622,10 +618,10 @@ export default function StoryCalculator() {
                 Prefer to talk? Call to speak with a closing specialist who can answer all your questions.
               </p>
               <a
-                href="tel:1-800-316-9508"
+                href={`tel:${SUPPORT_PHONE_TEL}`}
                 className="block w-full bg-gray-800 text-white px-6 py-3 rounded-lg font-bold text-center hover:bg-gray-900 transition-colors"
               >
-                1.800.316.9508
+                {SUPPORT_PHONE_DISPLAY}
               </a>
             </div>
           </div>

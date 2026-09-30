@@ -4,6 +4,7 @@ import { Suspense, useState, useEffect, useCallback } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import FileUpload from '@/components/FileUpload'
+import { SUPPORT_PHONE_DISPLAY, SUPPORT_PHONE_TEL } from '@/lib/contact'
 
 type Step = 'contact' | 'address' | 'property' | 'financial' | 'documents'
 
@@ -481,11 +482,11 @@ function StartContent() {
               {saveMessage && (
                 <span className="text-sm text-emerald-600">✓ {saveMessage}</span>
               )}
-              <a href="tel:1-800-316-9508" className="hidden lg:flex items-center text-dark-800 hover:text-primary-600 font-medium">
+              <a href={`tel:${SUPPORT_PHONE_TEL}`} className="hidden lg:flex items-center text-dark-800 hover:text-primary-600 font-medium">
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                1.800.316.9508
+                {SUPPORT_PHONE_DISPLAY}
               </a>
             </div>
           </nav>

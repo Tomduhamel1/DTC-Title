@@ -27,16 +27,30 @@ test('shared navigation renders the new operator avatar without changing support
   const html = h.render(React.createElement(Component));
   assert.ok(html.includes(`src="${operator}"`));
   assert.ok(html.includes('alt="Nicole — BetterClose support"'));
-  assert.ok(html.includes('href="tel:1-800-316-9508"'));
+  assert.ok(html.includes('href="tel:+18883780745"'));
+  assert.ok(html.includes('888-378-0745'));
+  assert.match(html, /overflow-hidden rounded-full/);
+  assert.match(html, /origin-top scale-150/);
   assert.doesNotMatch(html, /operator-face\.png|micciche/i);
 });
 
-test('all alternate marketing layouts use the same versioned operator asset', () => {
-  for (const file of ['src/app/HomePageOriginal.tsx', 'src/components/StoryCalculator.tsx', 'src/components/PeaceOfMindSection.tsx']) {
+test('all navigation layouts use the same tight face crop', () => {
+  for (const file of ['src/components/NavigationCredible.tsx', 'src/app/HomePageOriginal.tsx', 'src/components/StoryCalculator.tsx']) {
     const source = fs.readFileSync(path.join(root, file), 'utf8');
-    assert.ok(source.includes(operator), file);
+    assert.ok(source.includes('<NavOperatorPortrait />'), file);
     assert.doesNotMatch(source, /operator-face\.png|micciche/i, file);
   }
+});
+
+test('nav crop is isolated from the larger marketing portraits', () => {
+  const Component = h.load('src/components/NavOperatorPortrait.tsx').default;
+  const html = h.render(React.createElement(Component));
+  assert.ok(html.includes(operator));
+  assert.match(html, /w-16 h-16 shrink-0 overflow-hidden rounded-full/);
+  assert.match(html, /origin-top scale-150/);
+  const largerPortrait = fs.readFileSync(path.join(root, 'src/components/PeaceOfMindSection.tsx'), 'utf8');
+  assert.ok(largerPortrait.includes(operator));
+  assert.doesNotMatch(largerPortrait, /NavOperatorPortrait|scale-150/);
 });
 
 test('web portraits are local, small and have no embedded identifying metadata', async () => {

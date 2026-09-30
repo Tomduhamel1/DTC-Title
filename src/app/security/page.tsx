@@ -3,6 +3,7 @@
 import NavigationCredible from '@/components/NavigationCredible'
 import FooterComprehensive from '@/components/FooterComprehensive'
 import Link from 'next/link'
+import { SUPPORT_PHONE_DISPLAY, SUPPORT_PHONE_TEL } from '@/lib/contact'
 
 export default function SecurityPage() {
   return (
@@ -36,7 +37,7 @@ export default function SecurityPage() {
               <strong>Criminals are targeting homebuyers with fake wire instructions.</strong> This is the most common way people lose money in real estate transactions.
             </p>
             <p className="text-lg text-red-900">
-              <strong>Always verify wire instructions by phone before sending money.</strong> Call us at <a href="tel:1-800-316-9508" className="underline font-bold">1-800-316-9508</a> to confirm any wire transfer details.
+              <strong>Always verify wire instructions by phone before sending money.</strong> Call us at <a href={`tel:${SUPPORT_PHONE_TEL}`} className="underline font-bold">{SUPPORT_PHONE_DISPLAY}</a> to confirm any wire transfer details.
             </p>
           </div>
 
@@ -128,7 +129,7 @@ export default function SecurityPage() {
                 <div>
                   <h3 className="font-bold text-lg text-dark-900 mb-2">Always Verify Wire Instructions by Phone</h3>
                   <p className="text-gray-700">
-                    Call us at 1-800-316-9508 to confirm wire details. Use a number you look up yourself - not one from an email.
+                    Call us at {SUPPORT_PHONE_DISPLAY} to confirm wire details. Use a number you look up yourself - not one from an email.
                   </p>
                 </div>
               </div>
@@ -212,13 +213,13 @@ export default function SecurityPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="tel:1-800-316-9508"
+              href={`tel:${SUPPORT_PHONE_TEL}`}
               className="inline-flex items-center justify-center gap-2 bg-white text-red-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-colors shadow-xl"
             >
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
               </svg>
-              Call 1-800-316-9508
+              Call {SUPPORT_PHONE_DISPLAY}
             </a>
             <a
               href="mailto:fraud@betterclose.co"

@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { SUPPORT_PHONE_DISPLAY, SUPPORT_PHONE_TEL } from '@/lib/contact'
 
 interface EscrowOfficer {
   name: string | null
@@ -39,7 +40,7 @@ export default function EscrowOfficerCard({ officer, variant = 'main' }: EscrowO
                     alt={officer.name || ''}
                     width={128}
                     height={128}
-                    className="object-cover object-[center_30%] w-full h-full"
+                    className="object-cover object-top w-full h-full"
                     unoptimized
                   />
                 ) : (
@@ -69,12 +70,12 @@ export default function EscrowOfficerCard({ officer, variant = 'main' }: EscrowO
                   {officer.email}
                 </a>
               )}
-              {officer.phone && (
+              {SUPPORT_PHONE_TEL && (
                 <a
-                  href={`tel:${officer.phone.replace(/[^\d+]/g, '')}`}
+                  href={`tel:${SUPPORT_PHONE_TEL}`}
                   className="block text-gray-700 hover:text-emerald-700 font-medium"
                 >
-                  {officer.phone}
+                  {SUPPORT_PHONE_DISPLAY}
                 </a>
               )}
             </div>
@@ -107,7 +108,7 @@ export default function EscrowOfficerCard({ officer, variant = 'main' }: EscrowO
                   alt={officer.name || ''}
                   width={176}
                   height={176}
-                  className="object-cover object-[center_30%] w-full h-full"
+                  className="object-cover object-top w-full h-full"
                   unoptimized
                 />
               ) : (
@@ -140,13 +141,13 @@ export default function EscrowOfficerCard({ officer, variant = 'main' }: EscrowO
                     {officer.email}
                   </a>
                 )}
-                {officer.phone && (
+                {SUPPORT_PHONE_TEL && (
                   <a
-                    href={`tel:${officer.phone.replace(/[^\d+]/g, '')}`}
+                    href={`tel:${SUPPORT_PHONE_TEL}`}
                     className="inline-flex items-center gap-2 bg-white hover:bg-gray-50 border-2 border-gray-200 text-gray-800 font-semibold px-4 py-2 rounded-lg text-sm transition-colors"
                   >
                     <span>📞</span>
-                    {officer.phone}
+                    {SUPPORT_PHONE_DISPLAY}
                   </a>
                 )}
               </div>

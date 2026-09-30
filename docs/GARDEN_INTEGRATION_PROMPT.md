@@ -50,7 +50,7 @@ welcome email, and escrow-officer card — treat delivery as must-not-drop.
     "name": "Jordan Rivera",
     "title": "Senior Escrow Officer",
     "email": "jordan.rivera@betterclose.co",
-    "phone": "1-800-316-9508"
+    "phone": "888-378-0745"
   }
 }
 ```

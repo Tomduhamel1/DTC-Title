@@ -1,6 +1,7 @@
 import { sendEmail } from '@/lib/aws/ses'
 import { renderEmail, emailButton, emailMeta, escapeEmailHtml as esc } from './layout'
 import type { OfficerIntroduction } from '@/lib/closing/notificationPolicy'
+import { SUPPORT_PHONE_DISPLAY, SUPPORT_PHONE_TEL } from '@/lib/contact'
 
 export async function sendEOIntroductionEmail(d: {
   to: string; propertyAddress: string; gardenFileNumber: string;
@@ -17,13 +18,13 @@ export async function sendEOIntroductionEmail(d: {
     htmlBody: renderEmail({ title: 'Your file is open',
       contentHtml: `${emailMeta(`${d.propertyAddress} · File ${d.gardenFileNumber}`)}
       <p>Meet your assigned Escrow Officer:</p>
-      <img src="${esc(eo.photoUrl)}" alt="${esc(eo.name)}" width="112" height="112" style="border-radius:56px;object-fit:cover;object-position:center 30%;display:block;max-width:100%;">
-      <p><strong>${esc(eo.name)}</strong><br>${esc(eo.title)}${eo.phone ? `<br>${esc(eo.phone)}` : ''}<br>${esc(eo.replyEmail)}</p>
+      <img src="${esc(eo.photoUrl)}" alt="${esc(eo.name)}" width="112" height="112" style="border-radius:56px;object-fit:cover;object-position:center top;display:block;max-width:100%;">
+      <p><strong>${esc(eo.name)}</strong><br>${esc(eo.title)}<br><a href="tel:${SUPPORT_PHONE_TEL}">${SUPPORT_PHONE_DISPLAY}</a><br>${esc(eo.replyEmail)}</p>
       <p>${esc(eo.name)} will be reaching out to coordinate next steps. You can reply directly to this email to reach them.</p>
       ${emailButton(d.dashboardUrl, personalAccess ? 'View my file →' : 'View file →')}
       <p>${accessNote}</p>`,
       footerHtml: `Replies go to ${esc(eo.name)} at ${esc(eo.replyEmail)}.`,
     }),
-    textBody: `Your file is open\n\n${d.propertyAddress}\nFile ${d.gardenFileNumber}\n\nYour assigned Escrow Officer:\n${eo.name}\n${eo.title}\n${eo.phone || ''}\n${eo.replyEmail}\n\n${eo.name} will be reaching out to coordinate next steps. Reply directly to this email to reach them.\n\nView file: ${d.dashboardUrl}\n\n${accessNote}`,
+    textBody: `Your file is open\n\n${d.propertyAddress}\nFile ${d.gardenFileNumber}\n\nYour assigned Escrow Officer:\n${eo.name}\n${eo.title}\n${SUPPORT_PHONE_DISPLAY}\n${eo.replyEmail}\n\n${eo.name} will be reaching out to coordinate next steps. Reply directly to this email to reach them.\n\nView file: ${d.dashboardUrl}\n\n${accessNote}`,
   })
 }

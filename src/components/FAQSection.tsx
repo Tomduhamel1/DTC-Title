@@ -1,6 +1,7 @@
 'use client'
 
 import { offeredStateCount } from '@/lib/stateMaster'
+import { SUPPORT_PHONE_DISPLAY, SUPPORT_PHONE_TEL } from '@/lib/contact'
 
 import { useState } from 'react'
 
@@ -114,13 +115,13 @@ export default function FAQSection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="tel:1-800-316-9508"
+              href={`tel:${SUPPORT_PHONE_TEL}`}
               className="inline-flex items-center justify-center gap-2 bg-primary-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-primary-700 transition-colors"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
               </svg>
-              Call 1-800-316-9508
+              Call {SUPPORT_PHONE_DISPLAY}
             </a>
             <a
               href="mailto:contact@betterclose.co"
