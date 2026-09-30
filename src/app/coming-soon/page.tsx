@@ -1,4 +1,5 @@
 import TrueFeelogo from '@/components/TrueFeelogo'
+import { redirect } from 'next/navigation'
 
 export const metadata = {
   title: 'BetterClose — Coming soon',
@@ -6,6 +7,10 @@ export const metadata = {
 }
 
 export default function ComingSoonPage() {
+  // Previously shared links should open the public homepage after launch.
+  // Retain the page for the existing reversible marketing release switch.
+  if (process.env.COMING_SOON_MODE !== 'true') redirect('/')
+
   return (
     <main className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-emerald-50 flex items-center justify-center px-6 py-16">
       <div className="max-w-2xl w-full text-center">
