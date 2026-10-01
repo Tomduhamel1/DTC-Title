@@ -10,14 +10,14 @@ export default function PrivacyPage() {
   return <PolicyPage title="Privacy Policy"
     introduction="How information is used when you request an estimate, open a file, or use the BetterClose portal."
     reviewItems={[
-      'Confirm the exact legal operator name and that the contact address below handles privacy requests.',
+      'BetterClose is a DBA of First National Title & Escrow, as confirmed by the owner. Confirm the full legal entity name, including any suffix. Create and verify contact@betterclose.co and its forwarding to Steve before using it for privacy requests.',
       'Confirm company-wide collection, sharing, service providers, advertising, and any sale or sharing of personal information. Source-code review cannot establish these business practices.',
       'Approve the actual retention practices, request-verification process, and any state-specific rights or opt-out mechanisms that apply.',
       'Determine which financial privacy notices and other required disclosures apply to FNTE and BetterClose. This website draft is not a substitute for those notices.',
-      'Set the effective date and approve the final text before removing the draft notice or allowing search indexing.',
+      'Use the final publication date as the effective date, as approved by the owner. This draft is not yet effective; approve the final text before removing the draft notice or allowing search indexing.',
     ]}>
     <PolicySection title="About this policy">
-      <p>This policy covers the BetterClose website and file portal, associated with First National Title &amp; Escrow. It describes information handled through these online services.</p>
+      <p>BetterClose is a DBA (doing business as) of First National Title &amp; Escrow. This policy covers the BetterClose website and file portal and describes information handled through these online services.</p>
       <p>Your lender, title insurer, real estate professional, and other transaction participants may have their own privacy notices. Separate notices may also apply to your title, escrow, or settlement services.</p>
     </PolicySection>
     <PolicySection title="Information you provide">

@@ -11,14 +11,19 @@ export default function TermsPage() {
   return <PolicyPage title="Terms of Service"
     introduction="Guidelines for using BetterClose estimates, file services, and document sharing."
     reviewItems={[
-      'Confirm the legal operator name and review these website terms with the applicable closing and settlement agreements.',
-      'Decide whether and how users will accept the final terms. This draft does not add a click-to-accept requirement or record agreement on behalf of existing users.',
+      'BetterClose is a DBA of First National Title & Escrow, as confirmed by the owner. Confirm the full legal entity name, including any suffix, and align these terms with the applicable closing and settlement agreements.',
+      'Review whether an acceptance step is needed for account or order terms without adding one to free estimates. This draft does not add a click-to-accept requirement or record agreement on behalf of existing users.',
       'Have counsel confirm any required eligibility, jurisdiction, consumer-protection, and other provisions. No arbitration clause, governing-law choice, or liability cap has been invented.',
-      'Set the effective date and approve the final text before removing the draft notice or allowing search indexing.',
+      'Create and verify contact@betterclose.co and its forwarding to Steve before publishing it as the legal and privacy contact.',
+      'Use the final publication date as the effective date, as approved by the owner. This draft is not yet effective; approve the final text before removing the draft notice or allowing search indexing.',
     ]}>
     <PolicySection title="What BetterClose provides">
-      <p>BetterClose provides online title and settlement fee estimates, request forms, and a portal for file information and documents associated with First National Title &amp; Escrow. Available features and services depend on the transaction, location, and participating closing team.</p>
+      <p>BetterClose is a DBA (doing business as) of First National Title &amp; Escrow. BetterClose provides online title and settlement fee estimates, request forms, and a portal for file information and documents. Available features and services depend on the transaction, location, and participating closing team.</p>
       <p>These website terms do not replace a signed engagement, escrow instruction, settlement agreement, title insurance policy, loan document, or other agreement governing your transaction.</p>
+    </PolicySection>
+    <PolicySection title="Free estimates, no obligation">
+      <p>Requesting a BetterClose estimate is free and carries no obligation to order title or settlement services. Getting an estimate does not authorize paid work.</p>
+      <p>If you decide to order title or settlement services, the scope of work and any applicable charges are addressed separately with your closing team and in the agreements governing your transaction.</p>
     </PolicySection>
     <PolicySection title="Estimates are not final closing figures">
       <p>Estimates depend on the information provided and the fees and assumptions available when they are generated. Final fees can change with the property, loan, title work, services required, and applicable government or third-party charges.</p>

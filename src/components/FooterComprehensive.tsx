@@ -169,7 +169,7 @@ export default function FooterComprehensive() {
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-sm text-gray-500">
-            © 2025 BetterClose, a division of First National Title & Escrow. All rights reserved.
+            © 2025 BetterClose, a DBA of First National Title & Escrow. All rights reserved.
           </div>
           <div className="flex items-center gap-4 text-xs text-gray-500">
             <span>BBB Accredited</span>
