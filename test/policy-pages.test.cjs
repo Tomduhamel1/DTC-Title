@@ -14,9 +14,10 @@ for (const [path, title] of [['privacy', 'Privacy Policy'], ['terms', 'Terms of 
     assert.match(html, /Draft for review — not an effective policy/);
     assert.match(html, /Owner and legal review are required before publication/);
     assert.match(html, /Before publishing this page/);
-    assert.match(html, /BetterClose is a DBA \(doing business as\) of First National Title &amp; Escrow/);
-    assert.match(html, /full legal entity name, including any suffix/);
-    assert.match(html, /Create and verify contact@betterclose.co and its forwarding to Steve/);
+    assert.match(html, /BetterClose is a DBA \(doing business as\) of First National Title &amp; Escrow LLC/);
+    assert.match(html, /legal entity name was checked against the Florida Division of Corporations record/);
+    assert.doesNotMatch(html, /Confirm the full legal entity name/);
+    assert.match(html, /Create and verify contact@betterclose.co and its owner-approved forwarding to Steve/);
     assert.match(html, /final publication date as the effective date/);
     assert.match(html, /This draft is not yet effective/);
     assert.deepEqual(page.metadata.robots, { index: false, follow: false });
@@ -34,7 +35,7 @@ test('footer Privacy and Terms links point to their own pages', () => {
   const html = h.render(React.createElement(h.load('src/components/FooterComprehensive.tsx').default));
   assert.match(html, /<a[^>]*href="\/privacy"[^>]*>Privacy Policy<\/a>/);
   assert.match(html, /<a[^>]*href="\/terms"[^>]*>Terms of Service<\/a>/);
-  assert.match(html, /BetterClose, a DBA of First National Title &amp; Escrow/);
+  assert.match(html, /BetterClose, a DBA of First National Title &amp; Escrow LLC/);
   assert.doesNotMatch(html, /a division of First National Title/);
 });
 

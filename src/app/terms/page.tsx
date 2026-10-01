@@ -11,14 +11,14 @@ export default function TermsPage() {
   return <PolicyPage title="Terms of Service"
     introduction="Guidelines for using BetterClose estimates, file services, and document sharing."
     reviewItems={[
-      'BetterClose is a DBA of First National Title & Escrow, as confirmed by the owner. Confirm the full legal entity name, including any suffix, and align these terms with the applicable closing and settlement agreements.',
+      'BetterClose is a DBA of First National Title & Escrow LLC. The owner confirmed the DBA relationship, and the legal entity name was checked against the Florida Division of Corporations record. Align these terms with the applicable closing and settlement agreements.',
       'Review whether an acceptance step is needed for account or order terms without adding one to free estimates. This draft does not add a click-to-accept requirement or record agreement on behalf of existing users.',
       'Have counsel confirm any required eligibility, jurisdiction, consumer-protection, and other provisions. No arbitration clause, governing-law choice, or liability cap has been invented.',
-      'Create and verify contact@betterclose.co and its forwarding to Steve before publishing it as the legal and privacy contact.',
+      'Create and verify contact@betterclose.co and its owner-approved forwarding to Steve before publishing it as the legal and privacy contact.',
       'Use the final publication date as the effective date, as approved by the owner. This draft is not yet effective; approve the final text before removing the draft notice or allowing search indexing.',
     ]}>
     <PolicySection title="What BetterClose provides">
-      <p>BetterClose is a DBA (doing business as) of First National Title &amp; Escrow. BetterClose provides online title and settlement fee estimates, request forms, and a portal for file information and documents. Available features and services depend on the transaction, location, and participating closing team.</p>
+      <p>BetterClose is a DBA (doing business as) of First National Title &amp; Escrow LLC. BetterClose provides online title and settlement fee estimates, request forms, and a portal for file information and documents. Available features and services depend on the transaction, location, and participating closing team.</p>
       <p>These website terms do not replace a signed engagement, escrow instruction, settlement agreement, title insurance policy, loan document, or other agreement governing your transaction.</p>
     </PolicySection>
     <PolicySection title="Free estimates, no obligation">
