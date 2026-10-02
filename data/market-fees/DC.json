@@ -1,0 +1,357 @@
+[
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://go.stewart.com/rs/067-YWO-436/images/DC%20Rate%20Manual_FULL%20FINAL%20eff%2002-26-2024.pdf?version=0",
+    "asOf": "Last updated 2023-11-17; effective 2024-02-26",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule.",
+      "ownersLeaseholdPolicy_liabilityTiered": "Up to $250,000 = $5.70/thousand; $250,001-$500,000 add $5.10/thousand; $500,001-$1,000,000 add $4.50/thousand; $1,000,001-$5,000,000 add $3.90/thousand; $5,000,001-$15,000,000 add $1.10/thousand; over $15,000,000 add $0.95/thousand. Minimum charge $300.00.",
+      "reissueOwnersLeaseholdPolicy": "Up to $250,000 = $3.42/thousand (tiered lower through higher brackets); minimum $300.00",
+      "mortgageePolicy_liabilityTiered": "Up to $250,000 = $4.50/thousand; $250,001-$500,000 add $3.90/thousand; $500,001-$1,000,000 add $3.30/thousand; $1,000,001-$5,000,000 add $2.75/thousand; $5,000,001-$15,000,000 add $0.85/thousand; over $15,000,000 add $0.75/thousand. Minimum charge $300.00.",
+      "refinanceMortgageePolicy": "Up to $50,000 = $2.70/thousand (tiered lower through higher brackets); minimum $300.00",
+      "altaHomeownersPolicy": "Up to $250,000 = $6.84/thousand (120% of owner's rate structure)"
+    },
+    "itemizedFees": {
+      "cpl": {
+        "perLetter": "$50.00 for each ALTA Closing Protection Letter (single transaction), remitted in full to Stewart"
+      },
+      "other": [
+        {
+          "name": "Corrective endorsement",
+          "amount": "$50.00"
+        },
+        {
+          "name": "Secondary Market Short Form Residential Loan Policy (1-4 family)",
+          "amount": "$350 (up to $100k) to $1,500 (over $1.25M-$1.5M), tiered"
+        },
+        {
+          "name": "Modification Guarantee",
+          "amount": "$150.00 flat, $25.00 per continuation/down-date"
+        },
+        {
+          "name": "STG Home Equity Loan Policy (HELP)",
+          "amount": "$45 (up to $100,000) / $65 (over $100,000-$250,000) / $125 (over $250,000-$500,000)"
+        },
+        {
+          "name": "Simultaneous-issue mortgagee policy",
+          "amount": "$100.00 flat (amount not in excess of owner's policy)"
+        }
+      ]
+    },
+    "bundlingNotes": "General Provisions and Definitions state explicitly: 'do not include charges for searches, examinations, abstracts, attorney's fees, escrow, or closing service performed and charged for by local attorneys, abstractors, and title companies' -- naming local attorneys directly, consistent with DC being an attorney-closing jurisdiction. The most granular, richly itemized premium-only manual found in this survey to date (14 pages, includes Article 9 Comprehensive Plus, CPLR, and HELP special products with full fee tables).",
+    "transactionContext": "Owner's, Leasehold, and Mortgagee policy premium schedules, statewide (DC has no metro/county subdivisions), plus reissue, refinance, simultaneous-issue, assignment/extension/substitution-mortgage, and CPL charges. No purchase/refinance settlement-service-fee breakdown."
+  },
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/district-of-columbia/bulletins/WFG%20DC%20Rates%20(10-01-2014).pdf",
+    "asOf": "Effective 2014-10-01 (endorsement schedule internally dated 2010-12-28)",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule.",
+      "ownersLeaseholdPolicy_standardCoverage": "Up to $250,000 = $5.50/thousand; $250,001-$500,000 add $5.00/thousand; $500,001-$1,000,000 add $4.50/thousand; $1,000,001-$5,000,000 add $3.50/thousand; $5,000,001-$15,000,000 add $2.50/thousand; over $15,000,000 add $1.75/thousand. Minimum $210.00 (Enhanced Coverage minimum $252.00, rates ~20% higher).",
+      "mortgageePolicy_standardCoverage": "Up to $250,000 = $4.20/thousand; $250,001-$500,000 add $3.65/thousand; $500,001-$1,000,000 add $3.10/thousand; $1,000,001-$5,000,000 add $2.55/thousand; $5,000,001-$15,000,000 add $2.00/thousand; over $15,000,000 add $1.45/thousand. Minimum $210.00.",
+      "reissueRate": "60% of original owner's/leasehold rate; mortgagee reissue $2.50/thousand up to $500,000 tiered lower thereafter",
+      "lendersSpecialCentralizedRefinanceRates": "Volume-tiered flat premiums for 100+ or 200+ monthly-order lenders, e.g. $350 (up to $200,000 liability) ranging to $3,000-$3,600 (over $1.5M)"
+    },
+    "itemizedFees": {
+      "cpl": {
+        "perLetter": "$50.00 per Closing Protection Letter"
+      },
+      "other": [
+        {
+          "name": "Mortgage assignment endorsement (no update requested)",
+          "amount": "$50.00"
+        },
+        {
+          "name": "Simultaneous-issue mortgagee policy",
+          "amount": "$100.00 flat"
+        },
+        {
+          "name": "Non-Imputation endorsements (ALTA 15/15.1/15.2)",
+          "amount": "10% of premium, minimum $300.00"
+        },
+        {
+          "name": "Zoning endorsements (ALTA 3/3.1)",
+          "amount": "$0.50-$0.75/thousand, minimum $300.00"
+        }
+      ]
+    },
+    "bundlingNotes": "General Provisions state the same exclusion language as Stewart's: charges 'do not include charges for searches, abstracts, attorney's fees, escrow or closing service performed and charged for by local attorneys, abstractors and title companies.' Independently confirms the identical $50.00 CPL fee found in Stewart's 2024 manual, a direct cross-underwriter corroboration despite a decade's gap between the two manuals' effective dates.",
+    "transactionContext": "Owner's, Leasehold, and Mortgagee policy premium schedules (Standard and Enhanced Coverage), statewide, plus reissue, simultaneous-issue, assignment, extension, substitution-mortgage, volume-lender special rates, and full endorsement fee table. No purchase/refinance settlement-service-fee breakdown."
+  },
+  {
+    "provider": "Federal Title & Escrow Company",
+    "sourceUrl": "https://www.federaltitle.com/homebuying/fees/",
+    "asOf": "Retrieved 2026-07-22",
+    "settlementFee": {
+      "buyerPurchase": "$1,275.00 all-inclusive settlement fee (DC), constant regardless of purchase price",
+      "sellerSale": "$550.00 all-inclusive settlement fee (DC), constant regardless of purchase price",
+      "refinance": "$975.00 all-inclusive settlement fee (DC/Montgomery County MD/Prince George's County MD/Arlington VA/Fairfax VA/Alexandria VA), constant regardless of loan amount"
+    },
+    "itemizedFees": {
+      "docPrep": {
+        "powerOfAttorney": "$150.00",
+        "simultaneous2ndTrust": "$300.00 (purchase/refinance)",
+        "deedPreparationSale": "$250.00",
+        "deedTransferPreparationRefinance": "$350.00",
+        "titleAmendmentNoSale": "$500.00"
+      },
+      "notarySigning": {
+        "buyerRemoteMobile": "$200.00",
+        "borrowerRemoteMobileRefinance": "$200.00"
+      },
+      "other": [
+        {
+          "name": "Expedited closing (within 10 business days), buyer",
+          "amount": "$350.00"
+        },
+        {
+          "name": "Mortgage payoff/release procurement, seller",
+          "amount": "$185.00 per lien"
+        },
+        {
+          "name": "Title clearing services, seller",
+          "amount": "$200.00 per hour"
+        },
+        {
+          "name": "FIRPTA withholding, seller",
+          "amount": "$750.00"
+        },
+        {
+          "name": "MD non-resident withholding, seller",
+          "amount": "$125.00"
+        },
+        {
+          "name": "Per-payoff fee beyond first mortgage, refinance",
+          "amount": "$75.00 each"
+        }
+      ]
+    },
+    "bundlingNotes": "Buyer's $1,275 settlement fee is stated to include title exam, electronic storage/access, courier costs, and tax certificate. Seller's $550 fee includes notary fees, courier/wire costs, and e-document storage/delivery. Refinance's $975 fee includes 'Title Examination/Abstractor,' notary fees, and 'Settlement/Closing fee.' All three fees are explicitly flat/fixed regardless of transaction value, with title insurance premiums and transfer/recordation taxes billed separately. Notably the buyer fee ($1,275) is more than double the seller fee ($550) for the same company -- the largest buyer/seller settlement-fee asymmetry found in this survey to date, reflecting DC's heavier buyer-side title-exam and policy-issuance workload versus the seller's comparatively light payoff-coordination role.",
+    "transactionContext": "Residential purchase (buyer), sale (seller), and refinance (borrower) settlement fees for Washington DC (refinance figure also covers parts of MD/VA suburbs); independent title/escrow company, richest itemized DC-area source found."
+  },
+  {
+    "provider": "Avenue Title Group",
+    "sourceUrl": "https://avenuesettlements.com/settlement-resources/settlement-fees/",
+    "asOf": "Retrieved 2026-07-22",
+    "settlementFee": {
+      "buyerOrSeller": "$550.00-$650.00 each (buyer and seller each pay their own settlement fee)"
+    },
+    "itemizedFees": {
+      "searchExam": {
+        "abstractTitleSearch": "$150.00-$300.00"
+      },
+      "wire": {
+        "wireFee": "$35.00"
+      },
+      "eRecording": {
+        "recordingService": "$20.00-$25.00"
+      },
+      "other": [
+        {
+          "name": "Title clearance",
+          "amount": "$110.00-$210.00 per hour"
+        },
+        {
+          "name": "Insured Closing Letter (CPL)",
+          "amount": "$30.00-$50.00"
+        },
+        {
+          "name": "Document archiving",
+          "amount": "$50.00"
+        },
+        {
+          "name": "Payoff release tracking",
+          "amount": "$35.00 per payoff"
+        },
+        {
+          "name": "Tax certificate",
+          "amount": "$15.00 per parcel"
+        },
+        {
+          "name": "Location plat/survey",
+          "amount": "$225.00-$450.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Multi-jurisdiction fee page explicitly covering DC, Maryland, Virginia, Pennsylvania, and Florida with a shared national-style fee schedule plus jurisdiction-specific recording-fee tables (DC deed recording $31.50, deed of trust $156.50, transfer tax 1.1%/1.45% each party by price tier). Presented as ranges rather than fixed flat fees, unlike Federal Title's fixed-dollar model -- reflecting a different pricing philosophy (per-transaction complexity-based ranges vs. flat-regardless-of-price).",
+    "transactionContext": "Buyer and seller settlement fees, DC/MD/VA/PA/FL multi-jurisdiction independent title/settlement company; no separate purchase-vs-refinance breakdown published."
+  },
+  {
+    "provider": "Stewart Title and Escrow, Inc. — Stewart Rate Calculator (stewartratecalculator.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true",
+    "endpointOrParams": "Genuine JSON REST API at /api/SRC/*, driven via plain HTTP GET/POST (no browser/JS execution) -- the recipe fully documented in CALCULATORS.md's 2026-08-14 entry, applied unmodified. Sequence: GET /api/SRC/transactiontypes?statecode=DC -> GET /api/SRC/propertysearch?value=Washington,%20DC (resolves District of Columbia County) -> GET /api/SRC/statesettings?statecode=DC -> GET /api/SRC/providers?statecode=DC&countycode=<FIPS>&zipcode=<ZIP>&transactiontype=SALE -> GET /api/SRC/ernstlookup -> two POST /api/SRC/quote calls (QuoteType=3 for itemized settlement fees, QuoteType=2 for recording/transfer-tax), each form-urlencoded with a hand-built QuoteRequestRoot JSON. No personal-data fields required or entered.",
+    "retrievalDate": "2026-08-18",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, District of Columbia County (Washington), residential resale, Sale/Purchase with Mortgage transaction.",
+    "methodology": "Same nationwide-reusable Stewart /api/SRC/quote recipe already applied to WV/NH/ME/RI/DE/SD (see CALCULATORS.md's 2026-08-14 entry for the full technical writeup); zero recipe modification needed.",
+    "settlementFee": {
+      "note": "Title Closing Fee $700.00 total (split $350/$350 buyer/seller), plus a rich 10-line itemization covering abstract, commitment, courier, deed prep, doc prep, examination, release procurement, remote notary, e-recording/Zoccam, and a tax certificate -- see itemizedFees.other for the full breakdown."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "Title Abstract Charge (buyer)",
+          "amount": "$300.00"
+        },
+        {
+          "name": "Title Closing Fee (split $350 buyer / $350 seller)",
+          "amount": "$700.00"
+        },
+        {
+          "name": "Title Commitment Fee (buyer)",
+          "amount": "$269.00"
+        },
+        {
+          "name": "Title Courier Fee (buyer)",
+          "amount": "$35.00"
+        },
+        {
+          "name": "Title Deed Preparation Fee (seller)",
+          "amount": "$195.00"
+        },
+        {
+          "name": "Title Document Preparation Fee (split $200 buyer / $450 seller)",
+          "amount": "$650.00"
+        },
+        {
+          "name": "Title Examination Fee (buyer)",
+          "amount": "$450.00"
+        },
+        {
+          "name": "Title Release Procurement Fee (seller)",
+          "amount": "$200.00"
+        },
+        {
+          "name": "Title Remote Notary Fee (split $150/$150)",
+          "amount": "$300.00"
+        },
+        {
+          "name": "Title Simplefile/Recording/Certified ID/Zoccam Fee (buyer)",
+          "amount": "$128.00"
+        },
+        {
+          "name": "Title Tax Certificate (buyer)",
+          "amount": "$30.76"
+        },
+        {
+          "name": "Owner's Policy (Basic) standalone premium, RateManual (QuoteType=3)",
+          "amount": "$2700.00"
+        },
+        {
+          "name": "Lender's Policy (Basic) standalone premium, RateManual (QuoteType=3)",
+          "amount": "$1710.00"
+        },
+        {
+          "name": "Lender's Policy (Basic) simultaneous-issue premium, RateManual (QuoteType=2)",
+          "amount": "$100.00"
+        },
+        {
+          "name": "Recording -- Mortgage fee",
+          "amount": "$155"
+        },
+        {
+          "name": "Recording -- Deed fee",
+          "amount": "$30"
+        },
+        {
+          "name": "Recording -- Release fee",
+          "amount": "$30"
+        },
+        {
+          "name": "Deed/transfer tax (state+county combined, per CFPB2015.CFPBTax breakdown)",
+          "amount": "$14,500.00 combined (DC Deed Tax $7,250.00 seller-paid + Deed Recordation Tax $7,250.00 buyer-paid, per CFPB2015.CFPBTax breakdown -- 2.9% combined on $500,000, the 2nd-highest combined transfer-tax figure recorded in this entire survey after DE's 4.0%)"
+        }
+      ]
+    },
+    "bundlingNotes": "Settlement office/provider used: Stewart Title and Escrow, Inc. (Washington, DC) -- the specific settlement office returned by Stewart's own providers lookup for District of Columbia County; itemization is provider-specific, not underwriter-wide, consistent with the pattern already documented for this recipe elsewhere in this project. The richest single-office itemization (10 line items) found for any of this session's 5 new states -- DC's mandatory-attorney/title-company closing custom evidently doesn't suppress fee itemization the way some other jurisdictions' does.",
+    "transactionContext": "Sale/Purchase with Mortgage, Basic Owner's + Lender's Policy, District of Columbia County/Washington DC."
+  },
+  {
+    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-18",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, District of Columbia County (Washington), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Same publicly-reachable, no-auth JSON API already solved and documented in CALCULATORS.md's 2026-08-08 entry -- confirmed via GET /api/rates/State/GetCalculationEnabledStates that this state is isCalculationEnabled:true, then POST directly with the nested Properties/Loans request shape. No personal-data field exists anywhere in this request shape.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$3263.00",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's sellernet/seller-side-only design, same behavior already documented for every other state harvested via this tool)",
+      "other": [],
+      "note": "Premium-only result -- this state is not one of the 7 (WA/CA/TX/OR/AZ/NV/CO) with configured HUD-fee line items in WFG's own fee-description table."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "Property location for this request: Washington, DC (District of Columbia County).",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, District of Columbia County, DC."
+  },
+  {
+    "provider": "Westcor Land Title Insurance Company — unified rate/quote tool (ratequote.wltic.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratequote.wltic.com/Quote?k=Westcor-All",
+    "calculatorUrl": "https://ratequote.wltic.com/Quote?k=Westcor-All",
+    "endpointOrParams": "ASP.NET WebForms cascading-postback flow driven via plain HTTP GET/POST (no browser/JS execution): GET the form to capture __VIEWSTATE/__VIEWSTATEGENERATOR/__EVENTVALIDATION -> POST __EVENTTARGET=ddlState (State=DC) -> POST __EVENTTARGET=ddlCounties (County=11001/District Of Columbia, the tool's only DC county option) -> POST __EVENTTARGET=ddlCity (City=Washington) -> POST btnGetQuestions=Continue (reveals a per-state policy/recording-question panel) -> POST btnGetQuote=Get Quote, answering every revealed Yes/No question with the tool's own pre-checked default (never a fabricated answer). No name/email/phone field exists anywhere in this flow.",
+    "retrievalDate": "2026-08-27",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, District of Columbia County (Washington), Purchase transaction type, Simultaneous (Owner+Lender) policy, Fee Type = All, Quick Quote detail level.",
+    "methodology": "New nationwide calculator recipe, first applied here. Discovered via a from-scratch fetch of Westcor's previously connection-blocked 'all 50 states' rate-quote tool (ratequote.wltic.com/Quote?k=Westcor-All), which resolved cleanly this session. The tool renders a standard ASP.NET WebForms cascading-dropdown quote form (State -> County -> City) followed by a dynamically-rendered state-specific Yes/No question panel before the final quote; every question was left at its own pre-selected default per this project's standing convention. This is the first calculator successfully harvested for DC -- FNF's DC flow has completed without error but never produced a result across multiple prior sessions (see this file's 2026-08-18/2026-08-19 entries), so Westcor is DC's 3rd distinct calculator-basis provider, clearing the 3-provider threshold.",
+    "settlementFee": {
+      "note": "The tool itemizes a 'Closing Protection Letter' fee ($50.00) under a SETTLEMENT FEES header but does not itemize a separate settlement/closing-agent fee -- consistent with this being an underwriter's own rate tool rather than a specific settlement office's net sheet."
+    },
+    "itemizedFees": {
+      "cpl": "$50.00 (Closing Protection Letter)",
+      "other": [
+        {
+          "name": "Simultaneous Owner Premium",
+          "amount": "$2,800.00"
+        },
+        {
+          "name": "Simultaneous Lender Premium",
+          "amount": "$150.00"
+        },
+        {
+          "name": "CFPB 1101: Title Services And Lender's Title Insurance",
+          "amount": "$3,000.00"
+        },
+        {
+          "name": "CFPB 1103: Owner's Title Insurance (Optional)",
+          "amount": "$1,160.00"
+        },
+        {
+          "name": "CFPB 1104: Lender's Title Insurance",
+          "amount": "$1,790.00"
+        },
+        {
+          "name": "Title Insurance Premium Adjustment",
+          "amount": "($1,640.00)"
+        },
+        {
+          "name": "Deed Recording Fee - Borrower (2 pages)",
+          "amount": "$30.00"
+        },
+        {
+          "name": "Mortgage Recording Fee - Borrower (25 pages)",
+          "amount": "$155.00"
+        },
+        {
+          "name": "Deed State Tax/Stamps - Borrower",
+          "amount": "$7,250.00"
+        },
+        {
+          "name": "Deed State Tax/Stamps - Seller",
+          "amount": "$7,250.00"
+        },
+        {
+          "name": "Mortgage State Tax/Stamps - Borrower",
+          "amount": "$5,800.00"
+        },
+        {
+          "name": "Total Recording Fees (recording + DC deed/recordation tax combined)",
+          "amount": "$20,485.00"
+        }
+      ]
+    },
+    "bundlingNotes": "ESTIMATED TOTALS row: Simultaneous Owner $23,335.00 / Simultaneous Lender $150.00. The $7,250+$7,250+$5,800 = $20,335.00 of the recording-fee total is DC's deed and mortgage recordation tax (2.9% combined on the deed, 1.45% on the mortgage), not a title/settlement service fee -- flagged here rather than folded silently into 'recording fees' so it isn't mistaken for a service charge; this matches the 2.9% combined transfer-tax rate already corroborated by this file's Stewart-calculator entry above.",
+    "transactionContext": "Purchase with simultaneous Owner + Lender policy, District of Columbia County/Washington DC, Fee Type = All (Title + Settlement + Recording)."
+  }
+]

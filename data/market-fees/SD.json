@@ -1,0 +1,402 @@
+[
+  {
+    "provider": "Stewart Title Guaranty Company (statewide, all agents/attorneys issuing Stewart policies)",
+    "sourceUrl": "http://go.stewart.com/rs/067-YWO-436/images/South%20Dakota%20Risk%20Rate%20Manual_FINAL%20eff%2010-2-2023.pdf",
+    "asOf": "Last updated 2023-08-16; effective 2023-10-02",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/escrow fee schedule. This 38-page 'Manual of Charges and Forms' is two-tier by county group -- a distinctive SD structure not seen in most other states -- with separate rate tables for (a) Minnehaha, Lincoln & Yankton counties (the Sioux Falls/Yankton metro corridor) and (b) all other SD counties.",
+      "ownersLeaseholdRate_metro": "Minimum $100. Up to $50,000: $3.50/thousand; $50,001-$100,000: +$3.00/thousand; $100,001-$500,000: +$2.50/thousand; $500,001-$5,000,000: +$2.00/thousand; $5,000,001+: +$1.95/thousand.",
+      "ownersLeaseholdRate_restOfState": "Minimum $100. Up to $50,000: $3.50/thousand; $50,001-$100,000: +$3.00/thousand; $100,001-$500,000: +$2.00/thousand; $500,001-$1,000,000: +$1.75/thousand; $1,000,001+: +$1.25/thousand.",
+      "mortgagePolicyRate_metro": "Minimum $100. Up to $50,000: $2.50/thousand; $50,001-$100,000: +$2.25/thousand; $100,001-$500,000: +$2.00/thousand; $500,001-$5,000,000: +$1.75/thousand; $5,000,001+: +$1.70/thousand.",
+      "mortgagePolicyRate_restOfState": "Minimum $100. Up to $50,000: $2.50/thousand; $50,001-$100,000: +$2.00/thousand; $100,001-$500,000: +$1.75/thousand; $500,001-$1,000,000: +$1.50/thousand; $1,000,001+: +$1.00/thousand.",
+      "simultaneousIssueSurcharge": "Owner's rate plus $75 for the mortgage policy (Minnehaha/Lincoln/Yankton counties) or plus $50 (all other counties), provided the mortgage policy does not exceed the owner's policy amount.",
+      "reissueRate": "75% of the rate for original insurance, minimum $100, up to the face amount of the prior policy.",
+      "centralizedProcessingLoanRefinanceRate_CPLR": "Tiered flat fee for ALTA Short Form Residential Loan Policy via centralized/electronic processing: $350 up to $250,000; $460 to $500,000; $700 to $750,000; $925 to $1,000,000; $1,098 to $1,250,000; $1,290 to $1,500,000; $1,500 to $2,000,000; $1,700 to $2,500,000; up to $2,700 at $4,000,001-$5,000,000."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "Secondary Market Short Form Residential Loan Policy (One-to-Four Family)",
+          "amount": "$350 up to $250,000; $460 to $500,000; $700 to $750,000; $925 to $1,000,000; up to $1,290 at $1,250,001-$1,500,000"
+        },
+        {
+          "name": "Junior (Second Mortgage) Policy",
+          "amount": "$70 flat up to $10,000, plus $1.75/thousand thereafter"
+        },
+        {
+          "name": "ALTA Residential Limited Coverage Junior Loan Policy",
+          "amount": "$2.00/thousand, minimum $35"
+        },
+        {
+          "name": "Stewart Master Residential (Home Equity) Loan Policy",
+          "amount": "$25 up to $25,000; $65 to $250,000; $125 to $500,000"
+        },
+        {
+          "name": "Limited Coverage STG Home Equity Loan Policy (HELP)",
+          "amount": "$45 up to $100,000; $65 to $250,000; $125 to $500,000"
+        },
+        {
+          "name": "ALTA Residential Limited Coverage Mortgage Modification Policy",
+          "amount": "$150 flat"
+        },
+        {
+          "name": "GOLD Comprehensive Protection Owner's/Loan Policy surcharge",
+          "amount": "10% of basic charge (owner's); $50 flat surcharge (loan)"
+        },
+        {
+          "name": "ALTA Homeowner's Policy surcharge",
+          "amount": "10% of basic schedule of charges"
+        },
+        {
+          "name": "Article 9 Comprehensive Plus UCC Policy",
+          "amount": "$500 minimum up to $100,000, then $3.85/thousand declining to $0.50/thousand above $50,000,000 (excludes UCC search/prep/filing fees)"
+        },
+        {
+          "name": "Home Equity Policy (HEP)",
+          "amount": "$2.00/thousand"
+        },
+        {
+          "name": "Common ALTA endorsements",
+          "amount": "ALTA 8.1/8.2 Environmental Protection Lien $50; ALTA 9 Restrictions/Encroachments/Minerals $25; ALTA 17.2 Utility Access $100; SD Utilities Available Endorsement 1 $500; ALTA 27 Usury $100; ALTA 42 Commercial Lender Group $100"
+        },
+        {
+          "name": "Extended coverage policy (removal of standard exceptions)",
+          "amount": "Up to $0.35/thousand per exception removed"
+        },
+        {
+          "name": "Commercial charges (policies aggregating $20,000,000+)",
+          "amount": "Negotiated, but not less than $0.35/thousand"
+        }
+      ]
+    },
+    "bundlingNotes": "No settlement/escrow/closing-service charges appear anywhere in this manual -- it is exclusively a title insurance premium schedule (owner's, loan, leasehold, UCC/Article 9, guarantees, and a full ALTA/CLTA/STG endorsement price list). The Minnehaha/Lincoln/Yankton vs. rest-of-state two-tier structure is the manual's most distinctive feature and tracks South Dakota's actual metro geography (Minnehaha = Sioux Falls, Yankton = Yankton). No CPL (Closing Protection Letter) fee is itemized anywhere in the document.",
+    "transactionContext": "Owner's/leasehold and mortgage (loan) policy premium schedules, statewide with a 2-tier county-group rate table, plus reissue, simultaneous-issue, junior-loan, home-equity, UCC/Article-9, and centralized/electronic refinance (CPLR) products. No settlement/escrow/closing-service fee breakdown of any kind."
+  },
+  {
+    "provider": "WFG National Title Insurance Company (statewide, all agents issuing WFG policies)",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/south-dakota/rate-manuals/revised%20WFG%20South%20Dakota%20Rate%20Manual%20-%20November%201%2C%202022.pdf",
+    "asOf": "Effective 2022-11-01",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/escrow fee schedule. The manual's own Introduction states explicitly: 'The rates shown are the all-inclusive title insurance fees and charges and includes both the risk portion and the service or work portion, but does NOT include charges for title search, surveys, escrow, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant.'",
+      "standardCoverageRate": "Minimum $100. Owner's/Leasehold: up to $50,000 $3.50/thousand, $50,001-$100,000 +$3.00, $100,001-$500,000 +$2.00, $500,001-$1,000,000 +$1.75, over $1,000,000 +$1.25. Acquisition/Finance Loan policies: same tiers at $2.50/$2.00/$1.75/$1.50/$1.00 per thousand respectively -- identical to Stewart's 'rest of state' tier, no metro/county split for WFG.",
+      "expandedExtendedCoverageRate": "$160.00 flat fee up to $40,000; $4.00/thousand from $40,001-$1,000,000; $2.75/thousand above $1,000,000. Minimum $160.",
+      "simultaneousIssueSurcharge": "$75.00 flat per loan policy when issued with an owner's policy (statewide, no county split, matching Stewart's non-metro $75... actually matches Stewart's metro-tier $75, not the $50 non-metro figure).",
+      "reissueRate": "60% of the Section 3 rate table, up to the amount of the prior policy.",
+      "constructionLoanPolicy": "$1.50/thousand, minimum $100.00."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "Lender's Special Rate 1 (min. 100 orders, refinance only)",
+          "amount": "$350 up to $100,000, rising to $3,600 at $1,800,000-$2,000,000"
+        },
+        {
+          "name": "Lender's Special Rate 4 (min. 500 orders, refinance only)",
+          "amount": "$275 up to $250,000, rising to $2,200 at $4,000,001-$5,000,000"
+        },
+        {
+          "name": "ALTA Residential Limited Coverage Junior Loan Policy",
+          "amount": "$112.50 up to $75,000; $150.00 to $100,000; $187.50 to $125,000; $225.00 to $250,000"
+        },
+        {
+          "name": "Mortgage Protection Guarantee (MPG)",
+          "amount": "$125 up to $1,000,000; $250 to $1,500,000; $350 to $2,000,000"
+        },
+        {
+          "name": "Residential Limited Coverage Mortgage Modification Policy (MMP)",
+          "amount": "$125 up to $1,000,000; $250 to $1,500,000; $350 to $2,000,000"
+        },
+        {
+          "name": "Master Home Equity / HE2 certificate fee",
+          "amount": "$45 up to $250,000; $75 to $500,000; $250 to $750,000; $300 to $1,000,000"
+        },
+        {
+          "name": "Common ALTA endorsements",
+          "amount": "ALTA 8.1 Environmental Protection Lien (lender) $100; ALTA 17.2 Utility Access $100; ALTA 11 Mortgage Modification $150; ALTA 46 Option (owner) $500; ALTA 43 Anti-Taint (lender) $100"
+        }
+      ]
+    },
+    "bundlingNotes": "WFG's manual is explicit and unusually direct (compared to most other states' WFG manuals reviewed in this survey) that its premium is 'all-inclusive' of only the risk and service/work portions of the TITLE premium itself, and separately and explicitly excludes title search, survey, escrow, closing, and settlement services, and recording fees -- confirming these are priced and billed separately by the closing/settlement provider, not disclosed here. No CPL fee is itemized anywhere in this manual (unlike several other states' WFG manuals reviewed in this survey, which do list a flat CPL charge).",
+    "transactionContext": "Owner's, leasehold, acquisition-loan, and finance(refinance)-loan policy premium schedules, statewide (no metro/county rate split, unlike Stewart's SD manual). Also includes bulk-lender 'Special Rate' refinance tiers, junior-loan, MPG/MMP limited-coverage products, and home-equity master-policy certificate fees. No settlement/closing-service fee breakdown."
+  },
+  {
+    "provider": "Pennington Title Company (independent, Rapid City -- Pennington County / Black Hills)",
+    "sourceUrl": "https://penntitle.com/wp-content/uploads/2024/07/Pennington-Title-Service-Fees-06232023.pdf",
+    "asOf": "As of 2023-06-23 (revised)",
+    "settlementFee": {
+      "note": "Genuine, itemized settlement/service fee schedule -- not a title premium manual. Explicitly stated that listed fees 'include applicable sales tax.' One of the richer, more granular settlement-fee documents found across this entire multi-state survey.",
+      "residentialWithMortgageLoan_CDFRequired": "$639.00",
+      "residentialCashPurchase": "$532.50",
+      "lotOnlyCashPurchase": "$426.00",
+      "commercial": "$750.00 + tax (minimum), call for quote",
+      "forSaleByOwner": "Buyer $426.00 / Seller $159.75",
+      "helocIfPenningtonSignsClosingDocs": "$319.50",
+      "helocIfLenderSignsAllClosingDocs": "recording fee(s) only",
+      "constructionLoanDisbursementFee": "$532.50 (minimum)",
+      "courtesyClosing": "$185.00",
+      "escrowHoldback": "$185.00 (minimum)",
+      "mobileHomeOnlyCashPurchase": "$426.00 + Mobile Home Service Fee $159.75",
+      "mobileHomeOnLandCashPurchase": "$426.00 + Mobile Home Service Fee $159.75",
+      "mobileHomeOnlyLender": "$639.00 + Mobile Home Service Fee $159.75",
+      "mobileHomeOnLandLender": "$639.00 + Mobile Home Service Fee $159.75"
+    },
+    "itemizedFees": {
+      "docPrep": "$80.00 (Homestead Waiver, POA, Satisfaction of Mtg, Subordination Agreements, Affidavits); required-but-unrecorded Schedule B affidavits are separately noted",
+      "processing": null,
+      "courier": "Overnight Delivery Fee $35.00",
+      "wire": "Wire Service Fee (incoming and/or outgoing) $35.00",
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Residential Record Title Search $159.75",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        {
+          "name": "Recording fees",
+          "amount": "$30.00 flat fee per document (deeds, mortgages, satisfactions, releases, POA, etc.)"
+        },
+        {
+          "name": "Endorsements -- residential",
+          "amount": "$25.00 - $50.00"
+        },
+        {
+          "name": "Endorsements -- commercial",
+          "amount": "varies, call for quote"
+        }
+      ]
+    },
+    "bundlingNotes": "The core 'Settlement Service Fee' line items ($639 financed purchase / $532.50 cash purchase / $426 lot-only) appear to be bundled, all-in package prices for the closing/settlement service itself (sales tax included per the document header), separate from the itemized add-on charges below the main table (doc prep, wire, recording, endorsements, overnight delivery) and from the standalone Residential Record Title Search line ($159.75) -- it is not fully clear from the document alone whether the $159.75 search fee is already embedded in the main settlement fee tiers or is billed as a genuinely separate line item in every transaction; presented here as-is per the source. No refinance-specific settlement fee tier is broken out (refinance appears to fall under one of the standard purchase/HELOC categories or is quoted separately).",
+    "transactionContext": "Rapid City / Pennington County (Black Hills metro). Covers residential purchase (financed and cash), lot-only, commercial, FSBO, HELOC, construction-disbursement, courtesy-closing, escrow-holdback, and mobile-home transaction types."
+  },
+  {
+    "provider": "Titles of Dakota (independent, Aberdeen HQ -- serving Brown, Brule, Charles Mix, Dewey, Hyde, Jackson, Jerauld, Jones, Lyman, Mellette, Stanley, Sully, Todd, Tripp, Walworth & Ziebach Counties)",
+    "sourceUrl": "https://www.titlesofdakota.com/wp-content/uploads/Closing-Fees-20220701.pdf",
+    "asOf": "Closing fees effective 2022-07-01; Search/Exam fees effective 2022-04-01; Title Policy premium rates effective 2026-01-01",
+    "settlementFee": {
+      "note": "Genuine, itemized closing/settlement fee schedule PLUS a separate search/exam fee schedule AND the company's own filed title-insurance premium rate table -- the only source found this session with all three fee layers published together, giving a rare complete all-in picture for a rural/multi-county SD market. Three separate source PDFs, all fetched and verified this session: Closing-Fees-20220701.pdf, Search-and-Exam-Fees-20220401-2.pdf, and Title-Policy-Rates-2026.pdf (all at titlesofdakota.com/wp-content/uploads/).",
+      "residentialSaleWithFinancing": "$450 + tax",
+      "residentialCashSale": "$350 + tax",
+      "refinance": "$350 + tax",
+      "constructionLoan_1stClosingOrLotPurchase": "$450 + tax",
+      "permanentFinancing": "$350 + tax",
+      "nonResidentialOver500k_farmlandCommercial": "call for quote",
+      "titleInsurancePremium_ownersRate_sample": "$200 flat minimum up to $50,000 of coverage; $400.00 at $100,000; $700.00 at $250,000; $1,200.00 at $500,000; $2,200.00 at $1,000,000 (full $10,000-$1,000,000 table on file; contact for over $1,000,000)",
+      "titleInsurancePremium_lendersRate_sample": "$150.00-$200.00 flat up to $50,000-$70,000; $275.00 at $100,000; $575.00 at $250,000; $1,075.00 at $500,000; $1,825.00 at $1,000,000",
+      "titleInsurancePremium_lenderSimultaneousRate": "Flat $150.00 across the entire published table ($10,000 to $1,000,000) when the lender policy amount is lower than the owner's policy amount"
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": "Updates on all title orders: 1st update free; $50 + tax per parcel for each additional update",
+      "courier": null,
+      "wire": "Bundled into the closing fee -- 'no additional fees will be charged for downloading documents or wire service'",
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Tiered by price range: $1-$100,000 = $350 + tax; $100,001-$200,000 = $550 + tax; $200,001-$300,000 = $750 + tax; $300,001-$500,000 = $900 + tax; $500,001-$1,000,000 = $1,000 + tax; $1,000,001-$5,000,000 add $0.75/thousand + tax; over $5,000,000 add $0.50/thousand + tax. Minimum charge $250 + tax. Based on the higher of owner's/loan policy amount for simultaneous issue.",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        {
+          "name": "Additional parcels (search/exam)",
+          "amount": "$100 + tax per additional parcel"
+        },
+        {
+          "name": "Cancellation fee (search/exam)",
+          "amount": "up to the price of the search fee, plus tax"
+        },
+        {
+          "name": "Owners and Encumbrance (O&E) Report",
+          "amount": "$250 + tax ($100 + tax per additional parcel)"
+        },
+        {
+          "name": "Mortgage Foreclosure / TBD Report",
+          "amount": "$250 + tax ($100 + tax per additional parcel)"
+        },
+        {
+          "name": "Name Search",
+          "amount": "$50 per name + tax"
+        },
+        {
+          "name": "Tax Deed Search",
+          "amount": "$100 + tax ($50 + tax per additional parcel)"
+        },
+        {
+          "name": "New Construction Priority Inspection",
+          "amount": "$50 + tax"
+        },
+        {
+          "name": "Proforma",
+          "amount": "minimum $150 + tax"
+        },
+        {
+          "name": "Marked-Up Commitment",
+          "amount": "$50 + tax per request"
+        },
+        {
+          "name": "Rush Fee",
+          "amount": "$150 + tax ($25 + tax per additional parcel)"
+        },
+        {
+          "name": "Copies",
+          "amount": "$1 per page + tax"
+        },
+        {
+          "name": "Countersignature -- TOD Plant County search (no policy, TOD issues countersignature report)",
+          "amount": "search fee: 1st parcel free, $75/additional parcel (no tax); cancellation: minimum $250 + tax, plus $75/additional parcel"
+        },
+        {
+          "name": "Countersignature -- Other County search (TOD issues title policy)",
+          "amount": "title premium = normal underwriter-filed premium; multiple parcels: 1st free, up to $100 + tax/additional parcel; cancellation minimum $250 + tax, maximum full search fee + tax"
+        }
+      ]
+    },
+    "bundlingNotes": "Closing fees are stated as 'all inclusive -- no additional fees will be charged for downloading documents or wire service,' a notably more bundled/transparent structure than most SD sources. The search/exam fee is billed as a fully separate line item from both the closing fee and the title premium (a genuine three-part fee stack: closing fee + search/exam fee + title premium). Titles of Dakota also issues 'countersignature' reports when acting as the county title-plant holder for a transaction underwritten by another company -- distinct from its own direct-issue title premium business.",
+    "transactionContext": "Rural/small-town north-central and south-central South Dakota (Aberdeen area plus multiple county-seat branch offices: Chamberlain, Lake Andes, Selby, Fort Pierre, Kadoka, Wessington Springs, Murdo, Kennebec, White River, Winner). Covers residential purchase (financed/cash), refinance, and construction-loan/permanent-financing transaction types, plus the company's own filed owner's/lender's title insurance premium schedule."
+  },
+  {
+    "provider": "Black Hills Title, Inc. (independent, serving Lawrence, Meade, Butte & Harding Counties -- northern Black Hills incl. Spearfish, Sturgis, Belle Fourche, Buffalo)",
+    "sourceUrl": "https://blackhillstitle.com/wp-content/uploads/2025/12/NEW-SD-Title-Ins-rates-11_10_22-Revised-Dec-2024.pdf",
+    "asOf": "Effective 2022-11-10, revised December 2024",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/escrow fee schedule -- Black Hills Title's own filed owner's/lender's premium rate table (distinct from and priced differently than Stewart's, WFG's, or Titles of Dakota's tables), covering the four northern Black Hills counties for which the company is the countersigning agent (contact numbers for Lawrence, Meade, Butte, and Harding County offices are printed directly on the rate sheet).",
+      "ownersRate_sample": "$230 at $25,000 or less; $374 at $50,000; $604 at $100,000; $920 at $200,000; $1,610 at $500,000; $2,615 at $1,000,000; $6,635 at $3,000,000; $10,655 at $5,000,000; $19,255 at $10,000,000",
+      "lendersRate_sample": "$184 at $25,000 or less; $299 at $50,000; $483 at $100,000; $736 at $200,000; $1,288 at $500,000; $2,093 at $1,000,000; $5,313 at $3,000,000; $8,533 at $5,000,000; $15,433 at $10,000,000",
+      "lendersSimultaneousRate_sample": "$100 flat up to roughly $75,000-$100,000 of coverage, then rising gradually with policy amount -- $121 at $100,000; $184 at $200,000; $322 at $500,000; $524 at $1,000,000; $1,324 at $3,000,000; $2,124 at $5,000,000; $3,824 at $10,000,000"
+    },
+    "itemizedFees": {
+      "other": []
+    },
+    "bundlingNotes": "This is a bare owner's/lender's/lender's-simultaneous title insurance premium rate table with no escrow, closing, settlement, search/exam, or document-prep fees itemized anywhere on the document -- the four county-office phone numbers (Lawrence, Meade, Butte, Harding) are provided in lieu of a settlement-fee schedule ('please call us for any questions or specific quotes'). Rate steps are irregular/non-formulaic in places (e.g., $51,000 jumps from $379 to $380 owner's rate, a $1 step inconsistent with the surrounding $4-per-$1,000 pattern), suggesting the table may have accumulated small manual-entry adjustments across its 2022-2024 revision history.",
+    "transactionContext": "Northern Black Hills counties (Lawrence/Spearfish, Meade/Sturgis, Butte/Belle Fourche, Harding/Buffalo). Owner's, lender's, and lender's-simultaneous title insurance premium schedule only; no settlement/closing-service fee breakdown."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company \u2014 Stewart Rate Calculator (stewartratecalculator.com), via Stewart Title Company (Sioux Falls office)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true",
+    "endpointOrParams": "Genuine JSON REST API at /api/SRC/*, driven via plain HTTP GET/POST (no browser/JS execution), per the nationwide recipe documented in CALCULATORS.md. Sequence: GET /api/SRC/transactiontypes?statecode=SD -> GET /api/SRC/propertysearch?value=Sioux%20Falls,%20SD (resolves Minnehaha County) -> GET /api/SRC/providers?statecode=SD&countycode=<FIPS>&zipcode=<zip>&transactiontype=SALE (chosen provider: Stewart Title Company, ID 1880, Sioux Falls) -> GET /api/SRC/statesettings?statecode=SD -> GET /api/SRC/ernstlookup?statecode=SD&countycode=<FIPS> -> POST /api/SRC/quote twice (QuoteType=3, QuoteType=2). No personal-data fields required or entered.",
+    "retrievalDate": "2026-08-15",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Minnehaha County (Sioux Falls), residential resale, Sale/Purchase with Mortgage transaction.",
+    "methodology": "Same technique as the WV/NH/ME/RI/DE entries' Stewart Rate Calculator harvest (see CALCULATORS.md's 2026-08-14 master recipe for the fully-documented request/response shape); 6th consecutive state harvested cleanly with this recipe, zero modification.",
+    "settlementFee": {
+      "note": "Title Closing Fee $400.00 (100% buyer) plus a distinct Title Examination Fee $300.00 (100% buyer) and a small Title Certif I D fee $15.00 (100% seller). New finding: South Dakota applies its state sales tax to these two service fees -- $24.80 on the $400.00 Title Closing Fee and $18.60 on the $300.00 Title Examination Fee (both 6.2% of the base fee) -- the first instance of a state sales tax being applied to itemized title-service fees found anywhere in this survey."
+    },
+    "itemizedFees": {
+      "processing": "$400.00 (Title Closing Fee, buyer) + $24.80 SD sales tax (buyer)",
+      "searchExam": "$300.00 (Title Examination Fee, buyer) + $18.60 SD sales tax (buyer)",
+      "other": [
+        {
+          "name": "Title Certif I D (seller)",
+          "amount": "$15.00"
+        },
+        {
+          "name": "Owner's Policy premium, RateManual (both flows agreed)",
+          "amount": "$1,325.00"
+        },
+        {
+          "name": "Lender's Policy premium, simultaneous-flow (QuoteType=3)",
+          "amount": "$837.50"
+        },
+        {
+          "name": "Lender's Policy premium, stand-alone-flow (QuoteType=2)",
+          "amount": "$100.00"
+        },
+        {
+          "name": "Recording fee, Mortgage",
+          "amount": "$30.00"
+        },
+        {
+          "name": "Recording fee, Deed",
+          "amount": "$30.00"
+        },
+        {
+          "name": "Recording fee, Release",
+          "amount": "$30.00"
+        },
+        {
+          "name": "South Dakota deed/transfer tax, total on $500,000, 100% seller-paid per the tool's own CFPB2015 breakdown",
+          "amount": "$500.00"
+        }
+      ]
+    },
+    "bundlingNotes": "The richest single-office Stewart harvest of this session's batch by line-item count (3 distinct settlement-service fees plus sales tax on 2 of them). South Dakota's application of sales tax to title service fees is a genuinely new structural finding for this survey, worth flagging for any future SD published-schedule work as well.",
+    "transactionContext": "Sale/Purchase with Mortgage, Minnehaha County/Sioux Falls SD."
+  },
+  {
+    "provider": "WFG National Title Insurance Company \u2014 Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-18",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Minnehaha County (Sioux Falls), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Same publicly-reachable, no-auth JSON API already solved and documented in CALCULATORS.md's 2026-08-08 entry -- confirmed via GET /api/rates/State/GetCalculationEnabledStates that this state is isCalculationEnabled:true, then POST directly with the nested Properties/Loans request shape. No personal-data field exists anywhere in this request shape.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2000.00",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's sellernet/seller-side-only design, same behavior already documented for every other state harvested via this tool)",
+      "other": [],
+      "note": "Premium-only result -- this state is not one of the 7 (WA/CA/TX/OR/AZ/NV/CO) with configured HUD-fee line items in WFG's own fee-description table."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "Property location for this request: Sioux Falls, SD (Minnehaha County).",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Minnehaha County, SD."
+  },
+  {
+    "provider": "FNF-family underwriter (Chicago Title/Fidelity National Title/Commonwealth Land Title -- ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine; this tool's pre-selected default underwriter brand varies by request, and prior sessions confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=SD",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=SD (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-18",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Minnehaha County (Sioux Falls) (the standard-scenario county), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions, Concurrent Owner's+Loan rate eligibility answered Yes (the tool's own default first option).",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback), following this project's existing FNF recipe documented in CALCULATORS.md: GET the county-selection page, POST the county (own __EVENTTARGET), POST btnGeneralNext=Next, POST TranType$ddl=PropertyPurchase, POST AmountPurchase$txt=500000 then AmountLoan1$txt=400000 (each with its own __EVENTTARGET), auto-answer the revealed Concurrent-rate-eligibility question Yes, then POST btnFinish=Finish for the final Rate Summary. One correction to the prior recipe write-up worth flagging: the page also renders a hidden 'ctl00$btnDummy' submit button used only for Enter-key submission -- a naive first-submit-button-found selector picks this dummy button instead of the real 'Next'/'Finish' button and silently fails to advance the flow; always filter submit-button candidates for the actual button's own name substring ('Next'/'Finish') rather than taking the first match. No personal-data fields exist anywhere in this flow.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1562.50 (Owner's Policy Premium, concurrent-issue rate)",
+      "loanPolicyPremium": "$100.00 (Loan Policy Premium, concurrent-issue rate)",
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence."
+    },
+    "sectionTotals": "Grand Total (Owner's Policy Purchased): $1662.50.",
+    "bundlingNotes": "Harvested as part of this session's systematic FNF pass across every remaining below-threshold small/low-population state (ND/VT/WY/RI/DE/SD/AK), following the same technique already applied to the 2026-08-06 session's 8-state batch.",
+    "transactionContext": "Owner's + Loan Policy concurrent-issue premiums for a $500,000 residential purchase / $400,000 loan, Minnehaha County (Sioux Falls)."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company \u2014 second rate calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://oldrepublictitle.com/rate-calculator/?location=south-dakota",
+    "calculatorUrl": "https://oldrepublictitle.com/rate-calculator/?location=south-dakota",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (RateCalc.aspx?CallingApp=PUBLIC&Location=SD, redirects to a session-scoped (S(...)F(...))/RateCalc.aspx?...Location=40..., statewide, no county selector). GET the page with Referer https://oldrepublictitle.com/rate-calculator/?location=south-dakota (capture __VIEWSTATE/__EVENTVALIDATION), the RadPolicyCategory radio group defaults to PURCHASE/SALE (value 49, already checked) which reveals txtLiabilityAmt/txtCrLiabilityAmt directly -- must still explicitly include RadPolicyCategory=49 in the POST body (same AL-style gotcha noted for ND/WY), then POST __EVENTTARGET=btnCalculate with txtLiabilityAmt=500000, txtCrLiabilityAmt=400000. Same Referer-header-throughout fix documented for NH/WV and applied consistently across this project's Old Republic 2nd-tool richness pass; no personal data entered.",
+    "retrievalDate": "2026-08-21",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, statewide (no county selector in this tool), PURCHASE / SALE policy category.",
+    "methodology": "Direct HTTP GET/POST against the ASP.NET WebForms postback mechanism (Python requests.Session()), no browser/JS execution. No personal data entered. Richness pass applying this project's already-solved Old Republic 2nd-tool recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": {
+      "note": "This tool prices title insurance premiums only -- no settlement/closing/escrow service-fee line items are itemized (same structural limitation observed for this tool's other state entries elsewhere in this project)."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "LENDERS POLICY, insured amount $400,000.00 -- Lenders-Only standalone premium",
+          "amount": "$875.00"
+        },
+        {
+          "name": "LENDERS POLICY, Owners+Lenders combined (simultaneous) premium",
+          "amount": "$150.00"
+        },
+        {
+          "name": "OWNERS POLICY, insured amount $500,000.00, Owners+Lenders combined premium",
+          "amount": "$1,200.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, standalone-lenders-only",
+          "amount": "$875.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, Owners+Lenders combined",
+          "amount": "$1,350.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Owner's $1,200.00/Lender's $875.00 sit below this state's already-on-file FNF entry (Grand Total $1,662.50) -- genuine cross-underwriter market variation. Unlike this state's existing Stewart entry, this tool's output does not apply SD sales tax to title fees (premium-only figures, no tax line item present).",
+    "transactionContext": "Purchase/Sale simultaneous Owner's + Lender's policy, statewide South Dakota, purchase with financing."
+  }
+]

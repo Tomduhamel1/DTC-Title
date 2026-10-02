@@ -1,0 +1,268 @@
+[
+  {
+    "provider": "First American Title Insurance Company",
+    "sourceUrl": "https://docs.nv.gov/doi/title_rates/documents/EscrowRateManual000251.pdf",
+    "asOf": "Effective September 20, 2025",
+    "settlementFee": "Sale/purchase Basic Escrow Fee (Area A: Clark, Lincoln, Nye Counties): $760 up to $100,000, scaling to $1,510 + $6.25/$10,000 above $600,000. Area B (all other counties): $880 up to $100,000, scaling to $1,928 + $8/$10,000 above $1,000,000. Refinance/loan-only escrow: $375 (residential), $500 (commercial). Resale/refinance one-time-transaction fee (Basic Escrow Services): $400.",
+    "itemizedFees": {
+      "docPrep": "$50/document beyond the first included document; note/deed of trust packages $100-$400 depending on package",
+      "processing": null,
+      "courier": "$20 per overnight delivery beyond the included 2 deliveries (Basic Escrow Services)",
+      "wire": "$25 per wire beyond the included 2 wires (Basic Escrow Services)",
+      "edoc": "included in Basic Escrow Services (electronic document download and printing)",
+      "eRecording": null,
+      "notarySigning": "Included in Basic Escrow Services when signing occurs in-office during business hours; otherwise actual charge",
+      "searchExam": null,
+      "cpl": "$25 (Title Insurance Rate Schedule, Section B.5(c))",
+      "binder": "10% of Base Rate A additional, for a binder to insure resale",
+      "other": [
+        "Short Sale add-on: $650",
+        "REO transaction add-on: $350",
+        "Manufactured Home Escrow add-on: $650",
+        "Military discount: $50 less than standard fee",
+        "Senior citizen (65+) discount: $50 less than standard fee",
+        "First-time homebuyer discount (Area B only): 85% of the buyer's portion of the Basic Escrow Fee",
+        "Investment property discount: 75% of the investor's portion of the Basic Escrow Fee",
+        "New Home/Subdivision builder escrow fee schedule (Appendix B): $760 at $150,000 transaction value, scaling to $1,375 at $3,000,000+",
+        "Simultaneous concurrent resale loan escrow service: $60",
+        "Transfer escrow services (estate planning, no consideration): $225",
+        "Timeshare rental escrow: $100-$300+ tiered by transaction amount",
+        "FinCEN Real Estate Reporting Fee: $125"
+      ]
+    },
+    "bundlingNotes": "This is a genuine, dollar-denominated escrow/settlement fee schedule (not premium-only), filed with and published by the Nevada Division of Insurance. Basic Escrow Services bundles document prep for 1 deed, e-doc download/printing, 2 wire transfers, 2 overnight deliveries, preliminary report/commitment ordering, closing statement/instructions prep, and in-office notary/signing -- all other services (sub-escrow, interest-bearing account setup, additional documents, third-party services, recording/transfer-tax charges) are itemized separately in a Miscellaneous Services table. Explicitly for use by First American and any title agency that elects to adopt these fees.",
+    "transactionContext": "Purchase (sale escrow), refinance/loan-only (residential and commercial), simultaneous concurrent loan, new-home/subdivision builder sales, timeshare, and estate-planning transfers -- statewide with a 2-tier county area system (Area A: Clark/Lincoln/Nye; Area B: all other counties)."
+  },
+  {
+    "provider": "First American Title Insurance Company",
+    "sourceUrl": "https://docs.nv.gov/doi/title_rates/documents/TitleRateManual000251.pdf",
+    "asOf": "Effective May 10, 2026",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "$25 per party",
+      "binder": null,
+      "other": [
+        "Base Rate A: $536 up to $50,000, scaling per-$10,000 increments up to Section H (Major Projects) for amounts above $5,000,000",
+        "Base Rate B (New Home/Subdivision): $430 at $150,000 transaction value, scaling to $5,800 at $5,000,000",
+        "Owner's Policy: Standard 100% / Extended 140% / EAGLE (Homeowner's) 110% of Base Rate A",
+        "Loan Policy: Standard 80% / Extended 90% of Base Rate A, minimum $350-$390",
+        "Refinance rate: 45-55% of Base Rate A depending on coverage type, minimum $350",
+        "Short Term Rate (owner's policy reissued within 36 months): 80% of scheduled rate",
+        "Major Projects (aggregate $5M+): Owner's/Lessee's $0.50-$1.15 per $1,000 by tier; Lenders $0.50-$0.95 per $1,000 by tier",
+        "Trustee's Sale Guarantee: statewide REO rate table $318-$622 up to $100,000, plus per-$5,000 increments above",
+        "UCC EAGLE 9 insurance: $1.57/$1,000 minimum $500, scaling down to $0.35/$1,000 above $300,000,000",
+        "Extensive endorsement fee schedule (Appendix C), e.g. Street Assessments $100, Zoning 15-25%, Mechanic's Liens 10-20%"
+      ]
+    },
+    "bundlingNotes": "This is First American's companion title insurance premium schedule, also filed with and published by the Nevada Division of Insurance -- the only state found in this survey where the regulator publicly hosts BOTH a title premium manual and a genuine escrow fee schedule as separate documents from the same provider. Rate does not include escrow, settlement, or closing services (those are priced separately in the companion Escrow Rate Manual).",
+    "transactionContext": "Owner's policy (purchase, standard/extended/EAGLE), loan policy (purchase, refinance, multiple loans, centralized/bulk lender programs), major commercial projects, UCC insurance, REO/trustee's sale guarantees -- premium calculation only."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://www.virtualunderwriter.com/-/media/files/virtualunderwriter/imported/pdfs/nevada-stg-schedule-of-charges-final-eff-04282025.pdf",
+    "asOf": "Last Updated February 25, 2025; Effective April 28, 2025",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "$25 for lender, buyer/borrower, and seller each",
+      "binder": null,
+      "other": [
+        "3-zone county rate structure: Zone 1 (Elko/White Pine/Eureka/Lander) $536 minimum at $50,000; Zone 2 (Clark/Lincoln/Nye) $536 minimum at $50,000 but steeper marginal tiers; Zone 3 (Washoe/Humboldt/Pershing/Churchill/Mineral/Esmeralda/Douglas/Carson City/Lyon/Storey) $638 minimum at $50,000",
+        "Standard Owner's/Extended Loan, Extended Owner's, Standard Loan, Short Term Rate (3 yrs or less), and Simultaneous Loan w/Owner's columns fully tabulated $1 to $2,000,000 in each zone",
+        "Enhanced (Homeowner's/Expanded Loan) policies: applicable charge plus 10%",
+        "Refinance charge (residential): 55% of Basic Charge",
+        "Reissue of Owner's Insurance: 50% of Basic Charge (no transaction) or 35% (to include a loan, 24-month window)",
+        "Subdivision/Development rate: $200 minimum, scaling per-thousand tiers down to $1.00 above $20,000,000; 55-70% development discount for 10+ unit developments",
+        "Investor Rate (post-foreclosure resale): 70% of Basic Charge, multi-property investors only",
+        "Extensive endorsement fee schedule (ALTA + CLTA + Stewart-specific), most $25-$100 or 10-30% of basic charge"
+      ]
+    },
+    "bundlingNotes": "Premium-only rate manual; no escrow, closing, or settlement service dollar figures anywhere in the document. Explicit 3-zone county structure with a modest premium differential (Zone 3 rural/Washoe counties price ~9-19% higher than Zone 1/2 at the entry tier despite Washoe being a major metro county -- the inverse of the usual urban-premium pattern seen in most other states).",
+    "transactionContext": "Owner's policy (purchase), loan policy (purchase, refinance), simultaneous issue, reissue, subdivision/development, commercial leasehold, planned major projects -- premium calculation only."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company — Estimated Rate/Fee Calculator (ortconline.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
+    "calculatorUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
+    "retrievalDate": "2026-07-22",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, residential resale, Sale transaction type, Loan Estimate calculation. Property location: Las Vegas, NV (Clark County). City used: Las Vegas (Clark County, NV's most populous county).",
+    "methodology": "Harvested via direct HTTP GET/POST against the calculator's ASP.NET WebForms postback mechanism (__VIEWSTATE/__EVENTVALIDATION), replicating the same sequential form submissions the browser's JS performs (state select -> county/city select -> Sales Price/Loan Amount -> Submit); no browser/JS execution was used or required. The 'Your Name', 'Your Company', and 'This estimate is being prepared for' fields were left blank throughout -- confirmed optional (no required-symbol asterisk in the form) -- no fabricated personal information was entered at any step.",
+    "settlementFee": {
+      "note": "Not a single line item in this tool's output; the closest analog is the 'Settlement Agent Fee' shown in Section C, split buyer/seller (buyer's share shown here). Settlement Agent Fee total (both parties): Title - Settlement Agent Fee (Total: $1,440.00)."
+    },
+    "itemizedFees": {
+      "cpl": "$25.00 (Closing Protection Letter Fee)",
+      "eRecording": "$50.00 (E-Recording Service Fee (Total: $50.00))",
+      "processing": "$720.00 (Settlement Agent Fee, Total: $1,440.00)",
+      "other": [
+        {
+          "name": "Title - Concurrent Loan Charge (Total: $275.00) [additional charge for simultaneous lender's policy issue]",
+          "amount": "$275.00"
+        },
+        {
+          "name": "Title - Lender's Title Policy (Total: $1,694.00) [buyer's lender's title policy premium]",
+          "amount": "$1,694.00"
+        },
+        {
+          "name": "Recording Fees (Total: $110.00)",
+          "amount": "$110.00"
+        }
+      ]
+    },
+    "sectionTotals": "C: Services You Can Shop For: $2,764.00; E: Taxes and Other Government Fees: $110.00; H: Other: $0.00",
+    "bundlingNotes": "Owner's Title Policy shown as '(seller paid)', $0 buyer obligation -- Total: $1,377.00, calculated from the full Homeowner's Policy rate of $2,139 plus a $932 concurrent lender's-issue charge, less the $1,694 full lender's policy premium. This is Old Republic's own online restatement of the same Clark/Lincoln/Nye 'Area A' filed-rate zone already verified in this file via First American's regulator-published Escrow Rate Manual -- a genuine cross-underwriter corroboration point for the Las Vegas market.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k purchase scenario; City used: Las Vegas (Clark County, NV's most populous county)."
+  },
+  {
+    "provider": "Chicago Title Insurance Company (national FNF-family underwriter; ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine -- this tool's pre-selected default underwriter brand varies by request; prior sessions (CT, AR) confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=NV",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=NV (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-06",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Clark County (NV's most-populous county per the standard scenario), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions. AR/NV precedent: no Loan Policy line appeared despite the $400,000 loan amount entered.",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback) against the classic __doPostBack/__VIEWSTATE WebForms flow, replaying the recipe already on file in this project's CALCULATORS.md (FNF family section) and previously used for CT/CO/AR: (1) GET ?ID=FNF&state=NV to capture hidden __VIEWSTATE/__EVENTVALIDATION fields and the county dropdown; (2) POST the county selection (own __EVENTTARGET); (3) POST the tool's own pre-selected default underwriter plus btnGeneralNext=Next to advance to the Amounts step; (4) POST TranType$ddl=PropertyPurchase (own __EVENTTARGET) to reveal the Purchase Amount field; (5) POST AmountPurchase$txt=500000 and AmountLoan1$txt=400000 together (own __EVENTTARGET on the loan field) to reveal any further conditional questions; (6) auto-answered any newly-revealed required Yes/No radio question with its first listed option, then POST btnFinish=Finish for the final Rate Summary. No personal data fields exist anywhere in this flow (only county/underwriter/transaction-type/dollar-amount fields).",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,211.00 (ALTA Standard/Homeowner's Coverage Owner's Policy, $500,000 liability amount; before-surcharge premium $2,010.00, surcharge $201.00)",
+      "loanPolicyPremium": null,
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence."
+    },
+    "sectionTotals": "Total Charges for the Policy: $2,211.00. Grand Total: $2,211.00.",
+    "bundlingNotes": "Part of this project's ongoing 2026-08-06 calculator-harvest pass applying the FNF national rate calculator (already confirmed in-scope for premium-only evidence as of the 2026-08-05 CT session) across every remaining below-threshold scarce state where the tool's own county dropdown confirms coverage.",
+    "transactionContext": "Owner's Policy premium for a $500,000 residential purchase, Clark County, NV. AR/NV precedent: no Loan Policy line appeared despite the $400,000 loan amount entered."
+  },
+  {
+    "provider": "Western Nevada Title Company (Reno-area independent title agency)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.wntco.com/calculator",
+    "stale": true,
+    "staleNote": "2026-09-01 freshness check: wntco.com now returns Wix's own 'ConnectYourDomain Error' page (HTTP 404) at both the root domain and /calculator -- the domain has been disconnected from its Wix hosting since this entry's 2026-08-06 retrieval. The white-label NetSheetCalc/TitleTap backend (app.netsheetcalc.com, app_id 435) used to harvest the figures was not re-checked and may still be live, but the agency's own published calculator page is dead. NV remains well above the 3-provider threshold (5 calculator providers on file) even with this one marked stale.",
+    "calculatorUrl": "https://app.netsheetcalc.com/company/quickquote.php?appid=435 (NetSheetCalc/TitleTap white-label platform, app_id 435)",
+    "retrievalDate": "2026-08-06",
+    "scenario": "$500,000 purchase price, $400,000 loan, buyer-financed Purchase scenario (this tenant's 'finance' estimate type), statewide flat/formula fees (no county-tiered dropdown in this tenant's config -- Nevada title/escrow fees are largely uniform statewide for this agency). Seller paying Owner's Title Insurance and splitting Transfer Tax with buyer (tool's own defaults).",
+    "methodology": "Found via web search for NetSheetCalc/TitleTap Nevada tenants (title 'Western Nevada Title Company - Quick Quote Net Sheet Calculator by TitleTap'). Driven via the platform's plain unauthenticated JSON GETs (no browser, no personal data), the same recipe already on file in CALCULATORS.md for other NetSheetCalc tenants: (1) GET company/non-auth-ajax.php?action=getAppData&app_id=435 (or the newer getNetSheetConfig action, both work for this tenant) to retrieve the tenant's full fee-form schema as JSON, including hardcoded flat-dollar ancillary fees and formula-driven fields referencing rate-lookup keys (Settlement435, Owner435, Tranfer435, Lender435); (2) GET the root-host (not /company/-prefixed) api/index.php/rate/<amount>/<rate-key> endpoint for each formula-driven field at the standard scenario's sale price ($500,000) or loan amount ($400,000) as appropriate -- confirmed genuinely dynamic/live-rated, not static, since the 4 rate-keys returned 4 different values scaled to their respective inputs.",
+    "settlementFee": {
+      "note": "Settlement Agent Fee is buyer/seller-split (the tenant's own formula divides the API-returned total by 2): $1,570.00 total / $785.00 per side."
+    },
+    "itemizedFees": {
+      "settlementAgentFee_total": "$1,570.00 (from api/index.php/rate/500000/Settlement435; tenant's own formula splits this 50/50 buyer/seller = $785.00 each)",
+      "ownersTitleInsurancePremium": "$2,144.00 (from api/index.php/rate/500000/Owner435, at $500,000 purchase price; seller-paid per the tool's own default)",
+      "lendersTitleInsurancePremium": "$940.00 (from api/index.php/rate/400000/Lender435, at $400,000 loan amount)",
+      "transferTax_total": "$2,050.00 (from api/index.php/rate/500000/Tranfer435; tenant's own formula splits this 50/50 buyer/seller by default = $1,025.00 each)",
+      "loanTieInFee": "$150.00 (flat, finance transactions only)",
+      "wire": "$25.00 (flat)",
+      "courier": "$50.00 (flat)",
+      "docPrep": "$100.00 (flat, seller-side estimate type only)",
+      "lenderEndorsements": "$100.00 (flat, finance transactions only)",
+      "recordingDeed": "$43.00 (flat)",
+      "recordingDeedOfTrust": "$43.00 (flat, finance transactions only)",
+      "eRecording": "$10.00 (flat, 'E-filing Fee for Deed and Deed of Trust', finance transactions) / $5.00 (cash-transaction variant, deed only)",
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null
+    },
+    "sectionTotals": "No single combined grand-total field in this tenant's config (a live net sheet, not a single-total quote) -- the itemized lines above sum to $785.00 (seller's half of Settlement Agent Fee) + $2,144.00 (Owner's Premium) + $1,025.00 (seller's half of Transfer Tax) = $3,954.00 on the seller side alone at this scenario, before commissions; buyer/lender-side adds the $940.00 Lender's Premium plus the flat finance-transaction fees ($150 + $25 + $50 + $100 + $43 + $43 + $10 = $421.00).",
+    "bundlingNotes": "A genuinely first-party independent Nevada agency (not a big-four brand, not a shared-engine dedup case like this project's FNF entries) -- Nevada's 1st non-Old-Republic, non-FNF calculator-basis provider, and the richest single-source itemized breakdown found for NV to date (10 distinct line items across settlement/premium/recording/wire/courier categories). Crosses NV to the 3-provider calculator-quoted threshold (Old Republic + FNF national rate calculator + Western Nevada Title Company).",
+    "transactionContext": "Full buyer+seller itemized closing-cost breakdown for a $500,000 residential purchase with $400,000 financing, statewide Nevada pricing (this agency's own config has no county-tiered dropdown). This is NV's 3rd calculator-basis provider."
+  },
+  {
+    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-11",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Clark County (NV's most-populous county, Las Vegas), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Richness-pass application of the 2026-08-08 session's fully-solved WFG recipe (see CALCULATORS.md) to Nevada, one of only 7 states (WA, CA, TX, OR, AZ, NV, CO) this tool has configured HUD-fee itemization for per its own hardcoded feesConfiguration sort-weight table, but which had no WFG entry on file yet (not part of the 2026-08-08 session's 8-state batch). Driven via a plain `Content-Type: application/json` HTTP POST to the public, unauthenticated endpoint with body `{SalesPrice, Loans: [{LienPosition: 0, LoanAmount}], TransactionProductType: {ProductTypeId: 0, TransactionTypeId: 0}, Properties: [{City, County, IsPrimary: true, State}], calculateTaxRequest: {}, SettlementStatementVersion: \"CD\", premiumDiscounts: [], Endorsements: [], PriorLenderPolicy: {}, PriorOwnerPolicy: {}}` — no personal-data field anywhere in the request shape. Response returned HTTP 200 with a live server timestamp (2026-08-11T16:14:28Z) confirming this is a fresh, dated calculator quote, not a cached/static figure.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,059.00",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's sellernet/seller-side-only design; not pursued further as out of scope for the seller-net flow)",
+      "other": [
+        {
+          "name": "County - Nevada Estimated Recording Fees (Transfer Tax - County)",
+          "amount": "$2,550.00",
+          "note": "seller-paid; tool's own mismoType is TaxStampForCountyDeed (Nevada real property transfer tax)"
+        },
+        {
+          "name": "Settlement or Closing Fee",
+          "amount": "$1,580.00",
+          "note": "split $790.00 buyer / $790.00 seller"
+        }
+      ],
+      "note": "Full itemized breakdown available for NV (one of the 7 states -- WA, CA, TX, OR, AZ, NV, CO -- with configured HUD-fee sort weights in this tool)."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "Property location for this request: Las Vegas, NV (Clark County). Adds WFG as NV's 4th calculator-basis provider (already past the 3-provider threshold via Old Republic + FNF + Western Nevada Title); harvested for richness (itemized HUD fees, not just a premium figure) per the standing next-session recommendation to push already-quoted states toward richer entries.",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium plus itemized settlement fees for a $500,000 residential purchase, Clark County, NV."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company -- Stewart Rate Calculator, matched settlement office: Stewart Title Company - Nevada Division (2460 Paseo Verde Pkwy., Suite 100, Henderson, NV 89074)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true (LoanEstimate/QuoteType=3 flow) and https://www.stewartratecalculator.com/Quote/Netsheet?urlParams=&quotetype=2&branded=true (Netsheet/QuoteType=2 flow); both POST to the shared /api/SRC/quote endpoint",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Clark County (Las Vegas), residential resale, Sale/Purchase with Mortgage transaction type, BASIC coverage on both Owner's and Lender's policies. Richness-pass harvest applying an already-solved, previously state-limited recipe to a state not yet in Stewart's harvested-state list, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "methodology": "Harvested via Stewart's discoverable `/api/SRC/*` JSON REST API (stewartratecalculator.com), driven entirely by plain HTTP GET/POST (Python requests.Session(), cookie jar) with no browser/JS execution and no personal-data fields, replaying the full recipe documented in this project's CALCULATORS.md (2026-08-14 'SOLVED' entry): GET the LoanEstimate/Netsheet page to scrape a fresh antiforgery cookie + __RequestVerificationToken; GET /api/SRC/propertysearch to resolve the county FIPS code and a default zip; GET /api/SRC/providers to find the county's real settlement office(s) (used to set ProviderID on the QuoteType=3 flow so the itemized settlement-fee list is populated -- an empty ProviderID silently returns a null itemized list); GET /api/SRC/statesettings and /api/SRC/ernstlookup for state-level defaults; build the QuoteRequestRoot JSON by hand (Owner's Policy $500,000 / Lender's Policy $400,000, BASIC coverage, standard Sale/Purchase with Mortgage transaction); POST /api/SRC/quote twice -- QuoteType=2 (Netsheet, pageBuyerSeller=seller) for Recording/CFPB2015 transfer-tax figures, and QuoteType=3 (LoanEstimate, pageBuyerSeller=buyer, IsCalculatePremium=True, IsCalculateTitleServiceFee=True) for the itemized Pricing.TitleServiceFee.ItemizedTitleServiceFeeList settlement-fee line items. One new gotcha found and fixed this session: stewartratecalculator.com's bare apex domain 301-redirects every POST to the www subdomain, and that redirect's response body hangs indefinitely on this sandbox's proxied connection (a 30s+ read timeout with 0 bytes received) -- fixed by targeting https://www.stewartratecalculator.com directly, skipping the apex redirect entirely; this is an environment/proxy artifact, not a sign the endpoint is blocked. Also confirmed the documented /api/SRC/providers gotcha firsthand: for a single-provider county the response's `Provider` field is a bare object, not a one-element list -- must be normalized before indexing or ProviderID silently stays empty and every itemized-fee list comes back null (looks exactly like a genuine empty result).",
+    "settlementFee": {
+      "note": "$1,475.00 total, split buyer $1,475.00 / seller $0.00 (line item: 'Title Closing Fee')"
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1,850.00",
+      "loanPolicyPremium": "$1,240.00",
+      "other": [
+        {
+          "name": "Title Closing Fee",
+          "amount": "$1,475.00 (buyer $1,475.00 / seller $0.00)"
+        },
+        {
+          "name": "Title Courier Fee",
+          "amount": "$50.00 (buyer $25.00 / seller $25.00)"
+        },
+        {
+          "name": "Title Electronic Document Delivery Fee",
+          "amount": "$100.00 (buyer $100.00 / seller $0.00)"
+        },
+        {
+          "name": "Title Inspection Fee",
+          "amount": "$85.00 (buyer $85.00 / seller $0.00)"
+        },
+        {
+          "name": "Title Notary Fee",
+          "amount": "$300.00 (buyer $150.00 / seller $150.00)"
+        },
+        {
+          "name": "Title Overnight Fee",
+          "amount": "$50.00 (buyer $25.00 / seller $25.00)"
+        },
+        {
+          "name": "Title Recording Service Fees",
+          "amount": "$15.00 (buyer $15.00 / seller $0.00)"
+        },
+        {
+          "name": "Title Wire Transfer Fee",
+          "amount": "$50.00 (buyer $25.00 / seller $25.00)"
+        }
+      ],
+      "note": "8 itemized settlement/closing-fee line item(s) returned via the QuoteType=3 flow."
+    },
+    "sectionTotals": "Owner's Policy Premium $1,850.00; Lender's Policy Premium $1,240.00; itemized settlement fees sum $2,125.00",
+    "bundlingNotes": "Combined deed/transfer/mortgage tax on QuoteType=2 (Netsheet) flow: $2,550.00 total -- DeedTax $2,550.00.",
+    "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Clark County, NV."
+  }
+]

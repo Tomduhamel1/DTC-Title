@@ -1,0 +1,293 @@
+[
+  {
+    "provider": "Advocus National Title Insurance Company (underwriter Rates and Rules Filing, formerly filed under the Attorneys' Title Guaranty Fund/ATG name)",
+    "sourceUrl": "https://www.atgf.com/sites/default/files/formsadv/4000/4044-WI.pdf",
+    "asOf": "2026-04-06",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Search Fee: 'at the discretion of the title agent, a search fee may be charged for search services rendered. The fee is not part of the premium to be split with Advocus' (no dollar amount specified in this filing)",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Original Policy Rate: $575 fixed up to $15,000; +$3.50/$1,000 to $300,000; +$2.50/$1,000 to $500,000; +$1.10/$1,000 to $2,000,000; +$0.95/$1,000 to $10,000,000; +$0.70/$1,000 to $50,000,000",
+        "Reissue Rate: 85% of Original Policy Rate, minimum $575",
+        "Residential Loan Policy Rate (expedited search, no easement/restriction search): $525 first $400,000, +$1/thousand above; Full Search: $700 first $400,000, +$1/thousand above; note both include $100 of search/exam fees",
+        "Residential Construction Loan Policy Rate: $800 first $400,000, +$1/thousand above; Residential New Construction Refinance Rate: $400 up to construction loan amount",
+        "Centralized Refinance Rate: $360 (up to $250,000) to $1,300 (up to $3,000,000), +$4/$10,000 above $3,000,000; includes $100 search/exam",
+        "Simultaneous Issue Rate for Loan Policy: $525 (Residential), $825 (Non-Residential)",
+        "ALTA Residential Limited Coverage Junior Loan Policy Rate: $300 for first $100,000, +$1/$1,000 thereafter",
+        "Take-Off Policy (condo/subdivision unit sale under a Master Policy): $250 residential / $450 non-residential",
+        "Additional parcel/chain of title search: up to $300 (residential) / $600 (non-residential) per additional parcel",
+        "Downward deviations from these rates are not permitted"
+      ]
+    },
+    "bundlingNotes": "This is a title-premium-only filed rate manual; it does not price settlement, closing, escrow, attorney, or notary fees at all, and explicitly notes that any search fee an agent chooses to charge is separate from and not split with the underwriter's premium. Wisconsin closings are commonly handled by Attorneys' Title Guaranty Fund (ATG)-affiliated attorneys or independent title/escrow agents whose own settlement charges are not part of this filing.",
+    "transactionContext": "Statewide Wisconsin; residential and non-residential purchase/refinance title insurance premium rates; no settlement/closing fee published in this document by design."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company (underwriter Schedule of Charges)",
+    "sourceUrl": "https://go.stewart.com/rs/067-YWO-436/images/Wisconsin%20Rate%20Manual_Final_eff%2012012025.pdf?version=0",
+    "asOf": "2025-12-01",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Definition of 'Charge' explicitly states it 'does not include any settlement fee, trustee fee, attorney fee, surveying fee, inspection fee, document fee, closing fee, escrow fee or any other fee associated with escrow' -- the most complete disclaimer list found in any Wisconsin source",
+        "Basic Schedule of Charges (Owner's/Loan Policies): $575 fixed up to $15,000; +$3.50/$1,000 to $300,000; +$2.50/$1,000 to $500,000; +$1.00/$1,000 to $2,000,000; full calculated table in Appendix A (e.g. $300,000 liability = $1,573; $500,000 = $2,023; $1,000,000 = $2,573)",
+        "ALTA Homeowner's Policy: 115% of Basic Schedule of Charges",
+        "Reissue and Abstract Surrender Credit: 85% of applicable rate, minimum $575",
+        "Refinance Charges for Residential Loan Policies: Expedited search $500 (first $400,000) +$1/thousand; Full search $700 (first $400,000) +$1/thousand",
+        "Residential Purchase Money Mortgage Charge: $500 (only when Stewart doesn't issue simultaneous Owner's Policy)",
+        "Simultaneous Issue Charge for Loan Policies: $500 Residential / $800 Non-Residential",
+        "Foreclosure Commitment charge: $650 residential / $1,000 non-residential for $15,000 of liability (includes 2 update endorsements)",
+        "Charge for Refinance of Residential Construction Loan: $400",
+        "ALTA Residential Limited Coverage Junior Loan Policy: $150 fixed up to $100,000, +$1.00/thousand to $200,000; JR1 Endorsement $25"
+      ]
+    },
+    "bundlingNotes": "The definitions table draws the sharpest premium/settlement-fee line found in any state surveyed to date -- a single sentence explicitly excludes settlement fee, trustee fee, attorney fee, surveying fee, inspection fee, document fee, closing fee, and escrow fee from the underwriter's 'Charge' definition, all in one place.",
+    "transactionContext": "Statewide Wisconsin; residential and commercial purchase/refinance title insurance premium rates; no settlement/service fee published in this document by design."
+  },
+  {
+    "provider": "First American Title Insurance Company (Wisconsin Title Policy Rate Schedule, republished by an independent Wisconsin agency, Southwest Title)",
+    "sourceUrl": "https://southwest-title.com/wp-content/uploads/2019/11/SW-Title-Insurance.pdf",
+    "asOf": "2024-07-10",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Policy Rate: $525 up to $15,000; +$3.50/$1,000 to $300,000; +$2.50/$1,000 to $500,000; +$1/$1,000 to $2,000,000; full calculated table to $1,000,000 ($2,523) and up to $5,000,000 ($6,073)",
+        "Reissue rate with qualifying prior: 85%, minimum $525",
+        "Simultaneous Loan Policy: $500 Residential / $750 Commercial",
+        "Residential Refinance: Expedited Loan Rate $500 up to $400,000 (+$1/$1,000 above); Full Search Loan Rate $675 up to $400,000 (+$1/$1,000 above) -- loan policy fee includes ALTA 8.1, 9-06, and 22-06 endorsements",
+        "Residential Construction Loan: $775 up to $400,000 (+$1/$1,000 above); Construction End Loan with Same Lender: $300 plus $1/$1,000 over the original Loan Policy",
+        "Take-Off (Master) Owner's Policies: $250 Residential / $450 Commercial",
+        "Residential Gap endorsement: $175",
+        "Document states explicitly: 'This is not a complete Schedule of Fees. To see a complete Schedule of Fees, please contact your local First American Title office'"
+      ]
+    },
+    "bundlingNotes": "Title-premium-only rate schedule; hosted on an independent Wisconsin title agency's own website (Southwest Title) rather than firstam.com directly, but the branding and content are First American's -- Southwest Title itself does not publish its own separate settlement/closing fee schedule anywhere on its site.",
+    "transactionContext": "Statewide Wisconsin (qualifying transactions closed on or after July 10, 2024); residential and commercial purchase/refinance title insurance premium rates; no settlement/closing fee published."
+  },
+  {
+    "basis": "calculator",
+    "provider": "Knight Barry Title Group (independent, multi-state title agency; own ASP.NET rate calculator, agent for Stewart Title Guaranty Company)",
+    "sourceUrl": "https://www.knightbarry.com/rate-calculators",
+    "calculatorUrl": "https://dashboard.knightbarry.com/Rates/wisconsin-rate-calculator.aspx",
+    "endpoint": "POST https://dashboard.knightbarry.com/Rates/wisconsin-rate-calculator.aspx (ASP.NET WebForms __doPostBack/__VIEWSTATE replay, same technique as the MN entry above -- no JS execution needed, no personal data)",
+    "retrievalDate": "2026-07-25",
+    "scenario": "$500,000 purchase price, $400,000 loan, Milwaukee County (WI's most populous county), Purchase, default underwriter (Stewart Title Guaranty via Knight Barry), residential",
+    "methodology": "Same WebForms postback recipe as the MN entry above, applied to Knight Barry's separate Wisconsin-specific calculator page. This resolves the WI blocker noted elsewhere in this session (DCA Title's WI county list could not be reached statically) via a completely different, independently working provider.",
+    "settlementFee": {
+      "loanClosingFee": "$350.00"
+    },
+    "itemizedFees": {
+      "searchExam": null,
+      "docPrep": null,
+      "processing": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "courier": null,
+      "wire": null,
+      "cpl": null,
+      "transactionSecurityFee_buyer": "$25.00",
+      "transactionSecurityFee_seller": "$25.00",
+      "governmentRecordingFeePerDoc": "$30.00 (stated by the tool as flat statewide across all WI counties)",
+      "titleInsurancePremium": {
+        "loanPolicy_LEDisclosure": "$1,848.00 (Loan Estimate/Closing Disclosure figure -- WI regulatory rule requires disclosing full owner's-policy-based + simultaneous-loan rate on the LE/CDF, not the lower actual simultaneous-issue charge)",
+        "ownersPolicy_LEDisclosure": "$1,090.00",
+        "loanPolicy_actualCharge": "$525.00 (actual charge to all parties, Option C basis)",
+        "ownersPolicy_actualCharge": "$2,413.00 (actual charge to all parties, Option C basis)"
+      }
+    },
+    "sectionTotals": "LE/CDF-disclosed buyer-side total: Loan Policy $1,848 + Owner's Policy $1,090 + Loan Closing Fee $350 + Transaction Security Fee (buyer) $25 = $3,313.00 (plus $30 recording fee per document).",
+    "bundlingNotes": "Wisconsin's calculator is structurally more complex than any other state's tool encountered this session: since 2015-10-03 (per the tool's own on-page disclaimer) Knight Barry's WI calculator has separately shown (a) the rate lenders must disclose on the federal Loan Estimate/Closing Disclosure forms (which uses full owner's-policy rates plus the simultaneous-loan discount rate, producing a HIGHER loan-policy figure than the actual charge) versus (b) the 'Actual Charges to All Parties' actually collected at closing, further split into 3 sub-options (A/B/C) depending on whether buyer or seller contractually pays for the owner's policy. Recorded here are the LE-disclosure figures (the consumer-facing regulatory disclosure) and the Option C actual-charge figures for comparison; this LE-vs-actual gap is itself a notable WI-specific regulatory finding worth flagging in any future settlement-fee analysis. First WI calculator-basis provider found this session (below the 3-provider threshold).",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k Milwaukee County purchase scenario, buyer side."
+  },
+  {
+    "basis": "calculator",
+    "provider": "Homestead Title Company LLC (independent, Dane County/Madison WI)",
+    "sourceUrl": "https://homesteadtitle.net/title-quote.asp",
+    "calculatorUrl": "https://homesteadtitle.net/title-quote.asp",
+    "endpoint": "Not a server round-trip -- the page's own inline <script> block (function showpay()) computes the quote entirely client-side from hardcoded rate constants; read directly via plain GET/view-source, no JS execution needed (same technique used elsewhere in this survey for Land Title Company of Alabama and Modern Title Group MI).",
+    "retrievalDate": "2026-08-04",
+    "scenario": "$500,000 purchase price, $400,000 loan, Dane County (Madison) -- the tool's own stated service area, no county selector (single-county tool).",
+    "methodology": "Formula hand-replayed against the standard scenario: Owner's Title Policy = 575 + (min(500000,350000)-15000)*0.0035 + (min(500000,500000)-350000)*0.0025 = $2,122.50, rounded to $2,123 (no prior-title discount applied, standard scenario assumes no prior policy credit). WI Real Estate Transfer Fee = floor(500000/333 - 0.5) = $1,501 (approximates WI's statutory $3.00/$1,000 transfer fee rate). Lender's (TRID) Title Insurance = 525 + (min(400000,250000)-15000)*0.0035 + (min(400000,500000)-250000)*0.0025 = $1,722.50, rounded to $1,723. TRID Owner's Title Insurance (net/CD figure) = $2,123 - $1,723 + $350 = $750.",
+    "itemizedFees": {
+      "ownersTitlePolicyPremium": 2123.0,
+      "realEstateTransferFee": 1501.0,
+      "deedDrafting": 150.0,
+      "gapEndorsement": 175.0,
+      "specialAssessmentCertificate": 75.0,
+      "grandTotal": 4024.0,
+      "tridLendersTitleInsurance": 1723.0,
+      "tridOwnersTitleInsurance_netOfSimultaneousCredit": 750.0
+    },
+    "bundlingNotes": "2nd WI calculator-basis provider (after Knight Barry Title Group) -- still below the 3-provider threshold. Genuine itemized breakdown (title premium, statutory transfer fee, deed drafting, gap endorsement, special assessment certificate) rather than premium-only; the deed_drafting/gap_endorsement/special_assessment_certificate constants and rate-bracket coefficients are all visibly commented/dated in the page's own script (e.g. 'BT 8-6-25 new formula from Peter'), suggesting actively-maintained real pricing rather than a stale template default.",
+    "transactionContext": "Seller-side net calculation plus TRID buyer-side lender's/owner's title insurance figures, Dane County (Madison), WI."
+  },
+  {
+    "basis": "calculator",
+    "provider": "Avenue Title (independent, multi-location Wisconsin title agency headquartered in Wausau; Marathon/Wood County service area; NetSheetCalc/TitleTap-powered calculator, app_id 235)",
+    "sourceUrl": "https://avenuetitles.com/net-sheet/",
+    "calculatorUrl": "https://app.netsheetcalc.com/company/non-auth-ajax.php?action=getAppData&app_id=235 (fee-form config JSON) and https://app.netsheetcalc.com/api/index.php/rate/<amount>/<rate-key> (live title-premium lookups)",
+    "retrievalDate": "2026-08-05",
+    "scenario": "$500,000 purchase price, $400,000 loan -- Wausau/Marathon County, WI (the tool's own single-office service area; no Milwaukee County option exists for this tenant, no county selector at all in the config), residential purchase (property_type=Residential is the config's own default).",
+    "methodology": "Same NetSheetCalc/TitleTap 'Quick Quote' recipe already catalogued for VA/IN/KY/AR: GET https://app.netsheetcalc.com/company/non-auth-ajax.php?action=getAppData&app_id=235 returns the tenant's full fee-form JSON schema with hardcoded flat-dollar constants, no auth and no personal data required. Confirmed genuinely Wisconsin (not a search misattribution, per this survey's standing verification rule) via the config's own currentAppInfo.state='WI' and street address '208 Grand Avenue, Wausau, WI 54403'. Owner's and Lender's title insurance premiums are live-rated (not hardcoded) via GET https://app.netsheetcalc.com/api/index.php/rate/<amount>/<rate-key> -- confirmed working at the root app.netsheetcalc.com host (NOT under the /company/ path used by getAppData -- a routing gotcha) using this tenant's own rate keys embedded in the config's formula objects: NewOwner235 (owner's policy, sale-price-driven, from the seller-side calculator's transfertax/owners_title_insurance_premium fields) and NewLender235 (lender's policy, loan-amount-driven, wired up only in this tenant's Refinance calculator). The Purchase/Finance calculator's own Lender's premium field is instead a flat hardcoded $450.00 default rather than an API call -- a genuine per-tenant configuration quirk, not a recipe error (confirmed by direct inspection of the config's is_formula flags: present on the Refinance version, absent on the Finance/Purchase version). Combined the seller-side and buyer/finance-side calculator outputs below since Wisconsin closings split fees across both sides of the transaction and this tenant models them as two separate calculators.",
+    "settlementFee": {
+      "closingFee_sellerSide": "$225.00 (residential default, Seller Estimated Closing Calculator)",
+      "closingFee_buyerFinanceSide": "$300.00 (residential default, Finance Estimated Closing Calculator)"
+    },
+    "itemizedFees": {
+      "sellerSide": {
+        "closingFee": 225.0,
+        "transferTax_statutory": 1500.0,
+        "ownersTitleInsurancePremium": 2022.5,
+        "specialAssessmentLetter": 25.0,
+        "deedPreparation": 100.0,
+        "gapEndorsement": 150.0
+      },
+      "buyerFinanceSide": {
+        "closingFee": 300.0,
+        "lendersTitleInsurancePremium": "$450.00 flat default in the Purchase/Finance calculator (this same tenant's separate Refinance calculator instead live-rates the identical line item via the NewLender235 API, which returns $500.00 at a $400,000 loan amount -- included here as a cross-check, not double-counted in the total below)",
+        "recordingFeesEstimate": 60.0
+      }
+    },
+    "sectionTotals": "Seller-side subtotal (excludes buyer's/listing agent commissions, which are user-input percentages, not fixed dollar fees, in this tool): $225.00 + $1,500.00 + $2,022.50 + $25.00 + $100.00 + $150.00 = $4,022.50. Buyer/finance-side subtotal: $300.00 + $450.00 + $60.00 = $810.00 (no CPL/wire/e-doc line items exist in this tenant's config, unlike the richer IN/KY/AR NetSheetCalc tenants already on file elsewhere in this survey).",
+    "bundlingNotes": "3rd WI calculator-basis provider (after Knight Barry Title Group and Homestead Title Company LLC) -- crosses the 3-provider calculator-quoted threshold for WI. Genuinely itemized (title premium, statutory transfer tax, deed preparation, gap endorsement, special assessment letter, split buyer/seller closing fees, recording) rather than premium-only. Notable cross-validation: this tenant's transfer-tax formula (sale_price * 0.003) independently confirms Homestead Title's own hand-derived Wisconsin statutory transfer-fee approximation (~$3.00/$1,000) from a completely separate provider and calculator platform. Also notable: this tenant's Purchase-calculator Lender's premium is a flat, non-rate-table default while its own Refinance-calculator computes the identical line item via a live rate lookup that returns a different figure at the same loan amount -- a real per-tenant configuration inconsistency worth flagging for future settlement-fee analysis, not a methodology error in this survey.",
+    "transactionContext": "Wausau/Marathon County (and Wisconsin Rapids/Marshfield per the tool's own page title) -- a smaller-market central-Wisconsin independent agency, not Milwaukee County; no Milwaukee-reaching calculator was found for this tenant (single-location statewide-style flat pricing, no county selector present in the config at all)."
+  },
+  {
+    "provider": "FNF-family underwriter (Chicago Title/Fidelity National Title/Commonwealth Land Title -- ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine; this tool's pre-selected default underwriter brand varies by request, and prior sessions confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=WI",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=WI (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-19",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Milwaukee County (matching this state's existing calculator entries' county), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions.",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback), following this project's existing FNF recipe documented in CALCULATORS.md: GET the county-selection page, POST the county (own __EVENTTARGET), POST btnGeneralNext=Next, POST TranType$ddl=PropertyPurchase, POST AmountPurchase$txt=500000 then AmountLoan1$txt=400000 (each with its own __EVENTTARGET), tool defaults for all remaining policy questions, then POST btnFinish=Finish for the final Rate Summary. No personal-data fields exist anywhere in this flow. This is a richness pass applying the already-solved FNF recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2073.00 (Owner's Policy Total Policy Premium: Disclosure Amount $775.00 + Adjustment $1,298.00, concurrent-issue rate)",
+      "loanPolicyPremium": "$525.00 (Loan Policy Total Policy Premium, concurrent-issue rate)",
+      "other": [],
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence. No separate CPL charge appeared for this state/scenario."
+    },
+    "sectionTotals": "Grand Total (Owner's Policy Purchased): $2598.00.",
+    "bundlingNotes": "Harvested this session as a richness pass -- WI had already crossed the 3-provider threshold (Knight Barry Title Group, Homestead Title Company, Avenue Title); this FNF entry is a 4th corroborating provider, applying the same generalized recipe already used for AR/CT/CO/MA/ND/VT/WY/RI/DE/SD/AK/NH/WV/ME/OH/MO/MI/PA/NJ/TN/KY/AL/MD/IN.",
+    "transactionContext": "Owner's + Loan Policy concurrent-issue premiums for a $500,000 residential purchase / $400,000 loan, Milwaukee County."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company -- Stewart Rate Calculator, matched settlement office: Stewart Title Company Wisconsin (250 N. Sunnyslope Road, Suite 135, Brookfield , WI 53005 )",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true (LoanEstimate/QuoteType=3 flow) and https://www.stewartratecalculator.com/Quote/Netsheet?urlParams=&quotetype=2&branded=true (Netsheet/QuoteType=2 flow); both POST to the shared /api/SRC/quote endpoint",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Milwaukee County (Milwaukee), residential resale, Sale/Purchase with Mortgage transaction type, BASIC coverage on both Owner's and Lender's policies. Richness-pass harvest applying an already-solved, previously state-limited recipe to a state not yet in Stewart's harvested-state list, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "methodology": "Harvested via Stewart's discoverable `/api/SRC/*` JSON REST API (stewartratecalculator.com), driven entirely by plain HTTP GET/POST (Python requests.Session(), cookie jar) with no browser/JS execution and no personal-data fields, replaying the full recipe documented in this project's CALCULATORS.md (2026-08-14 'SOLVED' entry): GET the LoanEstimate/Netsheet page to scrape a fresh antiforgery cookie + __RequestVerificationToken; GET /api/SRC/propertysearch to resolve the county FIPS code and a default zip; GET /api/SRC/providers to find the county's real settlement office(s) (used to set ProviderID on the QuoteType=3 flow so the itemized settlement-fee list is populated -- an empty ProviderID silently returns a null itemized list); GET /api/SRC/statesettings and /api/SRC/ernstlookup for state-level defaults; build the QuoteRequestRoot JSON by hand (Owner's Policy $500,000 / Lender's Policy $400,000, BASIC coverage, standard Sale/Purchase with Mortgage transaction); POST /api/SRC/quote twice -- QuoteType=2 (Netsheet, pageBuyerSeller=seller) for Recording/CFPB2015 transfer-tax figures, and QuoteType=3 (LoanEstimate, pageBuyerSeller=buyer, IsCalculatePremium=True, IsCalculateTitleServiceFee=True) for the itemized Pricing.TitleServiceFee.ItemizedTitleServiceFeeList settlement-fee line items. One new gotcha found and fixed this session: stewartratecalculator.com's bare apex domain 301-redirects every POST to the www subdomain, and that redirect's response body hangs indefinitely on this sandbox's proxied connection (a 30s+ read timeout with 0 bytes received) -- fixed by targeting https://www.stewartratecalculator.com directly, skipping the apex redirect entirely; this is an environment/proxy artifact, not a sign the endpoint is blocked. Also confirmed the documented /api/SRC/providers gotcha firsthand: for a single-provider county the response's `Provider` field is a bare object, not a one-element list -- must be normalized before indexing or ProviderID silently stays empty and every itemized-fee list comes back null (looks exactly like a genuine empty result).",
+    "settlementFee": {
+      "note": "$700.00 total, split buyer $350.00 / seller $350.00 (line item: 'Title Closing Fee')"
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,098.00",
+      "loanPolicyPremium": "$1,848.00",
+      "other": [
+        {
+          "name": "Title Closing Fee",
+          "amount": "$700.00 (buyer $350.00 / seller $350.00)"
+        },
+        {
+          "name": "Title Recording Service Fees",
+          "amount": "$10.00 (buyer $10.00 / seller $0.00)"
+        }
+      ],
+      "note": "2 itemized settlement/closing-fee line item(s) returned via the QuoteType=3 flow."
+    },
+    "sectionTotals": "Owner's Policy Premium $2,098.00; Lender's Policy Premium $1,848.00; itemized settlement fees sum $710.00",
+    "bundlingNotes": "Combined deed/transfer/mortgage tax on QuoteType=2 (Netsheet) flow: $1,500.00 total -- DeedTax $1,500.00.",
+    "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Milwaukee County, Wisconsin."
+  },
+  {
+    "provider": "WFG National Title Insurance Company \u2014 Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Milwaukee County (Milwaukee), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Harvested via WFG National Title's own public JSON API, `POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet`, fully solved and documented in this project's CALCULATORS.md (2026-08-08 entry) -- no browser/JS execution needed, no personal-data fields in the request shape (nested Properties/Loans arrays, TransactionProductType, SettlementStatementVersion: \"CD\"). Confirmed via the same API's public `GET /api/rates/State/GetCalculationEnabledStates` that WI is `isCalculationEnabled: true` before harvesting. Richness-pass application of an already-solved, previously-untried-for-this-state recipe, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "settlementFee": {
+      "note": "Premium-only result (no itemized settlement/search/doc-prep line items) -- consistent with WFG's own hardcoded fee-description table, which only itemizes HUD-style settlement fees for 7 states (WA, CA, TX, OR, AZ, NV, CO); every other state, including this one, returns only the Owner's Title Insurance Premium."
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,298.00",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's seller-net-sheet-only design)",
+      "other": [],
+      "note": "Premium-only result for this state (see settlementFee note)."
+    },
+    "sectionTotals": "Owner's Title Insurance Premium $2,298.00",
+    "bundlingNotes": "Discovered and solved 2026-08-08; applied here as a richness-pass 4th/5th calculator-basis provider for Wisconsin (already at 3-4 providers via other tools) since no prior session had run this already-solved recipe against this state. Property location for this request: Milwaukee, Wisconsin (Milwaukee County).",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Milwaukee County, Wisconsin."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company \u2014 second rate calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://oldrepublictitle.com/rate-calculator/?location=wisconsin",
+    "calculatorUrl": "https://oldrepublictitle.com/rate-calculator/?location=wisconsin",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (RateCalc.aspx?CallingApp=PUBLIC&Location=WI, redirects to a session-scoped (S(...)F(...))/RateCalc.aspx?...Location=48..., statewide, no county selector). GET the page with Referer https://oldrepublictitle.com/rate-calculator/?location=wisconsin (capture __VIEWSTATE/__EVENTVALIDATION), POST __EVENTTARGET=ddlPolicyCategory value 49 (PURCHASE / SALE -- reveals both txtLiabilityAmt/txtCrLiabilityAmt directly, no separate policy-type dropdown for this state), then POST __EVENTTARGET=btnCalculate with txtLiabilityAmt=500000, txtCrLiabilityAmt=400000. Same Referer-header-throughout fix documented for NH/WV/MI/PA/NJ/VA/TN/MD; no personal data entered.",
+    "retrievalDate": "2026-08-21",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, statewide (no county selector in this tool), PURCHASE / SALE policy category.",
+    "methodology": "Direct HTTP GET/POST against the ASP.NET WebForms postback mechanism (Python requests.Session()), no browser/JS execution. No personal data entered. Richness pass applying this project's already-solved Old Republic 2nd-tool recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": {
+      "note": "This tool prices title insurance premiums only -- no settlement/closing/escrow service-fee line items are itemized (same structural limitation observed for this tool's other state entries elsewhere in this project)."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "LENDERS POLICY, insured amount $400,000.00 -- Lenders-Only standalone premium",
+          "amount": "$1,873.00"
+        },
+        {
+          "name": "LENDERS POLICY, Owners+Lenders combined (simultaneous) premium",
+          "amount": "$500.00"
+        },
+        {
+          "name": "OWNER'S POLICY, insured amount $500,000.00, Owners+Lenders combined premium",
+          "amount": "$2,123.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, standalone-lenders-only",
+          "amount": "$1,873.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, Owners+Lenders combined",
+          "amount": "$2,623.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Owner's $2,123.00/Lender's $1,873.00 are close to, but not identical to, this state's already-on-file Stewart entry (Owner's $2,098.00/Lender's $1,848.00) -- genuine cross-underwriter market variation rather than a fetch error.",
+    "transactionContext": "Purchase/Sale simultaneous Owner's + Lender's policy, statewide Wisconsin, purchase with financing."
+  }
+]
