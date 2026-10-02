@@ -6,13 +6,12 @@ import HeroOptionA from './HeroOptionA'
 import HeroOptionB from './HeroOptionB'
 import HeroOptionC from './HeroOptionC'
 import HeroMagicReveal from './HeroMagicReveal'
-import CompanyCredentialsSection from './CompanyCredentialsSection'
+import AccreditationSection from './AccreditationSection'
 import HowItWorksSection from './HowItWorksSection'
 import FeeReportPreviewSection from './FeeReportPreviewSection'
 import TeamTrustSection from './TeamTrustSection'
 import DashboardTrustSection from './DashboardTrustSection'
 import UnderwriterLogos from './UnderwriterLogos'
-import TrustStripSection from './TrustStripSection'
 import FAQSection from './FAQSection'
 import SecurityTrustSection from './SecurityTrustSection'
 import ReadyToSaveSection from './ReadyToSaveSection'
@@ -49,21 +48,15 @@ export default function HomePageCredible({ heroVersion = 'A' }: HomePageCredible
         {/* Fee Estimate Preview */}
         <FeeReportPreviewSection />
 
+        {/* Backed By — immediately after Full Transparency */}
+        <UnderwriterLogos />
+
         {/* Dashboard + dedicated escrow officer trust section
             (replaces the old PeaceOfMindSection on the magic-reveal homepage) */}
         <DashboardTrustSection />
 
-        {/* Company Credentials */}
-        <CompanyCredentialsSection />
-
         {/* How It Works */}
         <HowItWorksSection />
-
-        {/* Underwriter Logos */}
-        <UnderwriterLogos />
-
-        {/* Why BetterClose — directly below Backed By */}
-        <TrustStripSection />
 
         {/* FAQ Section */}
         <FAQSection />
@@ -73,6 +66,9 @@ export default function HomePageCredible({ heroVersion = 'A' }: HomePageCredible
 
         {/* Ready to Save */}
         <ReadyToSaveSection />
+
+        {/* Accreditation belongs at the bottom, just before the footer. */}
+        <AccreditationSection />
 
         {/* Footer */}
         <FooterComprehensive />

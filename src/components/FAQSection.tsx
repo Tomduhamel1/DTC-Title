@@ -39,7 +39,7 @@ export default function FAQSection() {
     },
     {
       question: "Can I use BetterClose if my realtor or lender recommends someone else?",
-      answer: "Absolutely. You have the legal right to choose your title company - it's called your 'right to shop.' While your realtor or lender may have a preferred provider, you're not required to use them. Many buyers save thousands by choosing BetterClose instead. Just let your agent and lender know you'll be using us, and we'll handle everything."
+      answer: "Absolutely. You have the legal right to choose your title company - it's called your 'right to shop.' While your realtor or lender may have a preferred provider, you're not required to use them. Many buyers save hundreds by choosing BetterClose instead. Just let your agent and lender know you'll be using us, and we'll handle everything."
     },
     {
       question: "What states do you operate in?",
