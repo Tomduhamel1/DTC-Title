@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useEffect, useMemo, useState } from 'react'
-import FeeReportTable from './FeeReportTable'
+import FeeReportTable, { FeeReportEstimateNotes } from './FeeReportTable'
 import ShareWithTeamSheet from './lender-request/ShareWithTeamSheet'
 import { buildSampleFeeReport } from '@/lib/sampleReport'
 
@@ -27,16 +27,16 @@ export default function FeeReportPreviewSection() {
   const [shareOpen, setShareOpen] = useState(false)
 
   return (
-    <section className="py-20 lg:py-28 bg-gradient-to-b from-white to-gray-50">
+    <section aria-labelledby="fee-preview-heading" className="py-16 lg:py-20 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div data-fee-preview-grid className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-start">
             {/* Left: Copy + CTA */}
-            <div className="text-center lg:text-left">
+            <div data-fee-preview-copy className="text-center lg:text-left">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-100 text-primary-800 text-sm font-semibold mb-4">
                 Full transparency
               </div>
-              <h2 className="text-4xl md:text-5xl font-black text-dark-900 leading-tight tracking-tight mb-5">
+              <h2 id="fee-preview-heading" className="text-4xl md:text-5xl font-black text-dark-900 leading-tight tracking-tight mb-5">
                 See every fee, line by line.
               </h2>
               <p className="text-lg md:text-xl text-gray-600 leading-relaxed mb-8">
@@ -66,7 +66,7 @@ export default function FeeReportPreviewSection() {
             </div>
 
             {/* Right: Sample report */}
-            <div className="relative">
+            <div data-fee-preview-report className="relative min-w-0">
               <div className="absolute -top-3 left-6 z-10">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-dark-900 text-white text-xs font-bold uppercase tracking-wider shadow-md">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -76,6 +76,7 @@ export default function FeeReportPreviewSection() {
               <FeeReportTable report={sample} variant="preview" />
             </div>
           </div>
+          <FeeReportEstimateNotes report={sample} />
         </div>
       </div>
       <ShareWithTeamSheet

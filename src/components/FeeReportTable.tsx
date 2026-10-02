@@ -28,15 +28,7 @@ interface FeeReportTableProps {
 const COLS =
   'grid grid-cols-[minmax(0,1fr)_4.5rem_4.5rem] sm:grid-cols-[minmax(0,1fr)_7.5rem_5rem_5rem] gap-x-3 items-baseline'
 
-export default function FeeReportTable({
-  report,
-  variant = 'full',
-  title = 'Closing fees',
-}: FeeReportTableProps) {
-  const totals = computeTotals(report)
-  const grouped = groupByCategory(report.lineItems)
-  const isPreview = variant === 'preview'
-
+function reportComparison(report: FeeReport) {
   // Market-comparison model (2026-08-11): the whole verified package delta is
   // attributed to the settlement line; other service lines sit at parity
   // (typical low = our price → no claimed savings on them). Identify the
@@ -63,6 +55,24 @@ export default function FeeReportTable({
       ? `the lowest of ${band.providers ?? 'several'} ${report.state} provider quotes`
       : `a conservative estimate (no published ${report.state} competitor fees yet)`
 
+  return {
+    anchor,
+    note: isNewModelData
+      ? `Compared against ${basisPhrase}: ${formatCurrency(stackLow)} all-in for the same services we bill ${formatCurrency(stackTotal)} for.`
+      : undefined,
+  }
+}
+
+export default function FeeReportTable({
+  report,
+  variant = 'full',
+  title = 'Closing fees',
+}: FeeReportTableProps) {
+  const totals = computeTotals(report)
+  const grouped = groupByCategory(report.lineItems)
+  const isPreview = variant === 'preview'
+  const { anchor, note } = reportComparison(report)
+
   return (
     <div
       className={`bg-white rounded-3xl border border-gray-200 overflow-hidden ${
@@ -87,10 +97,10 @@ export default function FeeReportTable({
         <span className="hidden sm:block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 text-right">
           Typical
         </span>
-        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-dark-900 text-right">
+        <span className={`${isPreview ? 'text-[9px] tracking-normal sm:text-[10px]' : 'text-[10px] tracking-[0.2em]'} font-bold uppercase text-dark-900 text-right`}>
           BetterClose
         </span>
-        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-700 text-right">
+        <span className={`${isPreview ? 'text-[9px] tracking-normal sm:text-[10px]' : 'text-[10px] tracking-[0.2em]'} font-bold uppercase text-emerald-700 text-right`}>
           Savings
         </span>
       </div>
@@ -109,9 +119,10 @@ export default function FeeReportTable({
                   item={item}
                   state={report.state}
                   isAnchor={item === anchor}
+                  positiveSavings={isPreview}
                   anchorNote={
-                    item === anchor && isNewModelData
-                      ? `Compared against ${basisPhrase}: ${formatCurrency(stackLow)} all-in for the same services we bill ${formatCurrency(stackTotal)} for.`
+                    item === anchor && note
+                      ? isPreview ? 'Service-package comparison; details below.' : note
                       : undefined
                   }
                 />
@@ -130,7 +141,7 @@ export default function FeeReportTable({
             {formatCurrency(totals.ourTotal)}
           </span>
           <span className="text-sm font-black text-emerald-700 text-right tabular-nums whitespace-nowrap">
-            {formatSavings(totals.estimatedSavings)}
+            {isPreview ? formatCurrency(totals.estimatedSavings) : formatSavings(totals.estimatedSavings)}
           </span>
         </div>
       </div>
@@ -142,16 +153,16 @@ export default function FeeReportTable({
             Your total savings
           </div>
           <div className="text-[11px] text-emerald-100 mt-0.5 leading-snug">
-            Itemized above — the settlement comparison plus BetterClose Bucks
+            {isPreview ? 'Illustrative estimate · itemized above' : 'Itemized above — the settlement comparison plus BetterClose Bucks'}
           </div>
         </div>
         <div className="text-3xl font-black text-white tabular-nums whitespace-nowrap">
-          {formatSavings(totals.estimatedSavings)}
+          {isPreview ? formatCurrency(totals.estimatedSavings) : formatSavings(totals.estimatedSavings)}
         </div>
       </div>
 
-      {/* Two savings buckets */}
-      <div className="px-6 pb-6">
+      {/* Full reports retain both savings buckets; the homepage needs one summary. */}
+      {!isPreview && <div className="px-6 pb-6">
         <div className="grid grid-cols-2 gap-3">
           <div className="bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3">
             <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 mb-1">
@@ -181,19 +192,48 @@ export default function FeeReportTable({
             Final terms may vary.
           </p>
         )}
-      </div>
+      </div>}
 
-      <div className="px-6 py-3 text-[11px] text-gray-400 italic text-center border-t border-gray-100">
-        Estimate. Our settlement charge is compared against the lowest
+      {isPreview ? (
+        <p className="px-6 pb-5 text-xs text-gray-600 leading-relaxed">
+          Sample only. Savings exclude title insurance, recording fees and taxes. See estimate notes below.
+        </p>
+      ) : <div className="px-6 py-3 text-[11px] text-gray-400 italic text-center border-t border-gray-100">
+        <EstimateDisclaimer />
+      </div>}
+    </div>
+  )
+}
+
+function EstimateDisclaimer() {
+  return <>Estimate. Our settlement charge is compared against the lowest
         competing service package we&apos;ve verified for your state (or a
         conservative estimate where competitors publish nothing); other
         service fees are shown from our price up — we claim no savings on
         them. Title insurance premiums are essentially the same across
         providers, and recording fees and taxes are set by the government —
         never counted toward savings. BetterClose Bucks is an introductory
-        promotional credit from BetterClose, applied at closing.
+        promotional credit from BetterClose, applied at closing.</>
+}
+
+// Keep detailed qualifications with the sample, outside its narrow table column.
+export function FeeReportEstimateNotes({ report }: { report: FeeReport }) {
+  const { note } = reportComparison(report)
+  return (
+    <details className="mt-6 rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm text-gray-600">
+      <summary className="cursor-pointer font-semibold text-dark-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-600">
+        About this sample &amp; savings estimate
+      </summary>
+      <div className="mt-3 space-y-3 leading-relaxed">
+        <p><EstimateDisclaimer /></p>
+        {note && <p>{note}</p>}
+        {computeTotals(report).lifetimeSavings > 0 && <p>
+          Loan savings assumes you borrow less or get better loan pricing
+          because your closing costs are lower. Based on 6.5% over 30 years.
+          Final terms may vary.
+        </p>}
       </div>
-    </div>
+    </details>
   )
 }
 
@@ -202,11 +242,13 @@ function FeeRow({
   state,
   isAnchor = false,
   anchorNote,
+  positiveSavings = false,
 }: {
   item: FeeLineItem
   state: string
   isAnchor?: boolean
   anchorNote?: string
+  positiveSavings?: boolean
 }) {
   const lineSavings = item.isCredit ? -item.ourCost : conservativeLineSavings(item)
 
@@ -271,7 +313,7 @@ function FeeRow({
       </div>
       <div className="text-[13px] font-bold text-right tabular-nums whitespace-nowrap">
         {lineSavings > 0 ? (
-          <span className="text-emerald-700">{formatSavings(lineSavings)}</span>
+          <span className="text-emerald-700">{positiveSavings ? formatCurrency(lineSavings) : formatSavings(lineSavings)}</span>
         ) : (
           <span className="text-gray-300">—</span>
         )}
