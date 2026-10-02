@@ -14,8 +14,7 @@ export default function SecurityTrustSection() {
               Protect Your Largest Investment
             </h2>
             <p className="text-xl text-gray-300 mb-6 leading-relaxed">
-              <span className="font-bold text-red-400">$17.1 billion</span> has been lost to wire fraud since 2014.
-              We take your security seriously.
+              Protect your information and independently verify payment instructions before sending money.
             </p>
 
             <div className="space-y-4 mb-8">
@@ -26,8 +25,8 @@ export default function SecurityTrustSection() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg mb-1">Bank-Level Encryption</h3>
-                  <p className="text-gray-400">All documents and data encrypted with 256-bit SSL</p>
+                  <h3 className="font-bold text-lg mb-1">Encrypted Website Connection</h3>
+                  <p className="text-gray-400">HTTPS encrypts the connection between your browser and BetterClose.</p>
                 </div>
               </div>
 
@@ -38,8 +37,8 @@ export default function SecurityTrustSection() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg mb-1">Wire Fraud Protection</h3>
-                  <p className="text-gray-400">Multi-factor verification for all wire transfers</p>
+                  <h3 className="font-bold text-lg mb-1">Verify Payment Instructions</h3>
+                  <p className="text-gray-400">Call your closing team using a known, trusted phone number before sending funds.</p>
                 </div>
               </div>
 
@@ -50,8 +49,8 @@ export default function SecurityTrustSection() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg mb-1">Secure Document Transfer</h3>
-                  <p className="text-gray-400">Encrypted portals for all sensitive information</p>
+                  <h3 className="font-bold text-lg mb-1">Private Document Sharing</h3>
+                  <p className="text-gray-400">Share sensitive documents through your file’s document section.</p>
                 </div>
               </div>
             </div>
@@ -75,20 +74,20 @@ export default function SecurityTrustSection() {
               </svg>
             </div>
 
-            <h3 className="text-3xl font-black mb-3">Your Data is Protected</h3>
+            <h3 className="text-3xl font-black mb-3">Your Privacy Matters</h3>
             <p className="text-primary-100 mb-6">
               We never sell your information. Your privacy is our priority.
             </p>
 
             <div className="flex justify-center gap-6 mb-6">
               <div>
-                <div className="text-4xl font-black mb-1">256-bit</div>
-                <div className="text-sm text-primary-200">SSL Encryption</div>
+                <div className="text-4xl font-black mb-1">HTTPS</div>
+                <div className="text-sm text-primary-200">Website Connection</div>
               </div>
               <div className="w-px bg-primary-400"></div>
               <div>
-                <div className="text-4xl font-black mb-1">24/7</div>
-                <div className="text-sm text-primary-200">Security Monitoring</div>
+                <div className="text-4xl font-black mb-1">Private</div>
+                <div className="text-sm text-primary-200">File Access</div>
               </div>
             </div>
 

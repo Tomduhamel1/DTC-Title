@@ -1,14 +1,14 @@
 export default function AccreditationSection() {
   const trustBadges = [
-    { name: 'BBB Accredited', logo: '🅱️' },
-    { name: 'SSL Secured', logo: '🔒' },
+    { name: 'Line-by-line pricing', logo: '✓' },
+    { name: 'A dedicated closing team', logo: '✓' },
   ]
 
   return (
     <section aria-labelledby="accreditation-heading" className="py-10 bg-white border-t border-gray-200">
       <div className="container mx-auto px-6 max-w-7xl">
         <h2 id="accreditation-heading" className="text-center text-sm text-gray-500 mb-4 font-semibold">
-          ACCREDITED &amp; CERTIFIED BY
+          TRANSPARENT PRICING. REAL PEOPLE.
         </h2>
         <div className="flex flex-wrap justify-center items-center gap-8">
           {trustBadges.map(badge => (

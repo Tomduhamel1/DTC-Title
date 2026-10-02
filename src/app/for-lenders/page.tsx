@@ -109,15 +109,15 @@ export default function LendersPage() {
               <h2 id="borrower-savings-heading" className="text-center text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-5">Example borrower savings · Illustrative</h2>
               <div className="grid grid-cols-2 gap-3">
                 <div className="rounded-xl border border-emerald-100 bg-emerald-50/70 p-4 text-center">
-                  <div data-testid="savings-at-closing" className="text-2xl sm:text-3xl whitespace-nowrap font-black text-emerald-700 leading-none">−{formatCurrency(EXAMPLE_SAVINGS.saveAtClosing)}</div>
+                  <div data-testid="savings-at-closing" className="text-2xl sm:text-3xl whitespace-nowrap font-black text-emerald-700 leading-none">{formatCurrency(EXAMPLE_SAVINGS.saveAtClosing)}</div>
                   <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-800/80 mt-1.5">Save at closing</div>
                 </div>
                 <div className="rounded-xl border border-emerald-100 bg-emerald-50/70 p-4 text-center">
-                  <div data-testid="savings-over-loan" className="text-2xl sm:text-3xl whitespace-nowrap font-black text-emerald-700 leading-none">−{formatCurrency(EXAMPLE_SAVINGS.saveOverLoan)}</div>
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-800/80 mt-1.5">Save over the loan</div>
+                  <div data-testid="savings-over-loan" className="text-2xl sm:text-3xl whitespace-nowrap font-black text-emerald-700 leading-none">{formatCurrency(EXAMPLE_SAVINGS.saveOverLoan)}</div>
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-800/80 mt-1.5">Total over the loan</div>
                 </div>
               </div>
-              <RotatingSavingsPill savings={EXAMPLE_SAVINGS.saveOverLoan} tail="back in your borrower's pocket" className="mt-4" />
+              <RotatingSavingsPill savings={EXAMPLE_SAVINGS.saveAtClosing} tail="back in your borrower's pocket" className="mt-4" />
               <div className="mt-4 pt-4 border-t border-gray-100 space-y-1.5">
                 <div className="flex items-baseline justify-between gap-3"><span className="text-xs text-gray-600">BetterClose estimate</span><span data-testid="betterclose-estimate" className="text-sm font-bold text-dark-900">{formatCurrency(EXAMPLE_BASIS.ourTotal)}</span></div>
                 <div className="flex items-baseline justify-between gap-3"><span className="text-xs text-gray-400">Typical cost · national example</span><span data-testid="comparison-estimate" className="text-sm font-semibold text-gray-400 line-through decoration-gray-300">{formatCurrency(EXAMPLE_BASIS.typicalTotal)}</span></div>

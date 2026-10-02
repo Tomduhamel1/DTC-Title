@@ -1,29 +1,15 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useMemo, useState } from 'react'
+import { useState } from 'react'
 import FeeReportTable, { FeeReportEstimateNotes } from './FeeReportTable'
 import ShareWithTeamSheet from './lender-request/ShareWithTeamSheet'
 import { buildSampleFeeReport } from '@/lib/sampleReport'
 
 export default function FeeReportPreviewSection() {
-  // Localize the sample to the visitor's state (same geo endpoint the hero
-  // uses) so a CA visitor sees a CA-shaped sample, not a Georgia one.
-  // Falls back to GA when geolocation is unavailable.
-  const [geoState, setGeoState] = useState<string | null>(null)
-  useEffect(() => {
-    let cancelled = false
-    fetch('/api/geo')
-      .then((r) => r.json())
-      .then((data) => {
-        if (!cancelled && data.state) setGeoState(data.state)
-      })
-      .catch(() => {})
-    return () => {
-      cancelled = true
-    }
-  }, [])
-  const sample = useMemo(() => buildSampleFeeReport(geoState), [geoState])
+  // A fixed, explicitly labelled illustration—not the hero calculator's
+  // output or a quote for the visitor's detected location.
+  const sample = buildSampleFeeReport('GA')
   const [shareOpen, setShareOpen] = useState(false)
 
   return (
@@ -40,10 +26,16 @@ export default function FeeReportPreviewSection() {
                 See every fee, line by line.
               </h2>
               <p className="text-lg md:text-xl text-gray-600 leading-relaxed mb-8">
-                Every fee, line by line — with our price next to the typical range, so you see exactly what you're saving and what the state sets.
+                Transparent pricing, line by line. See the service charges you can
+                compare, with title insurance and government fees shown separately.
               </p>
               <p className="text-gray-600 mb-5">
                 Want a real estimate for your closing? Takes about 30 seconds.
+              </p>
+              <p className="text-sm text-gray-500 mb-5">
+                This separate sample shows a Georgia purchase at $500,000 with a
+                $400,000 loan. It illustrates the report format, not the savings
+                calculator above or a quote for your property.
               </p>
               <Link
                 href="/quote"
@@ -70,7 +62,7 @@ export default function FeeReportPreviewSection() {
               <div className="absolute -top-3 left-6 z-10">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-dark-900 text-white text-xs font-bold uppercase tracking-wider shadow-md">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                  Sample report{geoState ? ` · ${sample.state}` : ''}
+                  Sample report · Georgia
                 </span>
               </div>
               <FeeReportTable report={sample} variant="preview" />

@@ -154,18 +154,18 @@ export default function OpenFilePage() {
               <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-2xl font-black mx-auto mb-5">
                 ✓
               </div>
-              <h1 className="text-3xl font-black text-dark-900 mb-3">Your file is opened</h1>
+              <h1 className="text-3xl font-black text-dark-900 mb-3">Your title order request was received</h1>
               <p className="text-gray-600 mb-2">
-                Our closing team confirms new orders within one business day. As soon as your
-                escrow officer opens the file, their name, email, and direct phone number will
-                appear on the dashboard.
+                The closing team will review your request and confirm the next steps.
+                Once your file is opened and an escrow officer is assigned, their
+                contact details will appear on your dashboard.
               </p>
               <p className="text-gray-600 mb-8">
                 {done.accountExists
                   ? 'Sign in to track it — milestones, contacts, and your closing officer, all in one place.'
-                  : "We've emailed a secure dashboard link to " +
+                  : "Use " +
                     (isProfessional ? submitterEmail : borrowerEmail) +
-                    ' — no password needed. You can also sign in any time with that email.'}
+                    ' to sign in and follow your request — no password needed.'}
               </p>
               <Link
                 href={dashboardHref}
@@ -177,11 +177,11 @@ export default function OpenFilePage() {
           ) : (
             <>
               <div className="text-center mb-8">
-                <h1 className="text-4xl font-black text-dark-900 mb-3">Open your file</h1>
+                <h1 className="text-4xl font-black text-dark-900 mb-3">Request a title order</h1>
                 <p className="text-gray-600">
                   Tell us about the closing and we&apos;ll take it from here — your escrow
                   officer&apos;s contact info lands on your dashboard as soon as the file is
-                  opened. Confirmed within one business day.
+                  opened. Your closing team will confirm the next steps.
                 </p>
               </div>
 
@@ -339,7 +339,7 @@ export default function OpenFilePage() {
                   disabled={!valid || submitting}
                   className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg py-4 rounded-lg shadow-md transition-colors disabled:opacity-60"
                 >
-                  {submitting ? 'Opening your file…' : 'Open my file'}
+                  {submitting ? 'Submitting your request…' : 'Submit title order'}
                 </button>
 
                 <p className="text-xs text-gray-500 text-center">

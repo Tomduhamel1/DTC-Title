@@ -15,7 +15,7 @@ test('homepage savings copy is positive, at-closing, and uses plain-language loc
   const Provider = h.load('src/contexts/SavingsContext.tsx').SavingsProvider;
   const Team = h.load('src/components/TeamTrustSection.tsx').default;
   const team = text(h.render(React.createElement(Provider, null, React.createElement(Team))));
-  const savings = h.load('src/lib/savingsCalculator.ts').getInitialSavings('purchase', 500000, 'Texas');
+  const savings = h.load('src/lib/savingsCalculator.ts').getInitialSavings('purchase', 500000, '');
   assert.ok(team.includes(`$${savings.totalSavings.toLocaleString()} in estimated savings at closing.`));
   assert.doesNotMatch(team, /[−-]\$|over the life/);
 });

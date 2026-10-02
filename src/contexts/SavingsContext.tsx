@@ -12,7 +12,7 @@ const SavingsContext = createContext<SavingsContextType | undefined>(undefined)
 
 export function SavingsProvider({ children }: { children: ReactNode }) {
   const [savings, setSavings] = useState<SavingsBreakdown>(
-    getInitialSavings('purchase', 500000, 'Texas')
+    getInitialSavings('purchase', 500000, '')
   )
 
   return (

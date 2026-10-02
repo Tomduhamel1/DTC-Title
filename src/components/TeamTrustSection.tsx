@@ -15,7 +15,7 @@ export default function TeamTrustSection() {
               Keep the <span className="text-primary-600">Team You Trust</span>
             </h2>
             <p className="text-xl text-gray-600">
-              Same people. Same protection.{' '}
+              Keep your agent and lender.{' '}
               <span className="font-bold text-emerald-600">
                 ${savings.totalSavings.toLocaleString()} in estimated savings
               </span>{' '}
@@ -61,7 +61,7 @@ export default function TeamTrustSection() {
                 </div>
               </div>
               <h3 className="text-xl font-bold text-dark-900 mb-2">Your Lender</h3>
-              <p className="text-gray-600">Works with all banks</p>
+              <p className="text-gray-600">Keep your chosen lender</p>
             </div>
 
             {/* Plus Sign */}

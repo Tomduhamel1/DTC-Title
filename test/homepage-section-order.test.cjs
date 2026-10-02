@@ -24,13 +24,13 @@ for (const [heroVersion, hero] of [['magic', 'HeroMagicReveal'], ['A', 'HeroOpti
     for (const type of expected) assert.equal(types.filter(t => t === type).length, 1);
     const html = h.render(React.createElement(Home, { heroVersion }));
     const text = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ');
-    for (const heading of ['Keep the Team You Trust', 'Backed By America', 'ACCREDITED &amp; CERTIFIED BY']) {
+    for (const heading of ['Keep the Team You Trust', 'Backed By America', 'TRANSPARENT PRICING. REAL PEOPLE.']) {
       assert.equal(text.split(heading).length - 1, 1, `${heading} renders exactly once`);
     }
     assert.ok(text.indexOf('Keep the Team You Trust') < text.indexOf('See every fee, line by line.'));
     assert.ok(text.indexOf('See every fee, line by line.') < text.indexOf('Backed By America'));
     assert.ok(text.indexOf('Backed By America') < text.indexOf('Real people.'));
-    assert.ok(text.indexOf('ACCREDITED &amp; CERTIFIED BY') > text.indexOf('Make BetterClose your closing company.'));
+    assert.ok(text.indexOf('TRANSPARENT PRICING. REAL PEOPLE.') > text.indexOf('Make BetterClose your closing company.'));
     assert.doesNotMatch(text, /Why BetterClose|Licensed in 50 States|remaining 16/);
     assert.equal(h.sent.length, 0);
   });

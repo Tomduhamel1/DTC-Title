@@ -17,7 +17,7 @@ test('lender page leads with borrower savings tailored to the lending team', () 
   assert.match(hero, /alongside your\s+financing/);
   assert.match(hero, /Example borrower savings/);
   assert.match(hero, /Save at closing/);
-  assert.match(hero, /Save over the loan/);
+  assert.match(hero, /Total over the loan/);
   assert.doesNotMatch(hero, /Encompass/);
   assert.match(hero, /Get estimate/);
   assert.match(hero, /href="#place-an-order"/);
@@ -36,8 +36,8 @@ test('lender savings and cost comparison use the same national example as broker
   const savings = estimateSavings(500000, 'purchase', null);
   const basis = estimateCostBasis(500000, 'purchase', null);
   const value = id => hero.match(new RegExp('data-testid="' + id + '"[^>]*>([^<]+)<'))?.[1];
-  assert.equal(value('savings-at-closing'), '−' + formatCurrency(savings.saveAtClosing));
-  assert.equal(value('savings-over-loan'), '−' + formatCurrency(savings.saveOverLoan));
+  assert.equal(value('savings-at-closing'), formatCurrency(savings.saveAtClosing));
+  assert.equal(value('savings-over-loan'), formatCurrency(savings.saveOverLoan));
   assert.equal(value('betterclose-estimate'), formatCurrency(basis.ourTotal));
   assert.equal(value('comparison-estimate'), formatCurrency(basis.typicalTotal));
   assert.equal(basis.typicalTotal - basis.ourTotal, savings.saveAtClosing);

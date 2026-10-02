@@ -10,21 +10,7 @@ export const MILESTONE_KINDS = [
 
 export type MilestoneKind = (typeof MILESTONE_KINDS)[number]
 
-export const MILESTONE_LABELS: Record<MilestoneKind, string> = {
-  loan_locked: 'Loan locked',
-  title_ordered: 'Title ordered',
-  title_search: 'Title search complete',
-  title_issued: 'Title issued',
-  closed: 'Closed',
-}
-
-export const MILESTONE_DESCRIPTIONS: Record<MilestoneKind, string> = {
-  loan_locked: 'Your lender finalizes your interest rate.',
-  title_ordered: 'Your closing team opened your title order with BetterClose.',
-  title_search: 'The closing team reviews the title commitment, requirements and exceptions.',
-  title_issued: 'The closing team records issuance of the title insurance policy.',
-  closed: 'The closing team marks the file closed. Ask your escrow officer about recording and disbursement status.',
-}
+export { MILESTONE_LABELS, MILESTONE_DESCRIPTIONS } from './closing/milestoneCopy'
 
 export function normalizePropertyKey(address: string | null | undefined): string | null {
   if (!address) return null

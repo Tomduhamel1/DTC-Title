@@ -70,7 +70,7 @@ test('lender content fits phone, tablet and desktop using the established site d
       assert.match(layout.hero, /Give your borrowers lower closing costs/);
       // innerText reflects the existing design's CSS text-transform.
       assert.match(layout.hero, /SAVE AT CLOSING/);
-      assert.match(layout.hero, /SAVE OVER THE LOAN/);
+      assert.match(layout.hero, /TOTAL OVER THE LOAN/);
       assert.equal(layout.savings.length, 2);
       for (const value of layout.savings) assert.ok(value.fits && value.singleLine && value.left >= 0 && value.right <= width, `${width}: savings figure ${value.text} fits on one line`);
       assert.match(layout.workflow, /Custom lender APIs/);

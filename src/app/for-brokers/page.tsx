@@ -1,3 +1,4 @@
+import { CUSTOMER_MILESTONE_KINDS } from '@/lib/closing/customerMilestones'
 import { offeredStateCount } from '@/lib/stateMaster'
 import Link from 'next/link'
 import NavigationCredible from '@/components/NavigationCredible'
@@ -34,7 +35,7 @@ const REQUEST_ACCESS_BODY = `Hi BetterClose team,
 We'd like to request access to the broker/LO portal.
 
 Company name:
-NPN:
+NMLS ID (if applicable):
 State licenses:
 Approximate monthly closings:
 How you found us:
@@ -201,7 +202,7 @@ export default function BrokersPage() {
                 </Link>
               </div>
               <p className="text-sm text-gray-500 mt-4">
-                No login required. Create an account when you&apos;re ready to send or open a closing.
+                No login required for an estimate or email order. Sign in to save and share quotes or view your files.
               </p>
             </div>
 
@@ -222,22 +223,22 @@ export default function BrokersPage() {
               {/* Two equal savings cards — the primary emphasis */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="rounded-xl border border-emerald-100 bg-emerald-50/70 p-4 text-center">
-                  <div className="text-3xl font-black text-emerald-700 leading-none">−{formatCurrency(EXAMPLE_SAVINGS.saveAtClosing)}</div>
+                  <div className="text-3xl font-black text-emerald-700 leading-none">{formatCurrency(EXAMPLE_SAVINGS.saveAtClosing)}</div>
                   <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-800/80 mt-1.5">
                     Save at closing
                   </div>
                 </div>
                 <div className="rounded-xl border border-emerald-100 bg-emerald-50/70 p-4 text-center">
-                  <div className="text-3xl font-black text-emerald-700 leading-none">−{formatCurrency(EXAMPLE_SAVINGS.saveOverLoan)}</div>
+                  <div className="text-3xl font-black text-emerald-700 leading-none">{formatCurrency(EXAMPLE_SAVINGS.saveOverLoan)}</div>
                   <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-800/80 mt-1.5">
-                    Save over the loan
+                    Total over the loan
                   </div>
                 </div>
               </div>
 
               {/* Rotating payoff pill directly under the savings figures —
                   same placement as the homepage hero. */}
-              <RotatingSavingsPill savings={EXAMPLE_SAVINGS.saveOverLoan} tail="back in your borrower's pocket" className="mt-4" />
+              <RotatingSavingsPill savings={EXAMPLE_SAVINGS.saveAtClosing} tail="back in your borrower's pocket" className="mt-4" />
 
               {/* Smaller comparison row */}
               <div className="mt-4 pt-4 border-t border-gray-100 space-y-1.5">
@@ -246,13 +247,13 @@ export default function BrokersPage() {
                   <span className="text-sm font-bold text-dark-900">{formatCurrency(EXAMPLE_BASIS.ourTotal)}</span>
                 </div>
                 <div className="flex items-baseline justify-between">
-                  <span className="text-xs text-gray-400">Typical rates in this area</span>
+                  <span className="text-xs text-gray-400">Typical cost · national example</span>
                   <span className="text-sm font-semibold text-gray-400 line-through decoration-gray-300">{formatCurrency(EXAMPLE_BASIS.typicalTotal)}</span>
                 </div>
               </div>
 
               <p className="text-[11px] text-gray-400 leading-relaxed mt-4">
-                Example purchase shown. Actual quote uses the borrower&apos;s loan, property, and location.
+                Illustrative $500,000 purchase, not a quote. Actual savings depend on the file and comparison. The loan total includes at-closing savings plus interest avoided by borrowing that much less, at 6.5% over 30 years—not a lower loan rate.
               </p>
             </div>
 
@@ -282,7 +283,7 @@ export default function BrokersPage() {
             ))}
           </div>
           <p className="text-xs text-gray-500 mt-6">
-            A-rated underwriters only · in-house and partner attorneys when a file needs legal work · directly licensed in 34 states; remaining states through licensed workshare partners · a division of First National Title &amp; Escrow.
+            BetterClose is a DBA of First National Title &amp; Escrow LLC. Contact our team to confirm service availability and licensing for the property’s state.
           </p>
         </div>
       </section>
@@ -300,13 +301,13 @@ export default function BrokersPage() {
                 <span className="text-primary-600">in one place.</span>
               </h2>
               <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-                Every quote and every closing you&apos;ve placed shows up the moment you sign in.
-                No spreadsheets, no chasing escrow officers for status updates.
+                View the quotes and files linked to your verified work email.
+                See the latest updates provided by your closing team.
               </p>
               <ul className="space-y-3 mb-8">
                 <FeatureBullet>Create quotes in under a minute.</FeatureBullet>
                 <FeatureBullet>See when borrowers view them.</FeatureBullet>
-                <FeatureBullet>Convert approved quotes into real BetterClose closings.</FeatureBullet>
+                <FeatureBullet>Submit title orders using saved quote details.</FeatureBullet>
                 <FeatureBullet>Track every file by status and milestone.</FeatureBullet>
                 <FeatureBullet>Keep email-order fallback for files that start outside the portal.</FeatureBullet>
               </ul>
@@ -329,7 +330,7 @@ export default function BrokersPage() {
             <StepCard
               step="1"
               title="Create a client quote"
-              body="Enter the borrower&apos;s basics — purchase or refi, ZIP, loan amount — and we freeze a fee report."
+              body="Enter the borrower&apos;s basics — purchase or refi, ZIP, loan amount — and save a fee estimate for that scenario."
             />
             <StepCard
               step="2"
@@ -339,17 +340,17 @@ export default function BrokersPage() {
             <StepCard
               step="3"
               title="Convert to a closing"
-              body="When the borrower says yes, one click turns the quote into a real BetterClose closing. We open the file, notify the borrower, and begin tracking the closing milestones."
+              body="Submit the quote as a title order for the closing team to review. Borrower emails follow your notification defaults and per-file choices; they are off unless enabled."
             />
             <StepCard
               step="4"
               title="Track the file in pipeline"
-              body="Your pipeline shows every file you&apos;ve placed — active, pending, closed — with milestone counts and direct links to each file."
+              body="Your pipeline shows linked files — active, pending, and closed — with milestone counts and links to each file."
             />
             <StepCard
               step="5"
               title="Or email an order instead"
-              body="Prefer the email workflow? Send orders to orders@betterclose.co. Same ops team, same SLA, same outcome."
+              body="Prefer email? Send your order details to orders@betterclose.co. Our closing team will follow up with next steps."
             />
           </div>
         </div>
@@ -361,15 +362,15 @@ export default function BrokersPage() {
           <div className="grid md:grid-cols-2 gap-6">
             <ActionCard
               title="Already onboarded? Sign in."
-              body="Your company has been onboarded by BetterClose admin? Sign in with your work email — we&apos;ll match your account to every BetterClose file you&apos;ve ever been on."
+              body="If your company has portal access, sign in with your work email to view the quotes and files linked to that email."
               primary={{ label: 'Sign in to broker dashboard →', href: SIGN_IN_HREF, style: 'solid' }}
               secondary={{ label: 'Or jump straight to creating a broker quote →', href: CREATE_BROKER_QUOTE_HREF }}
             />
             <ActionCard
               title="Not onboarded yet? Request access."
-              body="BetterClose onboards brokerages and lending teams one at a time after a quick verification call (NPN, licenses, settlement-agent arrangement). Email us your company details and we&apos;ll set up your portal."
+              body="Email us your company details to request broker portal access. Our team will confirm the information and setup required."
               primary={{ label: 'Request portal access →', href: REQUEST_ACCESS_HREF, style: 'outline' }}
-              footnote="Approval typically within one business day."
+              footnote="Our team will follow up about access and setup."
             />
           </div>
         </div>
@@ -380,13 +381,13 @@ export default function BrokersPage() {
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-black text-dark-900 mb-3">Place orders your way</h2>
-            <p className="text-lg text-gray-600">Pick what fits your workflow today — every path opens a real file.</p>
+            <p className="text-lg text-gray-600">Submit a title order, access your files, or discuss your workflow with our team.</p>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
             <OrderTile
               icon={ICONS.clipboard}
               title="Open a file online"
-              body="Two-minute form — borrower, property, amounts. No portal account needed; the file lands on your dashboard under your work email. We confirm within one business day."
+              body="Send the borrower, property, and loan details without a portal account. Our closing team will review the request; sign in with your work email to follow the linked file."
               cta={{ label: 'Open a file →', href: OPEN_FILE_HREF }}
             />
             <OrderTile
@@ -398,13 +399,13 @@ export default function BrokersPage() {
             <OrderTile
               icon={ICONS.envelope}
               title="Email an order"
-              body="Send a single email to orders@betterclose.co with the borrower and property details. We confirm within one business day."
+              body="Send your borrower and property details to orders@betterclose.co. Our closing team will confirm the next steps."
               cta={{ label: 'Email an order →', href: EMAIL_ORDER_HREF }}
             />
             <OrderTile
               icon={ICONS.workflow}
               title="Your existing workflow"
-              body="Work from Encompass or plain email today — SmartFees, Qualia, and ResWare integrations are coming soon."
+              body="Use Encompass for one-touch ordering and document exchange, or send an email order. Contact us to discuss other integrations."
             />
             <OrderTile
               icon={ICONS.clipboard}
@@ -432,12 +433,12 @@ export default function BrokersPage() {
             <ReasonCard
               icon={ICONS.cash}
               title="Lower cash to close"
-              body="Cut your borrower's title and settlement costs without changing the underwriter."
+              body="Help your borrower compare settlement service fees while reviewing the title coverage required for the file."
             />
             <ReasonCard
               icon={ICONS.chartDown}
               title="Two savings numbers to show your borrower"
-              body="Save at closing and save over the loan — both clearly displayed."
+              body="See estimated savings at closing and the total including modeled interest avoided over the loan."
             />
             <ReasonCard
               icon={ICONS.document}
@@ -447,17 +448,17 @@ export default function BrokersPage() {
             <ReasonCard
               icon={ICONS.bolt}
               title="Convert quote to order"
-              body="When the borrower says yes, one click opens the closing. No re-keying."
+              body="Use saved quote details to submit a title order for the closing team to review."
             />
             <ReasonCard
               icon={ICONS.pin}
               title="Track every milestone"
-              body="Live pipeline status from order to close — no chasing title for updates."
+              body="See the latest title milestones provided by your closing team. Contact your officer for time-sensitive details."
             />
             <ReasonCard
               icon={ICONS.scale}
-              title="Legal snags don't slip your close date"
-              body="A lien that won't release, an estate or vesting problem, a missing signer — when a file needs legal work, our in-house and partner attorneys clear it so your clear-to-close holds."
+              title="Help with title issues"
+              body="When title issues need legal work, our closing team coordinates with the appropriate attorneys and explains the effect on costs and timing."
             />
           </div>
         </div>
@@ -471,7 +472,7 @@ export default function BrokersPage() {
               Built to compete with your best title option
             </h2>
             <p className="text-lg text-gray-600">
-              No inflated comparisons. No fake savings on pass-through fees.
+              Transparent pricing, line by line. Service fees and pass-through charges shown separately.
             </p>
           </div>
           <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
@@ -544,7 +545,7 @@ function StepCard({ step, title, body }: { step: string; title: string; body: st
         {step}
       </div>
       <h3 className="font-bold text-base mb-2 text-dark-900">{title}</h3>
-      <p className="text-sm text-gray-600 leading-relaxed">{body}</p>
+      <p className="text-sm text-gray-600 leading-relaxed break-words">{body}</p>
     </div>
   )
 }
@@ -700,7 +701,7 @@ function DashboardMockup() {
               borrower="Sarah Chen"
               status="Quote viewed"
               statusTone="violet"
-              detail={`−${formatCurrency(EXAMPLE_SAVINGS.saveAtClosing)} estimated savings`}
+              detail={`${formatCurrency(EXAMPLE_SAVINGS.saveAtClosing)} estimated savings`}
               cta="Convert"
               progress={null}
             />
@@ -710,7 +711,7 @@ function DashboardMockup() {
               statusTone="emerald"
               detail="Title search"
               cta={null}
-              progress={{ done: 2, total: 5 }}
+              progress={{ done: 2, total: CUSTOMER_MILESTONE_KINDS.length }}
             />
             <MockRow
               borrower="Priya Shah"
@@ -718,7 +719,7 @@ function DashboardMockup() {
               statusTone="amber"
               detail="Awaiting order"
               cta={null}
-              progress={{ done: 0, total: 5 }}
+              progress={{ done: 0, total: CUSTOMER_MILESTONE_KINDS.length }}
             />
           </div>
         </div>

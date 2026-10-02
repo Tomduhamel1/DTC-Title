@@ -64,7 +64,7 @@ export default function FooterComprehensive() {
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-primary-400 transition-colors text-sm">
+                <a href="/login?callbackUrl=/teammate/dashboard" className="hover:text-primary-400 transition-colors text-sm">
                   Professional Portal Login →
                 </a>
               </li>
@@ -95,7 +95,7 @@ export default function FooterComprehensive() {
                   <svg className="w-5 h-5 text-primary-400" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
                   </svg>
-                  <span className="text-sm">Equal Housing Lender</span>
+                  <span className="text-sm">Title &amp; settlement services</span>
                 </div>
               </li>
             </ul>
@@ -169,10 +169,10 @@ export default function FooterComprehensive() {
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-sm text-gray-500">
-            © 2025 BetterClose, a DBA of First National Title & Escrow LLC. All rights reserved.
+            © {new Date().getFullYear()} BetterClose, a DBA of First National Title & Escrow LLC. All rights reserved.
           </div>
           <div className="flex items-center gap-4 text-xs text-gray-500">
-            <span>BBB Accredited</span>
+            <Link href="/licenses" className="hover:text-primary-400">Licensing information</Link>
           </div>
         </div>
       </div>
