@@ -98,7 +98,7 @@ export default function FeeReportTable({
       )}
 
       {/* Column headers */}
-      <div className={`${columns} px-6 pt-5 pb-3 border-b border-gray-100`}>
+      <div className={`${columns} px-6 ${isPreview ? 'pt-4' : 'pt-5'} pb-3 border-b border-gray-100`}>
         <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">Item</span>
         <span className={`${isPreview ? PREVIEW_TYPICAL : 'hidden sm:block'} text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 text-right`}>
           Typical
@@ -112,7 +112,7 @@ export default function FeeReportTable({
       </div>
 
       {/* Fee rows */}
-      <div className={`px-6 ${isPreview ? 'py-3' : 'py-5'}`}>
+      <div className={`px-6 ${isPreview ? 'py-2' : 'py-5'}`}>
         {Array.from(grouped.entries()).map(([cat, items], catIdx) => (
           <div key={cat} className={catIdx === 0 ? '' : isPreview ? 'mt-3' : 'mt-5'}>
             <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-2">
@@ -138,7 +138,7 @@ export default function FeeReportTable({
         ))}
 
         {/* Totals row — the savings column sums right here, in the open. */}
-        <div className={`${columns} mt-5 pt-4 border-t-2 border-gray-200`}>
+        <div className={`${columns} ${isPreview ? 'mt-3 pt-3' : 'mt-5 pt-4'} border-t-2 border-gray-200`}>
           <span className="text-sm font-bold text-dark-900">Total</span>
           <span className={`${isPreview ? PREVIEW_TYPICAL : 'hidden sm:block'} text-xs text-gray-400 line-through text-right tabular-nums whitespace-nowrap`}>
             {formatRange(totals.marketLow, totals.marketHigh)}
@@ -153,7 +153,7 @@ export default function FeeReportTable({
       </div>
 
       {/* Preview keeps both time horizons together, without a duplicate banner. */}
-      {isPreview ? <div className="mx-6 mb-3 rounded-2xl bg-emerald-600 px-4 py-4 text-white">
+      {isPreview ? <div className="mx-6 mb-3 rounded-2xl bg-emerald-600 px-4 py-3 text-white">
         <div className="grid grid-cols-2 gap-4">
           <div data-preview-closing-savings className="flex flex-col">
             <div className="flex-1 text-[10px] font-bold uppercase tracking-wide text-emerald-100">Save at closing</div>
