@@ -50,7 +50,7 @@ function LoginInner() {
                 {isBrokerSignup
                   ? 'Save this estimate, send it to your borrower, or open the closing.'
                   : isFileAccess ? 'Use the email that received your file update or that you used to place the order. No password or prior account needed.'
-                  : "We'll email you a one-tap link. No password needed."}
+                  : "We'll email you a secure link. Open it and confirm your sign-in. No password needed."}
               </p>
             </div>
 

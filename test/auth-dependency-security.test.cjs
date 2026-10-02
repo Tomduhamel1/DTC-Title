@@ -65,8 +65,11 @@ for (const email of ['  Alex@Example.Invalid  ', ' ＡＬＥＸ＠ＥＸＡＭ�
     assert.equal(actual.sent.length, 1);
     assert.equal(actual.sent[0].to, 'alex@example.invalid');
     const link = actual.sent[0].textBody.match(/https:\/\/\S+/)[0];
-    assert.equal(new URL(link).searchParams.get('email'), 'alex@example.invalid');
-    assert.notEqual(actual.tokens[0].token, new URL(link).searchParams.get('token'), 'persist only the hashed token');
+    const safeLink = new URL(link), fields = new URLSearchParams(safeLink.hash.slice(1));
+    assert.equal(safeLink.pathname, '/login/confirm');
+    assert.equal(safeLink.search, '', 'Credentials must not be part of an HTTP GET');
+    assert.equal(fields.get('email'), 'alex@example.invalid');
+    assert.notEqual(actual.tokens[0].token, fields.get('token'), 'persist only the hashed token');
   });
 }
 

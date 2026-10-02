@@ -43,6 +43,11 @@ hours.
 
 - NextAuth **magic links** (no passwords), sent via SES from
   `noreply@betterclose.co`.
+- Sign-in emails now land on `/login/confirm`; an explicit confirmation POST
+  redeems the unchanged one-use NextAuth token. GET/HEAD to the legacy email
+  callback also show confirmation, never consume a token. Preserve this guard:
+  mail-security scans can otherwise exhaust a fresh link before its recipient.
+  Tokens travel in email URL fragments and POST bodies, not new GET queries.
 - **SES production access was verified enabled on 2026-09-30 in us-east-1**;
   sending enabled, enforcement HEALTHY. Earlier sandbox denial/appeal notes
   are historical. Recheck `aws sesv2 get-account` before relying on this state.

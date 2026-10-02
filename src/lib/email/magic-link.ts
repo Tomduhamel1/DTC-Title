@@ -4,8 +4,8 @@ import { emailButton, renderEmail } from './layout'
 export function renderMagicLinkEmail({ url }: { url: string }): string {
   return renderEmail({
     title: 'Sign in to your dashboard',
-    contentHtml: `<p>Click the button below to sign in. The link expires in 24 hours.</p>
+    contentHtml: `<p>Open the link below, then choose <strong>Continue signing in</strong>. Your link works once and expires after 24 hours.</p>
       ${emailButton(url, 'Sign in to BetterClose →')}`,
-    footerHtml: "If you didn't request this, you can safely ignore this email.",
+    footerHtml: "If you didn't request this, you can safely ignore this email. Please don't forward this personal link.",
   })
 }

@@ -91,7 +91,7 @@ add('lender-request', 'lender-request', 'sendLenderRequestEmail', { lenderEmail:
 add('lender-minimal', 'lender-request', 'sendLenderRequestEmail', { lenderEmail: to, refId: 'synthetic-123', baseUrl: 'https://betterclose.example.invalid' });
 add('partner-referral', 'partner-referral', 'sendPartnerReferralEmail', { partnerName: 'Alex Example', partnerEmail: to, leadName: 'Morgan Example', leadEmail: 'borrower@example.invalid', leadPhone: '212-555-0100', creditBand: 'good', propertyType: 'single_family', occupancy: 'primary', requestedLoanAmount: 320000, downPaymentPct: 20, termPreference: '30_year', contactPreference: 'email', notes: 'Please contact by email.', referralId: 'SYNTHETIC-REFERRAL' });
 add('partner-minimal', 'partner-referral', 'sendPartnerReferralEmail', { ...cases.at(-1).data, leadPhone: undefined, requestedLoanAmount: undefined, notes: undefined });
-cases.push({ id: 'sign-in', file: 'src/lib/auth/options.ts', data: { identifier: to, url: 'https://betterclose.example.invalid/api/auth/callback/email?token=synthetic%2Btoken&email=recipient%40example.invalid&callbackUrl=%2Fdashboard', provider: { from: 'noreply@betterclose.co' } }, dryRun: true });
+cases.push({ id: 'sign-in', file: 'src/lib/auth/options.ts', data: { identifier: to, url: 'https://betterclose.example.invalid/api/auth/callback/email?token=' + 'a'.repeat(64) + '&email=recipient%40example.invalid&callbackUrl=%2Fdashboard', provider: { from: 'noreply@betterclose.co' } }, dryRun: true });
 
 async function invoke(harness, spec) {
   const mod = harness.load(spec.file);
