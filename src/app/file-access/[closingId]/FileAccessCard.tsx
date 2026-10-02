@@ -30,7 +30,7 @@ export default function FileAccessCard({ closingId, signedIn }: { closingId: str
         const { url } = await response.json()
         const target = new URL(url)
         if (target.origin !== window.location.origin || target.pathname !== '/api/auth/callback/email') throw new Error('Invalid access response')
-        submitEmailCallback(target.href)
+        await submitEmailCallback(target.href)
       } else if (response.status === 410) { setToken(null); setUnavailable(true) }
       else setRetry(true)
     } catch { setRetry(true) }

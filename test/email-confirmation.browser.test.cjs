@@ -19,9 +19,10 @@ test('script-executing previews never submit; a human click submits once by POST
     await page.setRequestInterception(true);
     page.on('request',req=>{
       const httpUrl=new URL(req.url());httpUrl.hash='';
-      requests.push({url:httpUrl.href,method:req.method(),body:req.postData()});
-      if(httpUrl.href===origin+'/login/confirm')req.respond({status:200,contentType:'text/html',body:'<!doctype html><html><body><div id="root"></div></body></html>'});
-      else if(httpUrl.href===origin+'/api/auth/callback/email' && req.method()==='POST')req.respond({status:200,contentType:'text/html',body:'Synthetic confirmed submission'});
+      requests.push({url:httpUrl.href,method:req.method(),body:req.postData(),origin:req.headers().origin});
+      if(httpUrl.href===origin+'/login/confirm')req.respond({status:200,contentType:'text/html',headers:{'Referrer-Policy':'no-referrer'},body:'<!doctype html><html><head><meta name="referrer" content="no-referrer"></head><body><div id="root"></div></body></html>'});
+      else if(httpUrl.href===origin+'/api/auth/callback/email' && req.method()==='POST')req.respond({status:200,contentType:'application/json',body:JSON.stringify({url:origin+'/admin'})});
+      else if(httpUrl.href===origin+'/admin')req.respond({status:200,contentType:'text/html',body:'Synthetic confirmed submission'});
       else req.abort();
     });
     for(const width of [390,1280]){
@@ -40,7 +41,8 @@ test('script-executing previews never submit; a human click submits once by POST
     await Promise.all([page.waitForNavigation(),page.click('button[type="submit"]')]);
     const posts=requests.filter(r=>r.method==='POST');assert.equal(posts.length,1);
     assert.equal(posts[0].url,origin+'/api/auth/callback/email');
-    assert.deepEqual(Object.fromEntries(new URLSearchParams(posts[0].body)),fields);
+    assert.equal(posts[0].origin,origin,'Confirmation must retain its trusted Origin even with no-referrer');
+    assert.deepEqual(Object.fromEntries(new URLSearchParams(posts[0].body)),{...fields,json:'true'});
     assert.ok(!(await page.content()).includes(fields.token));
     await page.goto(origin+'/login/confirm');await page.addScriptTag({content:script.outputFiles[0].text});
     await page.waitForSelector('a[href="/login"]');assert.equal(await page.$('button[type="submit"]'),null);

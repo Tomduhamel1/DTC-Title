@@ -35,7 +35,8 @@ export async function POST(req: NextRequest, context: Context) {
   }
   if (Number(req.headers.get('content-length')) > 8192) return new NextResponse(null, { status: 400, headers: privateHeaders })
   const body = await req.text()
-  const data = body.length <= 8192 ? readEmailConfirmation(new URLSearchParams(body), trustedOrigin()) : null
+  const submitted = new URLSearchParams(body)
+  const data = body.length <= 8192 ? readEmailConfirmation(submitted, trustedOrigin()) : null
   if (!data) return NextResponse.redirect(trustedOrigin() + '/login?error=Verification', { status: 303, headers: privateHeaders })
   // NextAuth v4 expects email credentials in its internal query object even
   // for POST. Translate only in memory: browser requests never carry tokens
@@ -43,5 +44,6 @@ export async function POST(req: NextRequest, context: Context) {
   const internal = new URL('/api/auth/callback/email', trustedOrigin())
   internal.search = new URLSearchParams(data).toString()
   return handler(new NextRequest(internal, { method: 'POST', headers: req.headers,
-    body: new URLSearchParams({ callbackUrl: data.callbackUrl }) }), context)
+    body: new URLSearchParams({ callbackUrl: data.callbackUrl,
+      ...(submitted.get('json') === 'true' ? { json: 'true' } : {}) }) }), context)
 }

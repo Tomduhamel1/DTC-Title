@@ -188,7 +188,7 @@ test('real browser confirmation signs in an administrator and a normal user with
     assert.equal(await prisma.session.count({where:{userId:actors[actor].id}}),count);
     await Promise.all([page.waitForNavigation(),page.click('button[type="submit"]')]);
     const session=await page.evaluate(()=>fetch('/api/auth/session').then(r=>r.json()));
-    assert.equal(session.user.email,actors[actor].email);
+    assert.equal(session.user?.email,actors[actor].email,`Expected ${actor} session after confirmation; landed at ${new URL(page.url()).pathname}`);
     if(actor==='admin')assert.equal(new URL(page.url()).pathname,'/admin');
     else assert.ok(['/','/preview'].includes(new URL(page.url()).pathname),'A normal user is denied admin access');
     assert.equal(await prisma.session.count({where:{userId:actors[actor].id}}),count+1);

@@ -25,22 +25,29 @@ export function emailConfirmationUrl(callback: string, origin: string): string {
   return origin + '/login/confirm#' + new URLSearchParams(data).toString()
 }
 
+// Fetch uses CORS mode (even for this same-origin URL), retaining Origin under
+// no-referrer. A native form instead sends Origin:null under that privacy
+// policy. Do not weaken either the Origin check or the referrer policy.
+export async function confirmEmailSignIn(data: EmailConfirmation) {
+  const response = await fetch('/api/auth/callback/email', {
+    method: 'POST', mode: 'cors', credentials: 'same-origin',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({ ...data, json: 'true' }),
+  })
+  if (!response.ok) throw new Error('Sign-in unavailable')
+  const result = await response.json()
+  if (typeof result?.url !== 'string') throw new Error('Sign-in unavailable')
+  const destination = new URL(result.url, window.location.origin)
+  if (destination.origin !== window.location.origin || destination.username || destination.password) throw new Error('Sign-in unavailable')
+  // NextAuth sets the session cookie on the response; we never create one.
+  window.location.replace(destination.href)
+}
+
 // Used only after the existing file-access page's explicit button click.
-// Native POST navigation lets NextAuth set its own cookies and redirect;
-// no session is manufactured by the application or carried in a URL.
-export function submitEmailCallback(callback: string) {
+export async function submitEmailCallback(callback: string) {
   const url = new URL(callback)
   const data = url.origin === window.location.origin && url.pathname === '/api/auth/callback/email'
     ? readEmailConfirmation(url.searchParams, window.location.origin) : null
   if (!data) throw new Error('Invalid sign-in response')
-  const form = document.createElement('form')
-  form.method = 'POST'
-  form.action = '/api/auth/callback/email'
-  for (const [name, value] of Object.entries(data)) {
-    const input = document.createElement('input')
-    input.type = 'hidden'; input.name = name; input.value = value
-    form.appendChild(input)
-  }
-  document.body.appendChild(form)
-  form.submit()
+  await confirmEmailSignIn(data)
 }

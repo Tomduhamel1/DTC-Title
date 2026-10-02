@@ -1,12 +1,13 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { readEmailConfirmation, type EmailConfirmation } from '@/lib/auth/emailConfirmation'
+import { confirmEmailSignIn, readEmailConfirmation, type EmailConfirmation } from '@/lib/auth/emailConfirmation'
 
 export default function ConfirmSignIn() {
   const [data, setData] = useState<EmailConfirmation | null>(null)
   const [ready, setReady] = useState(false)
   const [busy, setBusy] = useState(false)
+  const [retry, setRetry] = useState(false)
   const initialized = useRef(false)
   useEffect(() => {
     if (initialized.current) return
@@ -23,9 +24,13 @@ export default function ConfirmSignIn() {
         <p className="mb-2 text-sm text-gray-600">Continue as</p>
         <p className="mb-5 break-all font-semibold text-gray-900">{data.email}</p>
         <p className="mb-6 text-sm leading-relaxed text-gray-600">This extra step keeps email security checks from using your link before you do. No password needed.</p>
-        <form action="/api/auth/callback/email" method="post" onSubmit={event => {
-          if (busy) { event.preventDefault(); return }
-          setBusy(true)
+        {retry && <p role="alert" className="mb-4 text-sm text-red-700">We couldn’t complete sign-in. Please try again.</p>}
+        <form action="/api/auth/callback/email" method="post" onSubmit={async event => {
+          event.preventDefault()
+          if (busy) return
+          setBusy(true); setRetry(false)
+          try { await confirmEmailSignIn(data) }
+          catch { setRetry(true); setBusy(false) }
         }}>
           {Object.entries(data).map(([name, value]) => <input key={name} type="hidden" name={name} value={value} />)}
           <button type="submit" disabled={busy} className="w-full rounded-xl bg-emerald-600 px-5 py-3 font-semibold text-white hover:bg-emerald-700 disabled:opacity-50">
