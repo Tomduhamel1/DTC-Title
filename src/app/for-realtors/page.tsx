@@ -1,3 +1,4 @@
+import { CUSTOMER_MILESTONE_KINDS } from '@/lib/closing/customerMilestones'
 import { offeredStateCount } from '@/lib/stateMaster'
 import Link from 'next/link'
 import NavigationCredible from '@/components/NavigationCredible'
@@ -155,22 +156,22 @@ export default function RealtorsPage() {
 
               <div className="grid grid-cols-2 gap-3">
                 <div className="rounded-xl border border-emerald-100 bg-emerald-50/70 p-4 text-center">
-                  <div className="text-3xl font-black text-emerald-700 leading-none">−{formatCurrency(EXAMPLE_SAVINGS.saveAtClosing)}</div>
+                  <div className="text-3xl font-black text-emerald-700 leading-none">{formatCurrency(EXAMPLE_SAVINGS.saveAtClosing)}</div>
                   <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-800/80 mt-1.5">
                     Save at closing
                   </div>
                 </div>
                 <div className="rounded-xl border border-emerald-100 bg-emerald-50/70 p-4 text-center">
-                  <div className="text-3xl font-black text-emerald-700 leading-none">−{formatCurrency(EXAMPLE_SAVINGS.saveOverLoan)}</div>
+                  <div className="text-3xl font-black text-emerald-700 leading-none">{formatCurrency(EXAMPLE_SAVINGS.saveOverLoan)}</div>
                   <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-800/80 mt-1.5">
-                    Save over the loan
+                    Total over the loan
                   </div>
                 </div>
               </div>
 
               {/* Rotating payoff pill directly under the savings figures —
                   same placement as the homepage hero. */}
-              <RotatingSavingsPill savings={EXAMPLE_SAVINGS.saveOverLoan} tail="back in your buyer's pocket" className="mt-4" />
+              <RotatingSavingsPill savings={EXAMPLE_SAVINGS.saveAtClosing} tail="back in your buyer's pocket" className="mt-4" />
 
               <div className="mt-4 pt-4 border-t border-gray-100 space-y-1.5">
                 <div className="flex items-baseline justify-between">
@@ -178,14 +179,14 @@ export default function RealtorsPage() {
                   <span className="text-sm font-bold text-dark-900">{formatCurrency(EXAMPLE_BASIS.ourTotal)}</span>
                 </div>
                 <div className="flex items-baseline justify-between">
-                  <span className="text-xs text-gray-400">Typical rates in this area</span>
+                  <span className="text-xs text-gray-400">Typical cost · national example</span>
                   <span className="text-sm font-semibold text-gray-400 line-through decoration-gray-300">{formatCurrency(EXAMPLE_BASIS.typicalTotal)}</span>
                 </div>
               </div>
 
               <p className="text-[11px] text-gray-400 leading-relaxed mt-4">
                 Example purchase only — not a quote or guarantee. Actual savings
-                depend on your buyer&apos;s loan, property, and location.
+                depend on your buyer&apos;s loan, property, and location. The loan total includes at-closing savings plus modeled interest avoided by borrowing that much less, at 6.5% over 30 years—not a lower loan rate.
               </p>
             </div>
 
@@ -214,7 +215,7 @@ export default function RealtorsPage() {
             ))}
           </div>
           <p className="text-xs text-gray-500 mt-6">
-            A-rated underwriters only · In-house and partner attorneys when a file needs legal work · Directly licensed in 34 states; remaining states through licensed workshare partners · a division of First National Title &amp; Escrow.
+            BetterClose is a DBA of First National Title &amp; Escrow LLC. Contact our team to confirm service availability and licensing for the property’s state.
           </p>
         </div>
       </section>
@@ -233,16 +234,15 @@ export default function RealtorsPage() {
                 <span className="text-primary-600">in one place.</span>
               </h2>
               <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-                Open a file, track title and settlement milestones, and see what&apos;s
-                waiting on the buyer, lender, seller, or closing team — without chasing
-                escrow for status updates.
+                Submit a title order and follow the file&apos;s title milestones.
+                Your closing team provides updates and can explain what is needed next.
               </p>
               <ul className="space-y-3 mb-8">
                 <FeatureBullet>Start a title and settlement estimate for a buyer.</FeatureBullet>
-                <FeatureBullet>Open the file when your buyer is ready.</FeatureBullet>
+                <FeatureBullet>Submit a title order when your buyer is ready.</FeatureBullet>
                 <FeatureBullet>Upload the contract or file details.</FeatureBullet>
-                <FeatureBullet>Track title, escrow, signing, funding, and recording milestones.</FeatureBullet>
-                <FeatureBullet>See what&apos;s waiting on the buyer, lender, seller, or closing team.</FeatureBullet>
+                <FeatureBullet>Follow title ordered, title search complete, title issued, and closed.</FeatureBullet>
+                <FeatureBullet>Contact the assigned escrow officer about next steps.</FeatureBullet>
                 <FeatureBullet>Use email fallback when that&apos;s easier.</FeatureBullet>
               </ul>
             </div>
@@ -281,12 +281,12 @@ export default function RealtorsPage() {
             <ReasonCard
               icon={ICONS.scale}
               title="When a file needs a lawyer, we've got one"
-              body="Probate, a surprise lien, a power of attorney that doesn't pass muster — when legal work is needed to close, our in-house and partner attorneys handle it. You never scramble for counsel mid-deal."
+              body="When title issues need legal work, our closing team coordinates with the appropriate attorneys and explains the effect on costs and timing."
             />
             <ReasonCard
               icon={ICONS.pin}
               title="Track the file without chasing escrow"
-              body="Live milestone status — title, escrow, signing, funding, recording — so you always know where the file stands without emailing for updates."
+              body="Follow the four title milestones as your closing team updates the file. Ask your escrow officer about signing, recording, and disbursement details."
             />
             <ReasonCard
               icon={ICONS.workflow}
@@ -310,7 +310,7 @@ export default function RealtorsPage() {
               Savings your buyer can actually see
             </h2>
             <p className="text-lg text-gray-600">
-              No inflated comparisons. No fake savings on pass-through fees.
+              Transparent pricing, line by line. Service fees and pass-through charges shown separately.
             </p>
           </div>
           <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
@@ -447,7 +447,7 @@ function AgentDashboardMockup() {
               statusTone="emerald"
               detail="Signing scheduled"
               cta={null}
-              progress={{ done: 4, total: 5 }}
+              progress={{ done: 3, total: CUSTOMER_MILESTONE_KINDS.length }}
             />
             <MockRow
               property="88 Pine Ave"
@@ -455,7 +455,7 @@ function AgentDashboardMockup() {
               statusTone="violet"
               detail="Title search"
               cta={null}
-              progress={{ done: 2, total: 5 }}
+              progress={{ done: 2, total: CUSTOMER_MILESTONE_KINDS.length }}
             />
             <MockRow
               property="123 Oak St"
@@ -463,7 +463,7 @@ function AgentDashboardMockup() {
               statusTone="amber"
               detail="Awaiting signed contract"
               cta="Open file"
-              progress={{ done: 0, total: 5 }}
+              progress={{ done: 0, total: CUSTOMER_MILESTONE_KINDS.length }}
             />
           </div>
         </div>

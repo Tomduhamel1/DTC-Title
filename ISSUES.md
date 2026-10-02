@@ -49,6 +49,27 @@ only.
 
 ## Open
 
+### Public-copy consistency — corrections prepared (2026-10-01)
+
+The public-site audit found misleading navigation/copy, unsupported service
+promises, and inconsistent marketing illustrations. This branch makes
+transparent, line-by-line pricing the primary message, clarifies that modeled
+loan savings include the at-closing savings, and labels national examples.
+The fee illustration now uses the existing sample report without invented
+premium discounts; marketing stages reuse the actual four-stage customer flow.
+Order receipts distinguish requests from opened files; borrower notification
+permissions remain unchanged. Unverified licensing/accreditation, security,
+support-time and future-integration claims are removed rather than asserted.
+Footer sign-in and About sharing use the existing routes/components.
+Pricing calculations, issued quotes, private-file access, production data,
+Garden integration and email sending are unchanged. These corrections are not
+deployed yet. Verified accreditation can be restored separately with evidence.
+Verification: typecheck, 84 focused content/behavior checks and 8 offline browser
+checks pass (320–1440px across the responsive suites). The actual local Next
+homepage and team sample were visually inspected; About sharing opens and closes
+the existing sheet without sending a message. The PDF brochures and transactional
+email copy were outside this public-page audit and are not certified by it.
+
 ### Policy publication approved; operational/legal follow-up retained (2026-10-01)
 
 PR #124 (`fix/quote-summary-and-policy-links`) adds `/privacy` and `/terms` and

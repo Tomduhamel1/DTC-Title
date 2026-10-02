@@ -21,7 +21,7 @@ export default function SecurityPage() {
             Security & Fraud Protection
           </h1>
           <p className="text-2xl text-gray-700 leading-relaxed">
-            <span className="text-red-600 font-bold">$17.1 billion</span> has been lost to wire fraud since 2014. Your security is our top priority.
+            Protect your information and verify payment instructions with your closing team.
           </p>
         </div>
       </section>
@@ -34,7 +34,7 @@ export default function SecurityPage() {
               🚨 Wire Fraud Alert
             </h2>
             <p className="text-lg text-red-900 mb-4">
-              <strong>Criminals are targeting homebuyers with fake wire instructions.</strong> This is the most common way people lose money in real estate transactions.
+              <strong>Criminals are targeting homebuyers with fake wire instructions.</strong> Verify requests independently before sending funds.
             </p>
             <p className="text-lg text-red-900">
               <strong>Always verify wire instructions by phone before sending money.</strong> Call us at <a href={`tel:${SUPPORT_PHONE_TEL}`} className="underline font-bold">{SUPPORT_PHONE_DISPLAY}</a> to confirm any wire transfer details.
@@ -54,9 +54,9 @@ export default function SecurityPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-dark-900 mb-2">256-Bit SSL Encryption</h3>
+                  <h3 className="text-xl font-bold text-dark-900 mb-2">Encrypted Website Connection</h3>
                   <p className="text-gray-700">
-                    All documents and data are encrypted with bank-level security. Your information is protected in transit and at rest.
+                    Our website uses HTTPS to encrypt the connection between your browser and BetterClose. Access private file information through your verified sign-in link.
                   </p>
                 </div>
               </div>
@@ -70,9 +70,9 @@ export default function SecurityPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-dark-900 mb-2">Multi-Factor Wire Verification</h3>
+                  <h3 className="text-xl font-bold text-dark-900 mb-2">Verify Wire Instructions Independently</h3>
                   <p className="text-gray-700">
-                    All wire instructions are verified through multiple channels. We'll call you to confirm details before any wire transfer is processed.
+                    Before sending money, independently confirm payment instructions with your closing team using a known, trusted phone number. Do not rely on email or a portal message alone.
                   </p>
                 </div>
               </div>
@@ -88,7 +88,7 @@ export default function SecurityPage() {
                 <div>
                   <h3 className="text-xl font-bold text-dark-900 mb-2">Secure Document Portal</h3>
                   <p className="text-gray-700">
-                    Upload and download documents through our encrypted portal. No sensitive information is ever sent via email.
+                    Use your file’s document section to share sensitive documents with the closing team. The team controls sharing with other file participants. Avoid sending sensitive documents in ordinary email.
                   </p>
                 </div>
               </div>
@@ -103,9 +103,9 @@ export default function SecurityPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-dark-900 mb-2">24/7 Security Monitoring</h3>
+                  <h3 className="text-xl font-bold text-dark-900 mb-2">Private File Access</h3>
                   <p className="text-gray-700">
-                    Our systems are monitored around the clock for suspicious activity. Any unusual behavior triggers immediate investigation.
+                    Sign-in links are intended only for you. Do not forward them. If you see an unfamiliar file or suspect unauthorized access, stop using that access and contact our team.
                   </p>
                 </div>
               </div>
@@ -141,7 +141,7 @@ export default function SecurityPage() {
                 <div>
                   <h3 className="font-bold text-lg text-dark-900 mb-2">Never Email Sensitive Banking Information</h3>
                   <p className="text-gray-700">
-                    Legitimate companies will never ask for account numbers, passwords, or SSNs via email.
+                    Do not send passwords or sensitive banking details in ordinary email. Ask your closing team for the appropriate secure way to share required information.
                   </p>
                 </div>
               </div>
@@ -186,17 +186,17 @@ export default function SecurityPage() {
         </div>
       </section>
 
-      {/* Compliance & Certifications */}
+      {/* Licensing & Service Availability */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <h2 className="text-4xl font-black text-dark-900 mb-8">
-            Compliance & Certifications
+            Licensing & Service Availability
           </h2>
           <div className="max-w-md mx-auto">
             <div className="text-center">
               <div className="text-5xl mb-4">🏛️</div>
-              <h3 className="font-bold text-lg mb-2">State Licensed</h3>
-              <p className="text-gray-600 text-sm">Licensed and regulated in every state we serve</p>
+              <h3 className="font-bold text-lg mb-2">Confirm Your Location</h3>
+              <p className="text-gray-600 text-sm">Contact our team for licensing and service details in your property’s state.</p>
             </div>
           </div>
         </div>
@@ -222,17 +222,17 @@ export default function SecurityPage() {
               Call {SUPPORT_PHONE_DISPLAY}
             </a>
             <a
-              href="mailto:fraud@betterclose.co"
+              href="mailto:contact@betterclose.co"
               className="inline-flex items-center justify-center gap-2 bg-red-800 text-white border-2 border-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-red-900 transition-colors"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              Email Fraud Team
+              Email Our Team
             </a>
           </div>
           <p className="mt-6 text-sm text-red-200">
-            24/7 fraud hotline • Immediate response
+            Do not send funds until you have independently verified the instructions.
           </p>
         </div>
       </section>

@@ -70,13 +70,13 @@ export default function HeroMagicReveal() {
             <span className="block text-emerald-600 mt-2">Save hundreds.</span>
           </h1>
           <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-            BetterClose handles your title and settlement at a fair price.
-            Same A-rated underwriters every other title company uses —{' '}
-            <strong>just lower fees</strong>, itemized below.
+            BetterClose helps you save on title and settlement services with{' '}
+            <strong>transparent, line-by-line pricing</strong>. See what each charge
+            covers, how our fees compare, and where you can save.
           </p>
           <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-600">
             <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>{offeredStateCount()} states</span></span>
-            <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>Every fee published</span></span>
+            <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>Transparent pricing</span></span>
             <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>30,000+ closings</span></span>
             <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>A-rated underwriters</span></span>
           </div>
@@ -121,18 +121,17 @@ export default function HeroMagicReveal() {
               </div>
               <div className="bg-emerald-50 border border-emerald-200 rounded-2xl py-4 px-3">
                 <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 mb-1">
-                  Save over the loan
+                  Total over the loan
                 </div>
                 <div className="text-3xl md:text-4xl font-black text-emerald-600 tabular-nums leading-none">
                   ${saveOverLoan.toLocaleString()}
                 </div>
-                <div className="text-[11px] text-gray-500 mt-1.5">Long-term savings</div>
+                <div className="text-[11px] text-gray-500 mt-1.5">Includes at-closing savings</div>
               </div>
             </div>
 
-            {/* Rotating "that's enough for" payoff, anchored to the over-the-loan
-                figure so the items scale with the number the user is seeing. */}
-            <RotatingSavingsPill savings={saveOverLoan} tail="back in your pocket" className="mt-4" />
+            {/* Everyday comparisons use at-closing savings, not future interest. */}
+            <RotatingSavingsPill savings={saveAtClosing} tail="back in your pocket" className="mt-4" />
           </div>
 
           {/* Slider */}
@@ -165,7 +164,7 @@ export default function HeroMagicReveal() {
             href="/quote"
             className="mt-4 w-full inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl shadow-md text-base transition-colors"
           >
-            Get my exact estimate
+            Get my fee estimate
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
@@ -173,9 +172,9 @@ export default function HeroMagicReveal() {
 
           {/* Plain-English footnote for the over-the-loan number */}
           <p className="mt-3 text-[11px] text-gray-400 leading-snug">
-            Loan savings assumes you borrow less or get better loan pricing
-            because your closing costs are lower. Based on 6.5% over 30 years.
-            Final terms may vary.
+            The loan total includes at-closing savings plus modeled interest avoided
+            if you borrow that much less, at 6.5% over 30 years. It is not
+            additional cash at closing or a lower loan rate.
           </p>
 
           {/* Location override */}

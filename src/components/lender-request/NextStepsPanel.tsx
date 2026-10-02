@@ -66,7 +66,7 @@ export default function NextStepsPanel({
             {isPre
               ? '30 seconds — alert your team you want to use BetterClose. No quote needed.'
               : savingsEstimate
-              ? 'Tell your team to use BetterClose so you actually capture these savings — at closing and over the loan.'
+              ? 'Share the fee comparison with your team and decide whether BetterClose is the right fit for your closing.'
               : 'Three ways to make BetterClose your closing company.'}
           </p>
         </div>
@@ -185,7 +185,7 @@ export default function NextStepsPanel({
                   Just create my dashboard for now
                 </h4>
                 <p className="text-xs text-gray-500">
-                  We'll match it when your team places the order.
+                  Use the same email when you or your team places the order.
                 </p>
               </div>
               <svg className="w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>

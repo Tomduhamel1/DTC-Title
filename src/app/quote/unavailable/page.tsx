@@ -67,19 +67,17 @@ export default function QuoteUnavailablePage() {
         </div>
 
         <div className="inline-block bg-primary-100 text-primary-800 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-6">
-          Coming soon{stateName ? ` to ${stateName}` : ''}
+          Not available{stateName ? ` in ${stateName}` : ''}
         </div>
 
         <h1 className="text-4xl md:text-5xl font-black text-dark-900 leading-tight mb-6">
           We're not in {stateName ?? 'your area'} yet —
           <br />
-          <span className="text-primary-600">but we're on our way.</span>
+          <span className="text-primary-600">check back for availability.</span>
         </h1>
 
         <p className="text-lg text-gray-700 mb-10 leading-relaxed max-w-xl mx-auto">
-          BetterClose handles {modeWord} in {offeredStateCount()} states today, and
-          we're expanding. Leave your email and we'll let you know the moment we
-          open{stateName ? ` in ${stateName}` : ' near you'} — nothing else, no
+          BetterClose offers estimates for supported {modeWord} in {offeredStateCount()} states today. Leave your email to receive an update if service becomes available{stateName ? ` in ${stateName}` : ' near you'} — nothing else, no
           spam.
         </p>
 
@@ -89,14 +87,14 @@ export default function QuoteUnavailablePage() {
               <div className="text-3xl mb-3">✓</div>
               <div className="font-bold text-dark-900 mb-1">You're on the list</div>
               <p className="text-sm text-gray-600">
-                We'll email you as soon as we're live
+                We'll email you if service becomes available
                 {stateName ? ` in ${stateName}` : ' in your area'}.
               </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit}>
               <div className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-3">
-                Get notified when we launch
+                Request an availability update
               </div>
               <input
                 type="email"
@@ -138,9 +136,9 @@ export default function QuoteUnavailablePage() {
         <div className="flex justify-center gap-6 mt-10 text-xs text-gray-500">
           <span>30,000+ closings</span>
           <span>·</span>
-          <span>Every fee published</span>
+          <span>Transparent pricing</span>
           <span>·</span>
-          <span>{offeredStateCount()} states and growing</span>
+          <span>{offeredStateCount()} supported states</span>
         </div>
       </div>
     </main>

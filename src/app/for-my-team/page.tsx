@@ -6,7 +6,9 @@ import {
   buildOrderMailto,
   getLenderRequestContext,
 } from '@/lib/teammate/lender-request-context'
-import { estimateSavings } from '@/lib/stateSavings'
+import MarketingFeeSample from '@/components/MarketingFeeSample'
+import { CUSTOMER_MILESTONE_KINDS } from '@/lib/closing/customerMilestones'
+import { MILESTONE_LABELS } from '@/lib/closing/milestoneCopy'
 
 // /for-my-team is the page a borrower-invited professional lands on. The
 // borrower's invite is role-agnostic — they invited "their closing team",
@@ -77,7 +79,7 @@ export default async function ForMyTeamPage(props: Props) {
 We'd like to request access to the broker/LO portal.
 
 Company name:
-NPN:
+NMLS ID (if applicable):
 State licenses:
 Approximate monthly closings:
 How you found us:
@@ -96,20 +98,6 @@ Thanks,`,
         .filter(Boolean)
         .join(', ') || null
     : null
-
-  // Savings number rendered in the Section 4 borrower-quote-preview mockup.
-  // Prefer the persisted LenderRequest.savingsEstimate when the borrower
-  // shared from /quote/results; fall back to the shared model's national
-  // $500k-purchase anchor (same number /for-brokers and the hero use) so a
-  // refId-less visitor still sees a realistic preview. Labeled "Estimated"
-  // on the page so the example case is clearly bounded.
-  const previewSavings =
-    ctx?.savingsEstimate && ctx.savingsEstimate > 0
-      ? ctx.savingsEstimate
-      : estimateSavings(500000, 'purchase', null).saveAtClosing
-  const previewSavingsIsBorrowerSpecific = Boolean(
-    ctx?.savingsEstimate && ctx.savingsEstimate > 0,
-  )
 
   // Suppress unused-var warning while we expose baseUrl for any future
   // helper that needs an absolute href. Kept as a no-op reference.
@@ -131,7 +119,7 @@ Thanks,`,
               A client asked you to consider BetterClose.
             </h1>
             <p className="text-lg md:text-xl text-gray-600 mb-4 max-w-2xl mx-auto">
-              Help them compare costs, open the order, or track the file —
+              Help them compare costs, submit a title order, or track the file —
               whichever step you&apos;re ready for.
             </p>
             {isPersonalized && (clientName || propertyAddressFull) && (
@@ -155,16 +143,16 @@ Thanks,`,
               <ActionCard
                 emoji="⚡"
                 title="Show your client what they save"
-                body="Generate a real BetterClose fee estimate for your client — line-item pricing, A-rated underwriters, no login required."
+                body="Help your client compare service fees with transparent, line-by-line pricing. Get an estimate without signing in."
                 cta={{ label: 'Get the fee estimate →', href: quoteHref }}
-                helper="Uses the same fee engine as the borrower quote. We confirm orders within one business day."
+                helper="Uses the same pricing calculation as the borrower estimate."
                 primary
               />
               <ActionCard
                 emoji="✉️"
-                title="Open the file"
-                body="Two-minute online form with the borrower's details — the file lands on your dashboard and theirs. We confirm within one business day."
-                cta={{ label: 'Open the file online →', href: '/open' }}
+                title="Submit a title order"
+                body="Submit the borrower and property details for the closing team to review. Sign in with your work email to follow the linked file."
+                cta={{ label: 'Submit an order online →', href: '/open' }}
                 helper={
                   isPersonalized
                     ? "Prefer email? The pre-filled template still works — orders@betterclose.co."
@@ -174,7 +162,7 @@ Thanks,`,
               <ActionCard
                 emoji="📊"
                 title="Create your free dashboard"
-                body="Track every BetterClose file you're on. Get milestone updates. Tell us your role once you continue."
+                body="View files linked to your verified email and updates from the closing team. Tell us your role when you continue."
                 cta={{ label: 'Continue with email →', href: dashboardClaimHref }}
                 helper="No password — we'll email you a secure link. We'll create your account if you don't have one."
               />
@@ -192,19 +180,19 @@ Thanks,`,
                 Why your client is asking
               </h2>
               <p className="text-lg text-gray-600">
-                Same protection your client expects. Lower price. Easier on you.
+                Competitive service fees. Transparent pricing. A dedicated closing team.
               </p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               <ReasonCard
                 emoji="🛡️"
                 title="Same A-rated underwriters"
-                body="The title insurance is identical to what you place with any other settlement company — and when a file needs legal work to close, our in-house and partner attorneys handle it."
+                body="Work with established title insurance underwriters. Your closing team can explain the policy, requirements, and exceptions for the file."
               />
               <ReasonCard
                 emoji="📊"
                 title="Transparent line-item pricing"
-                body="Your client sees every fee ahead of time. No junk fees, no surprises at the closing table."
+                body="Your client sees what each charge covers, how service fees compare, and where savings may be available. The team explains changes as the file progresses."
               />
               <ReasonCard
                 emoji="⏱️"
@@ -214,7 +202,7 @@ Thanks,`,
               <ReasonCard
                 emoji="💰"
                 title="Lower closing costs"
-                body="Borrowers typically save several hundred to a few thousand dollars at closing versus the typical market range."
+                body="Competitive service fees can help your client save hundreds at closing. Actual savings depend on the property, services, and comparison quote."
               />
             </div>
           </div>
@@ -230,14 +218,11 @@ Thanks,`,
                 What your client will see
               </h2>
               <p className="text-lg text-gray-600">
-                From quote to closing day — full visibility, no surprises.
+                Examples of pricing, file updates, and closing-team support—not a live client file.
               </p>
             </div>
             <div className="grid md:grid-cols-3 gap-6">
-              <QuotePreviewMockup
-                savings={previewSavings}
-                isBorrowerSpecific={previewSavingsIsBorrowerSpecific}
-              />
+              <MarketingFeeSample />
               <DashboardPreviewMockup />
               <SupportStatsMockup />
             </div>
@@ -261,19 +246,19 @@ Thanks,`,
               <OrderTile
                 emoji="📊"
                 title="Broker/LO portal"
-                body="Create quotes, convert approved quotes into closings, and track files in your pipeline. Built for mortgage brokers and loan officers."
+                body="Create estimates, submit title orders for the closing team to review, and track linked files. Built for mortgage brokers and loan officers."
                 cta={{ label: 'Continue with email →', href: dashboardClaimHref }}
               />
               <OrderTile
                 emoji="✉️"
                 title="Email an order"
-                body="Send to orders@betterclose.co with the borrower and property details. We confirm within one business day."
+                body="Send the borrower and property details to orders@betterclose.co. Our closing team will confirm the next steps."
                 cta={{ label: 'Email an order →', href: emailOrderHref }}
               />
               <OrderTile
                 emoji="🔧"
                 title="Your existing workflow"
-                body="Work from Encompass or plain email today — SmartFees, Qualia, and ResWare integrations are coming soon."
+                body="Use Encompass for one-touch ordering and document exchange, or email your order. Contact us to discuss other integrations."
               />
               <OrderTile
                 emoji="📋"
@@ -302,7 +287,7 @@ Thanks,`,
                 <span className="text-primary-600">— in one place.</span>
               </h2>
               <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-                We auto-link every file where your email appears. Continue
+                View files linked to your verified work email. Continue
                 with your work email — we&apos;ll create your account if you
                 don&apos;t have one, then ask you to pick your role on each file.
               </p>
@@ -464,95 +449,14 @@ function OrderTile({
 }
 
 // ─── Section 4 mockup components ─────────────────────────────────────────
-// These three cards visualize what a borrower-invited professional's client
-// will see if they go with BetterClose. All server-rendered, no external
-// API calls, no real-component imports. Inline page-specific HTML so we can
-// stay a server component and keep the page fast.
-
-function QuotePreviewMockup({
-  savings,
-  isBorrowerSpecific,
-}: {
-  savings: number
-  isBorrowerSpecific: boolean
-}) {
-  const formattedSavings = `$${savings.toLocaleString('en-US')}`
-  return (
-    <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-      <div className="bg-gray-100 border-b border-gray-200 px-3 py-2 flex items-center gap-1.5">
-        <span className="w-2 h-2 rounded-full bg-red-400" />
-        <span className="w-2 h-2 rounded-full bg-yellow-400" />
-        <span className="w-2 h-2 rounded-full bg-green-400" />
-        <span className="ml-2 text-[10px] text-gray-500 font-medium truncate">
-          betterclose.co/quote/results
-        </span>
-      </div>
-      <div className="p-5">
-        <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-700 mb-1">
-          Borrower quote
-        </div>
-        <div className="text-xs text-gray-500 mb-3">
-          {isBorrowerSpecific ? "Your client's estimate" : 'Typical estimate'}
-        </div>
-
-        <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-3 mb-4">
-          <div className="text-[9px] font-bold uppercase tracking-wider text-emerald-700">
-            Estimated savings
-          </div>
-          <div className="text-2xl font-black text-emerald-800 tabular-nums">
-            {formattedSavings}
-          </div>
-          <div className="text-[10px] text-emerald-800/80 mt-0.5">
-            vs. typical market range
-          </div>
-        </div>
-
-        <div className="space-y-1.5">
-          <MockLineItem label="Lender's title insurance" ours="$685" market="$890–$1,120" />
-          <MockLineItem label="Owner's title insurance" ours="$1,240" market="$1,640–$2,080" />
-          <MockLineItem label="Settlement / closing fee" ours="$425" market="$595–$795" />
-          <MockLineItem label="Recording" ours="$110" market="$110" same />
-        </div>
-
-        <div className="mt-4 pt-3 border-t border-gray-100 text-[10px] text-gray-500">
-          Same A-rated underwriters · Every fee shown up front
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function MockLineItem({
-  label,
-  ours,
-  market,
-  same,
-}: {
-  label: string
-  ours: string
-  market: string
-  same?: boolean
-}) {
-  return (
-    <div className="flex items-baseline justify-between gap-2 text-[11px]">
-      <div className="text-gray-700 truncate">{label}</div>
-      <div className="flex items-baseline gap-2 flex-shrink-0">
-        <span className="font-bold text-dark-900 tabular-nums">{ours}</span>
-        <span className={`text-gray-400 tabular-nums ${same ? '' : 'line-through'}`}>
-          {market}
-        </span>
-      </div>
-    </div>
-  )
-}
+// Illustrative cards use the shared fee sample and customer milestone labels.
+// They are server-rendered without external API calls or live client data.
 
 function DashboardPreviewMockup() {
-  const milestones: { label: string; state: 'done' | 'active' | 'pending' }[] = [
-    { label: 'Title ordered', state: 'done' },
-    { label: 'Title search', state: 'active' },
-    { label: 'Title issued', state: 'pending' },
-    { label: 'Closed', state: 'pending' },
-  ]
+  const milestones = CUSTOMER_MILESTONE_KINDS.map((kind, index) => ({
+    label: MILESTONE_LABELS[kind],
+    state: index === 0 ? 'done' : index === 1 ? 'active' : 'pending',
+  }))
   return (
     <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
       <div className="bg-gray-100 border-b border-gray-200 px-3 py-2 flex items-center gap-1.5">
@@ -620,7 +524,7 @@ function DashboardPreviewMockup() {
               Your closing officer
             </div>
             <div className="text-[10px] text-gray-600 leading-tight">
-              Replies in under 2 hours · betterclose.co
+              Contact details provided when assigned
             </div>
           </div>
         </div>
@@ -636,34 +540,33 @@ function SupportStatsMockup() {
         <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-amber-700 mb-1">
           Support &amp; trust
         </div>
-        <div className="text-xs text-gray-500 mb-4">Built for fast, human service</div>
+        <div className="text-xs text-gray-500 mb-4">Work with a real closing team</div>
 
         <div className="space-y-3">
           <StatRow
             icon="⚡"
-            value="< 1 business day"
-            label="Order confirmation"
+            value="Order follow-up"
+            label="The closing team confirms the next steps"
           />
           <StatRow
             icon="💬"
-            value="Under 2 hours"
-            label="Avg. response time during business hours"
+            value="Email or call"
+            label="Contact the team handling your file"
           />
           <StatRow
             icon="📞"
             value="Real people"
-            label="No bots, no offshore call centers"
+            label="An assigned escrow officer"
           />
           <StatRow
             icon="🛡️"
             value="A-rated only"
-            label="First American · AmTrust · Westcor · Old Republic"
+            label="First American · AmTrust · Westcor · CATIC"
           />
         </div>
 
         <div className="mt-4 pt-3 border-t border-gray-100 text-[10px] text-gray-500 leading-relaxed">
-          Same coverage your client expects from any settlement provider — with
-          a real human point of contact through closing.
+          Discuss coverage and requirements with a real point of contact through closing.
         </div>
       </div>
     </div>

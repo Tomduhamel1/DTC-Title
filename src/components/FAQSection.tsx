@@ -10,40 +10,40 @@ export default function FAQSection() {
 
   const faqs = [
     {
-      question: "How can you be so much cheaper than traditional title companies?",
-      answer: "We use technology to eliminate administrative costs that traditional companies pass to you. Instead of expensive offices and large sales teams, we've built an AI-powered platform that automates underwriting and processing. You get the same protection from the same A-rated underwriters (like First American, AmTrust, and Westcor) - we just run a smarter, more efficient operation."
+      question: "Where do the savings come from?",
+      answer: "We use technology to streamline coordination and price our title and settlement services competitively. Our transparent, line-by-line pricing shows which service charges you can compare and separates title insurance premiums, recording fees, and taxes. Your savings depend on the property, services, and alternative quote."
     },
     {
       question: "Is this real title insurance?",
-      answer: "Yes, absolutely. We're underwritten by industry-leading title insurance companies with A.M. Best ratings of A or higher — including First American, AmTrust, and Westcor. You get identical coverage and protection that any major title company would issue — the only difference is the price you pay."
+      answer: "Yes. We work with established title insurance underwriters, including those shown on this page. Your closing team can explain the policy, coverage, requirements, and exceptions for your property. Our savings comparisons focus on service charges, not discounts to insurance premiums."
     },
     {
       question: "Will my lender accept BetterClose?",
-      answer: "Yes. We meet all lender requirements in every state we serve. In fact, many lenders actively refer their borrowers to us because it helps reduce closing costs and improves customer satisfaction. We work seamlessly with any mortgage lender, and our policies are accepted nationwide."
+      answer: "You can keep your lender. Our closing team coordinates with them and confirms their settlement-agent and title requirements for your transaction before proceeding."
     },
     {
       question: "What if there's a problem with the title?",
-      answer: "You're covered on both sides of closing. If our title search turns up a problem before you close, attorneys on our team work to clear it so your closing stays on track. After closing, you're protected by industry-leading underwriters with billions of dollars in claims-paying ability - if a covered claim arises, your underwriter handles it completely, the same as they would with any other title company."
+      answer: "The closing team reviews the title search and identifies requirements and exceptions that need attention. If an issue comes up, the team will explain the next steps and any effect on timing. After closing, coverage and claim handling depend on the issued title insurance policy."
     },
     {
       question: "What if a legal issue comes up before closing?",
-      answer: "We handle it. A judgment lien, a probate or estate question, a missing signer, a divorce decree on the title - when a file needs legal work to close, attorneys take care of it as part of our title and settlement work. In many states they're our own in-house and affiliated attorneys; in the rest, local real estate attorneys we partner with. You don't have to go find a lawyer, and your closing keeps moving - and if you'd like your own attorney involved, we're happy to work with them."
+      answer: "Our closing team coordinates with in-house, affiliated, or local attorneys when legal work is needed for the transaction. We will explain the work required and any effect on costs or timing. You can also involve your own attorney."
     },
     {
       question: "How long does the closing process take?",
-      answer: "We provide same-day underwriting approval in most cases. The overall closing timeline depends on your lender and other factors, but we never slow things down. Our technology-first approach actually speeds up the process compared to traditional title companies."
+      answer: "Timing depends on the title work, lender requirements, documents, and any issues that need to be resolved. Your assigned closing team will coordinate the target date and keep you informed as the file progresses."
     },
     {
       question: "Are there any hidden fees?",
-      answer: "No. We believe in complete transparency. When you get a quote from us, you see the exact breakdown of every fee. What you see is what you pay - no surprises at closing. This is one of the ways we're different from traditional title companies that often add unexpected charges."
+      answer: "Our pricing is transparent, line by line: see what each charge covers, how our service fees compare, and which costs come from insurers or government agencies. Your estimate reflects the details available at the time. If the file or required services change, your closing team will explain changes to the final charges."
     },
     {
       question: "Can I use BetterClose if my realtor or lender recommends someone else?",
-      answer: "Absolutely. You have the legal right to choose your title company - it's called your 'right to shop.' While your realtor or lender may have a preferred provider, you're not required to use them. Many buyers save hundreds by choosing BetterClose instead. Just let your agent and lender know you'll be using us, and we'll handle everything."
+      answer: "You can ask your agent or lender to compare BetterClose with their preferred option. Review the service fees side by side, and have your closing team confirm the transaction requirements before ordering. You do not need to change your agent or lender to request a BetterClose estimate."
     },
     {
       question: "What states do you operate in?",
-      answer: `We currently close in ${offeredStateCount()} states and are expanding. If we\'re not in your state yet, get a quote anyway — we\'ll let you know the moment we open there.`
+      answer: `Our online estimates currently support ${offeredStateCount()} states. Enter the property's location to check availability for your transaction. If estimates are unavailable, you can request an availability notification or contact our team for licensing and service details.`
     }
   ]
 

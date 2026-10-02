@@ -2,6 +2,8 @@
 
 import Image from 'next/image'
 import { SUPPORT_PHONE_DISPLAY } from '@/lib/contact'
+import { CUSTOMER_MILESTONE_KINDS } from '@/lib/closing/customerMilestones'
+import { MILESTONE_LABELS, MILESTONE_DESCRIPTIONS } from '@/lib/closing/milestoneCopy'
 
 // Marketing section that previews the dashboard. The right column is a
 // hand-rendered mockup of the two cards a customer cares most about during
@@ -26,30 +28,12 @@ interface SampleMilestone {
   completedDate?: string
 }
 
-const SAMPLE_MILESTONES: SampleMilestone[] = [
-  {
-    label: 'Title ordered',
-    description: 'Your closing team opened your title order with BetterClose.',
-    status: 'done',
-    completedDate: '5/4/2026',
-  },
-  {
-    label: 'Title search complete',
-    description: 'We confirm clean title — no liens, no surprises.',
-    status: 'done',
-    completedDate: '5/4/2026',
-  },
-  {
-    label: 'Title issued',
-    description: 'Title insurance is issued by an A-rated underwriter.',
-    status: 'pending',
-  },
-  {
-    label: 'Closed',
-    description: 'Funds disbursed. Keys handed over. Done.',
-    status: 'pending',
-  },
-]
+const SAMPLE_MILESTONES: SampleMilestone[] = CUSTOMER_MILESTONE_KINDS.map((kind, index) => ({
+  label: MILESTONE_LABELS[kind],
+  description: MILESTONE_DESCRIPTIONS[kind],
+  status: index < 2 ? 'done' : 'pending',
+  completedDate: index < 2 ? '5/4/2026' : undefined,
+}))
 
 export default function DashboardTrustSection() {
   return (
@@ -65,10 +49,10 @@ export default function DashboardTrustSection() {
               Real people. <span className="text-primary-600">Real-time progress.</span>
             </h2>
             <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-              You&apos;re not buying a service from a faceless company. The moment your order
-              opens, you&apos;ll meet the dedicated escrow officer who owns your closing — and a
-              live dashboard where every milestone, every contact, and every fee is one click
-              away.
+              Work with an assigned escrow officer who handles your closing.
+              Once your file is opened, see your officer&apos;s contact details,
+              shared documents, pricing information, and updates from the closing team
+              in your dashboard.
             </p>
 
             <div className="space-y-5">
@@ -112,8 +96,8 @@ export default function DashboardTrustSection() {
                     Live progress tracking
                   </div>
                   <div className="text-gray-600 mt-0.5">
-                    Every milestone — title ordered, title search, issuance, closing — checked off in
-                    real time. No more wondering where your file stands.
+                    Follow title ordered, title search complete, title issued, and closed
+                    as your closing team updates the file.
                   </div>
                 </div>
               </div>
@@ -132,10 +116,10 @@ export default function DashboardTrustSection() {
                 </div>
                 <div>
                   <div className="font-bold text-dark-900 text-lg leading-tight">
-                    Human support, whenever
+                    A person you can contact
                   </div>
                   <div className="text-gray-600 mt-0.5">
-                    Email, text, or call. Most replies in under 2 hours, Monday through Friday.
+                    Email or call your closing team with questions about your file.
                   </div>
                 </div>
               </div>
@@ -157,9 +141,8 @@ export default function DashboardTrustSection() {
                     Attorneys when it matters
                   </div>
                   <div className="text-gray-600 mt-0.5">
-                    Most closings never need one. When a file does — an old lien, an estate
-                    question, a title defect — attorneys on our team step in and resolve it. Your
-                    closing keeps moving.
+                    If a title issue needs legal work, your closing team coordinates
+                    with the appropriate attorneys and explains the next steps.
                   </div>
                 </div>
               </div>
@@ -167,7 +150,10 @@ export default function DashboardTrustSection() {
           </div>
 
           {/* Right: Dashboard mockup */}
-          <DashboardMockup />
+          <div>
+            <p className="text-xs text-gray-500 mb-2">Sample dashboard · illustrative file</p>
+            <DashboardMockup />
+          </div>
         </div>
       </div>
     </section>
@@ -318,12 +304,8 @@ function DashboardMockup() {
                 </div>
               </div>
               <div className="flex items-center gap-1 mt-2">
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
-                </span>
                 <span className="text-[8px] font-semibold text-emerald-900">
-                  We&apos;re here now
+                  Contact your closing team
                 </span>
               </div>
             </div>
