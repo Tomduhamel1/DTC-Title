@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { submitEmailCallback } from '@/lib/auth/emailConfirmation'
 
 export default function FileAccessCard({ closingId, signedIn }: { closingId: string; signedIn: boolean }) {
   const [token, setToken] = useState<string | null>(null)
@@ -29,7 +30,7 @@ export default function FileAccessCard({ closingId, signedIn }: { closingId: str
         const { url } = await response.json()
         const target = new URL(url)
         if (target.origin !== window.location.origin || target.pathname !== '/api/auth/callback/email') throw new Error('Invalid access response')
-        window.location.replace(target.href)
+        submitEmailCallback(target.href)
       } else if (response.status === 410) { setToken(null); setUnavailable(true) }
       else setRetry(true)
     } catch { setRetry(true) }

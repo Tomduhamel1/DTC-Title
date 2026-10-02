@@ -304,9 +304,9 @@
     "to": "recipient@example.invalid",
     "from": "noreply@betterclose.co",
     "subject": "Sign in to BetterClose",
-    "textBody": "Sign in to BetterClose\n\nClick the link below to sign in:\nhttps://betterclose.example.invalid/api/auth/callback/email?token=synthetic%2Btoken&email=recipient%40example.invalid&callbackUrl=%2Fdashboard\n\nIf you didn't request this, you can safely ignore this email.\n— BetterClose",
+    "textBody": "Sign in to BetterClose\n\nOpen the link below, then choose Continue signing in. Your link works once and expires after 24 hours:\nhttps://betterclose.example.invalid/login/confirm#token=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&email=recipient%40example.invalid&callbackUrl=%2Fdashboard\n\nIf you didn't request this, you can safely ignore this email. Please don't forward this personal link.\n— BetterClose",
     "links": [
-      "https://betterclose.example.invalid/api/auth/callback/email?token=synthetic%2Btoken&email=recipient%40example.invalid&callbackUrl=%2Fdashboard"
+      "https://betterclose.example.invalid/login/confirm#token=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&email=recipient%40example.invalid&callbackUrl=%2Fdashboard"
     ]
   }
 }

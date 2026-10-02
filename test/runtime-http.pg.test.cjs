@@ -33,6 +33,12 @@ function request(route, options = {}) {
 function captureCookies(response) {
   return response.headers.getSetCookie().map(value => value.split(';')[0]).join('; ');
 }
+function confirmEmail(link, extraHeaders={}) {
+  const url=new URL(link,origin);
+  const fields=new URLSearchParams(url.pathname==='/login/confirm'?url.hash.slice(1):url.search);
+  return request('/api/auth/callback/email',{method:'POST',
+    headers:{origin,'content-type':'application/x-www-form-urlencoded',...extraHeaders},body:fields});
+}
 before(async () => {
   const [identity] = await prisma.$queryRawUnsafe('SELECT current_database() AS db, current_user AS role, inet_server_addr()::text AS host');
   assert.equal(identity.db, target.pathname.slice(1));
@@ -41,7 +47,7 @@ before(async () => {
   assert.ok(['127.0.0.1/32', '127.0.0.1', '::1/128', '::1'].includes(identity.host) ||
     (containerHost && isIP(containerHost) && identity.host.replace(/\/\d+$/, '') === containerHost));
   verifiedTarget = true;
-  for (const actor of ['borrower', 'other', 'pro']) {
+  for (const actor of ['borrower', 'other', 'pro', 'admin']) {
     actors[actor] = await prisma.user.create({ data: {
       id: prefix + actor, email: prefix + actor + '@example.invalid',
       emailVerified: new Date(), name: 'Synthetic ' + actor,
@@ -69,7 +75,7 @@ before(async () => {
     cwd: path.resolve(__dirname, '..'),
     env: { PATH: process.env.PATH, NODE_ENV: 'production', DATABASE_URL: target.href,
       NEXTAUTH_URL: origin, NEXTAUTH_SECRET: prefix + 'synthetic-auth-secret', AUTH_EMAIL_DRY_RUN: 'true',
-      ORDER_INGEST_SECRET: syntheticSecret, ADMIN_EMAILS: 'admin@example.invalid',
+      ORDER_INGEST_SECRET: syntheticSecret, ADMIN_EMAILS: actors.admin.email,
       BC_FILE_WORKSPACE_ENABLED: 'true', BC_DOCUMENTS_ENABLED: 'false',
       COMING_SOON_MODE: 'true', COMING_SOON_BYPASS_KEY: prefix + 'synthetic-preview', NEXT_TELEMETRY_DISABLED: '1' },
     stdio: ['ignore', 'pipe', 'pipe'],
@@ -111,7 +117,7 @@ test('real session endpoint distinguishes anonymous, invalid and valid sessions 
   assert.match(response.headers.get('cache-control'), /no-store/);
 });
 
-test('real magic-link sign-in validates CSRF, creates a session and rejects token reuse without sending email', async () => {
+test('real email sign-in survives repeated scanner GET/HEAD then confirms once, preserving CSRF, expiry and identity checks', async () => {
   const csrfResponse = await request('/api/auth/csrf');
   const csrf = await csrfResponse.json(); const cookies = captureCookies(csrfResponse);
   const beforeLog = serverLog.length;
@@ -126,17 +132,68 @@ test('real magic-link sign-in validates CSRF, creates a session and rejects toke
   assert.match(log, /magic-link \(dry run\)/);
   const link = log.match(/url:\s+(http:\/\/[^\s]+)/)?.[1];
   assert.ok(link, 'Synthetic dry-run link must be generated');
-  const response = await request(link, { headers: { cookie: cookies } });
+  const beforeSessions=await prisma.session.count({where:{userId:actors.borrower.id}});
+  const safe=new URL(link);assert.equal(safe.pathname,'/login/confirm');assert.equal(safe.search,'');
+  const fields=new URLSearchParams(safe.hash.slice(1));
+  const legacy=origin+'/api/auth/callback/email?'+fields;
+  for(const method of ['GET','HEAD','GET','HEAD']){
+    const landing=await request('/login/confirm',{method});assert.equal(landing.status,200);
+    assert.match(landing.headers.get('cache-control'),/no-store/);assert.equal(landing.headers.get('referrer-policy'),'no-referrer');
+    assert.equal(landing.headers.get('x-frame-options'),'DENY');
+    const preview=await request(legacy,{method});assert.equal(preview.status,303);
+    assert.equal(preview.headers.get('location'),link);assert.doesNotMatch(captureCookies(preview),/session-token=/);
+    assert.equal(await prisma.verificationToken.count({where:{identifier:actors.borrower.email}}),1);
+  }
+  assert.equal(await prisma.session.count({where:{userId:actors.borrower.id}}),beforeSessions);
+  assert.equal((await confirmEmail(link,{origin:'https://evil.invalid'})).status,403);
+  assert.equal((await confirmEmail(link,{origin:'null'})).status,403);
+  const mismatch=new URL(legacy);mismatch.searchParams.set('email',actors.other.email);
+  assert.match((await confirmEmail(mismatch.href)).headers.get('location'),/error=Verification/);
+  assert.equal(await prisma.verificationToken.count({where:{identifier:actors.borrower.email}}),1);
+  const response = await confirmEmail(link, { cookie: cookies });
   assert.equal(response.status, 302);
   assert.equal(response.headers.get('location'), origin + '/dashboard?closingId=' + owned.id);
   const sessionCookies = captureCookies(response);
   assert.match(sessionCookies, /next-auth.session-token=/);
   const session = await request('/api/auth/session', { headers: { cookie: sessionCookies } });
   assert.equal((await session.json()).user.id, actors.borrower.id);
-  const reused = await request(link, { headers: { cookie: cookies } });
+  const reused = await confirmEmail(link, { cookie: cookies });
   assert.match(reused.headers.get('location'), /error=Verification/);
   assert.doesNotMatch(captureCookies(reused), /next-auth.session-token=[^;]/);
   assert.equal(await prisma.verificationToken.count({ where: { identifier: actors.borrower.email } }), 0);
+  assert.equal(await prisma.session.count({where:{userId:actors.borrower.id}}),beforeSessions+1);
+  const error=await request('/api/auth/error?error=Verification');
+  assert.equal(new URL(error.headers.get('location'),origin).href,origin+'/login?error=Verification');
+  const badCsrf=await request('/api/auth/signin/email',{method:'POST',headers:{'content-type':'application/x-www-form-urlencoded'},
+    body:new URLSearchParams({email:actors.borrower.email,csrfToken:'wrong'})});
+  assert.match(badCsrf.headers.get('location'),/csrf=true/);
+  // An expired but correctly hashed token must still be rejected, never revived.
+  const token='c'.repeat(64),hash=require('node:crypto').createHash('sha256').update(token+prefix+'synthetic-auth-secret').digest('hex');
+  await prisma.verificationToken.create({data:{identifier:actors.borrower.email,token:hash,expires:new Date(Date.now()-1000)}});
+  assert.match((await confirmEmail(origin+'/api/auth/callback/email?'+new URLSearchParams({email:actors.borrower.email,token}))).headers.get('location'),/error=Verification/);
+});
+
+test('real browser confirmation signs in an administrator and a normal user without granting extra access',async()=>{
+  const {openEmailBrowser}=require('./helpers/email-browser.cjs');
+  const browser=await openEmailBrowser();
+  try{for(const actor of ['admin','other']){
+    const csrfResponse=await request('/api/auth/csrf'),csrf=await csrfResponse.json();const at=serverLog.length;
+    await request('/api/auth/signin/email',{method:'POST',headers:{cookie:captureCookies(csrfResponse),'content-type':'application/x-www-form-urlencoded'},
+      body:new URLSearchParams({email:actors[actor].email,csrfToken:csrf.csrfToken,callbackUrl:origin+'/admin',json:'true'})});
+    const link=serverLog.slice(at).match(/url:\s+(http:\/\/[^\s]+)/)?.[1];assert.ok(link);
+    const context=await browser.createBrowserContext(),page=await context.newPage();
+    await page.setRequestInterception(true);page.on('request',req=>new URL(req.url()).origin===origin?req.continue():req.abort());
+    const count=await prisma.session.count({where:{userId:actors[actor].id}});
+    await page.goto(link);await page.waitForSelector('button[type="submit"]');
+    assert.equal(await prisma.session.count({where:{userId:actors[actor].id}}),count);
+    await Promise.all([page.waitForNavigation(),page.click('button[type="submit"]')]);
+    const session=await page.evaluate(()=>fetch('/api/auth/session').then(r=>r.json()));
+    assert.equal(session.user.email,actors[actor].email);
+    if(actor==='admin')assert.equal(new URL(page.url()).pathname,'/admin');
+    else assert.ok(['/','/preview'].includes(new URL(page.url()).pathname),'A normal user is denied admin access');
+    assert.equal(await prisma.session.count({where:{userId:actors[actor].id}}),count+1);
+    await context.close();
+  }}finally{await browser.close();}
 });
 
 test('notification link completes real NextAuth first-time Pro sign-in without another email, preserving exact-file permissions', async () => {
@@ -158,7 +215,7 @@ test('notification link completes real NextAuth first-time Pro sign-in without a
   const countBefore=await prisma.closing.count();const logAt=serverLog.length;
   const redeemed=await request('/api/file-access/'+owned.id,{method:'POST',headers:{origin,'content-type':'application/json'},body:JSON.stringify({token})});
   assert.equal(redeemed.status,200);const callback=(await redeemed.json()).url;
-  const signedIn=await request(callback);assert.equal(signedIn.status,302);
+  const signedIn=await confirmEmail(callback);assert.equal(signedIn.status,302);
   assert.equal(signedIn.headers.get('location'),origin+'/teammate/dashboard/'+owned.id);
   const cookies=captureCookies(signedIn);assert.match(cookies,/next-auth.session-token=/);
   const session=await(await request('/api/auth/session',{headers:{cookie:cookies}})).json();assert.equal(session.user.email,email);
@@ -169,7 +226,7 @@ test('notification link completes real NextAuth first-time Pro sign-in without a
   assert.equal((await request(url.pathname,{headers:{cookie:cookies}})).headers.get('location'),'/teammate/dashboard/'+owned.id);
   const replay=await request('/api/file-access/'+owned.id,{method:'POST',headers:{origin,'content-type':'application/json'},body:JSON.stringify({token})});
   assert.equal(replay.status,410);assert.ok(!(await replay.text()).includes(email));
-  assert.match((await request(callback)).headers.get('location'),/error=Verification/);
+  assert.match((await confirmEmail(callback)).headers.get('location'),/error=Verification/);
   assert.equal(await prisma.closing.count(),countBefore,'Signing in must not create a borrower file');
   assert.doesNotMatch(serverLog.slice(logAt),/magic-link \(dry run\)/,'No second authentication email');
   assert.ok(!serverLog.includes(token),'Never log a file access credential');
@@ -202,7 +259,7 @@ test('a different signed-in account gets an explicit switch notice and becomes o
   const redeemed=await request('/api/file-access/'+owned.id,{method:'POST',headers:{origin,'content-type':'application/json',cookie:oldCookie},
     body:JSON.stringify({token:new URLSearchParams(url.hash.slice(1)).get('key')})});
   assert.equal(redeemed.status,200);
-  const signedIn=await request((await redeemed.json()).url,{headers:{cookie:oldCookie}});
+  const signedIn=await confirmEmail((await redeemed.json()).url,{cookie:oldCookie});
   assert.equal(signedIn.status,302);
   const session=await(await request('/api/auth/session',{headers:{cookie:captureCookies(signedIn)}})).json();
   assert.equal(session.user.email,email);assert.notEqual(session.user.id,actors.other.id);

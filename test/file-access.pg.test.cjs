@@ -105,7 +105,7 @@ test('anonymous landing reveals no file/recipient and does not consume; signed-i
 });
 test('credential routes are excluded from errors, traces and breadcrumbs',()=>{
   const {withoutAccessTelemetry}=h.load('src/lib/auth/accessTelemetry.ts');
-  for(const path of ['/file-access/example#key=private','/api/file-access/example','/api/auth/callback/email?token=private']){
+  for(const path of ['/login/confirm#token=private','/file-access/example#key=private','/api/file-access/example','/api/auth/callback/email?token=private']){
     assert.equal(withoutAccessTelemetry({request:{url:'https://example.invalid'+path,data:{token:'private'}}}),null);
     assert.equal(withoutAccessTelemetry({breadcrumbs:[{data:{url:path}}]}),null);
   }

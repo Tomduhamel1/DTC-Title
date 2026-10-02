@@ -6,6 +6,7 @@ import { sendEmail } from '@/lib/aws/ses'
 import { rateLimit } from '@/lib/rate-limit'
 import { renderMagicLinkEmail } from '@/lib/email/magic-link'
 import { borrowerPermission } from '@/lib/closing/notificationPolicy'
+import { emailConfirmationUrl } from './emailConfirmation'
 
 const dryRun = process.env.AUTH_EMAIL_DRY_RUN === 'true'
 
@@ -15,6 +16,7 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: '/login',
     verifyRequest: '/login/verify',
+    error: '/login',
   },
   providers: [
     EmailProvider({
@@ -38,8 +40,9 @@ export const authOptions: NextAuthOptions = {
         }
 
         const subject = 'Sign in to BetterClose'
-        const htmlBody = renderMagicLinkEmail({ url })
-        const textBody = `Sign in to BetterClose\n\nClick the link below to sign in:\n${url}\n\nIf you didn't request this, you can safely ignore this email.\n— BetterClose`
+        const safeUrl = emailConfirmationUrl(url, new URL(process.env.NEXTAUTH_URL || 'https://www.betterclose.co').origin)
+        const htmlBody = renderMagicLinkEmail({ url: safeUrl })
+        const textBody = `Sign in to BetterClose\n\nOpen the link below, then choose Continue signing in. Your link works once and expires after 24 hours:\n${safeUrl}\n\nIf you didn't request this, you can safely ignore this email. Please don't forward this personal link.\n— BetterClose`
 
         if (dryRun) {
           // eslint-disable-next-line no-console
@@ -47,7 +50,7 @@ export const authOptions: NextAuthOptions = {
           // eslint-disable-next-line no-console
           console.log(`  to:   ${identifier}`)
           // eslint-disable-next-line no-console
-          console.log(`  url:  ${url}\n`)
+          console.log(`  url:  ${safeUrl}\n`)
           return
         }
 

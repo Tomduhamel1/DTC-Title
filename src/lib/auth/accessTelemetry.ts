@@ -1,6 +1,6 @@
 // Access credentials, even short-lived ones, must not enter telemetry.
 export function isAccessUrl(value: string) {
-  return /\/(?:file-access|api\/file-access|api\/auth\/callback)(?:[/?#]|$)/.test(value)
+  return /\/(?:login\/confirm|file-access|api\/file-access|api\/auth\/callback)(?:[/?#"\s]|$)/.test(value)
 }
 
 export function withoutAccessTelemetry<T>(event: T): T | null {

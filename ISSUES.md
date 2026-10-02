@@ -49,6 +49,20 @@ only.
 
 ## Open
 
+### Repeated fresh sign-in links rejected — scanner-safe fix prepared (2026-10-02)
+
+The email callback consumed a one-use token on GET, allowing a mail preview or
+security scanner to create a session before the recipient clicked. Reproduced
+three times with fresh synthetic links and the installed NextAuth/Prisma adapter.
+This is a confirmed failure mode, not proof of which client accessed Steve's links.
+The fix places email credentials in a fragment-backed confirmation page and
+requires an explicit same-origin POST. Legacy callback GET/HEAD cannot consume
+tokens either. NextAuth retains token verification, expiry, single use and
+session creation; admin and per-file permissions are unchanged. Existing file
+access confirmations POST their short-lived handoff without an extra prompt.
+Release verification includes preview/replay, CSRF/origin, admin/normal-user and
+real-browser/compiled-runtime tests. Deployment pending.
+
 ### Public-copy consistency — corrections prepared (2026-10-01)
 
 The public-site audit found misleading navigation/copy, unsupported service
