@@ -49,16 +49,22 @@ only.
 
 ## Open
 
-### Footer Privacy / Terms links have no approved destination (2026-09-30)
+### Privacy / Terms drafts approved by owner; publication checks remain (2026-10-01)
 
-The live footer links use `#`; no approved policy text was found in the checkout.
-The owner authorized BetterClose-specific drafts for review on September 30.
-`fix/quote-summary-and-policy-links` adds draft `/privacy` and `/terms` pages,
-corrects footer destinations, and includes visible publication checklists and
-noindex metadata. Do not merge/deploy these pages or remove draft notices before
-approval. The legal operator, company-wide sharing, retention, applicable privacy
-rights/notices, and acceptance process need business/legal review. No agreement
-is recorded for existing users. Drafts are not legal-compliance certification.
+PR #124 (`fix/quote-summary-and-policy-links`) adds `/privacy` and `/terms` and
+corrects the placeholder footer destinations. The owner approved the drafts,
+confirmed BetterClose is a DBA of First National Title & Escrow LLC, ruled out
+selling personal information, marketing sharing, promotional emails and
+customer-list advertising, and confirmed contact-email forwarding works.
+The supplied FNTE customer Privacy Policy Notice was reviewed. Its permissive
+marketing language is broader than the owner's confirmed practices, not proof
+of actual marketing disclosures; legal review should align the notices.
+The revised draft describes retention criteria without inventing deletion dates
+or altering stored records. A record-specific schedule, applicable privacy
+rights/notices, and account/order acceptance still need compliance review.
+Owner approval does not constitute legal-compliance certification. Draft
+notices and noindex remain pending final checks and a publication release;
+no new acceptance is recorded for existing users. These pages are not deployed.
 
 ### File upload scan wait looks like an outage — correction prepared (2026-09-25)
 

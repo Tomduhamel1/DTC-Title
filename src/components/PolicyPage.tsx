@@ -4,8 +4,8 @@ import NavigationCredible from '@/components/NavigationCredible'
 import FooterComprehensive from '@/components/FooterComprehensive'
 import { SUPPORT_PHONE_DISPLAY, SUPPORT_PHONE_TEL } from '@/lib/contact'
 
-// Review-only copy. Do not remove this notice or deploy these pages before
-// the owner approves the text and resolves the publication checklist.
+// Owner approval is recorded. Keep the publication guard until the remaining
+// checklist is resolved; approval alone does not make a draft effective.
 export default function PolicyPage({ title, introduction, reviewItems, children }: {
   title: string
   introduction: string
@@ -23,8 +23,8 @@ export default function PolicyPage({ title, introduction, reviewItems, children 
           <p className="text-lg leading-relaxed">{introduction}</p>
         </header>
         <aside aria-label="Policy draft notice" className="rounded-2xl border border-amber-200 bg-amber-50 p-5 mb-8 text-sm text-amber-950">
-          <p className="font-bold">Draft for review — not an effective policy</p>
-          <p className="mt-2">Prepared September 30, 2026. Owner and legal review are required before publication.</p>
+          <p className="font-bold">Owner-approved draft — not yet effective</p>
+          <p className="mt-2">Updated October 1, 2026 with the owner&apos;s confirmed practices. Final legal and publication checks remain.</p>
           <details className="mt-3">
             <summary className="cursor-pointer font-semibold underline underline-offset-4">Before publishing this page</summary>
             <ul className="list-disc pl-5 mt-3 space-y-2">{reviewItems.map(item => <li key={item}>{item}</li>)}</ul>

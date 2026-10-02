@@ -11,13 +11,12 @@ for (const [path, title] of [['privacy', 'Privacy Policy'], ['terms', 'Terms of 
     const html = h.render(React.createElement(page.default));
     assert.match(html, new RegExp(`<h1[^>]*>${title}</h1>`));
     assert.equal((html.match(/<h1\b/g) || []).length, 1);
-    assert.match(html, /Draft for review — not an effective policy/);
-    assert.match(html, /Owner and legal review are required before publication/);
+    assert.match(html, /Owner-approved draft — not yet effective/);
+    assert.match(html, /Final legal and publication checks remain/);
     assert.match(html, /Before publishing this page/);
     assert.match(html, /BetterClose is a DBA \(doing business as\) of First National Title &amp; Escrow LLC/);
-    assert.match(html, /legal entity name was checked against the Florida Division of Corporations record/);
-    assert.doesNotMatch(html, /Confirm the full legal entity name/);
-    assert.match(html, /Create and verify contact@betterclose.co and its owner-approved forwarding to Steve/);
+    assert.doesNotMatch(html, /Confirm the full legal entity name|Create and verify contact@betterclose.co|Confirm company-wide collection/);
+    assert.doesNotMatch(html, /The Law Office of Stephen Patti/);
     assert.match(html, /final publication date as the effective date/);
     assert.match(html, /This draft is not yet effective/);
     assert.deepEqual(page.metadata.robots, { index: false, follow: false });
@@ -48,6 +47,29 @@ test('privacy draft explains actual file and quote sharing without invented busi
   assert.match(html, /Cookie|cookie/);
   assert.match(html, /Retention and protection/);
   assert.doesNotMatch(html, /never sell|100% secure|GDPR compliant|CCPA compliant|delete.{0,20}30 days/i);
+});
+
+test('privacy reflects owner-confirmed marketing exclusions without preventing requested services', () => {
+  const h = createHarness(noDb);
+  const html = h.render(React.createElement(h.load('src/app/privacy/page.tsx').default));
+  assert.match(html, /We do not sell your personal information or share it with other companies for their own marketing/);
+  assert.match(html, /We do not send promotional emails or use customer lists for targeted advertising/);
+  assert.match(html, /sharing information needed to provide the services described above/);
+  assert.match(html, /sending sign-in links and file updates according to the applicable notification choices/);
+  assert.match(html, /The notice is not evidence that those disclosures actually occur/);
+  assert.doesNotMatch(html, /we may disclose.{0,250}marketing|we have joint marketing agreements|never share (any )?information/i);
+  assert.equal(h.sent.length, 0);
+});
+
+test('retention distinguishes record types and required preservation without inventing disposal deadlines', () => {
+  const h = createHarness(noDb);
+  const html = h.render(React.createElement(h.load('src/app/privacy/page.tsx').default));
+  assert.match(html, /type of information, whether a transaction was opened or completed/);
+  assert.match(html, /legal and regulatory requirements, underwriter obligations/);
+  assert.match(html, /unused estimates and inquiries and to title, escrow, and settlement records/);
+  assert.match(html, /audit, investigation, claim, or legal proceeding/);
+  assert.match(html, /requesting deletion does not necessarily remove transaction records that must be retained/);
+  assert.doesNotMatch(html, /24 months|two years|seven years|automatically delet|retain.{0,40}(forever|indefinitely)/i);
 });
 
 test('terms draft distinguishes estimates and requests from binding closing documents', () => {

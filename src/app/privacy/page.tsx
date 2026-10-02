@@ -10,11 +10,10 @@ export default function PrivacyPage() {
   return <PolicyPage title="Privacy Policy"
     introduction="How information is used when you request an estimate, open a file, or use the BetterClose portal."
     reviewItems={[
-      'BetterClose is a DBA of First National Title & Escrow LLC. The owner confirmed the DBA relationship, and the legal entity name was checked against the Florida Division of Corporations record. Create and verify contact@betterclose.co and its owner-approved forwarding to Steve before using it for privacy requests.',
-      'Confirm company-wide collection, sharing, service providers, advertising, and any sale or sharing of personal information. Source-code review cannot establish these business practices.',
-      'Approve the actual retention practices, request-verification process, and any state-specific rights or opt-out mechanisms that apply.',
-      'Determine which financial privacy notices and other required disclosures apply to FNTE and BetterClose. This website draft is not a substitute for those notices.',
-      'Use the final publication date as the effective date, as approved by the owner. This draft is not yet effective; approve the final text before removing the draft notice or allowing search indexing.',
+      'Have the company\'s legal reviewer align this website policy with FNTE\'s supplied customer Privacy Policy Notice. That notice permits marketing-related disclosures; BetterClose\'s owner confirmed that the marketing activities excluded below do not occur. The notice is not evidence that those disclosures actually occur.',
+      'Confirm the record-specific retention and privacy-request procedures, including applicable state and underwriter requirements. This draft does not promise an automatic deletion deadline or change stored records.',
+      'Confirm applicable financial privacy notices, state-specific rights and request or opt-out mechanisms. The supplied customer notice has been reviewed; this website policy does not replace transaction-specific notices.',
+      'Use the final publication date as the effective date, as approved by the owner. This draft is not yet effective; complete final legal and publication checks before removing the draft notice or allowing search indexing.',
     ]}>
     <PolicySection title="About this policy">
       <p>BetterClose is a DBA (doing business as) of First National Title &amp; Escrow LLC. This policy covers the BetterClose website and file portal and describes information handled through these online services.</p>
@@ -45,13 +44,18 @@ export default function PrivacyPage() {
       <p>Service providers process information to support hosting, data and document storage, email delivery, fee calculation, security, and diagnostics. Information may also need to be disclosed to meet applicable legal requirements or protect the service and its users.</p>
       <p>A shared quote link can be viewed by anyone who has that link, without signing in. It can display the estimate and property or professional information included with it. Send those links only to intended recipients. Sign-in links are personal and should not be forwarded.</p>
     </PolicySection>
+    <PolicySection title="No sale of information or marketing use">
+      <p>We do not sell your personal information or share it with other companies for their own marketing. We do not send promotional emails or use customer lists for targeted advertising.</p>
+      <p>This does not prevent us from sharing information needed to provide the services described above, responding to your requests, or sending sign-in links and file updates according to the applicable notification choices.</p>
+    </PolicySection>
     <PolicySection title="Email and file choices">
       <p>Agents, brokers, and lenders can set default borrower-update preferences in My settings and adjust the choices for an individual file. Borrower updates for professional-initiated files are off by default unless enabled through those choices. A borrower who starts their own request can receive communications about that request.</p>
       <p>Borrower-update settings do not change the professional&apos;s own updates or provide access to documents. Where available, you can mute your own file updates from the file page. Sign-in links you request and other essential service communications are separate.</p>
       <p>Contact us about incorrect information, account access, or a privacy request. Applicable rights depend on the information and the law that applies. We may need to verify your identity and your connection to the file before providing information or making a change.</p>
     </PolicySection>
     <PolicySection title="Retention and protection">
-      <p>File information and service records may need to be retained to complete a transaction, maintain business records, meet applicable legal requirements, or resolve disputes. Closing a portal account or changing email preferences does not necessarily remove transaction records held by the closing team or other participants.</p>
+      <p>How long records need to be kept depends on the type of information, whether a transaction was opened or completed, applicable legal and regulatory requirements, underwriter obligations, and legitimate needs such as completing services or resolving claims and disputes. Different retention requirements can apply to unused estimates and inquiries and to title, escrow, and settlement records.</p>
+      <p>Records may need to be preserved for an audit, investigation, claim, or legal proceeding. Closing a portal account, changing email preferences, or requesting deletion does not necessarily remove transaction records that must be retained by the closing team or other participants.</p>
       <p>BetterClose uses sign-in and file-access controls to protect information. No online service can guarantee absolute security. Protect access to your email account, avoid forwarding sign-in links, and contact the closing team if you suspect unauthorized access.</p>
     </PolicySection>
     <PolicySection title="Other services and policy updates">
