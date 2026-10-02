@@ -20,7 +20,9 @@ test('audited public copy and shared sample fit phone, tablet and desktop withou
       const rendered = h.render(route === 'for-my-team' ? await Page({}) : React.createElement(Page));
       for (const width of [320, 390, 768, 1024, 1280]) {
         await page.setViewport({ width, height: 900 });
-        await page.setContent('<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>' + await css + 'body{color:white}</style></head><body>' + rendered + '</body></html>');
+        // Use consistent fallback metrics across macOS and Linux runners, and
+        // exercise the app's inherited-light-text case without remote fonts.
+        await page.setContent('<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>' + await css + 'body{color:white;font-family:Arial,sans-serif}</style></head><body>' + rendered + '</body></html>');
         const facts = await page.evaluate(() => ({
           width: document.documentElement.scrollWidth,
           overflow: [...document.querySelectorAll('body *')].filter(el => el.getBoundingClientRect().right > innerWidth + 1 || el.scrollWidth > el.clientWidth + 1)

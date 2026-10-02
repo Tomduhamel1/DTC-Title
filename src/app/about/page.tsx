@@ -24,7 +24,7 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="py-20 bg-gradient-to-br from-primary-50 to-white">
         <div className="container mx-auto px-4 max-w-4xl text-center">
-          <h1 className="text-5xl md:text-6xl font-black text-dark-900 mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-dark-900 mb-6">
             About BetterClose
           </h1>
           <p className="text-2xl text-gray-700 leading-relaxed">
