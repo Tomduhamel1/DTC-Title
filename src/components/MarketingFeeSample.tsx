@@ -1,19 +1,20 @@
-import { buildSampleFeeReport } from '@/lib/sampleReport'
+import { buildSampleFeeReport, PURCHASE_SAMPLE_LOCATION } from '@/lib/sampleReport'
 import { computeTotals, formatCurrency } from '@/lib/feeReport'
 
 // Never combine a client's savings headline with unrelated sample fee rows.
 export default function MarketingFeeSample() {
-  const report = buildSampleFeeReport('GA')
+  const report = buildSampleFeeReport()
   const totals = computeTotals(report)
   return (
     <div data-marketing-fee-sample className="bg-white text-dark-900 rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
       <div className="bg-gray-100 border-b border-gray-200 px-3 py-2 text-[11px] text-gray-600">
-        Sample fee report · Georgia
+        Purchase example · {PURCHASE_SAMPLE_LOCATION}
       </div>
       <div className="p-5">
         <h3 className="text-sm font-bold text-dark-900 mb-2">Transparent pricing, line by line</h3>
         <p className="text-xs text-gray-500 mb-4">
-          Illustrative $500,000 purchase with a $400,000 loan. Not your client&apos;s quote.
+          {formatCurrency(report.homeValue)} purchase with a {formatCurrency(report.loanAmount!)} loan.
+          {' '}Calculated with our quote engine. Not your client&apos;s quote.
         </p>
         <dl className="space-y-3">
           {report.lineItems.map(item => (
@@ -33,8 +34,9 @@ export default function MarketingFeeSample() {
           </div>
         </dl>
         <p className="mt-4 text-[11px] text-gray-500">
-          Savings use the low end of the service comparison. Premiums and government
-          fees are not counted toward savings. Your property&apos;s estimate may differ.
+          Savings use the low end of the service comparison plus any BetterClose
+          Bucks credit shown above. Premiums and government fees are not discounted.
+          Your property&apos;s estimate may differ.
         </p>
       </div>
     </div>

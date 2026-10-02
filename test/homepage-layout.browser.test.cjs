@@ -31,11 +31,25 @@ test('Full Transparency has top-aligned columns, a compact complete sample and a
       assert.equal(facts.notesInGrid, false);
       assert.ok(facts.notes.top >= facts.grid.bottom, 'Notes follow both columns');
       assert.ok(facts.notes.height < 110, 'Collapsed notes do not dominate the screen');
-      assert.doesNotMatch(facts.visible, /competing service package|Save over the loan/);
+      assert.doesNotMatch(facts.visible, /competing service package|better loan pricing/);
+      assert.match(facts.visible, /BetterClose Bucks/);
+      assert.match(facts.visible, /Save at closing/i);
+      assert.match(facts.visible, /Save over the life of the loan/i);
+      assert.match(facts.visible, /includes closing savings plus modeled interest avoided/);
+      for (const [selector, amount] of [['[data-preview-closing-savings]', '$360'], ['[data-preview-lifetime-savings]', '$819']]) {
+        const card = await page.$eval(selector, el => {
+          const r = el.getBoundingClientRect();
+          return { text: el.innerText, width: r.width, height: r.height, fits: el.scrollWidth <= el.clientWidth };
+        });
+        assert.ok(card.text.includes(amount), `${width}: expected ${amount} visible in ${selector}`);
+        assert.doesNotMatch(card.text, /[−-]\$/);
+        assert.ok(card.width > 0 && card.height > 0 && card.fits, 'Both savings figures fit visible cards');
+      }
       assert.match(facts.notesText, /competing service package/);
-      const headerFits = await page.$$eval('[data-fee-preview-report] > div > div:first-child span', elements => elements.every(el => el.scrollWidth <= el.clientWidth));
-      assert.ok(headerFits, `${width}: column labels fit their own cells`);
-      for (const item of ["Lender's Title Insurance", 'Settlement Fee', 'Notary Fee', 'Mortgage Recording Fee', 'Satisfaction (Release) Recording Fee', 'Total']) assert.ok(facts.visible.includes(item));
+      const headers = await page.$$eval('[data-fee-preview-report] > div > div:first-child span', elements => elements.map(el => ({ text: el.innerText, scroll: el.scrollWidth, width: el.clientWidth })));
+      assert.ok(headers.every(el => el.scroll <= el.width), `${width}: column labels fit their own cells: ${JSON.stringify(headers)}`);
+      const report = h.load('src/lib/sampleReport.ts').buildSampleFeeReport();
+      for (const item of report.lineItems) assert.ok(facts.visible.includes(item.label), `${width}: ${item.label} visible`);
       if (width >= 1024) {
         assert.ok(Math.abs(facts.copy.top - facts.report.top) < 1, 'Left copy starts beside report, not halfway down');
         assert.ok(facts.report.height < 750, `${width}: compact sample height ${facts.report.height}`);
