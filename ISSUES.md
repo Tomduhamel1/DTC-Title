@@ -66,6 +66,15 @@ Owner approval does not constitute legal-compliance certification. Draft
 notices and noindex remain pending final checks and a publication release;
 no new acceptance is recorded for existing users. These pages are not deployed.
 
+### Chat was advertised without a chat service — correction prepared (2026-09-30)
+
+The shared contact strip labelled a mailto link "Chat" and displayed a static
+online indicator and reply-time claim. The story homepage also advertised chat
+and rendered inert chat buttons. `fix/remove-unavailable-chat` changes these to
+email/phone contact options and working mailto/tel links, without an online or
+instant-reply promise. Automated calculator conversations are unchanged. The
+fix is isolated from the unapproved Privacy/Terms drafts and is not deployed yet.
+
 ### File upload scan wait looks like an outage — correction prepared (2026-09-25)
 
 Live synthetic acceptance of the new private workspace confirmed that an upload
