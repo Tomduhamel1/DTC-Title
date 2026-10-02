@@ -47,7 +47,7 @@ test('homepage leads with transparent line-by-line pricing and no directional pr
 
 test('sample fee card derives every price, total and savings from one report, never a client headline', () => {
   const Card = h.load('src/components/MarketingFeeSample.tsx').default;
-  const report = h.load('src/lib/sampleReport.ts').buildSampleFeeReport('GA');
+  const report = h.load('src/lib/sampleReport.ts').buildSampleFeeReport();
   const { computeTotals, formatCurrency } = h.load('src/lib/feeReport.ts');
   const totals = computeTotals(report);
   const html = h.render(React.createElement(Card));
@@ -60,7 +60,7 @@ test('sample fee card derives every price, total and savings from one report, ne
   }
   assert.ok(html.includes('data-sample-total="true">' + formatCurrency(totals.ourTotal)));
   assert.ok(html.includes('data-sample-savings="true">' + formatCurrency(totals.estimatedSavings)));
-  assert.match(rendered, /Georgia.*500,000 purchase.*400,000 loan.*Not your client's quote/);
+  assert.match(rendered, /Providence, RI.*300,000 purchase.*240,000 loan.*Not your client's quote/);
   assert.equal(totals.ourTotal, report.lineItems.reduce((sum, item) => sum + item.ourCost, 0));
   const page = source('src/app/for-my-team/page.tsx');
   assert.doesNotMatch(page, /previewSavings|QuotePreviewMockup|MockLineItem|\$685|\$1,240/);
@@ -68,8 +68,9 @@ test('sample fee card derives every price, total and savings from one report, ne
 
 test('homepage sample is explicitly a separate fixed scenario, never an unserved local quote', () => {
   const html = h.render(React.createElement(h.load('src/components/FeeReportPreviewSection.tsx').default));
-  assert.match(text(html), /separate sample shows a Georgia purchase at \$500,000 with a \$400,000 loan/);
-  assert.match(text(html), /not the savings calculator above or a quote for your property/);
+  assert.match(text(html), /\$300,000 purchase in Providence, RI, with a \$240,000 loan/);
+  assert.match(text(html), /Calculated with our quote engine—not a quote for your property/);
+  assert.match(text(html), /\$360 at closing: \$140 in service fees plus a \$220 BetterClose Bucks credit/);
   assert.doesNotMatch(source('src/components/FeeReportPreviewSection.tsx'), /api\/geo|exactly what you're saving/);
 });
 

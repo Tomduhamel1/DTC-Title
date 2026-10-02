@@ -112,13 +112,13 @@ export default function FeeReportTable({
       </div>
 
       {/* Fee rows */}
-      <div className="px-6 py-5">
+      <div className={`px-6 ${isPreview ? 'py-3' : 'py-5'}`}>
         {Array.from(grouped.entries()).map(([cat, items], catIdx) => (
-          <div key={cat} className={catIdx === 0 ? '' : 'mt-5'}>
+          <div key={cat} className={catIdx === 0 ? '' : isPreview ? 'mt-3' : 'mt-5'}>
             <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-2">
               {CATEGORY_LABELS[cat]}
             </div>
-            <div className="space-y-2.5">
+            <div className={isPreview ? 'space-y-1.5' : 'space-y-2.5'}>
               {items.map((item) => (
                 <FeeRow
                   key={item.id}
@@ -128,7 +128,7 @@ export default function FeeReportTable({
                   positiveSavings={isPreview}
                   anchorNote={
                     item === anchor && note
-                      ? isPreview ? 'Service-package comparison; details below.' : note
+                      ? isPreview ? 'Services compared as a package.' : note
                       : undefined
                   }
                 />
@@ -153,14 +153,14 @@ export default function FeeReportTable({
       </div>
 
       {/* Preview keeps both time horizons together, without a duplicate banner. */}
-      {isPreview ? <div className="mx-6 mb-4 rounded-2xl bg-emerald-600 px-4 py-4 text-white">
+      {isPreview ? <div className="mx-6 mb-3 rounded-2xl bg-emerald-600 px-4 py-4 text-white">
         <div className="grid grid-cols-2 gap-4">
-          <div data-preview-closing-savings>
-            <div className="min-h-[2.5rem] text-[10px] font-bold uppercase tracking-wide text-emerald-100">Save at closing</div>
+          <div data-preview-closing-savings className="flex flex-col">
+            <div className="flex-1 text-[10px] font-bold uppercase tracking-wide text-emerald-100">Save at closing</div>
             <div className="mt-1 text-3xl font-black tabular-nums">{formatCurrency(totals.estimatedSavings)}</div>
           </div>
-          <div data-preview-lifetime-savings>
-            <div className="min-h-[2.5rem] text-[10px] font-bold uppercase tracking-wide text-emerald-100">Save over the life of the loan</div>
+          <div data-preview-lifetime-savings className="flex flex-col">
+            <div className="flex-1 text-[10px] font-bold uppercase tracking-wide text-emerald-100">Save over the life of the loan</div>
             <div className="mt-1 text-3xl font-black tabular-nums">{formatCurrency(totals.lifetimeSavings)}</div>
           </div>
         </div>
@@ -216,7 +216,7 @@ export default function FeeReportTable({
       </div>}
 
       {isPreview ? (
-        <p className="px-6 pb-5 text-xs text-gray-600 leading-relaxed">
+        <p className="px-6 pb-4 text-xs text-gray-600 leading-relaxed">
           Sample only. Includes any BetterClose Bucks credit shown above.
           Premiums and government fees are not discounted. See estimate notes below.
         </p>
@@ -247,6 +247,12 @@ export function FeeReportEstimateNotes({ report }: { report: FeeReport }) {
         About this sample &amp; savings estimate
       </summary>
       <div className="mt-3 space-y-3 leading-relaxed">
+        {report.isSample && <p>
+          Fixed purchase example calculated by our quote engine on
+          {' '}{report.generatedAt.slice(0, 10)} (UTC) for ZIP {report.zip}.
+          This is an example estimate, not a completed customer closing or a quote
+          for your property. Fees and savings depend on your transaction.
+        </p>}
         <p><EstimateDisclaimer /></p>
         {note && <p>{note}</p>}
         {computeTotals(report).lifetimeSavings > 0 && <p>
@@ -314,7 +320,7 @@ function FeeRow({
             </span>
           )}
         </div>
-        {subLabel && (
+        {subLabel && (!positiveSavings || isAnchor) && (
           <div
             className={`text-[10.5px] mt-0.5 leading-snug ${
               isAnchor ? 'text-emerald-700' : 'text-gray-400'

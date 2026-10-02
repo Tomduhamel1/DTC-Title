@@ -1,114 +1,44 @@
-// State-aware SAMPLE fee report for marketing previews (homepage "See every
-// fee, line by line"). Separate module because it needs both feeReport and
-// marketBaseline (feeReport itself cannot import marketBaseline — cycle via
-// stateSavings).
-//
-// The line items and our-cost dollars are ILLUSTRATIVE (labeled "Sample
-// report" in the UI); what IS state-accurate is the comparison logic:
-//  - premium lines are never compared in any state (roughly equal across
-//    providers — policy note in marketBaseline.ts); uniform-rate states
-//    additionally show "Set by {state}";
-//  - service lines use the state's evidence-derived service band
-//    (published / calculator / inferred — same bands as real quotes).
+import type { FeeReport } from './feeReport'
 
-import type { FeeLineItem, FeeReport } from './feeReport'
-import { premiumsAreUniform, serviceBandFor } from './marketBaseline'
-import { resolveStateCode } from './stateSavings'
-import { betterCloseBucksLine } from './betterCloseBucks'
+// One fixed purchase example, calculated by fetchElendFeeEstimate against
+// the public fee API. No customer file/PII, geolocation, placeholder fees,
+// or adjustment of prices to reach a marketing target.
+// The recorded upstream response is replayed through the real engine in
+// test/homepage-content.test.cjs; preserve every returned buyer-side line.
+export const PURCHASE_SAMPLE_INPUT = {
+  transactionType: 'purchase' as const,
+  zip: '02903',
+  homeValue: 300000,
+  loanAmount: 240000,
+}
+export const PURCHASE_SAMPLE_LOCATION = 'Providence, RI'
 
-const round = Math.round
+const purchaseExample: FeeReport = {
+  modelVersion: 2,
+  state: 'RI',
+  zip: PURCHASE_SAMPLE_INPUT.zip,
+  county: 'Providence',
+  homeValue: PURCHASE_SAMPLE_INPUT.homeValue,
+  loanAmount: PURCHASE_SAMPLE_INPUT.loanAmount,
+  transactionType: PURCHASE_SAMPLE_INPUT.transactionType,
+  generatedAt: '2026-10-02T06:10:28.076Z',
+  isSample: true,
+  lineItems: [
+    { id: 'elend-0', label: "Owner's Title Insurance", category: 'title-settlement', ourCost: 500, isFixed: true, feeSource: 'underwriter' },
+    { id: 'elend-1', label: "Lender's Title Insurance", category: 'title-settlement', ourCost: 600, isFixed: true, feeSource: 'underwriter' },
+    { id: 'elend-2', label: 'Settlement Fee', category: 'title-settlement', ourCost: 250, isFixed: false, feeSource: 'service', typicalRange: { low: 390, high: 470 } },
+    { id: 'elend-5', label: 'Conveyance Deed - Recording Fee', category: 'recording', ourCost: 87, isFixed: true, feeSource: 'county' },
+    { id: 'elend-6', label: 'Mortgage (Deed of Trust) - Recording Fee', category: 'recording', ourCost: 88, isFixed: true, feeSource: 'county' },
+    { id: 'elend-8', label: 'Closing Protection Letter', category: 'other', ourCost: 35, isFixed: true },
+    { id: 'elend-17', label: 'Notary Fee', category: 'title-settlement', ourCost: 150, isFixed: false, feeSource: 'service', typicalRange: { low: 150, high: 210 } },
+    { id: 'elend-22', label: 'Recording Service Fee', category: 'recording', ourCost: 25, isFixed: true, feeSource: 'service' },
+    { id: 'elend-23', label: 'Attorney Fee', category: 'title-settlement', ourCost: 50, isFixed: false, feeSource: 'service', typicalRange: { low: 50, high: 70 } },
+    { id: 'elend-25', label: 'Abstractor Title Search', category: 'title-settlement', ourCost: 100, isFixed: false, feeSource: 'service', typicalRange: { low: 100, high: 140 } },
+    { id: 'betterclose-bucks', label: 'BetterClose Bucks', category: 'other', ourCost: -220, isFixed: false, isCredit: true, description: 'Introductory BetterClose credit, applied at closing.' },
+  ],
+}
 
-export function buildSampleFeeReport(state?: string | null): FeeReport {
-  const code = resolveStateCode(state) ?? 'GA'
-  const uniform = premiumsAreUniform(code)
-  const band = serviceBandFor(code)
-
-  // Premiums are never compared (roughly equal across providers everywhere);
-  // uniform-rate states get the "Set by {state}" label.
-  const premium = (id: string, label: string, ourCost: number): FeeLineItem =>
-    uniform
-      ? {
-          id,
-          label,
-          category: 'title-settlement',
-          ourCost,
-          isFixed: true,
-          feeSource: 'state',
-          savingsSource: 'pass_through',
-        }
-      : {
-          id,
-          label,
-          category: 'title-settlement',
-          ourCost,
-          isFixed: true,
-          feeSource: 'underwriter',
-          savingsSource: 'title_related',
-          description: 'A-rated underwriter coverage',
-        }
-
-  // Market-comparison model (2026-08-11): the whole verified package delta
-  // sits on the settlement line; other service lines are shown at parity
-  // (typical low = our price, no claimed savings). Mirrors elendCalc's
-  // applyMarketComparison for the sample's two service lines.
-  const SETTLEMENT = 350
-  const NOTARY = 150
-  const stackTotal = SETTLEMENT + NOTARY
-  const lowExtra = Math.max(0, round(stackTotal * band.low) - stackTotal)
-  const highExtra = Math.max(0, round(stackTotal * band.high) - stackTotal)
-  const service = (
-    id: string,
-    label: string,
-    ourCost: number,
-    isAnchor: boolean,
-  ): FeeLineItem => ({
-    id,
-    label,
-    category: 'title-settlement',
-    ourCost,
-    isFixed: false,
-    typicalRange: isAnchor
-      ? { low: ourCost + lowExtra, high: ourCost + highExtra }
-      : { low: ourCost, high: round(ourCost * band.high) },
-    feeSource: 'service',
-    savingsSource: 'settlement_fee',
-  })
-
-  const lineItems: FeeLineItem[] = [
-    premium('lenders-title', "Lender's Title Insurance", 760),
-    service('settlement-fee', 'Settlement Fee', SETTLEMENT, true),
-    service('notary-fee', 'Notary Fee', NOTARY, false),
-    {
-      id: 'mortgage-recording',
-      label: 'Mortgage Recording Fee',
-      category: 'recording',
-      ourCost: 101,
-      isFixed: true,
-      feeSource: 'county',
-      savingsSource: 'pass_through',
-    },
-    {
-      id: 'satisfaction-recording',
-      label: 'Satisfaction (Release) Recording Fee',
-      category: 'recording',
-      ourCost: 22,
-      isFixed: true,
-      feeSource: 'county',
-      savingsSource: 'pass_through',
-    },
-  ]
-  // Apply the same existing credit policy as real quotes, including state
-  // exclusions. Never discount the premium or invent a service-price gap.
-  const credit = betterCloseBucksLine(lineItems, code)
-  if (credit) lineItems.push(credit)
-
-  return {
-    state: code,
-    homeValue: 500000,
-    loanAmount: 400000,
-    transactionType: 'purchase',
-    generatedAt: new Date().toISOString(),
-    isSample: true,
-    lineItems,
-  }
+export function buildSampleFeeReport(): FeeReport {
+  // Consumers cannot mutate the shared evidence-backed example.
+  return structuredClone(purchaseExample)
 }

@@ -60,7 +60,7 @@ function createHarness(prisma, options = {}) {
       throw new Error('Unapproved test dependency: ' + name);
     };
     new Function('require', 'exports', 'module', 'process', 'fetch', code)(localRequire, mod.exports, mod,
-      syntheticProcess, () => { throw new Error('Network forbidden'); });
+      syntheticProcess, options.fetch || (() => { throw new Error('Network forbidden'); }));
     return mod.exports;
   }
   return { load, sent, env: syntheticProcess.env, setActor: value => { actor = value; }, render: renderToStaticMarkup };

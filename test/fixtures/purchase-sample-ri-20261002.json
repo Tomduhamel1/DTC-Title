@@ -1,0 +1,161 @@
+{
+  "capture": {
+    "capturedAt": "2026-10-02T06:10:28.076Z",
+    "source": "public fee calculator via fetchElendFeeEstimate",
+    "note": "Fictional purchase inputs; actual upstream calculation fields. No customer data. Non-calculation response prose omitted.",
+    "input": {
+      "transactionType": "purchase",
+      "zip": "02903",
+      "homeValue": 300000,
+      "loanAmount": 240000
+    }
+  },
+  "response": {
+    "stateCode": "RI",
+    "city": "Providence",
+    "county": "Providence",
+    "settlementFee": "550",
+    "totalBuyerFee": "2185.00",
+    "rateCalcGuideResponse": [
+      {
+        "FeeDescription": "Title - Owner's Title Insurance",
+        "BuyerFee": 500,
+        "SellerFee": "0.0"
+      },
+      {
+        "FeeDescription": "Title - Lender's Title Insurance",
+        "BuyerFee": 600,
+        "SellerFee": "0.0"
+      },
+      {
+        "FeeDescription": "Title - Settlement Fee",
+        "BuyerFee": "550",
+        "SellerFee": "0.0"
+      },
+      {
+        "FeeDescription": "Title - Sales Tax - Owner's Title Insurance",
+        "BuyerFee": "0.0",
+        "SellerFee": "0.0"
+      },
+      {
+        "FeeDescription": "Title - Sales Tax - Lender's Title Insurance",
+        "BuyerFee": "0.0",
+        "SellerFee": "0.0"
+      },
+      {
+        "FeeDescription": "RecordingFee",
+        "DisclosureItemName": "Conveyance Deed - Recording Fee",
+        "BuyerFee": "87.0",
+        "SellerFee": "0.0"
+      },
+      {
+        "FeeDescription": "RecordingFee",
+        "DisclosureItemName": "Mortgage (Deed of Trust) - Recording Fee",
+        "BuyerFee": "88.0",
+        "SellerFee": "0.0"
+      },
+      {
+        "FeeDescription": "TransferTax",
+        "DisclosureItemName": "Conveyance Deed - StateTax Stamp Tax",
+        "BuyerFee": "0.0",
+        "SellerFee": "2250.0"
+      },
+      {
+        "FeeDescription": "Closing Protection Letter",
+        "DisclosureItemName": "Title - Closing Protection Letter",
+        "BuyerFee": "35.0",
+        "SellerFee": "0.0"
+      },
+      {
+        "FeeDescription": "Title - Countersign Lender",
+        "BuyerFee": "0",
+        "SellerFee": "0.0"
+      },
+      {
+        "FeeDescription": "Title - Title Cert Fee",
+        "BuyerFee": "0",
+        "SellerFee": "0.0"
+      },
+      {
+        "FeeDescription": "Title - Search Fee",
+        "BuyerFee": "0",
+        "SellerFee": "0.0"
+      },
+      {
+        "FeeDescription": "AbstractorTitleSearchREFI",
+        "BuyerFee": "0",
+        "SellerFee": "0.0"
+      },
+      {
+        "FeeDescription": "Title - Abstract Storage Fee",
+        "BuyerFee": "0",
+        "SellerFee": "0.0"
+      },
+      {
+        "FeeDescription": "Title - Countersign Owner",
+        "BuyerFee": "0",
+        "SellerFee": "0.0"
+      },
+      {
+        "FeeDescription": "Title - Judgement Search",
+        "BuyerFee": "0",
+        "SellerFee": "0.0"
+      },
+      {
+        "FeeDescription": "Title - Abstract Copy Fee",
+        "BuyerFee": "0",
+        "SellerFee": "0.0"
+      },
+      {
+        "FeeDescription": "Title - Notary Fee",
+        "BuyerFee": "150",
+        "SellerFee": "0.0"
+      },
+      {
+        "FeeDescription": "Title - Tax Review",
+        "BuyerFee": "0",
+        "SellerFee": "0.0"
+      },
+      {
+        "FeeDescription": "Title - Title Insurance Binder Fee",
+        "BuyerFee": "0",
+        "SellerFee": "0.0"
+      },
+      {
+        "FeeDescription": "Title - Short Form Policy",
+        "BuyerFee": "0",
+        "SellerFee": "0.0"
+      },
+      {
+        "FeeDescription": "Title - E-recording Fee",
+        "BuyerFee": "0",
+        "SellerFee": "0.0"
+      },
+      {
+        "FeeDescription": "Title - Recording Service Fee",
+        "BuyerFee": "25",
+        "SellerFee": "0.0"
+      },
+      {
+        "FeeDescription": "Title - Attorney Fee",
+        "BuyerFee": "50",
+        "SellerFee": "0.0"
+      },
+      {
+        "FeeDescription": "Title - Exam Fee",
+        "BuyerFee": "0",
+        "SellerFee": "0.0"
+      },
+      {
+        "FeeDescription": "Title - Abstractor Title Search",
+        "BuyerFee": "100",
+        "SellerFee": "0.0"
+      },
+      {
+        "FeeDescription": "Title - Title Cert Opinion",
+        "BuyerFee": "0",
+        "SellerFee": "0.0"
+      }
+    ]
+  }
+}
