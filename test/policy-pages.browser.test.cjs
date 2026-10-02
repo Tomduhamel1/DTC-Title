@@ -6,7 +6,7 @@ const React = require('react');
 const { createHarness } = require('./helpers/role-journey-harness.cjs');
 const { openEmailBrowser, offlinePage } = require('./helpers/email-browser.cjs');
 
-test('draft policies remain readable on mobile and desktop with keyboard-accessible review notes', async () => {
+test('published policies remain readable on mobile and desktop with keyboard-accessible contact links', async () => {
   const css = execFileSync(process.execPath, [require.resolve('tailwindcss/lib/cli.js'), '--minify'], {
     cwd: path.resolve(__dirname, '..'), input: '@tailwind base; @tailwind components; @tailwind utilities;', encoding: 'utf8',
   });
@@ -23,10 +23,12 @@ test('draft policies remain readable on mobile and desktop with keyboard-accessi
         const layout = await page.$eval('h1', el => ({ color: getComputedStyle(el).color, width: el.getBoundingClientRect().width }));
         assert.notEqual(layout.color, 'rgb(255, 255, 255)');
         assert.ok(layout.width > 250 && layout.width <= width);
-        await page.focus('summary');
-        await page.keyboard.press('Enter');
-        assert.equal(await page.$eval('details', el => el.open), true);
-        assert.ok(await page.$eval('details li', el => el.getBoundingClientRect().height > 0));
+        assert.equal(await page.$eval('time', el => el.dateTime), '2026-10-01');
+        assert.equal(await page.$$eval('details, summary, [aria-label="Policy draft notice"]', els => els.length), 0);
+        await page.focus('a[href="mailto:contact@betterclose.co"]');
+        assert.equal(await page.evaluate(() => document.activeElement.getAttribute('href')), 'mailto:contact@betterclose.co');
+        await page.keyboard.press('Tab');
+        assert.equal(await page.evaluate(() => document.activeElement.getAttribute('href')), 'tel:+18883780745');
         assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), width);
         if (process.env.BC_POLICY_SCREENSHOTS) {
           await page.screenshot({ path: path.join(process.env.BC_POLICY_SCREENSHOTS, `policy-${route}-${width}.png`), fullPage: true });

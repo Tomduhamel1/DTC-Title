@@ -49,22 +49,24 @@ only.
 
 ## Open
 
-### Privacy / Terms drafts approved by owner; publication checks remain (2026-10-01)
+### Policy publication approved; operational/legal follow-up retained (2026-10-01)
 
 PR #124 (`fix/quote-summary-and-policy-links`) adds `/privacy` and `/terms` and
-corrects the placeholder footer destinations. The owner approved the drafts,
+corrects the placeholder footer destinations. The owner approved publication,
 confirmed BetterClose is a DBA of First National Title & Escrow LLC, ruled out
 selling personal information, marketing sharing, promotional emails and
 customer-list advertising, and confirmed contact-email forwarding works.
 The supplied FNTE customer Privacy Policy Notice was reviewed. Its permissive
 marketing language is broader than the owner's confirmed practices, not proof
 of actual marketing disclosures; legal review should align the notices.
-The revised draft describes retention criteria without inventing deletion dates
+The published copy describes retention criteria without inventing deletion dates
 or altering stored records. A record-specific schedule, applicable privacy
 rights/notices, and account/order acceptance still need compliance review.
-Owner approval does not constitute legal-compliance certification. Draft
-notices and noindex remain pending final checks and a publication release;
-no new acceptance is recorded for existing users. These pages are not deployed.
+Owner approval does not constitute legal-compliance certification. Public draft
+notices/checklists are removed and the effective date is October 1, 2026.
+No new acceptance is recorded for existing users, and no deletion behavior is
+changed. This operational/legal follow-up remains internal; it is not displayed
+on the customer pages. Deployment must be verified against the merged commit.
 
 ### Chat was advertised without a chat service — correction prepared (2026-09-30)
 

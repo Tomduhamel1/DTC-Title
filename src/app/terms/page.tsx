@@ -2,20 +2,14 @@ import Link from 'next/link'
 import PolicyPage, { PolicySection } from '@/components/PolicyPage'
 
 export const metadata = {
-  title: 'Terms of Service · BetterClose · Review draft',
-  description: 'Review draft of terms for the BetterClose website and file portal.',
-  robots: { index: false, follow: false },
+  title: 'Terms of Service · BetterClose',
+  description: 'Terms for BetterClose estimates, file services, and document sharing.',
+  robots: { index: true, follow: true },
 }
 
 export default function TermsPage() {
   return <PolicyPage title="Terms of Service"
-    introduction="Guidelines for using BetterClose estimates, file services, and document sharing."
-    reviewItems={[
-      'Have the company\'s legal reviewer align these website terms with applicable closing and settlement agreements. The supplied FNTE Privacy Policy Notice describes information handling; it is not a service agreement.',
-      'Review whether an acceptance step is needed for account or order terms without adding one to free estimates. This draft does not add a click-to-accept requirement or record agreement on behalf of existing users.',
-      'Have counsel confirm any required eligibility, jurisdiction, consumer-protection, and other provisions. No arbitration clause, governing-law choice, or liability cap has been invented.',
-      'Use the final publication date as the effective date, as approved by the owner. This draft is not yet effective; complete final legal and publication checks before removing the draft notice or allowing search indexing.',
-    ]}>
+    introduction="Guidelines for using BetterClose estimates, file services, and document sharing.">
     <PolicySection title="What BetterClose provides">
       <p>BetterClose is a DBA (doing business as) of First National Title &amp; Escrow LLC. BetterClose provides online title and settlement fee estimates, request forms, and a portal for file information and documents. Available features and services depend on the transaction, location, and participating closing team.</p>
       <p>These website terms do not replace a signed engagement, escrow instruction, settlement agreement, title insurance policy, loan document, or other agreement governing your transaction.</p>

@@ -1,20 +1,14 @@
 import PolicyPage, { PolicySection } from '@/components/PolicyPage'
 
 export const metadata = {
-  title: 'Privacy Policy · BetterClose · Review draft',
-  description: 'Review draft of the BetterClose website and file portal privacy policy.',
-  robots: { index: false, follow: false },
+  title: 'Privacy Policy · BetterClose',
+  description: 'How BetterClose handles information for estimates, file services, and the online portal.',
+  robots: { index: true, follow: true },
 }
 
 export default function PrivacyPage() {
   return <PolicyPage title="Privacy Policy"
-    introduction="How information is used when you request an estimate, open a file, or use the BetterClose portal."
-    reviewItems={[
-      'Have the company\'s legal reviewer align this website policy with FNTE\'s supplied customer Privacy Policy Notice. That notice permits marketing-related disclosures; BetterClose\'s owner confirmed that the marketing activities excluded below do not occur. The notice is not evidence that those disclosures actually occur.',
-      'Confirm the record-specific retention and privacy-request procedures, including applicable state and underwriter requirements. This draft does not promise an automatic deletion deadline or change stored records.',
-      'Confirm applicable financial privacy notices, state-specific rights and request or opt-out mechanisms. The supplied customer notice has been reviewed; this website policy does not replace transaction-specific notices.',
-      'Use the final publication date as the effective date, as approved by the owner. This draft is not yet effective; complete final legal and publication checks before removing the draft notice or allowing search indexing.',
-    ]}>
+    introduction="How information is used when you request an estimate, open a file, or use the BetterClose portal.">
     <PolicySection title="About this policy">
       <p>BetterClose is a DBA (doing business as) of First National Title &amp; Escrow LLC. This policy covers the BetterClose website and file portal and describes information handled through these online services.</p>
       <p>Your lender, title insurer, real estate professional, and other transaction participants may have their own privacy notices. Separate notices may also apply to your title, escrow, or settlement services.</p>
