@@ -76,14 +76,14 @@ export default function FooterComprehensive() {
             <h3 className="text-white font-bold text-lg mb-4">Legal & Compliance</h3>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="hover:text-primary-400 transition-colors">
+                <Link href="/privacy" className="hover:text-primary-400 transition-colors">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-primary-400 transition-colors">
+                <Link href="/terms" className="hover:text-primary-400 transition-colors">
                   Terms of Service
-                </a>
+                </Link>
               </li>
               <li>
                 <Link href="/licenses" className="hover:text-primary-400 transition-colors">
@@ -169,7 +169,7 @@ export default function FooterComprehensive() {
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-sm text-gray-500">
-            © 2025 BetterClose, a division of First National Title & Escrow. All rights reserved.
+            © 2025 BetterClose, a DBA of First National Title & Escrow LLC. All rights reserved.
           </div>
           <div className="flex items-center gap-4 text-xs text-gray-500">
             <span>BBB Accredited</span>

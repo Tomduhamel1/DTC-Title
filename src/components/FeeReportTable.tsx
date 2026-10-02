@@ -12,6 +12,7 @@ import {
   groupByCategory,
 } from '@/lib/feeReport'
 import { serviceBandFor } from '@/lib/marketBaseline'
+import { feeReportAmountLabel } from '@/lib/feeReportPresentation'
 
 interface FeeReportTableProps {
   report: FeeReport
@@ -75,7 +76,7 @@ export default function FeeReportTable({
             {title}
           </h3>
           <div className="text-sm text-gray-500 mt-1">
-            {report.transactionType === 'purchase' ? 'Purchase' : 'Refinance'} · {report.state} · {formatCurrency(report.homeValue)}
+            {report.transactionType === 'purchase' ? 'Purchase' : 'Refinance'} · {report.state} · {feeReportAmountLabel(report)}
           </div>
         </div>
       )}

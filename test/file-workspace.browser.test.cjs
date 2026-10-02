@@ -87,6 +87,19 @@ test('actual file workspace shows saved versions, explicit recipients and failur
         await page.screenshot({ path: path.join(process.env.BC_WORKSPACE_PREVIEW_DIR, `file-workspace-${width}.png`), fullPage: true });
       }
     }
+    await page.evaluate(() => {
+      for (const version of window.fixture.estimates.versions) {
+        version.report = { ...version.report, transactionType: 'refinance', homeValue: 0, loanAmount: 400000 };
+      }
+      window.mountFile('synthetic-refinance-label');
+    });
+    await page.waitForFunction(() => document.body.textContent.includes('Loan amount $400,000'));
+    assert.doesNotMatch(await page.$eval('body', el => el.textContent), /Refinance.*Loan \$0/);
+    await page.evaluate(() => {
+      for (const version of window.fixture.estimates.versions) version.report.loanAmount = null;
+      window.mountFile('synthetic-legacy-refinance-label');
+    });
+    await page.waitForFunction(() => document.body.textContent.includes('Loan amount unavailable'));
     assert.equal(requestCount(), 0, 'No live network in this UI test');
   } finally { await browser.close(); }
 });

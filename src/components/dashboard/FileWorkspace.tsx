@@ -2,6 +2,7 @@
 
 import { Fragment, useCallback, useEffect, useRef, useState } from 'react'
 import { formatCurrency, type FeeReport } from '@/lib/feeReport'
+import { feeReportAmountLabel } from '@/lib/feeReportPresentation'
 
 type FileDocument = { id: string; fileName: string; fileSize: number; status: string; revision: number;
   origin: string; canConfirm: boolean; canPreview?: boolean; uploadedAt?: string | null;
@@ -124,7 +125,7 @@ export default function FileWorkspace({ closingId }: { closingId: string }) {
           </select></label>
           <p className="my-3 text-xs text-gray-500">{selected.source === 'linked_quote' ? 'Preserved from the original website quote' : 'Calculated using the website fee engine'} · Saved {new Date(selected.createdAt).toLocaleString()}</p>
           {selected.source === 'linked_quote' && selected.report.generatedAt && <p className="mb-3 text-xs text-gray-500">Original quote generated {new Date(selected.report.generatedAt).toLocaleString()}</p>}
-          <p className="mb-3 text-sm">{selected.report.transactionType === 'purchase' ? 'Purchase' : 'Refinance'} · {selected.report.zip || selected.report.state} · {selected.report.transactionType === 'purchase' ? `Purchase price ${formatCurrency(selected.report.homeValue)}` : `Loan ${formatCurrency(selected.report.loanAmount || 0)}`}</p>
+          <p className="mb-3 text-sm">{selected.report.transactionType === 'purchase' ? 'Purchase' : 'Refinance'} · {selected.report.zip || selected.report.state} · {feeReportAmountLabel(selected.report)}</p>
           {selected.assumptions.map(note => <p key={note} className="mb-3 rounded-lg bg-amber-50 p-3 text-sm text-amber-900">{note}</p>)}
           <div className="overflow-x-auto"><table className="w-full text-sm"><thead><tr className="border-b text-left"><th className="py-2">Estimated charge</th><th className="py-2 text-right">Amount</th></tr></thead>
             <tbody>{selected.report.lineItems.map((item, i) => <tr key={`${item.id}-${i}`} className="border-b border-gray-100"><td className="py-2 pr-4">{item.label}</td><td className="whitespace-nowrap py-2 text-right">{formatCurrency(item.ourCost)}</td></tr>)}</tbody>
