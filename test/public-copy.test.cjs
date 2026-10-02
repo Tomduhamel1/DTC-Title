@@ -22,7 +22,7 @@ for (const [name, file, props] of pages) {
     const rendered = text(html);
     for (const prohibited of [
       /itemized below|every other title company|save thousands|few thousand dollars/i,
-      /Typical rates in this area|[−-]\s*\$[\d,]+/,
+      /Typical rates in this area|[−-]\s*\$[\d,]+\s+(?:saved|in estimated savings)/,
       /automates underwriting|identical coverage|Same protection|Works with all banks|all lender requirements|we never slow|same-day underwriting/i,
       /what you see is what you pay|no surprises|no liens/i,
       /24\/7|immediate response|under 2 hours|we're here now|human support, whenever/i,

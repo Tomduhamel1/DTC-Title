@@ -33,8 +33,9 @@ export default function MarketingFeeSample() {
           </div>
         </dl>
         <p className="mt-4 text-[11px] text-gray-500">
-          Savings use the low end of the service comparison. Premiums and government
-          fees are not counted toward savings. Your property&apos;s estimate may differ.
+          Savings use the low end of the service comparison plus any BetterClose
+          Bucks credit shown above. Premiums and government fees are not discounted.
+          Your property&apos;s estimate may differ.
         </p>
       </div>
     </div>

@@ -14,6 +14,7 @@
 import type { FeeLineItem, FeeReport } from './feeReport'
 import { premiumsAreUniform, serviceBandFor } from './marketBaseline'
 import { resolveStateCode } from './stateSavings'
+import { betterCloseBucksLine } from './betterCloseBucks'
 
 const round = Math.round
 
@@ -73,6 +74,34 @@ export function buildSampleFeeReport(state?: string | null): FeeReport {
     savingsSource: 'settlement_fee',
   })
 
+  const lineItems: FeeLineItem[] = [
+    premium('lenders-title', "Lender's Title Insurance", 760),
+    service('settlement-fee', 'Settlement Fee', SETTLEMENT, true),
+    service('notary-fee', 'Notary Fee', NOTARY, false),
+    {
+      id: 'mortgage-recording',
+      label: 'Mortgage Recording Fee',
+      category: 'recording',
+      ourCost: 101,
+      isFixed: true,
+      feeSource: 'county',
+      savingsSource: 'pass_through',
+    },
+    {
+      id: 'satisfaction-recording',
+      label: 'Satisfaction (Release) Recording Fee',
+      category: 'recording',
+      ourCost: 22,
+      isFixed: true,
+      feeSource: 'county',
+      savingsSource: 'pass_through',
+    },
+  ]
+  // Apply the same existing credit policy as real quotes, including state
+  // exclusions. Never discount the premium or invent a service-price gap.
+  const credit = betterCloseBucksLine(lineItems, code)
+  if (credit) lineItems.push(credit)
+
   return {
     state: code,
     homeValue: 500000,
@@ -80,28 +109,6 @@ export function buildSampleFeeReport(state?: string | null): FeeReport {
     transactionType: 'purchase',
     generatedAt: new Date().toISOString(),
     isSample: true,
-    lineItems: [
-      premium('lenders-title', "Lender's Title Insurance", 760),
-      service('settlement-fee', 'Settlement Fee', SETTLEMENT, true),
-      service('notary-fee', 'Notary Fee', NOTARY, false),
-      {
-        id: 'mortgage-recording',
-        label: 'Mortgage Recording Fee',
-        category: 'recording',
-        ourCost: 101,
-        isFixed: true,
-        feeSource: 'county',
-        savingsSource: 'pass_through',
-      },
-      {
-        id: 'satisfaction-recording',
-        label: 'Satisfaction (Release) Recording Fee',
-        category: 'recording',
-        ourCost: 22,
-        isFixed: true,
-        feeSource: 'county',
-        savingsSource: 'pass_through',
-      },
-    ],
+    lineItems,
   }
 }
