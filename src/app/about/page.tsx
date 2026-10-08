@@ -22,23 +22,23 @@ export default function AboutPage() {
       <div className="h-20"></div>
 
       {/* Hero */}
-      <section className="py-20 bg-gradient-to-br from-primary-50 to-white">
+      <section className="py-10 sm:py-20 bg-gradient-to-br from-primary-50 to-white">
         <div className="container mx-auto px-4 max-w-4xl text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-dark-900 mb-6">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-dark-900 mb-6">
             About BetterClose
           </h1>
-          <p className="text-2xl text-gray-700 leading-relaxed">
+          <p className="text-lg sm:text-2xl text-gray-700 leading-relaxed">
             Making title and settlement pricing <span className="text-primary-600 font-bold">transparent</span>, <span className="text-primary-600 font-bold">competitive</span>, and <span className="text-primary-600 font-bold">easy to compare</span>.
           </p>
         </div>
       </section>
 
       {/* Our Story */}
-      <section className="py-16 bg-white">
+      <section className="py-10 sm:py-16 bg-white">
         <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-4xl font-black text-dark-900 mb-6">Our Story</h2>
+          <h2 className="text-3xl sm:text-4xl font-black text-dark-900 mb-6">Our Story</h2>
           <div className="prose prose-lg max-w-none">
-            <p className="text-xl text-gray-700 leading-relaxed mb-6">
+            <p className="text-base sm:text-xl text-gray-700 leading-relaxed mb-6">
               BetterClose was built around a simple idea: <strong>lower closing costs with transparent pricing, line by line</strong>.
             </p>
             <p className="text-lg text-gray-700 leading-relaxed mb-6">
@@ -70,7 +70,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our Mission */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-10 sm:py-16 bg-gray-50">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
@@ -117,12 +117,12 @@ export default function AboutPage() {
       <UnderwriterLogos />
 
       {/* Service Areas */}
-      <section className="py-16 bg-white">
+      <section className="py-10 sm:py-16 bg-white">
         <div className="container mx-auto px-4 max-w-4xl text-center">
-          <h2 className="text-4xl font-black text-dark-900 mb-6">
+          <h2 className="text-3xl sm:text-4xl font-black text-dark-900 mb-6">
             Where We Close Today
           </h2>
-          <p className="text-xl text-gray-700 mb-8">
+          <p className="text-base sm:text-xl text-gray-700 mb-8">
             Check your property's location and transaction type for available estimates.
             Contact our team for licensing and service details in your state.
           </p>
@@ -130,9 +130,9 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-gradient-to-br from-primary-600 to-primary-700 text-white text-center">
+      <section className="py-10 sm:py-16 bg-gradient-to-br from-primary-600 to-primary-700 text-white text-center">
         <div className="container mx-auto px-4 max-w-3xl">
-          <h2 className="text-4xl font-black mb-4">
+          <h2 className="text-3xl sm:text-4xl font-black mb-4">
             Ready to Save on Your Closing?
           </h2>
           <p className="text-xl text-primary-100 mb-8">

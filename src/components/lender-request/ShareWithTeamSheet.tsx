@@ -118,7 +118,7 @@ export default function ShareWithTeamSheet({
       />
 
       {/* Sheet */}
-      <div className="relative w-full sm:max-w-md bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl animate-[slideUp_240ms_ease-out] sm:animate-[fadeIn_200ms_ease-out] max-h-[92vh] overflow-y-auto">
+      <div className="relative w-full sm:max-w-md bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl animate-[slideUp_240ms_ease-out] sm:animate-[fadeIn_200ms_ease-out] max-h-[92dvh] overflow-y-auto overscroll-contain pb-[env(safe-area-inset-bottom)]">
         {/* Header */}
         <div className="sticky top-0 bg-white px-6 pt-6 pb-4 border-b border-gray-100 flex items-start justify-between gap-3">
           <div>
@@ -140,7 +140,7 @@ export default function ShareWithTeamSheet({
           <button
             onClick={onClose}
             aria-label="Close"
-            className="flex-shrink-0 w-9 h-9 rounded-full hover:bg-gray-100 flex items-center justify-center text-gray-500"
+            className="flex-shrink-0 w-11 h-11 rounded-full hover:bg-gray-100 flex items-center justify-center text-gray-500"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />

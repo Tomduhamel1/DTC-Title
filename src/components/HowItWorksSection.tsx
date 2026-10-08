@@ -56,20 +56,20 @@ export default function HowItWorksSection() {
   ]
 
   return (
-    <section id="how-it-works" className="py-20 bg-gradient-to-br from-primary-50 to-white">
+    <section id="how-it-works" className="py-10 sm:py-20 bg-gradient-to-br from-primary-50 to-white">
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black text-dark-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-dark-900 mb-4">
             How it works
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-xl text-gray-600 max-w-2xl mx-auto">
             Three steps. The first one takes 30 seconds — and you don't even need a quote.
           </p>
         </div>
 
         {/* Steps Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
+        <div className="grid md:grid-cols-3 gap-8 mb-7 sm:mb-12">
           {steps.map((step, index) => (
             <div key={index} className="relative">
               {/* Connector Line (desktop only) */}

@@ -63,10 +63,10 @@ export default function BorrowerQuoteForm() {
   }
 
   return (
-    <div className="bg-gradient-to-br from-primary-50 to-white py-16 px-6">
+    <div className="bg-gradient-to-br from-primary-50 to-white py-8 sm:py-16 px-4 sm:px-6">
       <div className="max-w-xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-black text-dark-900 mb-3">Get your fee estimate</h1>
+          <h1 className="text-3xl sm:text-4xl font-black text-dark-900 mb-3">Get your fee estimate</h1>
           <p className="text-gray-600">
             Tell us about your closing. We'll show you every fee and how we compare to the typical range.
           </p>
@@ -74,7 +74,7 @@ export default function BorrowerQuoteForm() {
 
         <form
           onSubmit={handleSubmit}
-          className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 space-y-6"
+          className="bg-white rounded-2xl shadow-lg border border-gray-100 p-4 sm:p-8 space-y-5 sm:space-y-6"
         >
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">

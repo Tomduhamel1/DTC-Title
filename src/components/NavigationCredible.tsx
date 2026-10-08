@@ -29,6 +29,11 @@ export default function NavigationCredible() {
   const signedIn = status === 'authenticated'
 
   useEffect(() => {
+    setMobileMenuOpen(false)
+    setAccountMenuOpen(false)
+  }, [pathname])
+
+  useEffect(() => {
     if (!accountMenuOpen) return
     const onClick = (e: MouseEvent) => {
       if (accountMenuRef.current && !accountMenuRef.current.contains(e.target as Node)) {
@@ -67,7 +72,7 @@ export default function NavigationCredible() {
           </div>
 
           {/* Right */}
-          <div data-nav-actions className="flex shrink-0 items-center gap-3 whitespace-nowrap">
+          <div data-nav-actions className="flex shrink-0 items-center gap-0 sm:gap-3 whitespace-nowrap">
             {/* Reserve the same space while loading, signed in, or signed out. */}
             <div data-nav-login className="hidden sm:flex w-11 h-5 shrink-0 items-center">
               {status === 'unauthenticated' && <Link href="/login" className="text-dark-800 hover:text-primary-600 font-semibold transition-colors">Log in</Link>}
@@ -149,6 +154,10 @@ export default function NavigationCredible() {
             )}
             </div>
 
+            <a href={`tel:${SUPPORT_PHONE_TEL}`} aria-label={`Call BetterClose at ${SUPPORT_PHONE_DISPLAY}`} className="sm:hidden inline-flex h-11 w-11 items-center justify-center text-primary-700">
+              <svg aria-hidden="true" className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3l2 5-2 2a16 16 0 006 6l2-2 5 2v3a2 2 0 01-2 2C10.2 21 3 13.8 3 5z" /></svg>
+            </a>
+
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -171,7 +180,7 @@ export default function NavigationCredible() {
         {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div id="marketing-mobile-menu" className="xl:hidden border-t border-gray-200 py-4 pb-6 max-h-[calc(100dvh-5rem)] overflow-y-auto">
-            <div className="space-y-3">
+            <div className="space-y-1 [&_a]:min-h-11 [&_a]:flex [&_a]:items-center [&_button]:min-h-11">
               {MARKETING_LINKS.map(link => (
                 <Link
                   key={link.href}

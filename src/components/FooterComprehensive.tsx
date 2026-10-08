@@ -3,30 +3,30 @@ import { SUPPORT_PHONE_DISPLAY, SUPPORT_PHONE_TEL } from '@/lib/contact'
 
 export default function FooterComprehensive() {
   return (
-    <footer className="bg-gray-900 text-gray-300 pt-16 pb-8">
+    <footer className="bg-gray-900 text-gray-300 pt-10 sm:pt-16 pb-8">
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Main Footer Content */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-8 lg:gap-8 mb-12">
           {/* Column 1: Company */}
           <div>
             <h3 className="text-white font-bold text-lg mb-4">Company</h3>
             <ul className="space-y-3">
-              <li>
+              <li className="min-w-0 break-words">
                 <Link href="/about" className="hover:text-primary-400 transition-colors">
                   About BetterClose
                 </Link>
               </li>
-              <li>
+              <li className="min-w-0 break-words">
                 <Link href="/" className="hover:text-primary-400 transition-colors">
                   Home
                 </Link>
               </li>
-              <li>
+              <li className="min-w-0 break-words">
                 <Link href="/security" className="hover:text-primary-400 transition-colors">
                   Security & Fraud Protection
                 </Link>
               </li>
-              <li>
+              <li className="min-w-0 break-words">
                 <Link href="/quote" className="hover:text-primary-400 transition-colors">
                   Fee estimate
                 </Link>
@@ -38,32 +38,32 @@ export default function FooterComprehensive() {
           <div>
             <h3 className="text-white font-bold text-lg mb-4">For Professionals</h3>
             <ul className="space-y-3">
-              <li>
+              <li className="min-w-0 break-words">
                 <Link href="/for-brokers" className="hover:text-primary-400 transition-colors">
                   For Mortgage Brokers
                 </Link>
               </li>
-              <li>
+              <li className="min-w-0 break-words">
                 <Link href="/for-realtors" className="hover:text-primary-400 transition-colors">
                   For Real Estate Agents
                 </Link>
               </li>
-              <li>
+              <li className="min-w-0 break-words">
                 <Link href="/for-lenders" className="hover:text-primary-400 transition-colors">
                   For Lenders
                 </Link>
               </li>
-              <li>
+              <li className="min-w-0 break-words">
                 <a href="/pdfs/betterclose-for-agents.pdf" className="hover:text-primary-400 transition-colors">
                   Agent one-pager (PDF)
                 </a>
               </li>
-              <li>
+              <li className="min-w-0 break-words">
                 <a href="/pdfs/betterclose-for-brokers.pdf" className="hover:text-primary-400 transition-colors">
                   Broker one-pager (PDF)
                 </a>
               </li>
-              <li>
+              <li className="min-w-0 break-words">
                 <a href="/login?callbackUrl=/teammate/dashboard" className="hover:text-primary-400 transition-colors text-sm">
                   Professional Portal Login →
                 </a>
@@ -75,22 +75,22 @@ export default function FooterComprehensive() {
           <div>
             <h3 className="text-white font-bold text-lg mb-4">Legal & Compliance</h3>
             <ul className="space-y-3">
-              <li>
+              <li className="min-w-0 break-words">
                 <Link href="/privacy" className="hover:text-primary-400 transition-colors">
                   Privacy Policy
                 </Link>
               </li>
-              <li>
+              <li className="min-w-0 break-words">
                 <Link href="/terms" className="hover:text-primary-400 transition-colors">
                   Terms of Service
                 </Link>
               </li>
-              <li>
+              <li className="min-w-0 break-words">
                 <Link href="/licenses" className="hover:text-primary-400 transition-colors">
                   Licensing Information
                 </Link>
               </li>
-              <li>
+              <li className="min-w-0 break-words">
                 <div className="flex items-center gap-2">
                   <svg className="w-5 h-5 text-primary-400" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
@@ -102,10 +102,10 @@ export default function FooterComprehensive() {
           </div>
 
           {/* Column 4: Contact */}
-          <div>
+          <div className="col-span-2 md:col-span-1">
             <h3 className="text-white font-bold text-lg mb-4">Contact Us</h3>
             <ul className="space-y-3">
-              <li>
+              <li className="min-w-0 break-words">
                 <a href={`tel:${SUPPORT_PHONE_TEL}`} className="hover:text-primary-400 transition-colors flex items-center gap-2">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
@@ -113,7 +113,7 @@ export default function FooterComprehensive() {
                   {SUPPORT_PHONE_DISPLAY}
                 </a>
               </li>
-              <li>
+              <li className="min-w-0 break-words">
                 <a href="mailto:contact@betterclose.co" className="hover:text-primary-400 transition-colors flex items-center gap-2">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />

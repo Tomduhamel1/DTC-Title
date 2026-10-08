@@ -62,7 +62,7 @@ test('lender content fits phone, tablet and desktop using the established site d
       });
       assert.ok(layout.scrollWidth <= width, `${width}: no horizontal overflow`);
       assert.ok(layout.heading.width > 250 && layout.heading.left >= 0 && layout.heading.right <= width);
-      assert.equal(layout.headingStyle.fontSize, width < 768 ? '36px' : '48px');
+      assert.equal(layout.headingStyle.fontSize, width < 640 ? '30px' : width < 768 ? '36px' : '48px');
       assert.equal(layout.headingStyle.weight, '900');
       for (const action of layout.actions) assert.ok(action.left >= 0 && action.right <= width, `${width}: ${action.text} fits`);
       assert.doesNotMatch(layout.hero, /\bAPI\b/);

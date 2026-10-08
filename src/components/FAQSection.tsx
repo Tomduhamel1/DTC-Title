@@ -52,14 +52,14 @@ export default function FAQSection() {
   }
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-10 sm:py-20 bg-white">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-black text-dark-900 mb-4">
+        <div className="text-center mb-7 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-dark-900 mb-4">
             Frequently Asked Questions
           </h2>
-          <p className="text-xl text-gray-600">
+          <p className="text-base sm:text-xl text-gray-600">
             Everything you need to know about BetterClose
           </p>
         </div>
@@ -74,7 +74,7 @@ export default function FAQSection() {
               {/* Question Button */}
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full text-left px-6 py-5 flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
+                className="w-full text-left px-4 sm:px-6 py-5 flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
               >
                 <span className="text-lg font-bold text-dark-900 pr-8">
                   {faq.question}
@@ -93,7 +93,7 @@ export default function FAQSection() {
 
               {/* Answer Panel */}
               <div
-                className={`px-6 bg-gray-50 transition-all duration-300 ease-in-out ${
+                className={`px-4 sm:px-6 bg-gray-50 transition-all duration-300 ease-in-out ${
                   openIndex === index ? 'py-5 max-h-[32rem]' : 'max-h-0 py-0 overflow-hidden'
                 }`}
               >

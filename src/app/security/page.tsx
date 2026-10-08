@@ -12,24 +12,24 @@ export default function SecurityPage() {
       <div className="h-20"></div>
 
       {/* Hero */}
-      <section className="py-20 bg-gradient-to-br from-red-50 to-white">
+      <section className="py-10 sm:py-20 bg-gradient-to-br from-red-50 to-white">
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <div className="inline-block bg-red-500 text-white px-4 py-2 rounded-full font-bold mb-6">
             ⚠️ CRITICAL INFORMATION
           </div>
-          <h1 className="text-5xl md:text-6xl font-black text-dark-900 mb-6">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-dark-900 mb-6">
             Security & Fraud Protection
           </h1>
-          <p className="text-2xl text-gray-700 leading-relaxed">
+          <p className="text-lg sm:text-2xl text-gray-700 leading-relaxed">
             Protect your information and verify payment instructions with your closing team.
           </p>
         </div>
       </section>
 
       {/* Wire Fraud Warning */}
-      <section className="py-16 bg-white">
+      <section className="py-10 sm:py-16 bg-white">
         <div className="container mx-auto px-4 max-w-4xl">
-          <div className="bg-red-50 border-l-4 border-red-500 p-8 rounded-r-xl mb-12">
+          <div className="bg-red-50 border-l-4 border-red-500 p-4 sm:p-8 rounded-r-xl mb-7 sm:mb-12">
             <h2 className="text-3xl font-black text-red-900 mb-4">
               🚨 Wire Fraud Alert
             </h2>
@@ -41,7 +41,7 @@ export default function SecurityPage() {
             </p>
           </div>
 
-          <h2 className="text-4xl font-black text-dark-900 mb-8">
+          <h2 className="text-3xl sm:text-4xl font-black text-dark-900 mb-8">
             How We Protect You
           </h2>
 
@@ -115,12 +115,12 @@ export default function SecurityPage() {
       </section>
 
       {/* Best Practices Checklist */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-10 sm:py-16 bg-gray-50">
         <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-4xl font-black text-dark-900 mb-8 text-center">
+          <h2 className="text-3xl sm:text-4xl font-black text-dark-900 mb-8 text-center">
             Protect Yourself: Best Practices
           </h2>
-          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+          <div className="bg-white rounded-2xl shadow-xl p-4 sm:p-8 md:p-12">
             <div className="space-y-6">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">
@@ -187,9 +187,9 @@ export default function SecurityPage() {
       </section>
 
       {/* Licensing & Service Availability */}
-      <section className="py-16 bg-white">
+      <section className="py-10 sm:py-16 bg-white">
         <div className="container mx-auto px-4 max-w-4xl text-center">
-          <h2 className="text-4xl font-black text-dark-900 mb-8">
+          <h2 className="text-3xl sm:text-4xl font-black text-dark-900 mb-8">
             Licensing & Service Availability
           </h2>
           <div className="max-w-md mx-auto">
@@ -203,9 +203,9 @@ export default function SecurityPage() {
       </section>
 
       {/* Emergency Contact */}
-      <section className="py-16 bg-gradient-to-br from-red-600 to-red-700 text-white">
+      <section className="py-10 sm:py-16 bg-gradient-to-br from-red-600 to-red-700 text-white">
         <div className="container mx-auto px-4 max-w-3xl text-center">
-          <h2 className="text-4xl font-black mb-4">
+          <h2 className="text-3xl sm:text-4xl font-black mb-4">
             Suspect Fraud?
           </h2>
           <p className="text-xl text-red-100 mb-8">

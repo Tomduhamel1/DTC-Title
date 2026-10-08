@@ -55,6 +55,7 @@ jobs:
           PUPPETEER_EXECUTABLE_PATH="$browser_path" node --test test/fee-report-presentation.browser.test.cjs test/policy-pages.browser.test.cjs test/file-workspace.browser.test.cjs
           PUPPETEER_EXECUTABLE_PATH="$browser_path" node --test test/contact-options.browser.test.cjs
           PUPPETEER_EXECUTABLE_PATH="$browser_path" node --test test/homepage-layout.browser.test.cjs
+          PUPPETEER_EXECUTABLE_PATH="$browser_path" node --test test/mobile-marketing.browser.test.cjs
           PUPPETEER_EXECUTABLE_PATH="$browser_path" node --test test/public-copy.browser.test.cjs
           PUPPETEER_EXECUTABLE_PATH="$browser_path" node --test test/email-confirmation.browser.test.cjs
       - name: Install PDF inspection tools

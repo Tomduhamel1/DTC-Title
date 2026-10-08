@@ -49,6 +49,18 @@ only.
 
 ## Open
 
+### 2026-10-07 — Mobile public-site layout (implemented; release pending)
+
+Phone layouts inherited oversized section spacing, narrow nested card padding,
+and a horizontally overflowing security panel. The professional quote form
+also used a fixed desktop column row from the tablet breakpoint.
+The isolated mobile-layout branch adds responsive spacing/type, a compact team
+grid, readable policy/report cards, touch-sized navigation controls, and a
+fluid quote form. Pricing, savings, policy wording, authorization, and backend
+behavior are unchanged. Automated coverage checks eight public pages at six
+widths, alongside the existing navigation and calculator behavior tests.
+Merge/deployment and an actual-device smoke check remain release steps.
+
 ### Repeated fresh sign-in links rejected — scanner-safe fix prepared (2026-10-02)
 
 The email callback consumed a one-use token on GET, allowing a mail preview or

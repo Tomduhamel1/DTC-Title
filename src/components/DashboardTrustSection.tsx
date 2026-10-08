@@ -37,18 +37,18 @@ const SAMPLE_MILESTONES: SampleMilestone[] = CUSTOMER_MILESTONE_KINDS.map((kind,
 
 export default function DashboardTrustSection() {
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <section className="py-10 sm:py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-4 max-w-6xl">
-        <div className="grid lg:grid-cols-[1fr_1.1fr] gap-12 items-center">
+        <div className="grid lg:grid-cols-[1fr_1.1fr] gap-7 sm:gap-12 items-center">
           {/* Left: Copy */}
           <div>
             <div className="inline-block bg-emerald-100 text-emerald-800 px-4 py-1 rounded-full text-sm font-bold mb-4">
               ✓ Real people. Real-time progress.
             </div>
-            <h2 className="text-4xl md:text-5xl font-black text-dark-900 mb-5 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-dark-900 mb-5 leading-tight">
               Real people. <span className="text-primary-600">Real-time progress.</span>
             </h2>
-            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+            <p className="text-base sm:text-xl text-gray-700 mb-8 leading-relaxed">
               Work with an assigned escrow officer who handles your closing.
               Once your file is opened, see your officer&apos;s contact details,
               shared documents, pricing information, and updates from the closing team
