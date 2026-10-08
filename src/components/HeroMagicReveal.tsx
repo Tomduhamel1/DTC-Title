@@ -57,19 +57,19 @@ export default function HeroMagicReveal() {
     served ? `${subject} in your area typically save` : `${subject} typically save`
 
   return (
-    <section className="relative bg-white py-12 md:py-16 px-6">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+    <section className="relative bg-white py-8 sm:py-12 md:py-16 px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-7 sm:gap-12 items-center">
         {/* Left: hero copy */}
         <div className="text-left">
           <div className="inline-flex items-center gap-2 bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
             <span className="text-emerald-600">✓</span>
             <span>Same realtor. Same lender. Better cost.</span>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-dark-900 leading-tight mb-5">
+          <h1 className="text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl font-black text-dark-900 leading-tight mb-5">
             Don't overpay for closing costs.
             <span className="block text-emerald-600 mt-2">Save hundreds.</span>
           </h1>
-          <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+          <p className="text-base sm:text-lg text-gray-700 mb-5 sm:mb-6 leading-relaxed">
             BetterClose helps you save on title and settlement services with{' '}
             <strong>transparent, line-by-line pricing</strong>. See what each charge
             covers, how our fees compare, and where you can save.
@@ -83,13 +83,13 @@ export default function HeroMagicReveal() {
         </div>
 
         {/* Right: Magic Reveal calculator */}
-        <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-6 md:p-7">
+        <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-4 sm:p-6 md:p-7">
           <div className="text-center mb-5">
             {/* Purchase / Refinance toggle */}
             <div className="inline-flex p-1 bg-gray-100 rounded-full mb-4">
               <button
                 onClick={() => setMode('purchase')}
-                className={`px-5 py-1.5 rounded-full text-sm font-bold transition-all ${
+                className={`px-5 min-h-11 py-2 rounded-full text-sm font-bold transition-all ${
                   mode === 'purchase' ? 'bg-white text-dark-900 shadow' : 'text-gray-600'
                 }`}
               >
@@ -97,7 +97,7 @@ export default function HeroMagicReveal() {
               </button>
               <button
                 onClick={() => setMode('refinance')}
-                className={`px-5 py-1.5 rounded-full text-sm font-bold transition-all ${
+                className={`px-5 min-h-11 py-2 rounded-full text-sm font-bold transition-all ${
                   mode === 'refinance' ? 'bg-white text-dark-900 shadow' : 'text-gray-600'
                 }`}
               >
@@ -109,21 +109,21 @@ export default function HeroMagicReveal() {
               {headlineCopy}
             </div>
             {/* Two savings buckets, visually separated */}
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-2 sm:gap-3">
               <div className="bg-emerald-50 border border-emerald-200 rounded-2xl py-4 px-3">
-                <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 mb-1">
+                <div className="min-h-8 flex items-center justify-center text-[10px] font-bold uppercase tracking-wider text-emerald-700 mb-1">
                   Save at closing
                 </div>
-                <div className="text-3xl md:text-4xl font-black text-emerald-600 tabular-nums leading-none">
+                <div className="text-[clamp(1.5rem,7vw,1.875rem)] md:text-4xl font-black text-emerald-600 tabular-nums leading-none">
                   ${saveAtClosing.toLocaleString()}
                 </div>
                 <div className="text-[11px] text-gray-500 mt-1.5">Title &amp; settlement</div>
               </div>
               <div className="bg-emerald-50 border border-emerald-200 rounded-2xl py-4 px-3">
-                <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 mb-1">
+                <div className="min-h-8 flex items-center justify-center text-[10px] font-bold uppercase tracking-wider text-emerald-700 mb-1">
                   Total over the loan
                 </div>
-                <div className="text-3xl md:text-4xl font-black text-emerald-600 tabular-nums leading-none">
+                <div className="text-[clamp(1.5rem,7vw,1.875rem)] md:text-4xl font-black text-emerald-600 tabular-nums leading-none">
                   ${saveOverLoan.toLocaleString()}
                 </div>
                 <div className="text-[11px] text-gray-500 mt-1.5">Includes at-closing savings</div>
@@ -136,7 +136,7 @@ export default function HeroMagicReveal() {
 
           {/* Slider */}
           <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
-            <div className="flex items-baseline justify-between mb-1.5">
+            <div className="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-1 mb-1.5">
               <span className="text-xs font-semibold text-gray-700">
                 {mode === 'refinance' ? 'On a home valued at' : 'For a home priced at'}
               </span>
@@ -171,7 +171,7 @@ export default function HeroMagicReveal() {
           </Link>
 
           {/* Plain-English footnote for the over-the-loan number */}
-          <p className="mt-3 text-[11px] text-gray-400 leading-snug">
+          <p className="mt-3 text-xs text-gray-500 leading-relaxed">
             The loan total includes at-closing savings plus modeled interest avoided
             if you borrow that much less, at 6.5% over 30 years. It is not
             additional cash at closing or a lower loan rate.
@@ -184,7 +184,7 @@ export default function HeroMagicReveal() {
             {!editingLocation ? (
               <button
                 onClick={() => setEditingLocation(true)}
-                className="underline hover:text-gray-800"
+                className="inline-flex min-h-11 items-center underline hover:text-gray-800"
               >
                 {code ? 'Change state' : 'Choose your state'}
               </button>
@@ -194,7 +194,7 @@ export default function HeroMagicReveal() {
                   value={state || ''}
                   aria-label="Your state"
                   onChange={(e) => setState(e.target.value || null)}
-                  className="text-[11px] border border-gray-300 rounded px-1.5 py-0.5 bg-white"
+                  className="text-base min-h-11 border border-gray-300 rounded px-2 py-1 bg-white"
                 >
                   <option value="">National avg</option>
                   {STATES.map((s) => (

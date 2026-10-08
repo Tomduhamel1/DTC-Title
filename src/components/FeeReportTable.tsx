@@ -26,9 +26,9 @@ interface FeeReportTableProps {
 // four columns stay aligned: Item | Typical | BetterClose | Savings.
 // (Typical collapses on very small screens; savings never does.)
 const COLS =
-  'grid grid-cols-[minmax(0,1fr)_4.5rem_4.5rem] sm:grid-cols-[minmax(0,1fr)_7.5rem_5rem_5rem] gap-x-3 items-baseline'
+  'grid grid-cols-[minmax(0,1fr)_4.25rem_3.5rem] sm:grid-cols-[minmax(0,1fr)_7.5rem_5rem_5rem] gap-x-2 sm:gap-x-3 items-baseline'
 const PREVIEW_COLS =
-  'grid grid-cols-[minmax(0,1fr)_4.5rem_4.5rem] sm:grid-cols-[minmax(0,1fr)_6rem_4.5rem_4rem] lg:grid-cols-[minmax(0,1fr)_4.5rem_4.5rem] xl:grid-cols-[minmax(0,1fr)_6rem_4.5rem_4rem] gap-x-3 items-baseline'
+  'grid grid-cols-[minmax(0,1fr)_4.25rem_3.5rem] sm:grid-cols-[minmax(0,1fr)_6rem_4.5rem_4rem] lg:grid-cols-[minmax(0,1fr)_4.5rem_4.5rem] xl:grid-cols-[minmax(0,1fr)_6rem_4.5rem_4rem] gap-x-2 sm:gap-x-3 items-baseline'
 // The homepage switches to two columns at lg. Hide only the secondary
 // comparison column until xl gives the fee descriptions room again.
 const PREVIEW_TYPICAL = 'hidden sm:block lg:hidden xl:block'
@@ -87,7 +87,7 @@ export default function FeeReportTable({
     >
       {/* Header (skipped in preview — caller provides its own) */}
       {!isPreview && (
-        <div className="px-6 pt-7 pb-6 border-b border-gray-100">
+        <div className="px-3 sm:px-6 pt-7 pb-6 border-b border-gray-100">
           <h3 className="text-2xl font-black text-dark-900 leading-tight tracking-tight">
             {title}
           </h3>
@@ -98,7 +98,7 @@ export default function FeeReportTable({
       )}
 
       {/* Column headers */}
-      <div className={`${columns} px-6 ${isPreview ? 'pt-4' : 'pt-5'} pb-3 border-b border-gray-100`}>
+      <div className={`${columns} px-3 sm:px-6 ${isPreview ? 'pt-4' : 'pt-5'} pb-3 border-b border-gray-100`}>
         <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">Item</span>
         <span className={`${isPreview ? PREVIEW_TYPICAL : 'hidden sm:block'} text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 text-right`}>
           Typical
@@ -112,7 +112,7 @@ export default function FeeReportTable({
       </div>
 
       {/* Fee rows */}
-      <div className={`px-6 ${isPreview ? 'py-2' : 'py-5'}`}>
+      <div className={`px-3 sm:px-6 ${isPreview ? 'py-2' : 'py-5'}`}>
         {Array.from(grouped.entries()).map(([cat, items], catIdx) => (
           <div key={cat} className={catIdx === 0 ? '' : isPreview ? 'mt-3' : 'mt-5'}>
             <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-2">
@@ -153,7 +153,7 @@ export default function FeeReportTable({
       </div>
 
       {/* Preview keeps both time horizons together, without a duplicate banner. */}
-      {isPreview ? <div className="mx-6 mb-3 rounded-2xl bg-emerald-600 px-4 py-3 text-white">
+      {isPreview ? <div className="mx-3 sm:mx-6 mb-3 rounded-2xl bg-emerald-600 px-4 py-3 text-white">
         <div className="grid grid-cols-2 gap-4">
           <div data-preview-closing-savings className="flex flex-col">
             <div className="flex-1 text-[10px] font-bold uppercase tracking-wide text-emerald-100">Save at closing</div>
@@ -168,7 +168,7 @@ export default function FeeReportTable({
           Loan-life total includes closing savings plus modeled interest avoided
           if you finance that much less at 6.5% over 30 years.
         </p>
-      </div> : <div className="mx-6 mb-6 rounded-2xl bg-emerald-600 px-5 py-4 flex items-center justify-between gap-4">
+      </div> : <div className="mx-3 sm:mx-6 mb-6 rounded-2xl bg-emerald-600 px-5 py-4 flex items-center justify-between gap-4">
         <div className="min-w-0">
           <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-100">
             Your total savings
@@ -183,7 +183,7 @@ export default function FeeReportTable({
       </div>}
 
       {/* Preserve the full report's existing summary layout. */}
-      {!isPreview && <div className="px-6 pb-6">
+      {!isPreview && <div className="px-3 sm:px-6 pb-6">
         <div className="grid grid-cols-2 gap-3">
           <div className="bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3">
             <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 mb-1">
@@ -216,11 +216,11 @@ export default function FeeReportTable({
       </div>}
 
       {isPreview ? (
-        <p className="px-6 pb-4 text-xs text-gray-600 leading-relaxed">
+        <p className="px-3 sm:px-6 pb-4 text-xs text-gray-600 leading-relaxed">
           Sample only. Includes any BetterClose Bucks credit shown above.
           Premiums and government fees are not discounted. See estimate notes below.
         </p>
-      ) : <div className="px-6 py-3 text-[11px] text-gray-400 italic text-center border-t border-gray-100">
+      ) : <div className="px-3 sm:px-6 py-3 text-[11px] text-gray-400 italic text-center border-t border-gray-100">
         <EstimateDisclaimer />
       </div>}
     </div>

@@ -169,14 +169,14 @@ export default function BrokersPage() {
       <div className="h-20" />
 
       {/* 1. Hero */}
-      <section className="py-20 bg-gradient-to-br from-primary-50 to-white">
+      <section className="py-10 sm:py-20 bg-gradient-to-br from-primary-50 to-white">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-7 sm:gap-12 items-center">
             <div>
               <div className="inline-block bg-primary-100 text-primary-700 px-4 py-1 rounded-full text-sm font-bold mb-4">
                 FOR MORTGAGE BROKERS &amp; LOAN OFFICERS
               </div>
-              <h1 className="text-4xl md:text-5xl font-black text-dark-900 mb-5 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-dark-900 mb-5 leading-tight">
                 Give your borrower a lower-cost closing{' '}
                 <span className="text-primary-600">without adding work to your file.</span>
               </h1>
@@ -215,7 +215,7 @@ export default function BrokersPage() {
                 card uses light surfaces with green number accents. The two
                 savings figures (at closing / over the loan) carry the emphasis.
                 Figures come from the shared savings model (EXAMPLE_* above). */}
-            <div className="bg-white rounded-2xl shadow-2xl p-7 border border-gray-200">
+            <div className="bg-white rounded-2xl shadow-2xl p-4 sm:p-7 border border-gray-200">
               <div className="text-center text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-5">
                 Example borrower savings
               </div>
@@ -242,11 +242,11 @@ export default function BrokersPage() {
 
               {/* Smaller comparison row */}
               <div className="mt-4 pt-4 border-t border-gray-100 space-y-1.5">
-                <div className="flex items-baseline justify-between">
+                <div className="flex items-baseline justify-between gap-3">
                   <span className="text-xs text-gray-600">BetterClose estimate</span>
                   <span className="text-sm font-bold text-dark-900">{formatCurrency(EXAMPLE_BASIS.ourTotal)}</span>
                 </div>
-                <div className="flex items-baseline justify-between">
+                <div className="flex items-baseline justify-between gap-3">
                   <span className="text-xs text-gray-400">Typical cost · national example</span>
                   <span className="text-sm font-semibold text-gray-400 line-through decoration-gray-300">{formatCurrency(EXAMPLE_BASIS.typicalTotal)}</span>
                 </div>
@@ -272,8 +272,8 @@ export default function BrokersPage() {
           </div>
           <div className="grid grid-cols-3 gap-px bg-gray-100 rounded-3xl overflow-hidden border border-gray-200">
             {BROKER_TRUST_STATS.map((s) => (
-              <div key={s.label} className="bg-white p-6">
-                <div className="text-3xl md:text-4xl font-black text-dark-900 leading-none mb-1">
+              <div key={s.label} className="bg-white p-2.5 sm:p-6">
+                <div className="text-xl sm:text-3xl md:text-4xl font-black text-dark-900 leading-none mb-1">
                   {s.value}
                 </div>
                 <div className="text-xs font-semibold uppercase tracking-wider text-gray-500">
@@ -289,14 +289,14 @@ export default function BrokersPage() {
       </section>
 
       {/* 2. Dashboard visualization — "Your pipeline, in one place" */}
-      <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+      <section className="py-10 sm:py-20 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-12 items-center">
+          <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-7 sm:gap-12 items-center">
             <div>
               <div className="inline-block bg-emerald-100 text-emerald-800 px-4 py-1 rounded-full text-sm font-bold mb-4">
                 ✓ Live in the broker dashboard
               </div>
-              <h2 className="text-4xl md:text-5xl font-black text-dark-900 mb-5 leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-dark-900 mb-5 leading-tight">
                 Your closing pipeline,{' '}
                 <span className="text-primary-600">in one place.</span>
               </h2>
@@ -320,10 +320,10 @@ export default function BrokersPage() {
 
       {/* 2.5. How the portal works — placed after the pipeline overview so the
           big-picture value lands first, then the step-by-step detail. */}
-      <section id="how-it-works" className="py-16 bg-white">
+      <section id="how-it-works" className="py-10 sm:py-16 bg-white">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-black text-dark-900 mb-3">How the portal works</h2>
+          <div className="text-center mb-7 sm:mb-12">
+            <h2 className="text-3xl sm:text-4xl font-black text-dark-900 mb-3">How the portal works</h2>
             <p className="text-lg text-gray-600">Five steps from first quote to closed file.</p>
           </div>
           <div className="grid md:grid-cols-5 gap-6">
@@ -357,7 +357,7 @@ export default function BrokersPage() {
       </section>
 
       {/* 3. Sign in or request access */}
-      <section id="signin-or-request" className="py-16 bg-gray-50">
+      <section id="signin-or-request" className="py-10 sm:py-16 bg-gray-50">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="grid md:grid-cols-2 gap-6">
             <ActionCard
@@ -377,10 +377,10 @@ export default function BrokersPage() {
       </section>
 
       {/* 4. Place orders your way */}
-      <section id="place-orders" className="py-16 bg-white">
+      <section id="place-orders" className="py-10 sm:py-16 bg-white">
         <div className="container mx-auto px-4 max-w-5xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-black text-dark-900 mb-3">Place orders your way</h2>
+          <div className="text-center mb-7 sm:mb-12">
+            <h2 className="text-3xl sm:text-4xl font-black text-dark-900 mb-3">Place orders your way</h2>
             <p className="text-lg text-gray-600">Submit a title order, access your files, or discuss your workflow with our team.</p>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
@@ -421,10 +421,10 @@ export default function BrokersPage() {
       <UnderwriterLogos />
 
       {/* 6. Why brokers use BetterClose */}
-      <section className="py-16 bg-gradient-to-b from-white to-gray-50">
+      <section className="py-10 sm:py-16 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-black text-dark-900 mb-3">Why brokers use BetterClose</h2>
+          <div className="text-center mb-7 sm:mb-12">
+            <h2 className="text-3xl sm:text-4xl font-black text-dark-900 mb-3">Why brokers use BetterClose</h2>
             <p className="text-lg text-gray-600">
               A lower-cost closing for your borrower, a stronger pitch for you.
             </p>
@@ -465,7 +465,7 @@ export default function BrokersPage() {
       </section>
 
       {/* 7. Credibility — defensible savings */}
-      <section className="py-16 bg-white">
+      <section className="py-10 sm:py-16 bg-white">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-black text-dark-900 mb-3 leading-tight">
@@ -485,9 +485,9 @@ export default function BrokersPage() {
       </section>
 
       {/* 8. Where the savings come from */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-10 sm:py-16 bg-gray-50">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-12">
+          <div className="text-center mb-7 sm:mb-12">
             <h2 className="text-3xl md:text-4xl font-black text-dark-900 mb-3">
               Where the savings come from
             </h2>
@@ -522,7 +522,7 @@ export default function BrokersPage() {
             </p>
             <Link
               href={PUBLIC_QUOTE_HREF}
-              className="inline-flex items-center gap-2 bg-emerald-600 text-white font-bold text-base px-6 py-3 rounded-lg hover:bg-emerald-700 transition-colors shadow"
+              className="inline-flex items-center gap-2 bg-emerald-600 text-white font-bold text-base px-4 sm:px-6 py-3 rounded-lg hover:bg-emerald-700 transition-colors shadow"
             >
               Get an estimate
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

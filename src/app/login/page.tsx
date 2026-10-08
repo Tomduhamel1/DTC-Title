@@ -36,9 +36,9 @@ function LoginInner() {
     <>
       <NavigationCredible />
       <div className="h-20" />
-      <main className="bg-gradient-to-br from-primary-50 to-white min-h-[calc(100vh-5rem)] flex items-center justify-center px-6 py-16">
+      <main className="bg-gradient-to-br from-primary-50 to-white min-h-[calc(100dvh-5rem)] flex items-center justify-center px-4 sm:px-6 py-8 sm:py-16">
         <div className="w-full max-w-md">
-          <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 lg:p-10">
+          <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-5 sm:p-8 lg:p-10">
             <div className="text-center mb-7">
               <div className="text-[10px] font-bold uppercase tracking-[0.3em] text-dark-900 mb-2">
                 BetterClose

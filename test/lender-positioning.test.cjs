@@ -125,15 +125,15 @@ test('lender presentation matches established broker and realtor design patterns
   const broker = fs.readFileSync(path.resolve(__dirname, '../src/app/for-brokers/page.tsx'), 'utf8');
   const realtor = fs.readFileSync(path.resolve(__dirname, '../src/app/for-realtors/page.tsx'), 'utf8');
   const classes = [
-    'py-20 bg-gradient-to-br from-primary-50 to-white',
+    'py-10 sm:py-20 bg-gradient-to-br from-primary-50 to-white',
     'container mx-auto px-4 max-w-6xl',
-    'grid lg:grid-cols-2 gap-12 items-center',
+    'grid lg:grid-cols-2 gap-7 sm:gap-12 items-center',
     'inline-block bg-primary-100 text-primary-700 px-4 py-1 rounded-full text-sm font-bold mb-4',
-    'text-4xl md:text-5xl font-black text-dark-900 mb-5 leading-tight',
+    'text-3xl sm:text-4xl md:text-5xl font-black text-dark-900 mb-5 leading-tight',
     'text-lg text-gray-700 mb-8 leading-relaxed',
     'inline-flex items-center justify-center gap-2 whitespace-nowrap bg-emerald-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-emerald-700 transition-colors shadow-lg',
-    'bg-white rounded-2xl shadow-2xl p-7 border border-gray-200',
-    'text-center mb-12',
+    'bg-white rounded-2xl shadow-2xl p-4 sm:p-7 border border-gray-200',
+    'text-center mb-7 sm:mb-12',
   ];
   for (const value of classes) {
     assert.ok(broker.includes('className="' + value + '"'), 'Broker design reference: ' + value);

@@ -85,12 +85,12 @@ export default function LendersPage() {
     <div className="min-h-screen bg-white">
       <NavigationCredible />
       <main className="pt-20">
-        <section aria-labelledby="lender-heading" className="py-20 bg-gradient-to-br from-primary-50 to-white">
+        <section aria-labelledby="lender-heading" className="py-10 sm:py-20 bg-gradient-to-br from-primary-50 to-white">
           <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-7 sm:gap-12 items-center">
             <div>
               <div className="inline-block bg-primary-100 text-primary-700 px-4 py-1 rounded-full text-sm font-bold mb-4">FOR LENDERS &amp; LOAN OFFICERS</div>
-              <h1 id="lender-heading" className="text-4xl md:text-5xl font-black text-dark-900 mb-5 leading-tight">
+              <h1 id="lender-heading" className="text-3xl sm:text-4xl md:text-5xl font-black text-dark-900 mb-5 leading-tight">
                 Give your borrowers lower closing costs.{' '}
                 <span className="text-primary-600">Make your loan offer stand out.</span>
               </h1>
@@ -105,7 +105,7 @@ export default function LendersPage() {
               </div>
               <p className="text-sm text-gray-500 mt-4">No login required for an estimate. Connect with our closing team when you’re ready.</p>
             </div>
-            <aside aria-labelledby="borrower-savings-heading" className="bg-white rounded-2xl shadow-2xl p-7 border border-gray-200">
+            <aside aria-labelledby="borrower-savings-heading" className="bg-white rounded-2xl shadow-2xl p-4 sm:p-7 border border-gray-200">
               <h2 id="borrower-savings-heading" className="text-center text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-5">Example borrower savings · Illustrative</h2>
               <div className="grid grid-cols-2 gap-3">
                 <div className="rounded-xl border border-emerald-100 bg-emerald-50/70 p-4 text-center">
@@ -136,9 +136,9 @@ export default function LendersPage() {
           </div>
         </section>
 
-        <section aria-labelledby="support-heading" className="py-16 bg-gradient-to-b from-white to-gray-50">
+        <section aria-labelledby="support-heading" className="py-10 sm:py-16 bg-gradient-to-b from-white to-gray-50">
           <div className="container mx-auto px-4 max-w-6xl">
-            <div className="text-center mb-12"><h2 id="support-heading" className="text-4xl font-black text-dark-900 mb-3">A lower-cost closing. A stronger borrower experience.</h2><p className="text-lg text-gray-600">Savings your loan officers can explain, with closing support your team can use.</p></div>
+            <div className="text-center mb-7 sm:mb-12"><h2 id="support-heading" className="text-3xl sm:text-4xl font-black text-dark-900 mb-3">A lower-cost closing. A stronger borrower experience.</h2><p className="text-lg text-gray-600">Savings your loan officers can explain, with closing support your team can use.</p></div>
             <div className="grid md:grid-cols-3 gap-8">
               {BENEFITS.map(benefit => (
                 <div key={benefit.title} className="text-center md:text-left"><div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary-50 text-primary-600 mb-3" aria-hidden="true"><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M9 12l2 2 4-4m6 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div><h3 className="text-lg font-bold text-dark-900 mb-2">{benefit.title}</h3><p className="text-sm text-gray-600 leading-relaxed">{benefit.description}</p></div>
@@ -149,10 +149,10 @@ export default function LendersPage() {
 
         <DashboardTrustSection />
 
-        <section id="place-an-order" aria-labelledby="order-heading" className="scroll-mt-24 py-16 bg-white">
+        <section id="place-an-order" aria-labelledby="order-heading" className="scroll-mt-24 py-10 sm:py-16 bg-white">
           <div className="container mx-auto px-4 max-w-6xl">
-            <div className="text-center mb-12">
-              <h2 id="order-heading" className="text-4xl font-black text-dark-900 mb-3">Ordering &amp; integrations</h2>
+            <div className="text-center mb-7 sm:mb-12">
+              <h2 id="order-heading" className="text-3xl sm:text-4xl font-black text-dark-900 mb-3">Ordering &amp; integrations</h2>
               <p className="text-lg text-gray-600">Order through an available integration or email. Talk to us about a custom connection.</p>
             </div>
             <div className="grid md:grid-cols-3 gap-6">
@@ -181,18 +181,18 @@ export default function LendersPage() {
           </div>
         </section>
 
-        <section aria-labelledby="closing-path-heading" className="py-16 bg-gray-50">
+        <section aria-labelledby="closing-path-heading" className="py-10 sm:py-16 bg-gray-50">
           <div className="container mx-auto px-4 max-w-6xl">
-            <div className="text-center mb-12"><h2 id="closing-path-heading" className="text-4xl font-black text-dark-900 mb-3">A straightforward path to closing</h2><p className="text-lg text-gray-600">From your first estimate to your assigned closing team.</p></div>
+            <div className="text-center mb-7 sm:mb-12"><h2 id="closing-path-heading" className="text-3xl sm:text-4xl font-black text-dark-900 mb-3">A straightforward path to closing</h2><p className="text-lg text-gray-600">From your first estimate to your assigned closing team.</p></div>
             <ol className="grid md:grid-cols-3 gap-6">
               {CLOSING_STEPS.map((step, index) => <li key={step.title} className="text-center md:text-left"><div aria-hidden="true" className="w-12 h-12 bg-primary-600 text-white rounded-full flex items-center justify-center text-xl font-black mb-4 mx-auto md:mx-0">{index + 1}</div><h3 className="font-bold text-base mb-2 text-dark-900">{step.title}</h3><p className="text-sm text-gray-600 leading-relaxed">{step.description}</p></li>)}
             </ol>
           </div>
         </section>
 
-        <section aria-labelledby="savings-source-heading" className="py-16 bg-white">
+        <section aria-labelledby="savings-source-heading" className="py-10 sm:py-16 bg-white">
           <div className="container mx-auto px-4 max-w-6xl">
-            <div className="text-center mb-12"><h2 id="savings-source-heading" className="text-4xl font-black text-dark-900 mb-3">Where your borrower saves</h2><p className="text-lg text-gray-600">Competitive fees. Clear comparisons. More clarity for your borrower.</p></div>
+            <div className="text-center mb-7 sm:mb-12"><h2 id="savings-source-heading" className="text-3xl sm:text-4xl font-black text-dark-900 mb-3">Where your borrower saves</h2><p className="text-lg text-gray-600">Competitive fees. Clear comparisons. More clarity for your borrower.</p></div>
             <div className="grid md:grid-cols-3 gap-6">
               {SAVINGS_SOURCES.map(item => <div key={item.title} className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6"><h3 className="text-lg font-bold text-dark-900 mb-2">{item.title}</h3><p className="text-sm text-gray-600 leading-relaxed">{item.description}</p></div>)}
             </div>
@@ -202,12 +202,12 @@ export default function LendersPage() {
 
         <UnderwriterLogos />
 
-        <section aria-labelledby="lender-contact-heading" className="py-16 bg-white">
+        <section aria-labelledby="lender-contact-heading" className="py-10 sm:py-16 bg-white">
           <div className="container mx-auto px-4 max-w-4xl">
             <div className="max-w-3xl mx-auto bg-white border border-gray-200 rounded-2xl shadow-sm p-7">
               <h2 id="lender-contact-heading" className="text-2xl font-black text-dark-900 mb-2">Put BetterClose beside your current title option.</h2><p className="text-base text-gray-700 leading-relaxed mb-5">Compare an itemized estimate for your next borrower. If we’re lower, you have another way to help them save. If not, you still have a clear comparison.</p>
               <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-              <Link href={QUOTE_HREF} className="inline-flex items-center gap-2 bg-emerald-600 text-white font-bold text-base px-6 py-3 rounded-lg hover:bg-emerald-700 transition-colors shadow">Get an estimate <ArrowIcon /></Link>
+              <Link href={QUOTE_HREF} className="inline-flex items-center gap-2 bg-emerald-600 text-white font-bold text-base px-4 sm:px-6 py-3 rounded-lg hover:bg-emerald-700 transition-colors shadow">Get an estimate <ArrowIcon /></Link>
               <a href={`tel:${SUPPORT_PHONE_TEL}`} className="text-base font-semibold text-primary-700 hover:underline whitespace-nowrap">Call {SUPPORT_PHONE_DISPLAY}</a>
               </div>
             </div>

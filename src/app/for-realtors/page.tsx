@@ -94,14 +94,14 @@ export default function RealtorsPage() {
       <div className="h-20" />
 
       {/* 1. Hero */}
-      <section className="py-20 bg-gradient-to-br from-primary-50 to-white">
+      <section className="py-10 sm:py-20 bg-gradient-to-br from-primary-50 to-white">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-7 sm:gap-12 items-center">
             <div>
               <div className="inline-block bg-primary-100 text-primary-700 px-4 py-1 rounded-full text-sm font-bold mb-4">
                 FOR REAL ESTATE AGENTS
               </div>
-              <h1 className="text-4xl md:text-5xl font-black text-dark-900 mb-5 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-dark-900 mb-5 leading-tight">
                 Help your buyer lower closing costs —{' '}
                 <span className="text-primary-600">and keep the closing on track.</span>
               </h1>
@@ -144,7 +144,7 @@ export default function RealtorsPage() {
                 Numbers come from the shared savings model (EXAMPLE_* above) —
                 the same national $500k-purchase anchor the homepage hero shows. */}
             <div>
-            <div className="bg-white rounded-2xl shadow-2xl p-7 border border-gray-200">
+            <div className="bg-white rounded-2xl shadow-2xl p-4 sm:p-7 border border-gray-200">
               <div className="flex items-center justify-center gap-2 mb-5">
                 <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">
                   Example buyer savings
@@ -204,8 +204,8 @@ export default function RealtorsPage() {
           </div>
           <div className="grid grid-cols-3 gap-px bg-gray-100 rounded-3xl overflow-hidden border border-gray-200">
             {AGENT_TRUST_STATS.map((s) => (
-              <div key={s.label} className="bg-white p-6">
-                <div className="text-3xl md:text-4xl font-black text-dark-900 leading-none mb-1">
+              <div key={s.label} className="bg-white p-2.5 sm:p-6">
+                <div className="text-xl sm:text-3xl md:text-4xl font-black text-dark-900 leading-none mb-1">
                   {s.value}
                 </div>
                 <div className="text-xs font-semibold uppercase tracking-wider text-gray-500">
@@ -222,14 +222,14 @@ export default function RealtorsPage() {
 
       {/* 1.75. Agent portal / workflow — agents open, route, and track files;
           not just refer. Modeled on the broker dashboard-visualization section. */}
-      <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+      <section className="py-10 sm:py-20 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-12 items-center">
+          <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-7 sm:gap-12 items-center">
             <div>
               <div className="inline-block bg-emerald-100 text-emerald-800 px-4 py-1 rounded-full text-sm font-bold mb-4">
                 ✓ Live in the agent dashboard
               </div>
-              <h2 className="text-4xl md:text-5xl font-black text-dark-900 mb-5 leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-dark-900 mb-5 leading-tight">
                 Your purchase files,{' '}
                 <span className="text-primary-600">in one place.</span>
               </h2>
@@ -259,10 +259,10 @@ export default function RealtorsPage() {
       <UnderwriterLogos />
 
       {/* 4. Why agents work with BetterClose */}
-      <section className="py-16 bg-gradient-to-b from-white to-gray-50">
+      <section className="py-10 sm:py-16 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-black text-dark-900 mb-3">Why agents work with BetterClose</h2>
+          <div className="text-center mb-7 sm:mb-12">
+            <h2 className="text-3xl sm:text-4xl font-black text-dark-900 mb-3">Why agents work with BetterClose</h2>
             <p className="text-lg text-gray-600">
               A better closing for your buyer — and a smoother deal for you.
             </p>
@@ -303,7 +303,7 @@ export default function RealtorsPage() {
       </section>
 
       {/* 5. Credibility — defensible savings (agent-voiced) */}
-      <section className="py-16 bg-white">
+      <section className="py-10 sm:py-16 bg-white">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-black text-dark-900 mb-3 leading-tight">
@@ -323,9 +323,9 @@ export default function RealtorsPage() {
       </section>
 
       {/* 6. Where the savings come from */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-10 sm:py-16 bg-gray-50">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-12">
+          <div className="text-center mb-7 sm:mb-12">
             <h2 className="text-3xl md:text-4xl font-black text-dark-900 mb-3">
               Where the savings come from
             </h2>
@@ -359,7 +359,7 @@ export default function RealtorsPage() {
             </p>
             <Link
               href={PUBLIC_QUOTE_HREF}
-              className="inline-flex items-center gap-2 bg-emerald-600 text-white font-bold text-base px-6 py-3 rounded-lg hover:bg-emerald-700 transition-colors shadow"
+              className="inline-flex items-center gap-2 bg-emerald-600 text-white font-bold text-base px-4 sm:px-6 py-3 rounded-lg hover:bg-emerald-700 transition-colors shadow"
             >
               Get an estimate
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -23,23 +23,23 @@ export default function UnderwriterLogos() {
   ]
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-10 sm:py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-10">
-          <h2 className="text-4xl font-black text-dark-900 mb-3">
+          <h2 className="text-3xl sm:text-4xl font-black text-dark-900 mb-3">
             Backed By America's Most Trusted Underwriters
           </h2>
-          <p className="text-xl text-gray-600">
+          <p className="text-base sm:text-xl text-gray-600">
             Established underwriters. <span className="text-primary-600 font-bold">Transparent closing-service pricing.</span>
           </p>
         </div>
 
         {/* Logo Grid with REAL Logo Images */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto items-center">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 max-w-5xl mx-auto items-center">
           {underwriters.map((underwriter) => (
             <div
               key={underwriter.name}
-              className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex items-center justify-center h-28 border border-gray-200"
+              className="bg-white p-3 sm:p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex items-center justify-center h-24 sm:h-28 border border-gray-200"
             >
               <img
                 src={underwriter.logoUrl}

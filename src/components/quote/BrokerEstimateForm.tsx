@@ -174,7 +174,7 @@ export default function BrokerEstimateForm() {
   }
 
   return (
-    <div className="bg-gradient-to-br from-primary-50 to-white pt-16 pb-24 px-4 sm:px-6">
+    <div className="bg-gradient-to-br from-primary-50 to-white pt-8 sm:pt-16 pb-12 sm:pb-24 px-4 sm:px-6">
       <div className="max-w-4xl mx-auto">
         <div className="mb-5 flex items-baseline justify-between gap-4 flex-wrap">
           <h1 className="text-2xl sm:text-3xl font-black text-dark-900">
@@ -190,7 +190,7 @@ export default function BrokerEstimateForm() {
           className="bg-white rounded-xl shadow-md border border-gray-200 p-5 sm:p-7"
         >
           {/* ───── Calculator row: 5 cells on desktop ───── */}
-          <div className="grid grid-cols-2 sm:grid-cols-[144px_204px_156px_156px_auto] gap-4 items-end">
+          <div className="grid grid-cols-1 min-[360px]:grid-cols-2 lg:grid-cols-[1fr_1.2fr_1fr_1fr_auto] gap-4 items-end">
             <CompactField label="Type">
               <select
                 value={transactionType}
@@ -230,7 +230,7 @@ export default function BrokerEstimateForm() {
             <button
               type="submit"
               disabled={!valid || submitting}
-              className="h-[52px] inline-flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-base font-bold px-6 rounded-lg shadow-sm transition-colors disabled:opacity-50 col-span-2 sm:col-span-1"
+              className="h-[52px] inline-flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-base font-bold px-6 rounded-lg shadow-sm transition-colors disabled:opacity-50 min-[360px]:col-span-2 lg:col-span-1"
             >
               {submitting ? 'Building…' : 'Calculate'}
             </button>

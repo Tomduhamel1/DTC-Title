@@ -13,8 +13,8 @@ export default function FeeReportPreviewSection() {
   const [shareOpen, setShareOpen] = useState(false)
 
   return (
-    <section aria-labelledby="fee-preview-heading" className="py-16 lg:py-20 bg-gradient-to-b from-white to-gray-50">
-      <div className="container mx-auto px-6">
+    <section aria-labelledby="fee-preview-heading" className="py-10 sm:py-16 lg:py-20 bg-gradient-to-b from-white to-gray-50">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <div data-fee-preview-grid className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-start">
             {/* Left: Copy + CTA */}
@@ -22,7 +22,7 @@ export default function FeeReportPreviewSection() {
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-100 text-primary-800 text-sm font-semibold mb-4">
                 Full transparency
               </div>
-              <h2 id="fee-preview-heading" className="text-4xl md:text-5xl font-black text-dark-900 leading-tight tracking-tight mb-5">
+              <h2 id="fee-preview-heading" className="text-3xl sm:text-4xl md:text-5xl font-black text-dark-900 leading-tight tracking-tight mb-5">
                 See every fee, line by line.
               </h2>
               <p className="text-lg md:text-xl text-gray-600 leading-relaxed mb-8">

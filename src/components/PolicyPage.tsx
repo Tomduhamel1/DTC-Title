@@ -12,15 +12,15 @@ export default function PolicyPage({ title, introduction, children }: {
   return <>
     <NavigationCredible />
     <div className="h-20" />
-    <main className="bg-gray-50 min-h-[calc(100vh-5rem)] py-12 md:py-16 px-6">
+    <main className="bg-gray-50 min-h-[calc(100vh-5rem)] py-8 sm:py-12 md:py-16 px-4 sm:px-6">
       <article className="max-w-3xl mx-auto text-gray-700">
         <header className="mb-8">
           <p className="text-sm font-bold uppercase tracking-wider text-primary-700 mb-3">BetterClose</p>
-          <h1 className="text-4xl md:text-5xl font-black text-dark-900 mb-4">{title}</h1>
-          <p className="text-lg leading-relaxed">{introduction}</p>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-dark-900 mb-4">{title}</h1>
+          <p className="text-base sm:text-lg leading-relaxed">{introduction}</p>
           <p className="mt-4 text-sm text-gray-600">Effective date: <time dateTime="2026-10-01">October 1, 2026</time></p>
         </header>
-        <div className="rounded-2xl border border-gray-200 bg-white shadow-sm p-6 md:p-9 space-y-8 leading-relaxed">
+        <div className="rounded-2xl border border-gray-200 bg-white shadow-sm p-4 sm:p-6 md:p-9 space-y-7 sm:space-y-8 leading-relaxed break-words">
           {children}
           <PolicySection title="Contact BetterClose">
             <p>Questions about this page? Email{' '}
@@ -31,9 +31,9 @@ export default function PolicyPage({ title, introduction, children }: {
           </PolicySection>
         </div>
         <nav aria-label="Policy pages" className="flex flex-wrap gap-x-6 gap-y-3 mt-8 text-sm font-semibold text-primary-700">
-          <Link href="/privacy" className="underline underline-offset-4">Privacy Policy</Link>
-          <Link href="/terms" className="underline underline-offset-4">Terms of Service</Link>
-          <Link href="/licenses" className="underline underline-offset-4">Licensing Information</Link>
+          <Link href="/privacy" className="inline-flex min-h-11 items-center underline underline-offset-4">Privacy Policy</Link>
+          <Link href="/terms" className="inline-flex min-h-11 items-center underline underline-offset-4">Terms of Service</Link>
+          <Link href="/licenses" className="inline-flex min-h-11 items-center underline underline-offset-4">Licensing Information</Link>
         </nav>
       </article>
     </main>
