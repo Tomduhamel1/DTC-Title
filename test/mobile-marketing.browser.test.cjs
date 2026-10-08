@@ -25,6 +25,8 @@ test('public pages reflow from small phones to desktop without clipping content'
       ['about', 'src/app/about/page.tsx'],
       ['terms', 'src/app/terms/page.tsx'],
       ['privacy', 'src/app/privacy/page.tsx'],
+      ['borrower-quote', 'src/components/quote/BorrowerQuoteForm.tsx'],
+      ['professional-quote', 'src/components/quote/BrokerEstimateForm.tsx'],
     ];
     for (const [name, file, props] of cases) {
       const Page = h.load(file).default;
@@ -35,7 +37,7 @@ test('public pages reflow from small phones to desktop without clipping content'
         await page.setContent('<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>' + await css + '</style></head><body>' + body + '</body></html>');
         const facts = await page.evaluate(() => {
           const client = document.documentElement.clientWidth;
-          const clipped = [...document.querySelectorAll('h1,h2,h3,p,footer a')].filter(el => {
+          const clipped = [...document.querySelectorAll('h1,h2,h3,p,footer a,form input,form select,form button')].filter(el => {
             const r = el.getBoundingClientRect();
             return r.width && (r.right > client + 1 || r.left < -1 || el.scrollWidth > el.clientWidth + 1);
           }).map(el => el.textContent.slice(0, 70));
