@@ -1,9 +1,11 @@
+import { publicMetadata, organizationData } from '@/lib/publicMetadata'
 import { Suspense } from 'react'
 import { cookies } from 'next/headers'
 import PageWrapper from './PageWrapper'
 import NavigationCredible from '@/components/NavigationCredible'
 
 export const dynamic = 'force-dynamic'
+export const metadata = publicMetadata('/', 'BetterClose — Lower-cost title & settlement', 'Compare transparent title and settlement pricing with a real closing team. Get a fee estimate and keep your realtor and lender.')
 
 export default async function Page() {
   // Touching cookies() opts the route into per-request rendering and makes
@@ -19,6 +21,7 @@ export default async function Page() {
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
       </div>
     }>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData).replace(/</g, '\\u003c') }} />
       <PageWrapper />
     </Suspense>
   )

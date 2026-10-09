@@ -1,9 +1,9 @@
+import { publicMetadata } from '@/lib/publicMetadata'
 import Link from 'next/link'
 import PolicyPage, { PolicySection } from '@/components/PolicyPage'
 
 export const metadata = {
-  title: 'Terms of Service · BetterClose',
-  description: 'Terms for BetterClose estimates, file services, and document sharing.',
+  ...publicMetadata('/terms', 'Terms of Service · BetterClose', 'Terms for BetterClose estimates, file services, and document sharing.'),
   robots: { index: true, follow: true },
 }
 

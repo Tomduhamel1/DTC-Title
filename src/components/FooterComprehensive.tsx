@@ -16,6 +16,8 @@ export default function FooterComprehensive() {
                   About BetterClose
                 </Link>
               </li>
+              <li><Link href="/compare-title-fees" className="hover:text-primary-400 transition-colors">Compare title fees</Link></li>
+              <li><Link href="/guides/keep-your-realtor-and-lender" className="hover:text-primary-400 transition-colors">Keep your realtor &amp; lender</Link></li>
               <li>
                 <Link href="/" className="hover:text-primary-400 transition-colors">
                   Home
