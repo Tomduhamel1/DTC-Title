@@ -367,6 +367,10 @@ export default function RealtorsPage() {
         </div>
       </section>
 
+      <section aria-label="Shareable closing guide" className="bg-primary-50 px-5 py-8 text-center">
+        <p className="font-bold text-dark-900 mb-2">Give your client a clear way to compare.</p>
+        <Link href="/closing-comparison-kit" className="text-primary-700 font-semibold underline underline-offset-4">Share the closing comparison guide →</Link>
+      </section>
       <FooterComprehensive />
     </div>
   )

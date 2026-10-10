@@ -44,6 +44,9 @@ export default function CompareTitleFees() {
       <p>Confirm who will handle your file, how to reach them, what happens when a title issue arises and whether the team can meet your timeline. Ask for the legal name of the company handling your transaction and licensing information for the property’s state.</p>
       <p>Request a BetterClose estimate to see the actual line items for your transaction. A general example or a headline savings figure cannot tell you which provider costs less for your particular closing.</p>
     </section>
+    <section><h2>Understand a BetterClose savings figure</h2>
+      <p><Link href="/pricing-methodology">Read how we calculate estimated savings</Link>, including the comparison evidence, promotional credits and assumptions behind over-loan figures.</p>
+    </section>
     <section><h2>Where to find the services you can shop for</h2>
       <p>The CFPB points borrowers to Section C on page 2 of the Loan Estimate. For title costs, it recommends comparing the combined total rather than relying on individual line items. <a href="https://www.consumerfinance.gov/owning-a-home/close/shop-for-title-insurance-and-other-closing-services/">Read the CFPB’s closing-service shopping guide</a>.</p>
       <p><Link href="/guides/keep-your-realtor-and-lender">Learn how choosing a title company fits with keeping your realtor and lender</Link>.</p>

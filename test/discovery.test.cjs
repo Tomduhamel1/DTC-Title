@@ -63,16 +63,40 @@ test('quote entry preserves borrower and broker selection through the server pag
   }
 });
 
-test('both guides render their complete content and links without client-side data or network', () => {
+test('discovery guides render their complete content and links without client-side data or network', () => {
   const h = harness();
-  for (const route of ['compare-title-fees', 'guides/keep-your-realtor-and-lender']) {
+  for (const route of ['compare-title-fees', 'guides/keep-your-realtor-and-lender', 'pricing-methodology', 'closing-comparison-kit']) {
     const page = h.load(`src/app/${route}/page.tsx`);
     const html = h.render(React.createElement(page.default));
     assert.equal((html.match(/<h1[ >]/g) || []).length, 1);
     assert.match(html, /href="\/quote"/);
-    assert.match(html, /consumerfinance.gov/);
+    if (['compare-title-fees', 'guides/keep-your-realtor-and-lender'].includes(route)) assert.match(html, /consumerfinance.gov/);
     assert.doesNotMatch(html, /<input|<form|guaranteed savings|licensed nationwide/i);
     assert.equal(page.metadata.alternates.canonical, 'https://betterclose.co/' + route);
   }
   assert.equal(h.sent.length, 0);
+});
+
+
+test('estimate explanation exposes financing and location assumptions without creating another form', () => {
+  const h = harness();
+  const html = h.render(React.createElement(h.load('src/components/quote/EstimateExplanation.tsx').default));
+  assert.match(html, /80%/);
+  assert.match(html, /representative ZIP/);
+  assert.match(html, /not a final bill or your full cash to close/);
+  assert.doesNotMatch(html, /<form|<input/);
+  assert.match(html, /href="\/pricing-methodology"/);
+});
+
+test('methodology separates modeled savings, credit and loan-life totals, and the kit download exists', () => {
+  const h = harness();
+  const html = h.render(React.createElement(h.load('src/app/pricing-methodology/page.tsx').default));
+  const amounts = h.load('src/lib/stateSavings.ts').estimateSavings(500000, 'purchase', null);
+  for (const amount of [amounts.saveAtClosing, amounts.saveOverLoan]) assert.ok(html.includes('$' + amount));
+  assert.match(html, /inferred range is not a survey/);
+  assert.match(html, /must not be added together/);
+  assert.match(html, /minimum of zero/);
+  const kit = h.render(React.createElement(h.load('src/app/closing-comparison-kit/page.tsx').default));
+  assert.match(kit, /href="\/pdfs\/betterclose-closing-comparison-guide.pdf"/);
+  assert.equal(fs.readFileSync(path.join(__dirname, '../public/pdfs/betterclose-closing-comparison-guide.pdf')).subarray(0,5).toString(), '%PDF-');
 });
