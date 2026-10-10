@@ -8,6 +8,7 @@ export const PUBLIC_PATHS = [
   '/', '/about', '/security', '/quote', '/for-brokers', '/for-realtors',
   '/for-lenders', '/licenses', '/privacy', '/terms',
   '/compare-title-fees', '/guides/keep-your-realtor-and-lender',
+  '/pricing-methodology', '/closing-comparison-kit',
 ] as const
 
 export function publicMetadata(path: typeof PUBLIC_PATHS[number], title: string, description: string): Metadata {

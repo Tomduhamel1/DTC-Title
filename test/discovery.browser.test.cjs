@@ -15,7 +15,7 @@ test('discovery articles remain readable on small phones and desktop, with print
   const browser = await openEmailBrowser();
   try {
     const { page, requestCount } = await offlinePage(browser);
-    for (const route of ['compare-title-fees', 'guides/keep-your-realtor-and-lender']) {
+    for (const route of ['compare-title-fees', 'guides/keep-your-realtor-and-lender', 'pricing-methodology', 'closing-comparison-kit']) {
       const module = h.load(`src/app/${route}/page.tsx`);
       const content = h.render(React.createElement(module.default));
       const html = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' + module.metadata.title + '</title><style>' + css + '</style></head><body>' + content + '</body></html>';
