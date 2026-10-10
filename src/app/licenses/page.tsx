@@ -1,11 +1,9 @@
+import { publicMetadata } from '@/lib/publicMetadata'
 import NavigationCredible from '@/components/NavigationCredible'
 import FooterComprehensive from '@/components/FooterComprehensive'
 import { SUPPORT_PHONE_DISPLAY, SUPPORT_PHONE_TEL } from '@/lib/contact'
 
-export const metadata = {
-  title: 'BetterClose · Licensing Information',
-  description: 'Contact BetterClose for licensing information for your state.',
-}
+export const metadata = publicMetadata('/licenses', 'BetterClose · Licensing Information', 'Contact BetterClose for licensing information for your state.')
 
 export default function LicensesPage() {
   return (

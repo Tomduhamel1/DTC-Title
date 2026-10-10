@@ -30,6 +30,7 @@ jobs:
       - run: node --test test/contact-options.test.cjs test/homepage-section-order.test.cjs
       - run: node --test test/homepage-content.test.cjs
       - run: node --test test/public-copy.test.cjs
+      - run: node --test test/discovery.test.cjs
       - run: npm audit --omit=dev --audit-level=low
   email-layout:
     runs-on: ubuntu-latest
@@ -56,6 +57,7 @@ jobs:
           PUPPETEER_EXECUTABLE_PATH="$browser_path" node --test test/contact-options.browser.test.cjs
           PUPPETEER_EXECUTABLE_PATH="$browser_path" node --test test/homepage-layout.browser.test.cjs
           PUPPETEER_EXECUTABLE_PATH="$browser_path" node --test test/public-copy.browser.test.cjs
+          PUPPETEER_EXECUTABLE_PATH="$browser_path" node --test test/discovery.browser.test.cjs
           PUPPETEER_EXECUTABLE_PATH="$browser_path" node --test test/email-confirmation.browser.test.cjs
       - name: Install PDF inspection tools
         run: sudo apt-get update && sudo apt-get install --no-install-recommends -y poppler-utils

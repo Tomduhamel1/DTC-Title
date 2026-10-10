@@ -49,6 +49,19 @@ only.
 
 ## Open
 
+### Search discovery foundation — prepared, not deployed (2026-10-09)
+
+Public routes lack a sitemap, explicit canonicals and page-specific sharing
+metadata. This branch adds an explicit public sitemap, robots controls,
+metadata for 12 public routes, homepage Organization identity and two linked
+educational pages. The existing apex metadata origin is retained; host
+redirect changes need a separate authentication/callback review. Do not
+claim indexing improvement before a production deployment and webmaster
+verification. Coverage configuration is not verified licensing: retain the
+contact-based licensing page until the operating entity and authority are
+confirmed. New guides need final operational review before publication.
+
+
 ### Repeated fresh sign-in links rejected — scanner-safe fix prepared (2026-10-02)
 
 The email callback consumed a one-use token on GET, allowing a mail preview or

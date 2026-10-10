@@ -1,3 +1,4 @@
+import { publicMetadata } from '@/lib/publicMetadata'
 import Link from 'next/link'
 import NavigationCredible from '@/components/NavigationCredible'
 import FooterComprehensive from '@/components/FooterComprehensive'
@@ -14,10 +15,7 @@ const EXAMPLE_HOME_VALUE = 500000
 const EXAMPLE_SAVINGS = estimateSavings(EXAMPLE_HOME_VALUE, 'purchase', null)
 const EXAMPLE_BASIS = estimateCostBasis(EXAMPLE_HOME_VALUE, 'purchase', null)
 
-export const metadata = {
-  title: 'BetterClose · Title & Closing for Lenders',
-  description: 'Help your borrowers lower title and settlement costs and make your loan offer stand out, with clear savings estimates, a dedicated closing team, Encompass ordering and document exchange, and custom API discussions.',
-}
+export const metadata = publicMetadata('/for-lenders', 'BetterClose · Title & Closing for Lenders', 'Help your borrowers lower title and settlement costs and make your loan offer stand out, with clear savings estimates, a dedicated closing team, Encompass ordering and document exchange, and custom API discussions.')
 
 // Reuse the existing professional estimate flow, which also serves lenders.
 const QUOTE_HREF = '/quote?source=broker'

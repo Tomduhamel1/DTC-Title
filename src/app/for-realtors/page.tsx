@@ -1,3 +1,4 @@
+import { publicMetadata } from '@/lib/publicMetadata'
 import { CUSTOMER_MILESTONE_KINDS } from '@/lib/closing/customerMilestones'
 import { offeredStateCount } from '@/lib/stateMaster'
 import Link from 'next/link'
@@ -16,11 +17,7 @@ import { estimateCostBasis, estimateSavings } from '@/lib/stateSavings'
 const EXAMPLE_SAVINGS = estimateSavings(500000, 'purchase', null)
 const EXAMPLE_BASIS = estimateCostBasis(500000, 'purchase', null)
 
-export const metadata = {
-  title: 'BetterClose · For Real Estate Agents',
-  description:
-    "Help your buyer lower closing costs and keep the closing on track. Whether you're opening title, coordinating escrow, or giving your buyer options — a lower-cost title and settlement option, trusted closing support, and live file visibility.",
-}
+export const metadata = publicMetadata('/for-realtors', 'BetterClose · For Real Estate Agents', "Help your buyer lower closing costs and keep the closing on track. Whether you're opening title, coordinating escrow, or giving your buyer options — a lower-cost title and settlement option, trusted closing support, and live file visibility.")
 
 // Public, ungated estimate flow. ?source=realtor preserves attribution; the
 // quote/results/working pages only special-case source=broker, so realtor falls

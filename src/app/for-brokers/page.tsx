@@ -1,3 +1,4 @@
+import { publicMetadata } from '@/lib/publicMetadata'
 import { CUSTOMER_MILESTONE_KINDS } from '@/lib/closing/customerMilestones'
 import { offeredStateCount } from '@/lib/stateMaster'
 import Link from 'next/link'
@@ -14,11 +15,7 @@ import { estimateCostBasis, estimateSavings } from '@/lib/stateSavings'
 const EXAMPLE_SAVINGS = estimateSavings(500000, 'purchase', null)
 const EXAMPLE_BASIS = estimateCostBasis(500000, 'purchase', null)
 
-export const metadata = {
-  title: 'BetterClose · For Mortgage Brokers & Loan Officers',
-  description:
-    'Give your borrower a lower-cost closing without adding work to your file — lower title and settlement costs, real closing support, and live file visibility. A co-branded borrower page is available when you want it.',
-}
+export const metadata = publicMetadata('/for-brokers', 'BetterClose · For Mortgage Brokers & Loan Officers', 'Give your borrower a lower-cost closing without adding work to your file — lower title and settlement costs, real closing support, and live file visibility. A co-branded borrower page is available when you want it.')
 
 const SIGN_IN_HREF = '/login?callbackUrl=/teammate/dashboard'
 // Public, ungated quote/savings test. No login required.
