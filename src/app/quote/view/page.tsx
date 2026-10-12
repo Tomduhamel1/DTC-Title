@@ -176,7 +176,7 @@ export default async function PublicQuoteViewPage({ searchParams }: PageProps) {
         <p className="text-xs text-gray-500 text-center mt-6 max-w-lg mx-auto leading-relaxed">
           This is an estimate based on the property and loan details provided. Final fees are
           determined at closing and may vary; some items are set by state/county or the lender
-          and are not negotiable. Title insurance underwritten by A-rated underwriters.
+          and are not negotiable. Underwriter availability varies by state and transaction. Coverage is governed by the issued title insurance policy.
         </p>
       </div>
     </div>

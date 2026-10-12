@@ -49,6 +49,7 @@ function createHarness(prisma, options = {}) {
         jsx: ts.JsxEmit.ReactJSX, esModuleInterop: true } }).outputText;
     const localRequire = name => {
       if (Object.hasOwn(mocks, name)) return mocks[name];
+      if (name === '@/lib/marketing-disclosure.json') return JSON.parse(fs.readFileSync(path.join(root, 'src/lib/marketing-disclosure.json'), 'utf8'));
       if (['crypto', 'react', 'react/jsx-runtime', 'next/server', 'zod', '@prisma/client'].includes(name)) return require(name);
       const candidate = name.startsWith('@/') ? path.join(root, 'src', name.slice(2)) :
         name.startsWith('.') ? path.resolve(path.dirname(absolute), name) : null;

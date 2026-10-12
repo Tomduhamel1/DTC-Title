@@ -118,7 +118,7 @@ export default function HomePageOriginal({ hideSavingsCards = false, useAlternat
                     Save at closing. Save over the loan.
                   </h1>
                   <p className="text-xl mb-8 text-gray-600">
-                    Lower closing costs. Same coverage. Same A-rated underwriters.
+                    Lower closing costs. Transparent pricing. Established title underwriters.
                   </p>
                 </>
               )}

@@ -71,7 +71,7 @@ export async function sendBrokerQuoteEmail(d: BrokerQuoteEmailData): Promise<str
     ${savingsBlockHtml}
     ${emailButton(d.publicViewUrl, 'View my quote →')}
     <p style="font-size:13px;color:#64748b;">
-      This is an estimate based on the property and loan details provided. Final fees are determined at closing and may vary; some items are set by state/county or the lender and are not negotiable. Title insurance underwritten by A-rated underwriters.
+      This is an estimate based on the property and loan details provided. Final fees are determined at closing and may vary; some items are set by state/county or the lender and are not negotiable. Underwriter availability varies by state and transaction. Coverage is governed by the issued title insurance policy.
     </p>`,
     footerHtml: 'Questions? Reply to this email — a real person will get back to you.',
   })
@@ -84,7 +84,7 @@ ${brokerText} prepared a BetterClose title & settlement quote for you showing es
 ${propertyText}${savingsBlockText}
 View your quote: ${d.publicViewUrl}
 
-This is an estimate based on the property and loan details provided. Final fees are determined at closing and may vary; some items are set by state/county or the lender and are not negotiable. Title insurance underwritten by A-rated underwriters.
+This is an estimate based on the property and loan details provided. Final fees are determined at closing and may vary; some items are set by state/county or the lender and are not negotiable. Underwriter availability varies by state and transaction. Coverage is governed by the issued title insurance policy.
 
 Questions? Reply to this email — a real person will get back to you.
 

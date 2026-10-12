@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 const SITE_NAME = "BetterClose";
 const SITE_TITLE = "BetterClose — Lower-cost title & settlement";
 const SITE_DESCRIPTION =
-  "Save on closing costs with the same A-rated underwriters. Transparent title and settlement pricing, a real closing team, and live file status.";
+  "Save on closing costs with transparent title and settlement pricing, established title insurance underwriters, a real closing team, and live file status.";
 const SITE_URL = "https://betterclose.co";
 
 export const metadata: Metadata = {

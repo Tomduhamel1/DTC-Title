@@ -8,6 +8,7 @@ import {
   computeTotals,
   formatCurrency,
   formatRange,
+  feeDescription,
   groupByCategory,
 } from '@/lib/feeReport'
 
@@ -96,7 +97,7 @@ function InvoiceRow({ item, state }: { item: FeeLineItem; state: string }) {
       <div className="col-span-6">
         <div className="text-sm font-medium text-dark-900">{item.label}</div>
         {item.description && (
-          <div className="text-xs text-gray-500 mt-0.5">{item.description}</div>
+          <div className="text-xs text-gray-500 mt-0.5">{feeDescription(item)}</div>
         )}
         {item.isFixed && (
           <div className="text-[10px] uppercase tracking-wider text-gray-400 font-semibold mt-1">

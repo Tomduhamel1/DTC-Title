@@ -152,7 +152,7 @@ export default function ProfessionalQuoteFlow({
               Show your client exactly what they save.
             </h1>
             <p className="text-base md:text-lg text-gray-600 mb-4">
-              Real fees, line-item pricing, same A-rated underwriters. No login
+              Real fees, line-item pricing, established title underwriters. No login
               required.
             </p>
             {personalizationStrip}

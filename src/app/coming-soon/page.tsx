@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic'
 
 export const metadata = {
   title: 'BetterClose — Coming soon',
-  description: 'BetterClose is launching soon. Save thousands on your closing costs with the same A-rated underwriters you already trust.',
+  description: 'BetterClose is launching soon. Transparent title and settlement pricing with established title insurance underwriters.',
 }
 
 export default function ComingSoonPage() {
@@ -33,8 +33,8 @@ export default function ComingSoonPage() {
         </h1>
 
         <p className="text-lg md:text-xl text-gray-700 mb-10 leading-relaxed max-w-xl mx-auto">
-          BetterClose is launching soon. Same A-rated underwriters every other
-          title company uses — at a fair price, with full transparency.
+          BetterClose is launching soon. Title and settlement services at a fair
+          price, with transparent pricing and established title insurance underwriters.
         </p>
 
         <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-7 max-w-md mx-auto">

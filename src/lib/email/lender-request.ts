@@ -38,7 +38,7 @@ export async function sendLenderRequestEmail(d: LenderRequestEmailData): Promise
 
 function renderHtml(d: LenderRequestEmailData & { greeting: string; client: string; reviewUrl: string }) {
   const savings = d.savingsEstimate
-    ? `<p><strong>Estimated savings for ${escapeHtml(d.client)} on this closing: $${d.savingsEstimate.toLocaleString()}</strong> over the life of the loan, on the same A-rated underwriters.</p>`
+    ? `<p><strong>Estimated savings for ${escapeHtml(d.client)} on this closing: $${d.savingsEstimate.toLocaleString()}</strong> over the life of the loan.</p>`
     : ''
   const note = d.note
     ? `<p style="border-left:3px solid #cbd5e1;padding:8px 12px;color:#475569;font-style:italic;background:#f8fafc;">"${escapeHtml(d.note)}"</p>`
@@ -48,7 +48,7 @@ function renderHtml(d: LenderRequestEmailData & { greeting: string; client: stri
     title: "Your client's closing",
     contentHtml: `<p>${escapeHtml(d.greeting)}</p>
     <p><strong>${escapeHtml(d.client)} is using BetterClose for title and settlement on their upcoming closing</strong> and asked us to send you everything you need to place the order.</p>
-    <p>BetterClose uses the same A-rated underwriters you already work with (First American, AmTrust, Westcor, Old Republic) and integrates with SmartFees, Encompass, Qualia, and ResWare. Same coverage, transparent flat-rate pricing.</p>
+    <p>BetterClose works with established title insurance underwriters (First American, AmTrust, Westcor, Old Republic). Underwriter availability varies by state and transaction. It integrates with SmartFees, Encompass, Qualia, and ResWare. Coverage is governed by the issued policy. Transparent flat-rate pricing.</p>
     ${savings}
     ${note}
     ${emailButton(d.reviewUrl, 'Get the order details →')}
@@ -64,14 +64,14 @@ function renderHtml(d: LenderRequestEmailData & { greeting: string; client: stri
 
 function renderText(d: LenderRequestEmailData & { greeting: string; client: string; reviewUrl: string }) {
   const savings = d.savingsEstimate
-    ? `\nEstimated savings for ${d.client} on this closing: $${d.savingsEstimate.toLocaleString()} over the life of the loan, on the same A-rated underwriters.\n`
+    ? `\nEstimated savings for ${d.client} on this closing: $${d.savingsEstimate.toLocaleString()} over the life of the loan.\n`
     : ''
   const note = d.note ? `\n"${d.note}"\n` : ''
   return `${d.greeting}
 
 ${d.client} is using BetterClose for title and settlement on their upcoming closing and asked us to send you everything you need to place the order.
 
-BetterClose uses the same A-rated underwriters you already work with (First American, AmTrust, Westcor, Old Republic) and integrates with SmartFees, Encompass, Qualia, and ResWare. Same coverage, transparent flat-rate pricing.
+BetterClose works with established title insurance underwriters (First American, AmTrust, Westcor, Old Republic). Underwriter availability varies by state and transaction. It integrates with SmartFees, Encompass, Qualia, and ResWare. Coverage is governed by the issued policy. Transparent flat-rate pricing.
 ${savings}${note}
 Get the order details: ${d.reviewUrl}
 
