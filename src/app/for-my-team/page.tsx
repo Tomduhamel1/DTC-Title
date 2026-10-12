@@ -186,7 +186,7 @@ Thanks,`,
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               <ReasonCard
                 emoji="🛡️"
-                title="Same A-rated underwriters"
+                title="Established title underwriters"
                 body="Work with established title insurance underwriters. Your closing team can explain the policy, requirements, and exceptions for the file."
               />
               <ReasonCard
@@ -560,7 +560,7 @@ function SupportStatsMockup() {
           />
           <StatRow
             icon="🛡️"
-            value="A-rated only"
+            value="Title underwriters"
             label="First American · AmTrust · Westcor · CATIC"
           />
         </div>

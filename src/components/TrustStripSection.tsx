@@ -2,7 +2,7 @@ import { offeredStateCount } from '@/lib/stateMaster'
 const PILLARS = [
   {
     title: 'Save at closing',
-    body: 'Lower title and settlement costs from the same A-rated underwriters. No junk fees.',
+    body: 'Competitive title and settlement service fees, explained line by line.',
   },
   {
     title: 'Save over the loan',
@@ -17,7 +17,7 @@ const PILLARS = [
 const STATS = [
   { value: '30,000+', label: 'Closings completed' },
   { value: '100%', label: 'Fees published up front' },
-  { value: 'A-rated', label: 'Underwriters only' },
+  { value: 'Established', label: 'Title underwriters' },
   { value: `${offeredStateCount()} states`, label: 'Closing coverage' },
 ] as const
 

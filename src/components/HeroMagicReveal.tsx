@@ -78,7 +78,7 @@ export default function HeroMagicReveal() {
             <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>{offeredStateCount()} states</span></span>
             <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>Transparent pricing</span></span>
             <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>30,000+ closings</span></span>
-            <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>A-rated underwriters</span></span>
+            <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>Established title underwriters</span></span>
           </div>
         </div>
 
