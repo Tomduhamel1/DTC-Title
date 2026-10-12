@@ -18,7 +18,7 @@ export default function SecurityPage() {
             ⚠️ CRITICAL INFORMATION
           </div>
           <h1 className="text-5xl md:text-6xl font-black text-dark-900 mb-6">
-            Security & Fraud Protection
+            Security & Wire-Fraud Awareness
           </h1>
           <p className="text-2xl text-gray-700 leading-relaxed">
             Protect your information and verify payment instructions with your closing team.
@@ -37,12 +37,12 @@ export default function SecurityPage() {
               <strong>Criminals are targeting homebuyers with fake wire instructions.</strong> Verify requests independently before sending funds.
             </p>
             <p className="text-lg text-red-900">
-              <strong>Always verify wire instructions by phone before sending money.</strong> Call us at <a href={`tel:${SUPPORT_PHONE_TEL}`} className="underline font-bold">{SUPPORT_PHONE_DISPLAY}</a> to confirm any wire transfer details.
+              <strong>Always verify wire instructions by phone before sending money.</strong> Call your closing team using a number you have independently confirmed. Need help reaching your team? Contact BetterClose at <a href={`tel:${SUPPORT_PHONE_TEL}`} className="underline font-bold">{SUPPORT_PHONE_DISPLAY}</a>.
             </p>
           </div>
 
           <h2 className="text-4xl font-black text-dark-900 mb-8">
-            How We Protect You
+            Website and Document Access
           </h2>
 
           <div className="space-y-6">
@@ -86,7 +86,7 @@ export default function SecurityPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-dark-900 mb-2">Secure Document Portal</h3>
+                  <h3 className="text-xl font-bold text-dark-900 mb-2">Access-Controlled Document Sharing</h3>
                   <p className="text-gray-700">
                     Use your file’s document section to share sensitive documents with the closing team. The team controls sharing with other file participants. Avoid sending sensitive documents in ordinary email.
                   </p>
@@ -111,6 +111,12 @@ export default function SecurityPage() {
               </div>
             </div>
           </div>
+          <div className="mt-8 bg-gray-50 p-6 rounded-xl">
+            <h3 className="text-xl font-bold text-dark-900 mb-2">Bank Transfers and Your File Portal</h3>
+            <p className="text-gray-700">
+              Banks process funds transfers. BetterClose’s portal supports file updates and document sharing; a portal message or uploaded document does not verify payment instructions. Independently confirm instructions with your closing team before sending funds.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -129,7 +135,7 @@ export default function SecurityPage() {
                 <div>
                   <h3 className="font-bold text-lg text-dark-900 mb-2">Always Verify Wire Instructions by Phone</h3>
                   <p className="text-gray-700">
-                    Call us at {SUPPORT_PHONE_DISPLAY} to confirm wire details. Use a number you look up yourself - not one from an email.
+                    Use a phone number you previously verified with your closing team. Do not use a new number supplied in the message requesting payment.
                   </p>
                 </div>
               </div>
@@ -153,7 +159,7 @@ export default function SecurityPage() {
                 <div>
                   <h3 className="font-bold text-lg text-dark-900 mb-2">Be Suspicious of Last-Minute Changes</h3>
                   <p className="text-gray-700">
-                    If wire instructions change suddenly, it's likely fraud. Always verify by phone before sending money.
+                    Unexpected changes to payment instructions can be a sign of fraud. Stop and independently verify the instructions before sending money.
                   </p>
                 </div>
               </div>
@@ -177,7 +183,7 @@ export default function SecurityPage() {
                 <div>
                   <h3 className="font-bold text-lg text-dark-900 mb-2">Report Suspicious Activity Immediately</h3>
                   <p className="text-gray-700">
-                    If something feels off, call us right away. It's better to be cautious than to lose your life savings.
+                    Contact your closing team if a message or payment request seems suspicious. If you already sent funds, contact your sending bank immediately and ask for a recall.
                   </p>
                 </div>
               </div>
@@ -209,7 +215,10 @@ export default function SecurityPage() {
             Suspect Fraud?
           </h2>
           <p className="text-xl text-red-100 mb-8">
-            Contact us immediately if you receive suspicious emails or wire instructions
+            If you already sent funds to a suspected fraudulent account, contact your sending bank immediately and request a wire recall. Then notify your closing team. Recovery is not guaranteed.
+          </p>
+          <p className="text-lg text-red-100 mb-8">
+            You can also report suspected fraud to the FBI’s <a href="https://www.ic3.gov/" className="underline font-semibold">Internet Crime Complaint Center</a>. Do not wait for a BetterClose email response before contacting your bank.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a

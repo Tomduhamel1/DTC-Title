@@ -27,7 +27,7 @@ export default function FooterComprehensive() {
               </li>
               <li>
                 <Link href="/security" className="hover:text-primary-400 transition-colors">
-                  Security & Fraud Protection
+                  Security & Wire-Fraud Awareness
                 </Link>
               </li>
               <li>

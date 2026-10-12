@@ -52,7 +52,7 @@ test('audited public copy and shared sample fit phone, tablet and desktop withou
           assert.notEqual(facts.sample.totalColor, 'rgb(255, 255, 255)', 'Totals must remain visible on white even when the app inherits light text');
           for (const row of facts.sample.rows) assert.ok(row.labelRight + 2 <= row.amountLeft, `${width}: sample amounts do not collide with labels`);
         }
-        if (process.env.BC_COPY_SCREENSHOTS && ['for-my-team', 'about'].includes(route) && [390,1280].includes(width)) {
+        if (process.env.BC_COPY_SCREENSHOTS && ['for-my-team', 'about', 'security'].includes(route) && [390,1280].includes(width)) {
           assert.ok(fs.statSync(process.env.BC_COPY_SCREENSHOTS).isDirectory());
           await page.screenshot({ path: path.join(process.env.BC_COPY_SCREENSHOTS, route + '-' + width + '.png'), fullPage: true });
         }
