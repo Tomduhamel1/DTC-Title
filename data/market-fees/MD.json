@@ -1,0 +1,436 @@
+[
+  {
+    "provider": "Stewart Title Guaranty Company (underwriter Schedule of Charges)",
+    "sourceUrl": "https://go.stewart.com/rs/067-YWO-436/images/Maryland%20Manual%20Final%20eff%2011-24-2025.pdf?version=0",
+    "asOf": "2025-11-24",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "$50 per transaction regardless of number of CPLs issued; additional $50 for a second mortgage/HELOC by a different lender",
+      "binder": null,
+      "other": [
+        "Owner's/Leasehold Owner's Policy: $5.41/$1,000 up to $250,000; +$4.62/$1,000 to $500,000; +$3.94/$1,000 to $1,000,000; +$3.10/$1,000 to $5,000,000; +$1.75/$1,000 to $15,000,000; +$1.63/$1,000 above; minimum $350",
+        "ALTA Homeowner's Policy: $6.49/$1,000 up to $250,000; +$5.54/$1,000 to $500,000; +$4.73/$1,000 to $1,000,000; minimum $350",
+        "Mortgagee's Policy: $3.52/$1,000 up to $250,000; +$3.20/$1,000 to $500,000; +$2.84/$1,000 to $1,000,000; minimum $350",
+        "Reissue charge: 60% of original schedule of charges",
+        "Residential Refinance Charge for Mortgagee's Policies: 60% of the Original Charge for Mortgagee's Policies",
+        "Simultaneous issue: mortgagee's policy of equal/lesser amount issued with owner's policy on same land = flat $350 ($360 for Enhanced Coverage Residential Loan Policy)",
+        "Corrective endorsement charge: $75; endorsement/new policy on assignment: $125 (or $275 for new policy with same effective date)",
+        "ALTA Residential Limited Coverage Mortgage Modification Policy: $125 (up to $1,000,000); $250 ($1,000,001-$1,500,000); $350 ($1,500,001-$2,000,000)",
+        "Most standard ALTA endorsements (4, 4.1, 5, 5.1, 6, 6.2, 8.1, 9, 14, 14.1-14.3, 22) issued at no charge on residential transactions"
+      ]
+    },
+    "bundlingNotes": "General Provisions state explicitly: 'charges herein quoted are for title insurance charges only... and do not include charges for searches, abstracts, attorney's fees, escrow, or closing service performed and charged for by local attorneys, abstractors, and title companies.' Filed rate manual (Maryland is an insurer-filed state, not promulgated/bureau-rate).",
+    "transactionContext": "Statewide Maryland; residential and commercial purchase/refinance title insurance premium rates; no settlement/service fee published in this document by design."
+  },
+  {
+    "provider": "WFG National Title Insurance Company (underwriter Manual of Title Insurance Rates and Rules)",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/maryland/rates/Maryland%20Rate%20Title%20Manual%20-%20effective%20March%201,%202022.pdf",
+    "asOf": "2022-03-01",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "$30.00 per CPL issued, remitted entirely to the Company; no premium due if the underlying transaction is cancelled",
+      "binder": null,
+      "other": [
+        "Owner's/Leasehold Owner's Policy (Standard Coverage): $5.15/$1,000 up to $250,000; +$4.40/$1,000 to $500,000; +$3.75/$1,000 to $1,000,000; minimum $300 (Enhanced Coverage minimum $360)",
+        "Acquisition Loan Policy (Standard Coverage): $3.36/$1,000 up to $250,000; +$3.05/$1,000 to $500,000; minimum $300; Finance (refinance) Loan Policy Standard: $2.05/$1,000 up to $250,000, minimum $275",
+        "Simultaneous issue owner's + loan policy: each loan policy charged flat $200.00 ($240.00 for Enhanced Loan policy)",
+        "ALTA Residential Limited Coverage Junior Loan Policy: flat $110.00 up to $250,000 liability",
+        "Master Home Equity/HE2 certificate: $45 (up to $250,000); $75 ($250,000-$500,000); $250 ($500,000-$750,000); $300 ($750,000-$1,000,000)",
+        "Mortgage Protection Guarantee / Residential Limited Coverage Mortgage Modification Policy: $125 (up to $1,000,000); $250 ($1,000,001-$1,500,000); $350 ($1,500,001-$2,000,000)",
+        "Lender's Special Rate categories (high-volume electronic lenders only): as low as $275 (over 500 orders/month, $0-$250,000 liability) up to $2,200 (same tier, $4,000,001-$5,000,000)",
+        "Virtually all standard ALTA endorsements (zoning excepted, at $0.25/$1,000) issued at no charge"
+      ]
+    },
+    "bundlingNotes": "Introduction states explicitly: 'Title insurance premiums do not include charges or fees for title search, abstracts, attorney's fees, surveys, escrow, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant' \u2014 the clearest and most complete disclaimer of settlement-fee content found in this state's dataset.",
+    "transactionContext": "Statewide Maryland; residential and commercial purchase/refinance title insurance premium rates; no settlement/service fee published in this document by design."
+  },
+  {
+    "provider": "Ardent Title (independent title/settlement company, Cecil County)",
+    "sourceUrl": "https://www.ardenttitle.com/services/standard-fee-schedule/",
+    "asOf": "2026-07-21 (retrieval date; page notes April 1, 2017 as the effective date for title insurance rates specifically)",
+    "settlementFee": "Closing Fee $395.00 (includes document preparation and Consummation Fee); Refinance Closing $350.00; Simultaneous 2nd Mortgage Closing $150.00",
+    "itemizedFees": {
+      "docPrep": "Included in the $395.00 closing fee (not itemized separately)",
+      "processing": "Review/Processing/Procurement for lien/payoff satisfactions $75.00",
+      "courier": "Electronic Delivery/Courier/Express Mail Fee/Postage $25.00",
+      "wire": "Wire Fee/Bank Surcharge $25.00 (for each incoming and each outgoing wire per file)",
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": "Notary $10.00 ($15.00 for combo loans)",
+      "searchExam": "Title Examination and Abstract Fee $225.00",
+      "cpl": "Title Insurance Binder/Closing Protection Letter $50.00 ($25.00 additional for a second binder)",
+      "binder": "$50.00 (combined with CPL, see above)",
+      "other": [
+        "Cecil County recording fee: $60.00 per instrument",
+        "Recordation stamps: $8.20 per thousand of the higher of purchase price/loan amount",
+        "State transfer tax: 0.5% of sales price; County transfer tax: 0.5% of sales price",
+        "Title insurance itself is not a flat fee on this schedule \u2014 page states it 'is based on a percentage of the purchase price and loan amount and regulated by the Maryland Insurance Administration' (this refers to rate filing, not a promulgated/bureau rate)",
+        "Estimated basic purchase total (excluding title insurance premium): approximately $750.00"
+      ]
+    },
+    "bundlingNotes": "Independent (non-underwriter) title company; closing/settlement fee explicitly bundles document preparation and consummation into one $395 charge, while examination, notary, wire, courier, and binder/CPL are itemized as separate line items \u2014 a hybrid bundling pattern.",
+    "transactionContext": "Residential purchase and refinance; Cecil County, Maryland (northeastern MD, Delaware/PA border area)."
+  },
+  {
+    "provider": "TPF Legal (Maryland residential real estate closing attorney firm)",
+    "sourceUrl": "https://tpf.legal/residential-real-estate-closing-attorney/",
+    "asOf": "2026-07-21 (retrieval date; no effective date published)",
+    "settlementFee": "$750 flat rate for residential real estate closing attorney service",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": []
+    },
+    "bundlingNotes": "Page publishes only a single all-in flat rate for the closing attorney's service and does not itemize document prep, title exam, wire, recording, or other line items separately \u2014 the flat rate appears to be positioned as a complete closing-attorney fee, distinct from title insurance premium and third-party charges (recording, transfer tax) which are billed separately per standard Maryland practice.",
+    "transactionContext": "Residential real estate closing attorney representation; Maryland (firm scope not further geographically limited on the page)."
+  },
+  {
+    "provider": "CAL Settlements, LLC (attorney-run settlement company, Burtonsville/Montgomery County)",
+    "sourceUrl": "https://calsettlements.com/wp-content/uploads/sites/335/2023/06/CAL-Fee-Sheet-MD.pdf",
+    "asOf": "2026-07-21 (retrieval date; no effective date printed on document)",
+    "settlementFee": "Buyer's Settlement Fee $395.00 (attorney fee, notary fees, doc prep); Seller's Settlement Fee $250.00",
+    "itemizedFees": {
+      "docPrep": "Included in the $395.00 buyer's settlement fee; Seller's Deed Prep fee is separate at $75.00",
+      "processing": "Release Prep/tracking for existing mortgage $150.00 per loan (if applicable, seller-side)",
+      "courier": "Courier/overnight/copy $95.00",
+      "wire": "Wire fee $20.00",
+      "edoc": null,
+      "eRecording": "E-recording to Simplifile $25.00",
+      "notarySigning": "Included in the $395.00 buyer's settlement fee (not separately itemized)",
+      "searchExam": "Abstract/Title Search estimate $185.00-$325.00; Title Exam Fee $100.00; Judgment Report to Property Insight $16 per name",
+      "cpl": "CPL fee (for lender) to First American $45.00",
+      "binder": "Title binder fee (lender) $125.00",
+      "other": [
+        "Survey fee (not required): estimate $250.00",
+        "Title insurance priced at First American's filed rates, not a flat fee on this sheet; a 40% reissue-rate discount applies if the firm has the prior owner's policy from an earlier closing"
+      ]
+    },
+    "bundlingNotes": "Buyer-side settlement fee explicitly bundles attorney fee, notary fees, and document preparation into one $395 charge; every other service (binder, title search, courier, wire, e-recording, judgment report, CPL, title exam, survey) is itemized separately. Seller's side is a much smaller separate $250 settlement fee plus deed prep and release-tracking \u2014 a clear buyer/seller fee split distinct from a single shared settlement charge.",
+    "transactionContext": "Residential purchase; Burtonsville, Montgomery County, Maryland (DC-suburb submarket); bilingual settlement firm run by a licensed attorney."
+  },
+  {
+    "basis": "calculator",
+    "provider": "Federal Title & Escrow Company (independent title/settlement company, Chevy Chase MD/DC/VA)",
+    "sourceUrl": "https://www.federaltitle.com/quick-quote/",
+    "calculatorUrl": "https://tools.federaltitle.com/titleagents/QuickQuote/Default.aspx",
+    "endpoint": "ASP.NET WebForms postback (__doPostBack/__VIEWSTATE/__EVENTVALIDATION) driven via plain requests.Session() POSTs, no browser needed. (1) GET Default.aspx, capture hidden fields; (2) POST with __EVENTTARGET=ddlState and ddlState=<Maryland's GUID option value>, plus ddlTransactionType=1 (Purchase), ddlPropertyType=single, ddlPropertyUse=principal, ddlLoanType=1 (Conventional) -- this postback populates ddlCounty, which already defaults to Montgomery selected; (3) final POST with __EVENTTARGET empty, txtPurchasePrice=500000, txtLoanAmount=400000, ddlTranferTaxesPayingBy=Split, rblComplexTransaction=false, rblIsSellerBuilderOrDeveloper=false, and btnGenerateQuote=\"Get Quote\" clicked as a real submit button. No auth, no cookies beyond the session's own ASP.NET_SessionId, no personal data (txtEmailAddress/txtStreetAddress left blank -- confirmed optional, the page's own text states 'No login or personal information required').",
+    "retrievalDate": "2026-07-26",
+    "scenario": "$500,000 purchase price, $400,000 loan, Montgomery County, Maryland (the calculator's own dropdown default for MD -- no substitution needed), residential purchase, Conventional loan, Principal/Owner-Occupied, Transfer/Recordation Tax split 50/50 buyer-seller, not a short sale/REO/new-construction, seller not a builder/developer",
+    "methodology": "Federal Title's own 'Quick Quote' tool is a classic ASP.NET WebForms app (same postback pattern already proven for FNF/Old Republic/Knight Barry elsewhere in CALCULATORS.md) hosted on the company's own tools.federaltitle.com subdomain -- a genuine first-party calculator, not a third-party platform embed. One EventValidation gotcha encountered and resolved: a 'rblRepeatClient' RadioButtonList (repeat-client question) is rendered on the very first GET but is NOT re-rendered in the response to the state-selection postback -- submitting any value for it on the final POST throws a hard HTTP 500 ('Invalid postback or callback argument', traced to RadioButtonList.LoadPostData), the same 'field for a control not in the current DOM breaks the postback' failure mode already documented for Old Republic's ReoList and Knight Barry's OR county gotchas. Fix: omit rblRepeatClient entirely from the final POST (it is not required once absent from the rendered form). The 24-county MD dropdown (Baltimore City + 23 counties) already defaults to Montgomery County -- Federal Title's own home submarket -- so no county substitution was needed for the standard scenario.",
+    "settlementFee": {
+      "buyerBorrowerSettlementOrClosingFee": "$975.00 (labeled 'Settlement or Closing Fee (Includes REALCredit(TM) Discount)')",
+      "sellerSettlementOrClosingFee": "$550.00"
+    },
+    "itemizedFees": {
+      "docPrep": "$0.00 (Document Prep Fee, both buyer and seller sides -- folded into the Settlement/Closing Fee above per the tool's own line-item breakdown)",
+      "notarySigning": null,
+      "cpl": "$30.00 (Closing Protection Letter, buyer/borrower side; $0.00 seller side)",
+      "searchExam": "$275.00 (Title Search/Abstract Fee, buyer/borrower side; $0.00 seller side)",
+      "eRecording": null,
+      "wire": null,
+      "courier": "$0.00 (Courier/Tracking Fee, both sides)",
+      "recordingDeed": "$60.00 (Deed Recording Fee, buyer/borrower side)",
+      "recordingMortgage": "$60.00 (Mortgage/Deed of Trust Recording Fee, buyer/borrower side)",
+      "titleBinderFee": "$0.00 (both sides)",
+      "titleCommitmentFee": "$0.00 (both sides)",
+      "electronicStorageTechnologyFee": "$0.00 (both sides)",
+      "documentDeliveryFee": "$0.00 (both sides)",
+      "releaseProcurementFee": "$0.00 (buyer/borrower side) / $185.00 (seller side, 'if applicable')",
+      "deedPrepFee": "$0.00 (buyer/borrower side) / $250.00 (seller side)",
+      "countyTransferTax": "$2,500.00 (buyer/borrower side) / $2,500.00 (seller side)",
+      "stateTransferTax": "$1,250.00 (buyer/borrower side) / $1,250.00 (seller side)",
+      "stateRecordationTax": "$1,780.00 (buyer/borrower side) / $1,780.00 (seller side)",
+      "titleInsurancePremium": {
+        "lendersTitleInsurance": "$1,298.00 (buyer/borrower side; $0.00 seller side)",
+        "ownersTitleInsurance": "$1,290.00 (Standard Coverage, buyer/borrower side; $0.00 seller side)"
+      }
+    },
+    "sectionTotals": "TOTAL Title Fees: $3,563.00 (buyer/borrower) / $985.00 (seller). TOTAL Taxes and Other Government Fees: $5,650.00 (buyer/borrower) / $5,530.00 (seller). Buyer/borrower grand total across both sections (Title Fees + Taxes/Government Fees, excluding the optional Location Survey): $9,213.00.",
+    "bundlingNotes": "Federal Title bundles document preparation into its core Settlement/Closing Fee (docPrep line items are $0.00 on both sides while the settlement fee itself is $975/$550) -- similar to the bundling pattern already seen in Ardent Title and CAL Settlements' static schedules in this same state's dataset (MD.json). Notary is not itemized as a separate line at all in this tool's output (not even a $0.00 placeholder), unlike CPL, search/exam, and recording, which are all itemized as distinct non-zero lines. The tool applies a clean buyer/seller cost split matching Maryland's typical settlement-statement structure, with government transfer/recordation taxes duplicated identically on both the buyer and seller sides per the 'Split 50/50' selection made for this scenario.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500,000/$400,000 Montgomery County, Maryland purchase scenario, Conventional financing, single-family principal residence, retrieved via Federal Title & Escrow Company's own public 'Quick Quote' tool (tools.federaltitle.com), a DC/MD/VA-licensed independent title and settlement company. Distinct from the two static Montgomery County/DC-suburb sources already in this dataset (CAL Settlements) in that this is a live calculator quote rather than a published fee sheet."
+  },
+  {
+    "basis": "calculator",
+    "provider": "Allstates Title Service, Inc. (independent, Hamilton Township, NJ; licensed/serving MD, NJ, PA)",
+    "calculatorUrl": "https://mytitlerate.com/allstates1/estimator/ (embeds calculator.mytitlerates.com/rateCalculator.php?a=78)",
+    "endpoint": "POST https://calculator.mytitlerates.com/rateCalculator.php (MyTitleRates.com white-label platform, plain HTML form POST, no JS/auth/personal-data needed -- see NJ.json for the same-provider/same-session NJ harvest and CALCULATORS.md for the full platform recipe)",
+    "retrievalDate": "2026-08-03",
+    "scenario": "$500,000 purchase price, $400,000 loan, Montgomery County (matches the existing Federal Title & Escrow MD entry's county choice), residential purchase, standard (non-enhanced) coverage, primary residence = yes, first-time buyer = no, re-issue discount = no",
+    "methodology": "Found via mytitlerate.com/allstates1/estimator/ (Allstates' own WordPress tenant site), which embeds calculator.mytitlerates.com/rateCalculator.php?a=78; the form's state dropdown confirmed this agency id serves Maryland, New Jersey, and Pennsylvania. Standard MyTitleRates.com plain-POST recipe replayed for MD (state_picked=229, StatesKey=4, county=16 [Montgomery], test_calckey=229).",
+    "itemizedFees": {
+      "settlementFee": "$375.00 (Settlement Charge)",
+      "searchExam": "$930.00 (Title Search / Abstract & Binder / Copies, single bundled line item)",
+      "wire": "$200.00 (Wire / Edocs / Overnights, bundled single line item)",
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "cpl": null,
+      "binder": null,
+      "titleInsurancePremium": {
+        "lendersPolicy_standard": "$1,235.00"
+      },
+      "other": [
+        {
+          "name": "Recording - Deed",
+          "amount": "$60.00"
+        },
+        {
+          "name": "Recording - Mortgage",
+          "amount": "$60.00"
+        },
+        {
+          "name": "Recordation Tax - State",
+          "amount": "$2,002.50"
+        },
+        {
+          "name": "Transfer Tax - County",
+          "amount": "$2,500.00"
+        },
+        {
+          "name": "Transfer Tax - State",
+          "amount": "$1,250.00"
+        },
+        {
+          "name": "Owner's Title Insurance (optional, buyer-paid)",
+          "amount": "$1,165.00"
+        }
+      ]
+    },
+    "sectionTotals": "C. Services You Can Shop For (loan-related shoppable costs): $2,740.00. J. Total Closing Costs (buyer, incl. optional owner's policy and taxes): $9,777.50. Seller Fees (recordation/transfer tax, MD custom is often split or seller-paid by contract): $5,752.50.",
+    "bundlingNotes": "2nd MD calculator-basis provider (after Federal Title & Escrow Company) -- still below the 3-provider threshold. This agency id (a=78) also serves New Jersey -- see NJ.json for the same-session NJ harvest from the identical provider/tool.",
+    "transactionContext": "Calculator-derived point estimate for Montgomery County, MD (matches this survey's existing MD provider's county choice for comparability)."
+  },
+  {
+    "basis": "calculator",
+    "provider": "Tri-State Signature Settlements, LLC (independent, Hagerstown, MD; licensed/serving MD, PA, WV)",
+    "calculatorUrl": "https://mytitlerate.com/tristatesettlements/rate-calculator/ (embeds calculator.mytitlerates.com/rateCalculator.php?a=40)",
+    "endpoint": "POST https://calculator.mytitlerates.com/rateCalculator.php (MyTitleRates.com white-label platform, plain HTML form POST, no JS/auth/personal-data needed -- same recipe/tool as the Allstates Title Service entries above, a distinct agency id)",
+    "retrievalDate": "2026-08-03",
+    "scenario": "$500,000 purchase price, $400,000 loan, Montgomery County (matches the other MD entries' county choice for comparability), residential purchase, standard (non-enhanced) coverage, primary residence = yes, first-time buyer = no, re-issue discount = no",
+    "methodology": "Found via mytitlerate.com/tristatesettlements/ (a WordPress tenant site on the same mytitlerate.com network as Allstates Title Service), whose rate-calculator/ page embeds calculator.mytitlerates.com/rateCalculator.php?a=40; the form's state dropdown confirmed this agency id serves Maryland and Pennsylvania. Standard MyTitleRates.com plain-POST recipe replayed for MD (state_picked=103, StatesKey=4, county=16 [Montgomery], test_calckey=103 -- note this agency's numeric state_picked/test_calckey value for MD [103] differs from Allstates' [229], confirming these codes are agency-specific, not global constants).",
+    "itemizedFees": {
+      "settlementFee": "$425.00 (Settlement Fee)",
+      "searchExam": "$200.00 (Title Abstract)",
+      "courier": "$80.00 (Overnight / Courier Charges)",
+      "docPrep": null,
+      "processing": null,
+      "wire": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "cpl": null,
+      "binder": null,
+      "titleInsurancePremium": {
+        "lendersPolicy_standard": "$1,235.00"
+      },
+      "other": [
+        {
+          "name": "Recording - Deed",
+          "amount": "$60.00"
+        },
+        {
+          "name": "Recording - Mortgage",
+          "amount": "$60.00"
+        },
+        {
+          "name": "Recordation Tax - State",
+          "amount": "$2,002.50"
+        },
+        {
+          "name": "Transfer Tax - County",
+          "amount": "$2,500.00"
+        },
+        {
+          "name": "Transfer Tax - State",
+          "amount": "$1,250.00"
+        },
+        {
+          "name": "Owner's Title Insurance (optional, buyer-paid)",
+          "amount": "$1,165.00"
+        }
+      ]
+    },
+    "sectionTotals": "C. Services You Can Shop For (loan-related shoppable costs): $1,940.00. Seller Fees (recordation/transfer tax): $5,752.50.",
+    "bundlingNotes": "3rd MD calculator-basis provider (after Federal Title & Escrow Company and Allstates Title Service) -- crosses MD's 3-provider calculator-quoted threshold. Recordation/transfer tax figures match Allstates' MD quote exactly (both are Montgomery County government-set taxes, not provider-set, so identical figures are expected); the Settlement Fee ($425.00) also happens to match Allstates' figure exactly, a genuine coincidence worth noting rather than a sign of a shared template -- the two providers' Title Insurance Premium, Abstract/Search, and courier/wire line items differ.",
+    "transactionContext": "Calculator-derived point estimate for Montgomery County, MD (matches this survey's existing MD providers' county choice for comparability)."
+  },
+  {
+    "provider": "FNF-family underwriter (Chicago Title/Fidelity National Title/Commonwealth Land Title -- ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine; this tool's pre-selected default underwriter brand varies by request, and prior sessions confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=MD",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=MD (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-19",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Montgomery County (matching this state's existing calculator entries' county), Property Purchase (with or without financing) transaction type, Residential property type, Owner Occupied = Yes (see methodology note), tool defaults for all other policy questions.",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback), following this project's existing FNF recipe documented in CALCULATORS.md: GET the county-selection page, POST the county (own __EVENTTARGET), POST btnGeneralNext=Next, POST TranType$ddl=PropertyPurchase, POST AmountPurchase$txt=500000 then AmountLoan1$txt=400000 (each with its own __EVENTTARGET), POST Reissue_IsEligible=No, then POST OwnerOccupied=Yes (own __EVENTTARGET) before Finish. MD-specific new finding this session: unlike every other state's radio-group questions in this tool (which always default-check one option), MD's 'OwnerOccupied' question renders with NEITHER option pre-checked -- leaving it unanswered kept the server-side Finish button disabled with no visible error (the same 'large-response no-quote' symptom already documented for DC/IN in CALCULATORS.md). Fix: explicitly POST the field with its own __EVENTTARGET before Finish. Answered Yes as the substantively correct default for a standard owner-occupied residential resale purchase (this project's standard scenario has no basis to assume an investment/non-owner-occupied purchase). No personal-data fields exist anywhere in this flow. This is a richness pass applying the FNF recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2507.50 (Owner's Policy Total Policy Premium: Disclosure Amount $1,422.50 + Adjustment $1,085.00, concurrent-issue rate)",
+      "loanPolicyPremium": "$275.00 (Loan Policy Total Policy Premium, concurrent-issue rate)",
+      "other": [
+        {
+          "name": "Charge for Closing Protection Letter(s)",
+          "amount": "$55.00"
+        }
+      ],
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence."
+    },
+    "sectionTotals": "Grand Total (Owner's Policy Purchased): $2837.50.",
+    "bundlingNotes": "Harvested this session as a richness pass -- MD had already crossed the 3-provider threshold (Federal Title & Escrow Company, Allstates Title Service, Tri-State Signature Settlements); this FNF entry is a 4th corroborating provider, applying the same generalized recipe already used for AR/CT/CO/MA/ND/VT/WY/RI/DE/SD/AK/NH/WV/ME/OH/MO/MI/PA/NJ/TN/KY/AL, with a new fix (explicit OwnerOccupied selection) required specifically for MD.",
+    "transactionContext": "Owner's + Loan Policy concurrent-issue premiums plus CPL for a $500,000 residential purchase / $400,000 loan, Montgomery County."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company -- Stewart Rate Calculator, matched settlement office: Stewart Title and Escrow, Inc. (1707 L Street NW, Suite 240, Washington, DC 20036)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true (LoanEstimate/QuoteType=3 flow) and https://www.stewartratecalculator.com/Quote/Netsheet?urlParams=&quotetype=2&branded=true (Netsheet/QuoteType=2 flow); both POST to the shared /api/SRC/quote endpoint",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Montgomery County (Rockville), residential resale, Sale/Purchase with Mortgage transaction type, BASIC coverage on both Owner's and Lender's policies. Richness-pass harvest applying an already-solved, previously state-limited recipe to a state not yet in Stewart's harvested-state list, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "methodology": "Harvested via Stewart's discoverable `/api/SRC/*` JSON REST API (stewartratecalculator.com), driven entirely by plain HTTP GET/POST (Python requests.Session(), cookie jar) with no browser/JS execution and no personal-data fields, replaying the full recipe documented in this project's CALCULATORS.md (2026-08-14 'SOLVED' entry): GET the LoanEstimate/Netsheet page to scrape a fresh antiforgery cookie + __RequestVerificationToken; GET /api/SRC/propertysearch to resolve the county FIPS code and a default zip; GET /api/SRC/providers to find the county's real settlement office(s) (used to set ProviderID on the QuoteType=3 flow so the itemized settlement-fee list is populated -- an empty ProviderID silently returns a null itemized list); GET /api/SRC/statesettings and /api/SRC/ernstlookup for state-level defaults; build the QuoteRequestRoot JSON by hand (Owner's Policy $500,000 / Lender's Policy $400,000, BASIC coverage, standard Sale/Purchase with Mortgage transaction); POST /api/SRC/quote twice -- QuoteType=2 (Netsheet, pageBuyerSeller=seller) for Recording/CFPB2015 transfer-tax figures, and QuoteType=3 (LoanEstimate, pageBuyerSeller=buyer, IsCalculatePremium=True, IsCalculateTitleServiceFee=True) for the itemized Pricing.TitleServiceFee.ItemizedTitleServiceFeeList settlement-fee line items. One new gotcha found and fixed this session: stewartratecalculator.com's bare apex domain 301-redirects every POST to the www subdomain, and that redirect's response body hangs indefinitely on this sandbox's proxied connection (a 30s+ read timeout with 0 bytes received) -- fixed by targeting https://www.stewartratecalculator.com directly, skipping the apex redirect entirely; this is an environment/proxy artifact, not a sign the endpoint is blocked. Also confirmed the documented /api/SRC/providers gotcha firsthand: for a single-provider county the response's `Provider` field is a bare object, not a one-element list -- must be normalized before indexing or ProviderID silently stays empty and every itemized-fee list comes back null (looks exactly like a genuine empty result).",
+    "settlementFee": {
+      "note": "$700.00 total, split buyer $350.00 / seller $350.00 (line item: 'Title Closing Fee')"
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,507.50",
+      "loanPolicyPremium": "$1,360.00",
+      "other": [
+        {
+          "name": "Title Abstract Charge",
+          "amount": "$300.00 (buyer $300.00 / seller $0.00)"
+        },
+        {
+          "name": "Title Closing Fee",
+          "amount": "$700.00 (buyer $350.00 / seller $350.00)"
+        },
+        {
+          "name": "Title Commitment Fee",
+          "amount": "$269.00 (buyer $269.00 / seller $0.00)"
+        },
+        {
+          "name": "Title Courier Fee",
+          "amount": "$35.00 (buyer $35.00 / seller $0.00)"
+        },
+        {
+          "name": "Title Deed Preparation Fee",
+          "amount": "$195.00 (buyer $0.00 / seller $195.00)"
+        },
+        {
+          "name": "Title Document Preparation Fee",
+          "amount": "$650.00 (buyer $200.00 / seller $450.00)"
+        },
+        {
+          "name": "Title Examination Fee",
+          "amount": "$450.00 (buyer $450.00 / seller $0.00)"
+        },
+        {
+          "name": "Title Lien Search",
+          "amount": "$60.00 (buyer $30.00 / seller $30.00)"
+        },
+        {
+          "name": "Title Release Procurement Fee",
+          "amount": "$200.00 (buyer $0.00 / seller $200.00)"
+        },
+        {
+          "name": "Title Remote Notary Fee",
+          "amount": "$300.00 (buyer $150.00 / seller $150.00)"
+        },
+        {
+          "name": "Title  Simplefile/ Recording/certified  I D/  Zoccam",
+          "amount": "$128.00 (buyer $128.00 / seller $0.00)"
+        },
+        {
+          "name": "Title Tax Certificate",
+          "amount": "$110.00 (buyer $110.00 / seller $0.00)"
+        }
+      ],
+      "note": "12 itemized settlement/closing-fee line item(s) returned via the QuoteType=3 flow."
+    },
+    "sectionTotals": "Owner's Policy Premium $2,507.50; Lender's Policy Premium $1,360.00; itemized settlement fees sum $3,397.00",
+    "bundlingNotes": "Combined deed/transfer/mortgage tax on QuoteType=2 (Netsheet) flow: $11,060.00 total -- DeedTax $7,500.00; DeedRecordationTax $3,560.00.",
+    "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Montgomery County, Maryland."
+  },
+  {
+    "provider": "WFG National Title Insurance Company \u2014 Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Montgomery County (Rockville), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Harvested via WFG National Title's own public JSON API, `POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet`, fully solved and documented in this project's CALCULATORS.md (2026-08-08 entry) -- no browser/JS execution needed, no personal-data fields in the request shape (nested Properties/Loans arrays, TransactionProductType, SettlementStatementVersion: \"CD\"). Confirmed via the same API's public `GET /api/rates/State/GetCalculationEnabledStates` that MD is `isCalculationEnabled: true` before harvesting. Richness-pass application of an already-solved, previously-untried-for-this-state recipe, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "settlementFee": {
+      "note": "Premium-only result (no itemized settlement/search/doc-prep line items) -- consistent with WFG's own hardcoded fee-description table, which only itemizes HUD-style settlement fees for 7 states (WA, CA, TX, OR, AZ, NV, CO); every other state, including this one, returns only the Owner's Title Insurance Premium."
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,865.00",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's seller-net-sheet-only design)",
+      "other": [],
+      "note": "Premium-only result for this state (see settlementFee note)."
+    },
+    "sectionTotals": "Owner's Title Insurance Premium $2,865.00",
+    "bundlingNotes": "Discovered and solved 2026-08-08; applied here as a richness-pass 4th/5th calculator-basis provider for Maryland (already at 3-4 providers via other tools) since no prior session had run this already-solved recipe against this state. Property location for this request: Rockville, Maryland (Montgomery County).",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Montgomery County, Maryland."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company \u2014 second rate calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://oldrepublictitle.com/rate-calculator/?location=maryland",
+    "calculatorUrl": "https://oldrepublictitle.com/rate-calculator/?location=maryland",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (RateCalc.aspx?CallingApp=PUBLIC&Location=MD, redirects to a session-scoped (S(...)F(...))/RateCalc.aspx?...Location=19..., statewide, no county selector). GET the page with Referer https://oldrepublictitle.com/rate-calculator/?location=maryland (capture __VIEWSTATE/__EVENTVALIDATION), POST __EVENTTARGET=ddlPolicyCategory value 5 (SIMULTANEOUS LOAN & OWNERS), POST __EVENTTARGET=ddlPolicyType1 value 11953 (OWNERS - BASIC), POST __EVENTTARGET=ddlPolicyType2 value 11966 (SIMULTANEOUS LENDERS - BASIC), then POST __EVENTTARGET=btnCalculate with txtLiabilityAmt=500000, txtCrLiabilityAmt=400000. Same Referer-header-throughout fix documented for NH/WV/MI/PA/NJ/VA/TN; no personal data entered.",
+    "retrievalDate": "2026-08-21",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, statewide (no county selector in this tool), SIMULTANEOUS LOAN & OWNERS BASIC policy category.",
+    "methodology": "Direct HTTP GET/POST against the ASP.NET WebForms postback mechanism (Python requests.Session()), no browser/JS execution. No personal data entered. Richness pass applying this project's already-solved Old Republic 2nd-tool recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": {
+      "note": "This tool prices title insurance premiums only -- no settlement/closing/escrow service-fee line items are itemized (same structural limitation observed for this tool's other state entries elsewhere in this project). Page notes a $40.00 minimum charge for Closing Protection Coverage but does not itemize it in this output."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "SIMULTANEOUS LENDERS - BASIC, insured amount $400,000.00 -- Lenders-Only standalone premium",
+          "amount": "$1,355.00"
+        },
+        {
+          "name": "SIMULTANEOUS LENDERS - BASIC, Owners+Lenders combined (simultaneous) premium",
+          "amount": "$275.00"
+        },
+        {
+          "name": "OWNERS - BASIC, insured amount $500,000.00, Owners+Lenders combined premium",
+          "amount": "$2,500.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, standalone-lenders-only",
+          "amount": "$1,355.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, Owners+Lenders combined",
+          "amount": "$2,775.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Owner's $2,500.00/Lender's $1,355.00 are close to, but not identical to, this state's already-on-file Stewart entry (Owner's $2,507.50/Lender's $1,360.00) -- genuine cross-underwriter market variation rather than a fetch error.",
+    "transactionContext": "Simultaneous Owner's Basic + Lender's Basic policy, statewide Maryland, purchase with financing."
+  }
+]

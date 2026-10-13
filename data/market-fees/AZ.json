@@ -1,0 +1,306 @@
+[
+  {
+    "provider": "Pioneer Title Agency (AZ escrow agency; escrow fee schedule filed identically across the underwriters it represents — First American, Old Republic, Stewart, First National, and Title Resources Guaranty)",
+    "sourceUrl": "https://pioneertitleagency.com/wp-content/uploads/2026/05/First-American-Maricopa.pdf",
+    "otherSourceUrls": [
+      "https://pioneertitleagency.com/wp-content/uploads/2026/05/Old-Republic-Maricopa.pdf",
+      "https://pioneertitleagency.com/wp-content/uploads/2026/05/Stewart-Maricopa.pdf",
+      "https://pioneertitleagency.com/wp-content/uploads/2026/05/First-National-Maricopa.pdf",
+      "https://pioneertitleagency.com/wp-content/uploads/2026/05/Title-Resources-Maricopa.pdf",
+      "https://www.pioneertitleagency.com/title-and-escrow/rate-schedule/"
+    ],
+    "asOf": "PDF metadata CreationDate 2026-04-28/29, filename tag '4.20.26 Rate Card' (Maricopa/Pima/Pinal 'Zone 1'); title-insurance-premium portion tagged effective 2024-04-01. Retrieved 2026-07-21.",
+    "settlementFee": "Tiered 'Escrow Service' fee by transaction/insurance amount (Maricopa County), identical across all 5 underwriter-branded rate cards fetched: $100,000 -> $800.00; $200,000 -> $952.00; $300,000 -> $1,102.00; $400,000 -> $1,222.00; $500,000 -> $1,342.00; $1,000,000 -> $1,942.00. Table continues in $10,000/$20,000 increments up to $4,190,000, then 'add per $10,000 or fraction: $8.00' (varies slightly by underwriter card).",
+    "itemizedFees": {
+      "courier": "$30.00 per package (standalone rate)",
+      "other": [
+        {
+          "name": "Combined sale + loan escrow additional charge",
+          "amount": "$300.00 — 'includes electronic document, domestic wire and courier fees'"
+        },
+        {
+          "name": "Seller All Inclusive Rate",
+          "amount": "$300.00 — 'includes unlimited reconveyance and tracking, domestic wire and courier fees'"
+        },
+        {
+          "name": "Reconveyance and Tracking",
+          "amount": "$100.00 per release"
+        },
+        {
+          "name": "Owner's + Standard Lender's Policy combination surcharge",
+          "amount": "Owner's rate + $100.00"
+        },
+        {
+          "name": "Extended Lender's Policy combination surcharge",
+          "amount": "additional 65% (First American/WFG-style cards) or 60% (Stewart card) of the Owner's rate"
+        }
+      ]
+    },
+    "bundlingNotes": "'When combining a sale and a loan escrow, there will be an additional charge of $300.00 which includes electronic document, domestic wire and courier fees.' Also: 'Seller All Inclusive Rate of $300.00 includes unlimited reconveyance and tracking, domestic wire and courier fees.' Also: 'The scheduled rates do not include the costs of surveys or special inspections' and 'The Company reserves the right to charge additional fees in unusual circumstances.'",
+    "transactionContext": "Price-tiered by amount of insurance/property value; separate columns for Owner's Policy, Extended Owner's Policy, Standard Loan Policy, Extended Loan Policy, Combo, and 'Escrow Service.' Applies to Maricopa (and per-county variants for Pima/Pinal etc.) purchase and refinance escrows; the $300 'combining sale + loan' surcharge specifically targets concurrent-financing purchase transactions."
+  },
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/arizona/rates/Arizona%20Title%20Rate%20Manual%20%20effective%203-1-23.pdf",
+    "asOf": "Effective 2023-03-01",
+    "settlementFee": "NOT DISCLOSED — this is a title-insurance PREMIUM rate manual only; per its own text, escrow/settlement fees are filed separately by agencies, not by the underwriter.",
+    "itemizedFees": {
+      "cpl": "$25.00 for the lender; $25.00 for seller(s); $25.00 for buyer(s)/borrower(s) — three separate $25 Closing Protection Letter charges, one per party category."
+    },
+    "bundlingNotes": "'Unless otherwise stated, the rates contained herein shall include both the charge for gross premium for title insurance and the charge for search of title and examination thereof... and do not include any additional service(s) unless otherwise noted or provided for in this schedule of fees and charges.'",
+    "transactionContext": "Owner's/Loan policy premiums tiered by amount of insurance; distinguishes Purchase Transaction vs. Acquisition/Finance Loan in its definitions section; Lender's Special Rates available only for finance (refi) loans, not purchases."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company (statewide underwriter rate manual, distinct from the Stewart-branded Pioneer agency card above)",
+    "sourceUrl": "https://www.virtualunderwriter.com/-/media/files/virtualunderwriter/imported/pdfs/stgc-arizona-rate-manual-final_eff-09-11-2023.pdf",
+    "asOf": "Effective 2023-09-11",
+    "settlementFee": "NOT DISCLOSED in this manual (title-insurance premium manual; escrow fee filed separately by the agency). Manual references an inspection-fee carve-out '...unless an escrow fee is not otherwise charged... only applicable for title only transactions where there is no escrow service provided,' confirming escrow fees live in a separate agency filing.",
+    "itemizedFees": {
+      "cpl": "$20 per Insured Closing Letter (Closing Protection Letter) issued, with a maximum of $40 per transaction",
+      "other": [
+        {
+          "name": "Additional Chain or Parcel Charge",
+          "amount": "$100.00 per parcel/chain over one"
+        },
+        {
+          "name": "Duplicate Policy/Correction Charge",
+          "amount": "$50.00 per duplicate/corrected form"
+        },
+        {
+          "name": "Inspection Fee",
+          "amount": "$150.00 or actual cost, whichever is greater"
+        },
+        {
+          "name": "Special Services",
+          "amount": "$125.00 per hour, billed in one-hour increments"
+        },
+        {
+          "name": "Multiple Loan Policies surcharge",
+          "amount": "$100.00 for additional policy over one"
+        }
+      ]
+    },
+    "bundlingNotes": "'Insured Closing Letter (Closing Protection Letter) Charge: $20 per letter issued with a maximum of $40 per transaction.'",
+    "transactionContext": "Statewide AZ underwriter rate manual; covers both purchase and refinance policy issuance."
+  },
+  {
+    "provider": "First National Title Insurance Company (FNTI)",
+    "sourceUrl": "https://documentpub.fnti.com/Documents/Arizona/Rate%20Manual/Effective%208-1-2023/FNTI%20AZ%20Rate%20Manual%20Effective%20August%201,%202023.pdf",
+    "asOf": "Effective 2023-08-01",
+    "settlementFee": "NOT DISCLOSED — title-insurance premium manual only (37 pages), filed under Title 20 ARS; no escrow/settlement fee table present.",
+    "itemizedFees": {
+      "cpl": "$25.00 per Closing Protection Letter issued at time of closing"
+    },
+    "bundlingNotes": "'Based on Arizona Revised Statutes 6-841.02; relating to escrow agents. The fee for each closing protection letter \"CPL\" issued at the time of closing shall be $25.00.'",
+    "transactionContext": "Statewide AZ rate manual; commercial tiered discount schedule present (65%/60%/55% of basic rate at $5M/$10M/$50M+ insurance amounts) but that's premium, not escrow."
+  },
+  {
+    "provider": "Arizona Escrow & Financial Corporation",
+    "sourceUrl": "https://www.arizonaescrow.com/rates/",
+    "asOf": "Effective 2025-04-01",
+    "settlementFee": "Real Property escrow fee, price-tiered: $800 (up to $100,000); $850 ($150k); $900 ($200k); $1,050 ($300k); $1,150 ($400k); $1,250 ($500k); $3.00/$1,000 above $500,000. Combination sale/loan escrow: base rate + $50.",
+    "itemizedFees": {
+      "processing": null,
+      "other": [
+        {
+          "name": "Business & Personal Property escrow (separate table)",
+          "amount": "$1,000 up to $20k; $1,100 up to $40k; $1,200 up to $80k; $1,300 up to $150k; $1,400 up to $200k; $1,500 up to $300k; $1,600 up to $400k; $1,700 up to $500k; $3.00/$1,000 above $500k"
+        },
+        {
+          "name": "Annual holding fee (escrow unclosed after 1 year)",
+          "amount": "$500"
+        },
+        {
+          "name": "UCC search fee (Secretary of State)",
+          "amount": "$50/name"
+        },
+        {
+          "name": "UCC search fee (county)",
+          "amount": "$50/name"
+        },
+        {
+          "name": "Loan signing only",
+          "amount": "$800"
+        },
+        {
+          "name": "Loan signing with escrow",
+          "amount": "$500"
+        }
+      ]
+    },
+    "bundlingNotes": "Real Property escrow fee at the $100,000 tier ($800) matches Pioneer Title Agency's identical $800 figure at the same tier exactly — independent corroboration that $800 is the standard entry-level AZ residential escrow fee across at least two agencies. No separate line items for wire/courier/doc prep are published; page states these are not itemized separately from the base escrow fee.",
+    "transactionContext": "Real property residential/commercial escrow (price-tiered) and separate Business & Personal Property escrow table; statewide AZ."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company — Estimated Rate/Fee Calculator (ortconline.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
+    "calculatorUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
+    "retrievalDate": "2026-07-22",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, residential resale, Sale transaction type, Loan Estimate calculation. Property location: Phoenix, AZ (Maricopa County). City used: Phoenix (Maricopa County, AZ's most populous county).",
+    "methodology": "Harvested via direct HTTP GET/POST against the calculator's ASP.NET WebForms postback mechanism (__VIEWSTATE/__EVENTVALIDATION), replicating the same sequential form submissions the browser's JS performs (state select -> county/city select -> Sales Price/Loan Amount -> Submit); no browser/JS execution was used or required. The 'Your Name', 'Your Company', and 'This estimate is being prepared for' fields were left blank throughout -- confirmed optional (no required-symbol asterisk in the form) -- no fabricated personal information was entered at any step.",
+    "settlementFee": {
+      "note": "Not a single line item in this tool's output; the closest analog is the 'Settlement Agent Fee' shown in Section C, split buyer/seller (buyer's share shown here). Settlement Agent Fee total (both parties): Title - Settlement Agent Fee (Total: $1,355.00)."
+    },
+    "itemizedFees": {
+      "cpl": "$25.00 (Closing Protection Letter Fee)",
+      "processing": "$677.50 (Settlement Agent Fee, Total: $1,355.00)",
+      "other": [
+        {
+          "name": "Title - Concurrent Loan Charge (Total: $400.00) [additional charge for simultaneous lender's policy issue]",
+          "amount": "$200.00"
+        },
+        {
+          "name": "Title - Lender's Title Policy (Total: $2,187.00) [buyer's lender's title policy premium]",
+          "amount": "$2,187.00"
+        }
+      ]
+    },
+    "sectionTotals": "C: Services You Can Shop For: $3,089.50; H: Other: $0.00",
+    "bundlingNotes": "Section H (Owner's Title Policy) totaled $0.00 for the buyer -- consistent with Arizona's customary seller-pays-owner's-policy practice already noted elsewhere in this state's file; the buyer-side Lender's Title Policy premium ($2,187.00) and its own $200 concurrent-issue surcharge line are shown instead. This cross-checks against Pioneer Title Agency's and Arizona Escrow & Financial's already-verified Maricopa escrow fee tiers ($1,342 at the $500k Real-Property tier for AEFC) -- Old Republic's $677.50 buyer-side Settlement Agent Fee (half of a $1,355 total) is lower than those two independents' full-fee figures, a genuine cross-provider spread data point for Maricopa County.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k purchase scenario; City used: Phoenix (Maricopa County, AZ's most populous county)."
+  },
+  {
+    "provider": "First Integrity Title Agency (independent title/escrow agency; Phoenix, AZ [Maricopa County], 5100 N 99th Ave Suite 112) — via the TRACcalculator platform (comparetitlecompanies.com/get_quote/, operated by TI Services, LLC)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.firstintegritytitle.com/client-resources/az-rate-calculator/",
+    "calculatorUrl": "https://comparetitlecompanies.com/get_quote/getquote.php?title_co_id=567",
+    "endpointOrParams": "Plain server-rendered PHP multi-step form (from_step/next_step wizard, no JS/SPA), driven via POST with a requests.Session() cookie jar. Step 1: POST county/city/transaction-type selection (counties_id=599 for Maricopa, city_town_id=4369 for Phoenix -- both values discoverable via the same host's plain-GET AJAX endpoints, e.g. GET /get_quote/ajax_get_cities.php?state=AZ&counties_id=599, no auth). Step 2: POST property_types_id=1 (Single Family), q2_amt=500000 (purchase price), q4_amt=400000 (1st mortgage amount), addlq_48=2 (Lien Payoff Involved: No). Step 3 returns the full itemized Detailed Title Quote / TRID Loan Estimate inline in the same response.",
+    "retrievalDate": "2026-07-27",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Single Family residential, Sale transaction, Phoenix/Maricopa County (AZ's most populous county). Underwriter shown: Stewart Title Company.",
+    "methodology": "Discovered via First Integrity Title's own website, which embeds this calculator in an <iframe>. The form requires no personal data at all -- the only free-text field ('Prepared By') was left blank, and the property 'Address' field (required) was filled with a non-identifying place-name value ('Phoenix, AZ') rather than a fabricated street address, consistent with the hard rule against entering fabricated personal information. No login/registration was required at any step.",
+    "itemizedFees": {
+      "cpl": "$20.00 (CPL - Lender; buyer-side only, no seller-side CPL line)",
+      "processing": "$100.00 (Transaction Fee (Loan no Pay off); charged to both buyer and seller)",
+      "notarySigning": "$150.00 (Notary Fee; both buyer and seller)",
+      "docPrep": null,
+      "searchExam": null,
+      "other": [
+        {
+          "name": "Sale Escrow Fee (closing/settlement fee; both buyer and seller pay this amount)",
+          "amount": "$675.00 (each side)"
+        },
+        {
+          "name": "Loan Tie-in Fee (both buyer and seller)",
+          "amount": "$100.00 (each side)"
+        },
+        {
+          "name": "Estimated Endorsement Fee (buyer/loan side only)",
+          "amount": "$300.00"
+        },
+        {
+          "name": "Owner's Title Insurance Policy premium (seller-paid, per AZ custom)",
+          "amount": "$2,371.00"
+        },
+        {
+          "name": "Lender's/Loan Title Insurance Policy premium (buyer-paid)",
+          "amount": "$1,219.00"
+        },
+        {
+          "name": "Estimated Recording Fee (government)",
+          "amount": "$35.00 (each side)"
+        }
+      ]
+    },
+    "sectionTotals": "Total Estimated Buyer Costs: $2,564.00 (incl. $35 recording); Total Estimated Seller Costs: $3,396.00 (incl. $35 recording). Loan Estimate 'C. Services You Can Shop For': $3,594.00 (Closing Services $1,045.00 [Escrow $675 + Transaction Fee $100 + Loan Tie-in $100 + CPL $20 + Notary $150] + Endorsements $300.00 + Lender's Title Insurance $2,249.00 [buyer's concurrent-loan rate, distinct from the $1,219 standalone figure shown in the itemized quote above]); 'E. Taxes and Other Government Fees': $35.00 (Recording).",
+    "bundlingNotes": "Major platform discovery this session: TRACcalculator (a.k.a. CompareTitleCompanies.com), operated by TI Services, LLC (tiservicesllc.com), is a nationwide title-industry SaaS subscription product -- comparable in scope to MyTitleRates.com -- licensed to individual title agencies (each with its own numeric title_co_id) and to at least one state-branded consumer comparison portal (comparetitlecompanies.com itself, which markets to Colorado consumers). This session confirmed the entire quote wizard is plain server-rendered PHP with a session-cookie-based multi-step POST flow -- no JavaScript execution needed -- a strong new lead for other 'scarce' states. Escrow/closing fee ($675) is notably lower than the two AZ independents already on file for the published-schedule survey (Pioneer Title Agency $1,342 and Arizona Escrow & Financial $1,250 at the $500k tier for their combined/bundled escrow product), but First Integrity's fee structure unbundles far more granularly (separate Transaction Fee, Loan Tie-in Fee, Notary Fee, CPL all itemized independently) rather than bundling wire/courier/doc-prep into one number the way Pioneer and AEFC do -- a genuine structural difference, not necessarily a lower total cost once all line items are summed ($675+$100+$150+$100+$20 = $1,045 buyer-side closing-services subtotal, within range of the bundled competitors).",
+    "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Phoenix/Maricopa County -- AZ's most populous county, matching the county used for the Old Republic entry above."
+  },
+  {
+    "provider": "Arizona Premier Title (independent title agency; Scottsdale, AZ [Maricopa County], 7669 E Pinnacle Peak Rd Suite #120) - via app.netsheetcalc.com/TitleTap platform, app_id 546",
+    "basis": "calculator",
+    "sourceUrl": "https://azpremiertitle.com/net-sheet-calculator/",
+    "calculatorUrl": "https://app.netsheetcalc.com/c/API",
+    "endpointOrParams": "TitleTap's newer (2026) 'Quick Quote' backend, distinct from the app_id-numeric non-auth-ajax.php?action=getAppData recipe documented for the VA/IN/KY/AR TitleTap tenants in earlier sessions (that action name 404s on this newer tenant). Config fetched via plain unauthenticated GET: https://app.netsheetcalc.com/company/non-auth-ajax.php?action=getNetSheetConfig&app_id=546 -- returns the full fee-form schema as JSON per scenario type (seller/cash/finance/refinance), including flat-dollar constants and price-tiered-rate formulas referencing named rate-table keys. Price-tiered rates (escrow/closing fee split, owner's and lender's title insurance premiums) are resolved via a second plain GET: https://app.netsheetcalc.com/api/index.php/rate/<amount>/<rate-key>, e.g. rate/500000/ClosingFee546 (total escrow fee at $500k, split 50/50 buyer/seller per the config's own division-by-2 formula), rate/500000/MPPCOwner546 (Owner's Title Insurance, Maricopa/Pima/Pinal County tier), rate/400000/MPPCLoan546 (Lender's simultaneous-issue Title Insurance at $400k loan). No form submission, browser, or JS execution needed -- both endpoints are plain GET with no personal data fields anywhere in the schema.",
+    "retrievalDate": "2026-08-02",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Finance (purchase-with-loan) scenario, Maricopa/Pima/Pinal County tier (county_drp default for this tenant, covers Maricopa -- AZ's most populous county).",
+    "methodology": "Found via Arizona Premier Title's own site, which embeds the calculator as an iframe pointing to app.netsheetcalc.com/c/API. Reverse-engineered the tenant's config/rate API directly from the page's own loaded JS (company/js/app-v2.js, services/api.js) rather than driving the JS form -- both endpoints called are plain GET with app_id/amount/rate-key path or query parameters, no auth, no personal data (no name/email/phone field exists anywhere in the fetched config schema).",
+    "itemizedFees": {
+      "cpl": "$25.00 (Closing Protection Letter, buyer/finance scenario)",
+      "processing": null,
+      "notarySigning": null,
+      "docPrep": null,
+      "searchExam": null,
+      "other": [
+        {
+          "name": "Escrow Fee (buyer's half of the total $1,777.00 tiered escrow/closing fee at $500,000 purchase price -- seller pays the identical other half per the config's matching formula)",
+          "amount": "$888.50"
+        },
+        {
+          "name": "Owner's Title Insurance Premium (Maricopa/Pima/Pinal County tier, $500,000)",
+          "amount": "$2,310.00"
+        },
+        {
+          "name": "Lender's Title Insurance Premium (simultaneous-issue rate, $400,000 loan)",
+          "amount": "$1,185.00"
+        },
+        {
+          "name": "8.1 Endorsement",
+          "amount": "$100.00"
+        },
+        {
+          "name": "9 Endorsement",
+          "amount": "$100.00"
+        }
+      ]
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "This tenant's config confirms the total Escrow/Closing Fee at $500,000 purchase price is $1,777.00 combined (retrieved via the ClosingFee546 rate-table key), split 50/50 buyer/seller ($888.50 each) -- both the buyer-side 'finance' and 'cash' scenario configs and the seller-side scenario config share the identical formula and rate-table key, confirming this is a single combined fee, not two independently-priced halves. Distinct fee structure from First Integrity Title Agency (TRACcalculator, also on file for AZ): Arizona Premier's endorsements (8.1, 9) are flat $100 each rather than a single bundled 'Estimated Endorsement Fee'; no separate Transaction/Loan Tie-in/Notary fee line items exist in this tenant's schema at all (TitleTap's config format is a simpler flat-fee + tiered-rate model than TRACcalculator's fully-itemized settlement statement).",
+    "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Maricopa County (Scottsdale/Phoenix metro) -- AZ's most populous county tier, matching the county used for the Old Republic and First Integrity entries above. This is AZ's 3rd calculator-basis provider, crossing the 3-provider threshold."
+  },
+  {
+    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-11",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Maricopa County (AZ's most-populous/standard-scenario county), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Richness-pass application of the 2026-08-08 session's fully-solved WFG recipe (see CALCULATORS.md) to Arizona, one of only 7 states (WA, CA, TX, OR, AZ, NV, CO) this tool has configured HUD-fee itemization for per its own hardcoded feesConfiguration sort-weight table, but which had no WFG entry on file yet. Driven via a plain `Content-Type: application/json` HTTP POST to the public, unauthenticated endpoint with body `{SalesPrice, Loans: [{LienPosition: 0, LoanAmount}], TransactionProductType: {ProductTypeId: 0, TransactionTypeId: 0}, Properties: [{City, County, IsPrimary: true, State}], calculateTaxRequest: {}, SettlementStatementVersion: \"CD\", premiumDiscounts: [], Endorsements: [], PriorLenderPolicy: {}, PriorOwnerPolicy: {}}` — no personal-data field anywhere in the request shape. Note: WFG's own `wfgtitle.com` marketing domain is Cloudflare-blocked (403) per the 2026-08-08 session's OR/NM search, but this separate `rates.wfgnationaltitle.com` API subdomain is unaffected. Response returned HTTP 200 with a live server timestamp (2026-08-11T16:14:57Z) confirming this is a fresh, dated calculator quote.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,154.00",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's sellernet/seller-side-only design; not pursued further as out of scope for the seller-net flow)",
+      "other": [
+        {
+          "name": "Settlement or Closing Fee",
+          "amount": "$1,410.00",
+          "note": "split $705.00 buyer / $705.00 seller"
+        }
+      ],
+      "note": "Full itemized breakdown available for AZ (one of the 7 states -- WA, CA, TX, OR, AZ, NV, CO -- with configured HUD-fee sort weights in this tool)."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "Property location for this request: Phoenix, AZ (Maricopa County). Adds WFG as AZ's 4th calculator-basis provider (already past the 3-provider threshold via Old Republic + Arizona Premier Title/TitleTap + First Integrity/TRACcalculator); harvested for richness (itemized HUD fees, not just a premium figure) per the standing next-session recommendation to push already-quoted states toward richer entries.",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium plus itemized settlement fees for a $500,000 residential purchase, Maricopa County, AZ."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company -- Stewart Rate Calculator, matched settlement office: Stewart Title & Trust of Phoenix, Inc. (3131 E. Camelback Rd., Suite 200, Phoenix, AZ 85016)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true (LoanEstimate/QuoteType=3 flow) and https://www.stewartratecalculator.com/Quote/Netsheet?urlParams=&quotetype=2&branded=true (Netsheet/QuoteType=2 flow); both POST to the shared /api/SRC/quote endpoint",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Maricopa County (Phoenix), residential resale, Sale/Purchase with Mortgage transaction type, BASIC coverage on both Owner's and Lender's policies. Richness-pass harvest applying an already-solved, previously state-limited recipe to a state not yet in Stewart's harvested-state list, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "methodology": "Harvested via Stewart's discoverable `/api/SRC/*` JSON REST API (stewartratecalculator.com), driven entirely by plain HTTP GET/POST (Python requests.Session(), cookie jar) with no browser/JS execution and no personal-data fields, replaying the full recipe documented in this project's CALCULATORS.md (2026-08-14 'SOLVED' entry): GET the LoanEstimate/Netsheet page to scrape a fresh antiforgery cookie + __RequestVerificationToken; GET /api/SRC/propertysearch to resolve the county FIPS code and a default zip; GET /api/SRC/providers to find the county's real settlement office(s) (used to set ProviderID on the QuoteType=3 flow so the itemized settlement-fee list is populated -- an empty ProviderID silently returns a null itemized list); GET /api/SRC/statesettings and /api/SRC/ernstlookup for state-level defaults; build the QuoteRequestRoot JSON by hand (Owner's Policy $500,000 / Lender's Policy $400,000, BASIC coverage, standard Sale/Purchase with Mortgage transaction); POST /api/SRC/quote twice -- QuoteType=2 (Netsheet, pageBuyerSeller=seller) for Recording/CFPB2015 transfer-tax figures, and QuoteType=3 (LoanEstimate, pageBuyerSeller=buyer, IsCalculatePremium=True, IsCalculateTitleServiceFee=True) for the itemized Pricing.TitleServiceFee.ItemizedTitleServiceFeeList settlement-fee line items. One new gotcha found and fixed this session: stewartratecalculator.com's bare apex domain 301-redirects every POST to the www subdomain, and that redirect's response body hangs indefinitely on this sandbox's proxied connection (a 30s+ read timeout with 0 bytes received) -- fixed by targeting https://www.stewartratecalculator.com directly, skipping the apex redirect entirely; this is an environment/proxy artifact, not a sign the endpoint is blocked. Also confirmed the documented /api/SRC/providers gotcha firsthand: for a single-provider county the response's `Provider` field is a bare object, not a one-element list -- must be normalized before indexing or ProviderID silently stays empty and every itemized-fee list comes back null (looks exactly like a genuine empty result).",
+    "settlementFee": {
+      "note": "$1,823.00 total, split buyer $911.50 / seller $911.50 (line item: 'Title Closing Fee')"
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,155.00",
+      "loanPolicyPremium": "$1,500.00",
+      "other": [
+        {
+          "name": "Title Closing Fee",
+          "amount": "$1,823.00 (buyer $911.50 / seller $911.50)"
+        },
+        {
+          "name": "Title Reconveyance Fee",
+          "amount": "$100.00 (buyer $0.00 / seller $100.00)"
+        }
+      ],
+      "note": "2 itemized settlement/closing-fee line item(s) returned via the QuoteType=3 flow."
+    },
+    "sectionTotals": "Owner's Policy Premium $2,155.00; Lender's Policy Premium $1,500.00; itemized settlement fees sum $1,923.00",
+    "bundlingNotes": "No deed/transfer/mortgage recording tax returned by this tool for this state (consistent with states known to levy no such tax, or the tax simply isn't configured in this tool).",
+    "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Maricopa County, Arizona."
+  }
+]

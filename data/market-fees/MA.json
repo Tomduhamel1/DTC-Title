@@ -1,0 +1,352 @@
+[
+  {
+    "provider": "Law Office of Joseph A. Lopisi (Lopisi Law)",
+    "sourceUrl": "https://lopisilaw.com/practice-areas/buyer-seller-representation/",
+    "asOf": "retrieved 2026-07-22",
+    "settlementFee": "Buyer representation only (not lender): $750-$950 flat fee. Buyer representation with lender representation: $450 (buyer) + $500-$700 (lender). Seller representation: $750-$950 flat fee.",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "approximately $200 (title examination, when lender representation is also engaged)",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Plot plan (Mortgage Inspection Plan): $150"
+      ]
+    },
+    "bundlingNotes": "Buyer-only flat fee ($750-$950) covers offer review, seller-document review, loan-document review, closing coordination, and homestead declaration preparation, but does NOT include title exam or lender-side work. When the same firm also represents the lender, pricing splits into a $450 buyer-representation component plus a separate $500-$700 lender-representation component that adds title examination (~$200) and plot plan ($150). Seller flat fee ($750-$950) covers Offer stage through a 'mail away' closing plus deed preparation.",
+    "transactionContext": "Purchase transactions (buyer representation and seller representation quoted separately); does not address refinance pricing."
+  },
+  {
+    "provider": "Sherman Law",
+    "sourceUrl": "https://timshermanlaw.com/sell-my-house/massachusetts-seller-closing-costs/",
+    "asOf": "retrieved 2026-07-22",
+    "settlementFee": "Real estate attorney fee (seller side): $1,200-$1,800, depending on complexity.",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": "included within an itemized ~$350 bucket of miscellaneous transaction costs (mortgage discharge, wire transfers, courier, and document delivery fees combined, not broken out individually)",
+      "wire": "included within the same ~$350 bucket, see courier note",
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Septic (Title V) inspection: approximately $800 for inspector and Certificate of Compliance (not a title/settlement charge, but a common seller-side closing cost)",
+        "Smoke & carbon monoxide detector certificate: $50-$100"
+      ]
+    },
+    "bundlingNotes": "Attorney fee is quoted as a standalone range; the firm separately buckets ~$350 of miscellaneous transaction costs (mortgage discharge, wire, courier, document delivery) without itemizing each individually.",
+    "transactionContext": "Seller-side closing costs for a purchase transaction."
+  },
+  {
+    "provider": "Sherman Law",
+    "sourceUrl": "https://timshermanlaw.com/buying-a-house/closing-costs/",
+    "asOf": "retrieved 2026-07-22",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "approximately $300 (title exam)",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Mortgage Inspection Plan (plot plan): $145",
+        "Municipal Lien Certificate (MLC): $50",
+        "Registry of Deeds recording fee: $365"
+      ]
+    },
+    "bundlingNotes": "This buyer-side closing-costs page itemizes title exam, plot plan, MLC, and recording as separate line items but does not disclose the firm's own attorney-representation dollar figure on this page (see the firm's seller-costs page and third-party summaries for the $1,200-$1,800 attorney fee range attributed to this firm).",
+    "transactionContext": "Buyer-side closing costs for a purchase transaction."
+  },
+  {
+    "provider": "Lazan Glover & Puciloski, LLP (Berkshires Real Estate Law)",
+    "sourceUrl": "https://lazanlaw.com/what-are-common-closing-costs-in-massachusetts/",
+    "asOf": "retrieved 2026-07-22",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "$300-$400 (title exam/abstracting)",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Recording fees: Deed $155, Mortgage $205, Municipal Lien Certificate $80, Declaration of Homestead $35",
+        "Certificates and Affidavits: $105",
+        "Plot plan: $350-$500",
+        "Municipal Lien Certificate (obtaining, separate from recording): $25-$50 per certificate",
+        "Title insurance premium: $4.00 per $1,000 of purchase price",
+        "Transfer tax (seller, Massachusetts excise stamps): $4.56 per $1,000 of sale price"
+      ]
+    },
+    "bundlingNotes": "The firm's own legal fee is explicitly described as variable (based on purchase price, mortgage status, special considerations) with no fixed dollar figure published; all other line items above (recording, plot plan, MLC, title insurance rate, transfer tax) are quoted as fixed or narrow-range dollar figures on the firm's own page.",
+    "transactionContext": "General purchase-transaction closing cost breakdown; Berkshires/Western Massachusetts market."
+  },
+  {
+    "provider": "Cote Law Group, PLLC",
+    "sourceUrl": "https://www.cote-law.com/first-time-home-buyer-guide-closing-costs-massachusetts/",
+    "asOf": "retrieved 2026-07-22",
+    "settlementFee": "Attorney fee for buyers: $600-$1,500+ (example figure used: $1,200).",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "$150-$300 depending on complexity",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Deed recording: $155",
+        "Mortgage recording: $205",
+        "Municipal Lien Certificate: $80",
+        "Declaration of Homestead: $35",
+        "Plot plan: $350-$500",
+        "Title insurance premium: approximately $4.00 per $1,000 of purchase price",
+        "Appraisal fee (lender-side, not title/settlement): $600-$1,500"
+      ]
+    },
+    "bundlingNotes": "Attorney fee, title exam, and title insurance rate are quoted as distinct line items on the firm's own first-time-buyer guide; overall closing costs framed as 2%-5% of purchase price. Marshfield, MA firm (South Shore market).",
+    "transactionContext": "Buyer-side purchase transaction, first-time-homebuyer-oriented guide."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://public.stewart.com/vu/rate-book-massachusetts.pdf",
+    "asOf": "vintage circa 2021 (document copyright \"\u00a9 2021 Stewart\"; superseded by a newer 2025-09-15 Stewart MA rate manual per a secondary law-firm citation, but that later document could not itself be located/verified this session -- see MA.md)",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Simultaneous Owner's and Loan Policy issue fee: $175.00 flat",
+        "Standard Owner's Policy: $146.00 minimum ($1,000-$39,000), then $3.65/thousand up to $1M, $2.50/thousand $1M-$2M",
+        "Standard Loan Policy: $100.00 minimum, then $2.50/thousand up to $2M",
+        "Enhanced Owner's Policy: $160.00 minimum, then $4.00/thousand up to $1M, $2.75/thousand $1M-$2M",
+        "Enhanced Loan Policy: $110.00 minimum, then $2.75/thousand up to $2M",
+        "Refinance rate: 40% credit off the regular loan policy premium"
+      ]
+    },
+    "bundlingNotes": "This is a title insurance PREMIUM rate schedule only -- it contains no settlement, closing, escrow, or attorney fee dollar figures anywhere in the document; consistent with the market-structure finding that MA premiums are unfiled/insurer-set and separate from attorney settlement fees. Full rate tables provided for coverage amounts $1,000 to $2,000,000 in $1,000 increments (Standard and Enhanced, Loan/Purchase/Owner's/Simultaneous columns).",
+    "transactionContext": "Purchase (owner's policy), refinance (loan policy refinance rate), and simultaneous issue -- premium calculation only, not settlement services."
+  },
+  {
+    "basis": "calculator",
+    "provider": "Absolute Title, LLC (\"New England's Premier Title Company\" -- independent title company, offices in NH/ME/MA including Lowell, MA)",
+    "sourceUrl": "https://www.absolutetitle.com/ratecalculator_ma.asp",
+    "calculatorUrl": "https://www.absolutetitle.com/ratecalculator_ma.asp",
+    "endpoint": "No HTTP endpoint -- entirely client-side JS. The page loads https://www.absolutetitle.com/rc-ma.js (~v1.2026.1), a hardcoded fee-constant calculator; all math (settlement fee, plot plan, per-thousand premium rates, static wire/CPL fees) is readable directly from the JS source and was reproduced in Python to compute the standard scenario, no browser/JS execution needed.",
+    "retrievalDate": "2026-07-26",
+    "scenario": "$500,000 purchase price, $400,000 loan, statewide MA pricing (no county selector in this calculator -- Absolute Title's own MA office is in Lowell, Middlesex County), residential purchase transaction, not simultaneous issue, not Nantucket, not condo, not new construction",
+    "methodology": "Found via web search for MA title-insurance rate calculators. View-source of ratecalculator_ma.asp revealed a first-party (non-platform) JS calculator at rc-ma.js with all fee logic as literal constants/formulas (getPremium(), getOwnersPremium(), getLPremium()) -- fetched the JS directly and hand-reproduced its arithmetic in Python for the standard scenario rather than executing it in a browser, since the logic is pure client-side math with no server round-trip.",
+    "settlementFee": {
+      "purchaseSettlementFee": "$850.00 (standard purchase, non-Nantucket, non-simultaneous-issue; the tool's own JS sets this to $700 if simultaneous/cash-only is checked, or $4,000 for Nantucket properties)"
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "notarySigning": null,
+      "cpl": "$35.00 (static \"CPL\" line item, CPLTotal constant in the page HTML)",
+      "searchExam": null,
+      "eRecording": null,
+      "wire": "$50.00 (static \"Wire Transfer\" line item, WireTotal constant in the page HTML)",
+      "courier": null,
+      "recordingDeed": null,
+      "recordingMortgage": null,
+      "plotPlan": "$150.00 (shown for non-condo purchases; the tool's own JS sets this to $450.00 for Nantucket properties)",
+      "titleInsurancePremium": {
+        "lenderPremium": "$1,000.00 (loan policy, $400,000 loan amount, $2.50/thousand, $110 minimum)",
+        "ownerPremiumIncremental": "$1,300.00 (\"Owner Premium\" line -- the additional charge to add an owner's policy on top of the loan policy under this tool's simultaneous-issue rate structure)",
+        "combinedOwnersPolicyBasis": "$2,300.00 (internal combined basis: $500,000 sale price x $4.25/thousand + $175, min $190 -- not displayed as its own line for a standard non-simultaneous purchase, but is the sum of Lender Premium + Owner Premium above)"
+      }
+    },
+    "sectionTotals": "No single displayed grand total for a standard (non-simultaneous, non-refi) purchase -- the tool's own \"Title Insurance\" total row is programmatically hidden in this transaction mode (only shown for refinance or cash/simultaneous transactions). Sum of all displayed line items: Settlement Fee $850.00 + Plot Plan $150.00 + Lender Premium $1,000.00 + Owner Premium $1,300.00 + Wire $50.00 + CPL $35.00 = $3,385.00.",
+    "bundlingNotes": "Genuine first-party, non-platform calculator (not TitleCapture/Qualia/MyTitleRates/CATICulator) -- a small independent New England title company's own hand-rolled JS, same discovery pattern as Modern Title Group (MI) documented in CALCULATORS.md. No county tiering (statewide MA rate). Settlement Fee and Plot Plan are flat provider-set fees; CPL and Wire are flat static fees embedded directly in the page HTML (not computed); the title insurance premium math (loan and owner policy) is a per-thousand formula with a minimum floor, structured as a simultaneous-issue-style combined rate (owner's policy priced as an incremental add-on to the loan policy premium) distinct from Stewart's separately-tiered Standard/Enhanced tables already on file in this state's premium rate-card section above.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k statewide MA purchase scenario, standard (non-Nantucket, non-simultaneous) residential purchase."
+  },
+  {
+    "basis": "calculator",
+    "provider": "The Law Office of David R. Rocheford, Jr., P.C. (\"The Best Closings\") -- Massachusetts closing attorney, Leominster, MA (Worcester County)",
+    "sourceUrl": "https://www.thebestclosings.com/title-calc/",
+    "calculatorUrl": "https://www.thebestclosings.com/title-calc/",
+    "endpoint": "No HTTP endpoint -- entirely client-side JS. The page loads a WordPress plugin script at https://www.thebestclosings.com/wp-content/plugins/title-loan-calculator/js/title-loan-calculator.php?ver=1.7, which contains hardcoded fee constants and formulas (basebuyerpays=1695, basesellerpays=345, lenderstitleins=(loanamount/1000)*2.75, ownerstitleins=(saleprice/1000)*4+175-lenderstitleins, transfertax=saleprice/1000*4.56) -- reproduced directly in Python, no browser/JS execution needed. Static (pre-calculation) per-line-item fee constants are also directly readable in the page's own HTML table.",
+    "retrievalDate": "2026-07-26",
+    "scenario": "$500,000 purchase price, $400,000 loan, statewide MA pricing (no county selector in this calculator -- firm is based in Leominster, Worcester County), residential purchase transaction",
+    "methodology": "Found via web search for MA closing-attorney fee/title calculators. View-source of the title-calc page revealed a static HUD-1-style itemized fee table (Buyer Pays / Seller Pays columns) with most line items as fixed dollar constants directly in the page HTML, plus 3 computed line items (owner's title insurance, lender's title insurance, transfer tax) whose formulas are in the linked title-loan-calculator.php JS file -- both sources combined give the full itemized result for the standard scenario without needing to execute JS in a browser.",
+    "settlementFee": {
+      "settlementFee_buyerSide": "$565.00 (flat, static line item, does not vary with sale price/loan amount)"
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "notarySigning": null,
+      "cpl": null,
+      "searchExam": "$300.00 (\"Title Exam\", buyer side, flat)",
+      "eRecording": null,
+      "wire": "$75.00 (buyer side) / $75.00 (seller side) (\"Wire Fee\", flat, charged to both sides)",
+      "courier": "$50.00 (buyer side) / $50.00 (seller side) (\"Overnight Fee\", flat, charged to both sides)",
+      "recordingDeed": "$370.00 (\"Recording (Deed & Mortgage)\", buyer side, flat, combined deed+mortgage recording)",
+      "recordingMortgage": "included in the $370.00 combined Recording (Deed & Mortgage) figure above, not broken out separately",
+      "survey": "$160.00 (buyer side, flat)",
+      "municipalLienCertificate": "$50.00 (\"Municipal Lien Certificate\", buyer side, title-charges section, flat) plus a separate $85.00 (\"Municipal Lien Certificate (if applicable)\", buyer side, recording-and-transferring section, flat) -- two distinct MLC line items in this tool's own table",
+      "dischargeReleaseFee": "$110.00 (seller side, title-charges section, flat) and $110.00 (seller side, recording-and-transferring section, \"Discharge (if applicable)\", flat) -- two distinct discharge line items in this tool's own table",
+      "homestead": "$40.00 (buyer side, optional, flat)",
+      "transferTax": "$2,280.00 (seller side, computed: $500,000/1000 x $4.56)",
+      "titleInsurancePremium": {
+        "ownersTitleInsurance_buyerSide": "$1,075.00 (computed: ($500,000/1000)x4 + 175 - lender's premium)",
+        "lendersTitleInsurance_buyerSide": "$1,100.00 (computed: ($400,000/1000) x 2.75)"
+      }
+    },
+    "sectionTotals": "Grand Total, Buyer Pays: $3,870.00 (= base buyer fee bucket $1,695.00 [sum of Settlement Fee $565 + Title Exam $300 + Survey $160 + MLC $50 + Overnight $50 + Wire $75 + Recording $370 + Homestead $40 + MLC(recording) $85] + Lender's Title Insurance $1,100.00 + Owner's Title Insurance $1,075.00). Grand Total, Seller Pays: $2,625.00 (= base seller fee bucket $345.00 [Discharge/Release $110 + Overnight $50 + Wire $75 + Discharge(recording) $110] + Transfer Tax $2,280.00).",
+    "bundlingNotes": "The richest single itemization found in this MA calculator-harvest session -- a genuine first-party, non-platform calculator built by a Massachusetts closing attorney's own website (WordPress \"title-loan-calculator\" plugin, not a national platform), directly consistent with MA.md's market-structure finding that closing attorneys ARE the settlement-fee-charging party in this state. Unlike Absolute Title's calculator above, this tool breaks out title exam, survey, MLC (twice, in two different fee buckets), overnight/wire fees, and recording separately from a standalone Settlement Fee line, and separately discloses buyer-side vs. seller-side allocation for every line item (MA convention: buyer pays title insurance/recording, seller pays transfer tax/discharge). No county tiering -- statewide MA flat-fee schedule from a Worcester County (Leominster) firm.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k statewide MA purchase scenario, both buyer-side and seller-side fee allocations as displayed by the tool."
+  },
+  {
+    "provider": "Chicago Title Insurance Company (national FNF-family underwriter; ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine -- this tool's pre-selected default underwriter brand varies by request; prior sessions (CT, AR) confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=MA",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=MA (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-06",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Middlesex County (MA's most-populous county per the standard scenario), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions. No Loan Policy line appeared despite the $400,000 loan amount entered. Middlesex County (MA's most populous, Cambridge/Lowell area) used per the standard scenario's most-populous-county rule.",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback) against the classic __doPostBack/__VIEWSTATE WebForms flow, replaying the recipe already on file in this project's CALCULATORS.md (FNF family section) and previously used for CT/CO/AR: (1) GET ?ID=FNF&state=MA to capture hidden __VIEWSTATE/__EVENTVALIDATION fields and the county dropdown; (2) POST the county selection (own __EVENTTARGET); (3) POST the tool's own pre-selected default underwriter plus btnGeneralNext=Next to advance to the Amounts step; (4) POST TranType$ddl=PropertyPurchase (own __EVENTTARGET) to reveal the Purchase Amount field; (5) POST AmountPurchase$txt=500000 and AmountLoan1$txt=400000 together (own __EVENTTARGET on the loan field) to reveal any further conditional questions; (6) auto-answered any newly-revealed required Yes/No radio question with its first listed option, then POST btnFinish=Finish for the final Rate Summary. No personal data fields exist anywhere in this flow (only county/underwriter/transaction-type/dollar-amount fields).",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,125.00 (ALTA Standard/Homeowner's Coverage Owner's Policy, $500,000 liability amount)",
+      "loanPolicyPremium": null,
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence."
+    },
+    "sectionTotals": "Total Charges for the Policy: $2,125.00. Grand Total: $2,125.00.",
+    "bundlingNotes": "Part of this project's ongoing 2026-08-06 calculator-harvest pass applying the FNF national rate calculator (already confirmed in-scope for premium-only evidence as of the 2026-08-05 CT session) across every remaining below-threshold scarce state where the tool's own county dropdown confirms coverage.",
+    "transactionContext": "Owner's Policy premium for a $500,000 residential purchase, Middlesex County, MA. No Loan Policy line appeared despite the $400,000 loan amount entered. Middlesex County (MA's most populous, Cambridge/Lowell area) used per the standard scenario's most-populous-county rule."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company -- Stewart Rate Calculator, matched settlement office: Warr & Warr, PC (47 Bullocks Point Avenue, Riverside, RI 02915)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true (LoanEstimate/QuoteType=3 flow) and https://www.stewartratecalculator.com/Quote/Netsheet?urlParams=&quotetype=2&branded=true (Netsheet/QuoteType=2 flow); both POST to the shared /api/SRC/quote endpoint",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Middlesex County (Cambridge), residential resale, Sale/Purchase with Mortgage transaction type, BASIC coverage on both Owner's and Lender's policies. Richness-pass harvest applying an already-solved, previously state-limited recipe to a state not yet in Stewart's harvested-state list, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "methodology": "Harvested via Stewart's discoverable `/api/SRC/*` JSON REST API (stewartratecalculator.com), driven entirely by plain HTTP GET/POST (Python requests.Session(), cookie jar) with no browser/JS execution and no personal-data fields, replaying the full recipe documented in this project's CALCULATORS.md (2026-08-14 'SOLVED' entry): GET the LoanEstimate/Netsheet page to scrape a fresh antiforgery cookie + __RequestVerificationToken; GET /api/SRC/propertysearch to resolve the county FIPS code and a default zip; GET /api/SRC/providers to find the county's real settlement office(s) (used to set ProviderID on the QuoteType=3 flow so the itemized settlement-fee list is populated -- an empty ProviderID silently returns a null itemized list); GET /api/SRC/statesettings and /api/SRC/ernstlookup for state-level defaults; build the QuoteRequestRoot JSON by hand (Owner's Policy $500,000 / Lender's Policy $400,000, BASIC coverage, standard Sale/Purchase with Mortgage transaction); POST /api/SRC/quote twice -- QuoteType=2 (Netsheet, pageBuyerSeller=seller) for Recording/CFPB2015 transfer-tax figures, and QuoteType=3 (LoanEstimate, pageBuyerSeller=buyer, IsCalculatePremium=True, IsCalculateTitleServiceFee=True) for the itemized Pricing.TitleServiceFee.ItemizedTitleServiceFeeList settlement-fee line items. One new gotcha found and fixed this session: stewartratecalculator.com's bare apex domain 301-redirects every POST to the www subdomain, and that redirect's response body hangs indefinitely on this sandbox's proxied connection (a 30s+ read timeout with 0 bytes received) -- fixed by targeting https://www.stewartratecalculator.com directly, skipping the apex redirect entirely; this is an environment/proxy artifact, not a sign the endpoint is blocked. Also confirmed the documented /api/SRC/providers gotcha firsthand: for a single-provider county the response's `Provider` field is a bare object, not a one-element list -- must be normalized before indexing or ProviderID silently stays empty and every itemized-fee list comes back null (looks exactly like a genuine empty result).",
+    "settlementFee": {
+      "note": "$1,725.00 total, split buyer $875.00 / seller $850.00 (line item: 'Title Closing Fee')"
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,125.00",
+      "loanPolicyPremium": "$1,000.00",
+      "other": [
+        {
+          "name": "Title Closing Fee",
+          "amount": "$1,725.00 (buyer $875.00 / seller $850.00)"
+        },
+        {
+          "name": "Title Courier Fee",
+          "amount": "$85.00 (buyer $40.00 / seller $45.00)"
+        },
+        {
+          "name": "Title E Recording Fee",
+          "amount": "$30.00 (buyer $30.00 / seller $0.00)"
+        },
+        {
+          "name": "Title Municipal Lien Certificate",
+          "amount": "$50.00 (buyer $50.00 / seller $0.00)"
+        },
+        {
+          "name": "Title Plot Plan",
+          "amount": "$175.00 (buyer $175.00 / seller $0.00)"
+        },
+        {
+          "name": "Title Examination Fee",
+          "amount": "$500.00 (buyer $375.00 / seller $125.00)"
+        }
+      ],
+      "note": "6 itemized settlement/closing-fee line item(s) returned via the QuoteType=3 flow."
+    },
+    "sectionTotals": "Owner's Policy Premium $2,125.00; Lender's Policy Premium $1,000.00; itemized settlement fees sum $2,565.00",
+    "bundlingNotes": "Combined deed/transfer/mortgage tax on QuoteType=2 (Netsheet) flow: $2,280.00 total -- DeedTax $2,280.00.",
+    "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Middlesex County, Massachusetts."
+  },
+  {
+    "provider": "WFG National Title Insurance Company \u2014 Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Middlesex County (Cambridge), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Harvested via WFG National Title's own public JSON API, `POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet`, fully solved and documented in this project's CALCULATORS.md (2026-08-08 entry) -- no browser/JS execution needed, no personal-data fields in the request shape (nested Properties/Loans arrays, TransactionProductType, SettlementStatementVersion: \"CD\"). Confirmed via the same API's public `GET /api/rates/State/GetCalculationEnabledStates` that MA is `isCalculationEnabled: true` before harvesting. Richness-pass application of an already-solved, previously-untried-for-this-state recipe, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "settlementFee": {
+      "note": "Premium-only result (no itemized settlement/search/doc-prep line items) -- consistent with WFG's own hardcoded fee-description table, which only itemizes HUD-style settlement fees for 7 states (WA, CA, TX, OR, AZ, NV, CO); every other state, including this one, returns only the Owner's Title Insurance Premium."
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,375.00",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's seller-net-sheet-only design)",
+      "other": [],
+      "note": "Premium-only result for this state (see settlementFee note)."
+    },
+    "sectionTotals": "Owner's Title Insurance Premium $2,375.00",
+    "bundlingNotes": "Discovered and solved 2026-08-08; applied here as a richness-pass 4th/5th calculator-basis provider for Massachusetts (already at 3-4 providers via other tools) since no prior session had run this already-solved recipe against this state. Property location for this request: Cambridge, Massachusetts (Middlesex County).",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Middlesex County, Massachusetts."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company \u2014 second rate calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://oldrepublictitle.com/rate-calculator/?location=massachusetts",
+    "calculatorUrl": "https://oldrepublictitle.com/rate-calculator/?location=massachusetts",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (RateCalc.aspx?CallingApp=PUBLIC&Location=MA, redirects to a session-scoped (S(...)F(...))/RateCalc.aspx?...Location=20..., statewide, no county selector). GET the page with Referer https://oldrepublictitle.com/rate-calculator/?location=massachusetts (capture __VIEWSTATE/__EVENTVALIDATION), POST __EVENTTARGET=ddlPolicyCategory value 3 (SIMULTANEOUS LOAN & OWNERS), POST __EVENTTARGET=ddlPolicyType1 value 6716 (STANDARD OWNERS), POST __EVENTTARGET=ddlPolicyType2 value 6720 (BASIC LOAN), then POST __EVENTTARGET=btnCalculate with txtLiabilityAmt=500000, txtCrLiabilityAmt=400000. Same Referer-header-throughout fix documented for NH/WV/MI/PA/NJ/VA/TN/MD/WI/MN; no personal data entered.",
+    "retrievalDate": "2026-08-21",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, statewide (no county selector in this tool), SIMULTANEOUS LOAN & OWNERS STANDARD/BASIC policy category.",
+    "methodology": "Direct HTTP GET/POST against the ASP.NET WebForms postback mechanism (Python requests.Session()), no browser/JS execution. No personal data entered. Richness pass applying this project's already-solved Old Republic 2nd-tool recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": {
+      "note": "This tool prices title insurance premiums only -- no settlement/closing/escrow service-fee line items are itemized (same structural limitation observed for this tool's other state entries elsewhere in this project)."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "BASIC LOAN, insured amount $400,000.00 -- Lenders-Only standalone premium",
+          "amount": "$1,000.00"
+        },
+        {
+          "name": "BASIC LOAN, Owners+Lenders combined (simultaneous) premium",
+          "amount": "$175.00"
+        },
+        {
+          "name": "STANDARD OWNERS, insured amount $500,000.00, Owners+Lenders combined premium",
+          "amount": "$2,125.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, standalone-lenders-only",
+          "amount": "$1,000.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, Owners+Lenders combined",
+          "amount": "$2,300.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Owner's $2,125.00/Lender's $1,000.00 are byte-identical to this state's already-on-file Stewart entry (Owner's $2,125.00/Lender's $1,000.00) -- a strong 2-way convergence consistent with MA's promulgated title insurance rate structure.",
+    "transactionContext": "Simultaneous Owner's Standard + Loan Basic policy, statewide Massachusetts, purchase with financing."
+  }
+]

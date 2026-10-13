@@ -1,0 +1,162 @@
+[
+  {
+    "provider": "Chicago Title Insurance Company (NCTIRB member — uniform bureau rates)",
+    "sourceUrl": "https://www.northcarolina.ctic.com/getattachment/News-Events/Chicago-Title-Rates-Effective-10-1-2025.pdf?lang=en-US",
+    "asOf": "2025-10-01",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Regular rate (loan and/or owner's): $2.78/$1,000 up to $100k; +$2.17/$1,000 $100,001–$500k; +$1.41/$1,000 $500,001–$2M; +$1.08 to $7M; +$0.75 above",
+        "Minimum premium: $56.00",
+        "Simultaneous issue: single premium on the higher coverage + $28.50 Simultaneous Issue Premium per loan policy issued",
+        "ALTA Homeowner's / Expanded Coverage loan policy: applicable rate + 20% of regular rates"
+      ]
+    },
+    "bundlingNotes": "\"North Carolina title insurance rates apply to ANY title insurance policy issued that insures property situated in North Carolina... Such filed rates are comprehensive and encompass all the premiums for title insurance that are currently authorized.\" Member of the North Carolina Title Insurance Rating Bureau — rates are bureau-uniform across insurers (premiums NOT shoppable in NC).",
+    "transactionContext": "All NC policies; bureau schedule effective 2025-10-01."
+  },
+  {
+    "provider": "24 Hour Closing (NC/SC title & closing company)",
+    "sourceUrl": "https://24hourclose.com/fee-schedule/",
+    "asOf": "2025 (schedule year as published; retrieved 2026-07-21)",
+    "settlementFee": "$650 closing fee (financed purchase/refinance); $550 (cash purchase); +$250 per additional $100,000 above $500,000 purchase price",
+    "itemizedFees": {
+      "docPrep": "$400 loan document prep; $350 seller document prep; $300 land trust document prep",
+      "processing": "$150 admin fees",
+      "courier": null,
+      "wire": "$25 seller proceeds (wire/fedex)",
+      "edoc": null,
+      "eRecording": "stated as included",
+      "notarySigning": null,
+      "searchExam": "$375 title search and final title fee; +$150 outer-county search",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Mail away: $200",
+        "Second loan with separate closing statement: $450",
+        "REO/relocation property: $300",
+        "Unrepresented buyer/seller: $300",
+        "Mobile home: $675",
+        "Curative work: $500 (1–8 hrs) / $1,000 (8–16 hrs)",
+        "Recording: deed $26, deed of trust $64"
+      ]
+    },
+    "bundlingNotes": "Base buyer service stack on a financed purchase = $650 closing + $375 search/final title + $150 admin = $1,175, BEFORE the $250-per-$100k escalator above $500k (a $700k purchase adds $500) and before add-ons like mail-away. Multiple separately billed service lines.",
+    "transactionContext": "NC/SC residential purchase (financed and cash) and refinance; 2025 schedule."
+  },
+  {
+    "provider": "Cline Donaldson PLLC (NC closing attorney)",
+    "sourceUrl": "https://www.clinelawgroupnc.com/news/buyer-closing-costs",
+    "asOf": "2026-07-21 (retrieval date)",
+    "settlementFee": "NOT PUBLISHED — \"Reach out to us about our standard fee\"",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": "$50 overnight fees, each",
+      "wire": null,
+      "edoc": null,
+      "eRecording": "e-recording vendor fee typically $10 financed / $5 cash (up to $150 in some counties)",
+      "notarySigning": "$300 mobile notary",
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Power of attorney preparation: $150",
+        "Recording: deed $26, deed of trust $64",
+        "Premium examples consistent with NCTIRB bureau rates: $500k financed → lender's policy $1,182.50 + simultaneous owner's $78.50"
+      ]
+    },
+    "bundlingNotes": "Attorney/settlement fee deliberately NOT published — must contact the firm. Useful as evidence of market opacity: consumers cannot comparison-shop this firm's settlement fee from public information.",
+    "transactionContext": "NC residential buyer closings."
+  },
+  {
+    "provider": "NC Title Services (NCTIRB member — bureau rate page)",
+    "sourceUrl": "https://www.ncctitle.com/current-rate-information",
+    "asOf": "2025-10-01",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "Insured Closing Letter: $0.69/$1,000 up to $100k; +$0.13/$1,000 $100,001-$500k; +$0.00 above $500k",
+      "binder": "Commitment premium (Owner's or Loan Policy): $16.50; additional loan in same commitment $16.50/loan; no cancellation fee",
+      "other": [
+        "Standard title insurance rate: $2.78/$1,000 up to $100k; +$2.17/$1,000 $100,001-$500k; +$1.41/$1,000 $500,001-$2M; +$1.08 to $7M; +$0.75 above",
+        "Minimum premium: $56.00",
+        "Simultaneous issue rate: $28.50 per loan policy"
+      ]
+    },
+    "bundlingNotes": "Independently republishes the identical NCTIRB bureau-uniform rate table already found in the Chicago Title source (same $2.78/$2.17/$1.41 tiers, $56 minimum, $28.50 simultaneous-issue premium, effective 2025-10-01) — confirms bureau uniformity across a second, independent title company. No settlement/closing service fee published.",
+    "transactionContext": "All NC policies; bureau schedule effective 2025-10-01."
+  },
+  {
+    "provider": "Barristers Title (NCTIRB member — rates page)",
+    "sourceUrl": "https://barristerstitle.com/rates",
+    "asOf": "2025-10-01",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": "Commitment for Title Insurance Policy: $16.50",
+      "other": [
+        "Minimum premium: $56.00",
+        "Simultaneous Issue Premium: $28.50 for each loan policy issued",
+        "Residential Endorsements (5, 8.1, 9): $23.00 each",
+        "Maximum policy amount for certain limited-coverage policies: $500,000"
+      ]
+    },
+    "bundlingNotes": "Third independent republication of the NCTIRB bureau rate table (minimum $56, simultaneous issue $28.50, residential endorsements $23) — page did not display the full per-thousand rate table itself but confirms the same ancillary bureau charges found at Chicago Title and NC Title Services. No settlement/closing service fee published.",
+    "transactionContext": "All NC policies; bureau schedule referencing the 2025-10-01 rate structure."
+  },
+  {
+    "provider": "Investors Title Insurance Company (NCTIRB member — historical rate brochure)",
+    "sourceUrl": "https://www.invtitle.com/docs/news/nc/ncratebrochure201810.pdf",
+    "asOf": "2018-10 (Rev. 10/2018)",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "Closing Services Insurance: $0.62/$1,000 up to $100k; +$0.12/$1,000 $100,001-$500k; +$0.00 above $500k",
+      "binder": "Commitment for Title Insurance Policy: $15.00",
+      "other": [
+        "Regular rate (loan and/or owner's), 2018 bureau tiers: $2.51/$1,000 up to $100k; +$1.96/$1,000 $100,001-$500k; +$1.28/$1,000 $500,001-$2M; +$0.98 to $7M; +$0.68 above",
+        "Minimum premium: $50.00 (2018)",
+        "Simultaneous Issue Premium: $26.00 per loan policy (2018)",
+        "ALTA Homeowner's / Expanded Coverage Residential Loan: Regular Rate + 20%",
+        "Reissue rate: 50% of Regular Rate up to prior policy amount (within 15 years)",
+        "Junior/limited-coverage loan policies (Equity Master etc.): $54 up to $100k, $79 to $250k, $165 to $500k (max $500k)",
+        "Residential Endorsements (5, 8.1, 9): $21.00 each (2018)"
+      ]
+    },
+    "bundlingNotes": "A dated (2018) NCTIRB bureau rate brochure — same bureau-uniform structure as the 2025 sources but at the prior rate level (minimum $50 vs. $56 in 2025, simultaneous issue $26 vs. $28.50, endorsements $21 vs. $23), confirming NCTIRB rates have risen ~10-12% since 2018 while remaining uniform across all member insurers at any given time. No settlement/closing service fee published (bureau rates cover title premium only, consistent with every other NC underwriter source found).",
+    "transactionContext": "All NC policies; bureau schedule effective October 2018 (superseded by the 2025-10-01 schedule found separately)."
+  }
+]

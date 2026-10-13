@@ -1,0 +1,201 @@
+[
+  {
+    "provider": "American Eagle Title Group (with Buffalo Land Abstract Company)",
+    "sourceUrl": "https://www.ameagletitle.com/wp-content/uploads/AETG-Tulsa-Buyer-Fee-Sheet-2019-10.pdf",
+    "asOf": "Effective September 2019",
+    "settlementFee": "Purchase: Closing Fee $350. Refinance: Closing Fee $300.",
+    "itemizedFees": {
+      "docPrep": "$75 (if applicable)",
+      "processing": "Title Services $150 (purchase and refinance)",
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": "$150 (if applicable)",
+      "searchExam": "Title Exam $300, Final Search $300 (purchase and refinance)",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Abstracting (Tulsa, refinance): $550",
+        "Bankruptcy Search: $75 (if needed)",
+        "Pre-Closing Gap: $75 (refinance)",
+        "Release Fee (affidavit): $100 (if applicable)",
+        "Mobile Home Post-Closing Processing Fee: $350",
+        "Recording first page $13, each additional page $2",
+        "Mortgage Cert Fee: $5 to County Treasurer; Mortgage Tax: 0.1% of loan amount"
+      ]
+    },
+    "bundlingNotes": "This is the earliest of 3 American Eagle Title Group vintages found (2019, 2023, 2024), all borrower-only basic fee sheets serving both Oklahoma City and Tulsa (partnered here with Buffalo Land Abstract Company). Explicitly states abstracting fees are set/maintained by respective county companies, not AETG itself.",
+    "transactionContext": "Purchase and refinance, borrower/buyer-only fees, statewide (Oklahoma City and Tulsa offices)."
+  },
+  {
+    "provider": "American Eagle Title Group",
+    "sourceUrl": "https://www.ameagletitle.com/wp-content/uploads/AETG-Tulsa-Buyer-Fee-Sheet-2023-02.pdf",
+    "asOf": "Effective February 2023",
+    "settlementFee": "Purchase: Closing Fee $350. Refinance: Closing Fee $300.",
+    "itemizedFees": {
+      "docPrep": "$75 (if applicable)",
+      "processing": "Title Services $175 (purchase and refinance)",
+      "courier": null,
+      "wire": "$50 per payoff (if applicable)",
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": "$150 (if applicable)",
+      "searchExam": "Title Exam $300, Final Search $300 (purchase and refinance)",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Abstracting (Tulsa, refinance): $550",
+        "Bankruptcy Search: $75 (if needed)",
+        "Pre-Closing Gap: $75 (refinance)",
+        "Release Fee (affidavit): $100 (if applicable)",
+        "Mobile Home Post-Closing Processing Fee: $350"
+      ]
+    },
+    "bundlingNotes": "Tulsa-specific vintage of AETG's fee sheet; Title Services fee rose $150->$175 versus the 2019 vintage while Closing/Title Exam/Final Search held flat, a modest 3-year increase.",
+    "transactionContext": "Purchase and refinance, borrower-only fees, Tulsa."
+  },
+  {
+    "provider": "American Eagle Title Group",
+    "sourceUrl": "https://www.ameagletitle.com/wp-content/uploads/PDF-Tulsa-Closing-Fees.pdf",
+    "asOf": "Effective January 2024",
+    "settlementFee": "Purchase: Closing Fee $450 (split if AETG represents seller too). Refinance: Closing Fee $150.",
+    "itemizedFees": {
+      "docPrep": "$75 (if applicable)",
+      "processing": "Title Services Fee $300 (purchase); Title Services $310 (refinance)",
+      "courier": null,
+      "wire": "$50 per payoff",
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": "$150 (if applicable)",
+      "searchExam": "Title Exam $450 (purchase) / $300 (refinance); Final Search $300 minimum (purchase) / $300 (refinance)",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Closing Lock Fee: $25 (purchase and refinance)",
+        "Abstracting (Tulsa, refinance): $575",
+        "Pre-Closing Gap: $75 minimum (refinance)",
+        "Bankruptcy Search: $75 (refinance, if needed)",
+        "Release Fee (affidavit): $100 (if applicable)",
+        "Mobile Home Post-Closing Processing Fee: $350"
+      ]
+    },
+    "bundlingNotes": "Most recent AETG vintage found. Notable year-over-year jump from the 2023-02 vintage: purchase Closing Fee $350->$450 (+29%) and Title Exam $300->$450 (+50%), while Title Services and Abstracting rose more modestly. Introduces a new $25 'Closing Lock Fee' not present in earlier vintages.",
+    "transactionContext": "Purchase and refinance, borrower-only fees, Tulsa."
+  },
+  {
+    "provider": "Old Republic Title (National Title Insurance Company / American Guaranty Title Insurance Company)",
+    "sourceUrl": "https://www.oldrepublictitle.com/media/5177/rate-card-may-2019.pdf",
+    "asOf": "Rate card dated May 2019; title premium rates effective August 2018",
+    "settlementFee": "Residential Closing Fee: $300 total (illustrated as $150 buyer / $150 seller in the chart's worked example).",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": "Title Service Fee $150 total (illustrated $75 buyer / $75 seller)",
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": "$4-$5 per document, if applicable",
+      "notarySigning": null,
+      "searchExam": "Title Exam/Attorney's Opinion $200; Final Title Report $125",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Abstracting: $150 (platted/unplatted, 180 days or less) to $550 (over 180 days)",
+        "Covenants and restrictions copy: $25",
+        "Mortgage Tax Certification Fee: $5",
+        "Documentary stamp: $0.75/$500; Recording first page $13, each additional page $2",
+        "Simultaneous Issue: add $50 to Title Insurance Premium",
+        "Worked example at $150,000 sale, 4-year-old abstract: Abstracting $550 + Closing Fee $300 + Title Exam $200 + Final Title Report $125 + Title Service Fee $150 + Title Insurance Premium $670 + Simultaneous Issue $50 + Covenants copy $25 = $2,070 combined buyer+seller stack"
+      ]
+    },
+    "bundlingNotes": "Genuine, itemized settlement-fee schedule (not premium-only) for Oklahoma, Canadian, and Cleveland Counties (Oklahoma City metro). Includes a fully worked numeric example allocating each fee between buyer and seller for a $150,000 transaction -- one of the most explicit fee-allocation illustrations found in this survey.",
+    "transactionContext": "Purchase (buyer/seller allocation), Oklahoma City metro (Oklahoma, Canadian, Cleveland Counties)."
+  },
+  {
+    "provider": "Old Republic Title",
+    "sourceUrl": "https://www.oldrepublictitle.com/media/4jobmzy2/or1765-oklahomafeesheet-di-ok-010423.pdf",
+    "asOf": "Effective January 2024",
+    "settlementFee": "Closing Fee: $150 (buyer), $150 (seller), $150 (refinance).",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": "Title Service Fee $125 (buyer, seller, and refinance each)",
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": "$5 per document, if applicable",
+      "notarySigning": null,
+      "searchExam": "Title Exam $200 (buyer, refinance); Final Title Report $150 (buyer, refinance)",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Abstracting: $575 (seller, refinance); New Build on Abstract: $750 (seller)",
+        "Copy of Covenants and Restrictions: $25 (buyer)",
+        "Mortgage Tax Certification Fee: $5",
+        "Documentary Stamp: $0.75/$500; Recording first page $18, each additional page $2",
+        "Electronic recording service fee: $5/document, if applicable"
+      ]
+    },
+    "bundlingNotes": "Companion regulator-standard title insurance premium schedule also verified (same PDF, page 2): Owner's Policy from $360 at $50,000 insured to $2,694 at $1,000,000, with a separate lower Refi Rate column; +$50 for simultaneous issue. Directly comparable to the 2019 vintage rate card from the same underwriter for the same 3 counties: Closing Fee dropped $300->$150 total while Title Exam held flat at $200 and Abstracting rose modestly $550->$575.",
+    "transactionContext": "Purchase (buyer/seller allocation) and refinance, Oklahoma City metro (Oklahoma, Canadian, Cleveland Counties)."
+  },
+  {
+    "provider": "First National Title Insurance Company",
+    "sourceUrl": "https://documentpub.fnti.com/Documents/Oklahoma/Rate%20Manual/FNTI%20OK%20Rate%20Manual%20Effective%202020-05-16.pdf",
+    "asOf": "Effective May 16, 2020",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Owner's Standard Coverage: Tiered Risk Rate $180 up to $30,000, +$3.75/$1,000 to $100K, +$2.75/$1,000 to $200K, +$2.00/$1,000 above; Flat Risk Rate alternative also offered",
+        "Owner's Extended/Homeowner's: $225 up to $30,000, +$4.00/+$3.00/+$2.00 per $1,000 by tier",
+        "Loan Policy: 100% of Basic Rate; Refinance: 80% of Basic Rate",
+        "Concurrent issuance of Owner's + Loan Policy: smaller/concurrent liability policy $50",
+        "ALTA Residential Limited Coverage Junior Loan Policy: $150-$250 (unavailable above $300,000 mortgage)",
+        "Bundled Centralized Loan Rates (electronic, centralized lender programs): $350 up to $100,000, scaling to $2,475 at $1.5M + $4/$10,000 above",
+        "National Lender Services Rates (2 order-volume tiers): $300-$1,020 by liability tier",
+        "Commercial Owner's/Loan Policy: $2.00/$1,000 up to $1M, $1.50/$1,000 to $5M, $1.35/$1,000 above",
+        "Extensive ALTA endorsement fee schedule (Appendix B), e.g. Street Assessments $50-$75, Zoning 25% capped at $2,000"
+      ]
+    },
+    "bundlingNotes": "Premium-only rate manual. General Rule C explicitly states: 'The Rates in this Schedule are for title insurance only and do not include Charges for searches, abstracts, attorney's fees, escrow or closing services, inspections, or other services charged by local attorneys, surveyors, abstractors, or abstract companies.'",
+    "transactionContext": "Owner's policy (purchase, standard/extended/homeowner's), loan policy (purchase, refinance, junior loan, centralized/bulk lender programs), commercial -- premium calculation only, statewide with county-code appendix (no rate differentiation by county)."
+  },
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/oklahoma/rates/WFG%20Oklahoma%20Rate%20Table.pdf",
+    "asOf": "Oklahoma Basic Risk Premium Rates effective April 9, 2000 (document last modified/re-hosted 2022-05-26)",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Title Examination Fee: $100 (Chart C)",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Owner or Mortgagee Policy (Chart A): $132 at $30,000 scaling to $775 at $240,000; +$2/$1,000 above $240,000 (surface rights only)",
+        "Abstract Fees (Chart B), tiered by certification-currency and platted/subdivision status: $300-$550 (platted subdivision) / $350-$550 (all others), by 5 age bands from 'less than one year' to '15 years or more'",
+        "Final Title Report: $100 (Chart C)",
+        "Simultaneous Issue of Loan Policy: $50 (Chart C)",
+        "Filing Fees: $8 first page, $2 each additional page",
+        "Documentary Stamps: $1.50/$1,000 (rounded to $500 increments)",
+        "Mortgage Tax: $0.02-$0.10 per $100 by loan-term tier"
+      ]
+    },
+    "bundlingNotes": "NOTABLE VINTAGE CAVEAT: this is a 2000-effective-date document (re-hosted/modified in 2022 without an updated effective date), making it by far the oldest rate filing found in this survey and likely superseded in practice even though it is the only current WFG OK document indexed. Unusually among WFG's state manuals, this one DOES include genuine dollar-denominated ancillary fees (Chart B abstract fees, Chart C title examination/final report/simultaneous issue fees) directly alongside the premium chart, rather than excluding them -- a rarer, richer disclosure pattern than WFG's typical exclusion language seen in other states. Given its age, these dollar figures are flagged as likely outdated and are excluded from the state's current observed service-stack range calculation (see OK.md methodology note).",
+    "transactionContext": "Owner/mortgagee policy (purchase), abstracting, title examination, simultaneous issue -- premium plus genuine (but likely stale) ancillary service fees, statewide."
+  }
+]

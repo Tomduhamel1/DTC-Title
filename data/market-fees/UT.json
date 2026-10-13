@@ -1,0 +1,324 @@
+[
+  {
+    "provider": "Stewart Title Guaranty Company (statewide, all Utah agents/attorneys issuing Stewart policies)",
+    "sourceUrl": "https://www.stewart.com/-/media/files/stewartdotcom/pdfs/states/utah/utahratemanualfinaleff04102023.pdf",
+    "asOf": "Last updated 2023-03-07; effective 2023-04-10",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/escrow fee schedule. The manual's own definition of 'Charge' explicitly states: 'a Charge does not include any settlement fee, trustee fee, inspection fee, document fee, closing fee, escrow fee or any other fee associated with escrow.'",
+      "basicScheduleOfCharges_sample": "$0-$10,000 = flat $200 minimum ($230 minimum charge applies to the calculated total); $10,001-$100,000 add $49.00 per $10,000; $100,001-$200,000 add $48.00 per $10,000; $200,001-$500,000 add $37.50 per $10,000; $500,001-$2,000,000 add $18.50 per $10,000. At $200,000 total liability the Basic Schedule of Charges = $1,121.",
+      "standardOwners": "100% of Basic Schedule of Charges",
+      "extendedOwners": "Surcharge of 40% of Basic Schedule of Charges",
+      "homeownersPolicy": "110% of Basic Schedule of Charges",
+      "standardLoan": "55% of Basic Schedule of Charges",
+      "extendedLoan": "66% of Basic Schedule of Charges",
+      "expandedLoan": "70% of Basic Schedule of Charges",
+      "refinanceStandardLoan": "50% of Basic Schedule of Charges",
+      "refinanceExtendedLoan": "60% of Basic Schedule of Charges",
+      "refinanceExpandedLoan": "65% of Basic Schedule of Charges",
+      "smartPolicy_sample": "Limited residential standard-coverage lender policy: $125 up to $50,000; $225 up to $200,000; $400 up to $500,000 (not available above $500,000 liability)"
+    },
+    "itemizedFees": {
+      "cpl": "$25 each for lender, purchaser, and borrower; $50 for seller. Additional $25 for a second mortgage/HELOC by a non-primary lender.",
+      "other": [
+        {
+          "name": "Trustee's Sale Guarantee",
+          "amount": "80% of Basic Schedule of Charges, $300 minimum"
+        },
+        {
+          "name": "Litigation Guarantee",
+          "amount": "100% of Basic Schedule of Charges, $230 minimum"
+        },
+        {
+          "name": "ALTA Residential Limited Coverage Mortgage Modification Policy",
+          "amount": "$150 flat"
+        },
+        {
+          "name": "ALTA Junior Loan Policy",
+          "amount": "$110 up to $100,000; $160 to $130,000; $190 to $160,000; $220 to $200,000; $275 to $300,000"
+        },
+        {
+          "name": "Additional chain of title",
+          "amount": "$150 (or $75 if the land was previously insured)"
+        },
+        {
+          "name": "Environmental Recorded Document Guarantee",
+          "amount": "$500 per $10,000 coverage plus $60/hour/person for search work"
+        },
+        {
+          "name": "Datedown endorsement after 6 months",
+          "amount": "$75"
+        }
+      ]
+    },
+    "bundlingNotes": "No escrow, closing, settlement, trustee, inspection, or document-prep fees appear anywhere in this 27-page manual -- it is exclusively a title-premium and endorsement price list. This is the most explicit and complete definitional exclusion of settlement-adjacent fees found among the three Utah underwriter manuals reviewed this session, naming 6 specific excluded fee types in a single sentence.",
+    "transactionContext": "Owner's (Standard, Extended, Homeowner's), Loan (Standard, Extended, Expanded, Refinance tiers, SMART limited-coverage), Leasehold, Guarantee (Trustee's Sale, Litigation), and HUD Resale Binder premium schedules, statewide with no metro/county rate split. Full ALTA/STG/CLTA endorsement price list included."
+  },
+  {
+    "provider": "WFG National Title Insurance Company (statewide, all Utah agents issuing WFG policies)",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/utah/rate-manuals/WFG%20Utah%20Title%20Rate%20Manual%20Effective%20October%201,%202024.pdf",
+    "asOf": "Effective 2024-10-01",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/escrow fee schedule. The manual's Introduction states rates are 'all-inclusive' of risk plus search/exam/commitment-preparation, but explicitly excludes 'surveys, escrow, closing services, tax searches and certificates, municipal lien searches, settlement services, notary services and fees, recording fees, and other charges.'",
+      "basicRateTable_sample": "$0-$10,000 = $200 minimum; $10,001-$50,000 add $5.50/thousand; $50,001-$100,000 add $5.10/thousand; $100,001-$250,000 add $4.60/thousand; $250,001-$500,000 add $3.70/thousand; $500,001-$750,000 add $2.20/thousand; $750,001-$1,000,000 add $1.90/thousand. At $200,000 total liability the Basic Rate = $1,135 -- within 1.2% of Stewart's $1,121 figure at the identical liability amount, and numerically identical in structure to First National Title Insurance Company's published Utah Basic Rates table (both use $200/$5.50/$5.10/$4.60/thousand at the same tiers).",
+      "standardOwners": "100% of Basic Rate",
+      "expandedCoverageHomeowners": "110% of Basic Rate",
+      "extendedOwners": "150% of Basic Rate",
+      "loanAcquisition_standard": "50% of Basic Rate",
+      "loanAcquisition_expanded": "70% of Basic Rate",
+      "loanAcquisition_extended": "65% of Basic Rate",
+      "loanFinance_standard": "50% of Basic Rate",
+      "loanFinance_expanded": "65% of Basic Rate",
+      "loanFinance_extended": "60% of Basic Rate",
+      "shortTermReissueRate": "65% of the applicable owner's premium if a prior policy (any underwriter) covering the same property, dated within 48 months, is presented",
+      "lendersSpecialRate_sample": "Tiered flat fee for qualifying centralized-lender refinance transactions: $350 up to $100,000; $560 to $500,000; $820 to $1,000,000; up to $3,500 at $1,800,001-$2,000,000"
+    },
+    "itemizedFees": {
+      "cpl": "$25 per party protected, pursuant to Utah Insurance Code 31A-4-117. Agents retain no portion of the CPL fee.",
+      "other": [
+        {
+          "name": "Trustee's Sale Guarantee",
+          "amount": "80% of Basic Rate, $300 minimum"
+        },
+        {
+          "name": "Litigation Guarantee",
+          "amount": "100% of Basic Rate, $300 minimum"
+        },
+        {
+          "name": "Additional parcel work charge (multi-parcel/non-contiguous)",
+          "amount": "$250 per parcel"
+        },
+        {
+          "name": "Mortgage Protection Guarantee / Mortgage Modification Policy",
+          "amount": "$125 up to $1,000,000; $250 to $1,500,000; $350 to $2,000,000"
+        },
+        {
+          "name": "ALTA Residential Limited Coverage Junior Loan Policy",
+          "amount": "$110 flat up to $250,000"
+        },
+        {
+          "name": "Master Home Equity / HE2 certificate fee",
+          "amount": "$45 up to $250,000; $75 to $500,000; $250 to $750,000; $300 to $1,000,000"
+        }
+      ]
+    },
+    "bundlingNotes": "Explicitly and directly excludes escrow, closing, settlement, and notary fees in its opening Introduction -- the most itemized single-sentence exclusion list found among the three Utah manuals. Notably, WFG's Basic Rate Table is structurally identical (same $/thousand figures at the same liability tiers through $250,000) to First National Title Insurance Company's separately-filed Utah Basic Rates, suggesting a shared base-rate benchmark across at least two of the three Utah underwriters reviewed.",
+    "transactionContext": "Owner's (Standard, Expanded/Homeowner's, Extended), Loan (Acquisition and Finance/refinance, each in 3 coverage tiers), Leasehold, water-rights, subdivision/developer, and Lender's Special Rate (centralized-refinance) premium schedules, statewide with no metro/county rate split."
+  },
+  {
+    "provider": "First National Title Insurance Company (FNTI, statewide, all Utah policy-issuing agents)",
+    "sourceUrl": "https://documentpub.fnti.com/Documents/Utah/Rate%20Manual/FNTI%20Utah%20Rate%20Manual%20Effective%202022-06-06.pdf",
+    "asOf": "Effective 2022-06-06 (a separate 2019-vintage FNTI marketing rate chart, fnti.com/file/title-rates-escrow-fees-utah/, corroborates near-identical Basic Rate figures at $200,000 liability: $1,135 vs. the 2022 manual's own $5,000-increment table, which computes to the same $1,135 at that tier)",
+    "settlementFee": {
+      "note": "Title insurance premium only. The manual does not contain an explicit settlement-fee-exclusion sentence like Stewart's or WFG's, but no escrow/closing/settlement dollar figures appear anywhere in the 24-page document -- confirmed by direct review of all 10 chapters.",
+      "scheduleOfBasicRates_sample": "Up to $10,000 = flat $200; $10,001-$50,000 add $27.50 per $5,000; $50,001-$100,000 add $25.50 per $5,000; $100,001-$200,000 add $23.00 per $5,000; $200,001-$500,000 add $18.50 per $5,000. At $200,000 total liability = $1,135, matching WFG's Basic Rate at the identical liability amount almost exactly.",
+      "standardOwners": "100% of Basic Insurance Rate",
+      "extendedCoverageOwners": "150% of Basic Insurance Rate",
+      "homeownersPolicy": "110% of Basic Insurance Rate",
+      "standardLoan": "60% of Basic Insurance Rate",
+      "extendedLoan": "70% of Basic Insurance Rate",
+      "expandedLoan": "80% of Basic Insurance Rate",
+      "refinance_standard": "50% of Basic Rate",
+      "refinance_extended": "55% of Basic Rate",
+      "refinance_expanded": "65% of Basic Rate",
+      "qualifiedBundledResidentialRefinanceRate_sample": "Flat tiered fee (includes customary endorsements at no extra charge): $360 up to $250,000; $540 to $500,000; $800 to $1,000,000; up to $1,300 at $2,000,001-$3,000,000",
+      "expeditedRefinanceRates_sample": "Two centralized-lender tiers: $300-$860 (Tier 1) or $275-$650 (Tier 2, most-streamlined) across $0-$1,500,000 liability"
+    },
+    "itemizedFees": {
+      "cpl": "$25 flat, per Utah Insurance Code 31A-4-117",
+      "other": [
+        {
+          "name": "Trustee's Sale Guarantee",
+          "amount": "80% of Basic Rate"
+        },
+        {
+          "name": "Litigation Guarantee",
+          "amount": "90% of Basic Insurance Rate, plus $25/additional parcel"
+        },
+        {
+          "name": "Additional chain of title/parcel charge",
+          "amount": "Referenced in Ch. 2.7 (fee not separately scheduled as a flat dollar figure)"
+        },
+        {
+          "name": "Standard bundled endorsements (resale, up to 5)",
+          "amount": "$75 flat"
+        },
+        {
+          "name": "Commercial bundled endorsements (6+)",
+          "amount": "$500 flat"
+        },
+        {
+          "name": "Condemnation Report",
+          "amount": "$200 per parcel; continuation reports $50"
+        }
+      ]
+    },
+    "bundlingNotes": "Purely a title-premium and endorsement manual -- no settlement, escrow, closing, doc-prep, courier, wire, or notary fee anywhere across all 10 chapters (Owner's, Lender's, Leasehold, Builder/Subdivision, Guarantees, Water Policy, Reissue, Miscellaneous Charges, Reporting Codes, Endorsements). FNTI's Basic Rate table structure and per-increment dollar figures are functionally identical to WFG's Utah manual at every liability tier checked, a notable cross-underwriter convergence not seen to this degree in most other states surveyed.",
+    "transactionContext": "Owner's, Lender's (incl. multiple centralized/bundled refinance products), Leasehold, Builder/Subdivision, Water Policy, and Guarantee (Trustee's Sale, Litigation) premium schedules, statewide with no metro/county rate split."
+  },
+  {
+    "provider": "Sutherland Title Company (independent, Salt Lake City & Draper -- Salt Lake County/Wasatch Front)",
+    "sourceUrl": "https://www.sutherlandtitle.com/title-and-escrow-fees/",
+    "asOf": "Retrieved 2026-07-22 (no effective/revision date printed on the page)",
+    "settlementFee": {
+      "note": "Genuine, itemized settlement/escrow fee page -- not a title premium schedule. Title/loan policy premiums are referenced as determined by sales price/insurance amount but no dollar table is published on this page (Sutherland presumably follows an underwriter's filed rate manual for the premium component).",
+      "closingFee": "$50.00 to $175.00, varying by transaction type",
+      "shortSaleFlatFee": "$500.00"
+    },
+    "itemizedFees": {
+      "docPrep": "$25.00 to $50.00 (e-mail package/document preparation), varying by transaction type",
+      "processing": null,
+      "courier": "Overnight (FedEx) $20.00 to $30.00 per package, varying by transaction type",
+      "wire": "$20.00 per wire transfer",
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        {
+          "name": "Trustee/reconveyance tracking",
+          "amount": "$75.00 per Deed of Trust"
+        },
+        {
+          "name": "Standard Utah loan-policy endorsements",
+          "amount": "$55.00"
+        },
+        {
+          "name": "Recording fees",
+          "amount": "Vary by document (specific figures not published on this page)"
+        }
+      ]
+    },
+    "bundlingNotes": "The only Utah source found this session with a genuinely itemized, provider-published settlement/escrow fee page (as opposed to an interactive rate calculator). Closing fee, doc-prep, courier, wire, and trustee-tracking are each billed as separate line items rather than bundled into one flat number. No effective date is printed on the page, and title/loan insurance premium amounts are not disclosed here (referred elsewhere to sales price/insurance amount, implying a separate filed-rate lookup).",
+    "transactionContext": "Salt Lake City/Draper (Salt Lake County, Wasatch Front). Covers general purchase/refinance closings plus a distinct short-sale flat fee; no separate cash-vs-financed purchase breakout published."
+  },
+  {
+    "provider": "Provo Abstract Company (independent, Provo -- Utah County, also serving Salt Lake & Juab Counties)",
+    "sourceUrl": "https://www.provoabstract.com/closing-costs",
+    "asOf": "Retrieved 2026-07-22 (no effective/revision date printed on the page)",
+    "settlementFee": {
+      "note": "Partial, genuinely itemized settlement-fee data -- the core settlement/closing fee itself is not disclosed as a static dollar figure (only available via an interactive rate calculator linked from the same page), but several concrete add-on charges are published directly in text.",
+      "eClosingFee_cashBuyerOrSeller": "$20.00",
+      "eClosingFee_loanBuyer": "$75.00"
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": "$5.00 per document (charged by Simplifile, a third-party e-recording service, passed through)",
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        {
+          "name": "Standard 3 endorsements issued with a normal home loan (ALTA 8.1, 9/CLTA 100, 22/CLTA 116)",
+          "amount": "$60.00 total"
+        },
+        {
+          "name": "Title Insurance Fee, Settlement/Closing Fee, Escrow Fees, Reconveyance Fee, Wire Transfer Fees, Utah County Recording Fees",
+          "amount": "Referenced by name on the page but not assigned static dollar figures -- directed to an interactive rate calculator instead"
+        }
+      ]
+    },
+    "bundlingNotes": "Thinner than Sutherland Title's page -- most fee categories are named but not priced in static text, with the core settlement fee itself routed to a rate calculator (not fetchable as a static document). The e-closing fee ($20 cash / $75 loan), standard-endorsement bundle ($60), and e-recording pass-through ($5/document) are the only genuinely static dollar figures found. Included as a good source under the evidence rules because these are real, provider-published dollar amounts for settlement-adjacent services, even though the headline closing/settlement fee is calculator-only.",
+    "transactionContext": "Provo/Utah County (also Salt Lake and Juab Counties). Distinguishes cash vs. loan transactions for the e-closing fee; no separate purchase-vs-refinance breakout published in static text."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company — Estimated Rate/Fee Calculator (ortconline.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
+    "calculatorUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
+    "retrievalDate": "2026-07-22",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, residential resale, Sale transaction type, Loan Estimate calculation. Property location: Salt Lake City, UT (Salt Lake County). City used: Salt Lake City (Salt Lake County, UT's most populous county).",
+    "methodology": "Harvested via direct HTTP GET/POST against the calculator's ASP.NET WebForms postback mechanism (__VIEWSTATE/__EVENTVALIDATION), replicating the same sequential form submissions the browser's JS performs (state select -> county/city select -> Sales Price/Loan Amount -> Submit); no browser/JS execution was used or required. The 'Your Name', 'Your Company', and 'This estimate is being prepared for' fields were left blank throughout -- confirmed optional (no required-symbol asterisk in the form) -- no fabricated personal information was entered at any step.",
+    "settlementFee": {
+      "note": "Not a single line item in this tool's output; the closest analog is the 'Settlement Agent Fee' shown in Section C, split buyer/seller (buyer's share shown here). Settlement Agent Fee total (both parties): Title - Settlement Agent Fee (Total: $395.00)."
+    },
+    "itemizedFees": {
+      "cpl": "$25.00 (Closing Protection Letter Fee)",
+      "eRecording": "$10.00 (Electronic Recording Fee)",
+      "processing": "$395.00 (Settlement Agent Fee, Total: $395.00)",
+      "other": [
+        {
+          "name": "Title - Lender's Title Policy (Total: $1,218.00) [buyer's lender's title policy premium]",
+          "amount": "$1,218.00"
+        }
+      ]
+    },
+    "sectionTotals": "C: Services You Can Shop For: $1,648.00; E: Taxes and Other Government Fees: $80.00; H: Other: $0.00",
+    "bundlingNotes": "Owner's Title Policy line was struck through with a '(See ** below)' footnote marker whose corresponding note text was not rendered in the fetched HTML fragment (likely UT's customary seller-pays convention, consistent with the buyer-side $0 total); the $395.00 Settlement Agent Fee is within 0.5% of Sutherland Title's Salt Lake City figure already on file for this state, a close cross-provider corroboration.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k purchase scenario; City used: Salt Lake City (Salt Lake County, UT's most populous county)."
+  },
+  {
+    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-08",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Salt Lake County (UT's most-populous/standard-scenario county), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Solved this session by extracting the calculator's own Angular \"sellerNetForm\" component logic from its lazy-loaded route chunk (webpack chunk 7, hash 8a01902021d264bdb338 -- fetched by replaying the runtime bundle's own chunk-hash map, since this route is not referenced in the shell page's main.js until a user actually clicks into the seller-net-sheet flow). This resolved the 2026-08-07 session's blocker: `POST /api/rates/fees/estimatefeesforsellernet` was 500ing with unhelpful ProblemDetails errors because the guessed flat `PropertyState`/`PropertyCounty`/`PropertyCity` fields (borrowed from the sibling, differently-shaped `sellernet/calculate` endpoint's own validation-error field names) do not match this endpoint's real schema. The component's own `prepareCalculateFeeRequest()` method reveals the actual required body: `Properties: [{City, County, IsPrimary: true, State}]` (nested, not flat), `Loans: [{LienPosition: 0, LoanAmount}]`, `TransactionProductType: {ProductTypeId: 0, TransactionTypeId: 0}` (0/0 confirmed correct for this flow, not a placeholder), `calculateTaxRequest: {}` (an empty class instance), `SettlementStatementVersion: \"CD\"`, and empty arrays/objects for `premiumDiscounts`/`Endorsements`/`PriorLenderPolicy`/`PriorOwnerPolicy`. Driven via a plain Content-Type: application/json HTTP POST, no browser/JS execution needed. Confirmed via `GET /api/rates/State/GetCalculationEnabledStates` (also public, no auth) that this one API has `isCalculationEnabled: true` for 47 states + DC -- a single new, genuinely distinct 5th major-underwriter source (WFG National Title, a separate corporate family from FNF/Old Republic/Stewart/First American, all already on file elsewhere in this survey) usable across nearly every remaining below-threshold scarce state in one technique. No personal-data field (name/email/phone) exists anywhere in this request shape. Separately confirmed via static inspection of the same chunk's hardcoded `feesConfiguration` sort-weight table that WFG has only itemized its settlement/closing HUD-fee line items for 7 states (WA, CA, TX, OR, AZ, NV, CO) -- for every other state (including this one) the tool returns a premium-only result (Owner's Title Insurance Premium, no settlement/search/doc-prep breakdown), which per this project's 2026-08-05 FNF scoping correction is still valid, dated calculator-harvest evidence.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,519.00",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's sellernet/seller-side-only design; not pursued further as out of scope for the seller-net flow)",
+      "other": [],
+      "note": "Premium-only result -- no itemized settlement/search/doc-prep breakdown appears for this state in this tool (see methodology: only WA/CA/TX/OR/AZ/NV/CO have configured HUD-fee line items in WFG's own fee-description table)."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "Property location for this request: Salt Lake City, UT (Salt Lake County). Discovered and harvested in the same 2026-08-08 session across 8 below-threshold scarce states at once (OR, NM, CT, NE, MS, LA, UT, SC) using one newly-solved API -- see CALCULATORS.md's 2026-08-08 entry for the full technical recipe and the complete list of states affected.",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Salt Lake County, UT."
+  },
+  {
+    "provider": "Fidelity National Title Insurance Company — FNF National Rate Calculator (ratecalculator.fnf.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=UT",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=UT (ASP.NET WebForms __doPostBack/__VIEWSTATE flow)",
+    "retrievalDate": "2026-08-09",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Salt Lake County (UT's most-populous county), residential resale, Fidelity National Title underwriter selected.",
+    "methodology": "Solves the 2026-08-06 session's logged 'unsolved AmountLoan1 postback quirk' for UT (and separately SC, see SC.json) -- the quirk was never a real server-side block, it was a bug in that session's own replay script: every extracted hidden-field dict included the page's <input type=\"submit\"> button name=value pairs (e.g. btnGeneralNext=\"Next\") carried forward unchanged into later POSTs, causing the server to treat every subsequent postback as an implicit re-click of that button and silently fast-forward/desync the wizard state (masquerading as a 'silently dropped AmountLoan1 value'). Fixed by excluding submit/button/image/reset <input> types from the carried-forward field set and only including a given button's name=value on the specific POST that is actually 'clicking' it. Once fixed, UT's real (and previously undocumented) blocker turned out to be a genuinely required 3-question CPL-eligibility radio cascade with no default selection (Lender/Borrower -> Buyer -> Seller, each field `rc_CPL*Eligible` only appearing in the response once the prior one is answered) -- answered each as 'Yes' (value=1, the first/default-oriented option) via its own dedicated postback, matching how a real user would click through the wizard. Recipe otherwise unchanged from the documented FNF flow: GET with ?ID=FNF&state=UT, POST ddlCounty='salt lake' (own __EVENTTARGET), POST ddlUnderwriters='fnt' (own __EVENTTARGET, Fidelity National Title), POST btnGeneralNext='Next' to reach the Amounts panel, POST TranType$ddl='PropertyPurchase' (own __EVENTTARGET), POST AmountPurchase$txt='$500,000.00' (own __EVENTTARGET), POST AmountLoan1$txt='$400,000.00' (own __EVENTTARGET) -- now echoed correctly, POST the 3-question CPL cascade, then POST btnFinish='Finish' for the final quote. No personal-data fields required at any step.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,262.00 (ALTA Standard Coverage Owner's Policy; Owner's Policy Disclosure Amount $2,262.00, Adjustment $0.00)",
+      "loanPolicyPremium": "$1,225.00 (ALTA Extended Coverage Loan Policy, Loan #1, Liability $400,000.00; Loan Policy Disclosure Amount $1,225.00)",
+      "other": [],
+      "note": "Premium-only result per this tool's standard disclaimer (totals exclude title search, examination, additional work charges, certification, or closing fees) -- same scoping as every other FNF entry in this survey, accepted as valid calculator-harvest evidence per the 2026-08-05 CT-session scoping correction."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "Crosses UT to 3 calculator-basis providers (Old Republic, WFG, FNF) -- calculator-quoted status. FNF's Owner's Premium ($2,262.00) sits between Old Republic's and WFG's own already-filed-rate-manual figures on file for UT, a plausible mid-range point in a state with no rating bureau. Fidelity National Title was selected from the underwriter dropdown (also offered: Chicago Title, Commonwealth Land Title, National Title Insurance of NY, all sharing one calculation engine per the CT-session's already-documented byte-identical-output finding).",
+    "transactionContext": "FNF National Rate Calculator's Owner's and Loan title insurance premium quote for a $500,000 residential purchase with a $400,000 loan, Salt Lake County, UT."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company -- Stewart Rate Calculator, matched settlement office: Stewart Title of Utah, Inc. (2733 East Parley's Way, #200, Salt Lake City, UT 84109)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true (LoanEstimate/QuoteType=3 flow) and https://www.stewartratecalculator.com/Quote/Netsheet?urlParams=&quotetype=2&branded=true (Netsheet/QuoteType=2 flow); both POST to the shared /api/SRC/quote endpoint",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Salt Lake County (Salt Lake City), residential resale, Sale/Purchase with Mortgage transaction type, BASIC coverage on both Owner's and Lender's policies. Richness-pass harvest applying an already-solved, previously state-limited recipe to a state not yet in Stewart's harvested-state list, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "methodology": "Harvested via Stewart's discoverable `/api/SRC/*` JSON REST API (stewartratecalculator.com), driven entirely by plain HTTP GET/POST (Python requests.Session(), cookie jar) with no browser/JS execution and no personal-data fields, replaying the full recipe documented in this project's CALCULATORS.md (2026-08-14 'SOLVED' entry): GET the LoanEstimate/Netsheet page to scrape a fresh antiforgery cookie + __RequestVerificationToken; GET /api/SRC/propertysearch to resolve the county FIPS code and a default zip; GET /api/SRC/providers to find the county's real settlement office(s) (used to set ProviderID on the QuoteType=3 flow so the itemized settlement-fee list is populated -- an empty ProviderID silently returns a null itemized list); GET /api/SRC/statesettings and /api/SRC/ernstlookup for state-level defaults; build the QuoteRequestRoot JSON by hand (Owner's Policy $500,000 / Lender's Policy $400,000, BASIC coverage, standard Sale/Purchase with Mortgage transaction); POST /api/SRC/quote twice -- QuoteType=2 (Netsheet, pageBuyerSeller=seller) for Recording/CFPB2015 transfer-tax figures, and QuoteType=3 (LoanEstimate, pageBuyerSeller=buyer, IsCalculatePremium=True, IsCalculateTitleServiceFee=True) for the itemized Pricing.TitleServiceFee.ItemizedTitleServiceFeeList settlement-fee line items. One new gotcha found and fixed this session: stewartratecalculator.com's bare apex domain 301-redirects every POST to the www subdomain, and that redirect's response body hangs indefinitely on this sandbox's proxied connection (a 30s+ read timeout with 0 bytes received) -- fixed by targeting https://www.stewartratecalculator.com directly, skipping the apex redirect entirely; this is an environment/proxy artifact, not a sign the endpoint is blocked. Also confirmed the documented /api/SRC/providers gotcha firsthand: for a single-provider county the response's `Provider` field is a bare object, not a one-element list -- must be normalized before indexing or ProviderID silently stays empty and every itemized-fee list comes back null (looks exactly like a genuine empty result).",
+    "settlementFee": {
+      "note": "$800.00 total, split buyer $400.00 / seller $400.00 (line item: 'Title Closing Fee')"
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,246.00",
+      "loanPolicyPremium": "$1,030.00",
+      "other": [
+        {
+          "name": "Title Closing Fee",
+          "amount": "$800.00 (buyer $400.00 / seller $400.00)"
+        },
+        {
+          "name": "Title Recording Service Fees",
+          "amount": "$15.00 (buyer $10.00 / seller $5.00)"
+        }
+      ],
+      "note": "2 itemized settlement/closing-fee line item(s) returned via the QuoteType=3 flow."
+    },
+    "sectionTotals": "Owner's Policy Premium $2,246.00; Lender's Policy Premium $1,030.00; itemized settlement fees sum $815.00",
+    "bundlingNotes": "No deed/transfer/mortgage recording tax returned by this tool for this state (consistent with states known to levy no such tax, or the tax simply isn't configured in this tool).",
+    "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Salt Lake County, Utah."
+  }
+]

@@ -1,0 +1,182 @@
+[
+  {
+    "provider": "Texas Department of Insurance (TDI) — Basic Manual of Rules, Rates, and Forms for the Writing of Title Insurance in the State of Texas (REGULATORY/PROMULGATED, not provider-set)",
+    "sourceUrl": "https://www.tdi.texas.gov/orders/documents/20259697.pdf (Commissioner's Order No. 2025-9697, Exhibit A rate table) and https://www.tdi.texas.gov/rules/2025/documents/2026titlerateprop.pdf (rule adoption); premium table cross-verified against two independent provider republications: https://www.republictitle.com/wp-content/uploads/2026/02/Residential-Title-Rates.pdf and https://www.independencetitle.com/wp-content/uploads/pdfs/TitleRates_March2026.pdf",
+    "asOf": "Order signed 2025-12-19; rates effective 2026-03-01 (a 6.2% reduction from the prior Order No. 2019-5980 schedule)",
+    "settlementFee": {
+      "note": "TITLE INSURANCE PREMIUMS in Texas are fixed by the Insurance Commissioner under Tex. Ins. Code ch. 2703 and are UNIFORM across every title company/agent in the state -- this is not a provider-set price and is included here for regulatory context, not as a 'good source' on the settlement-fee side. Basic (Owner's Policy) premium table effective 3/1/2026, exact figures from Exhibit A: $25,000 liability = $308; $50,000 = $465; $100,000 = $780; $200,000 = $1,274 (per Republic Title's and Independence Title's own March-2026 republications of the identical TDI table); $300,000 = $1,768; $400,000 = $2,262; $500,000 = $2,756; $1,000,000 = $5,226.",
+      "premiumFormulaOver100k": "For $100,001-$1,000,000: (Face Amount - $100,000) x 0.00494 + $780. For $1,000,001-$5,000,000: (Face Amount - $1,000,000) x 0.00406 + $5,226. Additional tiers up to $100,000,000+ published in Exhibit A.",
+      "cplFee": "Texas Insurance Code Sec. 2702.001(c): 'A title insurance company may not impose a charge for issuing insured closing and settlement letters under this section.' The Insured Closing Letter (ICL, Texas's equivalent of a CPL, Form T-50/T-51) is therefore promulgated at $0 -- issued 'incidentally to title insurance at no additional cost' (confirmed independently by First Texas Title's own site, see separate entry below, and by National Investors Title Insurance Company's Texas Underwriting Manual, which states the ICL 'provides additional coverage for certain escrow matters at no cost'). No exact fee amount is stated anywhere in the Basic Manual because none may be charged.",
+      "guarantyFee": "State of Texas Title Insurance Guaranty Association (TTIGA) Policy Guaranty Fee: $2.00 per owner's policy and $2.00 per loan policy issued (in effect since 5/1/2019), increasing to $3.00 per policy for closings after 9/30/2026 per TLTA Compliance Update (https://tlta.com/TLTA/News_Articles/Compliance_Update_Guaranty_Fee_Increasing_Starting_Oct_1_2026.aspx) and TTIGA (https://ttiga.org/guaranty-fees/). This fee is paid by the consumer and shown on the settlement statement; it funds TDI's title-agent audit function and agent-insolvency costs. Independently corroborated at $2.00/policy on two provider fee sheets fetched this session (Patten Title and Texas National Title, see below)."
+    },
+    "itemizedFees": {
+      "other": [
+        { "name": "Owner's/Loan Policy simultaneous-issue discount (Rate Rule R-5)", "amount": "Loan policy issued at reduced rate when issued simultaneously with an Owner's Policy on the same property/date" },
+        { "name": "Subordinate mortgagee policy issued simultaneously with first-lien policy (Rate Rule R-7)", "amount": "$5.00 flat" }
+      ]
+    },
+    "bundlingNotes": "TX is a file-and-use / commissioner-fixed-rate state: the basic premium is identical for every title insurance company and every title agent in Texas at a given liability amount and effective date -- confirmed by three independently fetched, differently-branded documents (TDI's own Commissioner's Order, Republic Title's March-2026 rate card, and Independence Title's March-2026 rate card) all showing numerically identical figures ($780 at $100,000, $2,262 at $400,000, $5,226 at $1,000,000, etc.). Because the premium is fixed, it carries NO market signal about provider quality or competitiveness -- the settlement/escrow/service-fee side (documented in the entries below) is the only place where TX title companies actually compete on price, and it varies enormously by provider, as the entries below demonstrate.",
+    "transactionContext": "Applies uniformly to Owner's Policy and Loan Policy premiums statewide, all metros, all provider types (national-brand underwriters, independent agents, attorneys). Not applicable to purchase-vs-refinance distinctions -- premium calculation depends only on policy face amount, not transaction type."
+  },
+  {
+    "provider": "First Texas Title (independent, Abilene, TX and surrounding Taylor/Callahan/Shackelford counties)",
+    "sourceUrl": "https://www.firsttexastitle.com/buyer-information/ and https://www.firsttexastitle.com/seller-information/ and https://www.firsttexastitle.com/lender-information/",
+    "asOf": "Retrieved 2026-07-22; no explicit effective date stated on the page (described as current pricing)",
+    "settlementFee": {
+      "purchaseWithLoan_buyerSide": "$475 Settlement Fee + ~$130 estimated recording fees",
+      "purchaseCash_sellerSide_escrowFee": "$300 Settlement/Escrow Fee + ~$34.54 estimated recording fees",
+      "standardSale_sellerSide": "$350 Settlement Fee",
+      "mobileHomeWithLoan_buyerSide": "$600 Settlement Fee + ~$160 recording + $55 state filing fee",
+      "mobileHomeCash_sellerSide": "$450 Settlement/Escrow Fee + ~$70 recording + $55 state filing fee",
+      "refinance": "$495 Settlement Fee",
+      "builderInterimConstructionLoan": "$350 Settlement Fee"
+    },
+    "itemizedFees": {
+      "docPrep": "Refinance lien-release doc prep (Bradshaw, McCall & Westbrook, PLLC): $100 per lien release. Seller-side standard sale doc prep: $300 total ($200 deed + $100 per lien release). Mobile home sale doc prep: $450 total ($200 deed + $150 statement of ownership/location + $100 per lien release).",
+      "processing": "$50-$80 (component of the $100 'mailout' surcharge when a party signs remotely rather than in-office; buyer side $50 processing + $50 courier; seller side $80 processing + $20 courier)",
+      "courier": "$20-$50 (see processing note above); standalone e-recording $4.54 per document",
+      "wire": null,
+      "edoc": null,
+      "eRecording": "$4.54 per document (component of recording fee calculation: $25 first page + $4 each additional page + $4.54 e-recording)",
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "No additional charge (issued incidentally to title insurance) -- see TDI regulatory entry",
+      "binder": null,
+      "other": [
+        { "name": "Tax Certificate (per account)", "amount": "$10" },
+        { "name": "Legal doc prep -- Bill of Sale", "amount": "$200" },
+        { "name": "Legal doc prep -- Power of Attorney (incl. affidavit and recording)", "amount": "$219.08" },
+        { "name": "Legal doc prep -- Note/Deed of Trust", "amount": "$300" },
+        { "name": "Legal doc prep -- Homestead Affidavit", "amount": "$85" },
+        { "name": "Legal doc prep -- Mechanic's Lien Documents", "amount": "$350" },
+        { "name": "Loan package attorney doc prep (owner finance/hard money/private money)", "amount": "$400-$500" },
+        { "name": "Same-day rush delivery fee", "amount": "$100" },
+        { "name": "Additional chains of title", "amount": "$328 per additional chain" },
+        { "name": "Mobile closings", "amount": "$100-$200" }
+      ]
+    },
+    "bundlingNotes": "Small/mid-market Texas independent (Abilene, not one of the 4 major metros, but included as the only source found this session with this level of granular itemization outside the big metros). Escrow/settlement fee is charged separately from the promulgated title premium, consistent with the TX market convention. Explicitly states ICLs are issued 'incidentally to title insurance at no additional cost,' independently corroborating the TDI/statutory finding above.",
+    "transactionContext": "Distinct published fee schedules for: purchase with loan, cash purchase, mobile home purchase (with/without loan), refinance, and builder/interim construction loans. Buyer and seller sides priced and itemized separately."
+  },
+  {
+    "provider": "Patten Title Company (independent, headquartered Houston/River Oaks, TX, with locations statewide)",
+    "sourceUrl": "https://pattentitle.com/wp-content/uploads/2022/09/DIGITAL_PattenTitle_FeeSheet.pdf",
+    "asOf": "Retrieved 2026-07-22; document undated internally but hosted at a 2022 upload path with no newer version found",
+    "settlementFee": {
+      "purchase_residential": "$795.00 Escrow Fee per side",
+      "purchase_commercial": "$995.00 Escrow Fee per side",
+      "refinance_residential": "$795.00 Escrow Fee",
+      "refinance_commercial": "$995.00 Escrow Fee"
+    },
+    "itemizedFees": {
+      "docPrep": "Attorney Doc Prep Fee: Subordination Agreement $225.00; Warranty Deed $150.00; Affidavits $150.00-$500.00; POAs $75.00; Releases of Lien $75.00; Affidavit of Heirship $300.00; Loan-package doc prep (owner finance/hard money/private money) $400-$500",
+      "processing": null,
+      "courier": "Shipping Fee: $35 per side (purchase); $35 (refinance)",
+      "wire": null,
+      "edoc": null,
+      "eRecording": "$5.33 per document",
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "No additional charge (per TDI regulatory finding above; not separately itemized on this fee sheet)",
+      "binder": null,
+      "other": [
+        { "name": "Tax Certificate (paid by seller)", "amount": "$93.80" },
+        { "name": "State of Texas Guaranty Fee", "amount": "$2.00 per policy" },
+        { "name": "Recording Fee (buyer, purchase)", "amount": "$100.00 estimated" },
+        { "name": "Recording Fee (seller, purchase)", "amount": "$24.00 estimated" },
+        { "name": "Recording Fee (refinance)", "amount": "$100.00 estimated" },
+        { "name": "Mobile closings", "amount": "$100.00-$200.00" },
+        { "name": "Additional chains of title", "amount": "$328.00 per additional chain" },
+        { "name": "Rush fee (same-day delivery)", "amount": "$100.00" },
+        { "name": "T-30 Rollback Deletion endorsement", "amount": "$20.00" },
+        { "name": "T-36 Environmental endorsement", "amount": "$25.00" },
+        { "name": "T-33 Adjustable Rate endorsement", "amount": "$20.00" },
+        { "name": "Tax Deletion endorsement", "amount": "$5.00" }
+      ]
+    },
+    "bundlingNotes": "One of the most granular, richly itemized settlement-fee sheets found in this session -- separately breaks out the flat escrow fee, tax certificate, state guaranty fee, recording, e-recording, shipping, and a full attorney-doc-prep menu, plus common endorsements priced individually. Escrow fee is flat regardless of transaction size (residential) rather than percentage/tiered, unlike the promulgated premium.",
+    "transactionContext": "Houston-headquartered but explicitly serves 'locations throughout the state of Texas.' Purchase and refinance escrow fees are identical ($795 residential / $995 commercial); no separate 'refinance discount' unlike some other states' markets."
+  },
+  {
+    "provider": "Texas National Title, a Mother Lode Company (independent; document text specifies Greater Austin area, though the filename references Corpus Christi -- see note)",
+    "sourceUrl": "https://www.texasnationaltitle.com/wp-content/uploads/2024/08/SellersEstimatedCharges-Corpus.pdf",
+    "asOf": "Retrieved 2026-07-22; document undated internally, uploaded to site 2024-08",
+    "settlementFee": {
+      "escrowFee_allLoanTypes": "$450 flat (identical across Conventional, VA, FHA, and Cash transactions per the document's own comparison table)"
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "No additional charge (per TDI regulatory finding above)",
+      "binder": null,
+      "other": [
+        { "name": "Attorney's Fee", "amount": "$200+" },
+        { "name": "Recording Fee (per contract)", "amount": "Between $62-$150" },
+        { "name": "Tax Certificates", "amount": "$65" },
+        { "name": "Tax Service Fee (VA/FHA only)", "amount": "$115" },
+        { "name": "Termite Inspection (VA only)", "amount": "$75+" },
+        { "name": "Policy Guaranty Fee", "amount": "$2" }
+      ]
+    },
+    "bundlingNotes": "Document is a seller's-side estimated-charges worksheet (blank lines for variable items like commission, taxes, and title premium 'per rate schedule'); the escrow fee is the only fully filled-in dollar figure and is identical across all four financing types shown. NOTE ON GEOGRAPHIC LABEL: the PDF filename says 'Corpus' but the document's own footer text states 'The estimated charges above are conventional for transactions involving properties in the Greater Austin area only' -- this session is citing the document's own internal text (Austin) over its filename (which may be a stale/reused template from a different regional office), and flags this discrepancy for any future session that revisits Texas National Title.",
+    "transactionContext": "Seller's estimated closing costs for a purchase transaction; shown identically for Conventional, VA, FHA, and Cash financing. No refinance-specific figures on this document."
+  },
+  {
+    "provider": "Valero Title, Inc. (independent, San Antonio, TX -- 'A New Concept Title and Escrow Services')",
+    "sourceUrl": "https://www.valerotitle.com/",
+    "asOf": "Retrieved 2026-07-22; no explicit effective date, described as current pricing",
+    "settlementFee": {
+      "refinance_escrowFee": "$100 flat (explicitly marketed: 'A $100 Escrow Fee! That's Right...we charge the lowest of escrow fees (on REFINANCE TRANSACTIONS ONLY). Potential $500 OR MORE in savings!')",
+      "purchase_escrowFee": "Not stated on the fetched page (only the refinance figure is quoted)"
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": "Explicitly stated as NOT charged: 'we do not charge you for processing fees, courier fees, copy fees, fax fees, recording service fees or the similar'",
+      "courier": "Explicitly not charged (see above)",
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "No additional charge (per TDI regulatory finding above)",
+      "binder": null,
+      "other": []
+    },
+    "bundlingNotes": "San Antonio provider explicitly positions itself as the low-cost outlier on the unregulated settlement-fee side of the market ('one of the INDUSTRY'S LOWEST FEE STRUCTURES'), and explicitly disclaims the junk fees (processing, courier, copy, fax, recording-service) that several other TX providers in this survey itemize and charge separately (e.g., First Texas Title's $50-$80 processing/courier mailout surcharge, Great American Title's $20-$30 courier fee). This is direct, provider-stated evidence of the price competition the completion contract expects to find on the TX settlement-fee side.",
+    "transactionContext": "Refinance transactions only for the quoted $100 figure; purchase-side escrow fee not published on the fetched page."
+  },
+  {
+    "provider": "Great American Title Company (GATCO) (independent, statewide Texas branch network)",
+    "sourceUrl": "https://greatamtitleco.com/images/GATCO-CLOSING-FEE-SCHEDULE.pdf (current live URL returns HTTP 404 as of 2026-07-22; content verified this session via the Wayback Machine's archived capture of the still-live page at https://web.archive.org/web/20250416165727/https://greatamtitleco.com/images/GATCO-CLOSING-FEE-SCHEDULE.pdf, dated 2025-04-16, downloaded and read as a genuine PDF this session)",
+    "asOf": "Document states 'Effective: 9-01-2019; Date good until revised' and was still being served live by the provider as recently as the 2025-04-16 archive snapshot -- i.e., unrevised for ~5.5+ years as of that capture",
+    "settlementFee": {
+      "purchase_escrowFee": "$550",
+      "refinance_escrowFee": "$500"
+    },
+    "itemizedFees": {
+      "docPrep": "Warranty Deed prepared by attorney: $150-$250 (not itemized separately by transaction type)",
+      "processing": null,
+      "courier": "Overnight/Courier Fee: $30 (purchase) / $20 (refinance)",
+      "wire": null,
+      "edoc": null,
+      "eRecording": "$12 (purchase and refinance)",
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "No additional charge (per TDI regulatory finding above; not itemized on this sheet)",
+      "binder": null,
+      "other": [
+        { "name": "Tax Certificate Fee", "amount": "$80 (purchase and refinance)" },
+        { "name": "Survey Fee (Lot & Block properties only; acreage tracts priced separately on request)", "amount": "$500 (purchase and refinance)" },
+        { "name": "Recording fee calculation", "amount": "$24 first page / $4 each additional page" }
+      ]
+    },
+    "bundlingNotes": "Explicitly framed as a Loan-Estimate fee sheet for lenders ('For Lender Use Only'), 'good in State of Texas only' and 'good until revised' -- i.e., published specifically to support TRID/CFPB Loan Estimate compliance, distinct from a consumer-facing rate card but still a genuine provider-published, dollar-denominated settlement-fee document. Escrow fee is $50 higher for purchase than refinance, and courier fee is $10 higher for purchase, mirroring the same purchase>refinance fee-tiering pattern seen at Great American's fellow statewide independent Patten Title (though Patten prices purchase and refinance identically) and at First Texas Title.",
+    "transactionContext": "Statewide Texas branch network; distinct escrow/courier figures for purchase vs. refinance transactions, plus a worked example showing how the (uniform, promulgated) title premium itself should be entered on a Loan Estimate."
+  }
+]

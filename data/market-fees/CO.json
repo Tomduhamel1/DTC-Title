@@ -1,0 +1,316 @@
+[
+  {
+    "provider": "Empire Title of Colorado Springs (a Division of Stewart Title Company)",
+    "sourceUrl": "https://www.etcos.com/wp-content/uploads/2024/03/333901-24-STC-CO-Empire-Title-El-Paso-Teller-Rate-FLY.pdf",
+    "asOf": "Escrow/closing charges effective 2024-02-20 (title premium rates effective 2023-02-13; PDF revised March 2024)",
+    "settlementFee": {
+      "bundledRealEstateClosingFee": {
+        "realtorDirected": "$360",
+        "forSaleByOwner": "$550"
+      },
+      "bundledLoanClosingFee": {
+        "1stMtgConcurrentWithSale": "$380",
+        "2ndMtgConcurrentWithSale": "$250",
+        "1stMtgRefinance": "$450"
+      },
+      "commercial": {
+        "realEstateClosing": "$500",
+        "loanClosing": "$500"
+      }
+    },
+    "itemizedFees": {
+      "wire": "$25 (1 wire included in bundled fees)",
+      "courier": "included (1) in bundled closing fees, not separately priced outside the bundle",
+      "docPrep": "Mail Out Preparation $30",
+      "other": [
+        {
+          "name": "Tax Certificate",
+          "amount": "$35"
+        },
+        {
+          "name": "Cashier's Check",
+          "amount": "$25"
+        }
+      ]
+    },
+    "bundlingNotes": "Bundled Real Estate Closing Fee 'Includes our fee for closing, presentation, wire fee (1), courier fee (1), mail fees, cashier's check (1), disbursement, except tax certificate and recording fees.' Bundled Loan Closing Fee adds 'loan document retrieval' to the same list, also excluding tax certificate and recording fees. Loan title insurance premiums are separately bundled with endorsements (e.g., Loan Policy Issued with Sale $531 up to $100,000, scaling to $1,406 for $1.5M-$2M; Refinance Loan Policy $525 up to $100,000 scaling to $1,375 for $1M-$2M) and explicitly 'Includes applicable endorsements.'",
+    "transactionContext": "Purchase and refinance covered separately; price-tiered for loan policy premiums (by loan amount), flat-fee (not price-tiered) for the closing/settlement fee itself; county-specific (El Paso and Teller Counties)."
+  },
+  {
+    "provider": "Warranty Title (Colorado Springs, CO)",
+    "sourceUrl": "https://www.warrantytitle.net/closing-rates.html",
+    "asOf": "Effective 2025-05-05",
+    "settlementFee": {
+      "residentialSalesClosing": {
+        "premiumCounties (Adams, Arapahoe, Boulder, Broomfield, Denver, Douglas, El Paso, Elbert, Jefferson, Larimer, Teller, Weld)": {
+          "resale_RealtorBroker": "$285",
+          "forSaleByOwner": "$350",
+          "builderDeveloper": "$205"
+        },
+        "otherCounties": {
+          "resale_RealtorBroker": "$200",
+          "forSaleByOwner": "$325",
+          "builderDeveloper": "$180"
+        }
+      },
+      "lenderLoanClosing_residential": {
+        "conventional/FHA/VA/3rdParty": {
+          "premium": "$285",
+          "other": "$200"
+        },
+        "presentationOnly": {
+          "premium": "$175",
+          "other": "$150"
+        },
+        "disbursementOnly": {
+          "premium": "$175",
+          "other": "$150"
+        },
+        "juniorLoan": {
+          "premium": "$250/$200 (concurrent w/ 1st mtg = lower)",
+          "other": "$200/$120"
+        }
+      },
+      "bundledLoanPackage_premiumCountiesOnly": "$390.00 — includes loan closing fee, courier, wire, tax certificate, e-recording, e-doc and e-storage fees",
+      "commercial": "$375-$400 across transaction types"
+    },
+    "itemizedFees": {
+      "wire": "$25",
+      "courier": "$30",
+      "edoc": "$25",
+      "eRecording": "$43/document (recording) plus E-filing $8/document",
+      "other": [
+        {
+          "name": "E-storage",
+          "amount": "$15"
+        },
+        {
+          "name": "Miscellaneous services",
+          "amount": "$50/hour"
+        },
+        {
+          "name": "Short sale resolution",
+          "amount": "$600"
+        }
+      ]
+    },
+    "bundlingNotes": "Standalone closing fee is unbundled/itemized by default; a separate 'Bundled Loan Closing Fee' product ($390, premium counties only) explicitly packages courier, wire, tax certificate, e-recording, e-doc and e-storage into one line.",
+    "transactionContext": "Purchase (resale/FSBO/builder) and refinance/loan closings covered; two-tier geographic pricing (premium metro counties vs. all other counties) rather than price-of-home tiering."
+  },
+  {
+    "provider": "Homestead Title & Escrow",
+    "sourceUrl": "https://homesteadtc.com/rates/basic-rates/",
+    "asOf": "Effective 2025-03-01",
+    "settlementFee": {
+      "realEstateClosingFee": "$420",
+      "loanClosingFee": "$475"
+    },
+    "itemizedFees": {
+      "eRecording": "$20/document",
+      "other": [
+        {
+          "name": "Consumer Protection Fee",
+          "amount": "$20"
+        },
+        {
+          "name": "Release Tracking Fee",
+          "amount": "$60/payoff"
+        },
+        {
+          "name": "Tax Certificate (buyer)",
+          "amount": "$40"
+        }
+      ]
+    },
+    "bundlingNotes": "Closing fees are listed as standalone, separately itemized line items (not bundled into one all-in figure); page separately notes 'Owners Extended Coverage: Included with Eagle Policy' for the title insurance product. Coverage area: Adams, Arapahoe, Broomfield, Denver, Douglas, Elbert, Gilpin, Jefferson, Clear Creek counties.",
+    "transactionContext": "Purchase (Real Estate Closing Fee) and refinance/loan (Loan Closing Fee) priced as flat separate fees; not tiered by sale price. Title insurance premium itself is tiered by policy amount (Basic Rate table) and reissue rates tiered by time since prior policy (55%/60%/75% of Basic Rate by year band)."
+  },
+  {
+    "provider": "WFG National Title Insurance Company (underwriter) — Colorado Title Insurance Rate Manual",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/colorado/rates/WFG%20Colorado%20Title%20Rate%20Manual%20effective%201-15-2026%20.pdf",
+    "asOf": "Effective 2026-01-15 (filed rate manual)",
+    "settlementFee": "NOT APPLICABLE / NOT INCLUDED — the manual explicitly states (Section A.c): title insurance premiums do NOT include 'any charges for escrow, settlement or closing services, including but not limited to escrow service fees, handling of escrows, settlements or closings, mechanic's lien review, disbursement fees, delivery fees, copies fees, attorney's fees, document preparation fees, or any other special services.' Those are billed by the settlement agent separately.",
+    "itemizedFees": {
+      "cpl": "$25 per protected party (Closing Protection Letter, Section J) — 'deemed to be earned upon closing... If the transaction is cancelled and does not close, the CPL fee is waived.'",
+      "other": [
+        {
+          "name": "TBD Commitment (6-month hold, no concurrent transaction)",
+          "amount": "$350"
+        },
+        {
+          "name": "Additional chain of title search",
+          "amount": "$100 each"
+        },
+        {
+          "name": "Policy correction/replacement endorsement",
+          "amount": "$150"
+        },
+        {
+          "name": "Lost policy replacement",
+          "amount": "$50"
+        }
+      ]
+    },
+    "bundlingNotes": "Title-insurance premium manual only, zoned by county (Zone 1: Adams/Arapahoe/Broomfield/Denver/Douglas/Elbert/Jefferson; Zone 2: Boulder/Larimer/Weld; Zone 3: El Paso/Pueblo/Teller; Zone 4: all others). Owner's policy minimum premiums: Zone 1 $900, Zone 2 $700, Zone 3 $600, Zone 4 $900 (for $0-$5,000 coverage tier), scaling up per the Basic Rate Table (e.g., $1M policy = $2,990 Zone 1 / $2,640 Zone 2 / $2,572 Zone 3 / $2,990 Zone 4). Confirms CO is a filed-rate (not promulgated) state and that closing/settlement fees are filed and charged separately from the underwriter's premium by the settlement agent.",
+    "transactionContext": "Premiums are purchase/owner's-policy and loan-policy, price(liability)-tiered by $5,000 increments up to $1M then larger increments; also lists 'Bundled Simultaneous Purchase Loan Rate' and 'Bundled Residential Refinance Loan Rate' tables which bundle the loan policy premium (not settlement fees) with specified endorsements at no extra charge."
+  },
+  {
+    "provider": "First Integrity Title Company (Denver, CO) — via comparetitlecompanies.com's multi-company \"Comparison Summary\" tool (TRACcalculator/TI Services, LLC platform), underwriter Westcor Land Title Insurance Company",
+    "basis": "calculator",
+    "sourceUrl": "https://www.firstintegritytitle.com/client-resources/co-rate-calculator/",
+    "calculatorUrl": "https://comparetitlecompanies.com/get_quote/get_quote.php?id=1",
+    "endpointOrParams": "Plain server-rendered PHP 2-step wizard (from_step/next_step), driven via POST with a requests.Session() cookie jar -- the same TRACcalculator/TI Services LLC engine already on file for AZ (title_co_id-based getquote.php), but this is a DIFFERENT entry point: get_quote.php?id=1 is comparetitlecompanies.com's own state-branded (Colorado) multi-company COMPARISON tool, which runs the standard scenario against every title company licensed in the chosen county at once (both TRAC-subscribing agencies with itemized detail AND non-subscribing agencies with a DOI-filed-rate-only estimate) rather than one single named agency. Step 1: POST counties_id=17 (Denver) + city_town_id=50 (Denver) + transaction_types_id=1 (Sale) + address (place-name only, e.g. 'Denver, CO', no street address) + contact_email left blank (optional, no asterisk) to get_quote.php?SID=<session>. Step 2: POST property_types_id=1 (Single Family), q2_amt=500000, q4_amt=400000, q10_int=0 (mortgages to pay off), addlq_40/41=1 (Seller pays Owner's Policy/OEC, page defaults), addlq_42=3 (Closing Fee Split 50/50, page default), addlq_45/46=1 (include buyer/seller CPL, page defaults) -- plus 4 easy-to-miss HIDDEN fields embedded deeper in Step 2's own form (q7_amt=1, q8_y_n=0, q9_amt=1, q11_y_n=0) that are NOT in the visible field list and must be copied verbatim from the Step 2 GET response or the POST 500s/re-renders Step 2 with an uninformative 'Please correct the following 1 errors' banner and no visible per-field error text. Redirects (302) to summary_quote.php?quote=<id>, which lists every CO company found in that county; TRAC-subscribing companies (a small minority) show a 'View Details' link to quote_detail.php?id=<company id>&buyer/seller for the full line-item breakdown -- non-subscribing companies show only a DOI-filed-rate aggregate total with no itemization and are out of scope for calculator-basis evidence.",
+    "retrievalDate": "2026-07-28",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Single Family residential, Sale transaction. County used: Denver (Denver County/City), NOT El Paso County (Colorado Springs) -- El Paso is CO's most populous county but this tool found zero TRAC-subscribing (itemized) companies there, only DOI-filed-rate-only non-subscribers; Denver County (CO's 2nd/3rd most populous, and the only other county checked with a subscribing company) was substituted per the task's own fallback allowance for a calculator's actual service footprint. First Integrity Title Company was also confirmed as the sole subscribing company in Jefferson, Arapahoe, and Douglas Counties (same statewide agency, not additional distinct providers) -- Boulder, Larimer, Pueblo, Weld, and Mesa Counties returned zero subscribing companies.",
+    "methodology": "No personal data entered at any step -- contact_email (Step 1) has no required-asterisk and was left blank; no name/phone field exists anywhere in the 2-step flow. Verified the omission is safe: leaving contact_email blank still produced a full itemized quote. The address field (required) was filled with a non-identifying place-name ('Denver, CO') rather than a fabricated street address. Two placeholder scenario dates required by the form (date current owner purchased property; date of most recent mortgage) were set to 01-15-2015 -- generic transaction-scenario metadata about the modeled property, not personal information about any person -- since the standard scenario brief does not specify these and the form rejects blank/zero dates.",
+    "itemizedFees": {
+      "settlementClosing": "Residential Sale Closing Fee $180.00 (charged both buyer and seller, CO's Split 50/50 default) + Residential Sale 1st Loan Closing Fee $450.00 (buyer only, for the new 1st mortgage)",
+      "cpl": "Buyer's CPL $25.00 + Lender's CPL $25.00 (both buyer-paid); Seller's CPL $25.00 (seller-paid)",
+      "searchExam": "Owner's Extended Coverage (OEC) endorsement $95.00 (seller-paid, deletes standard pre-printed exceptions 1-4)",
+      "processing": "Tax Certificate Fee $25.00 (buyer-paid; county tax-status certificate required for closing)",
+      "notarySigning": null,
+      "docPrep": null,
+      "eRecording": null,
+      "other": [
+        {
+          "name": "Conveyance Deed recording (government, buyer-paid, estimated)",
+          "amount": "$43.00"
+        },
+        {
+          "name": "1st Deed of Trust release recording (government, buyer-paid, estimated)",
+          "amount": "$43.00"
+        },
+        {
+          "name": "Colorado State Documentary Transfer Tax (government, buyer-paid; C.R.S. 39-13-102, $0.01/$100 of purchase price)",
+          "amount": "$50.00"
+        },
+        {
+          "name": "1st - Concurrent Loan Policy title insurance premium (buyer-paid)",
+          "amount": "$450.00"
+        },
+        {
+          "name": "Owner's Title Insurance premium (seller-paid)",
+          "amount": "$2,001.00"
+        }
+      ]
+    },
+    "sectionTotals": "Buyer Total Estimated Costs: $1,155.00 (Title Insurance $0 [concurrent-issue] + Loan Policy $450 + Buyer's CPL $25 + Lender's CPL $25 + Closing Fee $180 + 1st Loan Closing Fee $450 + Tax Certificate $25); plus government recording ($43+$43=$86, shown separately, not in the $1,155 total) and transfer tax ($50, also separate). Seller Total Estimated Costs: $2,301.00 (Owner's Title Insurance $2,001 + OEC $95 + Seller's CPL $25 + Closing Fee $180); no separate government charges on the seller side.",
+    "bundlingNotes": "This is a distinct recipe from AZ's already-documented title_co_id-specific TRACcalculator embed (comparetitlecompanies.com/get_quote/getquote.php?title_co_id=567) -- get_quote.php?id=1 is the platform's own Colorado-branded multi-company shopping/comparison tool and does not require knowing an agency's title_co_id in advance; it surfaces whichever agencies subscribe in the chosen county automatically. First Integrity Title Company appears to be the platform's only Colorado-subscribing agency at present (confirmed identical across Denver/Jefferson/Arapahoe/Douglas Counties); the remaining ~8 companies listed in every county checked (Equitable Title & Escrow, and others) are non-subscribers whose displayed totals are DOI-filed-rate aggregate estimates, not live calculator output, and were excluded from this harvest as out of scope for calculator-basis evidence (footnote: '* This Title Company does not use the services of CompareTitleCompanies.com for marketing purposes... The View Details feature is not available for a Non-Subscribing Company').",
+    "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Denver County -- substituted for El Paso County (CO's nominally most populous county) because El Paso had zero subscribing/itemized calculator companies on this platform."
+  },
+  {
+    "provider": "Fidelity National Financial (FNF) National Rate Calculator -- shared calculation engine confirmed byte-identical across Chicago Title Insurance Company and Fidelity National Title Insurance Company brands (Commonwealth Land Title Insurance Company also offered in CO's underwriter dropdown but not separately re-tested, per this platform's own documented single-engine architecture)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=CT&state=CO",
+    "calculatorUrl": "https://ratecalculator.fnf.com/ (single POST endpoint driving the entire ASP.NET WebForms postback wizard)",
+    "retrievalDate": "2026-08-05",
+    "scenario": "$500,000 purchase price / $400,000 Loan #1, Residential Property Purchase (with financing), Denver County, ALTA Standard Coverage Owner's Policy and ALTA Standard Coverage Loan Policy (page defaults), Quote Effective Date defaulted to today (8/5/2026). Buyer/Borrower, Seller, and Lender Closing Protection Letters all requested (page default already had Lender=Yes; Buyer/Borrower and Seller were explicitly toggled to Yes to capture full CPL fee data). All other qualifying questions (resale-commitment, short-term rate, abstract retirement eligibility) left at their No/default answers.",
+    "methodology": "Classic ASP.NET WebForms __doPostBack/__VIEWSTATE flow, fully driven via plain HTTP POST with a Python requests.Session() cookie jar (BeautifulSoup used only locally to parse each response and re-serialize the complete hidden-field/form state for the next POST -- no JS execution). Sequence: (1) GET https://ratecalculator.fnf.com/?ID=CT&state=CO -- redirects 302 to /?state=CO, confirms Colorado is a fully supported state with all 64 counties in the ddlCounty dropdown and a 3-brand ddlUnderwriters dropdown (values: cti=Chicago Title Insurance Company, clti=Commonwealth Land Title Insurance Company, fnt=Fidelity National Title Insurance Company); (2) POST ctl00$BodyContent$UcRateCalc1$ddlCounty=denver with __EVENTTARGET set to that field's full control name (triggers the county-select onchange postback); (3) POST ctl00$BodyContent$UcRateCalc1$ddlUnderwriters=cti (repeated separately with fnt) with matching __EVENTTARGET; (4) POST ctl00$BodyContent$UcRateCalc1$btnGeneralNext=Next (plain __EVENTTARGET=''); (5) POST the TranType radio group (ctl00$BodyContent$UcRateCalc1$pnlAmountsTransactionQuestions$0$TranType$rc_TranType=PropertyPurchase) with __EVENTTARGET equal to that field name + '$0' (the specific radio index) -- this reveals the amounts fields; (6) POST AmountPurchase$txt=500000 with matching __EVENTTARGET, which reveals Loan #1-5 amount fields, Property Type, and ~8 more qualifying questions all at once; (7) POST AmountLoan1$txt=400000 with matching __EVENTTARGET; (8) POST the CPL_BuyerOrBorrower radio group value=1 with __EVENTTARGET=<field>+'$0', then separately the CPL_Seller radio group value=1 the same way; (9) final POST with ctl00$BodyContent$UcRateCalc1$btnFinish=Finish (all other fields carried forward unchanged) returns the full Rate Summary page. No personal data entered at any step -- the flow has no name/email/phone/address field anywhere; Reference Number (optional) was left blank.",
+    "settlementFee": "NOT APPLICABLE / NOT INCLUDED -- FNF's own page footer explicitly states the calculator's totals 'include the charge for the title insurance policy premium and any additional endorsement charges that apply' and 'may not include any other amounts, such as charges/fees related to title search, examination, additional work charges, certification, or closing; inspection charges...' -- this is a premium-and-CPL-only calculator, consistent with the 2026-08-05 scoping correction noted in this task.",
+    "itemizedFees": {
+      "cpl": "Buyer/Borrower's CPL $25.00 + Seller's CPL $25.00 + Lender's CPL $25.00 (all three requested)",
+      "titleInsurancePremium_owners": "$1,998.00 (ALTA Standard Coverage Owner's Policy, $500,000 liability amount, Denver County)",
+      "titleInsurancePremium_loan": "$575.00 (ALTA Standard Coverage Loan Policy, $400,000 liability amount, Denver County -- qualifies for and is priced under FNF's 'Residential Resale Bundled Purchase Loan rate' program since Owner's and Loan policies are issued simultaneously)",
+      "endorsements": "$0.00 on both policies (none selected)",
+      "searchExam": null,
+      "notarySigning": null,
+      "docPrep": null,
+      "eRecording": null
+    },
+    "sectionTotals": "Total Charges for the Policy (Owner's Policy): $1,998.00. Total Charges for the Policy (Loan Policy, bundled purchase-loan rate): $575.00. Grand Total (Owner's Policy Purchased, includes both premiums + all 3 CPL fees): $2,573.00 ($1,998 + $575 + $25 + $25 + $25).",
+    "bundlingNotes": "Verified the underwriting-brand dropdown is cosmetic only, not a separate rate table: ran the identical $500k/$400k/Denver scenario once selecting 'cti' (Chicago Title Insurance Company) and once selecting 'fnt' (Fidelity National Title Insurance Company) -- every dollar figure (Owner's Policy $1,998.00, Loan Policy $575.00, all three $25.00 CPLs, Grand Total $2,573.00) was byte-identical between the two runs, confirming this task's guidance that FNF brands sharing this tool share one calculation engine. Recorded as a single provider entry per that guidance rather than one entry per brand; Commonwealth Land Title Insurance Company ('clti') was visible in the dropdown but not separately re-run given the confirmed shared-engine architecture. This calculator is the underwriter's own national tool (same platform already catalogued for other states in CALCULATORS.md), not a specific local settlement agent's calculator -- it prices title insurance premium and CPL fees only, explicitly excluding settlement/closing/escrow agent fees which are charged separately and are out of this tool's scope by FNF's own disclosed methodology.",
+    "transactionContext": "Statewide CO tool (all 64 counties in the dropdown); Denver County selected per the standard scenario. Premium is a filed/promulgated-style rate computed by county and liability amount, not a flat fee; the Loan Policy premium specifically reflects FNF's bundled simultaneous-issue purchase-loan rate program rather than a standalone loan-policy rate."
+  },
+  {
+    "provider": "Principal Title, LLC (Arvada, CO) -- independent Colorado title & escrow agency, ALTA member, registered CO trade name effective 2021-07-15",
+    "basis": "calculator",
+    "sourceUrl": "https://principaltitle.com/net-sheet-calculator/",
+    "calculatorUrl": "https://principaltitle.com/?getsptia=yes&zone=1&cp=500000",
+    "retrievalDate": "2026-08-05",
+    "scenario": "$500,000 purchase/contract price, Denver County (the calculator's own 3-tier county-to-zone system maps Denver, Adams, Arapahoe, Broomfield, Clear Creek, Douglas, Elbert, Gilpin, Jefferson, Lake, Mesa, Otero, and Park Counties to Zone 1). This is a SELLER'S NET SHEET calculator (models a seller's proceeds, not a buyer+lender purchase quote), so the standard scenario's $400,000 buyer loan amount does not map to any input on this tool -- the only loan-shaped input is the SELLER's own existing mortgage payoff to be cleared at closing, which has no scenario-specified value and was left at the page's own $0.00 default (not fetched/used by the endpoint harvested below in any case, which depends only on zone and contract price).",
+    "methodology": "The on-page form (WordPress 'Residential Rate Quote' plugin, rrq-script.js) gates its full net-sheet computation behind a required Seller Name field (plus property address, email, phone) before it will render results -- per this task's hard rule, that full-form path was NOT used and no name/email/phone was entered anywhere. Instead, full review of the plugin's own client-side JS (rrq-script.js) revealed the field is populated live, on every county/price keystroke, by an undocumented, stateless, unauthenticated plain GET endpoint: https://principaltitle.com/?getsptia=yes&zone=<zone>&cp=<contractPrice> -- 'sptia' = Seller-Paid Title Insurance Amount. This endpoint requires no cookies, session, or personal data of any kind and returns a bare numeric string (the dollar amount, no formatting). Zone values (1/2/3) were read directly off the page's own <select id=\"county\"> option list (64 CO counties each pre-mapped to a zone by Principal Title). Verified the endpoint is genuinely computing off live inputs (not a static/cached fallback -- the JS itself hardcodes a '2012' fallback string used only if the endpoint call fails, which was never observed) by requesting multiple zone/price combinations and confirming all four differed: zone1/$500k=$1,790, zone2/$500k=$1,590, zone3/$500k=$1,540, zone1/$400k=$1,590.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "titleInsurancePremium_owners": "$1,790.00 -- 'Owner's Title Policy' (seller-paid), Zone 1 (Denver County), $500,000 contract price; server-computed via the getsptia endpoint",
+      "other": [
+        {
+          "name": "Owner's Extended Coverage (OEC) endorsement -- page's own pre-filled default value (user-editable, not itself a server/zone-computed figure like the Owner's Title Policy premium above, but is the calculator's as-shipped default for this fee)",
+          "amount": "$75.00"
+        }
+      ],
+      "searchExam": null,
+      "notarySigning": null,
+      "docPrep": null,
+      "eRecording": null,
+      "closingSettlementFee": "Field exists ('titleCompanyClosingFee') but its default is a generic $0.00 (blank, user-must-fill), not a Principal Title-specific server-computed figure -- excluded from this record as unreliable evidence."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "This is a seller net-sheet tool, not a full itemized buyer+seller closing statement; only the Owner's Title Policy premium is genuinely server-computed (zone + price -based), which is the item recorded here as the calculator-basis dollar figure. All other net-sheet line items (commissions, HOA fees, closing fee, mortgage payoffs, misc credits/debits) are plain user-entry fields with generic non-company-specific $0.00 defaults and were excluded. whoPaysOTP/whoPaysOEC/whoPaysCSF (buyer/seller/split allocation dropdowns) default to unselected on page load.",
+    "transactionContext": "County-zone-tiered pricing across all 64 CO counties (3 zones); Zone 1 (Denver and 12 other Front Range/urban counties) is the highest-priced zone of the three observed ($1,790 vs. $1,590 Zone 2 vs. $1,540 Zone 3 at $500k), consistent with the general Denver-metro premium pattern already seen in this file's other CO sources."
+  },
+  {
+    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-11",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Denver County (CO's most-populous/standard-scenario county), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Richness-pass application of the 2026-08-08 session's fully-solved WFG recipe (see CALCULATORS.md) to Colorado, one of only 7 states (WA, CA, TX, OR, AZ, NV, CO) this tool has configured HUD-fee itemization for per its own hardcoded feesConfiguration sort-weight table, but which had no WFG entry on file yet. Driven via a plain `Content-Type: application/json` HTTP POST to the public, unauthenticated endpoint with body `{SalesPrice, Loans: [{LienPosition: 0, LoanAmount}], TransactionProductType: {ProductTypeId: 0, TransactionTypeId: 0}, Properties: [{City, County, IsPrimary: true, State}], calculateTaxRequest: {}, SettlementStatementVersion: \"CD\", premiumDiscounts: [], Endorsements: [], PriorLenderPolicy: {}, PriorOwnerPolicy: {}}` — no personal-data field anywhere in the request shape. Response returned HTTP 200 with a live server timestamp (2026-08-11T16:14:36Z) confirming this is a fresh, dated calculator quote.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1,990.00",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's sellernet/seller-side-only design; not pursued further as out of scope for the seller-net flow)",
+      "other": [
+        {
+          "name": "Mobile Notary Fee",
+          "amount": "$150.00",
+          "note": "seller-paid"
+        },
+        {
+          "name": "Settlement or Closing Fee",
+          "amount": "$400.00",
+          "note": "split $200.00 buyer / $200.00 seller"
+        },
+        {
+          "name": "Tax Certificate Fee",
+          "amount": "$30.00",
+          "note": "seller-paid; tool's own mismoType is TitleExaminationFee"
+        }
+      ],
+      "note": "Full itemized breakdown available for CO (one of the 7 states -- WA, CA, TX, OR, AZ, NV, CO -- with configured HUD-fee sort weights in this tool)."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "Property location for this request: Denver, CO (Denver County). Adds WFG as CO's 4th calculator-basis provider (already past the 3-provider threshold via First Integrity/TRACcalculator + FNF + Principal Title); harvested for richness (itemized HUD fees, not just a premium figure) per the standing next-session recommendation to push already-quoted states toward richer entries.",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium plus itemized settlement fees for a $500,000 residential purchase, Denver County, CO."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company -- Stewart Rate Calculator, matched settlement office: Capital Title, LLC (355 South Teller Street, Suite 200, Lakewood, CO 80226)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true (LoanEstimate/QuoteType=3 flow) and https://www.stewartratecalculator.com/Quote/Netsheet?urlParams=&quotetype=2&branded=true (Netsheet/QuoteType=2 flow); both POST to the shared /api/SRC/quote endpoint",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Denver County (Denver), residential resale, Sale/Purchase with Mortgage transaction type, BASIC coverage on both Owner's and Lender's policies. Richness-pass harvest applying an already-solved, previously state-limited recipe to a state not yet in Stewart's harvested-state list, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "methodology": "Harvested via Stewart's discoverable `/api/SRC/*` JSON REST API (stewartratecalculator.com), driven entirely by plain HTTP GET/POST (Python requests.Session(), cookie jar) with no browser/JS execution and no personal-data fields, replaying the full recipe documented in this project's CALCULATORS.md (2026-08-14 'SOLVED' entry): GET the LoanEstimate/Netsheet page to scrape a fresh antiforgery cookie + __RequestVerificationToken; GET /api/SRC/propertysearch to resolve the county FIPS code and a default zip; GET /api/SRC/providers to find the county's real settlement office(s) (used to set ProviderID on the QuoteType=3 flow so the itemized settlement-fee list is populated -- an empty ProviderID silently returns a null itemized list); GET /api/SRC/statesettings and /api/SRC/ernstlookup for state-level defaults; build the QuoteRequestRoot JSON by hand (Owner's Policy $500,000 / Lender's Policy $400,000, BASIC coverage, standard Sale/Purchase with Mortgage transaction); POST /api/SRC/quote twice -- QuoteType=2 (Netsheet, pageBuyerSeller=seller) for Recording/CFPB2015 transfer-tax figures, and QuoteType=3 (LoanEstimate, pageBuyerSeller=buyer, IsCalculatePremium=True, IsCalculateTitleServiceFee=True) for the itemized Pricing.TitleServiceFee.ItemizedTitleServiceFeeList settlement-fee line items. One new gotcha found and fixed this session: stewartratecalculator.com's bare apex domain 301-redirects every POST to the www subdomain, and that redirect's response body hangs indefinitely on this sandbox's proxied connection (a 30s+ read timeout with 0 bytes received) -- fixed by targeting https://www.stewartratecalculator.com directly, skipping the apex redirect entirely; this is an environment/proxy artifact, not a sign the endpoint is blocked. Also confirmed the documented /api/SRC/providers gotcha firsthand: for a single-provider county the response's `Provider` field is a bare object, not a one-element list -- must be normalized before indexing or ProviderID silently stays empty and every itemized-fee list comes back null (looks exactly like a genuine empty result).",
+    "settlementFee": {
+      "note": "$300.00 total, split buyer $300.00 / seller $0.00 (line item: 'Title Closing Fee')"
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1,947.00",
+      "loanPolicyPremium": "$1,756.00",
+      "other": [
+        {
+          "name": "Title Closing Fee",
+          "amount": "$300.00 (buyer $300.00 / seller $0.00)"
+        },
+        {
+          "name": "Title Recording Service Fees",
+          "amount": "$10.00 (buyer $10.00 / seller $0.00)"
+        }
+      ],
+      "note": "2 itemized settlement/closing-fee line item(s) returned via the QuoteType=3 flow."
+    },
+    "sectionTotals": "Owner's Policy Premium $1,947.00; Lender's Policy Premium $1,756.00; itemized settlement fees sum $310.00",
+    "bundlingNotes": "Combined deed/transfer/mortgage tax on QuoteType=2 (Netsheet) flow: $50.00 total -- DeedTax $50.00.",
+    "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Denver County, Colorado."
+  }
+]

@@ -1,0 +1,214 @@
+[
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://www.virtualunderwriter.com/-/media/files/virtualunderwriter/imported/pdfs/north-dakota-manual-final_eff-7-31-24.pdf",
+    "asOf": "Last Updated April 23, 2024; Effective July 31, 2024",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Owner's Policy: $4.00/$1,000 up to $100,000, tiered down to $1.50/$1,000 above; $175 minimum",
+        "Loan Policy: $3.00/$1,000 up to $100,000, tiered down similarly; $175 minimum",
+        "Commercial Rate (aggregate liability above $1,000,000): negotiable, $0.35-$2.00/$1,000",
+        "Simultaneous Issue rules for loan + owner's policies",
+        "Reissue Rate for owner's policies issued upon acquisition of title in satisfaction of debt: 75% of Basic Rate",
+        "Subdivider/Multiple Parcels rate",
+        "Refinance Rate: 75% of loan premium, $175 minimum",
+        "Reissue Rate for owner's/leasehold policies: 75% of premium, $175 minimum",
+        "Extensive ALTA/CLTA/STG endorsement fee schedule"
+      ]
+    },
+    "bundlingNotes": "Premium-only rate manual; no settlement/closing/escrow dollar figures anywhere in the Basic Schedule of Charges. NOTABLE DATA-INTEGRITY ANOMALY: this manual has an appended 'SCHEDULE A - Special Products Available for Stewart Title Guaranty Company Issuance in Indiana' section (a Centralized Processing Loan and Refinance Rate table and an STG HELP home equity policy table, both explicitly labeled for Indiana). This is an apparent copy-paste/mislabeling error carried over from Stewart's Indiana manual template -- it is NOT North Dakota-specific and has been excluded from this evidence file. It mirrors a similar copy-paste error found in an FNTI Michigan manual (which contained an appended 'Alabama' schedule) in an earlier survey session.",
+    "transactionContext": "Owner's policy (purchase), loan policy (purchase, refinance), simultaneous issue, reissue upon acquisition in satisfaction of debt, subdivision/multiple parcels, commercial -- premium calculation only, statewide (no county/metro differentiation)."
+  },
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/north-dakota/rates/WFG%20North%20Dakota%20Title%20Rate%20Manual%20effective%20April%201,%202022.pdf",
+    "asOf": "Effective April 1, 2022",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Basic Rate Table, Loan Policies: Standard $2.50/$1,000 up to $50,000, tiered down to $1.25/$1,000 above; $100 minimum. Expanded Coverage $2.75/$1,000 tiered to $1.38/$1,000; $110 minimum",
+        "Refinance Rates: 75% of loan policy premium",
+        "Reissue Rates: 75% of premium, 10-year lookback window",
+        "Owner's/Leasehold rates: Standard $3.50/$1,000 tiered to $1.50/$1,000, $100 minimum; Homeowner's Policy $3.85/$1,000 tiered to $1.65/$1,000, $110 minimum",
+        "Simultaneous Issuance: $100 flat (standard loan policy) / $125 flat (expanded), when issued with an owner's policy",
+        "Lender Special Rates (2 volume tiers)",
+        "Specialty Lender Policies: MMP/MPG $125-$350, Junior Loan $110 flat",
+        "Extensive endorsement fee table"
+      ]
+    },
+    "bundlingNotes": "Premium-only rate manual. Standard WFG exclusion language: rate 'does not include charges for title search, surveys, escrow, closing services, settlement services, recording fees, other charges.' No CPL fee priced in this manual (unlike most other states' WFG manuals, which typically price a $25 CPL) -- ND is one of the few states surveyed where WFG's manual omits CPL pricing entirely.",
+    "transactionContext": "Owner's policy (purchase), loan policy (purchase, refinance, home equity/junior loan), simultaneous issue, lender volume programs -- premium calculation only, statewide (no county/metro differentiation)."
+  },
+  {
+    "provider": "Dickey and LaMoure County Abstract and Title Company \u2014 Stewart Rate Calculator (stewartratecalculator.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true",
+    "endpointOrParams": "Genuine JSON REST API at /api/SRC/*, driven via plain HTTP GET/POST (no browser/JS execution) -- the recipe fully documented in CALCULATORS.md's 2026-08-14 entry, applied unmodified. Sequence: GET /api/SRC/transactiontypes?statecode=ND -> GET /api/SRC/propertysearch?value=Fargo,%20ND (resolves Cass County) -> GET /api/SRC/statesettings?statecode=ND -> GET /api/SRC/providers?statecode=ND&countycode=<FIPS>&zipcode=<ZIP>&transactiontype=SALE -> GET /api/SRC/ernstlookup -> two POST /api/SRC/quote calls (QuoteType=3 for itemized settlement fees, QuoteType=2 for recording/transfer-tax), each form-urlencoded with a hand-built QuoteRequestRoot JSON. No personal-data fields required or entered.",
+    "retrievalDate": "2026-08-18",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Cass County (Fargo), residential resale, Sale/Purchase with Mortgage transaction.",
+    "methodology": "Same nationwide-reusable Stewart /api/SRC/quote recipe already applied to WV/NH/ME/RI/DE/SD (see CALCULATORS.md's 2026-08-14 entry for the full technical writeup); zero recipe modification needed.",
+    "settlementFee": {
+      "note": "Title Closing Fee $350.00 (buyer), plus separately-itemized Title Certification/Courier/Examination/Plat Draw/Search/Wire fees, all buyer-side -- see itemizedFees.other for the full 7-line breakdown."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "Title Certification Fee (buyer)",
+          "amount": "$25.00"
+        },
+        {
+          "name": "Title Closing Fee (buyer)",
+          "amount": "$350.00"
+        },
+        {
+          "name": "Title Courier Fee (buyer)",
+          "amount": "$22.95"
+        },
+        {
+          "name": "Title Examination Fee (buyer)",
+          "amount": "$200.00"
+        },
+        {
+          "name": "Title Plat Draw (buyer)",
+          "amount": "$175.00"
+        },
+        {
+          "name": "Title Search Fee (buyer)",
+          "amount": "$50.00"
+        },
+        {
+          "name": "Title Wire Transfer Fee (buyer)",
+          "amount": "$15.00"
+        },
+        {
+          "name": "Owner's Policy (Basic) standalone premium, RateManual (QuoteType=3)",
+          "amount": "$1400.00"
+        },
+        {
+          "name": "Lender's Policy (Basic) standalone premium, RateManual (QuoteType=3)",
+          "amount": "$1050.00"
+        },
+        {
+          "name": "Lender's Policy (Basic) simultaneous-issue premium, RateManual (QuoteType=2)",
+          "amount": "$100.00"
+        },
+        {
+          "name": "Recording -- Mortgage fee",
+          "amount": "$65"
+        },
+        {
+          "name": "Recording -- Deed fee",
+          "amount": "$20"
+        },
+        {
+          "name": "Recording -- Release fee",
+          "amount": "$20"
+        },
+        {
+          "name": "Deed/transfer tax (state+county combined, per CFPB2015.CFPBTax breakdown)",
+          "amount": "$0.00 (North Dakota has no real estate transfer tax -- corroborates the published-schedule survey's existing finding of no ND deed/transfer tax anywhere)"
+        }
+      ]
+    },
+    "bundlingNotes": "Settlement office/provider used: Dickey and LaMoure County Abstract and Title Company (Ellendale, ND) -- the specific settlement office returned by Stewart's own providers lookup for Cass County; itemization is provider-specific, not underwriter-wide, consistent with the pattern already documented for this recipe elsewhere in this project. A 2nd provider (Omnia Title Corp., Tampa FL) was also offered by the same lookup for this county but not separately harvested, since ND's own in-state provider was available and preferred.",
+    "transactionContext": "Sale/Purchase with Mortgage, Basic Owner's + Lender's Policy, Cass County/Fargo ND."
+  },
+  {
+    "provider": "WFG National Title Insurance Company \u2014 Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-18",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Cass County (Fargo), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Same publicly-reachable, no-auth JSON API already solved and documented in CALCULATORS.md's 2026-08-08 entry -- confirmed via GET /api/rates/State/GetCalculationEnabledStates that this state is isCalculationEnabled:true, then POST directly with the nested Properties/Loans request shape. No personal-data field exists anywhere in this request shape.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1238.00",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's sellernet/seller-side-only design, same behavior already documented for every other state harvested via this tool)",
+      "other": [],
+      "note": "Premium-only result -- this state is not one of the 7 (WA/CA/TX/OR/AZ/NV/CO) with configured HUD-fee line items in WFG's own fee-description table."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "Property location for this request: Fargo, ND (Cass County).",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Cass County, ND."
+  },
+  {
+    "provider": "FNF-family underwriter (Chicago Title/Fidelity National Title/Commonwealth Land Title -- ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine; this tool's pre-selected default underwriter brand varies by request, and prior sessions confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=ND",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=ND (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-18",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Cass County (Fargo) (the standard-scenario county), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions, Concurrent Owner's+Loan rate eligibility answered Yes (the tool's own default first option).",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback), following this project's existing FNF recipe documented in CALCULATORS.md: GET the county-selection page, POST the county (own __EVENTTARGET), POST btnGeneralNext=Next, POST TranType$ddl=PropertyPurchase, POST AmountPurchase$txt=500000 then AmountLoan1$txt=400000 (each with its own __EVENTTARGET), auto-answer the revealed Concurrent-rate-eligibility question Yes, then POST btnFinish=Finish for the final Rate Summary. One correction to the prior recipe write-up worth flagging: the page also renders a hidden 'ctl00$btnDummy' submit button used only for Enter-key submission -- a naive first-submit-button-found selector picks this dummy button instead of the real 'Next'/'Finish' button and silently fails to advance the flow; always filter submit-button candidates for the actual button's own name substring ('Next'/'Finish') rather than taking the first match. No personal-data fields exist anywhere in this flow.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1300.00 (Owner's Policy Premium, concurrent-issue rate)",
+      "loanPolicyPremium": "$150.00 (Loan Policy Premium, concurrent-issue rate)",
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence."
+    },
+    "sectionTotals": "Grand Total (Owner's Policy Purchased): $1450.00.",
+    "bundlingNotes": "Harvested as part of this session's systematic FNF pass across every remaining below-threshold small/low-population state (ND/VT/WY/RI/DE/SD/AK), following the same technique already applied to the 2026-08-06 session's 8-state batch.",
+    "transactionContext": "Owner's + Loan Policy concurrent-issue premiums for a $500,000 residential purchase / $400,000 loan, Cass County (Fargo)."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company \u2014 second rate calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://oldrepublictitle.com/rate-calculator/?location=north-dakota",
+    "calculatorUrl": "https://oldrepublictitle.com/rate-calculator/?location=north-dakota",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (RateCalc.aspx?CallingApp=PUBLIC&Location=ND, redirects to a session-scoped (S(...)F(...))/RateCalc.aspx?...Location=33..., statewide, no county selector). GET the page with Referer https://oldrepublictitle.com/rate-calculator/?location=north-dakota (capture __VIEWSTATE/__EVENTVALIDATION), the RadPolicyCategory radio group defaults to PURCHASE/SALE (value 49, already checked) which reveals txtLiabilityAmt/txtCrLiabilityAmt directly -- must still explicitly include RadPolicyCategory=49 in the POST body (a naive 'scrape all form fields as-is' approach silently picks up the last radio option in the HTML rather than the checked one, the same gotcha found on AL this session), then POST __EVENTTARGET=btnCalculate with txtLiabilityAmt=500000, txtCrLiabilityAmt=400000. Same Referer-header-throughout fix documented for NH/WV and applied consistently across this project's Old Republic 2nd-tool richness pass; no personal data entered.",
+    "retrievalDate": "2026-08-21",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, statewide (no county selector in this tool), PURCHASE / SALE policy category.",
+    "methodology": "Direct HTTP GET/POST against the ASP.NET WebForms postback mechanism (Python requests.Session()), no browser/JS execution. No personal data entered. Richness pass applying this project's already-solved Old Republic 2nd-tool recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": {
+      "note": "This tool prices title insurance premiums only -- no settlement/closing/escrow service-fee line items are itemized (same structural limitation observed for this tool's other state entries elsewhere in this project)."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "LENDERS POLICY, insured amount $400,000.00 -- Lenders-Only standalone premium",
+          "amount": "$1,025.00"
+        },
+        {
+          "name": "LENDERS POLICY, Owners+Lenders combined (simultaneous) premium",
+          "amount": "$150.00"
+        },
+        {
+          "name": "OWNERS POLICY, insured amount $500,000.00, Owners+Lenders combined premium",
+          "amount": "$1,400.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, standalone-lenders-only",
+          "amount": "$1,025.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, Owners+Lenders combined",
+          "amount": "$1,550.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Owner's $1,400.00/Lender's $1,025.00 are in the same range as this state's already-on-file FNF entry (Grand Total $1,450.00) -- genuine cross-underwriter market variation.",
+    "transactionContext": "Purchase/Sale simultaneous Owner's + Lender's policy, statewide North Dakota, purchase with financing."
+  }
+]

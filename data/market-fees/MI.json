@@ -1,0 +1,353 @@
+[
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "http://go.stewart.com/rs/067-YWO-436/images/Michigan%20Residential%20Rate%20Manual%20eff%2002-26-2024_FINAL.pdf?version=0",
+    "asOf": "Last updated 2024-01-09; effective 2024-02-26",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule.",
+      "ownersPolicy_liabilityTiered": "Up to $20,000->$375.00; over $20,000 to $100,000 add $6.40/thousand; over $100,000 to $200,000 add $4.00/thousand; over $200,000 to $300,000 add $3.75/thousand; over $300,000 to $1,000,000 add $3.00/thousand; over $1,000,000 add $2.50/thousand.",
+      "loanPolicy_liabilityTiered": "Up to $20,000->$295.00; over $20,000 to $100,000 add $3.85/thousand; over $100,000 to $200,000 add $2.50/thousand; over $200,000 to $300,000 add $2.20/thousand; over $300,000 to $1,000,000 add $1.80/thousand; over $1,000,000 add $1.40/thousand."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "Work Fee (unusual complexity / more than one chain of title)",
+          "amount": "$300/hour"
+        }
+      ]
+    },
+    "bundlingNotes": "This 2024 vintage is titled 'ALL-INCLUSIVE RESIDENTIAL SCHEDULE OF CHARGES FOR TITLE INSURANCE' and states: 'The charges are \"all-inclusive\", in that same include all ordinary charges including, but not limited to, ordinary charges for the title search, tax search, title examination, commitment, and policy.' No separate settlement/escrow/closing service fee is itemized; the premium itself bundles search/exam. Superseded 11 months later by the 2025 vintage below, which drops the all-inclusive language entirely -- a notable regulatory/product shift.",
+    "transactionContext": "Owner's and Loan policy premium schedules for residential (1-4 family) property, any Michigan county. No purchase/refinance service-fee breakdown; this is a title-premium-only rate manual."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "http://go.stewart.com/rs/067-YWO-436/images/Michigan%20Residential%20Rate%20Manual%20eff%2002-26-2024_FINAL.pdf?version=0 (superseding 2025 vintage, same distribution URL structure, verified via search result title 'SCHEDULE OF CHARGES FOR TITLE INSURANCE IN THE STATE OF MICHIGAN')",
+    "asOf": "Last updated 2025-01-06; effective 2025-02-17",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule.",
+      "ownersPolicy_liabilityTiered": "Up to $20,000->$450.00; over $20,000 to $100,000 add $6.42/thousand; over $100,000 to $200,000 add $4.55/thousand; over $200,000 to $300,000 add $3.75/thousand; over $300,000 to $1,000,000 add $3.21/thousand; over $1,000,000 add $2.68/thousand.",
+      "loanPolicy_liabilityTiered": "Up to $20,000->$375.00; over $20,000 to $100,000 add $3.75/thousand; over $100,000 to $200,000 add $2.68/thousand; over $200,000 to $300,000 add $2.41/thousand; over $300,000 to $1,000,000 add $1.88/thousand; over $1,000,000 add $1.50/thousand."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "Work Fee (unusual complexity / more than one chain of title)",
+          "amount": "$300/hour"
+        }
+      ]
+    },
+    "bundlingNotes": "This 2025 vintage drops the 'all-inclusive' title and language entirely, replacing it with: 'The charges are risk rates for title insurance only and do not include any fees or costs for title searches, title examinations or any other fees for services that might be charged by the Company or agents.' Same underwriter, same $ structure format, but the bundling model flipped between the 2024 and 2025 filings -- Owner's Policy base rate also rose from $375 to $450 over the same period (+20%), consistent with unbundling search/exam costs out of the premium and into separately-charged (but unpublished) service fees.",
+    "transactionContext": "Owner's and Loan policy premium schedules for residential (1-4 family) property, any Michigan county. No purchase/refinance service-fee breakdown; this is a title-premium-only rate manual."
+  },
+  {
+    "provider": "First National Title Insurance Company (FNTI)",
+    "sourceUrl": "http://documentpub.fnti.com/Documents/Michigan/Rate%20Manual%20and%20Rate%20Charts/FNTI%20Michigan%20Rate%20Manual%20Effective%20March%2028,%202023.pdf",
+    "asOf": "Effective 2023-03-28",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule.",
+      "ownersPolicy_liabilityTiered": "Up to $20,000->$375.00 (minimum); $20,001-$100,000 add $6.40/thousand; $100,001-$200,000 add $4.00/thousand; $200,001-$300,000 add $3.75/thousand; $300,001-$1,000,000 add $3.00/thousand; above $1,000,001 add $2.50/thousand.",
+      "loanPolicy_liabilityTiered": "Up to $20,000->$295.00; $20,001-$100,000 add $3.85/thousand; $100,001-$200,000 add $2.50/thousand; $200,001-$300,000 add $2.20/thousand; $300,001-$1,000,000 add $1.80/thousand; $1,000,001 and above add $1.40/thousand.",
+      "lendersBulkRate_refinanceOnly_liabilityTiered": "4 tiers (min. 100-200 / 200-300 / 300-500 / 500+ orders); e.g. Bulk Rate 4 (500+ orders): up to $250,000->$275.00; $250,001-$500,000->$350.00; $500,001-$750,000->$400.00; $750,001-$1,000,000->$450.00; scaling to $4,000,001-$5,000,000->$2,200.00."
+    },
+    "itemizedFees": {},
+    "bundlingNotes": "General Rule F states explicitly: 'The rates set forth herein do not include any charge made for title search, title examination, closing, or escrow services performed by the Insurer, or any of its approved attorneys or agents. Charges made for such services are in addition to the rates and charges set forth herein.' Confirms MI premium/settlement-fee separation, but FNTI's manual itself prices premium only -- no settlement/escrow dollar figures given. Note: the manual's own Applicability clause (Section A) contains a copy/paste artifact stating rates are 'specifically for land located in Alabama,' despite the document being titled and filed for Michigan throughout (MI county-code table, MI-specific endorsement codes MI213-MI245) -- an apparent template error in FNTI's own filing, not a wrong-state document.",
+    "transactionContext": "Owner's and Loan policy premium schedules for residential (1-4 family) property, all Michigan counties, plus refinance-only Lender's Bulk Rate tiers for qualifying high-volume lenders. No purchase/refinance settlement-service-fee breakdown."
+  },
+  {
+    "provider": "First American Title Insurance Company",
+    "sourceUrl": "https://www.titlera.com/wp-content/uploads/2021/04/First-Am-MI-Basic-Rate-Sheet-4-1-2020.pdf",
+    "asOf": "Effective 2020-04-01",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule.",
+      "basicOwnersPolicy": "$1,000-20,000->$375; $20,001-100,000 add $5.50/thousand; $100,001-200,000 add $3.75/thousand; $200,001-300,000 add $3.25/thousand; $300,001-1,000,000 add $2.75/thousand; $1,000,001+ add $2.25/thousand.",
+      "basicLoanPolicy": "$1,000-20,000->$295; $20,001-100,000 add $3.25/thousand; $100,001-200,000 add $2.25/thousand; $200,001-300,000 add $2.00/thousand; $300,001-1,000,000 add $1.60/thousand; $1,000,001+ add $1.25/thousand.",
+      "ownerTransferRate_24moResale": "Reduced rate table provided for title transferred within prior 24 months (e.g. $100,000 liability -> $571 owner transfer vs $815 basic owner rate)."
+    },
+    "itemizedFees": {},
+    "bundlingNotes": "Explicit disclaimer: 'This is not a complete Schedule of Fees. To see a complete Schedule of Fees, please contact your local First American Title office.' Confirms settlement/closing service fees exist but are deliberately not published in this rate card -- consistent with the pattern seen across all Michigan sources.",
+    "transactionContext": "Basic (Without Eagle Protection) ALTA Owner's and Loan Policy premium rates, residential 1-4 family, statewide, without breakout by metro/county."
+  },
+  {
+    "provider": "First American Title Insurance Company (via independent policy-issuing agent)",
+    "sourceUrl": "https://www.sterling-title.com/wp-content/uploads/2023/01/First-American-Title-Michigan-Eagle-Rate-Sheets-1-1-23.pdf",
+    "asOf": "Effective 2023-01-01",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule.",
+      "eagleOwnersPolicy": "$1,000-20,000->$450; $20,001-100,000 add $6.25/thousand; $100,001-200,000 add $5.00/thousand; $200,001-300,000 add $4.25/thousand; $300,001-1,000,000 add $3.25/thousand; $1,000,001+ add $2.65/thousand.",
+      "eagleLoanPolicy": "$1,000-20,000->$360; $20,001-100,000 add $3.10/thousand; $100,001-200,000 add $2.80/thousand; $200,001-300,000 add $2.40/thousand; $300,001-1,000,000 add $2.00/thousand; $1,000,001+ add $1.55/thousand."
+    },
+    "itemizedFees": {},
+    "bundlingNotes": "Eagle Policy (expanded coverage / ALTA Homeowner's equivalent) premium schedule distributed by Sterling Title Agency, an independent First American policy-issuing agent based in Sterling Heights, MI. Same disclaimer as the Basic rate sheet: 'This is not a complete Schedule of Fees... please contact your independent First American Title policy-issuing agent for further information.' Sterling Title's own document-library page hosts only underwriter (Stewart, First American, Westcor) premium rate cards -- it does not publish its own settlement/escrow fee schedule despite being an independent agency, matching the market-opacity pattern already documented in AZ.",
+    "transactionContext": "Eagle (expanded coverage) ALTA Owner's and Loan Policy premium rates, residential 1-4 family, statewide, distributed via an independent Macomb/Oakland/St. Clair county agency rather than directly by First American."
+  },
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/michigan/rates/WFG%20Michigan%20Residential%20Title%20Rate%20Manual%20effective%20%204-1-2025.pdf",
+    "asOf": "Effective 2025-04-01",
+    "settlementFee": {
+      "note": "Title insurance premium only, NOT a settlement/service fee schedule.",
+      "basicOwnersPolicy": "Up to $20,000->$450 (minimum); $20,001-100,000 add $6.42/thousand; $100,001-200,000 add $4.55/thousand; $200,001-300,000 add $3.75/thousand; $300,001-1,000,000 add $3.21/thousand; above $1,000,001 add $2.68/thousand.",
+      "expandedCoverageHomeownersPolicy": "Up to $20,000->$500 (minimum); $20,001-100,000 add $6.70/thousand; $100,001-200,000 add $5.35/thousand; $200,001-300,000 add $4.55/thousand; $300,001-1,000,000 add $3.48/thousand; above $1,000,001 add $2.84/thousand.",
+      "standardLoanPolicy": "Up to $20,000->$375 (minimum); $20,001-100,000 add $3.75/thousand; $100,001-200,000 add $2.68/thousand; $200,001-300,000 add $2.41/thousand; $300,001-1,000,000 add $1.88/thousand; above $1,000,001 add $1.50/thousand."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "Additional work charge for multi-parcel single policy",
+          "amount": "$300/hour"
+        }
+      ]
+    },
+    "bundlingNotes": "Explicit statement in Section 1 (Introduction): 'The charges shown herein as applicable to title insurance products, also known as the \"title premiums\", are risk rates for title insurance only for all counties in the State of Michigan, and do not include charges for a title search, tax search, title examination, or any other fees that might be charged by the Company or its agents.' Identical rate figures to Stewart's 2025 vintage (both $450 owner's minimum, same per-thousand tiers), suggesting a shared/coordinated MI rate filing baseline between WFG and Stewart -- a useful cross-underwriter corroboration data point even though neither prices settlement fees.",
+    "transactionContext": "Owner's, Homeowner's (expanded), and Loan Policy premium schedules for residential (1-4 family) property, all Michigan counties. No purchase/refinance settlement-service-fee breakdown."
+  },
+  {
+    "provider": "Modern Title Group (Ann Arbor, MI independent title/settlement company)",
+    "basis": "calculator",
+    "sourceUrl": "https://moderntitlegroup.com/Calculator/Rate",
+    "calculatorUrl": "https://moderntitlegroup.com/Calculator/Rate",
+    "retrievalDate": "2026-07-24",
+    "scenario": "$500,000 purchase price, residential resale, buyer-side and seller-side breakdowns (this calculator prices off sale price only; it has no loan-amount input, so the $400,000 loan amount in the standard scenario does not affect its output). No county/city selector in this tool -- Modern Title Group is headquartered in Ann Arbor, Washtenaw County, MI and the calculator's formula is presented as a single statewide schedule, not county-tiered.",
+    "methodology": "Not a server-side calculator -- Modern Title Group's own /js/views/rateCalculator.js (a Vue 3 component fetched via plain HTTP GET, no JS execution needed) contains the complete calculation logic and all fee constants hardcoded client-side: a tiered per-thousand title-insurance-premium formula (separate buyer/seller/refi base rates and marginal rates) plus 6 flat ancillary fees per transaction side. Recomputed by hand from the fetched JS source for the $500,000 scenario -- these are Modern Title Group's own published figures, not a third-party rate-table clone (contrast with the out-of-scope alphaadv.net-style aggregators already logged in CALCULATORS.md). The same page also embeds a Qualia Connect widget (connect.qualia.com/quote-widget, token bAQ2Tvo7Bsxa39R5j-style embed) and links to a moderntitlegroup.titlecapture.com/title-quote page -- both are separate JS-only quoting systems for the same company, logged separately in CALCULATORS.md as jsOnly.",
+    "settlementFee": {
+      "buyerClosingFee": "$550.00",
+      "sellerClosingFee": "$250.00",
+      "note": "Company itself labels this line 'Closing Fee'; buyer and seller are charged different flat amounts."
+    },
+    "itemizedFees": {
+      "searchExam": "$150.00 (Title Search Fee, same for buyer/seller/refi sides)",
+      "processing": "$0 separately itemized (see Closing Fee above; no separate 'processing' line)",
+      "wireTransfer": "$45.00 (Wire Transfer Fee, all 3 sides)",
+      "courier": "$45.00 (Courier/Express Mail, all 3 sides)",
+      "recording": "$35.00 (Recording Service Fee, all 3 sides)",
+      "escrow": "$250.00 (Deed Escrow Fee, all 3 sides)",
+      "titleInsurancePremium": {
+        "buyer": "$2,335 (computed from the tiered formula at $500,000: base $425 + 5.75/thousand [$20k-$100k tier, capped] + 4.50/thousand [$100k-$200k tier, capped] + 4.00/thousand [$200k-$300k tier, capped] + 3.00/thousand [$300k-$1M tier])",
+        "seller": "$2,065 (same tiers, seller base $375 and marginal rates 5.50/4.50->3.75/3.25/2.75 respectively)",
+        "refi": "$1,780 (base $295, marginal rates 3.25/2.25/2.00/1.60 -- not applicable to the standard purchase scenario, recorded for completeness)"
+      }
+    },
+    "sectionTotals": "Buyer side: title insurance $2,335 + ancillary fees (closing $550 + recording $35 + courier $45 + wire $45 + escrow $250 + search $150 = $1,075) = $3,410 total. Seller side: title insurance $2,065 + ancillary fees (closing $250 + recording $35 + courier $45 + wire $45 + escrow $250 + search $150 = $775) = $2,840 total.",
+    "bundlingNotes": "Calculator caps input at $1,000,000 sale price (values above return a validation error, not a quote). Ancillary fee constants (recording/courier/wire/escrow/search) are identical across buyer, seller, and refi sides -- only the Closing Fee and title-insurance-premium formula differ by transaction side.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k scenario; statewide MI formula, no county tiering; Ann Arbor/Washtenaw County is the company's home base."
+  },
+  {
+    "basis": "calculator",
+    "provider": "Knight Barry Title Group (independent, multi-state title agency; own ASP.NET rate calculator, agent for Stewart Title Guaranty Company)",
+    "sourceUrl": "https://www.knightbarry.com/rate-calculators",
+    "calculatorUrl": "https://dashboard.knightbarry.com/Rates/michigan-rate-calculator.aspx",
+    "endpoint": "POST https://dashboard.knightbarry.com/Rates/michigan-rate-calculator.aspx (ASP.NET WebForms __doPostBack/__VIEWSTATE replay, same technique as the MN/WI entries above -- no JS execution needed, no personal data)",
+    "retrievalDate": "2026-07-25",
+    "scenario": "$500,000 purchase price, $400,000 loan, statewide (this agency's MI calculator has no county selector -- consistent with MI's statewide-formula premium filings already on file), Purchase, both owner's and loan policy, residential",
+    "methodology": "Same WebForms postback recipe as the MN/WI entries above; MI's version of the tool has no county dropdown at all (statewide formula), so only the sale/loan amount fields and the Calculate button postback were needed.",
+    "settlementFee": {
+      "loanClosingFee": "$350.00"
+    },
+    "itemizedFees": {
+      "searchExam": null,
+      "docPrep": null,
+      "processing": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "courier": null,
+      "wire": null,
+      "cpl": null,
+      "transactionSecurityFee_buyer": "$25.00",
+      "transactionSecurityFee_seller": "$25.00",
+      "titleInsurancePremium": {
+        "loanPolicy": "$1,372.00",
+        "ownersPolicy": "$2,435.60"
+      }
+    },
+    "sectionTotals": "Buyer-side total: Loan Policy $1,372 + Owner's Policy $2,435.60 + Loan Closing Fee $350 + Transaction Security Fee (buyer) $25 = $4,182.60.",
+    "bundlingNotes": "Second MI calculator-basis provider (see Modern Title Group entry above) -- distinct company, distinct fee structure (Knight Barry itemizes a flat $350 Loan Closing Fee + $25/side Transaction Security Fee where Modern Title Group itemizes 6 separate named ancillary fees). MI now has 2 of the 3 providers needed to cross the calculator-quoted threshold.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k statewide MI purchase scenario, buyer side, both owner's and loan policy."
+  },
+  {
+    "provider": "Prestige Title Insurance Agency (independent title agency; Adrian/Tecumseh/Manitou Beach, MI [Lenawee County]) - via app.netsheetcalc.com/TitleTap platform, app_id 385",
+    "basis": "calculator",
+    "sourceUrl": "https://prtitle.com/net-sheet-calculator/",
+    "calculatorUrl": "https://app.netsheetcalc.com/company/quickquote.php?appid=385",
+    "endpointOrParams": "Previously logged 2026-07-27 as gated (the old non-auth-ajax.php?action=getAppData recipe 404s on this tenant); this session confirmed the platform's newer backend (discovered same-session for AZ's Arizona Premier Title, app_id 546) also covers this tenant and is NOT gated. Config: GET https://app.netsheetcalc.com/company/non-auth-ajax.php?action=getNetSheetConfig&app_id=385 (plain, unauthenticated) returns the full fee-form schema per scenario type (seller/cash/finance/refinance). Price-tiered fields resolved via GET https://app.netsheetcalc.com/api/index.php/rate/<amount>/<rate-key>: rate/500000/Owners385 (Owner's Title Insurance Premium) and rate/400000/Lenders385 (Lender's Title Insurance Premium). Flat-dollar fields (Closing Fee, recording fees) are literal initial_val constants in the config JSON, no API call needed.",
+    "retrievalDate": "2026-08-02",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Finance (purchase-with-loan) scenario, Lenawee County (this tenant's own service area; MI's most populous county, Wayne, is not served by any calculator-basis provider found to date).",
+    "methodology": "Found via Prestige Title's own site, which embeds the calculator at app.netsheetcalc.com/company/quickquote.php?appid=385. Config and rate endpoints reverse-engineered from the platform's own JS (same recipe discovered this session for AZ's Arizona Premier Title tenant) -- both plain GET, no auth, no personal data anywhere in the fetched config schema (address/city/zip fields exist but are not required for the fee/rate figures used here and were left blank).",
+    "itemizedFees": {
+      "cpl": null,
+      "processing": null,
+      "notarySigning": null,
+      "docPrep": null,
+      "searchExam": null,
+      "other": [
+        {
+          "name": "Closing Fee",
+          "amount": "$425.00"
+        },
+        {
+          "name": "Owner's Title Insurance Premium ($500,000)",
+          "amount": "$2,436.00"
+        },
+        {
+          "name": "Lender's Title Insurance Premium ($400,000 loan)",
+          "amount": "$1,372.00"
+        },
+        {
+          "name": "Deed Recording Fee",
+          "amount": "$30.00"
+        },
+        {
+          "name": "Deed Certification Fee",
+          "amount": "$5.00"
+        },
+        {
+          "name": "Recording Service Fees",
+          "amount": "$10.00"
+        },
+        {
+          "name": "Mortgage Recording Fee",
+          "amount": "$30.00"
+        }
+      ]
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "This tenant's schema is leaner than Arizona Premier Title's (same platform, app_id 546, harvested same session): no CPL, notary, doc-prep, search, or exam fee fields exist anywhere in the config for any of the 4 scenario types -- Closing Fee ($425 flat) appears to be this agency's all-in settlement/closing charge, with title insurance premiums and government recording fees itemized separately. Confirms the TitleTap platform's config schema is genuinely per-tenant-configured (not a shared demo/template), consistent with the pattern already established for Modern Title Group/Knight Barry (MI) and Columbus Title/Owl Creek (OH).",
+    "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Lenawee County -- this tenant's own service footprint. This is MI's 3rd calculator-basis provider, crossing the 3-provider threshold."
+  },
+  {
+    "provider": "FNF-family underwriter (Chicago Title/Fidelity National Title/Commonwealth Land Title -- ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine; this tool's pre-selected default underwriter brand varies by request, and prior sessions confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=MI",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=MI (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-19",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Wayne County (Detroit, MI's most-populous county), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions.",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback), following this project's existing FNF recipe documented in CALCULATORS.md: GET the county-selection page, POST the county (own __EVENTTARGET), POST btnGeneralNext=Next, POST TranType$ddl=PropertyPurchase, POST AmountPurchase$txt=500000 then AmountLoan1$txt=400000 (each with its own __EVENTTARGET), tool defaults for all remaining policy questions, then POST btnFinish=Finish for the final Rate Summary. No personal-data fields exist anywhere in this flow. This is a richness pass applying the already-solved FNF recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2436.00 (Owner's Policy Final Policy Premium, concurrent-issue rate -- this tool does not itemize a Disclosure/Adjustment split for MI, unlike most other states in this recipe)",
+      "loanPolicyPremium": "$1372.00 (Loan Policy Final Policy Premium, concurrent-issue rate)",
+      "other": [],
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence. No separate CPL charge appeared for this state/scenario."
+    },
+    "sectionTotals": "Grand Total: $3808.00.",
+    "bundlingNotes": "Harvested this session as a richness pass -- MI had already crossed the 3-provider threshold (Modern Title Group, Knight Barry Title Group, Prestige Title Insurance Agency); this FNF entry is a 4th corroborating provider, applying the same generalized recipe already used for AR/CT/CO/MA/ND/VT/WY/RI/DE/SD/AK/NH/WV/ME/OH/MO. Note the existing MI calculator-basis providers used Washtenaw/Lenawee Counties; this entry uses Wayne County (MI's actual most-populous), so figures are not directly county-matched to the other 3 MI providers -- flagged for a future session if strict county-matching richness is desired.",
+    "transactionContext": "Owner's + Loan Policy concurrent-issue premiums for a $500,000 residential purchase / $400,000 loan, Wayne County (Detroit)."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company -- Stewart Rate Calculator, matched settlement office: Devon Title (1680 Crooks Road, Troy, MI 48084)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true (LoanEstimate/QuoteType=3 flow) and https://www.stewartratecalculator.com/Quote/Netsheet?urlParams=&quotetype=2&branded=true (Netsheet/QuoteType=2 flow); both POST to the shared /api/SRC/quote endpoint",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Wayne County (Detroit), residential resale, Sale/Purchase with Mortgage transaction type, BASIC coverage on both Owner's and Lender's policies. Richness-pass harvest applying an already-solved, previously state-limited recipe to a state not yet in Stewart's harvested-state list, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "methodology": "Harvested via Stewart's discoverable `/api/SRC/*` JSON REST API (stewartratecalculator.com), driven entirely by plain HTTP GET/POST (Python requests.Session(), cookie jar) with no browser/JS execution and no personal-data fields, replaying the full recipe documented in this project's CALCULATORS.md (2026-08-14 'SOLVED' entry): GET the LoanEstimate/Netsheet page to scrape a fresh antiforgery cookie + __RequestVerificationToken; GET /api/SRC/propertysearch to resolve the county FIPS code and a default zip; GET /api/SRC/providers to find the county's real settlement office(s) (used to set ProviderID on the QuoteType=3 flow so the itemized settlement-fee list is populated -- an empty ProviderID silently returns a null itemized list); GET /api/SRC/statesettings and /api/SRC/ernstlookup for state-level defaults; build the QuoteRequestRoot JSON by hand (Owner's Policy $500,000 / Lender's Policy $400,000, BASIC coverage, standard Sale/Purchase with Mortgage transaction); POST /api/SRC/quote twice -- QuoteType=2 (Netsheet, pageBuyerSeller=seller) for Recording/CFPB2015 transfer-tax figures, and QuoteType=3 (LoanEstimate, pageBuyerSeller=buyer, IsCalculatePremium=True, IsCalculateTitleServiceFee=True) for the itemized Pricing.TitleServiceFee.ItemizedTitleServiceFeeList settlement-fee line items. One new gotcha found and fixed this session: stewartratecalculator.com's bare apex domain 301-redirects every POST to the www subdomain, and that redirect's response body hangs indefinitely on this sandbox's proxied connection (a 30s+ read timeout with 0 bytes received) -- fixed by targeting https://www.stewartratecalculator.com directly, skipping the apex redirect entirely; this is an environment/proxy artifact, not a sign the endpoint is blocked. Also confirmed the documented /api/SRC/providers gotcha firsthand: for a single-provider county the response's `Provider` field is a bare object, not a one-element list -- must be normalized before indexing or ProviderID silently stays empty and every itemized-fee list comes back null (looks exactly like a genuine empty result).",
+    "settlementFee": {
+      "note": "$970.00 total, split buyer $595.00 / seller $375.00 (line item: 'Title Closing Fee')"
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,435.60",
+      "loanPolicyPremium": "$1,372.00",
+      "other": [
+        {
+          "name": "Title Cashier Check Fee",
+          "amount": "$60.00 (buyer $30.00 / seller $30.00)"
+        },
+        {
+          "name": "Title Closing Fee",
+          "amount": "$970.00 (buyer $595.00 / seller $375.00)"
+        },
+        {
+          "name": "Title Re- Draw Fee",
+          "amount": "$200.00 (buyer $100.00 / seller $100.00)"
+        },
+        {
+          "name": "Title Recording Service Fees",
+          "amount": "$70.00 (buyer $35.00 / seller $35.00)"
+        },
+        {
+          "name": "Title Search Fee",
+          "amount": "$75.00 (buyer $75.00 / seller $0.00)"
+        },
+        {
+          "name": "Title Tax Data Verification Fee",
+          "amount": "$60.00 (buyer $30.00 / seller $30.00)"
+        },
+        {
+          "name": "Title Tax Escrow Handling Fee",
+          "amount": "$200.00 (buyer $100.00 / seller $100.00)"
+        },
+        {
+          "name": "Title Technology Fee",
+          "amount": "$60.00 (buyer $30.00 / seller $30.00)"
+        },
+        {
+          "name": "Title Wire Transfer Fee",
+          "amount": "$30.00 (buyer $30.00 / seller $0.00)"
+        }
+      ],
+      "note": "9 itemized settlement/closing-fee line item(s) returned via the QuoteType=3 flow."
+    },
+    "sectionTotals": "Owner's Policy Premium $2,435.60; Lender's Policy Premium $1,372.00; itemized settlement fees sum $1,725.00",
+    "bundlingNotes": "Combined deed/transfer/mortgage tax on QuoteType=2 (Netsheet) flow: $4,300.00 total -- DeedTax $4,300.00.",
+    "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Wayne County, Michigan."
+  },
+  {
+    "provider": "WFG National Title Insurance Company \u2014 Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Wayne County (Detroit), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Harvested via WFG National Title's own public JSON API, `POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet`, fully solved and documented in this project's CALCULATORS.md (2026-08-08 entry) -- no browser/JS execution needed, no personal-data fields in the request shape (nested Properties/Loans arrays, TransactionProductType, SettlementStatementVersion: \"CD\"). Confirmed via the same API's public `GET /api/rates/State/GetCalculationEnabledStates` that MI is `isCalculationEnabled: true` before harvesting. Richness-pass application of an already-solved, previously-untried-for-this-state recipe, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "settlementFee": {
+      "note": "Premium-only result (no itemized settlement/search/doc-prep line items) -- consistent with WFG's own hardcoded fee-description table, which only itemizes HUD-style settlement fees for 7 states (WA, CA, TX, OR, AZ, NV, CO); every other state, including this one, returns only the Owner's Title Insurance Premium."
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,722.00",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's seller-net-sheet-only design)",
+      "other": [],
+      "note": "Premium-only result for this state (see settlementFee note)."
+    },
+    "sectionTotals": "Owner's Title Insurance Premium $2,722.00",
+    "bundlingNotes": "Discovered and solved 2026-08-08; applied here as a richness-pass 4th/5th calculator-basis provider for Michigan (already at 3-4 providers via other tools) since no prior session had run this already-solved recipe against this state. Property location for this request: Detroit, Michigan (Wayne County).",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Wayne County, Michigan."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company \u2014 second rate calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://oldrepublictitle.com/rate-calculator/?location=michigan",
+    "calculatorUrl": "https://oldrepublictitle.com/rate-calculator/?location=michigan",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (RateCalc.aspx?CallingApp=PUBLIC&Location=MI, redirects to a session-scoped (S(...)F(...))/RateCalc.aspx?...Location=21...). GET the page with Referer https://oldrepublictitle.com/rate-calculator/?location=michigan (capture __VIEWSTATE/__EVENTVALIDATION), POST __EVENTTARGET=ddlCounty value 163 (WAYNE), POST __EVENTTARGET=ddlPolicyCategory value 58 (SIMUL LOAN & OWNERS), POST __EVENTTARGET=ddlPolicyType2 value 4438 (SIMUL LOAN), then POST __EVENTTARGET=btnCalculate with txtLiabilityAmt=500000, txtCrLiabilityAmt=400000. Same Referer-header-throughout fix documented for NH/WV; no personal data entered.",
+    "retrievalDate": "2026-08-21",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Wayne County (Detroit), SIMUL LOAN & OWNERS policy category.",
+    "methodology": "Direct HTTP GET/POST against the ASP.NET WebForms postback mechanism (Python requests.Session()), no browser/JS execution. No personal data entered. Richness pass applying this project's already-solved Old Republic 2nd-tool recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": {
+      "note": "This tool prices title insurance premiums only -- no settlement/closing/escrow service-fee line items are itemized (same structural limitation observed for this tool's other state entries elsewhere in this project)."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "SIMUL LOAN, insured amount $400,000.00 -- Lenders-Only standalone premium",
+          "amount": "$1,359.80"
+        },
+        {
+          "name": "SIMUL LOAN, insured amount $500,000.00 -- Owners+Lenders combined (simultaneous) premium",
+          "amount": "$1,019.85"
+        },
+        {
+          "name": "HOMEOWNERS EXTENDED endorsement, insured amount $500,000.00 -- Owners+Lenders combined premium",
+          "amount": "$2,571.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, standalone-lenders-only",
+          "amount": "$1,359.80"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, Owners+Lenders combined",
+          "amount": "$3,590.85"
+        }
+      ]
+    },
+    "bundlingNotes": "MI's SIMUL LOAN & OWNERS category on this tool bundles a mandatory 'Homeowners Extended' endorsement into the Owner's-side total (not separately optional in the form) -- a state-specific rate-manual quirk not seen on this tool's other state entries; recorded exactly as displayed per the evidence rules rather than backing it out.",
+    "transactionContext": "Simultaneous Owner's + Lender's policy with Homeowners Extended endorsement, Wayne County (Detroit) Michigan, purchase with financing."
+  }
+]

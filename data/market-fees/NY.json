@@ -1,0 +1,185 @@
+[
+  {
+    "provider": "Title Insurance Rate Service Association of New York, Inc. (TIRSA) — Title Insurance Rate Manual for New York State (REGULATORY/RATING-BUREAU-UNIFORM, not provider-set)",
+    "sourceUrl": "https://ratecalculator.fnf.com/Documents/TIRSA%20Rate%20Manual%20Appvd%20June%2010%202024%20Effective%20Oct%201%202024.pdf (Seventh Revision, approved by the NY DFS Superintendent June 10, 2024, effective October 1, 2024); vintage confirmed current as of retrieval via https://tirsa.org/rate-manual/, which states the current manual 'replaces and supersedes previous versions'",
+    "asOf": "Seventh Revision, DFS-approved 06/10/2024, effective 10/01/2024 -- current vintage as of retrieval 2026-07-22",
+    "settlementFee": {
+      "note": "TIRSA sets NY title insurance PREMIUM rates uniformly for every member insurer/agent statewide (owner's and loan policy rates keyed to liability amount) under the Insurance Law of the State of New York -- this is the regulatory backbone, not a market signal. TIRSA's Manual governs the insurance premium itself; it does NOT set settlement/closing, doc prep, courier, wire, or notary fees, which are separately, competitively priced by the title agency/attorney handling the closing. A separate DFS regulation, 11 NYCRR Part 228 ('Insurance Regulation 208'), attempted in 2017-2019 to cap 'ancillary or other discretionary fees' (Patriot search, bankruptcy search, municipal/departmental searches, recording charges) at 200% of the agency's own out-of-pocket cost, and to restrict payments to closers -- but Part 228's ancillary-fee-ceiling and closer-payment provisions were ANNULLED by an Article 78 court decision effective January 15, 2019 (New York State Land Title Association, Inc. v. NYS DFS), so titled agencies/agents are NOT currently required to comply with those ceilings. The practical effect: even the one NY regulatory attempt to cap non-premium service fees has been struck down, leaving settlement/service-fee pricing fully market-set statewide -- exactly the unregulated territory this survey targets.",
+      "premiumOnly": "Not itemized in this survey (see PA.md/other rating-bureau states' entries for representative promulgated-premium-table detail; NY's premium schedule is analogous in structure -- liability-tiered Sale/Non-Sale-style rates set once for all TIRSA members). This entry exists to document the regulatory reference point, not to duplicate the premium table."
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Search/exam costs when performed by the title agent are part of the TIRSA-regulated premium calculation in some circumstances but settlement/closing services are not covered by the Manual",
+      "cpl": "CPL fees are set by TIRSA-member insurers' own bulletins, not standardized within the Manual itself; not itemized in this survey",
+      "binder": null,
+      "other": [
+        { "name": "11 NYCRR Part 228 ancillary-fee ceiling (Patriot/bankruptcy/municipal search fees capped at 200% of cost)", "amount": "Judicially ANNULLED effective 01/15/2019 -- not currently enforceable" }
+      ]
+    },
+    "bundlingNotes": "NY is a rating-bureau-uniform PREMIUM state (TIRSA), but unlike PA's TIRBOP, TIRSA's all-inclusive rate concept does not extend to bundling settlement/closing services into the regulated premium -- NY closings are attorney-run (buyer's and seller's attorneys both customarily attend), and the title agency's settlement/closing fee, doc prep, courier, wire, and notary fees are separately, competitively priced by whichever title agency and/or attorney is retained. The 2019 annulment of Part 228's ancillary-fee ceiling further confirms these categories are market-set, not regulator-set, in New York.",
+    "transactionContext": "Applies uniformly to Owner's and Loan policy premiums statewide, all counties, all TIRSA-member insurers/agents. Does not govern settlement/closing fees, which is why this survey's remaining entries are all provider-published service-fee schedules."
+  },
+  {
+    "provider": "Tier One Settlement Agency (independent settlement/title agency, downstate NY -- publishes a two-zone rate structure, 'Zone 1' and 'Zone 2')",
+    "sourceUrl": "https://www.tieronesettlement.com/ratesny",
+    "asOf": "Retrieved 2026-07-22; no explicit effective date stated on the page (current published rate page)",
+    "settlementFee": {
+      "residential": "$500.00",
+      "commercialAndConstruction": "$600.00",
+      "saturdayClosingSurcharge": "$50.00 (add-on to either rate above)"
+    },
+    "itemizedFees": {
+      "docPrep": "ACRIS Doc Prep (Zone 2 only): $75.00",
+      "processing": "Administration Fee: $50.00",
+      "courier": null,
+      "wire": null,
+      "edoc": "Encompass Collaboration fee: $14.00 (refinance) / $24.00 (purchase)",
+      "eRecording": "Recording Service: $30.00 per document",
+      "notarySigning": null,
+      "searchExam": "Chain Review above 2 chains: $35.00; Municipal Search Admin (Zone 2 only): $200.00",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        { "name": "Patriot Search", "amount": "$10.00 per name" },
+        { "name": "Bankruptcy Search", "amount": "$10.00 per name" },
+        { "name": "Franchise Tax Search", "amount": "$20.00" },
+        { "name": "Escrow Handling", "amount": "$50.00 per item" },
+        { "name": "Survey Inspection", "amount": "Actual cost + $75.00" }
+      ]
+    },
+    "bundlingNotes": "The clearest headline settlement-fee figure found this session: a flat, dollar-denominated Residential Settlement Fee ($500) distinct from Commercial & Construction ($600), plus a named Saturday-closing surcharge -- a genuine flat-fee schedule, not a range or estimate. Zone 1 vs. Zone 2 designation implies NYC-adjacent/downstate geographic tiering (Zone 2 carries its own ACRIS Doc Prep and Municipal Search Admin line items, consistent with NYC's ACRIS recording system), though the page does not spell out which counties fall in each zone.",
+    "transactionContext": "Downstate NY (Zone 1/Zone 2 -- NYC-area ACRIS references indicate Zone 2 includes the five boroughs). Residential vs. Commercial & Construction rate distinction; weekday vs. Saturday closing surcharge."
+  },
+  {
+    "provider": "Judicial Title Insurance Agency LLC (independent title agency, NYC + statewide NY, with an explicit multi-metro municipal-search rate table)",
+    "sourceUrl": "https://www.judicialtitle.com/resources/charges/",
+    "asOf": "Retrieved 2026-07-22; no explicit effective date stated on the page (current published charges page)",
+    "settlementFee": {
+      "settlementCharge": "$1,500.00 flat",
+      "titleCertification": "$500.00",
+      "mortgageForeclosureGuarantee": "$550.00"
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Full Municipal Search -- metro-tiered: Westchester/Putnam/Orange/Dutchess/Rockland/Upstate $395 residential / $495 commercial; NYC Boroughs $475 residential / $545 commercial; Nassau & Suffolk $425-$520 residential / $495-$590 commercial. Also: Attorney Search $450, Business Search $325, Deed Chain $150, Mortgage Foreclosure Search $445",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        { "name": "Co-op Lien Search packages (Basic/Plus/Advanced)", "amount": "$445 / $545 / $625" },
+        { "name": "10-Year Judgment & Lien Search", "amount": "$250" },
+        { "name": "20-Year Judgment & Lien Search", "amount": "$350" },
+        { "name": "Judgment & Lien Search", "amount": "$100" },
+        { "name": "Litigation Search", "amount": "$200" },
+        { "name": "UCC Search", "amount": "$200" },
+        { "name": "Single & Separate Search / Zoning Lot Certification", "amount": "$500 each" },
+        { "name": "Bankruptcy Search", "amount": "$25 per name" },
+        { "name": "Corporate Franchise Tax Search", "amount": "$150" },
+        { "name": "Certificate of Good Standing", "amount": "$175" }
+      ]
+    },
+    "bundlingNotes": "The single richest multi-metro data point found this session: Judicial Title publishes an explicit three-way regional split for its Full Municipal Search -- Westchester/Putnam/Orange/Dutchess/Rockland/'Upstate' vs. NYC Boroughs vs. Nassau & Suffolk -- directly covering three of the task brief's target metros (Westchester/Hudson Valley, NYC, Long Island) in one schedule, with the Boroughs price ($475-$545) running highest, consistent with NYC's added ACRIS-recording complexity. Its flat $1,500 Settlement Charge is 3x Tier One's $500 residential settlement fee, the widest headline-settlement-fee spread found this session (see NY.md saturation reasoning) -- plausibly reflecting different scopes of service (full-service escrow/settlement administration vs. a narrower settlement-attendance fee) rather than a like-for-like comparison.",
+    "transactionContext": "Statewide NY; the Full Municipal Search table is explicitly broken out by residential vs. commercial and by the three metro regions above. Settlement Charge and other named charges are flat, not metro-differentiated on this page."
+  },
+  {
+    "provider": "World Wide Land Transfer (independent title agency, multi-state including NY -- NY content is statewide/NYC-metro-oriented)",
+    "sourceUrl": "https://www.worldwidelandtransfer.com/ny-title-insurance-closing-costs-detached-homes/",
+    "asOf": "Retrieved 2026-07-22; no explicit effective date stated on the page",
+    "settlementFee": {
+      "note": "No single headline settlement/closing fee is published; the page instead itemizes buyer-side and seller-side closing-cost components separately, several of which function as settlement-adjacent service fees"
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": "Administrative Fees (varying by transfer type): $50-$165",
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": "Recording Fees (buyer-side): $250-$750",
+      "notarySigning": null,
+      "searchExam": "Municipal Search (buyer-side): $350-$500",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        { "name": "Pick-up/Payoff Fee to Title Closer (seller-side)", "amount": "$100-$300" },
+        { "name": "Miscellaneous Title Fees (seller-side)", "amount": "$200-$500" },
+        { "name": "NYS Equalization Fee (seller-side)", "amount": "$75" }
+      ]
+    },
+    "bundlingNotes": "Unlike Tier One and Judicial Title, World Wide Land Transfer does not publish a single flat settlement-fee number, instead breaking closing costs into a buyer-side list and a seller-side list -- the Pick-up/Payoff Fee to Title Closer ($100-$300) is the closest analog to a settlement/closing-attendance fee on the seller side. All figures are ranges rather than exact flat fees, weighted as softer evidence accordingly, though still the provider's own published language.",
+    "transactionContext": "Detached-home purchase transactions specifically (per URL slug); figures explicitly split by buyer-side vs. seller-side responsibility."
+  },
+  {
+    "provider": "Metro Title and Settlement (independent title/settlement agency, NY with a separate NJ office)",
+    "sourceUrl": "https://www.metrotitleandsettlement.com/new-york-fees",
+    "asOf": "Retrieved 2026-07-22; no explicit effective date stated on the page",
+    "settlementFee": {
+      "note": "No headline settlement/closing fee published; page is an itemized ancillary/service-fee schedule (search, recording, escrow, processing) rather than a single settlement-fee line"
+    },
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": "Payoff Processing Fee: $50-$200",
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": "Recording Service Charge: $25.00 (residential) / $50.00 (commercial)",
+      "notarySigning": null,
+      "searchExam": "Municipal Searches: $245-$345 residential / $375-$595 commercial; Attorney's Search $250-$500; Co-op Search $350-$750; Extra Chain $250-$500",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        { "name": "Escrow Service Charge", "amount": "$50.00 (residential) / $75.00 (commercial)" },
+        { "name": "Bankruptcy/Patriot Search", "amount": "$25.00 per name" },
+        { "name": "Judgment/Lien Search", "amount": "$100.00" },
+        { "name": "Litigation Search", "amount": "$100.00" },
+        { "name": "UCC County/State Search", "amount": "$75.00 each" },
+        { "name": "Good Standing Certificate", "amount": "$150.00" },
+        { "name": "Foreclosure Review / Bankruptcy Case Review", "amount": "$125.00 each" },
+        { "name": "Building Loan Contingency (after 5th)", "amount": "$200.00" }
+      ]
+    },
+    "bundlingNotes": "A residential-vs-commercial fee-tier pattern consistent with Judicial Title's municipal-search table, reinforcing that the residential/commercial split (not just geography) is a recurring NY provider pricing pattern. Escrow Service Charge ($50-$75) and Recording Service Charge ($25-$50) are directly comparable line items to Tier One's Escrow Handling ($50/item) and Recording Service ($30/document) -- these two independently-published schedules corroborate each other within the same narrow dollar band.",
+    "transactionContext": "NY statewide; several line items explicitly split residential vs. commercial pricing."
+  },
+  {
+    "provider": "First International Title (independent title agency, Long Island focus -- Suffolk County primary, Nassau County referenced)",
+    "sourceUrl": "https://firstintitle.com/ny-search-fee-schedule/",
+    "asOf": "Retrieved 2026-07-22; no explicit effective date stated on the page",
+    "settlementFee": {
+      "cancellationFee": "$300.00 plus departmental fees (closest analog to a settlement/closing-adjacent flat fee on this page; not a settlement fee itself)"
+    },
+    "itemizedFees": {
+      "docPrep": "ACRIS Recording Preparation: $250.00 (with title insurance) / $300.00 (no insurance)",
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Attorney Search $350 + $30/additional name; Chain of Title (20 years) $175 + $125/additional year; Co-op Basic Search $425; Mortgage Search $150; Flood Zone Search $75; Tax Search $50; Certified Tax Search $100; UCC Search $60/name; Grantee/Grantor $125/name per town",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        { "name": "Escrow Service Fee", "amount": "$50.00" },
+        { "name": "Certificate of Good Standing", "amount": "$150.00" },
+        { "name": "Certificate of Occupancy (varies by municipality)", "amount": "$85-$250" },
+        { "name": "Certified Copies", "amount": "$40 + $1/page" },
+        { "name": "Violation Searches (Housing/Building/Fire)", "amount": "$85.00" },
+        { "name": "Violation Search (Sewer -- Nassau)", "amount": "$125.00" },
+        { "name": "Violation Search (Sewer -- Suffolk)", "amount": "$85.00" }
+      ]
+    },
+    "bundlingNotes": "Long Island's clearest published fee schedule this session; its $50 Escrow Service Fee matches Tier One's $50 Escrow Handling fee and Metro Title's $50 residential Escrow Service Charge almost exactly -- three independently-published NY sources converging on the same $50 figure for escrow/handling service, a genuine cross-provider corroboration point.",
+    "transactionContext": "Long Island (Nassau/Suffolk) -- ACRIS recording preparation is NYC-adapted terminology but applied here to a Long Island provider's schedule; all searches noted as subject to NY sales tax."
+  }
+]

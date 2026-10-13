@@ -1,0 +1,245 @@
+[
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://www.stewart.com/-/media/files/stewartdotcom/pdfs/states/west-virginia/west_virginia_full_manual_eff_08_25_2023_final.pdf",
+    "asOf": "Effective 2023-08-25 (last updated 2023-06-14)",
+    "settlementFee": {
+      "note": "Title insurance premium (Schedule of Charges) only, NOT a settlement/escrow fee schedule. The manual's own 'Charge' definition explicitly excludes settlement fee, trustee fee, attorney fee, surveying fee, inspection fee, document fee, closing fee, escrow fee, or any other fee associated with escrow -- those are billed separately by local attorneys/abstract companies and are not published by Stewart.",
+      "residentialOwnersPolicyTable_sample": "$0-$100,000 of liability: $3.90/thousand; over $100,000-$500,000 add $3.40/thousand; over $500,000-$5,000,000 add $3.00/thousand; over $5,000,000-$10,000,000 add $2.00/thousand; over $10,000,000-$20,000,000 add $1.75/thousand; over $20,000,000 add $1.00/thousand. Minimum $200 (fixed).",
+      "altaHomeownersPolicy": "$0-$100,000: $4.68/thousand; over $100,000-$500,000 add $4.08/thousand; over $500,000-$5,000,000 add $3.60/thousand. Minimum $200 (fixed).",
+      "residentialLoanPolicyTable_sample": "$0-$100,000: $2.90/thousand; over $100,000-$500,000 add $2.40/thousand; over $500,000-$5,000,000 add $2.00/thousand. Minimum $200 (fixed).",
+      "refinanceLoanPolicy": "$0-$100,000: $2.25/thousand; over $100,000-$500,000 add $1.50/thousand; over $500,000-$5,000,000 add $1.15/thousand. Minimum $200.",
+      "reissueRateOwners": "70% of original owner's/leasehold charge, up to the amount of the prior policy (policy must be within 10 years). Minimum $200.",
+      "simultaneousIssue": "Owner's + Loan under $1M liability: Owner's at 100% of Basic Schedule, Loan policy flat $100. At $1M+ liability: Owner's at 100%, Loan policy flat $500.",
+      "cpl": "Lender or purchaser CPL $50; seller CPL $75 (each party receiving benefit is charged separately); additional $50 for a second mortgage/HELOC by a non-primary lender."
+    },
+    "itemizedFees": {
+      "cpl": "$50 lender/purchaser, $75 seller (see settlementFee.cpl)",
+      "other": [
+        {
+          "name": "Article 9 Comprehensive Plus Policy (UCC/personal-property collateral)",
+          "amount": "$500 fixed up to $100,000 liability, then tiered $3.85-$0.50/thousand above that"
+        },
+        {
+          "name": "Secondary Market Short Form Residential Loan Policy (1-4 family)",
+          "amount": "$350 up to $250,000; $450 to $500,000; $550 to $750,000; $650 to $1,000,000; $750 to $1,500,000"
+        },
+        {
+          "name": "Modification Guarantee",
+          "amount": "$150 (each continuation/down date $25)"
+        },
+        {
+          "name": "Centralized Processing Loan and Refinance Rate (CPLR, multi-state agents only)",
+          "amount": "$350 up to $250,000 rising to $2,150 at $4,000,000-$5,000,000"
+        },
+        {
+          "name": "Limited Coverage STG Home Equity Loan Policy (HELP)",
+          "amount": "$45 up to $100,000; $65 to $250,000; $125 to $500,000"
+        },
+        {
+          "name": "Foreclosure Insurance Policy (ALTA Limited Pre-Foreclosure)",
+          "amount": "40% of Original Mortgagee Loan Policy charge, minimum $85"
+        },
+        {
+          "name": "Extra-hazardous risk charge (decedent's-estate transfer within 1 year of death)",
+          "amount": "$2.00/thousand of sales price, minimum $250"
+        }
+      ]
+    },
+    "bundlingNotes": "General Provisions define 'Charge' to explicitly exclude settlement fee, trustee fee, attorney fee, surveying fee, inspection fee, document fee, closing fee, escrow fee, or any other fee associated with escrow -- these are billed by 'local attorneys, surveyors, abstractors, or abstract companies' and are not part of this filed manual. No settlement/service-fee dollar figures appear anywhere in the 17-page document apart from the CPL fee.",
+    "transactionContext": "Owner's (Standard, ALTA Homeowner's), Loan (Standard, Expanded Coverage, Refinance, Junior/Home Equity), and full ALTA endorsement schedule, statewide (all counties charged identically -- no metro/county tiering, unlike some neighboring states)."
+  },
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/west-virginia/rate-manuals/West%20Virginia%20Rate%20Manual%20Effective%20March%201,%202022.pdf",
+    "asOf": "Effective 2022-03-01",
+    "settlementFee": {
+      "note": "Title insurance premium (Manual of Title Insurance Premiums) only, NOT a settlement/escrow fee schedule. The manual's Introduction states rates shown are 'the total title insurance fees charged the applicant including both the risk portion and the service or work portion, but do not include charges for title search, surveys, closing services, settlement services, recording fees, other charges.'",
+      "nonCommercialOwnersPolicyTable_sample": "Up to $100,000: $4.00/thousand; $100,001-$500,000 add $3.00/thousand; $500,001-$1,000,000 add $2.25/thousand; $1,000,001-$5,000,000 add $2.00/thousand. Minimum $150.",
+      "homeownerPolicyTable_sample": "Up to $100,000: $4.80/thousand; $100,001-$500,000 add $4.50/thousand. Minimum $150.",
+      "nonCommercialLoanPolicyTable_sample": "Up to $100,000: $3.00/thousand; $100,001-$500,000 add $2.25/thousand; $500,001-$1,000,000 add $1.75/thousand. Minimum $150.",
+      "simultaneousIssueOwnersLoan": "Owner's policy at applicable rate plus flat $150 per loan policy issued.",
+      "reissueRefinance": "70% of original owner's or loan rate up to the amount of the existing policy (policy must be within 10 years).",
+      "lendersSpecialRates": "Volume-tiered lender programs (100/200/300/500 minimum orders) with materially lower premiums, e.g. Rate 4 (500+ orders): $275 up to $250,000 liability rising to $2,200 at $4,000,000-$5,000,000 -- available only to qualifying high-volume lenders with centralized electronic processing."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "HE2 Home Equity 2nd Generation Policy certificate",
+          "amount": "$45 up to $250,000; $75 to $500,000; $250 to $750,000; $300 to $1,000,000"
+        },
+        {
+          "name": "ALTA Residential Limited Coverage Junior Loan Policy",
+          "amount": "flat $110 up to $250,000 liability"
+        },
+        {
+          "name": "Mortgage Priority Guarantee / Residential Limited Coverage Mortgage Modification Policy",
+          "amount": "$125 (up to $250,000 unpaid principal balance)"
+        }
+      ]
+    },
+    "bundlingNotes": "Introduction paragraph is the most explicit settlement-fee-exclusion language of the 3 WV underwriter manuals found this session, naming 6 distinct excluded categories (title search, surveys, closing services, settlement services, recording fees, other charges/monies advanced). No CPL fee schedule was located in the sections of this manual retrieved (unlike Stewart and FNTI, both of which publish an explicit CPL fee).",
+    "transactionContext": "Owner's, Homeowner's (Expanded/ALTA), Loan, and Expanded Coverage Loan policies for non-commercial and commercial property, statewide, plus a separate Lender's Special Rate volume-discount schedule for qualifying high-volume centralized lenders."
+  },
+  {
+    "provider": "First National Title Insurance Company (FNTI)",
+    "sourceUrl": "https://documentpub.fnti.com/Documents/West%20Virginia/Rate%20Manual/FNTI%20WV%20Rate%20Manual%20Effective%202022-09-20.pdf",
+    "asOf": "Effective 2022-09-20",
+    "settlementFee": {
+      "note": "Title insurance premium (Rates and Rules Manual) only, NOT a settlement/escrow fee schedule. General Rule F ('Risk Rate') explicitly states: 'The rates set forth herein do not include any charge made for title search, title examination, closing, or escrow services performed by the Insurer, or any of its approved attorneys or agents. Charges made for such services are in addition to the rates and charges set forth herein.'",
+      "ownersPolicyTable_sample": "Up to $125,000: $4.00/thousand; $125,001-$500,000 add $3.20/thousand; $500,001-$1,000,000 add $2.10/thousand; $1,000,001-$5,000,000 add $2.00/thousand. Minimum $200.",
+      "loanPolicyTable_sample": "Up to $125,000: $3.00/thousand; $125,001-$500,000 add $2.20/thousand; $500,001-$1,000,000 add $1.70/thousand. Minimum $200.",
+      "simultaneousIssue": "Owner's + Loan Policy on identical land: applicable Owner's rate plus flat $150 for the Loan Policy.",
+      "reissueRate": "70% of original rate within 5 years of prior policy issuance (up to the face amount of the previous policy).",
+      "refinanceRate": "70% of Basic Loan Rate if previous loan policy is 5 years old or less; 100% of Basic Loan Rate if over 5 years old. Minimum $200.",
+      "cpl": "Lender CPL $50.00; Purchaser CPL $25.00; Seller CPL $25.00.",
+      "centralizedLoanRate": "Multi-state/centralized-processing refinance program: $360 up to $250,000 liability rising to $1,300 at $2,000,001-$3,000,000."
+    },
+    "itemizedFees": {
+      "cpl": "$50 lender, $25 purchaser, $25 seller",
+      "other": [
+        {
+          "name": "ALTA Residential Limited Coverage Junior Loan Policy",
+          "amount": "$150 up to $150,000; $250 to $250,000; add $1/thousand above $250,000"
+        },
+        {
+          "name": "Master Home Equity / HE2 Home Equity 2nd Generation certificate",
+          "amount": "$125 up to $250,000; $200 to $500,000; $300 to $750,000; $400 to $1,000,000"
+        }
+      ]
+    },
+    "bundlingNotes": "General Rule F is the clearest single-sentence 'Risk Rate' exclusion of settlement/search/exam/closing/escrow charges found among the 3 WV manuals reviewed this session, and (together with Stewart) is one of only two WV underwriters to publish a standalone CPL fee -- notably lower on the purchaser/seller side ($25/$25) than Stewart's ($50/$75).",
+    "transactionContext": "Owner's and Loan (including Refinance, Junior, Home Equity) policies for all 55 West Virginia counties (full county code table published), statewide uniform rates -- no metro/county tiering."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company — Stewart Rate Calculator (stewartratecalculator.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true",
+    "endpointOrParams": "Genuine JSON REST API at /api/SRC/*, driven via plain HTTP GET/POST (no browser/JS execution) -- this session fully solved the previously-unreverse-engineered POST /api/SRC/quote endpoint; full recipe documented in CALCULATORS.md. Sequence: GET /api/SRC/transactiontypes?statecode=WV -> GET /api/SRC/propertysearch?value=Charleston,%20WV (resolves Kanawha County, CountyFIPS 54039, zip 25301) -> GET /api/SRC/policycoveragetypes (OP and MP legs, both BASIC) -> GET /api/SRC/providers?statecode=WV&countycode=54039&zipcode=25301&transactiontype=SALE (returns the only settlement office serving this county, Omnia Title Corp., ID 3030) -> GET /api/SRC/statesettings?statecode=WV -> GET /api/SRC/ernstlookup?statecode=WV&countycode=54039 -> two POST /api/SRC/quote calls (QuoteType=2 Netsheet flow for recording/transfer-tax, QuoteType=3 Fee-Estimate flow with ProviderID=3030 for the itemized settlement fee), each with a QuoteRequestRoot JSON body and a scraped antiforgery token/cookie pair. No personal-data fields required or entered.",
+    "retrievalDate": "2026-08-14",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Kanawha County (Charleston), residential resale, Sale/Purchase with Mortgage transaction.",
+    "methodology": "First session to complete reverse-engineering of Stewart's /api/SRC/quote endpoint (flagged unreverse-engineered since 2026-07-22/23) -- confirmed working nationwide, not WV-specific. Full request/response detail and step-by-step recipe in CALCULATORS.md's 2026-08-14 Stewart Title entry.",
+    "settlementFee": {
+      "note": "Title Closing Fee (provider: Omnia Title Corp., the only settlement office this tool lists for Kanawha County): $750.00 total, split $550.00 buyer / $200.00 seller."
+    },
+    "itemizedFees": {
+      "processing": "$750.00 (Title Closing Fee, total -- $550.00 buyer / $200.00 seller split)",
+      "other": [
+        {
+          "name": "Owner's Policy (Basic) premium, RateManual",
+          "amount": "$1,920.00"
+        },
+        {
+          "name": "Lender's Policy (Basic) simultaneous-flow premium, RateManual",
+          "amount": "$200.00"
+        },
+        {
+          "name": "TRID-disclosure Owner Policy premium",
+          "amount": "$875.00"
+        },
+        {
+          "name": "TRID-disclosure Lender Policy premium (stand-alone flow)",
+          "amount": "$1,245.00"
+        },
+        {
+          "name": "Mortgage recording fee",
+          "amount": "$53.00"
+        },
+        {
+          "name": "Deed recording fee",
+          "amount": "$53.00"
+        },
+        {
+          "name": "Release recording fee",
+          "amount": "$12.00"
+        },
+        {
+          "name": "Kanawha County Deed/Transfer Tax (100% seller-paid per the tool's own split)",
+          "amount": "$2,750.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Only one settlement office (Omnia Title Corp., a Tampa FL-headquartered national settlement provider, not a WV-local firm) is returned by this tool for Kanawha County -- unlike NH's Hillsborough County, which returned multiple distinct local providers with different fee schedules. Two separate POST flows were required for a complete quote (QuoteType=2 for recording/transfer-tax, QuoteType=3 for the itemized settlement fee) -- see CALCULATORS.md.",
+    "transactionContext": "Sale/Purchase with Mortgage, Kanawha County/Charleston WV."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company — second rate calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://oldrepublictitle.com/rate-calculator/?location=west-virginia",
+    "calculatorUrl": "https://oldrepublictitle.com/rate-calculator/?location=west-virginia",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (embeds ortratecalculator.oldrepublictitle.com/EmbedRateCalc.aspx?Location=WV&cms=https://oldrepublictitle.com/, which 302-redirects through a login step into a session-scoped RateCalc.aspx?CallingApp=PUBLIC&Location=47&embed=TRUE&HideState=TRUE&Agent= URL -- 47 is WV's internal numeric code). Root cause of this tool's previously-fluctuating NoBot block identified this session: it is backend session affinity (the ASP.NET session lives on one specific web-farm node, addressed only via the URL's (S(...)F(...)) segment, not a cookie) -- every request in the GET-login-redirect-POST-POST sequence must reuse one persistent HTTP session/connection and the exact (S(...)F(...)) path returned by the login redirect, or the load balancer can route a later request to a different node and the session reads as unauthorized. A consistent Referer (https://oldrepublictitle.com/rate-calculator/?location=west-virginia) is also required throughout. POST 1: __EVENTTARGET=ctl00$ContentPlaceHolder1$ddlPolicyCategory, value 3 (SIMULTANEOUS LOAN & OWNERS) -- must also include every AJAX-extender *_ClientState hidden field (PdateReqE_ClientState, DFormatValEx_ClientState, DateRangValEx_ClientState, PCatValEx_ClientState, txtPriorPremiumTypesExist) as empty strings, or the server returns HTTP 500. POST 2 (fresh VIEWSTATE from POST 1's response): ddlPolicyType1=11978 (OWNERS POLICY), ddlPolicyType2=11981 (SIMULTANEOUS LOAN), txtLiabilityAmt=500000, txtCrLiabilityAmt=400000, ddlEndList=10 (RESIDENTIAL), ctl00$ContentPlaceHolder1$btnCalculate=Calculate. No county field ever appears in this form -- confirms WV's premium via this tool is a flat statewide rate. No personal data entered.",
+    "retrievalDate": "2026-08-14",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, statewide (no county selector), SIMULTANEOUS LOAN & OWNERS policy category, closing date 08/14/2026.",
+    "methodology": "Verified identical across two independent fresh sessions. Full root-cause writeup (session-affinity, not purely NoBot/Referer) in CALCULATORS.md's 2026-08-14 entry.",
+    "settlementFee": {
+      "note": "This tool prices title insurance premiums only -- no settlement/closing/escrow service-fee line items are itemized in its output (same structural limitation observed for this tool's other state entries elsewhere in this project)."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "SIMULTANEOUS LOAN, insured amount $400,000.00 -- Lenders-Only standalone premium",
+          "amount": "$980.00"
+        },
+        {
+          "name": "SIMULTANEOUS LOAN, combined (simultaneous) premium",
+          "amount": "$100.00"
+        },
+        {
+          "name": "OWNERS POLICY, insured amount $500,000.00, combined (simultaneous) premium",
+          "amount": "$1,700.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, standalone-lenders-only",
+          "amount": "$980.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, Owners+Lenders combined",
+          "amount": "$1,800.00"
+        }
+      ]
+    },
+    "bundlingNotes": "No county field appears anywhere in this tool's WV flow -- WV's premium via this tool is a flat statewide promulgated rate, unlike NH (also statewide in this tool) or other states in this tool's footprint that do have county tiering.",
+    "transactionContext": "Simultaneous Owner's + Lender's policy, statewide West Virginia, purchase with financing."
+  },
+  {
+    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-18",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Kanawha County (Charleston), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Same publicly-reachable, no-auth JSON API already solved and documented in CALCULATORS.md's 2026-08-08 entry -- confirmed via GET /api/rates/State/GetCalculationEnabledStates that this state is isCalculationEnabled:true, then POST directly with the nested Properties/Loans request shape. No personal-data field exists anywhere in this request shape.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2280.00",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's sellernet/seller-side-only design, same behavior already documented for every other state harvested via this tool)",
+      "other": [],
+      "note": "Premium-only result -- this state is not one of the 7 (WA/CA/TX/OR/AZ/NV/CO) with configured HUD-fee line items in WFG's own fee-description table."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "Property location for this request: Charleston, WV (Kanawha County).",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Kanawha County, WV."
+  },
+  {
+    "provider": "FNF-family underwriter (Chicago Title/Fidelity National Title/Commonwealth Land Title -- ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine; this tool's pre-selected default underwriter brand varies by request, and prior sessions confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=WV",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=WV (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-19",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Kanawha County (Charleston) (the standard-scenario county, matching this state's existing Stewart entry), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions.",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback), following this project's existing FNF recipe documented in CALCULATORS.md: GET the county-selection page, POST the county (own __EVENTTARGET), POST btnGeneralNext=Next, POST TranType$ddl=PropertyPurchase (a <select> control for this state), POST AmountPurchase$txt=500000 then AmountLoan1$txt=400000 (each with its own __EVENTTARGET), tool defaults for all remaining policy questions, then POST btnFinish=Finish for the final Rate Summary. No personal-data fields exist anywhere in this flow. This is a richness pass applying the already-solved FNF recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers, adding a corroborating 4th entry.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1750.00 (Owner's Policy Total Policy Premium: Disclosure Amount $890.00 + Adjustment $860.00, concurrent-issue rate)",
+      "loanPolicyPremium": "$150.00 (Loan Policy Total Policy Premium, concurrent-issue rate)",
+      "other": [
+        { "name": "Charge for Lender's Closing Protection Letter", "amount": "$50.00" }
+      ],
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence."
+    },
+    "sectionTotals": "Grand Total (Owner's Policy Purchased): $1950.00.",
+    "bundlingNotes": "Harvested this session as a richness pass -- WV had already crossed the 3-provider threshold (Stewart, Old Republic's 2nd tool, WFG); this FNF entry is a 4th corroborating provider, applying the same generalized recipe already used for AR/CT/CO/MA/ND/VT/WY/RI/DE/SD/AK.",
+    "transactionContext": "Owner's + Loan Policy concurrent-issue premiums plus Lender's CPL for a $500,000 residential purchase / $400,000 loan, Kanawha County (Charleston)."
+  }
+]
