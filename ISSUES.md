@@ -49,7 +49,22 @@ only.
 
 ## Open
 
-### Security-claims cleanup — prepared, not deployed (2026-10-12)
+### Optional intake uploader retired — prepared, not deployed (2026-10-12)
+
+The owner approved directing optional intake document uploads to the current
+closing-file Documents workspace. Both retired intake upload endpoints return
+410 Gone without reading request bodies, using storage or accessing records.
+The intake form displays a file-workspace link instead of upload controls.
+Existing stored documents, file-sharing permissions, email behavior and the
+current file Documents workflow are unchanged. This does not retire the rest
+of the intake form or represent a broader application-security certification.
+Regression coverage includes the retired routes, mobile/desktop notice,
+compiled-server HTTP checks and the existing file-workspace tests.
+
+### Security-claims cleanup — deployed and verified (2026-10-12)
+
+PR #134 merged as afde8fa; Amplify job 165 succeeded. Live checks verified the
+Security page and retired homepage variant URLs.
 
 Old public homepage variants still exposed unsupported security, escrow and
 licensing assertions. The homepage wrapper now consistently renders the current

@@ -105,6 +105,30 @@ after(async () => {
   } finally { await prisma.$disconnect(); }
 });
 
+test('retired intake upload endpoints always return Gone without changing documents or activity', async () => {
+  const before = { documents: await prisma.document.count(), events: await prisma.activityEvent.count() };
+  for (const route of ['/api/intake/upload', '/api/intake/upload/confirm']) {
+    for (const session of ['', 'next-auth.session-token=invalid', cookie('borrower'), cookie('pro'), cookie('admin')]) {
+      for (const body of ['', '{', JSON.stringify({
+        leadId: prefix + 'nonexistent', key: 'synthetic-only.pdf', fileName: 'Synthetic.pdf',
+        fileSize: 100, fileType: 'application/pdf', documentType: 'pay_stub',
+      })]) {
+        const response = await request(route, { method: 'POST',
+          headers: { cookie: session, 'content-type': 'application/json' }, body });
+        assert.equal(response.status, 410);
+        assert.equal(response.headers.get('cache-control'), 'no-store');
+        assert.equal(response.headers.get('location'), null);
+        assert.equal(response.headers.get('set-cookie'), null);
+        assert.deepEqual(await response.json(), {
+          success: false, code: 'INTAKE_UPLOAD_RETIRED',
+          error: 'Upload documents from the Documents section of your closing file.', nextUrl: '/dashboard',
+        });
+      }
+    }
+  }
+  assert.deepEqual({ documents: await prisma.document.count(), events: await prisma.activityEvent.count() }, before);
+});
+
 test('real session endpoint distinguishes anonymous, invalid and valid sessions without shared caching', async () => {
   for (const session of ['', 'next-auth.session-token=invalid']) {
     const response = await request('/api/auth/session', { headers: { cookie: session } });
