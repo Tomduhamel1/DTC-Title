@@ -3,7 +3,7 @@
 import { Suspense, useState, useEffect, useCallback } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import FileUpload from '@/components/FileUpload'
+import IntakeDocumentsNotice from '@/components/IntakeDocumentsNotice'
 import { SUPPORT_PHONE_DISPLAY, SUPPORT_PHONE_TEL } from '@/lib/contact'
 
 type Step = 'contact' | 'address' | 'property' | 'financial' | 'documents'
@@ -18,7 +18,6 @@ function StartContent() {
   const [currentStep, setCurrentStep] = useState<Step>('contact')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  const [leadId, setLeadId] = useState<string | null>(null)
   const [resumeToken, setResumeToken] = useState<string | null>(null)
   const [completionPercentage, setCompletionPercentage] = useState(0)
   const [saveMessage, setSaveMessage] = useState('')
@@ -56,7 +55,6 @@ function StartContent() {
       try {
         const parsed = JSON.parse(decodeURIComponent(savedData))
         setFormData(parsed.formData || {})
-        setLeadId(parsed.leadId || null)
         setResumeToken(parsed.resumeToken || null)
         setCompletionPercentage(parsed.completionPercentage || 0)
       } catch (e) {
@@ -86,7 +84,6 @@ function StartContent() {
         const result = await response.json()
 
         if (response.ok) {
-          setLeadId(result.leadId)
           setResumeToken(result.resumeToken)
           setCompletionPercentage(result.completionPercentage)
           setSaveMessage('Progress saved')
@@ -414,56 +411,7 @@ function StartContent() {
         )
 
       case 'documents':
-        return (
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900">Upload supporting documents (Optional)</h2>
-            <p className="text-gray-600">
-              Upload documents to speed up your application. You can always add these later.
-            </p>
-
-            {leadId ? (
-              <div className="space-y-4">
-                <FileUpload
-                  leadId={leadId}
-                  documentType="pay_stub"
-                  label="Recent Pay Stub"
-                  onSuccess={() => console.log('Pay stub uploaded')}
-                  onError={(err) => console.error('Upload error:', err)}
-                />
-
-                <FileUpload
-                  leadId={leadId}
-                  documentType="bank_statement"
-                  label="Bank Statement"
-                  onSuccess={() => console.log('Bank statement uploaded')}
-                  onError={(err) => console.error('Upload error:', err)}
-                />
-
-                <FileUpload
-                  leadId={leadId}
-                  documentType="tax_return"
-                  label="Tax Return (Most Recent)"
-                  onSuccess={() => console.log('Tax return uploaded')}
-                  onError={(err) => console.error('Upload error:', err)}
-                />
-
-                <FileUpload
-                  leadId={leadId}
-                  documentType="id_document"
-                  label="Photo ID"
-                  onSuccess={() => console.log('ID uploaded')}
-                  onError={(err) => console.error('Upload error:', err)}
-                />
-              </div>
-            ) : (
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                <p className="text-yellow-800">
-                  Please complete the previous steps first to enable document uploads.
-                </p>
-              </div>
-            )}
-          </div>
-        )
+        return <IntakeDocumentsNotice />
     }
   }
 
