@@ -49,6 +49,23 @@ only.
 
 ## Open
 
+### Security-claims cleanup — prepared, not deployed (2026-10-12)
+
+Old public homepage variants still exposed unsupported security, escrow and
+licensing assertions. The homepage wrapper now consistently renders the current
+homepage, including on `/preview`; query parameters no longer select retired
+experiments. Stale reusable components no longer claim guaranteed or bank-level
+security, certified processes, or blanket FDIC coverage. The Security page uses
+specific access/connection descriptions, distinguishes the portal from bank
+transfers, and prioritizes contacting the sending bank after suspected wire fraud.
+The owner's previously confirmed no-sale privacy policy is unchanged.
+
+This is a claims correction, not a security certification or infrastructure
+hardening release. Application-access and browser-header follow-ups from the
+audit remain separate; they are not represented as fixed here. No customer data,
+payment behavior, permissions, infrastructure settings or email sending changed.
+The handout/underwriter-disclosure and mobile-layout branches remain separate.
+
 ### Search discovery foundation — prepared, not deployed (2026-10-09)
 
 Public routes lack a sitemap, explicit canonicals and page-specific sharing

@@ -30,6 +30,7 @@ jobs:
       - run: node --test test/contact-options.test.cjs test/homepage-section-order.test.cjs
       - run: node --test test/homepage-content.test.cjs
       - run: node --test test/public-copy.test.cjs
+      - run: node --test test/security-claims.test.cjs
       - run: node --test test/discovery.test.cjs
       - run: npm audit --omit=dev --audit-level=low
   email-layout:
