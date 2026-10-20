@@ -15,7 +15,7 @@ test('transaction amount labels fit the real quote table on phone and desktop', 
   const browser = await openEmailBrowser();
   try {
     const { page, requestCount } = await offlinePage(browser);
-    for (const width of [390, 1280]) {
+    for (const width of [320, 390, 768, 1280]) {
       await page.setViewport({ width, height: 900 });
       for (const transactionType of ['purchase', 'refinance']) {
         const report = {

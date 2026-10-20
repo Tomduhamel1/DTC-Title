@@ -174,7 +174,7 @@ export default function FeeReportTable({
           Loan-life total includes closing savings plus modeled interest avoided
           if you finance that much less at 6.5% over 30 years.
         </p>
-      </div> : <div className="mx-6 mb-6 rounded-2xl bg-emerald-600 px-5 py-4 flex items-center justify-between gap-4">
+      </div> : <div className="mx-6 mb-6 rounded-2xl bg-emerald-600 px-5 py-4 flex flex-col items-start min-[440px]:flex-row min-[440px]:items-center justify-between gap-4">
         <div className="min-w-0">
           <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-100">
             Your total savings
@@ -190,12 +190,12 @@ export default function FeeReportTable({
 
       {/* Preserve the full report's existing summary layout. */}
       {!isPreview && <div className="px-6 pb-6">
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 min-[440px]:grid-cols-2 gap-3">
           <div className="bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3">
             <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 mb-1">
               Save at closing
             </div>
-            <div className="text-2xl font-black text-emerald-700 tabular-nums leading-none">
+            <div className="text-2xl font-black text-emerald-700 tabular-nums leading-none whitespace-nowrap">
               {formatSavings(totals.estimatedSavings)}
             </div>
             <div className="text-[11px] text-gray-500 mt-1.5">Title &amp; settlement</div>
@@ -205,7 +205,7 @@ export default function FeeReportTable({
               <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 mb-1">
                 Save over the loan
               </div>
-              <div className="text-2xl font-black text-emerald-700 tabular-nums leading-none">
+              <div className="text-2xl font-black text-emerald-700 tabular-nums leading-none whitespace-nowrap">
                 {formatSavings(totals.lifetimeSavings)}
               </div>
               <div className="text-[11px] text-gray-500 mt-1.5">Long-term savings</div>
@@ -317,8 +317,8 @@ function FeeRow({
 
   return (
     <div className={positiveSavings ? PREVIEW_COLS : COLS}>
-      <div className="min-w-0">
-        <div className="text-[13px] font-semibold text-dark-900 leading-tight">
+      <div className={positiveSavings ? 'min-w-0' : 'min-w-0 col-span-3 min-[380px]:col-span-1'}>
+        <div className="text-[13px] font-semibold text-dark-900 leading-tight break-words">
           {item.label}
           {item.isCredit && (
             <span className="ml-2 align-middle inline-block text-[9px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-1.5 py-0.5">
@@ -340,7 +340,7 @@ function FeeRow({
         {typical}
       </div>
       <div
-        className={`text-[13px] font-bold text-right tabular-nums whitespace-nowrap ${
+        className={`${positiveSavings ? '' : 'col-start-2 min-[380px]:col-start-auto'} text-[13px] font-bold text-right tabular-nums whitespace-nowrap ${
           item.isCredit ? 'text-emerald-700' : 'text-dark-900'
         }`}
       >

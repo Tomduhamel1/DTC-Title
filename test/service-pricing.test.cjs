@@ -90,6 +90,11 @@ test('purchase and refinance preserve state differences, comparison package doll
       const after = await h.load('src/lib/elendCalc.ts').fetchElendFeeEstimate(input, { skipAvailabilityCheck: true });
       const compute = h.load('src/lib/feeReport.ts').computeTotals;
       const a = compute(after), b = compute(before);
+      const band = h.load('src/lib/marketBaseline.ts').serviceBandFor(state, transactionType, input.zip);
+      assert.equal(a.serviceStack.typicalLow, Math.round(band.packageRange?.low ?? b.serviceStack.ourTotal * band.low),
+        state + ' low uses the original schedule, not the discounted one');
+      assert.equal(a.serviceStack.typicalHigh, Math.round(band.packageRange?.high ?? b.serviceStack.ourTotal * band.high),
+        state + ' high package is allocated exactly once');
       let reduction = 0;
       for (const [label, amount] of Object.entries(oldFees)) {
         const expected = h.load('src/lib/betterCloseFees.ts').discountedServiceFee(label, amount);
@@ -162,6 +167,25 @@ test('currency formatting preserves proportional cents without adding decimals t
   const { formatCurrency } = setup().load('src/lib/feeReport.ts');
   for (const [amount, expected] of [[163.33, '$163.33'], [265.5, '$265.50'], [16.2, '$16.20'], [140, '$140'], [-430, '-$430']]) {
     assert.equal(formatCurrency(amount), expected);
+  }
+});
+
+test('marketing anchors and curves agree with the matching quote-engine matrix scenarios', () => {
+  const h = setup();
+  const { STATE_MATRIX } = h.load('src/lib/stateMatrix.generated.ts');
+  const { STATE_CURVES, CURVE_HOME_VALUES } = h.load('src/lib/stateSavingsCurve.generated.ts');
+  const { STATE_ANCHORS } = h.load('src/lib/stateSavings.generated.ts');
+  assert.deepEqual(Object.keys(STATE_ANCHORS).sort(), Object.keys(STATE_MATRIX).sort());
+  assert.deepEqual(Object.keys(STATE_CURVES).sort(), Object.keys(STATE_MATRIX).sort());
+  for (const state of Object.keys(STATE_MATRIX)) {
+    for (const mode of ['purchase', 'refinance']) {
+      const anchor = STATE_MATRIX[state][mode]['500000'];
+      assert.deepEqual(STATE_ANCHORS[state][mode], { save: anchor.save, ourTotal: anchor.pay }, state + ' ' + mode);
+      for (const [index, value] of CURVE_HOME_VALUES.entries()) {
+        const scenario = STATE_MATRIX[state][mode][String(value)];
+        assert.deepEqual(STATE_CURVES[state][mode][index], { save: scenario.save, pay: scenario.pay }, state + ' ' + mode);
+      }
+    }
   }
 });
 

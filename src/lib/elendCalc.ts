@@ -186,8 +186,8 @@ function assignPackageComparison(stack: FeeLineItem[], lowCents: number, highCen
   const othersCents = stackCents - cents(anchor.ourCost)
   // Usually the package delta sits on settlement, with other rows at parity.
   // For a much cheaper competitor, use proportional allocation instead of
-  // inventing a negative settlement price. The table identifies this as a
-  // package comparison; these are not independently sourced per-line rates.
+  // inventing a negative settlement price. These are package allocations,
+  // not independently sourced per-line rates.
   const proportional = lowCents < othersCents || highCents < othersCents
   let allocatedLow = 0, allocatedHigh = 0
   for (const li of stack.filter(item => item !== anchor)) {
