@@ -9,246 +9,71 @@ export default function SecurityPage() {
   return (
     <div className="min-h-screen bg-white">
       <NavigationCredible />
-      <div className="h-20"></div>
+      <div className="h-20" />
+      <main data-security-guidance className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16 text-gray-700 leading-relaxed">
+        <h1 className="text-3xl sm:text-5xl font-black text-dark-900 mb-6">Security & Wire-Fraud Awareness</h1>
+        <p className="text-lg mb-10">
+          Before sending closing funds, independently confirm payment instructions with your closing team.
+          A familiar name, logo or email address is not proof that a request is genuine.
+        </p>
 
-      {/* Hero */}
-      <section className="py-20 bg-gradient-to-br from-red-50 to-white">
-        <div className="container mx-auto px-4 max-w-4xl text-center">
-          <div className="inline-block bg-red-500 text-white px-4 py-2 rounded-full font-bold mb-6">
-            ⚠️ CRITICAL INFORMATION
-          </div>
-          <h1 className="text-5xl md:text-6xl font-black text-dark-900 mb-6">
-            Security & Wire-Fraud Awareness
-          </h1>
-          <p className="text-2xl text-gray-700 leading-relaxed">
-            Protect your information and verify payment instructions with your closing team.
+        <section aria-labelledby="before-sending" className="mb-10">
+          <h2 id="before-sending" className="text-2xl font-bold text-dark-900 mb-4">Before you send funds</h2>
+          <ol className="list-decimal pl-6 space-y-4">
+            <li>
+              <strong>Call your closing team using a trusted number.</strong> Use a phone number you previously verified with your closing team.
+              Do not use a new number supplied in the message requesting payment.
+            </li>
+            <li>
+              <strong>Confirm the instructions directly.</strong> Verify the recipient, bank and account details before initiating the transfer.
+              Do not rely on an email reply alone.
+            </li>
+            <li>
+              <strong>Stop if instructions change.</strong> Unexpected or last-minute changes and pressure to act immediately
+              are reasons to pause and independently verify the request.
+            </li>
+          </ol>
+          <p className="mt-6">
+            Banks process funds transfers. A portal message or uploaded document does not verify payment instructions.
+            Independently confirm instructions with your closing team before sending funds.
           </p>
-        </div>
-      </section>
+        </section>
 
-      {/* Wire Fraud Warning */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="bg-red-50 border-l-4 border-red-500 p-8 rounded-r-xl mb-12">
-            <h2 className="text-3xl font-black text-red-900 mb-4">
-              🚨 Wire Fraud Alert
-            </h2>
-            <p className="text-lg text-red-900 mb-4">
-              <strong>Criminals are targeting homebuyers with fake wire instructions.</strong> Verify requests independently before sending funds.
-            </p>
-            <p className="text-lg text-red-900">
-              <strong>Always verify wire instructions by phone before sending money.</strong> Call your closing team using a number you have independently confirmed. Need help reaching your team? Contact BetterClose at <a href={`tel:${SUPPORT_PHONE_TEL}`} className="underline font-bold">{SUPPORT_PHONE_DISPLAY}</a>.
-            </p>
-          </div>
-
-          <h2 className="text-4xl font-black text-dark-900 mb-8">
-            How File and Document Access Works
-          </h2>
-
-          <div className="space-y-6">
-            <div className="bg-gray-50 p-6 rounded-xl">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0">
-                  <svg className="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-dark-900 mb-2">File-Specific Access</h3>
-                  <p className="text-gray-700">
-                    The file workspace checks that a signed-in participant belongs to that file. Authorized closing staff also have access.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gray-50 p-6 rounded-xl">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0">
-                  <svg className="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-dark-900 mb-2">Preview and Download Permissions</h3>
-                  <p className="text-gray-700">
-                    The portal checks file membership and document permissions before providing a preview or download link. These document links expire after a short time. Do not forward them; removing access cannot recall a copy someone already downloaded.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gray-50 p-6 rounded-xl">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0">
-                  <svg className="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-dark-900 mb-2">Access-Controlled Document Sharing</h3>
-                  <p className="text-gray-700">
-                    Uploading a document does not automatically share it with other participants. The uploader and authorized closing staff can access it once the upload is verified. The closing team selects which other file participants can access each document. Use your file’s Documents section rather than ordinary email for required sensitive documents.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gray-50 p-6 rounded-xl">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0">
-                  <svg className="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-dark-900 mb-2">Sign-In Links and Shared Quotes</h3>
-                  <p className="text-gray-700">
-                    Sign-in links are personal; do not forward them. Quote-sharing links are different: anyone with that link can view the estimate and the information included with it, without signing in. Send quote links only to intended recipients.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <p className="mt-6 text-gray-700 leading-relaxed">
-            These controls do not guarantee against unauthorized access or fraud. If you see an unfamiliar file or suspect someone has accessed your account, contact the closing team. Protect access to the email account you use to sign in.
-          </p>
-          <div className="mt-8 bg-gray-50 p-6 rounded-xl">
-            <h3 className="text-xl font-bold text-dark-900 mb-2">Bank Transfers and Your File Portal</h3>
-            <p className="text-gray-700">
-              Banks process funds transfers. BetterClose’s portal supports file updates and document sharing; a portal message or uploaded document does not verify payment instructions. Independently confirm instructions with your closing team before sending funds.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Best Practices Checklist */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-4xl font-black text-dark-900 mb-8 text-center">
-            Protect Yourself: Best Practices
-          </h2>
-          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">
-                  1
-                </div>
-                <div>
-                  <h3 className="font-bold text-lg text-dark-900 mb-2">Always Verify Wire Instructions by Phone</h3>
-                  <p className="text-gray-700">
-                    Use a phone number you previously verified with your closing team. Do not use a new number supplied in the message requesting payment.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">
-                  2
-                </div>
-                <div>
-                  <h3 className="font-bold text-lg text-dark-900 mb-2">Never Email Sensitive Banking Information</h3>
-                  <p className="text-gray-700">
-                    Do not send passwords or sensitive banking details in ordinary email. Ask your closing team which documents are required and how to share them.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">
-                  3
-                </div>
-                <div>
-                  <h3 className="font-bold text-lg text-dark-900 mb-2">Be Suspicious of Last-Minute Changes</h3>
-                  <p className="text-gray-700">
-                    Unexpected changes to payment instructions can be a sign of fraud. Stop and independently verify the instructions before sending money.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">
-                  4
-                </div>
-                <div>
-                  <h3 className="font-bold text-lg text-dark-900 mb-2">Double-Check Email Addresses</h3>
-                  <p className="text-gray-700">
-                    Scammers use addresses that look similar to legitimate ones. Look for small differences like extra letters or domains.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">
-                  5
-                </div>
-                <div>
-                  <h3 className="font-bold text-lg text-dark-900 mb-2">Report Suspicious Activity Immediately</h3>
-                  <p className="text-gray-700">
-                    Contact your closing team if a message or payment request seems suspicious. If you already sent funds, contact your sending bank immediately and ask for a recall.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Licensing & Service Availability */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 max-w-4xl text-center">
-          <h2 className="text-4xl font-black text-dark-900 mb-8">
-            Licensing & Service Availability
-          </h2>
-          <div className="max-w-md mx-auto">
-            <div className="text-center">
-              <div className="text-5xl mb-4">🏛️</div>
-              <h3 className="font-bold text-lg mb-2">Confirm Your Location</h3>
-              <p className="text-gray-600 text-sm">Contact our team for licensing and service details in your property’s state.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Emergency Contact */}
-      <section className="py-16 bg-gradient-to-br from-red-600 to-red-700 text-white">
-        <div className="container mx-auto px-4 max-w-3xl text-center">
-          <h2 className="text-4xl font-black mb-4">
-            Suspect Fraud?
-          </h2>
-          <p className="text-xl text-red-100 mb-8">
+        <section aria-labelledby="suspect-fraud" className="mb-10 border-l-4 border-red-600 bg-red-50 p-5 sm:p-6 rounded-r-xl">
+          <h2 id="suspect-fraud" className="text-2xl font-bold text-red-900 mb-4">If you suspect wire fraud</h2>
+          <p className="mb-4">
             If you already sent funds to a suspected fraudulent account, contact your sending bank immediately and request a wire recall. Then notify your closing team. Recovery is not guaranteed.
           </p>
-          <p className="text-lg text-red-100 mb-8">
-            You can also report suspected fraud to the FBI’s <a href="https://www.ic3.gov/" className="underline font-semibold">Internet Crime Complaint Center</a>. Do not wait for a BetterClose email response before contacting your bank.
+          <p>
+            Report suspected fraud to the FBI’s <a href="https://www.ic3.gov/" className="text-primary-700 underline">Internet Crime Complaint Center</a>.
+            {' '}Do not wait for a BetterClose email response before contacting your bank.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href={`tel:${SUPPORT_PHONE_TEL}`}
-              className="inline-flex items-center justify-center gap-2 bg-white text-red-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-colors shadow-xl"
-            >
-              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-              </svg>
-              Call {SUPPORT_PHONE_DISPLAY}
-            </a>
-            <a
-              href="mailto:contact@betterclose.co"
-              className="inline-flex items-center justify-center gap-2 bg-red-800 text-white border-2 border-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-red-900 transition-colors"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-              Email Our Team
-            </a>
-          </div>
-          <p className="mt-6 text-sm text-red-200">
-            Do not send funds until you have independently verified the instructions.
-          </p>
-        </div>
-      </section>
+        </section>
 
+        <section aria-labelledby="your-information" className="mb-10">
+          <h2 id="your-information" className="text-2xl font-bold text-dark-900 mb-4">Protect your information</h2>
+          <ul className="list-disc pl-6 space-y-3">
+            <li>Keep sign-in links private and protect access to the email account you use to sign in.</li>
+            <li>Do not send passwords or sensitive banking details in ordinary email. Ask your closing team which documents are required and how to share them.</li>
+            <li>Quote-sharing links can be opened by anyone with the link. Send them only to intended recipients.</li>
+            <li>Contact your closing team if you see an unfamiliar file or suspect someone has accessed your account.</li>
+          </ul>
+          <p className="mt-6">
+            Read our <Link href="/privacy" className="text-primary-700 underline">Privacy Policy</Link> for information about how personal information is collected, used and shared.
+          </p>
+        </section>
+
+        <section aria-labelledby="contact-team" className="border-t border-gray-200 pt-8">
+          <h2 id="contact-team" className="text-2xl font-bold text-dark-900 mb-4">Contact BetterClose</h2>
+          <p>
+            Need help reaching your closing team? Call <a href={`tel:${SUPPORT_PHONE_TEL}`} className="text-primary-700 underline">{SUPPORT_PHONE_DISPLAY}</a> or email{' '}
+            <a href="mailto:contact@betterclose.co" className="text-primary-700 underline break-words">contact@betterclose.co</a>.
+          </p>
+          <p className="mt-4 text-sm">
+            Additional guidance: <a href="https://www.consumerfinance.gov/archive/blog/mortgage-closing-scams-how-protect-yourself-and-your-closing-funds/" className="text-primary-700 underline">Consumer Financial Protection Bureau — mortgage closing scams</a>.
+          </p>
+        </section>
+      </main>
       <FooterComprehensive />
     </div>
   )
