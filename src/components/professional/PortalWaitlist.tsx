@@ -74,7 +74,7 @@ export default function PortalWaitlist({ title, description, portalType }: Porta
           <div>
             <div className="text-4xl mb-2">📄</div>
             <h3 className="font-bold text-lg mb-2">Document Sharing</h3>
-            <p className="text-primary-100 text-sm">Secure upload and download of all files</p>
+            <p className="text-primary-100 text-sm">Exchange documents selected for sharing with your closing team</p>
           </div>
           <div>
             <div className="text-4xl mb-2">🔔</div>

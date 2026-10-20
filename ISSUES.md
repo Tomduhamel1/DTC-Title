@@ -49,7 +49,28 @@ only.
 
 ## Open
 
-### Optional intake uploader retired — prepared, not deployed (2026-10-12)
+### Security copy: remove baseline-security promotion (2026-10-20)
+
+The owner requested removal of HTTPS as a selling point everywhere and no
+unsupported security assurances. Homepage and Security copy now describes
+file-specific access and document-specific sharing, with explicit limits for
+forwarded links, shared quotes, downloaded copies and payment instructions.
+Reusable badges and dormant marketing components no longer promote HTTPS.
+No banking-system security or certification is claimed.
+
+Evidence: fileWorkspace/access.ts checks file membership and staff access;
+fileWorkspace/documents.ts limits document visibility, staff-selected sharing
+and preview/download permissions; fileWorkspace/storage.ts issues short-lived
+document links. quote/view/page.ts intentionally permits share-token access
+without sign-in. The existing file-workspace PG suite exercises these boundaries
+and is included in release validation. No permissions or infrastructure changed.
+The owner-approved privacy policy is retained, not recast as a security badge.
+The broader mobile and underwriter/handout draft PRs remain separate.
+
+### Optional intake uploader retired — deployed and verified (2026-10-12)
+
+PR #135 merged as a0368b7; Amplify job 166 succeeded. Live checks confirmed both
+retired endpoints return 410 and the intake page directs users to file Documents.
 
 The owner approved directing optional intake document uploads to the current
 closing-file Documents workspace. Both retired intake upload endpoints return

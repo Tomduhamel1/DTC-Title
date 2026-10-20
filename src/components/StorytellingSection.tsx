@@ -220,7 +220,7 @@ export default function StorytellingSection({ homeValue, state, transactionType,
                   </div>
                   <div className="flex-1">
                     <div className="font-bold text-primary-900 mb-1">Digital-First Closing</div>
-                    <div className="text-sm text-primary-700">Streamlined, secure, & cost-effective</div>
+                    <div className="text-sm text-primary-700">Coordinate your closing online</div>
                   </div>
                 </div>
 
@@ -277,8 +277,8 @@ export default function StorytellingSection({ homeValue, state, transactionType,
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
               </div>
-              <div className="font-bold text-lg text-gray-900 mb-1">Encrypted Website Connection</div>
-              <div className="text-sm text-gray-600">HTTPS encrypts the connection between your browser and BetterClose</div>
+              <div className="font-bold text-lg text-gray-900 mb-1">File Documents</div>
+              <div className="text-sm text-gray-600">Use the Documents section of your closing file</div>
             </div>
           </div>
         </div>
