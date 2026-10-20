@@ -5,11 +5,8 @@
 // quote engine (fetchElendFeeEstimate → computeTotals) at the anchor scenario
 // below against each state's representative ZIP. See src/lib/stateSavings.ts
 // for how these are consumed.
-//
-// States omitted after upstream failures (runtime falls back to the
-// national anchor): NC
 
-export const GENERATED_AT = '2026-08-14T22:23:15.971Z'
+export const GENERATED_AT = '2026-10-20T20:59:03.974Z'
 
 // Anchor scenario: $500,000 purchase, $400,000 loan (80% LTV);
 // refinance of a $400,000 note.
@@ -28,7 +25,7 @@ export interface StateAnchor {
 }
 
 // Mean across generated states.
-export const NATIONAL_ANCHOR: StateAnchor = { purchase: { save: 352, ourTotal: 4151 }, refinance: { save: 164, ourTotal: 2022 } }
+export const NATIONAL_ANCHOR: StateAnchor = { purchase: { save: 353, ourTotal: 4150 }, refinance: { save: 164, ourTotal: 2022 } }
 
 export const STATE_ANCHORS: Record<string, StateAnchor> = {
   AK: { purchase: { save: 276, ourTotal: 3229 }, refinance: { save: 266, ourTotal: 2449 } },
@@ -69,7 +66,7 @@ export const STATE_ANCHORS: Record<string, StateAnchor> = {
   OK: { purchase: { save: 296, ourTotal: 4539 }, refinance: { save: 139, ourTotal: 3448 } },
   OR: { purchase: { save: 224, ourTotal: 3103 }, refinance: { save: 254, ourTotal: 2408 } },
   PA: { purchase: { save: 544, ourTotal: 15882 }, refinance: { save: 448, ourTotal: 3706 } },
-  RI: { purchase: { save: 500, ourTotal: 2225 }, refinance: { save: 260, ourTotal: 1227 } },
+  RI: { purchase: { save: 530, ourTotal: 2195 }, refinance: { save: 290, ourTotal: 1197 } },
   SC: { purchase: { save: 245, ourTotal: 2229 }, refinance: { save: 116, ourTotal: 1353 } },
   SD: { purchase: { save: 353, ourTotal: 3829 }, refinance: { save: 190, ourTotal: 2761 } },
   TN: { purchase: { save: 53, ourTotal: 3534 }, refinance: { save: 117, ourTotal: 1894 } },

@@ -6,6 +6,21 @@ of **Open** with the date found; when something is fixed, move it to
 
 ## Program summary for company discussion (2026-08-13)
 
+### Purchase example and service fees (2026-10-20, staged)
+
+Owner requested a $600,000 purchase example, notary $140, attorney $40 and
+abstractor $90, the Bucks row at the end of Title & Settlement, and a neutral
+savings summary that does not compete with the estimate CTA. The sample uses
+the existing Providence ZIP and 80% LTV ($480,000 loan), freshly calculated
+from the public fee API. New service fees are staged for RI purchase/refinance,
+including the missing-upstream-refi search line; nationwide applicability is
+awaiting owner clarification. Other states, regulated/pass-through charges,
+credit exclusions and already-issued quote amounts remain unchanged.
+RI competitor package dollars remain $690 low / $770 modeled high independent
+of our fee changes. RI marketing/admin caches were regenerated via the existing
+subset generators. The new sample is $2,475, with $600 at-closing savings
+($170 services + $430 Bucks). Release status belongs on the PR.
+
 ### Security presentation correction (2026-10-20)
 
 Owner requested removal of the homepage security sales section, including the

@@ -181,8 +181,8 @@ function applyMarketComparison(
   const stack = lineItems.filter((li) => !li.isCredit && !li.isFixed)
   if (stack.length === 0) return
   const stackTotal = stack.reduce((s, li) => s + li.ourCost, 0)
-  const lowExtra = Math.max(0, Math.round(stackTotal * band.low) - stackTotal)
-  const highExtra = Math.max(0, Math.round(stackTotal * band.high) - stackTotal)
+  const lowExtra = Math.max(0, Math.round(band.packageRange?.low ?? stackTotal * band.low) - stackTotal)
+  const highExtra = Math.max(0, Math.round(band.packageRange?.high ?? stackTotal * band.high) - stackTotal)
   const anchor =
     stack.find((li) => /settlement fee/i.test(li.label)) ??
     stack.reduce((a, b) => (b.ourCost > a.ourCost ? b : a))
@@ -190,7 +190,9 @@ function applyMarketComparison(
     if (li === anchor) {
       li.typicalRange = { low: li.ourCost + lowExtra, high: li.ourCost + highExtra }
     } else {
-      li.typicalRange = { low: li.ourCost, high: Math.round(li.ourCost * band.high) }
+      // An absolute package comparison is allocated to the anchor once.
+      // Multiplying the other rows would count its upper-range uplift again.
+      li.typicalRange = { low: li.ourCost, high: band.packageRange ? li.ourCost : Math.round(li.ourCost * band.high) }
     }
   }
 }

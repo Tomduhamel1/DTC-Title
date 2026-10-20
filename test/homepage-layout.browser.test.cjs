@@ -36,7 +36,7 @@ test('Full Transparency has top-aligned columns, a compact complete sample and a
       assert.match(facts.visible, /Save at closing/i);
       assert.match(facts.visible, /Save over the life of the loan/i);
       assert.match(facts.visible, /includes closing savings plus modeled interest avoided/);
-      for (const [selector, amount] of [['[data-preview-closing-savings]', '$360'], ['[data-preview-lifetime-savings]', '$819']]) {
+      for (const [selector, amount] of [['[data-preview-closing-savings]', '$600'], ['[data-preview-lifetime-savings]', '$1,365']]) {
         const card = await page.$eval(selector, el => {
           const r = el.getBoundingClientRect();
           return { text: el.innerText, width: r.width, height: r.height, fits: el.scrollWidth <= el.clientWidth };
@@ -46,6 +46,13 @@ test('Full Transparency has top-aligned columns, a compact complete sample and a
         assert.ok(card.width > 0 && card.height > 0 && card.fits, 'Both savings figures fit visible cards');
       }
       assert.match(facts.notesText, /competing service package/);
+      const emphasis = await page.evaluate(() => ({
+        summaryBackground: getComputedStyle(document.querySelector('[data-preview-savings-summary]')).backgroundColor,
+        ctaBackground: getComputedStyle(document.querySelector('[data-fee-preview-copy] a[href="/quote"]')).backgroundColor,
+      }));
+      assert.equal(emphasis.summaryBackground, 'rgba(0, 0, 0, 0)', 'Savings summary is not a competing filled CTA');
+      assert.notEqual(emphasis.ctaBackground, emphasis.summaryBackground, 'Estimate button keeps the primary emphasis');
+      assert.ok(facts.visible.indexOf('BetterClose Bucks', facts.visible.indexOf('TITLE & SETTLEMENT')) < facts.visible.indexOf('RECORDING FEES'), 'Bucks appears before recording fees');
       const headers = await page.$$eval('[data-fee-preview-report] > div > div:first-child span', elements => elements.map(el => ({ text: el.innerText, scroll: el.scrollWidth, width: el.clientWidth })));
       assert.ok(headers.every(el => el.scroll <= el.width), `${width}: column labels fit their own cells: ${JSON.stringify(headers)}`);
       const report = h.load('src/lib/sampleReport.ts').buildSampleFeeReport();

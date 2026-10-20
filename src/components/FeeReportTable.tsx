@@ -153,18 +153,18 @@ export default function FeeReportTable({
       </div>
 
       {/* Preview keeps both time horizons together, without a duplicate banner. */}
-      {isPreview ? <div className="mx-6 mb-3 rounded-2xl bg-emerald-600 px-4 py-3 text-white">
+      {isPreview ? <div data-preview-savings-summary className="mx-6 mb-3 border-t border-gray-200 pt-4 text-dark-900">
         <div className="grid grid-cols-2 gap-4">
           <div data-preview-closing-savings className="flex flex-col">
-            <div className="flex-1 text-[10px] font-bold uppercase tracking-wide text-emerald-100">Save at closing</div>
-            <div className="mt-1 text-3xl font-black tabular-nums">{formatCurrency(totals.estimatedSavings)}</div>
+            <div className="flex-1 text-[10px] font-semibold uppercase tracking-wide text-gray-600">Save at closing</div>
+            <div className="mt-1 text-2xl font-bold tabular-nums">{formatCurrency(totals.estimatedSavings)}</div>
           </div>
           <div data-preview-lifetime-savings className="flex flex-col">
-            <div className="flex-1 text-[10px] font-bold uppercase tracking-wide text-emerald-100">Save over the life of the loan</div>
-            <div className="mt-1 text-3xl font-black tabular-nums">{formatCurrency(totals.lifetimeSavings)}</div>
+            <div className="flex-1 text-[10px] font-semibold uppercase tracking-wide text-gray-600">Save over the life of the loan</div>
+            <div className="mt-1 text-2xl font-bold tabular-nums">{formatCurrency(totals.lifetimeSavings)}</div>
           </div>
         </div>
-        <p className="mt-3 text-[11px] leading-snug text-emerald-100">
+        <p className="mt-3 text-[11px] leading-snug text-gray-500">
           Loan-life total includes closing savings plus modeled interest avoided
           if you finance that much less at 6.5% over 30 years.
         </p>
@@ -303,7 +303,9 @@ function FeeRow({
     <span className="text-gray-300">—</span>
   ) : item.typicalRange ? (
     <span className="text-gray-500">
-      {formatRange(item.typicalRange.low, item.typicalRange.high)}
+      {item.typicalRange.low === item.typicalRange.high
+        ? formatCurrency(item.typicalRange.low)
+        : formatRange(item.typicalRange.low, item.typicalRange.high)}
     </span>
   ) : (
     <span className="text-gray-400">{formatCurrency(item.ourCost)}</span>

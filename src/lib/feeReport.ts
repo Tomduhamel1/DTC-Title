@@ -536,10 +536,14 @@ export function groupByCategory(items: FeeLineItem[]): Map<FeeCategory, FeeLineI
   const order: FeeCategory[] = ['title-settlement', 'recording', 'taxes', 'endorsements', 'lender', 'other']
   for (const cat of order) map.set(cat, [])
   for (const item of items) {
+    // Present Bucks at the bottom of Title & Settlement, including saved
+    // reports that categorized it as Other. Do not rewrite stored reports.
+    if (item.isCredit && item.id === 'betterclose-bucks') continue
     const arr = map.get(item.category) ?? []
     arr.push(item)
     map.set(item.category, arr)
   }
+  map.get('title-settlement')!.push(...items.filter(item => item.isCredit && item.id === 'betterclose-bucks'))
   for (const [k, v] of map) if (v.length === 0) map.delete(k)
   return map
 }

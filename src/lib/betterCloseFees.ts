@@ -33,7 +33,9 @@ export const BETTERCLOSE_SERVICE_FEES: BetterCloseFeeTable = {
   default: {},
   byState: {
     // Tom, 2026-07-30: BetterClose RI settlement fee $250 (purchase and refi).
-    RI: { 'Settlement Fee': 250 },
+    // 2026-10-20: approved homepage example fees also apply to real RI
+    // purchase/refinance estimates. Other states retain their own schedule.
+    RI: { 'Settlement Fee': 250, 'Notary Fee': 140, 'Attorney Fee': 40, 'Abstractor Title Search': 90 },
     // Tom, 2026-08-13: FL settlement fee $195 (purchase and refi). Part of
     // the FL compliance posture: full promulgated premium always charged;
     // we compete on our own service fee instead of any premium-derived
@@ -163,7 +165,12 @@ export function ensuredLinesFor(
   mode: 'purchase' | 'refinance',
 ): EnsuredLine[] {
   if (!stateCode) return []
-  return ENSURE_LINES[stateCode.toUpperCase()]?.[mode] ?? []
+  return (ENSURE_LINES[stateCode.toUpperCase()]?.[mode] ?? []).flatMap(line => {
+    // Missing upstream lines must use the same current BetterClose schedule
+    // as returned lines; do not resurrect the older FNTE amount on refis.
+    const amount = betterCloseServiceFee(line.label, stateCode, mode) ?? line.amount
+    return amount === 0 ? [] : [{ ...line, amount }]
+  })
 }
 
 export function betterCloseServiceFee(
