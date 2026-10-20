@@ -25,9 +25,18 @@ than flooring them up to our old price (which would fabricate savings after
 a discount). Upper package ranges are allocated once, without multiplying
 non-settlement rows again. This changes attribution, not the source bands.
 RI competitor package dollars remain $690 low / $770 modeled high independent
-of our fee changes. Marketing/admin caches must be refreshed nationwide before
-release. The new sample is $2,475, with $600 at-closing savings
+of our fee changes. Marketing/admin caches were refreshed through the real
+engine for 300 scenarios across 50 state/DC entries. NC still returns upstream
+HTTP 500 after retries and remains absent from these caches; no stale entry
+was retained or synthetic NC quote invented. The new sample is $2,475, with $600 at-closing savings
 ($170 services + $430 Bucks). Release status belongs on the PR.
+
+Cache comparison note: fresh upstream data also differs from the prior cached
+data in CO, DE, MD, MO, MS and WV. Some all-in totals increase despite the
+three service discounts; premium fields differ in CO, MO, MS and WV.
+Settlement amounts are unchanged in all 300 scenarios. These caches reflect
+the existing live upstream calculator, not new overrides of those charges.
+Issued quote snapshots and production data were not modified.
 
 ### Security presentation correction (2026-10-20)
 
