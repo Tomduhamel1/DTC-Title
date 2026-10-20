@@ -7,7 +7,7 @@ const { createHarness } = require('./helpers/role-journey-harness.cjs');
 const noDb = new Proxy({}, { get() { throw new Error('No database access in security-copy tests'); } });
 const source = file => fs.readFileSync(path.join(__dirname, '..', file), 'utf8');
 const text = html => html.replace(/<[^>]*>/g, ' ').replace(/&#x27;|&apos;/g, "'").replace(/&amp;/g, '&').replace(/\s+/g, ' ');
-const unsupported = /guaranteed security|bank[- ](?:level|grade)|certified processes|FDIC.insured|advanced security protocols|just as secure|same security|wire fraud prevention/i;
+const unsupported = /guaranteed security|bank[- ](?:level|grade)|certified processes|FDIC.insured|advanced security protocols|just as secure|same security|wire fraud prevention|\bHTTPS\b(?!:)|\bSSL\b|encrypted (?:website )?connection|military.grade|SOC.?2|100%.secure/i;
 
 for (const file of [
   'src/app/PageWrapper.tsx', 'src/app/security/page.tsx',
@@ -20,7 +20,7 @@ for (const file of [
       homeValue: 300000, state: 'RI', transactionType: 'purchase', estimatedSavings: 360,
     }));
     assert.doesNotMatch(text(html), unsupported);
-    assert.match(text(html), /HTTPS/);
+    assert.doesNotMatch(text(html), /security measures|Your privacy is our priority/);
     assert.equal(h.sent.length, 0);
   });
 }
@@ -66,6 +66,7 @@ test('obsolete badge components cannot reintroduce unsupported certifications or
 
 test('claims regression is part of release checks', () => {
   assert.match(source('.github/workflows/release-typecheck.yml'), /node --test test\/security-claims\.test\.cjs/);
+  assert.match(source('.github/workflows/release-typecheck.yml'), /node --test test\/security-claims\.browser\.test\.cjs/);
 });
 
 test('footer and search/share metadata use the same specific security wording', () => {
@@ -85,5 +86,39 @@ test('legacy calculator prompts do not promise equivalent security or blanket re
     assert.doesNotMatch(content, /just as secure and legally binding/);
     assert.match(content, /if it is available for your transaction/);
     assert.match(content, /Your closing team will confirm your options/);
+  }
+});
+
+test('public security copy explains actual permission boundaries and does not imply universal confidentiality', () => {
+  const h = createHarness(noDb);
+  const home = text(h.render(React.createElement(h.load('src/components/SecurityTrustSection.tsx').default)));
+  const page = text(h.render(React.createElement(h.load('src/app/security/page.tsx').default)));
+  for (const rendered of [home, page]) {
+    assert.match(rendered, /closing team (?:chooses|selects) which other file participants can access each/);
+    assert.match(rendered, /checks file membership and document permissions before providing a preview or download link/);
+    assert.match(rendered, /anyone with that link can view/);
+    assert.doesNotMatch(rendered, unsupported);
+  }
+  assert.match(page, /Authorized closing staff also have access/);
+  assert.match(page, /displayed Escrow Officer name or email address does not itself grant access/);
+  assert.match(page, /removing access cannot recall a copy someone already downloaded/);
+  assert.match(page, /controls do not guarantee against unauthorized access or fraud/);
+  assert.match(page, /once the upload is verified/);
+  assert.doesNotMatch(home + page, /malware.free|unhackable|fraud.proof|zero.risk|certified|compliant with/i);
+});
+
+test('public rendering has no HTTPS security promotion, including dormant badge components', () => {
+  for (const dir of ['src/components', 'src/app', 'public']) {
+    function check(directory) {
+      for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+        const file = path.join(directory, entry.name);
+        if (entry.isDirectory()) check(file);
+        else if (/\.(tsx|html|svg)$/.test(entry.name)) {
+          const content = fs.readFileSync(file, 'utf8').replace(/https:\/\/[^\s"'<>]+/gi, '');
+          assert.doesNotMatch(content, /HTTPS (?:encrypts|between|website)|Encrypted (?:Website )?Connection|>HTTPS</i, file);
+        }
+      }
+    }
+    check(path.join(__dirname, '..', dir));
   }
 });

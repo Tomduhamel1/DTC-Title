@@ -42,7 +42,7 @@ export default function SecurityPage() {
           </div>
 
           <h2 className="text-4xl font-black text-dark-900 mb-8">
-            Website and Document Access
+            How File and Document Access Works
           </h2>
 
           <div className="space-y-6">
@@ -54,9 +54,9 @@ export default function SecurityPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-dark-900 mb-2">Encrypted Website Connection</h3>
+                  <h3 className="text-xl font-bold text-dark-900 mb-2">File-Specific Access</h3>
                   <p className="text-gray-700">
-                    Our website uses HTTPS to encrypt the connection between your browser and BetterClose. Access private file information through your verified sign-in link.
+                    The file workspace checks that a signed-in participant belongs to that file. Authorized closing staff also have access. A displayed Escrow Officer name or email address does not itself grant access.
                   </p>
                 </div>
               </div>
@@ -70,9 +70,9 @@ export default function SecurityPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-dark-900 mb-2">Verify Wire Instructions Independently</h3>
+                  <h3 className="text-xl font-bold text-dark-900 mb-2">Preview and Download Permissions</h3>
                   <p className="text-gray-700">
-                    Before sending money, independently confirm payment instructions with your closing team using a known, trusted phone number. Do not rely on email or a portal message alone.
+                    The portal checks file membership and document permissions before providing a preview or download link. These document links expire after a short time. Do not forward them; removing access cannot recall a copy someone already downloaded.
                   </p>
                 </div>
               </div>
@@ -88,7 +88,7 @@ export default function SecurityPage() {
                 <div>
                   <h3 className="text-xl font-bold text-dark-900 mb-2">Access-Controlled Document Sharing</h3>
                   <p className="text-gray-700">
-                    Use your file’s document section to share sensitive documents with the closing team. The team controls sharing with other file participants. Avoid sending sensitive documents in ordinary email.
+                    Uploading a document does not automatically share it with other participants. The uploader and authorized closing staff can access it once the upload is verified. The closing team selects which other file participants can access each document. Use your file’s Documents section rather than ordinary email for required sensitive documents.
                   </p>
                 </div>
               </div>
@@ -103,14 +103,17 @@ export default function SecurityPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-dark-900 mb-2">Private File Access</h3>
+                  <h3 className="text-xl font-bold text-dark-900 mb-2">Sign-In Links and Shared Quotes</h3>
                   <p className="text-gray-700">
-                    Sign-in links are intended only for you. Do not forward them. If you see an unfamiliar file or suspect unauthorized access, stop using that access and contact our team.
+                    Sign-in links are personal; do not forward them. Quote-sharing links are different: anyone with that link can view the estimate and the information included with it, without signing in. Send quote links only to intended recipients.
                   </p>
                 </div>
               </div>
             </div>
           </div>
+          <p className="mt-6 text-gray-700 leading-relaxed">
+            These controls do not guarantee against unauthorized access or fraud. If you see an unfamiliar file or suspect someone has accessed your account, contact the closing team. Protect access to the email account you use to sign in.
+          </p>
           <div className="mt-8 bg-gray-50 p-6 rounded-xl">
             <h3 className="text-xl font-bold text-dark-900 mb-2">Bank Transfers and Your File Portal</h3>
             <p className="text-gray-700">
@@ -147,7 +150,7 @@ export default function SecurityPage() {
                 <div>
                   <h3 className="font-bold text-lg text-dark-900 mb-2">Never Email Sensitive Banking Information</h3>
                   <p className="text-gray-700">
-                    Do not send passwords or sensitive banking details in ordinary email. Ask your closing team for the appropriate secure way to share required information.
+                    Do not send passwords or sensitive banking details in ordinary email. Ask your closing team which documents are required and how to share them.
                   </p>
                 </div>
               </div>

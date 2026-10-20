@@ -2,19 +2,19 @@ import Link from 'next/link'
 
 export default function SecurityTrustSection() {
   return (
-    <section className="py-16 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+    <section data-security-guidance className="py-16 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Left: Security Messaging */}
+          {/* Describe file controls without promising complete protection. */}
           <div>
             <div className="inline-block bg-red-500 text-white px-4 py-1 rounded-full text-sm font-bold mb-4">
-              ⚠️ IMPORTANT
+              YOUR CLOSING FILE
             </div>
             <h2 className="text-3xl md:text-4xl font-black mb-4">
-              Protect Your Largest Investment
+              Document sharing with clear controls
             </h2>
             <p className="text-xl text-gray-300 mb-6 leading-relaxed">
-              Protect your information and independently verify payment instructions before sending money.
+              Being part of a closing does not automatically give someone access to every document.
             </p>
 
             <div className="space-y-4 mb-8">
@@ -25,8 +25,8 @@ export default function SecurityTrustSection() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg mb-1">Encrypted Website Connection</h3>
-                  <p className="text-gray-400">HTTPS encrypts the connection between your browser and BetterClose.</p>
+                  <h3 className="font-bold text-lg mb-1">Sharing selected by the closing team</h3>
+                  <p className="text-gray-300">The closing team chooses which other file participants can access each uploaded document.</p>
                 </div>
               </div>
 
@@ -37,8 +37,8 @@ export default function SecurityTrustSection() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg mb-1">Verify Payment Instructions</h3>
-                  <p className="text-gray-400">Call your closing team using a known, trusted phone number before sending funds.</p>
+                  <h3 className="font-bold text-lg mb-1">Access checked for each document</h3>
+                  <p className="text-gray-300">The portal checks file membership and document permissions before providing a preview or download link.</p>
                 </div>
               </div>
 
@@ -49,8 +49,8 @@ export default function SecurityTrustSection() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg mb-1">Private Document Sharing</h3>
-                  <p className="text-gray-400">Share sensitive documents through your file’s document section.</p>
+                  <h3 className="font-bold text-lg mb-1">Know what a link shares</h3>
+                  <p className="text-gray-300">Quote-sharing links are different: anyone with that link can view the shared estimate. Keep sign-in links to yourself.</p>
                 </div>
               </div>
             </div>
@@ -59,38 +59,31 @@ export default function SecurityTrustSection() {
               href="/security"
               className="inline-flex items-center gap-2 text-primary-400 hover:text-primary-300 font-semibold transition-colors"
             >
-              Learn more about our security measures
+              Document access &amp; payment guidance
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </Link>
           </div>
 
-          {/* Right: Security Badge/Visual */}
-          <div className="bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl p-12 text-center shadow-2xl">
-            <div className="inline-flex items-center justify-center w-32 h-32 bg-white rounded-full mb-6 shadow-xl">
-              <svg className="w-20 h-20 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          {/* Payment guidance, not a certification badge or bank-security claim. */}
+          <div className="bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl p-6 sm:p-10 text-center shadow-2xl">
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-full mb-6 shadow-xl">
+              <svg aria-hidden="true" className="w-10 h-10 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
             </div>
 
-            <h3 className="text-3xl font-black mb-3">Your Privacy Matters</h3>
-            <p className="text-primary-100 mb-6">
-              We never sell your information. Your privacy is our priority.
+            <h3 className="text-3xl font-black mb-3">Before you send funds</h3>
+            <p className="text-white mb-6 leading-relaxed">
+              Call your closing team using a known, trusted phone number to independently confirm payment instructions. Do not use a new number supplied in the message requesting payment.
             </p>
-
-            <div className="flex justify-center gap-6 mb-6">
-              <div>
-                <div className="text-4xl font-black mb-1">HTTPS</div>
-                <div className="text-sm text-primary-200">Website Connection</div>
-              </div>
-              <div className="w-px bg-primary-400"></div>
-              <div>
-                <div className="text-4xl font-black mb-1">Private</div>
-                <div className="text-sm text-primary-200">File Access</div>
-              </div>
-            </div>
-
+            <p className="text-white leading-relaxed">
+              A portal message or uploaded document is not verification of payment instructions.
+            </p>
+            <Link href="/privacy" className="inline-block mt-6 text-white underline underline-offset-4">
+              How we use your information
+            </Link>
           </div>
         </div>
       </div>

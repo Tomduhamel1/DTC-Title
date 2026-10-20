@@ -79,7 +79,7 @@ export default function FileWorkspace({ closingId }: { closingId: string }) {
           </label>
         </div>
         <p className="my-3 text-sm text-gray-600">Uploads are private to you and the closing team. The closing team controls which documents are shared with other people on this file.</p>
-        {!data.uploadsEnabled && <p className="text-sm text-amber-800">Secure document uploads are not enabled yet.</p>}
+        {!data.uploadsEnabled && <p className="text-sm text-amber-800">Document uploads are not enabled yet.</p>}
         {!data.documents.length ? <p className="py-5 text-sm text-gray-500">No documents shared with you yet.</p> : <table className="block w-full table-fixed text-left text-sm md:table">
           <caption className="sr-only">File documents</caption>
           <thead className="hidden text-xs text-gray-500 md:table-header-group"><tr>
