@@ -1,4 +1,4 @@
-import type { FeeReport } from './feeReport'
+import { REPORT_MODEL_VERSION, type FeeReport } from './feeReport'
 
 // One fixed purchase example, calculated by fetchElendFeeEstimate against
 // the public fee API. No customer file/PII, geolocation, placeholder fees,
@@ -14,7 +14,7 @@ export const PURCHASE_SAMPLE_INPUT = {
 export const PURCHASE_SAMPLE_LOCATION = 'Providence, RI'
 
 const purchaseExample: FeeReport = {
-  modelVersion: 2,
+  modelVersion: REPORT_MODEL_VERSION,
   state: 'RI',
   zip: PURCHASE_SAMPLE_INPUT.zip,
   county: 'Providence',

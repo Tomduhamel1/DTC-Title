@@ -7,7 +7,6 @@ import {
   computeTotals,
   conservativeLineSavings,
   formatCurrency,
-  formatRange,
   formatSavings,
   groupByCategory,
 } from '@/lib/feeReport'
@@ -32,6 +31,13 @@ const PREVIEW_COLS =
 // The homepage switches to two columns at lg. Hide only the secondary
 // comparison column until xl gives the fee descriptions room again.
 const PREVIEW_TYPICAL = 'hidden sm:block lg:hidden xl:block'
+
+function CurrencyRange({ low, high }: { low: number; high: number }) {
+  return low === high ? <span className="whitespace-nowrap">{formatCurrency(low)}</span> : <>
+    <span className="whitespace-nowrap">{formatCurrency(low)}–</span><wbr />
+    <span className="whitespace-nowrap">{formatCurrency(high)}</span>
+  </>
+}
 
 function reportComparison(report: FeeReport) {
   // Market-comparison model (2026-08-11): the whole verified package delta is
@@ -103,7 +109,7 @@ export default function FeeReportTable({
         <span className={`${isPreview ? PREVIEW_TYPICAL : 'hidden sm:block'} text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 text-right`}>
           Typical
         </span>
-        <span className={`${isPreview ? 'text-[9px] tracking-normal' : 'text-[10px] tracking-[0.2em]'} font-bold uppercase text-dark-900 text-right`}>
+        <span className={`${isPreview ? 'text-[9px]' : 'text-[9px] sm:text-[10px]'} tracking-normal font-bold uppercase text-dark-900 text-right`}>
           BetterClose
         </span>
         <span className={`${isPreview ? 'text-[9px] tracking-normal sm:text-[10px]' : 'text-[10px] tracking-[0.2em]'} font-bold uppercase text-emerald-700 text-right`}>
@@ -140,8 +146,8 @@ export default function FeeReportTable({
         {/* Totals row — the savings column sums right here, in the open. */}
         <div className={`${columns} ${isPreview ? 'mt-3 pt-3' : 'mt-5 pt-4'} border-t-2 border-gray-200`}>
           <span className="text-sm font-bold text-dark-900">Total</span>
-          <span className={`${isPreview ? PREVIEW_TYPICAL : 'hidden sm:block'} text-xs text-gray-400 line-through text-right tabular-nums whitespace-nowrap`}>
-            {formatRange(totals.marketLow, totals.marketHigh)}
+          <span className={`${isPreview ? PREVIEW_TYPICAL : 'hidden sm:block'} text-xs text-gray-400 line-through text-right tabular-nums`}>
+            <CurrencyRange low={totals.marketLow} high={totals.marketHigh} />
           </span>
           <span className="text-sm font-black text-dark-900 text-right tabular-nums whitespace-nowrap">
             {formatCurrency(totals.ourTotal)}
@@ -303,9 +309,7 @@ function FeeRow({
     <span className="text-gray-300">—</span>
   ) : item.typicalRange ? (
     <span className="text-gray-500">
-      {item.typicalRange.low === item.typicalRange.high
-        ? formatCurrency(item.typicalRange.low)
-        : formatRange(item.typicalRange.low, item.typicalRange.high)}
+      <CurrencyRange low={item.typicalRange.low} high={item.typicalRange.high} />
     </span>
   ) : (
     <span className="text-gray-400">{formatCurrency(item.ourCost)}</span>
@@ -332,7 +336,7 @@ function FeeRow({
           </div>
         )}
       </div>
-      <div className={`${positiveSavings ? PREVIEW_TYPICAL : 'hidden sm:block'} text-xs text-right tabular-nums whitespace-nowrap`}>
+      <div className={`${positiveSavings ? PREVIEW_TYPICAL : 'hidden sm:block'} text-xs text-right tabular-nums`}>
         {typical}
       </div>
       <div

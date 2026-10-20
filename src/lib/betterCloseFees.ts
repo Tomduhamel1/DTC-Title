@@ -11,8 +11,7 @@
 // A value may be a flat number, or split by transaction type.
 // An override of 0 removes the line entirely (BetterClose doesn't charge it).
 //
-// The table ships empty: until fees are entered, quotes show FNTE's amounts
-// unchanged. Example:
+// Flat overrides precede the nationwide proportional discounts below. Example:
 //
 //   default: {
 //     'Settlement Fee': 350,
@@ -33,9 +32,7 @@ export const BETTERCLOSE_SERVICE_FEES: BetterCloseFeeTable = {
   default: {},
   byState: {
     // Tom, 2026-07-30: BetterClose RI settlement fee $250 (purchase and refi).
-    // 2026-10-20: approved homepage example fees also apply to real RI
-    // purchase/refinance estimates. Other states retain their own schedule.
-    RI: { 'Settlement Fee': 250, 'Notary Fee': 140, 'Attorney Fee': 40, 'Abstractor Title Search': 90 },
+    RI: { 'Settlement Fee': 250 },
     // Tom, 2026-08-13: FL settlement fee $195 (purchase and refi). Part of
     // the FL compliance posture: full promulgated premium always charged;
     // we compete on our own service fee instead of any premium-derived
@@ -57,6 +54,25 @@ export const BETTERCLOSE_SERVICE_FEES: BetterCloseFeeTable = {
     NY: { 'Settlement Fee': 195 },
     NM: { 'Settlement Fee': 295 },
   },
+}
+
+// Owner confirmed 2026-10-20: reduce each state's existing service fee by
+// the same proportion, rather than giving every state RI's flat prices.
+// Exact ratios make the RI $150/$50/$100 schedule become $140/$40/$90.
+// Apply ONCE, after building the comparison from the pre-discount schedule.
+export const SERVICE_FEE_RATIOS: Readonly<Record<string, readonly [number, number]>> = {
+  'Notary Fee': [14, 15],
+  'Attorney Fee': [4, 5],
+  'Abstractor Title Search': [9, 10],
+}
+
+export function discountedServiceFee(label: string, originalAmount: number): number {
+  if (!Number.isFinite(originalAmount) || originalAmount <= 0) return originalAmount
+  const ratio = Object.entries(SERVICE_FEE_RATIOS)
+    .find(([name]) => name.toLowerCase() === label.trim().toLowerCase())?.[1]
+  if (!ratio) return originalAmount
+  const originalCents = Math.round(originalAmount * 100)
+  return Math.round(originalCents * ratio[0] / ratio[1]) / 100
 }
 
 function resolveAmount(
@@ -166,8 +182,8 @@ export function ensuredLinesFor(
 ): EnsuredLine[] {
   if (!stateCode) return []
   return (ENSURE_LINES[stateCode.toUpperCase()]?.[mode] ?? []).flatMap(line => {
-    // Missing upstream lines must use the same current BetterClose schedule
-    // as returned lines; do not resurrect the older FNTE amount on refis.
+    // This is the pre-discount schedule, just like returned upstream lines.
+    // elendCalc applies the proportional reduction once to either source.
     const amount = betterCloseServiceFee(line.label, stateCode, mode) ?? line.amount
     return amount === 0 ? [] : [{ ...line, amount }]
   })
