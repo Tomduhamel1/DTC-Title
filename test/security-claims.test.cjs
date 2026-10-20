@@ -100,7 +100,7 @@ test('public security copy explains actual permission boundaries and does not im
     assert.doesNotMatch(rendered, unsupported);
   }
   assert.match(page, /Authorized closing staff also have access/);
-  assert.match(page, /displayed Escrow Officer name or email address does not itself grant access/);
+  assert.match(page, /checks that a signed-in participant belongs to that file/);
   assert.match(page, /removing access cannot recall a copy someone already downloaded/);
   assert.match(page, /controls do not guarantee against unauthorized access or fraud/);
   assert.match(page, /once the upload is verified/);

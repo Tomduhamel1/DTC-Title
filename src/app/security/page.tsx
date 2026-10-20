@@ -56,7 +56,7 @@ export default function SecurityPage() {
                 <div>
                   <h3 className="text-xl font-bold text-dark-900 mb-2">File-Specific Access</h3>
                   <p className="text-gray-700">
-                    The file workspace checks that a signed-in participant belongs to that file. Authorized closing staff also have access. A displayed Escrow Officer name or email address does not itself grant access.
+                    The file workspace checks that a signed-in participant belongs to that file. Authorized closing staff also have access.
                   </p>
                 </div>
               </div>
