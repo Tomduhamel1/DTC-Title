@@ -25,7 +25,7 @@ interface FeeReportTableProps {
 // four columns stay aligned: Item | Typical | BetterClose | Savings.
 // (Typical collapses on very small screens; savings never does.)
 const COLS =
-  'grid grid-cols-[minmax(0,1fr)_4.5rem_4.5rem] sm:grid-cols-[minmax(0,1fr)_7.5rem_5rem_5rem] gap-x-3 items-baseline'
+  'grid grid-cols-[minmax(0,1fr)_5rem_5rem] sm:grid-cols-[minmax(0,1fr)_7.5rem_5rem_5rem] gap-x-3 items-baseline'
 const PREVIEW_COLS =
   'grid grid-cols-[minmax(0,1fr)_4.5rem_4.5rem] sm:grid-cols-[minmax(0,1fr)_6rem_4.5rem_4rem] lg:grid-cols-[minmax(0,1fr)_4.5rem_4.5rem] xl:grid-cols-[minmax(0,1fr)_6rem_4.5rem_4rem] gap-x-3 items-baseline'
 // The homepage switches to two columns at lg. Hide only the secondary
