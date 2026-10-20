@@ -11,7 +11,7 @@ const unsupported = /guaranteed security|bank[- ](?:level|grade)|certified proce
 
 for (const file of [
   'src/app/PageWrapper.tsx', 'src/app/security/page.tsx',
-  'src/components/SecurityTrustSection.tsx', 'src/components/TrustBadges.tsx',
+  'src/components/TrustBadges.tsx',
   'src/components/CompanyCredentialsSection.tsx', 'src/components/StorytellingSection.tsx',
 ]) {
   test(file + ': rendered claims describe specific controls, not guarantees', () => {
@@ -46,7 +46,7 @@ test('security guidance distinguishes bank transfers and tells users to call the
   const html = h.render(React.createElement(h.load('src/app/security/page.tsx').default));
   const rendered = text(html);
   assert.match(rendered, /Banks process funds transfers/);
-  assert.match(rendered, /a portal message or uploaded document does not verify payment instructions/);
+  assert.match(rendered, /A portal message or uploaded document does not verify payment instructions/);
   assert.match(rendered, /phone number you previously verified with your closing team/);
   assert.match(rendered, /contact your sending bank immediately and request a wire recall\. Then notify your closing team/);
   assert.match(rendered, /Recovery is not guaranteed/);
@@ -89,22 +89,22 @@ test('legacy calculator prompts do not promise equivalent security or blanket re
   }
 });
 
-test('public security copy explains actual permission boundaries and does not imply universal confidentiality', () => {
+test('homepage has no security sales section and security page offers practical guidance, not feature promotion', () => {
   const h = createHarness(noDb);
-  const home = text(h.render(React.createElement(h.load('src/components/SecurityTrustSection.tsx').default)));
+  const home = h.render(React.createElement(h.load('src/components/HomePageCredible.tsx').default));
   const page = text(h.render(React.createElement(h.load('src/app/security/page.tsx').default)));
-  for (const rendered of [home, page]) {
-    assert.match(rendered, /closing team (?:chooses|selects) which other file participants can access each/);
-    assert.match(rendered, /checks file membership and document permissions before providing a preview or download link/);
-    assert.match(rendered, /anyone with that link can view/);
-    assert.doesNotMatch(rendered, unsupported);
-  }
-  assert.match(page, /Authorized closing staff also have access/);
-  assert.match(page, /checks that a signed-in participant belongs to that file/);
-  assert.match(page, /removing access cannot recall a copy someone already downloaded/);
-  assert.match(page, /controls do not guarantee against unauthorized access or fraud/);
-  assert.match(page, /once the upload is verified/);
-  assert.doesNotMatch(home + page, /malware.free|unhackable|fraud.proof|zero.risk|certified|compliant with/i);
+  assert.doesNotMatch(home, /data-security-guidance|Document sharing with clear controls|Before you send funds/);
+  assert.doesNotMatch(source('src/components/HomePageCredible.tsx'), /SecurityTrustSection/);
+  assert.equal(fs.existsSync(path.join(__dirname, '../src/components/SecurityTrustSection.tsx')), false);
+  const footer = h.render(React.createElement(h.load('src/components/FooterComprehensive.tsx').default));
+  assert.match(footer, /href="\/security"/, 'Security remains reachable in the footer');
+  assert.match(page, /Before you send funds/);
+  assert.match(page, /If you suspect wire fraud/);
+  assert.match(page, /Keep sign-in links private/);
+  assert.match(page, /anyone with the link/);
+  assert.doesNotMatch(page, /File-Specific Access|Preview and Download Permissions|Access-Controlled Document Sharing|How File and Document Access Works/);
+  assert.doesNotMatch(page, unsupported);
+  assert.doesNotMatch(page, /malware.free|unhackable|fraud.proof|zero.risk|certified|compliant with/i);
 });
 
 test('public rendering has no HTTPS security promotion, including dormant badge components', () => {

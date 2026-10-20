@@ -6,6 +6,16 @@ of **Open** with the date found; when something is fixed, move it to
 
 ## Program summary for company discussion (2026-08-13)
 
+### Security presentation correction (2026-10-20)
+
+Owner requested removal of the homepage security sales section, including the
+document-permissions replacement introduced in #136. The component is removed;
+the Security navigation/footer destination remains a factual wire-fraud and
+personal-information guide, with CFPB/IC3 references rather than feature cards.
+No access controls, financial workflows or customer records are changed.
+Homepage order/variant, copy and responsive regression tests cover this scope.
+Deployment evidence belongs on the release PR; this note is not proof of deployment.
+
 **What's done:** the site's pricing is now one engine with an evidence-backed
 market comparison. Five conflicting fee engines were consolidated; fabricated
 comparison multipliers were replaced by a 51-state survey of published
