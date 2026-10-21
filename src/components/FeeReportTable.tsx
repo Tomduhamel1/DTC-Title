@@ -54,7 +54,7 @@ function reportComparison(report: FeeReport) {
   // suppress it for that data. (Frozen totals still display verbatim.)
   const isNewModelData =
     anchor !== null &&
-    (report.modelVersion === 4 ||
+    ((report.modelVersion ?? 0) >= 4 ||
       stack.every((li) => li === anchor || (li.typicalRange && li.typicalRange.low === li.ourCost)))
   const band = serviceBandFor(report.state, report.transactionType, report.zip)
   const basisPhrase =
@@ -131,7 +131,7 @@ export default function FeeReportTable({
                   item={item}
                   state={report.state}
                   isAnchor={item === anchor}
-                  positiveSavings={isPreview}
+                  isPreview={isPreview}
                   anchorNote={
                     item === anchor && note
                       ? isPreview ? 'Services compared as a package.' : note
@@ -152,8 +152,8 @@ export default function FeeReportTable({
           <span className="text-sm font-black text-dark-900 text-right tabular-nums whitespace-nowrap">
             {formatCurrency(totals.ourTotal)}
           </span>
-          <span className="text-sm font-black text-emerald-700 text-right tabular-nums whitespace-nowrap">
-            {isPreview ? formatCurrency(totals.estimatedSavings) : formatSavings(totals.estimatedSavings)}
+          <span data-total-savings className="text-sm font-black text-emerald-700 text-right tabular-nums whitespace-nowrap">
+            {totals.estimatedSavings > 0 ? formatSavings(totals.estimatedSavings) : formatCurrency(0)}
           </span>
         </div>
       </div>
@@ -276,13 +276,13 @@ function FeeRow({
   state,
   isAnchor = false,
   anchorNote,
-  positiveSavings = false,
+  isPreview = false,
 }: {
   item: FeeLineItem
   state: string
   isAnchor?: boolean
   anchorNote?: string
-  positiveSavings?: boolean
+  isPreview?: boolean
 }) {
   const lineSavings = item.isCredit ? -item.ourCost : conservativeLineSavings(item)
 
@@ -315,8 +315,8 @@ function FeeRow({
   )
 
   return (
-    <div data-fee-row={item.label} className={positiveSavings ? PREVIEW_COLS : COLS}>
-      <div className={positiveSavings ? 'min-w-0' : 'min-w-0 col-span-3 min-[380px]:col-span-1'}>
+    <div data-fee-row={item.label} className={isPreview ? PREVIEW_COLS : COLS}>
+      <div className={isPreview ? 'min-w-0' : 'min-w-0 col-span-3 min-[380px]:col-span-1'}>
         <div className="text-[13px] font-semibold text-dark-900 leading-tight break-words">
           {item.label}
           {item.isCredit && (
@@ -325,7 +325,7 @@ function FeeRow({
             </span>
           )}
         </div>
-        {subLabel && (!positiveSavings || isAnchor) && (
+        {subLabel && (!isPreview || isAnchor) && (
           <div
             className={`text-[10.5px] mt-0.5 leading-snug ${
               isAnchor ? 'text-emerald-700' : 'text-gray-400'
@@ -335,12 +335,12 @@ function FeeRow({
           </div>
         )}
       </div>
-      <div data-typical-price className={`${positiveSavings ? PREVIEW_TYPICAL : 'hidden sm:block'} text-xs text-right tabular-nums`}>
+      <div data-typical-price className={`${isPreview ? PREVIEW_TYPICAL : 'hidden sm:block'} text-xs text-right tabular-nums`}>
         {typical}
       </div>
       <div
         data-betterclose-price
-        className={`${positiveSavings ? '' : 'col-start-2 min-[380px]:col-start-auto'} text-[13px] font-bold text-right tabular-nums whitespace-nowrap ${
+        className={`${isPreview ? '' : 'col-start-2 min-[380px]:col-start-auto'} text-[13px] font-bold text-right tabular-nums whitespace-nowrap ${
           item.isCredit ? 'text-emerald-700' : 'text-dark-900'
         }`}
       >
@@ -348,7 +348,7 @@ function FeeRow({
       </div>
       <div data-line-savings className="text-[13px] font-bold text-right tabular-nums whitespace-nowrap">
         {lineSavings > 0 ? (
-          <span className="text-emerald-700">{positiveSavings ? formatCurrency(lineSavings) : formatSavings(lineSavings)}</span>
+          <span className="text-emerald-700">{formatSavings(lineSavings)}</span>
         ) : (
           <span className="text-gray-300">—</span>
         )}

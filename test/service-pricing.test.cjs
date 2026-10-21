@@ -21,24 +21,24 @@ test('public purchase search uses the approved RI service fees and an unchanged 
   }));
   assert.equal(result.status, 200);
   const { report } = await result.json();
-  assert.equal(report.modelVersion, 4, 'Unsaved version-3 estimates must refresh the corrected line comparisons');
+  assert.equal(report.modelVersion, 5, 'Unsaved version-4 estimates must refresh for the updated notary pricing');
   assert.equal(report.loanAmount, 480000, 'Existing 80% LTV default');
-  for (const [label, amount] of [['Notary Fee', 140], ['Attorney Fee', 40], ['Abstractor Title Search', 90]]) {
+  for (const [label, amount] of [['Notary Fee', 135], ['Attorney Fee', 40], ['Abstractor Title Search', 90]]) {
     const rows = report.lineItems.filter(item => item.label === label);
     assert.equal(rows.length, 1);
     assert.equal(rows[0].ourCost, amount);
     const typical = { 'Notary Fee': 150, 'Attorney Fee': 50, 'Abstractor Title Search': 100 }[label];
     assert.deepEqual(rows[0].typicalRange, { low: typical, high: typical });
-    assert.equal(h.load('src/lib/feeReport.ts').conservativeLineSavings(rows[0]), 10);
+    assert.equal(h.load('src/lib/feeReport.ts').conservativeLineSavings(rows[0]), typical - amount);
   }
   const settlement = report.lineItems.find(item => item.label === 'Settlement Fee');
   assert.deepEqual(settlement.typicalRange, { low: 390, high: 470 });
   assert.equal(h.load('src/lib/feeReport.ts').conservativeLineSavings(settlement), 140,
     'The other service discounts are not moved into the settlement row');
   const totals = h.load('src/lib/feeReport.ts').computeTotals(report);
-  assert.equal(totals.ourTotal, 2475);
-  assert.equal(totals.estimatedSavings, 600);
-  assert.deepEqual(totals.serviceStack, { ourTotal: 520, typicalLow: 690, typicalHigh: 770, savings: 170, comparableCount: 4 });
+  assert.equal(totals.ourTotal, 2470);
+  assert.equal(totals.estimatedSavings, 605);
+  assert.deepEqual(totals.serviceStack, { ourTotal: 515, typicalLow: 690, typicalHigh: 770, savings: 175, comparableCount: 4 });
   assert.equal(h.sent.length, 0);
 });
 
@@ -52,7 +52,7 @@ test('refinance search uses $90 whether the abstractor row is returned or restor
     const rows = report.lineItems.filter(item => item.label === 'Abstractor Title Search');
     assert.equal(rows.length, 1);
     assert.equal(rows[0].ourCost, 90);
-    assert.equal(h.load('src/lib/feeReport.ts').computeTotals(report).serviceStack.savings, 170);
+    assert.equal(h.load('src/lib/feeReport.ts').computeTotals(report).serviceStack.savings, 175);
     const credits = report.lineItems.filter(item => item.isCredit);
     assert.equal(credits.length, 1);
     assert.equal(credits[0].ourCost, -240, 'Credit remains 20% of lender premium only on this synthetic refinance');
@@ -63,10 +63,10 @@ test('discounts use exact nationwide proportions without changing the underlying
   const h = setup();
   const fees = h.load('src/lib/betterCloseFees.ts');
   for (const [label, amount, expected] of [
-    ['Notary Fee', 150, 140], ['Notary Fee', 175, 163.33],
+    ['Notary Fee', 150, 135], ['Notary Fee', 175, 157.5],
     ['Attorney Fee', 50, 40], ['Attorney Fee', 75, 60],
     ['Abstractor Title Search', 100, 90], ['Abstractor Title Search', 295, 265.5],
-    ['Abstractor Title Search', 18, 16.2], [' notary fee ', 150, 140],
+    ['Abstractor Title Search', 18, 16.2], [' notary fee ', 150, 135],
     ['Notary Fee', 0, 0], ['Notary Fee', -50, -50],
     ['Settlement Fee', 350, 350], ["Lender's Title Insurance", 1200, 1200],
     ['Closing Protection Letter', 35, 35], ['Recording Service Fee', 25, 25],

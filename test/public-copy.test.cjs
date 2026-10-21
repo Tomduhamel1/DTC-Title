@@ -63,7 +63,7 @@ test('sample fee card derives every price, total and savings from one report, ne
   }
   assert.ok(html.includes('data-sample-total="true">' + formatCurrency(totals.ourTotal)));
   assert.ok(html.includes('data-sample-savings="true">' + formatCurrency(totals.estimatedSavings)));
-  assert.match(rendered, /Providence, RI.*600,000 purchase.*480,000 loan.*Not your client's quote/);
+  assert.match(rendered, /Providence, RI.*750,000 purchase.*600,000 loan.*Not your client's quote/);
   assert.equal(totals.ourTotal, report.lineItems.reduce((sum, item) => sum + item.ourCost, 0));
   const page = source('src/app/for-my-team/page.tsx');
   assert.doesNotMatch(page, /previewSavings|QuotePreviewMockup|MockLineItem|\$685|\$1,240/);
@@ -75,8 +75,8 @@ test('homepage example uses Market and omits the redundant scenario and savings 
   assert.doesNotMatch(rendered, /purchase in Providence|Calculated with our quote engine|This example saves|in service fees plus/);
   assert.match(rendered, /Purchase example · RI/);
   assert.match(rendered, /Item Market BetterClose Savings/);
-  assert.match(rendered, /Save at closing \$600/);
-  assert.match(rendered, /Save over the life of the loan \$1,365/);
+  assert.match(rendered, /Save at closing \$710/);
+  assert.match(rendered, /Save over the life of the loan \$1,616/);
   assert.match(rendered, /Sample only/);
   const report = h.load('src/lib/sampleReport.ts').buildSampleFeeReport();
   const Table = h.load('src/components/FeeReportTable.tsx').default;

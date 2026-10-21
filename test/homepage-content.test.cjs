@@ -69,7 +69,7 @@ test('sample preserves pre-discount Typical prices and shows each saving in its 
   const report = h.load('src/lib/sampleReport.ts').buildSampleFeeReport();
   const { conservativeLineSavings, computeTotals } = h.load('src/lib/feeReport.ts');
   for (const [label, typical, ours, savings] of [
-    ['Settlement Fee', 390, 250, 140], ['Notary Fee', 150, 140, 10],
+    ['Settlement Fee', 390, 250, 140], ['Notary Fee', 150, 135, 15],
     ['Attorney Fee', 50, 40, 10], ['Abstractor Title Search', 100, 90, 10],
   ]) {
     const row = report.lineItems.find(item => item.label === label);
@@ -79,10 +79,10 @@ test('sample preserves pre-discount Typical prices and shows each saving in its 
   }
   const sum = report.lineItems.reduce((total, item) => total + (item.isCredit ? -item.ourCost : conservativeLineSavings(item)), 0);
   assert.equal(sum, computeTotals(report).estimatedSavings);
-  assert.equal(sum, 600, 'Reattribution cannot double-count the three fee discounts');
+  assert.equal(sum, 710, 'The three fee discounts and credit are each counted once');
   const Notes = h.load('src/components/FeeReportTable.tsx').FeeReportEstimateNotes;
   const notes = h.render(React.createElement(Notes, { report }));
-  assert.match(notes, /\$690 all-in for the same services we bill \$520 for/);
+  assert.match(notes, /\$690 all-in for the same services we bill \$515 for/);
   assert.doesNotMatch(notes, /claim no savings on them/);
 });
 
@@ -98,6 +98,24 @@ test('positive savings labels never flip the sign of an actual fee credit', () =
   assert.equal(report.lineItems.at(-1).ourCost, -100);
 });
 
+test('savings columns use minus signs without making the summary cards or stored amounts negative', () => {
+  const h = harness();
+  const report = h.load('src/lib/sampleReport.ts').buildSampleFeeReport();
+  const before = structuredClone(report);
+  const Table = h.load('src/components/FeeReportTable.tsx').default;
+  for (const variant of ['preview', 'full']) {
+    const html = h.render(React.createElement(Table, { report, variant }));
+    const amounts = [...html.matchAll(/data-line-savings="true"[^>]*><span[^>]*>([^<]*)<\/span>/g)].map(m => m[1]);
+    assert.deepEqual(amounts, ['—', '—', '−$140', '−$15', '−$10', '−$10', '−$535', '—', '—', '—', '—']);
+    assert.match(html, /data-total-savings="true"[^>]*>−\$710<\/span>/);
+    if (variant === 'preview') {
+      assert.match(html, /data-preview-closing-savings[^]*?data-savings-amount="true"[^>]*>\$710<\/div>/);
+      assert.match(html, /data-preview-lifetime-savings[^]*?data-savings-amount="true"[^>]*>\$1,616<\/div>/);
+    }
+  }
+  assert.deepEqual(report, before);
+});
+
 test('Bucks is labeled Credit, not New, in both sample and full reports', () => {
   const h = harness();
   const report = h.load('src/lib/sampleReport.ts').buildSampleFeeReport();
@@ -106,7 +124,7 @@ test('Bucks is labeled Credit, not New, in both sample and full reports', () => 
     const html = h.render(React.createElement(Table, { report, variant }));
     assert.match(text(html), /BetterClose Bucks Credit/);
     assert.doesNotMatch(text(html), /\bNew\b/i);
-    assert.match(html, /−\$430/);
+    assert.match(html, /−\$535/);
   }
 });
 
@@ -127,25 +145,25 @@ test('real purchase example includes both reconciling savings amounts and the fu
   const credit = report.lineItems.filter(item => item.isCredit);
   assert.equal(credit.length, 1, 'The existing promotion is included once');
   assert.deepEqual(credit[0], betterCloseBucksLine(report.lineItems.filter(item => !item.isCredit), 'RI'));
-  assert.equal(credit[0].ourCost, -430);
+  assert.equal(credit[0].ourCost, -535);
   const totals = computeTotals(report);
-  assert.equal(report.homeValue, 600000);
-  assert.equal(report.loanAmount, 480000);
-  assert.equal(totals.marketLow, 3075);
-  assert.equal(totals.ourTotal, 2475);
+  assert.equal(report.homeValue, 750000);
+  assert.equal(report.loanAmount, 600000);
+  assert.equal(totals.marketLow, 3600);
+  assert.equal(totals.ourTotal, 2890);
   assert.equal(totals.marketLow - totals.ourTotal, totals.estimatedSavings);
-  assert.equal(totals.estimatedSavings, 600);
-  assert.equal(totals.lifetimeSavings, 1365);
-  assert.equal(totals.lifetimeSavings, lifetimeFinancedAmount(600));
+  assert.equal(totals.estimatedSavings, 710);
+  assert.equal(totals.lifetimeSavings, 1616);
+  assert.equal(totals.lifetimeSavings, lifetimeFinancedAmount(710));
   assert.equal(totals.breakdown.title_related, 0, 'Premium itself is not discounted');
-  assert.equal(totals.serviceStack.ourTotal, 520);
+  assert.equal(totals.serviceStack.ourTotal, 515);
   assert.equal(totals.serviceStack.typicalLow, 690);
   assert.equal(totals.serviceStack.typicalHigh, 770);
-  assert.equal(totals.serviceStack.savings, 170, 'Same $690 competitor benchmark minus the approved $520 service package');
+  assert.equal(totals.serviceStack.savings, 175, 'Same $690 competitor benchmark minus the approved $515 service package');
   const Section = h.load('src/components/FeeReportPreviewSection.tsx').default;
   const html = h.render(React.createElement(Section));
-  assert.match(html, /data-preview-closing-savings[^]*?\$600/);
-  assert.match(html, /data-preview-lifetime-savings[^]*?\$1,365/);
+  assert.match(html, /data-preview-closing-savings[^]*?\$710/);
+  assert.match(html, /data-preview-lifetime-savings[^]*?\$1,616/);
   assert.doesNotMatch(html, /better loan pricing/);
 });
 
@@ -157,7 +175,7 @@ test('credit policy still respects state exclusions and the existing RI override
   for (const state of ['FL', 'TX', 'NM', 'NY']) {
     assert.equal(betterCloseBucksLine(fees, state), null, state);
   }
-  assert.equal(betterCloseBucksLine(fees, 'RI').ourCost, -430);
+  assert.equal(betterCloseBucksLine(fees, 'RI').ourCost, -535);
 });
 
 test('zero-savings reports remain zero: presentation never manufactures an advantage', () => {
@@ -172,11 +190,13 @@ test('zero-savings reports remain zero: presentation never manufactures an advan
   const html = h.render(React.createElement(Table, { report, variant: 'preview' }));
   assert.match(html, /data-preview-closing-savings[^]*?\$0/);
   assert.match(html, /data-preview-lifetime-savings[^]*?\$0/);
+  assert.match(html, /data-total-savings="true"[^>]*>\$0<\/span>/);
+  assert.doesNotMatch(html, /−\$0(?:<|\s)/);
   assert.doesNotMatch(html, /\$360|\$819/);
 });
 
 test('fixed example exactly replays the recorded public response through the real quote engine', async () => {
-  const fixture = require('./fixtures/purchase-sample-ri-20261020.json');
+  const fixture = require('./fixtures/purchase-sample-ri-20261021.json');
   let calls = 0;
   const h = createHarness(new Proxy({}, { get() { throw new Error('No database access'); } }), {
     fetch: async (url, options) => {
