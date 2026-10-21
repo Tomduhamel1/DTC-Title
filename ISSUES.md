@@ -6,6 +6,38 @@ of **Open** with the date found; when something is fixed, move it to
 
 ## Program summary for company discussion (2026-08-13)
 
+### Purchase example and service fees (2026-10-20, staged)
+
+Owner requested a $600,000 purchase example, notary $140, attorney $40 and
+abstractor $90, the Bucks row at the end of Title & Settlement, and a neutral
+savings summary that does not compete with the estimate CTA. The sample uses
+the existing Providence ZIP and 80% LTV ($480,000 loan), freshly calculated
+from the public fee API. Owner confirmed proportional reductions in every
+state: notary ×14/15, attorney ×4/5, abstractor title search ×9/10, rounded
+to cents. These apply to new purchase/refinance estimates, including restored
+refi search lines, while preserving each state's underlying service schedule.
+Premiums, CPL, endorsements, recording, taxes, state availability, credit
+exclusions and already-issued quote amounts remain unchanged. Comparison
+package dollars are calculated before these discounts and remain unchanged;
+no new comparison savings are claimed on excluded search/pass-through lines.
+Comparison allocation now preserves below-our-cost competitor packages rather
+than flooring them up to our old price (which would fabricate savings after
+a discount). Upper package ranges are allocated once, without multiplying
+non-settlement rows again. This changes attribution, not the source bands.
+RI competitor package dollars remain $690 low / $770 modeled high independent
+of our fee changes. Marketing/admin caches were refreshed through the real
+engine for 300 scenarios across 50 state/DC entries. NC still returns upstream
+HTTP 500 after retries and remains absent from these caches; no stale entry
+was retained or synthetic NC quote invented. The new sample is $2,475, with $600 at-closing savings
+($170 services + $430 Bucks). Release status belongs on the PR.
+
+Cache comparison note: fresh upstream data also differs from the prior cached
+data in CO, DE, MD, MO, MS and WV. Some all-in totals increase despite the
+three service discounts; premium fields differ in CO, MO, MS and WV.
+Settlement amounts are unchanged in all 300 scenarios. These caches reflect
+the existing live upstream calculator, not new overrides of those charges.
+Issued quote snapshots and production data were not modified.
+
 ### Security presentation correction (2026-10-20)
 
 Owner requested removal of the homepage security sales section, including the

@@ -73,7 +73,7 @@ export function betterCloseBucksLine(
   return {
     id: BUCKS_LINE_ID,
     label: BUCKS_LABEL,
-    category: 'other',
+    category: 'title-settlement',
     ourCost: -amount,
     isFixed: false,
     isCredit: true,

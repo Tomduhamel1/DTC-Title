@@ -193,7 +193,8 @@ function StateRow({ code, entry }: { code: string; entry: StateMasterEntry }) {
           evidence {evidence.grade === 'none' ? 'inferred' : evidence.grade}
         </span>
         <span className="text-xs text-gray-500">
-          {overrides ? `fees: ${Object.entries(overrides).map(([k, v]) => `${k} ${fmtFee(v)}`).join(', ')}` : 'fees: FNTE'}
+          {overrides ? `base overrides: ${Object.entries(overrides).map(([k, v]) => `${k} ${fmtFee(v)}`).join(', ')}` : 'base fees: FNTE'}
+          {' · service discounts apply'}
         </span>
         {anchor && (
           <span className="text-xs font-semibold text-emerald-700 tabular-nums">
@@ -232,6 +233,11 @@ function StateRow({ code, entry }: { code: string; entry: StateMasterEntry }) {
         </div>
 
         <div>
+          <div className="text-xs text-gray-700 mb-3">
+            New quotes reduce this state&apos;s notary fee by 6⅔%, attorney fee by 20%,
+            and abstractor title-search fee by 10%, rounded to cents. Comparison
+            packages use the pre-discount schedule; premiums and government fees are unchanged.
+          </div>
           <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1">
             How the low stack is derived
           </div>
