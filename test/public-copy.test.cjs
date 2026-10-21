@@ -33,11 +33,14 @@ for (const [name, file, props] of pages) {
   });
 }
 
-test('homepage leads with transparent line-by-line pricing and no directional promise', () => {
+test('homepage leads with choosing BetterClose for lower costs, with pricing transparency as support', () => {
   const Home = h.load('src/components/HomePageCredible.tsx').default;
   const rendered = text(h.render(React.createElement(Home, { heroVersion: 'magic' })));
-  assert.match(rendered, /transparent, line-by-line pricing/);
-  assert.match(rendered, /what each charge covers, how our fees compare, and where you can save/);
+  assert.match(rendered, /Save hundreds\. On closing costs\./);
+  assert.match(rendered, /Choose BetterClose for title and settlement at a lower cost\./);
+  assert.match(rendered, /Get a dedicated closing team and transparent pricing, line by line\./);
+  assert.match(rendered, /Keep your agent\. Keep your lender\./);
+  assert.doesNotMatch(rendered, /BetterClose helps you save|Same realtor\. Same lender\. Better cost\./);
   assert.match(rendered, /Total over the loan/);
   assert.match(rendered, /includes at-closing savings plus modeled interest avoided/);
   assert.doesNotMatch(rendered, /better loan pricing|exact estimate/);
