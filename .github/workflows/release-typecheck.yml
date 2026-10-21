@@ -29,7 +29,10 @@ jobs:
       - run: node --test test/fee-report-presentation.test.cjs test/policy-pages.test.cjs
       - run: node --test test/contact-options.test.cjs test/homepage-section-order.test.cjs
       - run: node --test test/homepage-content.test.cjs
+      - run: node --test test/service-pricing.test.cjs
       - run: node --test test/public-copy.test.cjs
+      - run: node --test test/security-claims.test.cjs
+      - run: node --test test/intake-upload-retirement.test.cjs
       - run: node --test test/discovery.test.cjs
       - run: node --test test/marketing-disclosures.test.cjs
       - run: npm audit --omit=dev --audit-level=low
@@ -58,13 +61,15 @@ jobs:
           PUPPETEER_EXECUTABLE_PATH="$browser_path" node --test test/contact-options.browser.test.cjs
           PUPPETEER_EXECUTABLE_PATH="$browser_path" node --test test/homepage-layout.browser.test.cjs
           PUPPETEER_EXECUTABLE_PATH="$browser_path" node --test test/public-copy.browser.test.cjs
+          PUPPETEER_EXECUTABLE_PATH="$browser_path" node --test test/security-claims.browser.test.cjs
           PUPPETEER_EXECUTABLE_PATH="$browser_path" node --test test/discovery.browser.test.cjs
           PUPPETEER_EXECUTABLE_PATH="$browser_path" node --test test/email-confirmation.browser.test.cjs
+          PUPPETEER_EXECUTABLE_PATH="$browser_path" node --test test/intake-upload-retirement.browser.test.cjs
       - name: Install PDF inspection tools
         run: sudo apt-get update && sudo apt-get install --no-install-recommends -y poppler-utils
       - name: Verify both real PDF generator paths
         run: PUPPETEER_EXECUTABLE_PATH="$(command -v google-chrome)" npm run test:pdf-runtime
-      - run: node --test test/company-phone-pdf.test.cjs
+      - run: node --test test/company-phone-pdf.test.cjs test/marketing-disclosures-pdf.test.cjs
   production-runtime:
     runs-on: ubuntu-latest
     timeout-minutes: 15

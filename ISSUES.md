@@ -6,6 +6,48 @@ of **Open** with the date found; when something is fixed, move it to
 
 ## Program summary for company discussion (2026-08-13)
 
+### Purchase example and service fees (2026-10-20, staged)
+
+Owner requested a $600,000 purchase example, notary $140, attorney $40 and
+abstractor $90, the Bucks row at the end of Title & Settlement, and a neutral
+savings summary that does not compete with the estimate CTA. The sample uses
+the existing Providence ZIP and 80% LTV ($480,000 loan), freshly calculated
+from the public fee API. Owner confirmed proportional reductions in every
+state: notary ×14/15, attorney ×4/5, abstractor title search ×9/10, rounded
+to cents. These apply to new purchase/refinance estimates, including restored
+refi search lines, while preserving each state's underlying service schedule.
+Premiums, CPL, endorsements, recording, taxes, state availability, credit
+exclusions and already-issued quote amounts remain unchanged. Comparison
+package dollars are calculated before these discounts and remain unchanged;
+no new comparison savings are claimed on excluded search/pass-through lines.
+Comparison allocation now preserves below-our-cost competitor packages rather
+than flooring them up to our old price (which would fabricate savings after
+a discount). Upper package ranges are allocated once, without multiplying
+non-settlement rows again. This changes attribution, not the source bands.
+RI competitor package dollars remain $690 low / $770 modeled high independent
+of our fee changes. Marketing/admin caches were refreshed through the real
+engine for 300 scenarios across 50 state/DC entries. NC still returns upstream
+HTTP 500 after retries and remains absent from these caches; no stale entry
+was retained or synthetic NC quote invented. The new sample is $2,475, with $600 at-closing savings
+($170 services + $430 Bucks). Release status belongs on the PR.
+
+Cache comparison note: fresh upstream data also differs from the prior cached
+data in CO, DE, MD, MO, MS and WV. Some all-in totals increase despite the
+three service discounts; premium fields differ in CO, MO, MS and WV.
+Settlement amounts are unchanged in all 300 scenarios. These caches reflect
+the existing live upstream calculator, not new overrides of those charges.
+Issued quote snapshots and production data were not modified.
+
+### Security presentation correction (2026-10-20)
+
+Owner requested removal of the homepage security sales section, including the
+document-permissions replacement introduced in #136. The component is removed;
+the Security navigation/footer destination remains a factual wire-fraud and
+personal-information guide, with CFPB/IC3 references rather than feature cards.
+No access controls, financial workflows or customer records are changed.
+Homepage order/variant, copy and responsive regression tests cover this scope.
+Deployment evidence belongs on the release PR; this note is not proof of deployment.
+
 **What's done:** the site's pricing is now one engine with an evidence-backed
 market comparison. Five conflicting fee engines were consolidated; fabricated
 comparison multipliers were replaced by a 51-state survey of published
@@ -48,6 +90,71 @@ only.
   remove "BBB Accredited" in the footer.
 
 ## Open
+
+### Underwriter-rating copy cleanup refreshed against current main (2026-10-20)
+
+PR #133 was still a draft when the owner again requested removal of blanket
+underwriter-rating claims. The branch now incorporates the deployed pricing and
+security changes without restoring the removed security sales section. Copy is
+rating-neutral across pages, metadata, quote/email templates, stock dashboard
+descriptions and downloadable handouts. Saved quote descriptions are corrected
+only at presentation time; amounts and frozen records are unchanged.
+Source and generated-PDF regression checks prevent the old claim from returning.
+No replacement rating is assigned. No customer data or email sending is involved.
+This entry records prepared code, not a production deployment.
+
+### Security copy: remove baseline-security promotion (2026-10-20)
+
+The owner requested removal of HTTPS as a selling point everywhere and no
+unsupported security assurances. Homepage and Security copy now describes
+file-specific access and document-specific sharing, with explicit limits for
+forwarded links, shared quotes, downloaded copies and payment instructions.
+Reusable badges and dormant marketing components no longer promote HTTPS.
+No banking-system security or certification is claimed.
+
+Evidence: fileWorkspace/access.ts checks file membership and staff access;
+fileWorkspace/documents.ts limits document visibility, staff-selected sharing
+and preview/download permissions; fileWorkspace/storage.ts issues short-lived
+document links. quote/view/page.ts intentionally permits share-token access
+without sign-in. The existing file-workspace PG suite exercises these boundaries
+and is included in release validation. No permissions or infrastructure changed.
+The owner-approved privacy policy is retained, not recast as a security badge.
+The broader mobile and underwriter/handout draft PRs remain separate.
+
+### Optional intake uploader retired — deployed and verified (2026-10-12)
+
+PR #135 merged as a0368b7; Amplify job 166 succeeded. Live checks confirmed both
+retired endpoints return 410 and the intake page directs users to file Documents.
+
+The owner approved directing optional intake document uploads to the current
+closing-file Documents workspace. Both retired intake upload endpoints return
+410 Gone without reading request bodies, using storage or accessing records.
+The intake form displays a file-workspace link instead of upload controls.
+Existing stored documents, file-sharing permissions, email behavior and the
+current file Documents workflow are unchanged. This does not retire the rest
+of the intake form or represent a broader application-security certification.
+Regression coverage includes the retired routes, mobile/desktop notice,
+compiled-server HTTP checks and the existing file-workspace tests.
+
+### Security-claims cleanup — deployed and verified (2026-10-12)
+
+PR #134 merged as afde8fa; Amplify job 165 succeeded. Live checks verified the
+Security page and retired homepage variant URLs.
+
+Old public homepage variants still exposed unsupported security, escrow and
+licensing assertions. The homepage wrapper now consistently renders the current
+homepage, including on `/preview`; query parameters no longer select retired
+experiments. Stale reusable components no longer claim guaranteed or bank-level
+security, certified processes, or blanket FDIC coverage. The Security page uses
+specific access/connection descriptions, distinguishes the portal from bank
+transfers, and prioritizes contacting the sending bank after suspected wire fraud.
+The owner's previously confirmed no-sale privacy policy is unchanged.
+
+This is a claims correction, not a security certification or infrastructure
+hardening release. Application-access and browser-header follow-ups from the
+audit remain separate; they are not represented as fixed here. No customer data,
+payment behavior, permissions, infrastructure settings or email sending changed.
+The handout/underwriter-disclosure and mobile-layout branches remain separate.
 
 ### Search discovery foundation — prepared, not deployed (2026-10-09)
 

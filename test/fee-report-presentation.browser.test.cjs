@@ -15,13 +15,17 @@ test('transaction amount labels fit the real quote table on phone and desktop', 
   const browser = await openEmailBrowser();
   try {
     const { page, requestCount } = await offlinePage(browser);
-    for (const width of [390, 1280]) {
+    for (const width of [320, 390, 768, 1280]) {
       await page.setViewport({ width, height: 900 });
       for (const transactionType of ['purchase', 'refinance']) {
         const report = {
           state: 'TX', zip: '75201', homeValue: transactionType === 'purchase' ? 500000 : 0,
           loanAmount: 400000, transactionType, generatedAt: '2026-09-30T12:00:00Z',
-          lineItems: [{ id: 'settlement', category: 'title-settlement', label: 'Settlement fee', ourCost: 500, isFixed: false }],
+          lineItems: [
+            { id: 'settlement', category: 'title-settlement', label: 'Settlement fee', ourCost: 500, isFixed: false, typicalRange: { low: 1000.35, high: 1275.55 } },
+            { id: 'notary', category: 'title-settlement', label: 'Notary Fee', ourCost: 163.33, isFixed: false },
+            { id: 'search', category: 'title-settlement', label: 'Abstractor Title Search', ourCost: 265.5, isFixed: false },
+          ],
         };
         await page.setContent('<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>' + css +
           '</style></head><body><main class="max-w-3xl mx-auto p-4">' + h.render(React.createElement(Table, { report })) + '</main></body></html>');
@@ -34,6 +38,14 @@ test('transaction amount labels fit the real quote table on phone and desktop', 
         assert.equal(layout.text, transactionType === 'purchase' ? 'Purchase · TX · Purchase price $500,000' : 'Refinance · TX · Loan amount $400,000');
         assert.ok(layout.height > 0 && layout.fits && layout.left >= 0 && layout.right <= width);
         assert.ok(layout.documentWidth <= width, `${width}: no horizontal overflow`);
+        const text = await page.evaluate(() => document.body.innerText);
+        assert.ok(text.includes('$163.33') && text.includes('$265.50') && text.includes('$928.83'),
+          'Actual service cents and the exact sum stay visible on both layouts');
+        const overflowing = await page.$$eval('main .grid > div, main .grid > span', els =>
+          els.filter(el => getComputedStyle(el).display !== 'none')
+            .filter(el => el.scrollWidth > el.clientWidth + 1)
+            .map(el => ({ text: el.innerText, width: el.clientWidth, scroll: el.scrollWidth })));
+        assert.deepEqual(overflowing, [], width + ': fractional fee ranges do not overflow their columns');
         if (process.env.BC_QUOTE_SCREENSHOTS) {
           await page.screenshot({ path: path.join(process.env.BC_QUOTE_SCREENSHOTS, `quote-${transactionType}-${width}.png`), fullPage: true });
         }

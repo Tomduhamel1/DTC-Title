@@ -13,7 +13,6 @@ import TeamTrustSection from './TeamTrustSection'
 import DashboardTrustSection from './DashboardTrustSection'
 import UnderwriterLogos from './UnderwriterLogos'
 import FAQSection from './FAQSection'
-import SecurityTrustSection from './SecurityTrustSection'
 import ReadyToSaveSection from './ReadyToSaveSection'
 import FooterComprehensive from './FooterComprehensive'
 
@@ -60,9 +59,6 @@ export default function HomePageCredible({ heroVersion = 'A' }: HomePageCredible
 
         {/* FAQ Section */}
         <FAQSection />
-
-        {/* Security & Trust */}
-        <SecurityTrustSection />
 
         {/* Ready to Save */}
         <ReadyToSaveSection />

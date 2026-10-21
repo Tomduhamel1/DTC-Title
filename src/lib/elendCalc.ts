@@ -7,7 +7,7 @@
 // it; do not hardcode a new stage here.
 
 import { betterCloseBucksLine } from './betterCloseBucks'
-import { betterCloseServiceFee, ensuredLinesFor } from './betterCloseFees'
+import { betterCloseServiceFee, discountedServiceFee, ensuredLinesFor } from './betterCloseFees'
 import { assertServiceOffered } from './stateMaster'
 import { REPORT_MODEL_VERSION } from './feeReport'
 import type { FeeCategory, FeeLineItem, FeeReport, FeeSource } from './feeReport'
@@ -101,6 +101,8 @@ function cleanDescription(raw: string): string {
     d = "Owner's Title Insurance"
   } else if (/closing protection letter/i.test(d)) {
     d = 'Closing Protection Letter'
+  } else if (/^AbstractorTitleSearchREFI$/i.test(d.trim())) {
+    d = 'Abstractor Title Search'
   }
   return d
 }
@@ -108,6 +110,11 @@ function cleanDescription(raw: string): string {
 // Premium/CPL lines carry the underwriter's filed rates — never ours to set.
 function isPremiumLabel(label: string): boolean {
   return /title insurance/i.test(label) || /closing protection letter/i.test(label)
+}
+
+function isDiscountableService(label: string, category: FeeCategory): boolean {
+  return !isPremiumLabel(label) &&
+    category !== 'recording' && category !== 'taxes' && category !== 'endorsements'
 }
 
 function categorize(feeDescription: string): FeeCategory {
@@ -167,10 +174,32 @@ function isComparisonFixed(
 // The settlement line's typical low = our settlement + (lowest verified
 // competitor package − our package), where the competitor package low comes
 // from the state's evidence band (marketBaseline: quoted/published/
-// calculator/inferred, provenance in ServiceBand.lowSource). Totals are
-// IDENTICAL to the old package math — only the attribution changed.
+// calculator/inferred, provenance in ServiceBand.lowSource). The package
+// bounds are preserved even when they are below our own service prices.
 // Falls back to the largest service line when upstream returns no
 // settlement line.
+function assignPackageComparison(stack: FeeLineItem[], lowCents: number, highCents: number): void {
+  const cents = (amount: number) => Math.round(amount * 100)
+  const stackCents = stack.reduce((sum, li) => sum + cents(li.ourCost), 0)
+  const anchor = stack.find(li => /settlement fee/i.test(li.label)) ??
+    stack.reduce((a, b) => b.ourCost > a.ourCost ? b : a)
+  const othersCents = stackCents - cents(anchor.ourCost)
+  // Usually the package delta sits on settlement, with other rows at parity.
+  // For a much cheaper competitor, use proportional allocation instead of
+  // inventing a negative settlement price. These are package allocations,
+  // not independently sourced per-line rates.
+  const proportional = lowCents < othersCents || highCents < othersCents
+  let allocatedLow = 0, allocatedHigh = 0
+  for (const li of stack.filter(item => item !== anchor)) {
+    const low = proportional ? Math.round(lowCents * cents(li.ourCost) / stackCents) : cents(li.ourCost)
+    const high = proportional ? Math.round(highCents * cents(li.ourCost) / stackCents) : cents(li.ourCost)
+    li.typicalRange = { low: low / 100, high: high / 100 }
+    allocatedLow += low
+    allocatedHigh += high
+  }
+  anchor.typicalRange = { low: (lowCents - allocatedLow) / 100, high: (highCents - allocatedHigh) / 100 }
+}
+
 function applyMarketComparison(
   lineItems: FeeLineItem[],
   stateCode: string | undefined,
@@ -181,18 +210,31 @@ function applyMarketComparison(
   const stack = lineItems.filter((li) => !li.isCredit && !li.isFixed)
   if (stack.length === 0) return
   const stackTotal = stack.reduce((s, li) => s + li.ourCost, 0)
-  const lowExtra = Math.max(0, Math.round(stackTotal * band.low) - stackTotal)
-  const highExtra = Math.max(0, Math.round(stackTotal * band.high) - stackTotal)
-  const anchor =
-    stack.find((li) => /settlement fee/i.test(li.label)) ??
-    stack.reduce((a, b) => (b.ourCost > a.ourCost ? b : a))
-  for (const li of stack) {
-    if (li === anchor) {
-      li.typicalRange = { low: li.ourCost + lowExtra, high: li.ourCost + highExtra }
-    } else {
-      li.typicalRange = { low: li.ourCost, high: Math.round(li.ourCost * band.high) }
-    }
+  // Do not floor a cheaper competitor's package up to our own price:
+  // a subsequent service discount would then create fictitious savings.
+  // Apply the package band once, not again to non-anchor service rows.
+  assignPackageComparison(stack,
+    Math.round(band.packageRange?.low ?? stackTotal * band.low) * 100,
+    Math.round(band.packageRange?.high ?? stackTotal * band.high) * 100)
+}
+
+// Discounts change OUR prices, not the existing competitor benchmark.
+// Capture the comparison package first, then keep its dollar bounds while
+// attributing the updated package difference to the settlement row.
+function applyServiceDiscounts(lineItems: FeeLineItem[]): void {
+  const stack = lineItems.filter(li => !li.isCredit && !li.isFixed)
+  const cents = (amount: number) => Math.round(amount * 100)
+  const lowCents = stack.reduce((sum, li) => sum + cents(li.typicalRange?.low ?? li.ourCost), 0)
+  const highCents = stack.reduce((sum, li) => sum + cents(li.typicalRange?.high ?? li.ourCost), 0)
+  let comparableChanged = false
+  for (const li of lineItems) {
+    if (li.isCredit || !isDiscountableService(li.label, li.category)) continue
+    const cost = discountedServiceFee(li.label, li.ourCost)
+    if (cost !== li.ourCost && !li.isFixed) comparableChanged = true
+    li.ourCost = cost
   }
+  if (!comparableChanged || stack.length === 0) return
+  assignPackageComparison(stack, lowCents, highCents)
 }
 
 export interface FetchOptions {
@@ -274,11 +316,7 @@ export async function fetchElendFeeEstimate(
     // BetterClose service-charge schedule (betterCloseFees.ts): replaces the
     // upstream FNTE amount on matching service lines. Premiums/CPL (filed
     // rates), endorsements, recording, and taxes are never overridden.
-    const overridable =
-      !isPremiumLabel(label) &&
-      category !== 'recording' &&
-      category !== 'taxes' &&
-      category !== 'endorsements'
+    const overridable = isDiscountableService(label, category)
     const override = overridable
       ? betterCloseServiceFee(label, data.stateCode, req.transactionType)
       : undefined
@@ -323,6 +361,7 @@ export async function fetchElendFeeEstimate(
   // Assign market comparisons: full verified delta on the settlement line,
   // every other service line at parity (see applyMarketComparison).
   applyMarketComparison(lineItems, data.stateCode, req.transactionType, req.zip)
+  applyServiceDiscounts(lineItems)
 
   // BetterClose Bucks — introductory credit on every quote (betterCloseBucks.ts).
   const bucks = betterCloseBucksLine(lineItems, data.stateCode)

@@ -39,6 +39,7 @@ test('homepage savings copy is positive, at-closing, and uses plain-language loc
     assert.ok(preview.includes(formatCurrency(totals.estimatedSavings)));
     assert.doesNotMatch(preview, /competing service package/);
     assert.match(preview, /Save at closing/);
+    assert.doesNotMatch(preview, /\$140–\$140|\$40–\$40|\$90–\$90/, 'Equal comparison endpoints display once');
     assert.match(preview, /Save over the life of the loan/);
     assert.match(preview, /Loan-life total includes closing savings plus modeled interest avoided/);
     assert.ok(preview.includes(formatCurrency(totals.lifetimeSavings)));
@@ -82,22 +83,25 @@ test('real purchase example includes both reconciling savings amounts and the fu
   const credit = report.lineItems.filter(item => item.isCredit);
   assert.equal(credit.length, 1, 'The existing promotion is included once');
   assert.deepEqual(credit[0], betterCloseBucksLine(report.lineItems.filter(item => !item.isCredit), 'RI'));
-  assert.equal(credit[0].ourCost, -220);
+  assert.equal(credit[0].ourCost, -430);
   const totals = computeTotals(report);
-  assert.equal(totals.marketLow, 2025);
-  assert.equal(totals.ourTotal, 1665);
+  assert.equal(report.homeValue, 600000);
+  assert.equal(report.loanAmount, 480000);
+  assert.equal(totals.marketLow, 3075);
+  assert.equal(totals.ourTotal, 2475);
   assert.equal(totals.marketLow - totals.ourTotal, totals.estimatedSavings);
-  assert.equal(totals.estimatedSavings, 360);
-  assert.equal(totals.lifetimeSavings, 819);
-  assert.equal(totals.lifetimeSavings, lifetimeFinancedAmount(360));
+  assert.equal(totals.estimatedSavings, 600);
+  assert.equal(totals.lifetimeSavings, 1365);
+  assert.equal(totals.lifetimeSavings, lifetimeFinancedAmount(600));
   assert.equal(totals.breakdown.title_related, 0, 'Premium itself is not discounted');
-  assert.equal(totals.serviceStack.ourTotal, 550);
+  assert.equal(totals.serviceStack.ourTotal, 520);
   assert.equal(totals.serviceStack.typicalLow, 690);
-  assert.equal(totals.serviceStack.savings, 140, 'Existing RI service-package comparison, not adjusted to meet a target');
+  assert.equal(totals.serviceStack.typicalHigh, 770);
+  assert.equal(totals.serviceStack.savings, 170, 'Same $690 competitor benchmark minus the approved $520 service package');
   const Section = h.load('src/components/FeeReportPreviewSection.tsx').default;
   const html = h.render(React.createElement(Section));
-  assert.match(html, /data-preview-closing-savings[^]*?\$360/);
-  assert.match(html, /data-preview-lifetime-savings[^]*?\$819/);
+  assert.match(html, /data-preview-closing-savings[^]*?\$600/);
+  assert.match(html, /data-preview-lifetime-savings[^]*?\$1,365/);
   assert.doesNotMatch(html, /better loan pricing/);
 });
 
@@ -109,7 +113,7 @@ test('credit policy still respects state exclusions and the existing RI override
   for (const state of ['FL', 'TX', 'NM', 'NY']) {
     assert.equal(betterCloseBucksLine(fees, state), null, state);
   }
-  assert.equal(betterCloseBucksLine(fees, 'RI').ourCost, -220);
+  assert.equal(betterCloseBucksLine(fees, 'RI').ourCost, -430);
 });
 
 test('zero-savings reports remain zero: presentation never manufactures an advantage', () => {
@@ -128,7 +132,7 @@ test('zero-savings reports remain zero: presentation never manufactures an advan
 });
 
 test('fixed example exactly replays the recorded public response through the real quote engine', async () => {
-  const fixture = require('./fixtures/purchase-sample-ri-20261002.json');
+  const fixture = require('./fixtures/purchase-sample-ri-20261020.json');
   let calls = 0;
   const h = createHarness(new Proxy({}, { get() { throw new Error('No database access'); } }), {
     fetch: async (url, options) => {

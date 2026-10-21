@@ -776,7 +776,7 @@ function generateAIResponse(
 
   if (messageCount === 2) {
     return {
-      message: "Perfect! Let's start with a quick question:\n\nAre you comfortable signing your documents remotely (electronically)? It's just as secure and legally binding, and you can save an additional $150 by avoiding in-person notary fees.\n\nType 'yes' for remote signing or 'no' if you prefer in-person."
+      message: "Would you prefer remote signing if it is available for your transaction? Availability and any cost difference depend on the documents, applicable requirements, and your lender. Your closing team will confirm your options.\n\nType 'yes' if you prefer remote signing or 'no' if you prefer in-person."
     }
   }
 

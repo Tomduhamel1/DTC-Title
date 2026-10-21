@@ -7,7 +7,6 @@ import {
   computeTotals,
   conservativeLineSavings,
   formatCurrency,
-  formatRange,
   formatSavings,
   groupByCategory,
 } from '@/lib/feeReport'
@@ -26,12 +25,19 @@ interface FeeReportTableProps {
 // four columns stay aligned: Item | Typical | BetterClose | Savings.
 // (Typical collapses on very small screens; savings never does.)
 const COLS =
-  'grid grid-cols-[minmax(0,1fr)_4.5rem_4.5rem] sm:grid-cols-[minmax(0,1fr)_7.5rem_5rem_5rem] gap-x-3 items-baseline'
+  'grid grid-cols-[minmax(0,1fr)_5rem_5rem] sm:grid-cols-[minmax(0,1fr)_7.5rem_5rem_5rem] gap-x-3 items-baseline'
 const PREVIEW_COLS =
   'grid grid-cols-[minmax(0,1fr)_4.5rem_4.5rem] sm:grid-cols-[minmax(0,1fr)_6rem_4.5rem_4rem] lg:grid-cols-[minmax(0,1fr)_4.5rem_4.5rem] xl:grid-cols-[minmax(0,1fr)_6rem_4.5rem_4rem] gap-x-3 items-baseline'
 // The homepage switches to two columns at lg. Hide only the secondary
 // comparison column until xl gives the fee descriptions room again.
 const PREVIEW_TYPICAL = 'hidden sm:block lg:hidden xl:block'
+
+function CurrencyRange({ low, high }: { low: number; high: number }) {
+  return low === high ? <span className="whitespace-nowrap">{formatCurrency(low)}</span> : <>
+    <span className="whitespace-nowrap">{formatCurrency(low)}–</span><wbr />
+    <span className="whitespace-nowrap">{formatCurrency(high)}</span>
+  </>
+}
 
 function reportComparison(report: FeeReport) {
   // Market-comparison model (2026-08-11): the whole verified package delta is
@@ -103,7 +109,7 @@ export default function FeeReportTable({
         <span className={`${isPreview ? PREVIEW_TYPICAL : 'hidden sm:block'} text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 text-right`}>
           Typical
         </span>
-        <span className={`${isPreview ? 'text-[9px] tracking-normal' : 'text-[10px] tracking-[0.2em]'} font-bold uppercase text-dark-900 text-right`}>
+        <span className={`${isPreview ? 'text-[9px]' : 'text-[9px] sm:text-[10px]'} tracking-normal font-bold uppercase text-dark-900 text-right`}>
           BetterClose
         </span>
         <span className={`${isPreview ? 'text-[9px] tracking-normal sm:text-[10px]' : 'text-[10px] tracking-[0.2em]'} font-bold uppercase text-emerald-700 text-right`}>
@@ -140,8 +146,8 @@ export default function FeeReportTable({
         {/* Totals row — the savings column sums right here, in the open. */}
         <div className={`${columns} ${isPreview ? 'mt-3 pt-3' : 'mt-5 pt-4'} border-t-2 border-gray-200`}>
           <span className="text-sm font-bold text-dark-900">Total</span>
-          <span className={`${isPreview ? PREVIEW_TYPICAL : 'hidden sm:block'} text-xs text-gray-400 line-through text-right tabular-nums whitespace-nowrap`}>
-            {formatRange(totals.marketLow, totals.marketHigh)}
+          <span className={`${isPreview ? PREVIEW_TYPICAL : 'hidden sm:block'} text-xs text-gray-400 line-through text-right tabular-nums`}>
+            <CurrencyRange low={totals.marketLow} high={totals.marketHigh} />
           </span>
           <span className="text-sm font-black text-dark-900 text-right tabular-nums whitespace-nowrap">
             {formatCurrency(totals.ourTotal)}
@@ -153,22 +159,22 @@ export default function FeeReportTable({
       </div>
 
       {/* Preview keeps both time horizons together, without a duplicate banner. */}
-      {isPreview ? <div className="mx-6 mb-3 rounded-2xl bg-emerald-600 px-4 py-3 text-white">
+      {isPreview ? <div data-preview-savings-summary className="mx-6 mb-3 border-t border-gray-200 pt-4 text-dark-900">
         <div className="grid grid-cols-2 gap-4">
           <div data-preview-closing-savings className="flex flex-col">
-            <div className="flex-1 text-[10px] font-bold uppercase tracking-wide text-emerald-100">Save at closing</div>
-            <div className="mt-1 text-3xl font-black tabular-nums">{formatCurrency(totals.estimatedSavings)}</div>
+            <div className="flex-1 text-[10px] font-semibold uppercase tracking-wide text-gray-600">Save at closing</div>
+            <div className="mt-1 text-2xl font-bold tabular-nums">{formatCurrency(totals.estimatedSavings)}</div>
           </div>
           <div data-preview-lifetime-savings className="flex flex-col">
-            <div className="flex-1 text-[10px] font-bold uppercase tracking-wide text-emerald-100">Save over the life of the loan</div>
-            <div className="mt-1 text-3xl font-black tabular-nums">{formatCurrency(totals.lifetimeSavings)}</div>
+            <div className="flex-1 text-[10px] font-semibold uppercase tracking-wide text-gray-600">Save over the life of the loan</div>
+            <div className="mt-1 text-2xl font-bold tabular-nums">{formatCurrency(totals.lifetimeSavings)}</div>
           </div>
         </div>
-        <p className="mt-3 text-[11px] leading-snug text-emerald-100">
+        <p className="mt-3 text-[11px] leading-snug text-gray-500">
           Loan-life total includes closing savings plus modeled interest avoided
           if you finance that much less at 6.5% over 30 years.
         </p>
-      </div> : <div className="mx-6 mb-6 rounded-2xl bg-emerald-600 px-5 py-4 flex items-center justify-between gap-4">
+      </div> : <div className="mx-6 mb-6 rounded-2xl bg-emerald-600 px-5 py-4 flex flex-col items-start min-[440px]:flex-row min-[440px]:items-center justify-between gap-4">
         <div className="min-w-0">
           <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-100">
             Your total savings
@@ -184,12 +190,12 @@ export default function FeeReportTable({
 
       {/* Preserve the full report's existing summary layout. */}
       {!isPreview && <div className="px-6 pb-6">
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 min-[440px]:grid-cols-2 gap-3">
           <div className="bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3">
             <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 mb-1">
               Save at closing
             </div>
-            <div className="text-2xl font-black text-emerald-700 tabular-nums leading-none">
+            <div className="text-2xl font-black text-emerald-700 tabular-nums leading-none whitespace-nowrap">
               {formatSavings(totals.estimatedSavings)}
             </div>
             <div className="text-[11px] text-gray-500 mt-1.5">Title &amp; settlement</div>
@@ -199,7 +205,7 @@ export default function FeeReportTable({
               <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 mb-1">
                 Save over the loan
               </div>
-              <div className="text-2xl font-black text-emerald-700 tabular-nums leading-none">
+              <div className="text-2xl font-black text-emerald-700 tabular-nums leading-none whitespace-nowrap">
                 {formatSavings(totals.lifetimeSavings)}
               </div>
               <div className="text-[11px] text-gray-500 mt-1.5">Long-term savings</div>
@@ -303,7 +309,7 @@ function FeeRow({
     <span className="text-gray-300">—</span>
   ) : item.typicalRange ? (
     <span className="text-gray-500">
-      {formatRange(item.typicalRange.low, item.typicalRange.high)}
+      <CurrencyRange low={item.typicalRange.low} high={item.typicalRange.high} />
     </span>
   ) : (
     <span className="text-gray-400">{formatCurrency(item.ourCost)}</span>
@@ -311,8 +317,8 @@ function FeeRow({
 
   return (
     <div className={positiveSavings ? PREVIEW_COLS : COLS}>
-      <div className="min-w-0">
-        <div className="text-[13px] font-semibold text-dark-900 leading-tight">
+      <div className={positiveSavings ? 'min-w-0' : 'min-w-0 col-span-3 min-[380px]:col-span-1'}>
+        <div className="text-[13px] font-semibold text-dark-900 leading-tight break-words">
           {item.label}
           {item.isCredit && (
             <span className="ml-2 align-middle inline-block text-[9px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-1.5 py-0.5">
@@ -330,11 +336,11 @@ function FeeRow({
           </div>
         )}
       </div>
-      <div className={`${positiveSavings ? PREVIEW_TYPICAL : 'hidden sm:block'} text-xs text-right tabular-nums whitespace-nowrap`}>
+      <div className={`${positiveSavings ? PREVIEW_TYPICAL : 'hidden sm:block'} text-xs text-right tabular-nums`}>
         {typical}
       </div>
       <div
-        className={`text-[13px] font-bold text-right tabular-nums whitespace-nowrap ${
+        className={`${positiveSavings ? '' : 'col-start-2 min-[380px]:col-start-auto'} text-[13px] font-bold text-right tabular-nums whitespace-nowrap ${
           item.isCredit ? 'text-emerald-700' : 'text-dark-900'
         }`}
       >

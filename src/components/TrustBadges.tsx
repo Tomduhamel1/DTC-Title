@@ -6,8 +6,8 @@ export default function TrustBadges() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
         </svg>
       ),
-      title: '48-Hour Response',
-      description: 'Quote and response within 48 hours',
+      title: 'Closing Team Support',
+      description: 'Contact your team with questions',
     },
     {
       icon: (
@@ -15,8 +15,8 @@ export default function TrustBadges() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
         </svg>
       ),
-      title: 'Licensed Nationwide',
-      description: 'Compliant in all 50 states',
+      title: 'Service Availability',
+      description: 'Confirm service in your property’s state',
     },
     {
       icon: (
@@ -24,8 +24,8 @@ export default function TrustBadges() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
         </svg>
       ),
-      title: 'Wire Fraud Prevention',
-      description: 'Advanced security protocols',
+      title: 'Verify Before Sending',
+      description: 'Call your closing team at a known, trusted number',
     },
     {
       icon: (
@@ -33,8 +33,8 @@ export default function TrustBadges() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
         </svg>
       ),
-      title: 'Secure Escrow',
-      description: 'FDIC-insured escrow accounts',
+      title: 'File Documents',
+      description: 'Use the Documents section of your closing file',
     },
     {
       icon: (
@@ -43,7 +43,7 @@ export default function TrustBadges() {
         </svg>
       ),
       title: 'Underwriter Backed',
-      description: 'Top-rated title underwriters',
+      description: 'Coverage is governed by your issued policy',
     },
     {
       icon: (
@@ -52,7 +52,7 @@ export default function TrustBadges() {
         </svg>
       ),
       title: 'Transparent Pricing',
-      description: 'No hidden fees or surprises',
+      description: 'Compare service charges line by line',
     },
   ]
 
@@ -60,7 +60,7 @@ export default function TrustBadges() {
     <div className="bg-white border-y border-gray-200 py-12">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-black text-dark-900 text-center mb-8">
-          Same <span className="text-primary-600">Guaranteed Security</span>
+          Know Your <span className="text-primary-600">Closing Process</span>
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
           {badges.map((badge, index) => (

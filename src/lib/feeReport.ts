@@ -63,7 +63,7 @@ export type FeeReportPrecision = 'state' | 'county' | 'detailed'
 // (or missing) version are repriced client-side instead of rendered — a
 // stale-session report from a previous model must never mix with the
 // current table's narrative.
-export const REPORT_MODEL_VERSION = 2
+export const REPORT_MODEL_VERSION = 3
 
 export interface FeeReport {
   modelVersion?: number
@@ -287,14 +287,28 @@ export function computeTotals(report: FeeReport): FeeReportTotals {
     }
   }
 
+  // Normalize newly calculated sums to cents; issued frozen totals above
+  // remain untouched. Fractional service fees must not leak binary artifacts.
+  const money = (n: number) => Math.round(n * 100) / 100
+  ourTotal = money(ourTotal)
+  marketLow = money(marketLow)
+  marketHigh = money(marketHigh)
+  serviceStack.ourTotal = money(serviceStack.ourTotal)
+  serviceStack.typicalLow = money(serviceStack.typicalLow)
+  serviceStack.typicalHigh = money(serviceStack.typicalHigh)
+  breakdown.title_related = money(breakdown.title_related)
+  breakdown.promotional_credit = money(breakdown.promotional_credit)
+  breakdown.pass_through_total = money(breakdown.pass_through_total)
+
   // Bucket-level flooring: offsetting inside the stack is allowed, so this is
   // ≤ the sum of per-line floors — never less conservative.
-  serviceStack.savings = Math.max(0, serviceStack.typicalLow - serviceStack.ourTotal)
+  serviceStack.savings = Math.max(0, money(serviceStack.typicalLow - serviceStack.ourTotal))
   breakdown.settlement_fee = serviceStack.savings
   breakdown.other_controllable = 0
 
-  const estimatedSavings =
-    breakdown.title_related + serviceStack.savings + breakdown.promotional_credit
+  const estimatedSavings = money(
+    breakdown.title_related + serviceStack.savings + breakdown.promotional_credit,
+  )
   const lifetimeSavings = lifetimeFinancedAmount(estimatedSavings)
 
   return {
@@ -545,10 +559,14 @@ export function groupByCategory(items: FeeLineItem[]): Map<FeeCategory, FeeLineI
   const order: FeeCategory[] = ['title-settlement', 'recording', 'taxes', 'endorsements', 'lender', 'other']
   for (const cat of order) map.set(cat, [])
   for (const item of items) {
+    // Present Bucks at the bottom of Title & Settlement, including saved
+    // reports that categorized it as Other. Do not rewrite stored reports.
+    if (item.isCredit && item.id === 'betterclose-bucks') continue
     const arr = map.get(item.category) ?? []
     arr.push(item)
     map.set(item.category, arr)
   }
+  map.get('title-settlement')!.push(...items.filter(item => item.isCredit && item.id === 'betterclose-bucks'))
   for (const [k, v] of map) if (v.length === 0) map.delete(k)
   return map
 }
@@ -563,10 +581,14 @@ export function formatSavings(n: number): string {
 }
 
 export function formatCurrency(n: number): string {
+  // Proportional state service fees can include cents. Do not display a
+  // rounded whole-dollar price when the actual quote charges a fraction.
+  const hasCents = Math.round(Math.abs(n) * 100) % 100 !== 0
   return n.toLocaleString('en-US', {
     style: 'currency',
     currency: 'USD',
-    maximumFractionDigits: 0,
+    minimumFractionDigits: hasCents ? 2 : 0,
+    maximumFractionDigits: 2,
   })
 }
 

@@ -103,6 +103,9 @@ export interface ComparisonRange {
 //                  contact info, ever; gated calculators are logged, not used.
 //   'inferred'   — pooled median band from evidenced states (see above).
 export interface ServiceBand extends ComparisonRange {
+  // Absolute package benchmark when known. Our fee changes must not change
+  // the competitor dollars. The high end may still be a modeled range.
+  packageRange?: ComparisonRange
   // Evidence class, strongest first:
   //   'published'  — filed/published fee schedules
   //   'calculator' — quotes harvested from providers' public calculators
@@ -213,8 +216,10 @@ const SERVICE_BANDS: Record<string, ServiceBand> = {
   // Single evidence point → pooled high, providers: 1. Basis stays
   // 'inferred' until the Liberty Title quote documents are archived under
   // data/market-fees/ (then 'calculator', providers: 1).
-  // Full-precision ratio so the quote shows Tom's exact delta: $690 − $550 = $140.
-  RI: { low: 690 / 550, high: 1.4, basis: 'quoted', providers: 1, lowSource: 'Liberty Title (RI) purchase quote: $690 full buyer-side stack (incl. their itemized search) vs our $550 stack (incl. our $100 search) — exact $140 delta (Tom 2026-07-30; composition verified 2026-08-12)' },
+  // 2026-10-20: retain those historical ratios for evidence provenance but
+  // price comparisons from the absolute packageRange, so new RI service
+  // prices do not move the competitor's $690 benchmark.
+  RI: { low: 690 / 550, high: 1.4, packageRange: { low: 690, high: 770 }, basis: 'quoted', providers: 1, lowSource: 'Liberty Title (RI) purchase quote: $690 full buyer-side stack, including itemized search (Tom 2026-07-30; composition verified 2026-08-12). Benchmark remains fixed when BetterClose fees change; upper bound retains the prior modeled $550 × 1.4, not a second provider quote.' },
 }
 
 // Refinance-specific overrides. Refi service fees are a different market
@@ -236,8 +241,9 @@ const SERVICE_BANDS_REFI: Record<string, ServiceBand> = {
   // purchase note): $590 / $450 refi stack = 1.31; high bounded at the
   // purchase high.
   // Full stacks both sides (composition verified against Liberty's itemized
-  // quote 2026-08-12): $690 − $550 = $140 exact.
-  RI: { low: 690 / 550, high: 1.4, basis: 'quoted', providers: 1, lowSource: 'Liberty Title (RI) refi quote 2026-08-12: $495 settlement + $195 itemized search = $690, vs our full $550 stack (settlement $250 + search $100 + notary $150 + attorney $50) — exact $140 delta' },
+  // quote 2026-08-12). The absolute packageRange now keeps the benchmark
+  // fixed independently of BetterClose's current service fees.
+  RI: { low: 690 / 550, high: 1.4, packageRange: { low: 690, high: 770 }, basis: 'quoted', providers: 1, lowSource: 'Liberty Title (RI) refi quote 2026-08-12: $495 settlement + $195 itemized search = $690. Benchmark remains fixed when BetterClose fees change; upper bound retains the prior modeled $550 × 1.4, not a second provider quote.' },
   CA: { low: 1.37, high: 2.19, basis: 'calculator', providers: 1, lowSource: 'REAL: First American (API) refi $685' },
   // FL refi anchored 2026-08-13: real published refi point vs our new $345
   // refi stack ($195 settlement + $150 notary; FL upstream has no refi

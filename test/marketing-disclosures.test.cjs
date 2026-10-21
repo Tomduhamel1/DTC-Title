@@ -7,15 +7,18 @@ const React = require('react');
 const { createHarness } = require('./helpers/role-journey-harness.cjs');
 const root = path.resolve(__dirname, '..');
 const read = name => fs.readFileSync(path.join(root, name), 'utf8');
-const ratingClaim = /\bA[\s\u002d\u2010-\u2015]*(?:rated|rating)\b|(?:A\.?M\.? Best[^\n<>]{0,50})?rated A or higher/i;
+const ratingClaim = /\bA\+?[\s\u002d\u2010-\u2015]*(?:rated|rating)\b|(?:A\.?M\.? Best[^\n<>]{0,50})?rated A(?:\+| or higher)?\b/i;
 
 test('all customer-facing source and handouts exclude blanket underwriter rating claims', () => {
   const walk = directory => fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
     const target = path.join(directory, entry.name);
-    return entry.isDirectory() ? walk(target) : /\.(tsx?|html|json)$/.test(entry.name) ? [target] : [];
+    return entry.isDirectory() ? walk(target) : /\.(tsx?|jsx?|html|json|svg)$/.test(entry.name) ? [target] : [];
   });
   for (const directory of ['src', 'marketing', 'public']) {
-    for (const file of walk(path.join(root, directory))) assert.doesNotMatch(fs.readFileSync(file, 'utf8'), ratingClaim, path.relative(root, file));
+    for (const file of walk(path.join(root, directory))) {
+      const content = fs.readFileSync(file, 'utf8').replace(/&(?:nbsp|ndash|mdash|#160|#8208|#8211|#8212);/gi, '-');
+      assert.doesNotMatch(content, ratingClaim, path.relative(root, file));
+    }
   }
 });
 

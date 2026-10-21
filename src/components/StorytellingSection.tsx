@@ -220,7 +220,7 @@ export default function StorytellingSection({ homeValue, state, transactionType,
                   </div>
                   <div className="flex-1">
                     <div className="font-bold text-primary-900 mb-1">Digital-First Closing</div>
-                    <div className="text-sm text-primary-700">Streamlined, secure, & cost-effective</div>
+                    <div className="text-sm text-primary-700">Coordinate your closing online</div>
                   </div>
                 </div>
 
@@ -249,8 +249,8 @@ export default function StorytellingSection({ homeValue, state, transactionType,
         {/* Trust Badges */}
         <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-blue-200">
           <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold text-dark-900 mb-2">Same Security. Same Quality. Better Price.</h3>
-            <p className="text-gray-600">Nothing changes except what you pay</p>
+            <h3 className="text-2xl font-bold text-dark-900 mb-2">Your Closing, With Clear Information.</h3>
+            <p className="text-gray-600">Compare fees and confirm the services your transaction needs.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
@@ -259,8 +259,8 @@ export default function StorytellingSection({ homeValue, state, transactionType,
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
                 </svg>
               </div>
-              <div className="font-bold text-lg text-gray-900 mb-1">Same Underwriters</div>
-              <div className="text-sm text-gray-600">Major title insurance companies you know and trust</div>
+              <div className="font-bold text-lg text-gray-900 mb-1">Title Insurance</div>
+              <div className="text-sm text-gray-600">Coverage is governed by your issued policy</div>
             </div>
             <div className="text-center">
               <div className="bg-blue-50 rounded-xl p-6 mb-3">
@@ -268,8 +268,8 @@ export default function StorytellingSection({ homeValue, state, transactionType,
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
               </div>
-              <div className="font-bold text-lg text-gray-900 mb-1">Works With Any Lender</div>
-              <div className="text-sm text-gray-600">All major banks and mortgage companies accepted</div>
+              <div className="font-bold text-lg text-gray-900 mb-1">Lender Coordination</div>
+              <div className="text-sm text-gray-600">Confirm your lender’s requirements with your closing team</div>
             </div>
             <div className="text-center">
               <div className="bg-blue-50 rounded-xl p-6 mb-3">
@@ -277,8 +277,8 @@ export default function StorytellingSection({ homeValue, state, transactionType,
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
               </div>
-              <div className="font-bold text-lg text-gray-900 mb-1">Just as Secure</div>
-              <div className="text-sm text-gray-600">Bank-level encryption and certified processes</div>
+              <div className="font-bold text-lg text-gray-900 mb-1">File Documents</div>
+              <div className="text-sm text-gray-600">Use the Documents section of your closing file</div>
             </div>
           </div>
         </div>

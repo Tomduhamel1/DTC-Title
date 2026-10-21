@@ -8,7 +8,7 @@ for (const [heroVersion, hero] of [['magic', 'HeroMagicReveal'], ['A', 'HeroOpti
     const h = createHarness(new Proxy({}, { get() { throw new Error('No database access'); } }));
     const Home = h.load('src/components/HomePageCredible.tsx').default;
     const expectedNames = [hero, 'TeamTrustSection', 'FeeReportPreviewSection', 'UnderwriterLogos',
-      'DashboardTrustSection', 'HowItWorksSection', 'FAQSection', 'SecurityTrustSection',
+      'DashboardTrustSection', 'HowItWorksSection', 'FAQSection',
       'ReadyToSaveSection', 'AccreditationSection'];
     const expected = expectedNames.map(name => h.load(`src/components/${name}.tsx`).default);
     const tree = Home({ heroVersion });
@@ -31,7 +31,7 @@ for (const [heroVersion, hero] of [['magic', 'HeroMagicReveal'], ['A', 'HeroOpti
     assert.ok(text.indexOf('See every fee, line by line.') < text.indexOf('Backed By America'));
     assert.ok(text.indexOf('Backed By America') < text.indexOf('Real people.'));
     assert.ok(text.indexOf('TRANSPARENT PRICING. REAL PEOPLE.') > text.indexOf('Make BetterClose your closing company.'));
-    assert.doesNotMatch(text, /Why BetterClose|Licensed in 50 States|remaining 16/);
+    assert.doesNotMatch(text, /Why BetterClose|Licensed in 50 States|remaining 16|Document sharing with clear controls|Before you send funds/);
     assert.equal(h.sent.length, 0);
   });
 }
