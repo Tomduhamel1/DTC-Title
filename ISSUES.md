@@ -631,6 +631,15 @@ unchanged. Model 5 refreshes unsaved browser estimates; issued/frozen quotes
 are not rewritten. Savings-column rows and totals use minus signs, while
 homepage summary cards remain positive. This note is not deployment evidence.
 
+Refreshed the matrix, public curves and savings anchors from 300 real public
+calculations across the same 50 state/DC entries as the prior release. A
+same-response old/new-ratio replay confirmed that only our notary price changed;
+Market comparisons and all other line items were identical. Generated premiums,
+settlement fees, credit amounts and splits match the prior caches. NC again
+returned HTTP 500 after retries, as already documented, and retains the existing
+national-estimate fallback; no NC rates were fabricated or availability changed.
+Focused unit/browser checks, typecheck and an isolated production build passed.
+
 ## Resolved
 
 ### FNTE calculator: IN & LA refinance 500s (found 2026-08-12, resolved upstream by 2026-08-14, confirmed 2026-09-14)

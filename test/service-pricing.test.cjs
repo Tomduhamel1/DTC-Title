@@ -188,6 +188,8 @@ test('marketing anchors and curves agree with the matching quote-engine matrix s
   const { STATE_MATRIX } = h.load('src/lib/stateMatrix.generated.ts');
   const { STATE_CURVES, CURVE_HOME_VALUES } = h.load('src/lib/stateSavingsCurve.generated.ts');
   const { STATE_ANCHORS } = h.load('src/lib/stateSavings.generated.ts');
+  assert.deepEqual(STATE_ANCHORS.RI.purchase, { save: 535, ourTotal: 2190 },
+    'The real $500k RI anchor must include the new $135 notary price, not the prior cached $140 price');
   assert.deepEqual(Object.keys(STATE_ANCHORS).sort(), Object.keys(STATE_MATRIX).sort());
   assert.deepEqual(Object.keys(STATE_CURVES).sort(), Object.keys(STATE_MATRIX).sort());
   for (const state of Object.keys(STATE_MATRIX)) {
