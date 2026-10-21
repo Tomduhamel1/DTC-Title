@@ -6,6 +6,7 @@ import { estimateSavings, resolveStateCode } from '@/lib/stateSavings'
 import { offeredStateCount, stateOffered } from '@/lib/stateMaster'
 import { useSavings } from '@/contexts/SavingsContext'
 import RotatingSavingsPill from '@/components/RotatingSavingsPill'
+import SavingsCard from '@/components/SavingsCard'
 
 const STATES = [
   'AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY','DC',
@@ -110,24 +111,8 @@ export default function HeroMagicReveal() {
             </div>
             {/* Two savings buckets, visually separated */}
             <div className="grid grid-cols-2 gap-3">
-              <div className="bg-emerald-50 border border-emerald-200 rounded-2xl py-4 px-3">
-                <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 mb-1">
-                  Save at closing
-                </div>
-                <div className="text-3xl md:text-4xl font-black text-emerald-600 tabular-nums leading-none">
-                  ${saveAtClosing.toLocaleString()}
-                </div>
-                <div className="text-[11px] text-gray-500 mt-1.5">Title &amp; settlement</div>
-              </div>
-              <div className="bg-emerald-50 border border-emerald-200 rounded-2xl py-4 px-3">
-                <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 mb-1">
-                  Total over the loan
-                </div>
-                <div className="text-3xl md:text-4xl font-black text-emerald-600 tabular-nums leading-none">
-                  ${saveOverLoan.toLocaleString()}
-                </div>
-                <div className="text-[11px] text-gray-500 mt-1.5">Includes at-closing savings</div>
-              </div>
+              <SavingsCard label="Save at closing" amount={`$${saveAtClosing.toLocaleString()}`} caption="Title & settlement" />
+              <SavingsCard label="Total over the loan" amount={`$${saveOverLoan.toLocaleString()}`} caption="Includes at-closing savings" />
             </div>
 
             {/* Everyday comparisons use at-closing savings, not future interest. */}

@@ -42,14 +42,25 @@ test('Full Transparency has top-aligned columns, a compact complete sample and a
           const r = el.getBoundingClientRect();
           const amount = el.querySelector('[data-savings-amount]');
           const style = getComputedStyle(amount);
+          const cardStyle = getComputedStyle(el);
           return { text: el.innerText, width: r.width, height: r.height, fits: el.scrollWidth <= el.clientWidth,
+            background: cardStyle.backgroundColor, border: cardStyle.borderColor, radius: cardStyle.borderRadius, align: cardStyle.textAlign,
             color: style.color, weight: Number(style.fontWeight), fontSize: parseFloat(style.fontSize) };
         });
         assert.ok(card.text.includes(amount), `${width}: expected ${amount} visible in ${selector}`);
         assert.doesNotMatch(card.text, /[−-]\$/);
         assert.ok(card.width > 0 && card.height > 0 && card.fits, 'Both savings figures fit visible cards');
-        assert.equal(card.color, 'rgb(4, 120, 87)', 'Savings remain emphatically green');
+        assert.equal(card.color, 'rgb(5, 150, 105)', 'Savings use the calculator green');
+        assert.equal(card.background, 'rgb(236, 253, 245)', 'Cards use the calculator pale-green background');
+        assert.equal(card.border, 'rgb(167, 243, 208)');
+        assert.equal(card.radius, '16px');
+        assert.equal(card.align, 'center');
+        assert.match(card.text, selector.includes('closing') ? /Title & settlement/ : /Includes at-closing savings/);
         assert.ok(card.weight >= 800 && card.fontSize >= 30, 'Savings amounts retain strong type emphasis');
+      }
+      if (width >= 380) {
+        const amountTops = await page.$$eval('[data-preview-savings-summary] [data-savings-amount]', els => els.map(el => el.getBoundingClientRect().top));
+        assert.ok(Math.abs(amountTops[0] - amountTops[1]) < 1, 'Side-by-side savings amounts align even when the captions wrap');
       }
       assert.match(facts.notesText, /competing service package/);
       const emphasis = await page.evaluate(() => ({
@@ -58,6 +69,9 @@ test('Full Transparency has top-aligned columns, a compact complete sample and a
       }));
       assert.equal(emphasis.summaryBackground, 'rgba(0, 0, 0, 0)', 'Savings summary is not a competing filled CTA');
       assert.notEqual(emphasis.ctaBackground, emphasis.summaryBackground, 'Estimate button keeps the primary emphasis');
+      const creditLabel = await page.$eval('[data-fee-row="BetterClose Bucks"]', el => el.innerText);
+      assert.match(creditLabel, /CREDIT/);
+      assert.doesNotMatch(creditLabel, /\bNEW\b/);
       for (const [label, typical, ours] of [['Notary Fee', '$150', '$140'], ['Attorney Fee', '$50', '$40'], ['Abstractor Title Search', '$100', '$90']]) {
         const row = await page.$eval(`[data-fee-row="${label}"]`, el => ({
           typical: el.querySelector('[data-typical-price]').textContent,
@@ -76,7 +90,8 @@ test('Full Transparency has top-aligned columns, a compact complete sample and a
       for (const item of report.lineItems) assert.ok(facts.visible.includes(item.label), `${width}: ${item.label} visible`);
       if (width >= 1024) {
         assert.ok(Math.abs(facts.copy.top - facts.report.top) < 1, 'Left copy starts beside report, not halfway down');
-        assert.ok(facts.report.height < 750, `${width}: compact sample height ${facts.report.height}`);
+        // The shared cards add captions/padding, but the sample still fits a compact desktop section.
+        assert.ok(facts.report.height < 780, `${width}: compact sample height ${facts.report.height}`);
       } else assert.ok(facts.report.top >= facts.copy.bottom, 'Mobile copy precedes the sample');
       await page.focus('summary'); await page.keyboard.press('Enter');
       assert.equal(await page.$eval('details', el => el.open), true);
@@ -84,7 +99,12 @@ test('Full Transparency has top-aligned columns, a compact complete sample and a
       await page.keyboard.press('Space');
       assert.equal(await page.$eval('details', el => el.open), false);
       if (process.env.BC_HOMEPAGE_SCREENSHOTS && [390, 1280].includes(width)) {
-        await page.screenshot({ path: path.join(process.env.BC_HOMEPAGE_SCREENSHOTS, `transparency-${width}.png`), fullPage: true });
+        const section = await page.$('section');
+        await section.screenshot({ path: path.join(process.env.BC_HOMEPAGE_SCREENSHOTS, `transparency-${width}.png`) });
+        if (width === 1280) {
+          const savings = await page.$('[data-preview-savings-summary]');
+          await savings.screenshot({ path: path.join(process.env.BC_HOMEPAGE_SCREENSHOTS, 'savings-cards-desktop.png') });
+        }
       }
     }
     assert.equal(requestCount(), 0);
