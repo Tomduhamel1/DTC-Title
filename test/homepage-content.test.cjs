@@ -58,9 +58,32 @@ test('homepage savings copy is positive, at-closing, and uses plain-language loc
 test('legacy multi-line comparisons do not acquire an invented verified quote in moved notes', () => {
   const h = harness();
   const report = h.load('src/lib/sampleReport.ts').buildSampleFeeReport();
+  report.modelVersion = 2;
   for (const item of report.lineItems.filter(item => item.typicalRange)) item.typicalRange.low = item.ourCost + 100;
   const Notes = h.load('src/components/FeeReportTable.tsx').FeeReportEstimateNotes;
   assert.doesNotMatch(h.render(React.createElement(Notes, { report })), /Compared against/);
+});
+
+test('sample preserves pre-discount Typical prices and shows each saving in its own row', () => {
+  const h = harness();
+  const report = h.load('src/lib/sampleReport.ts').buildSampleFeeReport();
+  const { conservativeLineSavings, computeTotals } = h.load('src/lib/feeReport.ts');
+  for (const [label, typical, ours, savings] of [
+    ['Settlement Fee', 390, 250, 140], ['Notary Fee', 150, 140, 10],
+    ['Attorney Fee', 50, 40, 10], ['Abstractor Title Search', 100, 90, 10],
+  ]) {
+    const row = report.lineItems.find(item => item.label === label);
+    assert.equal(row.typicalRange.low, typical, label);
+    assert.equal(row.ourCost, ours, label);
+    assert.equal(conservativeLineSavings(row), savings, label);
+  }
+  const sum = report.lineItems.reduce((total, item) => total + (item.isCredit ? -item.ourCost : conservativeLineSavings(item)), 0);
+  assert.equal(sum, computeTotals(report).estimatedSavings);
+  assert.equal(sum, 600, 'Reattribution cannot double-count the three fee discounts');
+  const Notes = h.load('src/components/FeeReportTable.tsx').FeeReportEstimateNotes;
+  const notes = h.render(React.createElement(Notes, { report }));
+  assert.match(notes, /\$690 all-in for the same services we bill \$520 for/);
+  assert.doesNotMatch(notes, /claim no savings on them/);
 });
 
 test('positive savings labels never flip the sign of an actual fee credit', () => {

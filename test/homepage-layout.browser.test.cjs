@@ -39,11 +39,16 @@ test('Full Transparency has top-aligned columns, a compact complete sample and a
       for (const [selector, amount] of [['[data-preview-closing-savings]', '$600'], ['[data-preview-lifetime-savings]', '$1,365']]) {
         const card = await page.$eval(selector, el => {
           const r = el.getBoundingClientRect();
-          return { text: el.innerText, width: r.width, height: r.height, fits: el.scrollWidth <= el.clientWidth };
+          const amount = el.querySelector('[data-savings-amount]');
+          const style = getComputedStyle(amount);
+          return { text: el.innerText, width: r.width, height: r.height, fits: el.scrollWidth <= el.clientWidth,
+            color: style.color, weight: Number(style.fontWeight), fontSize: parseFloat(style.fontSize) };
         });
         assert.ok(card.text.includes(amount), `${width}: expected ${amount} visible in ${selector}`);
         assert.doesNotMatch(card.text, /[−-]\$/);
         assert.ok(card.width > 0 && card.height > 0 && card.fits, 'Both savings figures fit visible cards');
+        assert.equal(card.color, 'rgb(4, 120, 87)', 'Savings remain emphatically green');
+        assert.ok(card.weight >= 800 && card.fontSize >= 30, 'Savings amounts retain strong type emphasis');
       }
       assert.match(facts.notesText, /competing service package/);
       const emphasis = await page.evaluate(() => ({
@@ -52,6 +57,15 @@ test('Full Transparency has top-aligned columns, a compact complete sample and a
       }));
       assert.equal(emphasis.summaryBackground, 'rgba(0, 0, 0, 0)', 'Savings summary is not a competing filled CTA');
       assert.notEqual(emphasis.ctaBackground, emphasis.summaryBackground, 'Estimate button keeps the primary emphasis');
+      for (const [label, typical, ours] of [['Notary Fee', '$150', '$140'], ['Attorney Fee', '$50', '$40'], ['Abstractor Title Search', '$100', '$90']]) {
+        const row = await page.$eval(`[data-fee-row="${label}"]`, el => ({
+          typical: el.querySelector('[data-typical-price]').textContent,
+          ours: el.querySelector('[data-betterclose-price]').textContent,
+          savings: el.querySelector('[data-line-savings]').textContent,
+          color: getComputedStyle(el.querySelector('[data-line-savings] span')).color,
+        }));
+        assert.deepEqual(row, { typical, ours, savings: '$10', color: 'rgb(4, 120, 87)' }, `${width}: ${label}`);
+      }
       assert.ok(facts.visible.indexOf('BetterClose Bucks', facts.visible.indexOf('TITLE & SETTLEMENT')) < facts.visible.indexOf('RECORDING FEES'), 'Bucks appears before recording fees');
       const headers = await page.$$eval('[data-fee-preview-report] > div > div:first-child span', elements => elements.map(el => ({ text: el.innerText, scroll: el.scrollWidth, width: el.clientWidth })));
       assert.ok(headers.every(el => el.scroll <= el.width), `${width}: column labels fit their own cells: ${JSON.stringify(headers)}`);

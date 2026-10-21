@@ -21,12 +21,20 @@ test('public purchase search uses the approved RI service fees and an unchanged 
   }));
   assert.equal(result.status, 200);
   const { report } = await result.json();
+  assert.equal(report.modelVersion, 4, 'Unsaved version-3 estimates must refresh the corrected line comparisons');
   assert.equal(report.loanAmount, 480000, 'Existing 80% LTV default');
   for (const [label, amount] of [['Notary Fee', 140], ['Attorney Fee', 40], ['Abstractor Title Search', 90]]) {
     const rows = report.lineItems.filter(item => item.label === label);
     assert.equal(rows.length, 1);
     assert.equal(rows[0].ourCost, amount);
+    const typical = { 'Notary Fee': 150, 'Attorney Fee': 50, 'Abstractor Title Search': 100 }[label];
+    assert.deepEqual(rows[0].typicalRange, { low: typical, high: typical });
+    assert.equal(h.load('src/lib/feeReport.ts').conservativeLineSavings(rows[0]), 10);
   }
+  const settlement = report.lineItems.find(item => item.label === 'Settlement Fee');
+  assert.deepEqual(settlement.typicalRange, { low: 390, high: 470 });
+  assert.equal(h.load('src/lib/feeReport.ts').conservativeLineSavings(settlement), 140,
+    'The other service discounts are not moved into the settlement row');
   const totals = h.load('src/lib/feeReport.ts').computeTotals(report);
   assert.equal(totals.ourTotal, 2475);
   assert.equal(totals.estimatedSavings, 600);
@@ -104,6 +112,10 @@ test('purchase and refinance preserve state differences, comparison package doll
       assert.equal(Math.round((b.ourTotal - a.ourTotal) * 100), Math.round(reduction * 100));
       assert.equal(a.serviceStack.typicalLow, b.serviceStack.typicalLow, state + ' comparison low');
       assert.equal(a.serviceStack.typicalHigh, b.serviceStack.typicalHigh, state + ' comparison high');
+      for (const row of before.lineItems) {
+        assert.deepEqual(after.lineItems.find(item => item.id === row.id).typicalRange, row.typicalRange,
+          state + ' ' + transactionType + ': discount must not change Typical for ' + row.label);
+      }
       assert.deepEqual(after.lineItems.filter(row => row.isCredit), before.lineItems.filter(row => row.isCredit));
       if (['FL', 'TX', 'NM', 'NY'].includes(state)) assert.ok(!after.lineItems.some(row => row.isCredit));
       for (const row of after.lineItems.filter(row => row.isFixed && /Abstractor/.test(row.label))) {
@@ -164,10 +176,11 @@ test('discounts do not add missing services or alter premiums, CPL, government c
 });
 
 test('currency formatting preserves proportional cents without adding decimals to whole-dollar fees', () => {
-  const { formatCurrency } = setup().load('src/lib/feeReport.ts');
+  const { formatCurrency, conservativeLineSavings } = setup().load('src/lib/feeReport.ts');
   for (const [amount, expected] of [[163.33, '$163.33'], [265.5, '$265.50'], [16.2, '$16.20'], [140, '$140'], [-430, '-$430']]) {
     assert.equal(formatCurrency(amount), expected);
   }
+  assert.equal(conservativeLineSavings({ ourCost: 163.33, isFixed: false, typicalRange: { low: 175, high: 175 } }), 11.67);
 });
 
 test('marketing anchors and curves agree with the matching quote-engine matrix scenarios', () => {

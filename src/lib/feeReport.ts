@@ -54,7 +54,7 @@ export type FeeReportPrecision = 'state' | 'county' | 'detailed'
 // (or missing) version are repriced client-side instead of rendered — a
 // stale-session report from a previous model must never mix with the
 // current table's narrative.
-export const REPORT_MODEL_VERSION = 3
+export const REPORT_MODEL_VERSION = 4
 
 export interface FeeReport {
   modelVersion?: number
@@ -188,7 +188,7 @@ export const CATEGORY_LABELS: Record<FeeCategory, string> = {
  */
 export function conservativeLineSavings(item: FeeLineItem): number {
   if (item.isFixed || !item.typicalRange) return 0
-  return Math.max(0, item.typicalRange.low - item.ourCost)
+  return Math.max(0, Math.round((item.typicalRange.low - item.ourCost) * 100) / 100)
 }
 
 // When a line has no explicit savingsSource we fall back to category +
