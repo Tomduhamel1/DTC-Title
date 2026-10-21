@@ -33,7 +33,7 @@ const OPEN_FILE_HREF = '/open?role=realtor'
 // nationally") because the 50-state figure includes workshare states.
 const AGENT_TRUST_STATS = [
   { value: '30,000+', label: 'Closings completed' },
-  { value: 'A-rated', label: 'Underwriters only' },
+  { value: 'Established', label: 'Title underwriters' },
   { value: `${offeredStateCount()} states`, label: 'Closing coverage' },
 ] as const
 
@@ -273,7 +273,7 @@ export default function RealtorsPage() {
             <ReasonCard
               icon={ICONS.bolt}
               title="Trusted closing support"
-              body="An experienced settlement team and A-rated underwriters behind every file, so the closing goes smoothly and your deal stays on track."
+              body="An experienced settlement team works with established title insurance underwriters to help keep your closing on track."
             />
             <ReasonCard
               icon={ICONS.scale}

@@ -64,7 +64,7 @@ export default function DashboardHome({ closing, userName, userEmail, accountSte
   const titleItems: LineItem[] = [
     {
       label: "Lender's Title Insurance",
-      description: 'A-rated underwriter coverage required by your lender',
+      description: 'Title insurance coverage required by your lender',
       amount: null,
     },
     ...(isPurchase
@@ -213,7 +213,7 @@ export default function DashboardHome({ closing, userName, userEmail, accountSte
           </SectionShell>
 
           {/* 6. Title */}
-          <SectionShell title="Title" icon={<TitleIcon />} subtitle="A-rated underwriter coverage">
+          <SectionShell title="Title" icon={<TitleIcon />} subtitle="Title insurance coverage">
             <dl className="grid sm:grid-cols-2 gap-x-6 gap-y-3">
               <div>
                 <dt className="text-[11px] font-semibold uppercase tracking-wider text-gray-500">

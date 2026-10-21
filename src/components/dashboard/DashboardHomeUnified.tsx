@@ -79,7 +79,7 @@ export default function DashboardHomeUnified({
   const titleItems: LineItem[] = [
     {
       label: "Lender's Title Insurance",
-      description: 'A-rated underwriter coverage required by your lender',
+      description: 'Title insurance coverage required by your lender',
       amount: null,
     },
     ...(isPurchase

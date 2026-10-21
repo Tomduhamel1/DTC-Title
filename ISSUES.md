@@ -91,6 +91,18 @@ only.
 
 ## Open
 
+### Underwriter-rating copy cleanup refreshed against current main (2026-10-20)
+
+PR #133 was still a draft when the owner again requested removal of blanket
+underwriter-rating claims. The branch now incorporates the deployed pricing and
+security changes without restoring the removed security sales section. Copy is
+rating-neutral across pages, metadata, quote/email templates, stock dashboard
+descriptions and downloadable handouts. Saved quote descriptions are corrected
+only at presentation time; amounts and frozen records are unchanged.
+Source and generated-PDF regression checks prevent the old claim from returning.
+No replacement rating is assigned. No customer data or email sending is involved.
+This entry records prepared code, not a production deployment.
+
 ### Security copy: remove baseline-security promotion (2026-10-20)
 
 The owner requested removal of HTTPS as a selling point everywhere and no

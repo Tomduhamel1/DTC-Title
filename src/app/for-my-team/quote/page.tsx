@@ -36,7 +36,7 @@ export const dynamic = 'force-dynamic'
 export const metadata = {
   title: 'BetterClose · Show your client what they save',
   description:
-    "Generate a real BetterClose fee estimate for your client. Line-item pricing, A-rated underwriters, no login required.",
+    "Generate a real BetterClose fee estimate for your client. Line-item pricing, established title insurance underwriters, no login required.",
 }
 
 interface PageProps {

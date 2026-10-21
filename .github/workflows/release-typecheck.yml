@@ -34,6 +34,7 @@ jobs:
       - run: node --test test/security-claims.test.cjs
       - run: node --test test/intake-upload-retirement.test.cjs
       - run: node --test test/discovery.test.cjs
+      - run: node --test test/marketing-disclosures.test.cjs
       - run: npm audit --omit=dev --audit-level=low
   email-layout:
     runs-on: ubuntu-latest
@@ -68,7 +69,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install --no-install-recommends -y poppler-utils
       - name: Verify both real PDF generator paths
         run: PUPPETEER_EXECUTABLE_PATH="$(command -v google-chrome)" npm run test:pdf-runtime
-      - run: node --test test/company-phone-pdf.test.cjs
+      - run: node --test test/company-phone-pdf.test.cjs test/marketing-disclosures-pdf.test.cjs
   production-runtime:
     runs-on: ubuntu-latest
     timeout-minutes: 15

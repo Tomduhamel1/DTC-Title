@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import DiscoveryArticle from '@/components/DiscoveryArticle'
+import MarketingDisclosure from '@/components/MarketingDisclosure'
 import { publicMetadata } from '@/lib/publicMetadata'
 import { SUPPORT_PHONE_DISPLAY, SUPPORT_PHONE_TEL } from '@/lib/contact'
 
@@ -26,7 +27,7 @@ export default function ClosingComparisonKit() {
         <p>Requesting an estimate is free and does not open a closing or authorize paid work. Service availability and fees depend on your transaction and location.</p>
         <p><Link href="/quote">Buyer estimate</Link> · <Link href="/quote?source=broker">Professional estimate</Link> · <Link href="/pricing-methodology">Savings methodology</Link></p>
         <p>Questions? <a href={`tel:${SUPPORT_PHONE_TEL}`}>{SUPPORT_PHONE_DISPLAY}</a> · <a href="mailto:contact@betterclose.co">contact@betterclose.co</a></p>
-        <p className="text-sm">BetterClose is a DBA of First National Title &amp; Escrow LLC.</p>
+        <MarketingDisclosure />
       </section>
       <section className="print:hidden"><h2>Share the checklist</h2><p>Copy this page’s address for your buyer, agent or loan officer. <a href="/pdfs/betterclose-closing-comparison-guide.pdf" download>Download the printable guide</a>.</p></section>
     </DiscoveryArticle>

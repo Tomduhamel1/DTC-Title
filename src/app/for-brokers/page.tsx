@@ -78,7 +78,7 @@ const COMPANY_INFO_REQUEST_HREF = `mailto:orders@betterclose.co?subject=${encode
 // figure includes workshare states — see the footnote and FooterComprehensive.
 const BROKER_TRUST_STATS = [
   { value: '30,000+', label: 'Closings completed' },
-  { value: 'A-rated', label: 'Underwriters only' },
+  { value: 'Established', label: 'Title underwriters' },
   { value: `${offeredStateCount()} states`, label: 'Closing coverage' },
 ] as const
 

@@ -48,11 +48,11 @@ export default function LenderEmailPreview({
           <strong>{client} is using BetterClose for title and settlement on their upcoming closing</strong> and asked us to send you everything you need to place the order.
         </p>
         <p>
-          BetterClose uses the same A-rated underwriters you already work with (First American, AmTrust, Westcor, Old Republic) and integrates with Encompass (SmartFees, Qualia, and ResWare coming soon). Same coverage, transparent flat-rate pricing.
+          BetterClose works with established title insurance underwriters (First American, AmTrust, Westcor, Old Republic). Underwriter availability varies by state and transaction. It integrates with Encompass (SmartFees, Qualia, and ResWare coming soon). Coverage is governed by the issued policy. Transparent flat-rate pricing.
         </p>
         {savingsEstimate ? (
           <p>
-            <strong>Estimated savings for {client} on this closing: ${savingsEstimate.toLocaleString()}</strong> over the life of the loan, on the same A-rated underwriters.
+            <strong>Estimated savings for {client} on this closing: ${savingsEstimate.toLocaleString()}</strong> over the life of the loan.
           </p>
         ) : null}
         {note && (

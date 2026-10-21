@@ -7,6 +7,7 @@ import {
   computeTotals,
   formatCurrency,
   formatRange,
+  feeDescription,
 } from '@/lib/feeReport'
 
 export default function DesignCards({ report }: { report: FeeReport }) {
@@ -112,7 +113,7 @@ function VariableCard({ item }: { item: FeeLineItem }) {
         </div>
       </div>
       {item.description && (
-        <div className="text-xs text-gray-500 mb-4">{item.description}</div>
+        <div className="text-xs text-gray-500 mb-4">{feeDescription(item)}</div>
       )}
 
       <div className="flex items-baseline gap-3 mb-3">

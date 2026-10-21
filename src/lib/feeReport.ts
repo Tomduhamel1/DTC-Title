@@ -40,6 +40,15 @@ export interface FeeLineItem {
   isCredit?: boolean
 }
 
+// Presentation-only correction for the former stock description in saved quotes.
+// Never rewrite the snapshot or recalculate a saved quote's amounts.
+export function feeDescription(item: Pick<FeeLineItem, 'description' | 'feeSource'>): string | undefined {
+  if (item.feeSource === 'underwriter' && /^a[-\s\u2010-\u2015]+rated underwriter coverage$/i.test(item.description ?? '')) {
+    return 'Title insurance coverage'
+  }
+  return item.description
+}
+
 // Location precision of this report. Drives result-page UX only — at every
 // precision the fees come from the real upstream calc:
 //   'state'    — broker entered state only; priced on a representative ZIP
@@ -343,7 +352,7 @@ export function getSampleFeeReport(): FeeReport {
         isFixed: true,
         feeSource: 'underwriter',
         savingsSource: 'title_related',
-        description: 'A-rated underwriter coverage',
+        description: 'Title insurance coverage',
       },
       {
         // Settlement carries the whole verified package delta (market-
@@ -425,7 +434,7 @@ export function getMockFeeReport(input: {
       isFixed: true,
       feeSource: 'underwriter',
       savingsSource: 'title_related',
-      description: 'A-rated underwriter coverage',
+      description: 'Title insurance coverage',
     },
     {
       id: 'settlement-fee',
