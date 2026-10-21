@@ -98,6 +98,27 @@ test('positive savings labels never flip the sign of an actual fee credit', () =
   assert.equal(report.lineItems.at(-1).ourCost, -100);
 });
 
+test('Bucks is labeled Credit, not New, in both sample and full reports', () => {
+  const h = harness();
+  const report = h.load('src/lib/sampleReport.ts').buildSampleFeeReport();
+  const Table = h.load('src/components/FeeReportTable.tsx').default;
+  for (const variant of ['preview', 'full']) {
+    const html = h.render(React.createElement(Table, { report, variant }));
+    assert.match(text(html), /BetterClose Bucks Credit/);
+    assert.doesNotMatch(text(html), /\bNew\b/i);
+    assert.match(html, /−\$430/);
+  }
+});
+
+test('homepage calculator and sample quote share the savings card component', () => {
+  const h = harness();
+  const Home = h.load('src/components/HomePageCredible.tsx').default;
+  const html = h.render(React.createElement(Home, { heroVersion: 'magic' }));
+  assert.equal((html.match(/data-savings-card="true"/g) || []).length, 4);
+  assert.match(html, /data-preview-closing-savings[^]*?Title &amp; settlement/);
+  assert.match(html, /data-preview-lifetime-savings[^]*?Includes at-closing savings/);
+});
+
 test('real purchase example includes both reconciling savings amounts and the full fee stack', () => {
   const h = harness();
   const report = h.load('src/lib/sampleReport.ts').buildSampleFeeReport();

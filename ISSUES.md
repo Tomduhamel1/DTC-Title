@@ -596,6 +596,14 @@ and browser checks pin each row and green savings emphasis. Aggregate pricing
 and marketing-cache numbers are unchanged. The separate rating-cleanup PR #133
 is not bundled. This note describes prepared code, not a deployed correction.
 
+### Homepage savings-card consistency (2026-10-20)
+
+Follow-up presentation correction: the sample quote and homepage calculator now
+use the same pale-green, rounded, centered SavingsCard component. BetterClose
+Bucks is labeled Credit rather than New in both full and preview fee tables.
+Pricing, comparison amounts, credit eligibility, and frozen quotes are unchanged.
+This note describes prepared code, not deployment evidence.
+
 ## Resolved
 
 ### FNTE calculator: IN & LA refinance 500s (found 2026-08-12, resolved upstream by 2026-08-14, confirmed 2026-09-14)

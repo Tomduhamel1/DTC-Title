@@ -12,6 +12,7 @@ import {
 } from '@/lib/feeReport'
 import { serviceBandFor } from '@/lib/marketBaseline'
 import { feeReportAmountLabel } from '@/lib/feeReportPresentation'
+import SavingsCard from '@/components/SavingsCard'
 
 interface FeeReportTableProps {
   report: FeeReport
@@ -157,17 +158,13 @@ export default function FeeReportTable({
         </div>
       </div>
 
-      {/* Preview keeps both time horizons together, without a duplicate banner. */}
-      {isPreview ? <div data-preview-savings-summary className="mx-6 mb-3 border-t-2 border-emerald-200 pt-4 text-emerald-700">
-        <div className="grid grid-cols-1 min-[380px]:grid-cols-2 gap-4">
-          <div data-preview-closing-savings className="flex flex-col">
-            <div className="flex-1 text-[10px] font-bold uppercase tracking-wide text-emerald-700">Save at closing</div>
-            <div data-savings-amount className="mt-1 text-3xl font-black tabular-nums text-emerald-700">{formatCurrency(totals.estimatedSavings)}</div>
-          </div>
-          <div data-preview-lifetime-savings className="flex flex-col">
-            <div className="flex-1 text-[10px] font-bold uppercase tracking-wide text-emerald-700">Save over the life of the loan</div>
-            <div data-savings-amount className="mt-1 text-3xl font-black tabular-nums text-emerald-700">{formatCurrency(totals.lifetimeSavings)}</div>
-          </div>
+      {/* Same pale-green savings cards as the homepage calculator. */}
+      {isPreview ? <div data-preview-savings-summary className="mx-6 mt-2 mb-3">
+        <div className="grid grid-cols-1 min-[380px]:grid-cols-2 gap-3">
+          <SavingsCard data-preview-closing-savings label="Save at closing"
+            amount={formatCurrency(totals.estimatedSavings)} caption="Title & settlement" />
+          <SavingsCard data-preview-lifetime-savings label="Save over the life of the loan"
+            amount={formatCurrency(totals.lifetimeSavings)} caption="Includes at-closing savings" />
         </div>
         <p className="mt-3 text-[11px] leading-snug text-gray-500">
           Loan-life total includes closing savings plus modeled interest avoided
@@ -324,7 +321,7 @@ function FeeRow({
           {item.label}
           {item.isCredit && (
             <span className="ml-2 align-middle inline-block text-[9px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-1.5 py-0.5">
-              New
+              Credit
             </span>
           )}
         </div>
