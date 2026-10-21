@@ -66,11 +66,19 @@ test('sample fee card derives every price, total and savings from one report, ne
   assert.doesNotMatch(page, /previewSavings|QuotePreviewMockup|MockLineItem|\$685|\$1,240/);
 });
 
-test('homepage sample is explicitly a separate fixed scenario, never an unserved local quote', () => {
+test('homepage example uses Market and omits the redundant scenario and savings paragraphs', () => {
   const html = h.render(React.createElement(h.load('src/components/FeeReportPreviewSection.tsx').default));
-  assert.match(text(html), /\$600,000 purchase in Providence, RI, with a \$480,000 loan/);
-  assert.match(text(html), /Calculated with our quote engine—not a quote for your property/);
-  assert.match(text(html), /\$600 at closing: \$170 in service fees plus a \$430 BetterClose Bucks credit/);
+  const rendered = text(html);
+  assert.doesNotMatch(rendered, /purchase in Providence|Calculated with our quote engine|This example saves|in service fees plus/);
+  assert.match(rendered, /Purchase example · RI/);
+  assert.match(rendered, /Item Market BetterClose Savings/);
+  assert.match(rendered, /Save at closing \$600/);
+  assert.match(rendered, /Save over the life of the loan \$1,365/);
+  assert.match(rendered, /Sample only/);
+  const report = h.load('src/lib/sampleReport.ts').buildSampleFeeReport();
+  const Table = h.load('src/components/FeeReportTable.tsx').default;
+  assert.match(text(h.render(React.createElement(Table, { report }))), /Item Typical BetterClose Savings/,
+    'This copy request changes the example heading, not all full reports');
   assert.doesNotMatch(source('src/components/FeeReportPreviewSection.tsx'), /api\/geo|exactly what you're saving/);
 });
 

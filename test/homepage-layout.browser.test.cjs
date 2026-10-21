@@ -32,6 +32,7 @@ test('Full Transparency has top-aligned columns, a compact complete sample and a
       assert.ok(facts.notes.top >= facts.grid.bottom, 'Notes follow both columns');
       assert.ok(facts.notes.height < 110, 'Collapsed notes do not dominate the screen');
       assert.doesNotMatch(facts.visible, /competing service package|better loan pricing/);
+      assert.doesNotMatch(facts.visible, /purchase in Providence|Calculated with our quote engine|This example saves|in service fees plus/);
       assert.match(facts.visible, /BetterClose Bucks/);
       assert.match(facts.visible, /Save at closing/i);
       assert.match(facts.visible, /Save over the life of the loan/i);
@@ -69,6 +70,8 @@ test('Full Transparency has top-aligned columns, a compact complete sample and a
       assert.ok(facts.visible.indexOf('BetterClose Bucks', facts.visible.indexOf('TITLE & SETTLEMENT')) < facts.visible.indexOf('RECORDING FEES'), 'Bucks appears before recording fees');
       const headers = await page.$$eval('[data-fee-preview-report] > div > div:first-child span', elements => elements.map(el => ({ text: el.innerText, scroll: el.scrollWidth, width: el.clientWidth })));
       assert.ok(headers.every(el => el.scroll <= el.width), `${width}: column labels fit their own cells: ${JSON.stringify(headers)}`);
+      const columnLabels = await page.$$eval('[data-fee-preview-report] > div > div:first-child > span', elements => elements.map(el => el.textContent.trim()));
+      assert.deepEqual(columnLabels, ['Item', 'Market', 'BetterClose', 'Savings']);
       const report = h.load('src/lib/sampleReport.ts').buildSampleFeeReport();
       for (const item of report.lineItems) assert.ok(facts.visible.includes(item.label), `${width}: ${item.label} visible`);
       if (width >= 1024) {

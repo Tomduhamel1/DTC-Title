@@ -106,7 +106,7 @@ export default function FeeReportTable({
       <div className={`${columns} px-6 ${isPreview ? 'pt-4' : 'pt-5'} pb-3 border-b border-gray-100`}>
         <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">Item</span>
         <span className={`${isPreview ? PREVIEW_TYPICAL : 'hidden sm:block'} text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 text-right`}>
-          Typical
+          {isPreview ? 'Market' : 'Typical'}
         </span>
         <span className={`${isPreview ? 'text-[9px]' : 'text-[9px] sm:text-[10px]'} tracking-normal font-bold uppercase text-dark-900 text-right`}>
           BetterClose
