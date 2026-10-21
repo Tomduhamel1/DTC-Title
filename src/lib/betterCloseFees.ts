@@ -58,10 +58,11 @@ export const BETTERCLOSE_SERVICE_FEES: BetterCloseFeeTable = {
 
 // Owner confirmed 2026-10-20: reduce each state's existing service fee by
 // the same proportion, rather than giving every state RI's flat prices.
-// Exact ratios make the RI $150/$50/$100 schedule become $140/$40/$90.
+// Owner updated notary 2026-10-21: the RI $150/$50/$100 schedule becomes
+// $135/$40/$90; preserve the same proportional reductions in every state.
 // Apply ONCE, after building the comparison from the pre-discount schedule.
 export const SERVICE_FEE_RATIOS: Readonly<Record<string, readonly [number, number]>> = {
-  'Notary Fee': [14, 15],
+  'Notary Fee': [9, 10],
   'Attorney Fee': [4, 5],
   'Abstractor Title Search': [9, 10],
 }

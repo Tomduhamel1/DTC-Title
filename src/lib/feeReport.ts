@@ -50,11 +50,11 @@ export interface FeeLineItem {
 // Optional so legacy reports without the field continue to work as detailed.
 export type FeeReportPrecision = 'state' | 'county' | 'detailed'
 
-// Bumped when the comparison model changes shape. Reports carrying an older
+// Bumped when pricing or the comparison model changes. Reports carrying an older
 // (or missing) version are repriced client-side instead of rendered — a
 // stale-session report from a previous model must never mix with the
 // current table's narrative.
-export const REPORT_MODEL_VERSION = 4
+export const REPORT_MODEL_VERSION = 5
 
 export interface FeeReport {
   modelVersion?: number

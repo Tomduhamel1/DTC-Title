@@ -617,6 +617,29 @@ old rating badge is removed, without bundling the separate sitewide cleanup.
 Pricing, quote logic, saved reports and backend behavior are untouched.
 This note describes prepared code, not a deployed release.
 
+### $750k RI example and $135 notary pricing (2026-10-21, prepared)
+
+The fixed homepage purchase example now uses $750,000 with the existing
+80%-LTV assumption ($600,000 loan). A fresh public-calculator response is
+recorded in purchase-sample-ri-20261021.json and replayed through the real
+engine: $2,890 total, $710 at-closing savings ($175 service fees plus $535
+Bucks), and $1,616 modeled loan-life total. The RI notary fee is $135 versus
+the unchanged $150 Market reference. Nationwide notary pricing retains the
+owner-approved proportional approach, now 90% of each original state fee;
+attorney and abstractor ratios, Market comparisons, and credit rules are
+unchanged. Model 5 refreshes unsaved browser estimates; issued/frozen quotes
+are not rewritten. Savings-column rows and totals use minus signs, while
+homepage summary cards remain positive. This note is not deployment evidence.
+
+Refreshed the matrix, public curves and savings anchors from 300 real public
+calculations across the same 50 state/DC entries as the prior release. A
+same-response old/new-ratio replay confirmed that only our notary price changed;
+Market comparisons and all other line items were identical. Generated premiums,
+settlement fees, credit amounts and splits match the prior caches. NC again
+returned HTTP 500 after retries, as already documented, and retains the existing
+national-estimate fallback; no NC rates were fabricated or availability changed.
+Focused unit/browser checks, typecheck and an isolated production build passed.
+
 ## Resolved
 
 ### FNTE calculator: IN & LA refinance 500s (found 2026-08-12, resolved upstream by 2026-08-14, confirmed 2026-09-14)
