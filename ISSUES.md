@@ -608,7 +608,8 @@ This note describes prepared code, not deployment evidence.
 
 The opening now identifies BetterClose as the lower-cost title/settlement
 provider, with transparent pricing as supporting copy rather than the central
-offer. The headline comes first; keeping the buyer's agent and lender is
+offer. The original "Don't overpay for closing costs. Save hundreds." headline
+is preserved and comes first; keeping the buyer's agent and lender is
 explained afterward. Mobile/tablet visitors get an estimate action in the first
 screen, tighter spacing, and a less padded calculator card. Shared navigation
 dimensions and desktop's two-column structure remain unchanged. The opening's

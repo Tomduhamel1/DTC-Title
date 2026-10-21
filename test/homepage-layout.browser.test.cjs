@@ -43,7 +43,7 @@ test('mobile opening leads with savings and a first-screen quote action, with re
       assert.deepEqual(facts.overflow, [], `${width}: title and savings cards fit`);
       assert.equal(facts.header.height, 80, 'Shared site navigation keeps its stable height');
       assert.ok(facts.titleFirst, 'A contextless badge must not precede the value proposition');
-      assert.match(facts.title.text, /Save hundreds\./);
+      assert.equal(facts.title.text.replace(/\s+/g, ' ').trim(), "Don't overpay for closing costs. Save hundreds.", 'Preserve the approved headline exactly');
       assert.match(facts.description.text, /title and settlement at a lower cost/);
       assert.ok(facts.reassurance.top >= facts.description.bottom, 'Keep your team only follows the service/value explanation');
       assert.doesNotMatch(facts.text, /helps you save|Same realtor|A-rated/);

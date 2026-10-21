@@ -36,7 +36,7 @@ for (const [name, file, props] of pages) {
 test('homepage leads with choosing BetterClose for lower costs, with pricing transparency as support', () => {
   const Home = h.load('src/components/HomePageCredible.tsx').default;
   const rendered = text(h.render(React.createElement(Home, { heroVersion: 'magic' })));
-  assert.match(rendered, /Save hundreds\. On closing costs\./);
+  assert.match(rendered, /Don't overpay for closing costs\. Save hundreds\./);
   assert.match(rendered, /Choose BetterClose for title and settlement at a lower cost\./);
   assert.match(rendered, /Get a dedicated closing team and transparent pricing, line by line\./);
   assert.match(rendered, /Keep your agent\. Keep your lender\./);

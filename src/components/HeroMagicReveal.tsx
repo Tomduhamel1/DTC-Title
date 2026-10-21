@@ -63,8 +63,8 @@ export default function HeroMagicReveal() {
         {/* Left: hero copy */}
         <div data-hero-copy className="text-left">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-dark-900 leading-[1.08] tracking-tight mb-4 sm:mb-5">
-            <span className="block text-emerald-600">Save hundreds.</span>
-            <span className="block mt-1">On closing costs.</span>
+            Don't overpay for closing costs.
+            <span className="block text-emerald-600 mt-2">Save hundreds.</span>
           </h1>
           <p data-hero-description className="max-w-xl text-base sm:text-lg text-gray-700 leading-relaxed">
             Choose BetterClose for <strong className="font-semibold text-dark-900">title and settlement at a lower cost.</strong>{' '}
