@@ -26,14 +26,14 @@ const purchaseExample: FeeReport = {
   lineItems: [
     { id: 'elend-0', label: "Owner's Title Insurance", category: 'title-settlement', ourCost: 950, isFixed: true, feeSource: 'underwriter' },
     { id: 'elend-1', label: "Lender's Title Insurance", category: 'title-settlement', ourCost: 1200, isFixed: true, feeSource: 'underwriter' },
-    { id: 'elend-2', label: 'Settlement Fee', category: 'title-settlement', ourCost: 250, isFixed: false, feeSource: 'service', typicalRange: { low: 420, high: 500 } },
+    { id: 'elend-2', label: 'Settlement Fee', category: 'title-settlement', ourCost: 250, isFixed: false, feeSource: 'service', typicalRange: { low: 390, high: 470 } },
     { id: 'elend-5', label: 'Conveyance Deed - Recording Fee', category: 'recording', ourCost: 87, isFixed: true, feeSource: 'county' },
     { id: 'elend-6', label: 'Mortgage (Deed of Trust) - Recording Fee', category: 'recording', ourCost: 88, isFixed: true, feeSource: 'county' },
     { id: 'elend-8', label: 'Closing Protection Letter', category: 'other', ourCost: 35, isFixed: true },
-    { id: 'elend-17', label: 'Notary Fee', category: 'title-settlement', ourCost: 140, isFixed: false, feeSource: 'service', typicalRange: { low: 140, high: 140 } },
+    { id: 'elend-17', label: 'Notary Fee', category: 'title-settlement', ourCost: 140, isFixed: false, feeSource: 'service', typicalRange: { low: 150, high: 150 } },
     { id: 'elend-22', label: 'Recording Service Fee', category: 'recording', ourCost: 25, isFixed: true, feeSource: 'service' },
-    { id: 'elend-23', label: 'Attorney Fee', category: 'title-settlement', ourCost: 40, isFixed: false, feeSource: 'service', typicalRange: { low: 40, high: 40 } },
-    { id: 'elend-25', label: 'Abstractor Title Search', category: 'title-settlement', ourCost: 90, isFixed: false, feeSource: 'service', typicalRange: { low: 90, high: 90 } },
+    { id: 'elend-23', label: 'Attorney Fee', category: 'title-settlement', ourCost: 40, isFixed: false, feeSource: 'service', typicalRange: { low: 50, high: 50 } },
+    { id: 'elend-25', label: 'Abstractor Title Search', category: 'title-settlement', ourCost: 90, isFixed: false, feeSource: 'service', typicalRange: { low: 100, high: 100 } },
     { id: 'betterclose-bucks', label: 'BetterClose Bucks', category: 'title-settlement', ourCost: -430, isFixed: false, isCredit: true, description: 'Introductory BetterClose credit, applied at closing.' },
   ],
 }

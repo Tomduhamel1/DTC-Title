@@ -579,6 +579,23 @@ The PDF generator has no current application caller; production Chromium
 provisioning remains unverified, and no server-PDF route was activated.
 See `docs/RUNTIME-UPGRADE-20260923.md` for evidence and release conditions.
 
+### Preserve Typical prices when discounting our fees (2026-10-20)
+
+PR #138 preserved comparison-package totals but reallocated their line amounts
+after applying our discounts. This incorrectly lowered the displayed Typical
+notary, attorney and abstractor prices and moved their savings into settlement.
+The correction changes only ourCost after assigning the original comparisons.
+The $600k example shows $150/$140/$10 notary, $50/$40/$10 attorney and
+$100/$90/$10 abstractor; settlement savings return to $140. Total savings remain
+$600, including the unchanged $430 BetterClose Bucks credit. Preview totals are
+bold green with a green divider, not a large filled panel competing with the CTA.
+
+Version 4 refreshes unsaved estimates; issued snapshots and frozen totals remain
+untouched. Nationwide regressions pin every pre/post-discount Typical range,
+and browser checks pin each row and green savings emphasis. Aggregate pricing
+and marketing-cache numbers are unchanged. The separate rating-cleanup PR #133
+is not bundled. This note describes prepared code, not a deployed correction.
+
 ## Resolved
 
 ### FNTE calculator: IN & LA refinance 500s (found 2026-08-12, resolved upstream by 2026-08-14, confirmed 2026-09-14)

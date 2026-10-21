@@ -40,14 +40,12 @@ function CurrencyRange({ low, high }: { low: number; high: number }) {
 }
 
 function reportComparison(report: FeeReport) {
-  // Market-comparison model (2026-08-11): the whole verified package delta is
-  // attributed to the settlement line; other service lines sit at parity
-  // (typical low = our price → no claimed savings on them). Identify the
-  // anchor line so its row can say where the comparison comes from.
+  // Version 4 preserves each pre-discount Typical amount. Discounts appear
+  // on their own service rows; the comparison still describes the full package.
   const stack = report.lineItems.filter((li) => !li.isCredit && !li.isFixed && li.typicalRange)
   const stackTotal = stack.reduce((s, li) => s + li.ourCost, 0)
   const anchor = stack.find((li) => conservativeLineSavings(li) > 0) ?? null
-  const stackLow = anchor ? stackTotal + conservativeLineSavings(anchor) : stackTotal
+  const stackLow = stack.reduce((s, li) => s + li.typicalRange!.low, 0)
   // Legacy guard: reports generated under the OLD model (pre-2026-08-11)
   // carry per-line multiplied ranges, so more than one line claims savings
   // and parity lines have low > ourCost. The derivation sentence would then
@@ -55,7 +53,8 @@ function reportComparison(report: FeeReport) {
   // suppress it for that data. (Frozen totals still display verbatim.)
   const isNewModelData =
     anchor !== null &&
-    stack.every((li) => li === anchor || (li.typicalRange && li.typicalRange.low === li.ourCost))
+    (report.modelVersion === 4 ||
+      stack.every((li) => li === anchor || (li.typicalRange && li.typicalRange.low === li.ourCost)))
   const band = serviceBandFor(report.state, report.transactionType, report.zip)
   const basisPhrase =
     band.basis === 'quoted'
@@ -107,7 +106,7 @@ export default function FeeReportTable({
       <div className={`${columns} px-6 ${isPreview ? 'pt-4' : 'pt-5'} pb-3 border-b border-gray-100`}>
         <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">Item</span>
         <span className={`${isPreview ? PREVIEW_TYPICAL : 'hidden sm:block'} text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 text-right`}>
-          Typical
+          {isPreview ? 'Market' : 'Typical'}
         </span>
         <span className={`${isPreview ? 'text-[9px]' : 'text-[9px] sm:text-[10px]'} tracking-normal font-bold uppercase text-dark-900 text-right`}>
           BetterClose
@@ -159,15 +158,15 @@ export default function FeeReportTable({
       </div>
 
       {/* Preview keeps both time horizons together, without a duplicate banner. */}
-      {isPreview ? <div data-preview-savings-summary className="mx-6 mb-3 border-t border-gray-200 pt-4 text-dark-900">
-        <div className="grid grid-cols-2 gap-4">
+      {isPreview ? <div data-preview-savings-summary className="mx-6 mb-3 border-t-2 border-emerald-200 pt-4 text-emerald-700">
+        <div className="grid grid-cols-1 min-[380px]:grid-cols-2 gap-4">
           <div data-preview-closing-savings className="flex flex-col">
-            <div className="flex-1 text-[10px] font-semibold uppercase tracking-wide text-gray-600">Save at closing</div>
-            <div className="mt-1 text-2xl font-bold tabular-nums">{formatCurrency(totals.estimatedSavings)}</div>
+            <div className="flex-1 text-[10px] font-bold uppercase tracking-wide text-emerald-700">Save at closing</div>
+            <div data-savings-amount className="mt-1 text-3xl font-black tabular-nums text-emerald-700">{formatCurrency(totals.estimatedSavings)}</div>
           </div>
           <div data-preview-lifetime-savings className="flex flex-col">
-            <div className="flex-1 text-[10px] font-semibold uppercase tracking-wide text-gray-600">Save over the life of the loan</div>
-            <div className="mt-1 text-2xl font-bold tabular-nums">{formatCurrency(totals.lifetimeSavings)}</div>
+            <div className="flex-1 text-[10px] font-bold uppercase tracking-wide text-emerald-700">Save over the life of the loan</div>
+            <div data-savings-amount className="mt-1 text-3xl font-black tabular-nums text-emerald-700">{formatCurrency(totals.lifetimeSavings)}</div>
           </div>
         </div>
         <p className="mt-3 text-[11px] leading-snug text-gray-500">
@@ -180,7 +179,7 @@ export default function FeeReportTable({
             Your total savings
           </div>
           <div className="text-[11px] text-emerald-100 mt-0.5 leading-snug">
-            Itemized above — the settlement comparison plus BetterClose Bucks
+            Itemized above — service-fee savings plus BetterClose Bucks
           </div>
         </div>
         <div className="text-3xl font-black text-white tabular-nums whitespace-nowrap">
@@ -234,11 +233,14 @@ export default function FeeReportTable({
 }
 
 function EstimateDisclaimer() {
-  return <>Estimate. Our settlement charge is compared against the lowest
+  return <>Estimate. Our service fees are compared against the lowest
         competing service package we&apos;ve verified for your state (or a
-        conservative estimate where competitors publish nothing); other
-        service fees are shown from our price up — we claim no savings on
-        them. Title insurance premiums are essentially the same across
+        conservative estimate where competitors publish nothing).
+        Typical amounts are assigned from that package before BetterClose
+        discounts; they are not separate provider quotes for each fee.
+        Discounts reduce only our prices, and eligible savings appear on
+        each fee&apos;s row. Total service savings account for the full package.
+        Title insurance premiums are essentially the same across
         providers, and recording fees and taxes are set by the government —
         never counted toward savings. BetterClose Bucks is an introductory
         promotional credit from BetterClose, applied at closing.</>
@@ -303,7 +305,7 @@ function FeeRow({
 
   // Typical column: the market's number for this line. Fixed/pass-through
   // lines cost the same everywhere, so the typical IS our number (gray);
-  // parity service lines show a from-our-price range; the credit has no
+  // service lines retain their pre-discount comparison; the credit has no
   // market equivalent.
   const typical = item.isCredit ? (
     <span className="text-gray-300">—</span>
@@ -316,7 +318,7 @@ function FeeRow({
   )
 
   return (
-    <div className={positiveSavings ? PREVIEW_COLS : COLS}>
+    <div data-fee-row={item.label} className={positiveSavings ? PREVIEW_COLS : COLS}>
       <div className={positiveSavings ? 'min-w-0' : 'min-w-0 col-span-3 min-[380px]:col-span-1'}>
         <div className="text-[13px] font-semibold text-dark-900 leading-tight break-words">
           {item.label}
@@ -336,17 +338,18 @@ function FeeRow({
           </div>
         )}
       </div>
-      <div className={`${positiveSavings ? PREVIEW_TYPICAL : 'hidden sm:block'} text-xs text-right tabular-nums`}>
+      <div data-typical-price className={`${positiveSavings ? PREVIEW_TYPICAL : 'hidden sm:block'} text-xs text-right tabular-nums`}>
         {typical}
       </div>
       <div
+        data-betterclose-price
         className={`${positiveSavings ? '' : 'col-start-2 min-[380px]:col-start-auto'} text-[13px] font-bold text-right tabular-nums whitespace-nowrap ${
           item.isCredit ? 'text-emerald-700' : 'text-dark-900'
         }`}
       >
         {item.isCredit ? formatSavings(item.ourCost) : formatCurrency(item.ourCost)}
       </div>
-      <div className="text-[13px] font-bold text-right tabular-nums whitespace-nowrap">
+      <div data-line-savings className="text-[13px] font-bold text-right tabular-nums whitespace-nowrap">
         {lineSavings > 0 ? (
           <span className="text-emerald-700">{positiveSavings ? formatCurrency(lineSavings) : formatSavings(lineSavings)}</span>
         ) : (

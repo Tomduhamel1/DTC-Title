@@ -164,12 +164,11 @@ function isComparisonFixed(
   return false
 }
 
-// Market-comparison model (Tom, 2026-08-11): the ENTIRE verified package
-// delta is attributed to the Settlement Fee line, and every other service
-// line is shown at parity — its typical LOW equals our own price, so no
-// savings are claimed on it. This replaces the old scheme that multiplied
-// every line by the band (which read as invented per-line "typical" prices)
-// and the "compared as a package" presentation (too confusing).
+// Build the comparison from the original service schedule, before applying
+// BetterClose-only discounts. The pre-existing package difference is assigned
+// to settlement; other service benchmarks start at the original fee. Once
+// assigned, each Typical amount stays fixed: discounts reduce only ourCost
+// and appear as savings on the discounted fee's own row.
 //
 // The settlement line's typical low = our settlement + (lowest verified
 // competitor package − our package), where the competitor package low comes
@@ -218,23 +217,14 @@ function applyMarketComparison(
     Math.round(band.packageRange?.high ?? stackTotal * band.high) * 100)
 }
 
-// Discounts change OUR prices, not the existing competitor benchmark.
-// Capture the comparison package first, then keep its dollar bounds while
-// attributing the updated package difference to the settlement row.
+// Discounts change ONLY our prices. Do not reallocate the comparison after
+// discounting: that lowers the Typical amount on discounted rows and moves
+// their savings into settlement instead of showing them where they arise.
 function applyServiceDiscounts(lineItems: FeeLineItem[]): void {
-  const stack = lineItems.filter(li => !li.isCredit && !li.isFixed)
-  const cents = (amount: number) => Math.round(amount * 100)
-  const lowCents = stack.reduce((sum, li) => sum + cents(li.typicalRange?.low ?? li.ourCost), 0)
-  const highCents = stack.reduce((sum, li) => sum + cents(li.typicalRange?.high ?? li.ourCost), 0)
-  let comparableChanged = false
   for (const li of lineItems) {
     if (li.isCredit || !isDiscountableService(li.label, li.category)) continue
-    const cost = discountedServiceFee(li.label, li.ourCost)
-    if (cost !== li.ourCost && !li.isFixed) comparableChanged = true
-    li.ourCost = cost
+    li.ourCost = discountedServiceFee(li.label, li.ourCost)
   }
-  if (!comparableChanged || stack.length === 0) return
-  assignPackageComparison(stack, lowCents, highCents)
 }
 
 export interface FetchOptions {

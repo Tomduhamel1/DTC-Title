@@ -4,12 +4,10 @@ import Link from 'next/link'
 import { useState } from 'react'
 import FeeReportTable, { FeeReportEstimateNotes } from './FeeReportTable'
 import ShareWithTeamSheet from './lender-request/ShareWithTeamSheet'
-import { buildSampleFeeReport, PURCHASE_SAMPLE_LOCATION } from '@/lib/sampleReport'
-import { computeTotals, formatCurrency } from '@/lib/feeReport'
+import { buildSampleFeeReport } from '@/lib/sampleReport'
 
 export default function FeeReportPreviewSection() {
   const sample = buildSampleFeeReport()
-  const totals = computeTotals(sample)
   const [shareOpen, setShareOpen] = useState(false)
 
   return (
@@ -31,16 +29,6 @@ export default function FeeReportPreviewSection() {
               </p>
               <p className="text-gray-600 mb-5">
                 Want a real estimate for your closing? Takes about 30 seconds.
-              </p>
-              <p className="text-sm text-gray-500 mb-5">
-                A {formatCurrency(sample.homeValue)} purchase in {PURCHASE_SAMPLE_LOCATION},
-                with a {formatCurrency(sample.loanAmount!)} loan. Calculated with
-                our quote engine—not a quote for your property.
-              </p>
-              <p className="text-sm text-gray-600 mb-5">
-                This example saves {formatCurrency(totals.estimatedSavings)} at closing:
-                {' '}{formatCurrency(totals.serviceStack?.savings ?? 0)} in service fees
-                plus a {formatCurrency(totals.breakdown.promotional_credit ?? 0)} BetterClose Bucks credit.
               </p>
               <Link
                 href="/quote"
