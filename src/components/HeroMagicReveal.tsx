@@ -58,33 +58,36 @@ export default function HeroMagicReveal() {
     served ? `${subject} in your area typically save` : `${subject} typically save`
 
   return (
-    <section className="relative bg-white py-12 md:py-16 px-6">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+    <section data-home-hero className="relative bg-white pt-7 pb-10 sm:py-12 md:py-16 px-5 sm:px-6">
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-7 sm:gap-12 items-center">
         {/* Left: hero copy */}
-        <div className="text-left">
-          <div className="inline-flex items-center gap-2 bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
-            <span className="text-emerald-600">✓</span>
-            <span>Same realtor. Same lender. Better cost.</span>
-          </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-dark-900 leading-tight mb-5">
+        <div data-hero-copy className="text-left">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-dark-900 leading-[1.08] tracking-tight mb-4 sm:mb-5">
             Don't overpay for closing costs.
             <span className="block text-emerald-600 mt-2">Save hundreds.</span>
           </h1>
-          <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-            BetterClose helps you save on title and settlement services with{' '}
-            <strong>transparent, line-by-line pricing</strong>. See what each charge
-            covers, how our fees compare, and where you can save.
+          <p data-hero-description className="max-w-xl text-base sm:text-lg text-gray-700 leading-relaxed">
+            Choose BetterClose for <strong className="font-semibold text-dark-900">title and settlement at a lower cost.</strong>{' '}
+            Get a dedicated closing team and transparent pricing, line by line.
           </p>
-          <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-600">
-            <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>{offeredStateCount()} states</span></span>
-            <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>Transparent pricing</span></span>
-            <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>30,000+ closings</span></span>
-            <span className="flex items-center gap-1.5"><span className="text-emerald-600">✓</span> <span>A-rated underwriters</span></span>
+          <p data-hero-reassurance className="mt-4 flex items-start gap-2 text-sm font-medium text-dark-800">
+            <span aria-hidden="true" className="text-emerald-600">✓</span>
+            <span>Keep your agent. Keep your lender.</span>
+          </p>
+          <div data-hero-mobile-action className="mt-5 lg:hidden">
+            <Link href="/quote" className="w-full sm:w-auto inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 px-6 py-3 font-bold text-white shadow-md transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-700">
+              See my savings <span aria-hidden="true">→</span>
+            </Link>
+            <p className="mt-2 text-center sm:text-left text-xs text-gray-500">Free estimate. No obligation.</p>
+          </div>
+          <div data-hero-proof className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs sm:text-sm text-gray-600">
+            <span className="flex items-center gap-1.5"><span aria-hidden="true" className="text-emerald-600">✓</span> <span>{offeredStateCount()} states</span></span>
+            <span className="flex items-center gap-1.5"><span aria-hidden="true" className="text-emerald-600">✓</span> <span>30,000+ closings</span></span>
           </div>
         </div>
 
         {/* Right: Magic Reveal calculator */}
-        <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-6 md:p-7">
+        <div data-hero-calculator className="min-w-0 bg-white rounded-2xl sm:rounded-3xl shadow-lg sm:shadow-2xl border border-gray-100 p-4 sm:p-6 md:p-7">
           <div className="text-center mb-5">
             {/* Purchase / Refinance toggle */}
             <div className="inline-flex p-1 bg-gray-100 rounded-full mb-4">

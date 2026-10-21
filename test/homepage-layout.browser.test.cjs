@@ -1,5 +1,6 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
 const path = require('node:path');
 const React = require('react');
 const { build } = require('esbuild');
@@ -10,6 +11,64 @@ const css = require('postcss')([require('tailwindcss')(require('tailwindcss/load
   .process('@tailwind base; @tailwind components; @tailwind utilities;', { from: undefined }).then(result => result.css);
 const h = createHarness(new Proxy({}, { get() { throw new Error('No database access'); } }));
 const pageHtml = (styles, body) => '<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>' + styles + '</style></head><body>' + body + '</body></html>';
+
+test('mobile opening leads with savings and a first-screen quote action, with reassurance after the service proposition', async () => {
+  const Nav = h.load('src/components/NavigationCredible.tsx').default;
+  const Hero = h.load('src/components/HeroMagicReveal.tsx').default;
+  const Provider = h.load('src/contexts/SavingsContext.tsx').SavingsProvider;
+  const markup = h.render(React.createElement(React.Fragment, null,
+    React.createElement(Nav), React.createElement('div', { className: 'h-20' }),
+    React.createElement(Provider, null, React.createElement(Hero))))
+    .replaceAll('/images/marketing/nicole-operator-v1.webp', 'data:image/webp;base64,' +
+      fs.readFileSync(path.join(root, 'public/images/marketing/nicole-operator-v1.webp')).toString('base64'));
+  const browser = await openEmailBrowser();
+  try {
+    const { page } = await offlinePage(browser);
+    for (const [width, height] of [[320, 568], [375, 667], [390, 844], [430, 932], [768, 1024], [1024, 900], [1280, 900], [1440, 900]]) {
+      await page.setViewport({ width, height });
+      await page.setContent(pageHtml(await css, markup));
+      const facts = await page.evaluate(() => {
+        const box = selector => { const e = document.querySelector(selector), r = e.getBoundingClientRect(); return { top: r.top, bottom: r.bottom, height: r.height, width: r.width, text: e.innerText }; };
+        return { width: document.documentElement.scrollWidth, header: box('[data-bc-marketing-nav]'),
+          hero: box('[data-home-hero]'), title: box('h1'), description: box('[data-hero-description]'),
+          reassurance: box('[data-hero-reassurance]'), action: box('[data-hero-mobile-action]'),
+          actionLink: box('[data-hero-mobile-action] a'), calculator: box('[data-hero-calculator]'),
+          quoteHref: document.querySelector('[data-hero-mobile-action] a').getAttribute('href'),
+          titleFirst: document.querySelector('[data-hero-copy]').firstElementChild.tagName === 'H1',
+          overflow: [...document.querySelectorAll('[data-home-hero] h1, [data-home-hero] [data-savings-card]')]
+            .filter(e => e.scrollWidth > e.clientWidth + 1).map(e => e.innerText),
+          text: document.querySelector('[data-hero-copy]').innerText };
+      });
+      assert.equal(facts.width, width, `${width}: no horizontal overflow`);
+      assert.deepEqual(facts.overflow, [], `${width}: title and savings cards fit`);
+      assert.equal(facts.header.height, 80, 'Shared site navigation keeps its stable height');
+      assert.ok(facts.titleFirst, 'A contextless badge must not precede the value proposition');
+      assert.equal(facts.title.text.replace(/\s+/g, ' ').trim(), "Don't overpay for closing costs. Save hundreds.", 'Preserve the approved headline exactly');
+      assert.match(facts.description.text, /title and settlement at a lower cost/);
+      assert.ok(facts.reassurance.top >= facts.description.bottom, 'Keep your team only follows the service/value explanation');
+      assert.doesNotMatch(facts.text, /helps you save|Same realtor|A-rated/);
+      if (width < 1024) {
+        assert.ok(facts.actionLink.height >= 44 && facts.actionLink.width > 0, 'Comfortable touch target');
+        assert.equal(facts.quoteHref, '/quote');
+        assert.ok(facts.action.top > facts.reassurance.bottom, 'Savings action follows context and reassurance');
+        assert.ok(facts.action.bottom <= height, `${width}: estimate action and no-obligation caption fit the first screen: ${facts.action.bottom}`);
+        assert.ok(facts.calculator.top >= facts.action.bottom, 'Detailed calculator follows the quick action');
+        assert.ok(facts.title.top - facts.header.bottom <= 64, 'Opening is not buried below empty space');
+        await page.focus('[data-hero-mobile-action] a');
+        assert.equal(await page.evaluate(() => document.activeElement.textContent.trim()), 'See my savings →');
+      } else {
+        assert.equal(facts.action.height, 0, 'No extra CTA competes with the desktop calculator');
+        assert.ok(Math.abs(facts.calculator.top - facts.hero.top) <= 65, 'Desktop retains the two-column hero');
+      }
+      if (process.env.BC_HOMEPAGE_SCREENSHOTS && [390, 1280].includes(width)) {
+        await page.mouse.click(width - 1, height - 1);
+        await page.evaluate(() => window.scrollTo(0, 0));
+        await page.screenshot({ path: path.join(process.env.BC_HOMEPAGE_SCREENSHOTS, `opening-${width}.png`) });
+      }
+    }
+    assert.equal(h.sent.length, 0);
+  } finally { await browser.close(); }
+});
 
 test('Full Transparency has top-aligned columns, a compact complete sample and accessible notes below both columns', async () => {
   const browser = await openEmailBrowser();
