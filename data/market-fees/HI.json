@@ -1,0 +1,308 @@
+[
+  {
+    "provider": "Title Guaranty of Hawaii, LLC / Title Guaranty Escrow Services, Inc.",
+    "sourceUrl": "https://www.tghawaii.com/wp-content/uploads/Escrow-Fees-Online-2025-8.5x11-current.pdf",
+    "asOf": "Effective January 2026 (Rev 12-30-25)",
+    "settlementFee": {
+      "note": "Genuine escrow/settlement fee schedule (not premium-only) -- tiered by sales price for a residential purchase and sale transaction.",
+      "escrowFeeBySalesPrice": "$100,000=$1,166; $200,000=$1,486; $300,000=$1,832; $400,000=$2,053; $500,000=$2,250; $600,000=$2,496; $700,000=$2,671; $800,000=$2,793; $900,000=$2,912; $1,000,000=$3,031; $1,500,000=$3,790; $2,000,000=$4,413; $2,500,000=$5,764; $3,000,000=$6,790 (call for quote above $3M)",
+      "escrowFee50PercentEachParty": "Half of the above full-tier fee, e.g. $583 at $100,000; $1,125 at $500,000; $1,515.50 at $1,000,000"
+    },
+    "itemizedFees": {
+      "wire": {
+        "note": "Deposits by wire recommended 48hrs before disbursement; no separate fee stated"
+      },
+      "courier": {
+        "continentalUSA": "$50.00",
+        "international": "$100.00 (one way, international express mail)"
+      },
+      "other": [
+        {
+          "name": "USA lender refinance escrow fee (up to $1,000,000 new loan)",
+          "amount": "$550.00"
+        },
+        {
+          "name": "International lender refinance escrow fee (up to $1,000,000)",
+          "amount": "$900.00"
+        },
+        {
+          "name": "Refinance with title transfer for cash consideration, additional borrower charge",
+          "amount": "$450.00"
+        },
+        {
+          "name": "FIRPTA/HARPTA payment form submission",
+          "amount": "$50.00 per reporting"
+        },
+        {
+          "name": "Non-real-estate-brokered transaction, additional fee",
+          "amount": "$250.00 to each applicable party"
+        },
+        {
+          "name": "Tax-deferred Exchange minimum fee",
+          "amount": "$300.00 (plus scheduled rate)"
+        },
+        {
+          "name": "Holding Escrow setup",
+          "amount": "$1,500.00 minimum setup, $125.00/year minimum, $125.00 per disbursement"
+        },
+        {
+          "name": "Accommodation signing fee (non-escrowed transaction)",
+          "amount": "$150.00"
+        },
+        {
+          "name": "Minimum escrow deposit to open",
+          "amount": "$500.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Explicitly a genuine escrow/settlement fee schedule, not a title-premium-only manual -- rare among this survey's sources. Fees described as 'minimum fees for basic escrow services ordinarily rendered in a residential purchase and sale transaction'; commercial/developer transactions quoted separately. Hawaii general excise tax (GET) added to all escrow charges. Title Guaranty is described as 'Hawaii's largest escrow company' with 17 statewide branch locations, established 1955 (escrow arm) / 1896 (title arm) -- likely the dominant provider in this market.",
+    "transactionContext": "Residential purchase and sale escrow fees, statewide (no separate island/metro tiers published, though the company has branches on Oahu, Maui, Big Island, and Kauai), plus refinance, FIRPTA/HARPTA, tax-deferred exchange, and holding-escrow special fees."
+  },
+  {
+    "provider": "Title Guaranty of Hawaii, LLC (title insurance side)",
+    "sourceUrl": "https://www.tghawaii.com/wp-content/uploads/Title-Schedule-for-Website-Rev-2022.pdf",
+    "asOf": "Effective February 2022",
+    "settlementFee": {
+      "note": "Title insurance premium schedule (companion document to the escrow fee schedule above, same provider).",
+      "ownersLoanPolicyPremiumBySalesPrice": "$100,000=$585; $500,000=$2,168; $1,000,000=$3,745; $1,500,000=$5,106; $2,000,000=$5,773; $2,500,000=$6,396; $3,000,000=$6,953 (call for quote above $3M)",
+      "sellersPortion60Percent": "e.g. $351 at $100,000; $1,300.80 at $500,000; $2,247 at $1,000,000",
+      "buyersPortion40Percent": "e.g. $234 at $100,000; $867.20 at $500,000; $1,498 at $1,000,000",
+      "altaHomeownersOrExpandedLoanPolicy": "110% of Hawaii Standard Owner's Policy premium",
+      "altaExtendedOwnersPolicy": "150% of Hawaii Standard Owner's Policy premium"
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "Junior Loan Policy",
+          "amount": "$150 (up to $250,000 coverage) / $250 (up to $500,000)"
+        },
+        {
+          "name": "Litigation Guarantee",
+          "amount": "$500 (coverage $3,500) / $550 (coverage $15,000); endorsement $125"
+        },
+        {
+          "name": "Certificate of Title",
+          "amount": "$500 minimum, coverage up to $250,000"
+        },
+        {
+          "name": "Status Report",
+          "amount": "$500 minimum"
+        },
+        {
+          "name": "Lien Report",
+          "amount": "$50 minimum"
+        },
+        {
+          "name": "Property Search Report",
+          "amount": "$150 minimum"
+        },
+        {
+          "name": "Release processing fee (seller, mortgage monitoring)",
+          "amount": "$55.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Buyer pays 40% / seller pays 60% of the title premium by Hawaii custom -- an unusually explicit split published directly on the rate card rather than left to negotiation, found nowhere else in this survey to date. Title insurance premium credits of up to 50% (prior policy within 12 months) or 25% (within 8 years) are available; a 30% Military Credit applies to active-duty/retired service members' primary residence transactions.",
+    "transactionContext": "Owner's/ALTA Loan Policy premium schedule with explicit 60/40 seller/buyer split, statewide, plus Junior Loan, Litigation Guarantee, Certificate of Title, and various report products. Agent for Chicago Title, Commonwealth Land Title, Fidelity National Title, and First American Title Insurance Company underwriters."
+  },
+  {
+    "provider": "First American Title Insurance Company (Hawaii branches)",
+    "sourceUrl": "https://www.oahure.com/pdf/FirstAmericanRateSheet.pdf",
+    "asOf": "Effective 2013-10-14",
+    "settlementFee": {
+      "note": "Combined title premium AND escrow fee schedule, tiered by insurance amount ($100,000 to $5,000,000 in the full table).",
+      "escrowFeeByInsuranceAmount": "$100,000=$610; $200,000=$935; $300,000=$1,155; $500,000=$1,515; $700,000=$1,855; $1,000,000=$2,485; $2,000,000=$3,525; $3,000,000=$4,575; $5,000,000=$6,655 (call for quote above $5M)",
+      "escrowFee50PercentEachParty": "Half of the above full-tier fee, e.g. $305 at $100,000; $1,243 at $1,000,000",
+      "standardOwnersPolicyByInsuranceAmount": "$100,000=$509; $500,000=$1,916; $1,000,000=$3,308; $2,000,000=$4,935; $3,000,000=$6,458; $5,000,000=$9,555",
+      "eaglePolicy": "10% additional premium over Extended Owner's Policy, paid by purchaser",
+      "refinanceEscrowFee": "$450.00 flat",
+      "reverseMortgageOneRateEscrowFee": "$500.00 flat (includes customary escrow services, mailing up to $25, courier up to $25, two wire fees, tax search, one e-delivery, lien/financing statement search on two borrowers; excludes title premium, endorsements, recording, transfer tax, notary, loan signing)"
+    },
+    "itemizedFees": {
+      "notarySigning": {
+        "accommodationSellerDocs": "$75.00 + G.E.T.",
+        "accommodationLoanSigning": "$150.00 + G.E.T.",
+        "accommodation1stAnd2ndLoanSigning": "$200.00 + G.E.T.",
+        "mobileNotaryRefinanceOnly": "$125.00"
+      },
+      "other": [
+        {
+          "name": "IBA (Interim Binder Agreement) set up",
+          "amount": "$50.00 + G.E.T."
+        },
+        {
+          "name": "Financing Statement and Lien Guarantee",
+          "amount": "$25.00 per name checked, plus G.E.T."
+        },
+        {
+          "name": "Record Property Information Report",
+          "amount": "$50.00 plus G.E.T. per property"
+        },
+        {
+          "name": "Record Property Search Report",
+          "amount": "$200.00 plus G.E.T. (first property), $35.00 each additional"
+        },
+        {
+          "name": "Preliminary Title Report only (no policy)",
+          "amount": "$300.00 minimum plus G.E.T."
+        },
+        {
+          "name": "Simultaneous-issue Extended/Eagle Lender's Policy, $1-2M liability",
+          "amount": "$250.00 / $275.00"
+        }
+      ]
+    },
+    "bundlingNotes": "The only source in this survey found to publish title premium AND escrow fee side-by-side across a full price-tier table with 50+ rows (vs. Title Guaranty's two separate documents for the same information). Same 60%/40% seller/buyer premium split convention as Title Guaranty, but escrow fee is split 50/50. Multiple special discount rates (Investor's, Senior Citizen, U.S. Armed Forces, First-Time Homebuyer, Government Employee, each 25% off Title Fee) are unusually generous and numerous compared to other states surveyed. Document is from 2013 -- the oldest-vintage source in this HI file -- so dollar figures likely understate 2026 pricing, but the escrow-fee-to-premium ratio pattern remains a useful structural reference.",
+    "transactionContext": "Residential resale (purchase) and refinance escrow + title premium schedules for improved 1-4 family residential property, Oahu/Maui/Hilo/Kona branches (statewide via 9 branch locations), no separate metro/island pricing tiers."
+  },
+  {
+    "provider": "Old Republic Title & Escrow of Hawaii, Ltd.",
+    "sourceUrl": "https://www.mauihillsales.com/pdfs/Title%20change%20Information%20-%20Title%20Only.pdf",
+    "asOf": "Revised 2020-02-11",
+    "settlementFee": {
+      "note": "Narrow transaction context: timeshare/vacation-ownership interval RESALE (title-only, no title insurance search of full property), not a standard residential purchase transaction.",
+      "conditionOfTitlePolicy": "$75.00 estimated",
+      "escrowAndIncidentalProcessingFees": "$400.00 estimated"
+    },
+    "itemizedFees": {
+      "docPrep": {
+        "deedDrafting": "$171.87 plus tax (additional fees for multiple intervals)"
+      },
+      "courier": {
+        "mailingAndHandling": "$50.00 plus tax (subject to increase for foreign parties)"
+      },
+      "eRecording": {
+        "recordingFee": "$41.00"
+      },
+      "other": [
+        {
+          "name": "Initial escrow deposit required",
+          "amount": "$400.00"
+        }
+      ]
+    },
+    "bundlingNotes": "This document is a timeshare-interval resale transfer packet (Resort Name, Interval Control Number, Week Number fields), not a standard fee-simple residential purchase/sale -- included as evidence of Old Republic's genuine dollar-denominated Hawaii pricing but flagged as a narrower transaction type than the other 3 HI sources. Old Republic Title & Escrow of Hawaii serves Oahu, Kauai, Maui, and the Big Island per company materials, though this specific document is from the Honolulu (Oahu) office.",
+    "transactionContext": "Timeshare/vacation-ownership interval resale (title-only transfer), Oahu office; not comparable to standard purchase/sale/refinance escrow fees found in the other 3 HI sources."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company — Estimated Rate/Fee Calculator (ortconline.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
+    "calculatorUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
+    "retrievalDate": "2026-07-23",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, residential resale, Sale transaction type, Loan Estimate calculation. Property location: Honolulu, HI (Honolulu County/Oahu, HI's most populous county).",
+    "methodology": "Harvested via direct HTTP GET/POST against the calculator's ASP.NET WebForms postback mechanism (__VIEWSTATE/__EVENTVALIDATION), replicating the sequential form submissions the browser's JS performs (state select -> city select, which auto-populated the EscrowCountyComboList to 'Honolulu' -> Sales Price/Loan Amount/Lien Payoff=0 -> Submit); no browser/JS execution was used or required. The 'Your Name', 'Your Company', and 'This estimate is being prepared for' fields were left blank throughout -- confirmed optional -- no fabricated personal information was entered at any step.",
+    "settlementFee": {
+      "note": "Not a single line item in this tool's output; the closest analog is the 'Settlement Agent Fee' shown in Section C, split buyer/seller (buyer's share shown here). Settlement Agent Fee total (both parties): Title - Settlement Agent Fee (Total: $2,252.36)."
+    },
+    "itemizedFees": {
+      "processing": "$1,126.18 (Settlement Agent Fee, buyer's share; Total both parties: $2,252.36)",
+      "other": [
+        {
+          "name": "Title - Lender's Title Policy (Total: $1,735.00)",
+          "amount": "$1,735.00"
+        },
+        {
+          "name": "Title - Lien Check Fee",
+          "amount": "$52.36"
+        },
+        {
+          "name": "Title - Financing Statement Fee",
+          "amount": "$52.36"
+        },
+        {
+          "name": "Recording Fees (Total: $82.00)",
+          "amount": "$82.00"
+        },
+        {
+          "name": "Title - Owner's Title Policy* (Total: $836.00, buyer's share shown)",
+          "amount": "$380.00"
+        }
+      ]
+    },
+    "sectionTotals": "C: Services You Can Shop For: $2,965.90; E: Taxes and Other Government Fees: $82.00; H: Other: $380.00",
+    "bundlingNotes": "Selecting City=Honolulu auto-selected EscrowCountyComboList=Honolulu (Oahu is coextensive with Honolulu County, no zip disambiguation needed, unlike MO's Kansas City). Owner's Title Policy* (Total: $836.00) calculated from full Homeowner's Policy rate of $2,321... consistent with the tool's standard cross-state disclosure language (same wording pattern as OH/AZ/NV/NM/UT/MO harvests) that this total reflects the full Homeowner's Policy rate plus a concurrent lender's-issue charge, less the full lender's policy premium. This is the first HI-specific Old Republic figure in this survey; HI.json's existing sources (Title Guaranty, First American, Old Republic Title & Escrow's own manual) are all published-schedule (basis 'published'), so this calculator harvest is a genuine independent cross-check, not a duplicate.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k purchase scenario; property location Honolulu, HI (Honolulu County/Oahu, HI's most populous county)."
+  },
+  {
+    "provider": "Commonwealth Land Title Insurance Company (national FNF-family underwriter; ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine -- this tool's pre-selected default underwriter brand varies by request; prior sessions (CT, AR) confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=HI",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=HI (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-06",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Honolulu County (HI's most-populous county per the standard scenario), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions. No Loan Policy line appeared despite the $400,000 loan amount entered.",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback) against the classic __doPostBack/__VIEWSTATE WebForms flow, replaying the recipe already on file in this project's CALCULATORS.md (FNF family section) and previously used for CT/CO/AR: (1) GET ?ID=FNF&state=HI to capture hidden __VIEWSTATE/__EVENTVALIDATION fields and the county dropdown; (2) POST the county selection (own __EVENTTARGET); (3) POST the tool's own pre-selected default underwriter plus btnGeneralNext=Next to advance to the Amounts step; (4) POST TranType$ddl=PropertyPurchase (own __EVENTTARGET) to reveal the Purchase Amount field; (5) POST AmountPurchase$txt=500000 and AmountLoan1$txt=400000 together (own __EVENTTARGET on the loan field) to reveal any further conditional questions; (6) auto-answered any newly-revealed required Yes/No radio question with its first listed option, then POST btnFinish=Finish for the final Rate Summary. No personal data fields exist anywhere in this flow (only county/underwriter/transaction-type/dollar-amount fields).",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,384.80 (ALTA Standard/Homeowner's Coverage Owner's Policy, $500,000 liability amount; before-surcharge premium $2,168.00, surcharge $216.80 (Additional Coverage Surcharge))",
+      "loanPolicyPremium": null,
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence."
+    },
+    "sectionTotals": "Total Charges for the Policy: $2,384.80. Grand Total: $2,384.80.",
+    "bundlingNotes": "Part of this project's ongoing 2026-08-06 calculator-harvest pass applying the FNF national rate calculator (already confirmed in-scope for premium-only evidence as of the 2026-08-05 CT session) across every remaining below-threshold scarce state where the tool's own county dropdown confirms coverage.",
+    "transactionContext": "Owner's Policy premium for a $500,000 residential purchase, Honolulu County, HI. No Loan Policy line appeared despite the $400,000 loan amount entered."
+  },
+  {
+    "provider": "Premier Title & Escrow (independent, locally-owned Hawaii agency; Honolulu/Kapolei/Kaneohe, Oahu -- HI's most populous island/county) -- via app.titlepremiumcalculator.com, a white-labeled NetSheetCalc/TitleTap-platform domain distinct from the netsheetcalc.com brand used elsewhere in this survey",
+    "basis": "calculator",
+    "sourceUrl": "https://premiertitlehawaii.com/",
+    "calculatorUrl": "https://app.titlepremiumcalculator.com/company/index.php?appid=198",
+    "endpointOrParams": "Config: GET app.titlepremiumcalculator.com/company/non-auth-ajax.php?action=getAppData&app_id=198 (no auth) returns the fee-form schema, including a property_address_section 'state' field with initial_val 'HI' -- confirming this is a genuine Hawaii tenant, not a misattribution (further corroborated by the 'Escrow Fee + GET' field label, GET being Hawaii's General Excise Tax, a state-specific term that would not appear in another state's config). Rate resolution: unlike the config/quote-page hosts (which live on the white-labeled app.titlepremiumcalculator.com domain), the formula-driven rate lookups resolve on the platform's canonical root host, GET app.netsheetcalc.com/api/index.php/rate/<amount>/<rate-key> (no auth) -- confirmed via rate/500000/Owner_St40 -> 858 (Owner's Title Insurance Premium, standard/non-extended coverage) and rate/500000/Escrow50 -> 1071.73 (Escrow Fee + GET, Hawaii's General Excise Tax bundled into the closing fee).",
+    "retrievalDate": "2026-08-07",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, 'Finance' (purchase with loan) estimate type, standard (non-extended-coverage) Owner's Title Insurance Policy (the tool's own default -- extended ALTA coverage is an opt-in radio, unchecked by default), Oahu/Honolulu -- HI's most populous county/island.",
+    "methodology": "Found via Premier Title & Escrow's own site (a lead surfaced by a direct web search for independent Hawaii title agencies, after First Hawaii Title's own calculator confirmed jsOnly/TitleCapture-platform). Harvested via plain unauthenticated HTTP GET against the same NetSheetCalc/TitleTap 'getAppData' config + 'api/index.php/rate' rate-resolution recipe already on file in this project (see AZ/IN/KY/AR entries in CALCULATORS.md), applied here to a newly-discovered white-labeled front-end domain for the same underlying platform. No personal data fields exist in the 'finance' estimate type's schema (buyer_first_name/buyer_last_name/address fields are present but optional labeling fields, not gates -- left blank per the standing rule). Flat (non-formula) constants read directly from the config JSON: Search Fees $100.00, Simultaneous Issue Fee (Lender's Title Insurance, compare formula: loan_amount <= $1,000,000 -> $250, else $500) $250.00 at the $400,000 loan amount, Lien Search $26.18 (labeled '$26.18/name' in the tool, one name assumed), Deed Recording Fee $41.00, Mortgage Recording Fee $41.00.",
+    "settlementFee": {
+      "note": "This tool has no single flat 'settlement fee' line; the closest analog is the formula-driven 'Escrow Fee + GET' (Hawaii General Excise Tax bundled into the escrow/closing charge), $1,071.73 at $500,000 purchase price."
+    },
+    "itemizedFees": {
+      "processing": "$1,071.73 (Escrow Fee + GET, formula-driven via rate/500000/Escrow50)",
+      "searchExam": "$100.00 (Search Fees, flat)",
+      "other": [
+        {
+          "name": "Owner's Title Insurance Premium (standard/non-extended coverage, formula-driven via rate/500000/Owner_St40)",
+          "amount": "$858.00"
+        },
+        {
+          "name": "Simultaneous Issue Fee (Lender's Title Insurance, loan amount $400,000 does not exceed $1,000,000 threshold)",
+          "amount": "$250.00"
+        },
+        {
+          "name": "Lien Search ($26.18/name, one name assumed)",
+          "amount": "$26.18"
+        },
+        {
+          "name": "Deed Recording Fee (flat)",
+          "amount": "$41.00"
+        },
+        {
+          "name": "Mortgage Recording Fee (flat)",
+          "amount": "$41.00"
+        }
+      ]
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "This is HI's 3rd calculator-basis provider -- crosses HI to calculator-quoted (3 providers) status, joining Old Republic (ortconline.com) and the FNF national rate calculator already on file. Notably the richest itemized breakdown of the three (7 distinct line items vs. Old Republic's 5 and FNF's premium-only single line), and the only one sourced from a genuinely independent (non-underwriter-operated) Hawaii agency. If extended ALTA coverage were elected instead (the tool's own opt-in toggle), the Owner's Title Insurance Premium formula multiplies by 1.25x ($1,072.50) -- not used here since standard coverage is the tool's own default.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k purchase scenario, Oahu/Honolulu, HI's most populous county/island."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company -- Stewart Rate Calculator; no local Stewart-affiliated settlement office is returned by the tool's own /api/SRC/providers lookup for Honolulu County -- premium and recording/transfer-tax figures are the tool's own state-level defaults with no county-specific settlement office attached",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true (LoanEstimate/QuoteType=3 flow) and https://www.stewartratecalculator.com/Quote/Netsheet?urlParams=&quotetype=2&branded=true (Netsheet/QuoteType=2 flow); both POST to the shared /api/SRC/quote endpoint",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Honolulu County (Honolulu), residential resale, Sale/Purchase with Mortgage transaction type, BASIC coverage on both Owner's and Lender's policies. Richness-pass harvest applying an already-solved, previously state-limited recipe to a state not yet in Stewart's harvested-state list, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "methodology": "Harvested via Stewart's discoverable `/api/SRC/*` JSON REST API (stewartratecalculator.com), driven entirely by plain HTTP GET/POST (Python requests.Session(), cookie jar) with no browser/JS execution and no personal-data fields, replaying the full recipe documented in this project's CALCULATORS.md (2026-08-14 'SOLVED' entry): GET the LoanEstimate/Netsheet page to scrape a fresh antiforgery cookie + __RequestVerificationToken; GET /api/SRC/propertysearch to resolve the county FIPS code and a default zip; GET /api/SRC/providers to find the county's real settlement office(s) (used to set ProviderID on the QuoteType=3 flow so the itemized settlement-fee list is populated -- an empty ProviderID silently returns a null itemized list); GET /api/SRC/statesettings and /api/SRC/ernstlookup for state-level defaults; build the QuoteRequestRoot JSON by hand (Owner's Policy $500,000 / Lender's Policy $400,000, BASIC coverage, standard Sale/Purchase with Mortgage transaction); POST /api/SRC/quote twice -- QuoteType=2 (Netsheet, pageBuyerSeller=seller) for Recording/CFPB2015 transfer-tax figures, and QuoteType=3 (LoanEstimate, pageBuyerSeller=buyer, IsCalculatePremium=True, IsCalculateTitleServiceFee=True) for the itemized Pricing.TitleServiceFee.ItemizedTitleServiceFeeList settlement-fee line items. One new gotcha found and fixed this session: stewartratecalculator.com's bare apex domain 301-redirects every POST to the www subdomain, and that redirect's response body hangs indefinitely on this sandbox's proxied connection (a 30s+ read timeout with 0 bytes received) -- fixed by targeting https://www.stewartratecalculator.com directly, skipping the apex redirect entirely; this is an environment/proxy artifact, not a sign the endpoint is blocked. Also confirmed the documented /api/SRC/providers gotcha firsthand: for a single-provider county the response's `Provider` field is a bare object, not a one-element list -- must be normalized before indexing or ProviderID silently stays empty and every itemized-fee list comes back null (looks exactly like a genuine empty result).",
+    "settlementFee": {
+      "note": "No itemized settlement/closing-fee line items returned for this settlement office (QuoteType=3's ItemizedTitleServiceFeeList was null/empty) -- a genuine result the recipe has documented before for markets where Stewart's local office has nothing configured through this tool (e.g. attorney-closing states), not a fetch failure."
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,155.00",
+      "loanPolicyPremium": "$1,835.00",
+      "other": [],
+      "note": "Premium-only result for this settlement office/state (see settlementFee note)."
+    },
+    "sectionTotals": "Owner's Policy Premium $2,155.00; Lender's Policy Premium $1,835.00",
+    "bundlingNotes": "Combined deed/transfer/mortgage tax on QuoteType=2 (Netsheet) flow: $750.00 total -- DeedTax $750.00.",
+    "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Honolulu County, Hawaii."
+  }
+]

@@ -1,0 +1,381 @@
+[
+  {
+    "provider": "First American Title Insurance Company — Schedule of Escrow Fees, Kansas",
+    "sourceUrl": "https://insurance.ks.gov/documents/company/prop-cas/titlerates/FirstAmericanTitleInsCo.pdf",
+    "asOf": "Effective July 17, 2024",
+    "settlementFee": {
+      "saleWithCash": { "Johnson": 500.00, "Finney": 300.00, "Barton": 300.00, "Pratt": 400.00 },
+      "saleWithMortgage": { "Johnson": 625.00, "Finney": 360.00, "Barton": 450.00, "Pratt": 500.00 },
+      "reoSale": { "Johnson": 775.00, "Finney": 410.00, "Barton": 500.00, "Pratt": 550.00 },
+      "shortSale": { "Johnson": 925.00, "Finney": 460.00, "Barton": 550.00, "Pratt": 600.00 },
+      "refinance": { "Johnson": 375.00, "Finney": 300.00, "Barton": 400.00, "Pratt": 400.00 },
+      "newHomeSale": 375.00,
+      "vacantLotSale": 200.00
+    },
+    "itemizedFees": {
+      "docPrep": "$100 (Area A) / $50 (Areas B,C,D) per document",
+      "wire": "$20 wire processing",
+      "courier": "$20 courier/delivery processing",
+      "eRecording": "$2.25 per document",
+      "other": [
+        { "name": "Interest-bearing account", "amount": "$100" },
+        { "name": "FSBO fee", "amount": "$400 (A,D) / $200 (B,C)" },
+        { "name": "After-hours closing", "amount": "$200" },
+        { "name": "Work fee", "amount": "$100/hour" }
+      ]
+    },
+    "bundlingNotes": "Verbatim: 'Basic Escrow Services' includes 'document preparation for transfer deed; electronic document downloads and printing; receipt of incoming funds and issuance of disbursements...whether by check or wire transfer, including associated wire transfer Fees; overnight delivery...courier and messenger services; notary services and signing services where the signing occurs in the office.' Excludes: 'document preparation, except as expressly indicated above; notary services...except as expressly indicated above; check(s) returned due to insufficient funds...recording Fees, transfer taxes, sales taxes, or any other governmental charges.'",
+    "transactionContext": "Purchase (cash, mortgage, REO, short sale) and Refinance, by county rate area: Johnson (KC metro), Finney, Barton, Pratt."
+  },
+  {
+    "provider": "First American Title Insurance Company — Kansas Schedule of Title Insurance Rates (premium, filed-rate)",
+    "sourceUrl": "https://insurance.ks.gov/documents/company/prop-cas/titlerates/TitleClearingandEscrow.pdf",
+    "asOf": "Effective December 9, 2023",
+    "settlementFee": {
+      "note": "Title insurance PREMIUM schedule (statewide, 3 rating areas); this entry is premium data, paired with the same company's separate escrow-fee schedule above.",
+      "areaA_ownersFormula": "Doniphan, Douglas (Lawrence), Johnson, Leavenworth, Miami, Wyandotte: up to $50,000 = $435; +$16/$10,000 to $150,000; +$15/$10,000 to $300,000; +$12/$10,000 to $1,000,000; +$10/$10,000 above",
+      "areaB_ownersFormula": "18 rural western counties incl. Finney, Ford, Seward: up to $30,000 = $270; +$32/$10,000 to $100,000; +$24/$10,000 to $150,000; +$23/$10,000 to $1,000,000",
+      "areaC_ownersFormula": "39 counties incl. Sedgwick (Wichita), Shawnee (Topeka), Barton, Pratt, Reno: up to $30,000 = $320; +$34/$10,000 to $100,000; +$28/$10,000 to $150,000; +$22/$10,000 to $250,000; +$21/$10,000 to $1,000,000",
+      "eagleHomeownersSurcharge": "+5% of Basic Rate",
+      "outOfCountySearchSurcharge": "$100",
+      "multipleTractFee": "$150"
+    },
+    "itemizedFees": { "other": [] },
+    "bundlingNotes": "Premium-only; identical text also filed under Equity First Title's name.",
+    "transactionContext": "Owner's title insurance premium, statewide, 3 county rating areas (A/B/C)."
+  },
+  {
+    "provider": "Superior Title & Escrow of Kansas City, LLC (independent, KC metro / Johnson-Wyandotte)",
+    "sourceUrl": "https://insurance.ks.gov/documents/company/prop-cas/titlerates/SuperiorTitleEscrowofKC.PDF",
+    "asOf": "6/6/2022",
+    "settlementFee": {
+      "residentialOwnersPremium_sample": "$70,000 or less = $350; $100,001-$110,000 = $418; $300,001-$325,000 = $684; over $1,000,000 add $1.00/$1,000",
+      "nonResidentialCommercialEscrowClosingFee": "$350-$2,500 (policy $1-$10,000,000)"
+    },
+    "itemizedFees": {
+      "docPrep": "$100 (deeds/affidavits)",
+      "other": [
+        { "name": "Escrow deposit agreements (residential)", "amount": "$200" },
+        { "name": "FSBO closing (cash sale, no realtor/attorney)", "amount": "$350" },
+        { "name": "Loan closing fee", "amount": "$300" },
+        { "name": "Witness/courtesy closing", "amount": "$200" }
+      ]
+    },
+    "bundlingNotes": "Combines premium schedule with escrow/closing fee line items in one filing.",
+    "transactionContext": "Owner's Policy premium (residential) plus escrow closing fees; commercial closing fee tiered by policy amount. KC metro/Johnson-Wyandotte."
+  },
+  {
+    "provider": "Ideal Title LLC (agent for Westcor Land Title Insurance Co.), statewide KS",
+    "sourceUrl": "https://insurance.ks.gov/documents/company/prop-cas/titlerates/IdealTitleLLCrates.pdf",
+    "asOf": "Escrow-fee page undated; bundled with Westcor rate manual effective October 31, 2022",
+    "settlementFee": {
+      "refinance": { "settlementFee": 150.00, "titleSearch": 100.00, "notary": 125.00, "titleExam": 200.00 },
+      "purchase": { "settlementFee": 450.00, "titleExam": 200.00, "notary": 125.00, "docPrep": 75.00 }
+    },
+    "itemizedFees": {
+      "docPrep": "$75.00 (subordination/deeds/releases/POA)",
+      "searchExam": "$100.00-$200.00",
+      "notarySigning": "$125.00",
+      "other": []
+    },
+    "bundlingNotes": "Escrow fee schedule itemizes settlement fee, title search/exam, notary, and doc prep separately by transaction type.",
+    "transactionContext": "Purchase and Refinance, statewide KS."
+  },
+  {
+    "provider": "Priority Title & Escrow, LLC, statewide KS",
+    "sourceUrl": "https://insurance.ks.gov/documents/company/prop-cas/titlerates/PriorityTitleandEscrow.pdf",
+    "asOf": "Effective January 1, 2024",
+    "settlementFee": {
+      "basicRefinance": "$595.00 (bundled: settlement fee, signing fee, delivery fee, up to four wires, and recording service fees)",
+      "helocOrSecondMortgage": 350.00,
+      "streamlinedRefi": 550.00,
+      "purchaseTransaction": "$795.00 (same bundling language)",
+      "reo": 795.00,
+      "shortSale": 895.00
+    },
+    "itemizedFees": {
+      "docPrep": "$100.00 per document",
+      "other": [
+        { "name": "Simultaneous Signing", "amount": "$125.00" },
+        { "name": "Dual Signing", "amount": "$150.00" },
+        { "name": "Manufactured Home Processing", "amount": "$200.00 / Conversion $250.00" },
+        { "name": "Notary Scheduling/Signing", "amount": "$150.00" },
+        { "name": "Disbursement Services", "amount": "$150.00" },
+        { "name": "Recording Services", "amount": "$50.00" }
+      ]
+    },
+    "bundlingNotes": "Verbatim: bundled charges include 'settlement fee, signing fee, delivery fee, up to four (4) wires and the recording service fees.'",
+    "transactionContext": "Purchase, Refinance, REO, Short Sale, HELOC/2nd mortgage; statewide KS."
+  },
+  {
+    "provider": "ServiceLink, LLC (Fidelity National Financial subsidiary, national-brand-affiliated), statewide KS",
+    "sourceUrl": "https://insurance.ks.gov/documents/company/prop-cas/titlerates/ServiceLinkLLC.pdf",
+    "asOf": "Cover page effective February 4, 2022 (body sections dated January 1, 2015, per Fidelity National amended filing letter to KDOI dated December 17, 2014)",
+    "settlementFee": {
+      "purchaseCentralizedPlatform": "$550.00, up to $5,000,000 loan; seller's signing fee $100.00",
+      "reo": "$0-$100,000 = $600.00; over $100,000 = $600.00 + $1.00/thousand",
+      "shortSaleEscrowFee": "+$250.00",
+      "escrowHoldFee": "$200.00 minimum",
+      "centralizedBundledRefinanceTiers": "$350 / $450 / $550 depending on service level (all up to $5M loan)",
+      "helocFlat": "$295.00 (HUD-1+signing) or $345.00 (+title curative)"
+    },
+    "itemizedFees": {
+      "docPrep": "$60.00-$100.00 per document",
+      "processing": "$20.00 (doc processing/delivery)",
+      "recording": "$15.50",
+      "other": [
+        { "name": "Manufactured Home Affixation", "amount": "$125.00/item" },
+        { "name": "Title Cancellation", "amount": "$150.00/item" },
+        { "name": "Military discount", "amount": "$100 off refi or 20% off purchase" }
+      ]
+    },
+    "bundlingNotes": "Centralized/national settlement-services filing with tiered service-level pricing.",
+    "transactionContext": "Purchase, Refinance, REO, Short Sale, HELOC; statewide KS, centralized platform."
+  },
+  {
+    "provider": "Title Clearing & Escrow, LLC (First American underwriting), statewide KS",
+    "sourceUrl": "https://insurance.ks.gov/documents/company/prop-cas/titlerates/TitleClearingandEscrow.pdf",
+    "asOf": "Escrow page undated; bundled premium schedule effective December 9, 2023",
+    "settlementFee": {
+      "closingFeeRefinance": "$515.00 (includes wire fees, recording service, and courier fees)",
+      "closingFeeHomeEquity": 350.00,
+      "closingFeePurchase": "$650.00 (includes settlement fee, curative, disbursement, and recording service fees, split buyer/seller)",
+      "closingFeeReo": 700.00
+    },
+    "itemizedFees": {
+      "notarySigning": "$185.00 per signing",
+      "searchExam": "Title search: purchase $250.00 / refinance $125.00",
+      "courier": "$80.00",
+      "other": [
+        { "name": "Commitment Fee", "amount": "$210.00" },
+        { "name": "Tax Certificate", "amount": "$90.00" }
+      ]
+    },
+    "bundlingNotes": "Verbatim bundling for Refinance closing fee: 'includes wire fees, recording service, and courier fees.' Purchase closing fee: 'includes settlement fee, curative, disbursement, and recording service fees.'",
+    "transactionContext": "Purchase, Refinance, Home Equity, REO; statewide KS."
+  },
+  {
+    "provider": "Closeline (First American underwriting), statewide KS",
+    "sourceUrl": "https://insurance.ks.gov/documents/company/prop-cas/titlerates/CloselineRatefiling.pdf",
+    "asOf": "Effective June 2023",
+    "settlementFee": {
+      "refinance": { "settlementFee": 395.00, "titleSearch": 150.00, "titleExam": 250.00, "total": 795.00 },
+      "purchase": { "settlementFeeBuyer": 695.00, "settlementFeeSeller": 350.00, "titleSearch": 275.00, "titleExam": 175.00, "courierWireBuyer": 85.00, "courierWireSeller": 50.00, "deedPrep": 175.00, "payoffProcessing": 150.00, "recording": 25.00, "totalBuyer": 1255.00, "totalSeller": 725.00 }
+    },
+    "itemizedFees": {
+      "docPrep": "$175.00 (deed prep)",
+      "recording": "$25.00",
+      "other": [
+        { "name": "Payoff Processing", "amount": "$150.00" }
+      ]
+    },
+    "bundlingNotes": "Full itemized breakdown with buyer/seller totals explicitly computed on the filing.",
+    "transactionContext": "Purchase and Refinance, buyer/seller split; statewide KS."
+  },
+  {
+    "provider": "Realeo Title (agent for Westcor Land Title Insurance Co.), statewide KS",
+    "sourceUrl": "https://insurance.ks.gov/documents/company/prop-cas/titlerates/RealeoTitleRates.pdf",
+    "asOf": "Escrow page undated; Westcor rate manual effective October 31, 2022",
+    "settlementFee": {
+      "refinanceSettlementFee": "$650.00 (bundled: settlement refinance fee, notary fee, delivery fee, wire fee, and any recording tracking/service fee)",
+      "saleSettlementFee": "$1,300.00 (split buyer/seller)",
+      "reoSale": 1300.00,
+      "reverseMortgage": 895.00
+    },
+    "itemizedFees": {
+      "notarySigning": "$150.00 signing fee; $75.00 deed/affidavit-only signing",
+      "other": []
+    },
+    "bundlingNotes": "Verbatim: bundled refinance fee includes 'settlement refinance fee, notary fee, delivery fee, wire fee, and any recording tracking/service fee.'",
+    "transactionContext": "Purchase, Refinance, REO, Reverse Mortgage; statewide KS."
+  },
+  {
+    "provider": "Elite Title Company LLC, all Kansas counties",
+    "sourceUrl": "https://insurance.ks.gov/documents/company/prop-cas/titlerates/EliteTitleCompanyLLCRates.pdf",
+    "asOf": "Effective August 8, 2023",
+    "settlementFee": {
+      "residentialClosingFees": {
+        "refinance": 350.00, "purchaseBuyer": 300.00, "purchaseSeller": 300.00, "simultaneous2nd": 150.00,
+        "mobileClosingsSurcharge": 200.00, "witnessOnly": 150.00, "escrowOnly": 200.00, "saturdaySurcharge": 250.00, "eveningSurcharge": 100.00
+      }
+    },
+    "itemizedFees": {
+      "cpl": "$25.00 each",
+      "wire": "$25.00",
+      "courier": "$25.00 overnight/express; $40.00 delivery/handling",
+      "eRecording": "$5.00 each",
+      "other": [
+        { "name": "Escrow Holds", "amount": "$250.00" },
+        { "name": "Rush fee", "amount": "$100.00" },
+        { "name": "Informational Report", "amount": "$250.00" },
+        { "name": "Foreclosure/Deed in Lieu Report", "amount": "$350.00" }
+      ]
+    },
+    "bundlingNotes": "Footnote: closing fees 'includes preparation of all loan documents...settlement statements, disbursement of funds.'",
+    "transactionContext": "Purchase, Refinance, simultaneous 2nd mortgage; all Kansas counties."
+  },
+  {
+    "provider": "Westcor Land Title Insurance Company (via 'Total Title' filing), statewide KS, premium only",
+    "sourceUrl": "https://insurance.ks.gov/documents/company/prop-cas/titlerates/TotalTitleRates.pdf",
+    "asOf": "Effective July 2, 2021",
+    "settlementFee": {
+      "note": "Title insurance PREMIUM schedule only.",
+      "loanPolicyPerThousand": "up to $50k = $2.50; $50k-$100k = $2.00; $100k-$500k = $1.75",
+      "ownersLeaseholdPerThousand": "up to $50k = $3.50; $50k-$100k = $3.00; $100k-$5M = $2.00",
+      "reissueRate": "60% of published original rate"
+    },
+    "itemizedFees": { "other": [] },
+    "bundlingNotes": "Premium-only; the same Westcor premium table recurs verbatim across multiple agent filings (Ideal Title, Realeo, Closeline, Title Clearing & Escrow).",
+    "transactionContext": "Loan and Owner's/leasehold title insurance premium, statewide KS, by liability amount."
+  },
+  {
+    "provider": "Royal Abstract National LLC, statewide KS, commercial-only underwriter",
+    "sourceUrl": "https://insurance.ks.gov/documents/company/prop-cas/titlerates/RoyalAbstract.pdf",
+    "asOf": "Cover December 5, 2024; closing-fee section effective October 12, 2021",
+    "settlementFee": {
+      "commercialOwnersPolicy": "up to $1,875,000 = $2,500.00; above = $0.80/$1,000",
+      "commercialLoanPolicy": "up to $1,875,000 = $3,500.00; above = $1.10/$1,000",
+      "closingFeesPurchaseSale": "$1,750.00 seller + $1,750.00 buyer",
+      "closingFeesRefinance": "$2,500.00 (borrower)"
+    },
+    "itemizedFees": { "other": [] },
+    "bundlingNotes": "Verbatim: 'The Company does not and will not insure purchase transactions for Residential Property in the State of Kansas.' Commercial-only underwriter, included for completeness but excluded from residential service-stack comparisons.",
+    "transactionContext": "Commercial purchase/sale and refinance only, statewide KS."
+  },
+  {
+    "provider": "Old Republic National Title Insurance Company (national-brand underwriter), statewide KS, premium only",
+    "sourceUrl": "https://insurance.ks.gov/documents/company/prop-cas/titlerates/OldRepublicNationalTitleInsuranceCompanyRateManual.pdf",
+    "asOf": "Effective 2024 (exact day illegible in source PDF text)",
+    "settlementFee": {
+      "note": "Title insurance PREMIUM schedule only. Old Republic's own consumer site offers only an interactive rate calculator, not a static schedule -- this KDOI filing is the only verifiable static source.",
+      "originalOwnersLeaseholdPerThousand": "up to $50,000 = $3.50; $50k-$100k = $3.00; $100k-$5M = $2.00",
+      "loanPolicyOriginalPerThousand": "$2.50 up to $50k, tapering to $1.50 at $50k+"
+    },
+    "itemizedFees": { "other": [] },
+    "bundlingNotes": "Premium-only.",
+    "transactionContext": "Owner's/leasehold and Loan title insurance premium, statewide KS, by liability amount."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company (national-brand underwriter), statewide KS, premium only",
+    "sourceUrl": "https://insurance.ks.gov/documents/company/prop-cas/titlerates/StewartTitleGuaranty.pdf",
+    "asOf": "Effective August 12, 2024 (last updated April 18, 2024)",
+    "settlementFee": {
+      "note": "Title insurance PREMIUM schedule only. Manual explicitly addressed to 'Title Insurance Policy Issuing Attorneys and Independent Agents' -- confirms Kansas permits attorney-issued title policies alongside agent-issued.",
+      "originalOwnersLeaseholdPerThousand": "up to $50,000 = $3.50; $100k-$500k = $2.25; minimum premium $10",
+      "altaResidentialLimitedCoverageMortgageModificationPolicy": "$150.00 flat",
+      "cplFee": "No charge"
+    },
+    "itemizedFees": { "cpl": "No charge", "other": [] },
+    "bundlingNotes": "Premium-only.",
+    "transactionContext": "Owner's/leasehold title insurance premium, statewide KS, by liability amount."
+  },
+  {
+    "provider": "Chicago Title Insurance Company (national-brand, company-owned offices), statewide KS",
+    "sourceUrl": "https://insurance.ks.gov/documents/company/prop-cas/titlerates/nationallinkllc.pdf",
+    "asOf": "Cover effective March 13, 2024 (internal sections dated 2017-09-18 / 2022-07-20 / 2023-05-24 per amendment history)",
+    "settlementFee": {
+      "ownersPolicyPremium_sample": "up to $100,000 = $500.00; $275,001-$300,000 = $829.00; $975,001-$1,000,000 = $1,369.00",
+      "refinanceLoanPolicyPremium_sample": "up to $100,000 = $400.00; $230,001-$240,000 = $582.00",
+      "escrowSaleWithNewLoan": { "sellerRealtorAssisted": 300.00, "sellerFSBO": 500.00, "sellerShortSale": 400.00, "buyerInstitutionalLenderLoan": 400.00, "buyerJrLienSimultaneous": 250.00 },
+      "cashSaleEscrow": { "buyer": 300.00 },
+      "refinanceBorrowerEscrow": 400.00,
+      "centralizedRateClosingFeeTable_sample": "up to $100,000 = $325; $250,001-$300,000 = $435; $500,001-$1,000,000 = $500 (+$1.00/thousand above $1M); notary +$75 outside Johnson/Wyandotte",
+      "commercialSale_sample": "<=$2M = $800; $2M-$5M = $1,250; $5M-$10M = $1,750"
+    },
+    "itemizedFees": {
+      "notarySigning": "$250.00 witness signing; +$75 outside Johnson/Wyandotte",
+      "courier": "$28.00 courier/overnight",
+      "wire": "$28.00 outgoing wire",
+      "other": []
+    },
+    "bundlingNotes": "Combines premium schedule with escrow/settlement fee schedule for company-owned offices.",
+    "transactionContext": "Purchase (realtor-assisted, FSBO, short sale, cash) and Refinance; statewide KS with Johnson/Wyandotte carve-out for notary surcharge."
+  },
+  {
+    "provider": "Pegasus National Title LLC, multi-county KS (Johnson/Leavenworth/Wyandotte/Douglas/Miami; Finney/Ford/Seward; Barton/Ellis/Rice; Dickinson/Geary; Cherokee/Crawford/Labette/Neosho; remaining counties pop. >10k)",
+    "sourceUrl": "https://insurance.ks.gov/documents/company/prop-cas/titlerates/PegasusKansasRateManual.pdf",
+    "asOf": "Effective July 17, 2025",
+    "settlementFee": {
+      "centralizedLoanRateStatewide_sample": "up to $250,000 = $455.00; $250,001-$500,000 = $585.00; $500,001-$750,000 = $715.00",
+      "masterLoanProgramEquityLine_sample": "up to $100,000 = $120.00; $100,001-$250,000 = $145.00"
+    },
+    "itemizedFees": { "other": [] },
+    "bundlingNotes": "Multi-county sectioned rate manual, newest-vintage filing found in this session (2025-07-17).",
+    "transactionContext": "Loan-related closing rate, statewide by county section (5 defined sections)."
+  },
+  {
+    "provider": "Kansas Secured Title (Title Midwest Agency, independent), Butler & Sedgwick Counties (Wichita metro)",
+    "sourceUrl": "https://insurance.ks.gov/documents/company/prop-cas/titlerates/KansasSecuredTitleInc.pdf",
+    "asOf": "Effective July 1, 2025",
+    "settlementFee": {
+      "salesTransactionWithRealtor": 500.00,
+      "salesTransactionWithoutRealtor": 720.00,
+      "volumeInvestor": 450.00,
+      "refinanceClosing": 400.00,
+      "witnessOnlyWithDisbursements": 400.00,
+      "witnessOnlyWithoutDisbursements": 250.00,
+      "newConstructionBuyerFee": 250.00,
+      "newConstructionBuilderSellerFee": 50.00,
+      "remoteOnlineClosing": "$150.00/party"
+    },
+    "itemizedFees": {
+      "courier": "$30.00 overnight",
+      "wire": "$30.00",
+      "other": [
+        { "name": "Security/Technology Fee", "amount": "$100 purchase / $50 refinance" },
+        { "name": "Mail Out", "amount": "$50 seller / $100 buyer" }
+      ]
+    },
+    "bundlingNotes": "Newest-vintage independent filing found in the Wichita metro (2025-07-01).",
+    "transactionContext": "Purchase (with/without realtor, volume investor, new construction), Refinance, Witness-only; Butler & Sedgwick Counties (Wichita metro)."
+  },
+  {
+    "provider": "Secured Title of Kansas City, LLC (Fairway, KS / Johnson County based, independent), all KS counties",
+    "sourceUrl": "https://insurance.ks.gov/documents/company/prop-cas/titlerates/SecuredTitleofKansasCityLLC.pdf",
+    "asOf": "Effective February 15, 2025",
+    "settlementFee": {
+      "cashTransactionBuyer": 375.00,
+      "cashTransactionSeller": 275.00,
+      "closingWithLenderBuyer": 375.00,
+      "closingWithLenderSellerFSBO": 500.00,
+      "closingWithLenderSellerClosingFee": 375.00,
+      "secondMortgageSameLenderSimultaneous": 275.00,
+      "secondMortgageOnlyDifferentLender": 375.00,
+      "constructionDisbursementFullService": "0.5% of loan",
+      "constructionDisbursementLimitedService": "0.25% of loan"
+    },
+    "itemizedFees": {
+      "docPrep": "$75.00 each (deed/affidavit/assignment/release)",
+      "recording": "$25.00",
+      "other": [
+        { "name": "Closing Coordination Fee", "amount": "$75.00/side" }
+      ]
+    },
+    "bundlingNotes": "PDF text was mirror-reversed by encoding but legible after extraction.",
+    "transactionContext": "Purchase (cash, with lender, second mortgage), construction disbursement; all Kansas counties."
+  },
+  {
+    "provider": "Guaranteed Title of Kansas / Oldcastle Title, statewide KS",
+    "sourceUrl": "https://insurance.ks.gov/documents/company/prop-cas/titlerates/GuaranteedTitleofKansasRates.pdf",
+    "asOf": "Effective 01/01/2025",
+    "settlementFee": {
+      "salesWithRealtor": 530.00,
+      "salesWithoutRealtor": 710.00,
+      "volumeInvestor": 450.00,
+      "refinance": 450.00,
+      "newConstructionBuyerFee": 500.00,
+      "newConstructionBuilderFee": 0.00,
+      "remoteOnlineClosing": "$250.00/party"
+    },
+    "itemizedFees": {
+      "courier": "$25.00 overnight",
+      "wire": "$25.00",
+      "other": [
+        { "name": "Technology Fee", "amount": "$30 purchase / $15 refinance" },
+        { "name": "1031 Set-Up", "amount": "$750.00" }
+      ]
+    },
+    "bundlingNotes": "Builder fee waived ($0.00) on new construction sales.",
+    "transactionContext": "Purchase (with/without realtor, volume investor, new construction), Refinance; statewide KS."
+  }
+]

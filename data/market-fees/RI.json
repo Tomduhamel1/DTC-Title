@@ -1,0 +1,161 @@
+[
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/rhode-island/rates/WFG%20Rhode%20Island%20Title%20Insurance%20Rate%20Manual%20effective%203-1-23.pdf",
+    "asOf": "Effective March 1, 2023",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "$25.00 per issuance, flat, covering all parties (buyer/borrower and lender) -- not subject to any fee-division agreement",
+      "binder": null,
+      "other": [
+        "Basic Rate Table: Owner's & Leasehold Owner's Policies $3.50/$1,000 up to $2,000,000 liability, $3.00/$1,000 above $2,000,000",
+        "Acquisition Loan Policies: $2.50/$1,000 up to $2,000,000, $2.00/$1,000 above",
+        "Finance (refinance) Loan Policies: $1.50/$1,000 up to $2,000,000, $1.20/$1,000 above",
+        "Minimum Rate: $100.00 unless otherwise stated",
+        "Expanded Coverage Owner's Policy (ALTA Homeowner's Policy): 110% of standard Owner's rate, $125.00 minimum",
+        "Concurrent leasehold-interest policy charge: $100.00"
+      ]
+    },
+    "bundlingNotes": "Rate Manual General Rules state: 'The rates shown are the all-inclusive title insurance fees and charges and includes both the risk portion and the service or work portion, but does not include charges for title search, surveys, escrow, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant.' This is a distinctive middle-ground structure -- unlike most states' pure risk-only premium, WFG's Rhode Island rate explicitly bundles some 'service or work portion' into the premium (similar in spirit to Tennessee's All-Inclusive Rate rule), while still excluding title search, escrow, and closing/settlement services as separate unregulated charges.",
+    "transactionContext": "Owner's, Leasehold Owner's, Acquisition Loan, and Finance/Refinance Loan policies (purchase and refinance), statewide -- no county/metro rate differentiation."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company \u2014 Stewart Rate Calculator (stewartratecalculator.com), via settlement office Warr & Warr, PC",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true",
+    "endpointOrParams": "Genuine JSON REST API at /api/SRC/*, driven via plain HTTP GET/POST (no browser/JS execution), per the nationwide recipe documented in CALCULATORS.md. Sequence: GET /api/SRC/transactiontypes?statecode=RI -> GET /api/SRC/propertysearch?value=Providence,%20RI (resolves Providence County) -> GET /api/SRC/providers?statecode=RI&countycode=<FIPS>&zipcode=<zip>&transactiontype=SALE (chosen provider: Warr & Warr, PC, ID 1552, a Riverside RI closing-attorney firm -- consistent with RI's attorney-closing custom already noted in the published-schedule survey) -> GET /api/SRC/statesettings?statecode=RI -> GET /api/SRC/ernstlookup?statecode=RI&countycode=<FIPS> -> POST /api/SRC/quote twice (QuoteType=3 for itemized settlement fee + premiums, QuoteType=2 for recording/transfer-tax + premiums). No personal-data fields required or entered.",
+    "retrievalDate": "2026-08-15",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Providence County, residential resale, Sale/Purchase with Mortgage transaction.",
+    "methodology": "Same technique as the WV/NH/ME entries' Stewart Rate Calculator harvest (see CALCULATORS.md's 2026-08-14 master recipe for the fully-documented request/response shape).",
+    "settlementFee": {
+      "note": "Title Closing Fee $1,725.00 total, split $875.00 buyer / $850.00 seller -- the richest single-provider itemization found in this survey for a New England attorney-closing state, plus 4 additional itemized ancillary fee lines."
+    },
+    "itemizedFees": {
+      "processing": "$1,725.00 (Title Closing Fee, $875.00 buyer / $850.00 seller -- Warr & Warr, PC)",
+      "searchExam": "$500.00 (Title Examination Fee, $375.00 buyer / $125.00 seller)",
+      "courier": "$85.00 (Title Courier Fee, $40.00 buyer / $45.00 seller)",
+      "eRecording": "$30.00 (Title E Recording Fee, 100% buyer)",
+      "other": [
+        {
+          "name": "Title Municipal Lien Certificate (100% buyer)",
+          "amount": "$25.00"
+        },
+        {
+          "name": "Owner's Policy premium, RateManual (both QuoteType=2 and QuoteType=3 flows agreed)",
+          "amount": "$1,750.00"
+        },
+        {
+          "name": "Lender's Policy premium, simultaneous-flow (QuoteType=3)",
+          "amount": "$1,000.00"
+        },
+        {
+          "name": "Lender's Policy premium, stand-alone-flow (QuoteType=2)",
+          "amount": "$50.00"
+        },
+        {
+          "name": "Recording fee, Mortgage",
+          "amount": "$88.00"
+        },
+        {
+          "name": "Recording fee, Deed",
+          "amount": "$89.00"
+        },
+        {
+          "name": "Recording fee, Release",
+          "amount": "$51.00"
+        },
+        {
+          "name": "Rhode Island real estate conveyance tax (Deed Tax), total on $500,000, 100% seller-paid per the tool's own CFPB2015 breakdown",
+          "amount": "$3,750.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Confirms RI's attorney-closing custom noted in the original published-schedule survey -- the settlement office this tool matched to Providence County is a law firm (Warr & Warr, PC), not an independent title/escrow company. Five distinct itemized settlement-service line items is unusually rich for this survey's New England scarce-state harvests.",
+    "transactionContext": "Sale/Purchase with Mortgage, Providence County RI."
+  },
+  {
+    "provider": "WFG National Title Insurance Company \u2014 Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-18",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Providence County (Providence), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Same publicly-reachable, no-auth JSON API already solved and documented in CALCULATORS.md's 2026-08-08 entry -- confirmed via GET /api/rates/State/GetCalculationEnabledStates that this state is isCalculationEnabled:true, then POST directly with the nested Properties/Loans request shape. No personal-data field exists anywhere in this request shape.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1925.00",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's sellernet/seller-side-only design, same behavior already documented for every other state harvested via this tool)",
+      "other": [],
+      "note": "Premium-only result -- this state is not one of the 7 (WA/CA/TX/OR/AZ/NV/CO) with configured HUD-fee line items in WFG's own fee-description table."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "Property location for this request: Providence, RI (Providence County).",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Providence County, RI."
+  },
+  {
+    "provider": "FNF-family underwriter (Chicago Title/Fidelity National Title/Commonwealth Land Title -- ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine; this tool's pre-selected default underwriter brand varies by request, and prior sessions confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=RI",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=RI (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-18",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Providence County (the standard-scenario county), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions, Concurrent Owner's+Loan rate eligibility answered Yes (the tool's own default first option).",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback), following this project's existing FNF recipe documented in CALCULATORS.md: GET the county-selection page, POST the county (own __EVENTTARGET), POST btnGeneralNext=Next, POST TranType$ddl=PropertyPurchase, POST AmountPurchase$txt=500000 then AmountLoan1$txt=400000 (each with its own __EVENTTARGET), auto-answer the revealed Concurrent-rate-eligibility question Yes, then POST btnFinish=Finish for the final Rate Summary. One correction to the prior recipe write-up worth flagging: the page also renders a hidden 'ctl00$btnDummy' submit button used only for Enter-key submission -- a naive first-submit-button-found selector picks this dummy button instead of the real 'Next'/'Finish' button and silently fails to advance the flow; always filter submit-button candidates for the actual button's own name substring ('Next'/'Finish') rather than taking the first match. No personal-data fields exist anywhere in this flow.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1750.00 (Owner's Policy Premium, concurrent-issue rate)",
+      "loanPolicyPremium": "$50.00 (Loan Policy Premium, concurrent-issue rate)",
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence."
+    },
+    "sectionTotals": "Grand Total (Owner's Policy Purchased): $1800.00.",
+    "bundlingNotes": "Harvested as part of this session's systematic FNF pass across every remaining below-threshold small/low-population state (ND/VT/WY/RI/DE/SD/AK), following the same technique already applied to the 2026-08-06 session's 8-state batch.",
+    "transactionContext": "Owner's + Loan Policy concurrent-issue premiums for a $500,000 residential purchase / $400,000 loan, Providence County."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company \u2014 second rate calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://oldrepublictitle.com/rate-calculator/?location=rhode-island",
+    "calculatorUrl": "https://oldrepublictitle.com/rate-calculator/?location=rhode-island",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (RateCalc.aspx?CallingApp=PUBLIC&Location=RI, redirects to a session-scoped (S(...)F(...))/RateCalc.aspx?...Location=38..., statewide, no county selector). GET the page with Referer https://oldrepublictitle.com/rate-calculator/?location=rhode-island (capture __VIEWSTATE/__EVENTVALIDATION), POST __EVENTTARGET=ddlPolicyCategory value 3 (SIMULTANEOUS LOAN & OWNERS), POST __EVENTTARGET=ddlPolicyType1 value 6725 (STANDARD OWNERS), POST __EVENTTARGET=ddlPolicyType2 value 6729 (STANDARD LOAN), then POST __EVENTTARGET=btnCalculate with txtLiabilityAmt=500000, txtCrLiabilityAmt=400000. Same Referer-header-throughout fix documented for NH/WV and applied consistently across this project's Old Republic 2nd-tool richness pass; no personal data entered.",
+    "retrievalDate": "2026-08-21",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, statewide (no county selector in this tool), SIMULTANEOUS LOAN & OWNERS STANDARD policy category.",
+    "methodology": "Direct HTTP GET/POST against the ASP.NET WebForms postback mechanism (Python requests.Session()), no browser/JS execution. No personal data entered. Richness pass applying this project's already-solved Old Republic 2nd-tool recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": {
+      "note": "This tool prices title insurance premiums only -- no settlement/closing/escrow service-fee line items are itemized (same structural limitation observed for this tool's other state entries elsewhere in this project)."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "STANDARD LOAN, insured amount $400,000.00 -- Lenders-Only standalone premium",
+          "amount": "$1,000.00"
+        },
+        {
+          "name": "STANDARD LOAN, Owners+Lenders combined (simultaneous) premium",
+          "amount": "$50.00"
+        },
+        {
+          "name": "STANDARD OWNERS, insured amount $500,000.00, Owners+Lenders combined premium",
+          "amount": "$1,750.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, standalone-lenders-only",
+          "amount": "$1,000.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, Owners+Lenders combined",
+          "amount": "$1,800.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Grand Total Owners+Lenders combined ($1,800.00) is byte-identical to this state's already-on-file FNF entry's Grand Total ($1,800.00) -- a strong 2-way convergence.",
+    "transactionContext": "Simultaneous Owner's Standard + Loan Standard policy, statewide Rhode Island, purchase with financing."
+  }
+]

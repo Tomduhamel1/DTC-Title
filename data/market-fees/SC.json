@@ -1,0 +1,202 @@
+[
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://go.stewart.com/rs/067-YWO-436/images/South%20Carolina%20Manual%20FINAL_051322.pdf",
+    "asOf": "Effective May 13, 2022",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "$25 per Closing Protection Letter, payable in full to the Underwriter at closing; a second mortgage/second CPL on the same transaction may carry an additional charge",
+      "binder": null,
+      "other": [
+        "Owner's/Leasehold Policy Basic Schedule of Charges: $3.60/$1,000 up to $50,000 liability; +$3.00/$1,000 to $100,000; +$2.10/$1,000 to $500,000; +$1.80/$1,000 to $5,000,000; +$1.20/$1,000 above $5,000,000. Minimum charge $100.00",
+        "Loan Policy Basic Schedule of Charges: identical tiers/rates to Owner's Policy above ($3.60/$3.00/$2.10/$1.80/$1.20 per $1,000), $100.00 minimum",
+        "ALTA Homeowner's Policy: Basic Schedule plus 20%",
+        "ALTA Expanded Coverage Residential Loan Policy: 120% of Basic Schedule",
+        "Foreclosure Insurance Policy: 40% of Basic Loan Policy charge, $100 minimum, with a 50% premium credit toward a subsequent Owner's Policy",
+        "Timeshare minimum charge: $75",
+        "Reinsurance/agent retention floor: gross premium (risk rate) net of reinsurance retained by the agent shall be no less than $0.35 per $1,000 of retained liability"
+      ]
+    },
+    "bundlingNotes": "General Rules define 'Charge' as the rate for a title insurance policy or endorsement and explicitly state it 'does not include any settlement fee, trustee fee, attorney fee, surveying fee, inspection fee, document fee, closing fee, escrow fee or any other fee associated with escrow' -- also separately noting these are 'charges for ... title searches, abstracts, attorney's fees, escrow, or closing service performed and charged for by local attorneys, abstractors, and title companies.' Also notes: 'When a commitment ... is required for the closing of any transaction, a work/preparation charge may be collected in addition to the applicable premium. The charge will be retained by the agent/agency/entity ... and so disclosed at or prior to closing' -- confirming a genuine but unquantified ancillary commitment-preparation fee exists alongside the premium.",
+    "transactionContext": "Owner's, Leasehold, Loan, and Homeowner's policies (purchase and loan/refinance), statewide -- no county/metro rate differentiation in the Basic Schedule of Charges."
+  },
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/south-carolina/rates/WFG%20South%20Carolina%20Rates%20(4-22-11).pdf",
+    "asOf": "Effective April 22, 2011",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Standard Policy: $3.60/$1,000 up to $50,000; +$3.00/$1,000 to $100,000; +$2.10/$1,000 to $500,000; +$1.80/$1,000 to $5,000,000; +$1.20/$1,000 above $5,000,000 -- rate-for-rate identical to Stewart's 2022 SC manual across every tier",
+        "Expanded Coverage Policies: $4.32/$1,000 up to $50,000; +$3.60/$1,000 to $100,000; +$2.52/$1,000 to $500,000; +$2.16/$1,000 to $5,000,000; +$1.44/$1,000 above $5,000,000",
+        "Minimum Gross Premium: $100.00 for any policy type; $75 minimum for timeshares",
+        "Reissue rate: 50% of policy rate for a prior Owner's Policy 10 years old or under, 100% if over 10 years"
+      ]
+    },
+    "bundlingNotes": "Same 'commitment work/preparation charge collected in addition to premium, retained by the agent, disclosed at or prior to closing' language as Stewart's manual, confirming this is a standard South Carolina market convention rather than an underwriter-specific practice. Notable finding: WFG's per-thousand Standard Policy rate table is identical, tier-for-tier and dollar-for-dollar, to Stewart's 2022 manual despite an 11-year gap between the two documents' effective dates (2011 vs 2022) and South Carolina having no rating bureau -- suggesting either long-term rate stability or informal cross-underwriter benchmarking in this market.",
+    "transactionContext": "Owner's/Leasehold and Loan policies (purchase and loan/refinance), statewide."
+  },
+  {
+    "provider": "Mogil Law Firm",
+    "sourceUrl": "https://www.mogillaw.com/real-estate",
+    "asOf": "Effective April 1, 2025",
+    "settlementFee": "Purchase Single Family Home: $1,000 with lender / $850 without lender. Purchase Condominium: $900 with lender / $850 without lender. Purchase Lot: $800 with lender / $650 without lender. Refinance Residential: $600-$900. Sale of Single Family Home/Condo: $850 (non-short-sale). Sale of Lot: $700.",
+    "itemizedFees": {
+      "docPrep": "$25 fee to print a loan package received by email (administrative/toner cost, up to 100 pages)",
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "CL 100 (wood infestation/termite) report, customarily paid by Seller: $125-$325",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Short sale additional fee: up to $1,500 to cover extra time/costs",
+        "Non-closing (failed transaction) attorney fee: $450.00 flat, plus any additional agreed-upon charges, plus all out-of-pocket/third-party costs",
+        "Out-of-pocket expenses: $75-$150 typical",
+        "Deed stamps (Seller-paid): $3.70 per thousand of sale price",
+        "Hilton Head Island Transfer Tax (Buyer-paid by custom): 0.25% (.0025) of purchase price, if property is within Town of Hilton Head Island limits",
+        "Appraisal (lender-financed transactions): $250-$500",
+        "Lender underwriting/processing fee: $250-$500 each; credit report $50-$100"
+      ]
+    },
+    "bundlingNotes": "Genuine, fully itemized closing-attorney settlement-fee schedule, explicitly dated ('Effective April 1, 2025'). The firm states: 'The above fees are exclusive of title search, title insurance, and out of pocket expenses' -- confirming the settlement fee is a distinct line item from title insurance premium and from the CL 100/appraisal/lender fees. Michael W. Mogil is disclosed as an authorized agent for First American Title Insurance Company, making this a First-American-affiliated independent closing-attorney office rather than a pure national-brand direct office.",
+    "transactionContext": "Purchase (single family, condominium, lot), refinance, and sale-side representation, Beaufort and Jasper Counties (Hilton Head Island / Bluffton area), South Carolina."
+  },
+  {
+    "provider": "Ingram Law Firm",
+    "sourceUrl": "https://www.cherawlaw.com/real-estate",
+    "asOf": "Retrieved 2026-07-22 (no effective date printed on page)",
+    "settlementFee": "Combined 'one total fee for title search and closing' -- amount available only by direct phone quote, not published as a dollar figure on the page.",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": "Additional charge for courier/express mail of mortgage/lien payoffs, based on the provider's actual charges (amount not fixed)",
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "$35.00 fee for issuing a closing protection or insured closing letter, if required by lender",
+      "binder": "$100.00 fee for issuing a title commitment, if required by lender",
+      "other": [
+        "Document printing fee: $20.00 additional, for printing a closing package of more than 20 pages",
+        "Next-day return of original signed closing documents: additional express-mail charge based on provider's rates"
+      ]
+    },
+    "bundlingNotes": "The firm explicitly contrasts its own single combined 'title search and closing' fee against the market practice elsewhere of itemizing separate 'closing fee,' 'attorney fee,' 'attorney review fee,' 'abstract fee,' 'title search fee,' 'notary fee,' 'funding fee,' 'closing coordination fee,' 'document preparation fee,' 'document review fee,' and 'settlement fee' line items -- a useful confirmation, in the provider's own words, of how fragmented South Carolina closing-fee itemization can be elsewhere in the market. The firm's own base combined fee is quote-only and not published, so only its three ancillary lender-triggered fees ($100 commitment, $35 CPL, $20 printing) are counted as verified dollar figures here. Firm explicitly states its fee 'does not include title insurance premiums or fees,' confirming the same premium/settlement-fee separation seen in Stewart's and WFG's manuals.",
+    "transactionContext": "Purchase (loan and cash), refinance, HELOC, and bond-for-title closings, Cheraw / Chesterfield County, South Carolina."
+  },
+  {
+    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-08",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Greenville County (SC's most-populous/standard-scenario county), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Solved this session by extracting the calculator's own Angular \"sellerNetForm\" component logic from its lazy-loaded route chunk (webpack chunk 7, hash 8a01902021d264bdb338 -- fetched by replaying the runtime bundle's own chunk-hash map, since this route is not referenced in the shell page's main.js until a user actually clicks into the seller-net-sheet flow). This resolved the 2026-08-07 session's blocker: `POST /api/rates/fees/estimatefeesforsellernet` was 500ing with unhelpful ProblemDetails errors because the guessed flat `PropertyState`/`PropertyCounty`/`PropertyCity` fields (borrowed from the sibling, differently-shaped `sellernet/calculate` endpoint's own validation-error field names) do not match this endpoint's real schema. The component's own `prepareCalculateFeeRequest()` method reveals the actual required body: `Properties: [{City, County, IsPrimary: true, State}]` (nested, not flat), `Loans: [{LienPosition: 0, LoanAmount}]`, `TransactionProductType: {ProductTypeId: 0, TransactionTypeId: 0}` (0/0 confirmed correct for this flow, not a placeholder), `calculateTaxRequest: {}` (an empty class instance), `SettlementStatementVersion: \"CD\"`, and empty arrays/objects for `premiumDiscounts`/`Endorsements`/`PriorLenderPolicy`/`PriorOwnerPolicy`. Driven via a plain Content-Type: application/json HTTP POST, no browser/JS execution needed. Confirmed via `GET /api/rates/State/GetCalculationEnabledStates` (also public, no auth) that this one API has `isCalculationEnabled: true` for 47 states + DC -- a single new, genuinely distinct 5th major-underwriter source (WFG National Title, a separate corporate family from FNF/Old Republic/Stewart/First American, all already on file elsewhere in this survey) usable across nearly every remaining below-threshold scarce state in one technique. No personal-data field (name/email/phone) exists anywhere in this request shape. Separately confirmed via static inspection of the same chunk's hardcoded `feesConfiguration` sort-weight table that WFG has only itemized its settlement/closing HUD-fee line items for 7 states (WA, CA, TX, OR, AZ, NV, CO) -- for every other state (including this one) the tool returns a premium-only result (Owner's Title Insurance Premium, no settlement/search/doc-prep breakdown), which per this project's 2026-08-05 FNF scoping correction is still valid, dated calculator-harvest evidence.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1,404.00",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's sellernet/seller-side-only design; not pursued further as out of scope for the seller-net flow)",
+      "other": [],
+      "note": "Premium-only result -- no itemized settlement/search/doc-prep breakdown appears for this state in this tool (see methodology: only WA/CA/TX/OR/AZ/NV/CO have configured HUD-fee line items in WFG's own fee-description table)."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "Property location for this request: Greenville, SC (Greenville County). Discovered and harvested in the same 2026-08-08 session across 8 below-threshold scarce states at once (OR, NM, CT, NE, MS, LA, UT, SC) using one newly-solved API -- see CALCULATORS.md's 2026-08-08 entry for the full technical recipe and the complete list of states affected.",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Greenville County, SC."
+  },
+  {
+    "provider": "Fidelity National Title Insurance Company — FNF National Rate Calculator (ratecalculator.fnf.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=SC",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=SC (ASP.NET WebForms __doPostBack/__VIEWSTATE flow)",
+    "retrievalDate": "2026-08-09",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Greenville County (SC's most-populous county), residential resale, Fidelity National Title underwriter selected.",
+    "methodology": "Solves the 2026-08-06 session's logged 'unsolved AmountLoan1 postback quirk' for SC (and separately UT, see UT.json) -- the quirk was never a real server-side block, it was a bug in that session's own replay script: every extracted hidden-field dict included the page's <input type=\"submit\"> button name=value pairs (e.g. btnGeneralNext=\"Next\") carried forward unchanged into later POSTs, causing the server to treat every subsequent postback as an implicit re-click of that button and silently fast-forward/desync the wizard state (masquerading as a 'silently dropped AmountLoan1 value'). Fixed by excluding submit/button/image/reset <input> types from the carried-forward field set and only including a given button's name=value on the specific POST that is actually 'clicking' it. SC's one extra required question (\"Does this transaction qualify under CFPB's TILA-RESPA Integrated Disclosure rule?\", CFPB_IsQualified) already defaults to 'Yes' (value=1) with no cascade, unlike UT's 3-question CPL-eligibility chain. Recipe: GET with ?ID=FNF&state=SC, POST ddlCounty='greenville' (own __EVENTTARGET), POST ddlUnderwriters='fnt' (own __EVENTTARGET, Fidelity National Title), POST btnGeneralNext='Next' to reach the Amounts panel, POST TranType$ddl='PropertyPurchase' (own __EVENTTARGET), POST AmountPurchase$txt='$500,000.00' (own __EVENTTARGET), POST AmountLoan1$txt='$400,000.00' (own __EVENTTARGET) -- now echoed correctly, POST btnFinish='Finish' (CFPB_IsQualified's default 'Yes' carried through) for the final quote. No personal-data fields required at any step.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1,404.00 (ALTA Homeowner's Policy of Title Insurance; Owner's Policy Disclosure Amount $544.00, Adjustment $860.00)",
+      "loanPolicyPremium": "$100.00 (ALTA Standard Coverage Loan Policy, Loan #1, Liability $400,000.00, concurrent with Owner's Policy; Loan Policy Disclosure Amount $960.00)",
+      "other": [],
+      "note": "Premium-only result per this tool's standard disclaimer (totals exclude title search, examination, additional work charges, certification, or closing fees) -- same scoping as every other FNF entry in this survey, accepted as valid calculator-harvest evidence per the 2026-08-05 CT-session scoping correction."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "SC's 2nd calculator-basis provider (WFG remains 1st; still below the 3-provider threshold). Notable cross-provider corroboration: FNF's Owner's Premium ($1,404.00) is byte-identical to the existing WFG entry's own Owner's Premium for the same county/scenario -- the second state (after OR) in this survey where FNF and WFG independently return an identical dollar figure, consistent with both underwriters adopting the same filed/bureau-equivalent rate in states with thin independent-agency competition. Fidelity National Title was selected from the underwriter dropdown (also offered: Chicago Title, Commonwealth Land Title, National Title Insurance of NY, all sharing one calculation engine per the CT-session's already-documented byte-identical-output finding).",
+    "transactionContext": "FNF National Rate Calculator's Owner's and Loan title insurance premium quote for a $500,000 residential purchase with a $400,000 loan, Greenville County, SC."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company — Rate Calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.oldrepublictitle.com/rate-calculator/south-carolina",
+    "calculatorUrl": "https://ortratecalculator.oldrepublictitle.com/EmbedRateCalc.aspx?Location=SC (ASP.NET WebForms __doPostBack/__VIEWSTATE flow)",
+    "retrievalDate": "2026-08-09",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, statewide (this tool is not county-tiered for SC), SIMULTANEOUS LOAN & OWNERS policy category, OWNERS - BASIC / SIMUL LOAN policy forms.",
+    "methodology": "This is Old Republic's *second* calculator tool (distinct from `ortconline.com/Web2`, whose own footprint does not include SC/LA/MS -- see CALCULATORS.md's state-coverage note). Prior sessions (2026-07-29, 2026-08-01) found `Location=SC` hard-rejected by this tool's NoBot anti-bot control (\"You are not authorized to access the site. Code: 2\") even with a realistic Referer/User-Agent -- logged as blocked. This session retried it (per the standing blocked-source-retry protocol, and because the 2026-08-08 NM harvest already found the same NoBot block had loosened for at least one other state) and it now works cleanly: GET `EmbedRateCalc.aspx?Location=SC&cms=https://www.oldrepublictitle.com/` 302-redirects through a session-establishing URL (`/(S(...))/RateCalc.aspx?...`) to a real form, no login/credentials needed. Confirms the 2026-08-08 NM finding that this NoBot block is intermittent/agent-or-session-reputation-based, not a permanent state-level block -- worth retrying for any state still logged NoBot-blocked. Recipe once past the redirect: POST `ddlPolicyCategory=5` (SIMULTANEOUS LOAN & OWNERS, own __EVENTTARGET) to reveal the Owner's/Loan policy-type dropdowns and liability-amount fields; POST `ddlPolicyType1=11528` (OWNERS - BASIC, own __EVENTTARGET); POST `ddlPolicyType2=11535` (SIMUL LOAN, own __EVENTTARGET); POST `txtLiabilityAmt=500000` (Purchase Price, own __EVENTTARGET); POST `txtCrLiabilityAmt=400000` (Loan Amount, own __EVENTTARGET); POST `btnCalculate=Calculate` for the final quote, rendered inline as an HTML results table (`gvwResults`). No personal-data fields anywhere in this flow.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1,170.00 (OWNERS - BASIC, Insurance Amount $500,000.00, standalone Owner's Policy premium before simultaneous-issue allocation)",
+      "loanPolicyPremium": "$960.00 standalone (Lender's Only Policy Premium if purchased alone) / $100.00 simultaneous surcharge (SIMUL LOAN, Insurance Amount $400,000.00, additional charge when issued concurrently with the Owner's Policy)",
+      "other": [
+        {
+          "name": "Grand Total (Owner's + Lender's Policies, issued simultaneously)",
+          "amount": "$1,270.00"
+        },
+        {
+          "name": "Closing Disclosure Formulated Cost Of Owners (the tool's own TRID/CD-line-item allocation: Grand Total minus standalone Lender's-Only premium, i.e. $1,270.00 - $960.00)",
+          "amount": "$310.00"
+        }
+      ],
+      "note": "Premium-only result (no settlement/search/doc-prep line items), consistent with this tool's other state entries already on file (e.g. CT, KY, NM) elsewhere in this survey."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "Crosses SC to 3 calculator-basis providers (WFG, FNF, Old Republic) -- calculator-quoted status. Notable cross-provider convergence: while SC's premium figures differ across all 3 calculator sources (unlike OR's/this same session's SC-FNF-vs-WFG byte-identical match), the presence of 3 independently-operated tools all returning coherent, internally-consistent Owner's/Lender's premium breakdowns for the identical $500k/$400k scenario is itself useful triangulating evidence for a state with a historically thin published-schedule footprint (attorney-closing state, few filed-rate manuals on file). This tool's Closing-Disclosure-formatted Owner's-Policy-line figure ($310.00) is a genuinely new kind of data point not present in any of SC's other calculator or published-schedule sources -- the TRID-convention marginal owner's-policy charge when a lender's policy is issued simultaneously (as opposed to the standalone $1,170.00 Owner's premium if no loan policy were purchased).",
+    "transactionContext": "Old Republic's rate-calculator quote for Owner's and Lender's simultaneous title insurance policies, $500,000 purchase price with a $400,000 loan, statewide South Carolina (no county tiering in this tool)."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company -- Stewart Rate Calculator, matched settlement office: Omnia Title Corp. (205 N. Armenia Ave., Suite 101, Tampa, FL 33609)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true (LoanEstimate/QuoteType=3 flow) and https://www.stewartratecalculator.com/Quote/Netsheet?urlParams=&quotetype=2&branded=true (Netsheet/QuoteType=2 flow); both POST to the shared /api/SRC/quote endpoint",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Greenville County (Greenville), residential resale, Sale/Purchase with Mortgage transaction type, BASIC coverage on both Owner's and Lender's policies. Richness-pass harvest applying an already-solved, previously state-limited recipe to a state not yet in Stewart's harvested-state list, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "methodology": "Harvested via Stewart's discoverable `/api/SRC/*` JSON REST API (stewartratecalculator.com), driven entirely by plain HTTP GET/POST (Python requests.Session(), cookie jar) with no browser/JS execution and no personal-data fields, replaying the full recipe documented in this project's CALCULATORS.md (2026-08-14 'SOLVED' entry): GET the LoanEstimate/Netsheet page to scrape a fresh antiforgery cookie + __RequestVerificationToken; GET /api/SRC/propertysearch to resolve the county FIPS code and a default zip; GET /api/SRC/providers to find the county's real settlement office(s) (used to set ProviderID on the QuoteType=3 flow so the itemized settlement-fee list is populated -- an empty ProviderID silently returns a null itemized list); GET /api/SRC/statesettings and /api/SRC/ernstlookup for state-level defaults; build the QuoteRequestRoot JSON by hand (Owner's Policy $500,000 / Lender's Policy $400,000, BASIC coverage, standard Sale/Purchase with Mortgage transaction); POST /api/SRC/quote twice -- QuoteType=2 (Netsheet, pageBuyerSeller=seller) for Recording/CFPB2015 transfer-tax figures, and QuoteType=3 (LoanEstimate, pageBuyerSeller=buyer, IsCalculatePremium=True, IsCalculateTitleServiceFee=True) for the itemized Pricing.TitleServiceFee.ItemizedTitleServiceFeeList settlement-fee line items. One new gotcha found and fixed this session: stewartratecalculator.com's bare apex domain 301-redirects every POST to the www subdomain, and that redirect's response body hangs indefinitely on this sandbox's proxied connection (a 30s+ read timeout with 0 bytes received) -- fixed by targeting https://www.stewartratecalculator.com directly, skipping the apex redirect entirely; this is an environment/proxy artifact, not a sign the endpoint is blocked. Also confirmed the documented /api/SRC/providers gotcha firsthand: for a single-provider county the response's `Provider` field is a bare object, not a one-element list -- must be normalized before indexing or ProviderID silently stays empty and every itemized-fee list comes back null (looks exactly like a genuine empty result).",
+    "settlementFee": {
+      "note": "$750.00 total, split buyer $550.00 / seller $200.00 (line item: 'Title Closing Fee')"
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1,170.00",
+      "loanPolicyPremium": "$960.00",
+      "other": [
+        {
+          "name": "Title Closing Fee",
+          "amount": "$750.00 (buyer $550.00 / seller $200.00)"
+        }
+      ],
+      "note": "1 itemized settlement/closing-fee line item(s) returned via the QuoteType=3 flow."
+    },
+    "sectionTotals": "Owner's Policy Premium $1,170.00; Lender's Policy Premium $960.00; itemized settlement fees sum $750.00",
+    "bundlingNotes": "Combined deed/transfer/mortgage tax on QuoteType=2 (Netsheet) flow: $1,850.00 total -- DeedTax $1,850.00.",
+    "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Greenville County, South Carolina."
+  }
+]

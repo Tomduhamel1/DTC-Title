@@ -1,0 +1,314 @@
+[
+  {
+    "provider": "Old Republic National Title Insurance Company (Chicago main office rate card)",
+    "sourceUrl": "https://www.oldrepublictitle.com/media/zu4hglmf/illinois-rate-card-2024.pdf",
+    "asOf": "2024-09-01",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": "SB-1167 Processing Fee $100.00; Title Review Processing Fee/No Closing $300.00",
+      "courier": "Overnight Delivery & Processing Fee $40.00",
+      "wire": "$50.00",
+      "edoc": "Electronic Package Fee $45.00",
+      "eRecording": "Recording Service Fee $20.00",
+      "notarySigning": null,
+      "searchExam": "Search Fee $225.00",
+      "cpl": "Refinance $75.00 ($25.00 lender; $50.00 borrower); Purchase $50.00 Seller, $25.00 Buyer, $25.00 Lender (charged to buyer)",
+      "binder": null,
+      "other": [
+        "Owner's Policy premium: $1,995 at $200,000 or less, rising in $20 increments per $10,000 to $3,620 at $990,001-$1,000,000; refinance rate is 75% of owner's pricing",
+        "Residential Closing Fee (purchase): $1,700 ($150,000 or less) to $1,950 ($400,001-$500,000); +$50 per $50,000 over $500,000",
+        "Refinance Closing Fee: $300 plus $0.25 per $1,000 of coverage in excess of $500,000",
+        "Simultaneous Second Mortgage Closing Fee $225; Stand-Alone Second Mortgage Closing Fee $250; multiple-loan closings +$200 per additional lender closing statement",
+        "After Hours Closing Fee $175 (before 8am/after 5pm); Dry Closing Fee (in addition to closing fee) $175",
+        "Joint/Sole Order Escrows minimum $300; annual Maintenance Fee $250",
+        "Simultaneously-Issued Mortgage Policy (each) $575; Simultaneously-Issued Second $475",
+        "ARM/Comprehensive/Condominium/EPA/Location/PUD/Revolving Credit Mortgage Endorsements $185 each",
+        "Chain of Title $250; Gap Risk Later Date (buyer or seller) $175 each; Bifurcation Accommodation Fee $300; Tax Payment Fee $50; Accommodation Recording Service Fee $100; Title Indemnity Processing Fee $175",
+        "City of Chicago Water Processing Fee $100; Zoning Processing Fee $125"
+      ]
+    },
+    "bundlingNotes": "Rate card states explicitly: 'These rates do not include recording fees, escrow or closing fees, fees for endorsements, and other applicable fees, if any' — title insurance premium and residential closing/escrow fee are two entirely separate schedules on the same document, each independently tiered by purchase price/loan amount.",
+    "transactionContext": "Residential purchase and refinance; Cook, DuPage, Kane, Kendall, Lake, McHenry and Will Counties (Chicago metro)."
+  },
+  {
+    "provider": "Greater Illinois Title Company (GIT) — policy-issuing agent of Chicago Title, Old Republic, WFG National, and Westcor Land Title",
+    "sourceUrl": "https://www.gitc.com/wp-content/uploads/2021/11/GIT-Schedule-of-Fees-May-10-2021.pdf",
+    "asOf": "2021-05-10",
+    "settlementFee": "Residential Settlement Closing Fee (Buy-Sell): $1,580.00 for $200,000 or less, plus $1.00 per $1,000 of title insurance in excess of $200,000",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": "Special Services Fee $50.00",
+      "courier": "Overnight Delivery Fee $40.00",
+      "wire": "Wire Transfer Fee (Wire In) $45.00",
+      "edoc": "Fax/E-mail Package Fee (per loan) $45.00",
+      "eRecording": "Recording Service Fee $20.00",
+      "notarySigning": null,
+      "searchExam": "Basic Tract Search $140.00; Examination of Proceedings $125.00; Search Package Fee $260.00",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Owner's Policy premium: $1,830 at $200,000 or less, up to $2,035 at $290,001-$300,000; +$2.00/thousand over $300,000; refinance transactions are 70% of owner's rate",
+        "Cash Transactions closing fee: $1,525 plus $1.00/$1,000 of title insurance up to $500,000; over $500,000: $1,695 plus $1.00/$1,000 in excess of $500,000",
+        "Refinance Settlement Closing Fee: $450 to $200,000; over $200,000: $450 plus $0.50/$1,000 in excess of $200,000",
+        "Deed and Money (Dry Closing) $150.00; Multiple Loan Closing Fee $795.00; New York Style Closing Fee $300.00",
+        "Joint Order or Sole Order Escrows minimum $300.00; Administration Fee for Invested Escrows $100.00; Escrow Maintenance Fee (open >12 months) $250.00/year",
+        "Simultaneously Issued Mortgage Policy Fee (each) $535.00; Location/ARML/ALTA Condominium/Line of Credit/EPA/Inflation/PUD Endorsements $190.00 each",
+        "Date Down Endorsement $175; Commitment Update Fee $260; Additional Fee for Non-Business hours closings $150; Title Indemnity Service Fee $195",
+        "Water Certification Fee $125; Zoning Certification Fee $125; Policy Update Fee $190; Tax Payment Fee (per tax bill) $50; Chain of Title (12-24 month) $250; Accommodation Recording Fee $50",
+        "Interim Certification: $250 plus $0.50 per $1,000 of coverage in excess of $100,000"
+      ]
+    },
+    "bundlingNotes": "Document separately headers 'Owner's Policy Title Insurance Rate' and 'Fees for Escrow Services' as two distinct schedules; the Residential Settlement Closing Fee explicitly scales off the title insurance amount, unlike some other IL sources where closing fee tiers use their own purchase-price bands.",
+    "transactionContext": "Residential purchase and refinance; western, southwestern, north, and northwest Chicago suburbs plus city of Chicago offices (Cook and collar counties)."
+  },
+  {
+    "provider": "First American Title Insurance Company",
+    "sourceUrl": "https://first-american-bucket.s3.amazonaws.com/local-firstam-com/live/assets/documents/il/shared-document-center/10970-chicago-metro-rates.pdf",
+    "asOf": "2026-01-01",
+    "settlementFee": "Closing Fee: $2,000 (200,000 or less) to $2,200 (400,001-500,000); over $500,000 add $50 per $50,000",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": "APLD Processing Fee $100",
+      "courier": "Overnight Delivery Fee $50",
+      "wire": "Wire Service Fee $50",
+      "edoc": "Electronic Delivery Fee $50",
+      "eRecording": "Recording Service Fee $25",
+      "notarySigning": "Remote Signing Fee (minimum) $175; Witness Signing (minimum) $250",
+      "searchExam": "Residential Tract Search | Per PIN $150; Waiver Exam Fee $250",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Owner's Policy premium: $2,200 at $200,000 or less, rising to $3,950 at $990,001-$1,000,000; +$1.50/thousand over $1,000,000",
+        "Residential Refinance Fees: Closing Fee $325; APLD Processing Fee $100; Tax Payment Service Fee $50; Recording Service Fee $25; Tax TI Service Fee $50; Loan Policy $400 (add $1.00/thousand over $1,000,000)",
+        "Mortgage Policy $595; Simultaneous Second Mortgage Policy $295; Junior Loan Informational Report $175; Junior Loan Policy (incl. JLIR) $250",
+        "ALTA 4.1/5.1/6/6.2/8.1/9.1/22 Endorsements $185 each",
+        "Simultaneous Second Mortgage Closing Fee $250; Stand Alone Second Mortgage Closing Fee $300",
+        "Accommodation Recording Fee $100; After Hours Closing Fee (minimum) $150; Chain of Title $250; Chicago Water Cert Payment Only Fee $25 / Processing Fee $100; Chicago Zoning Cert Processing Fee $100",
+        "Commitment Update Fee $175; Delinquent Tax Payment Service Fee $100; FinCEN Real Estate Reporting Fee $125; Lender Holdback $200; Municipal Stamp Accommodation Fee $150 / Procurement Fee $50",
+        "Non-Escrow Title Review Fee $200; Policy Update Fee $175; Postponed Disbursement $150; SJO/SOE (minimum) $300; Tax Payment Service Fee $50; Title Indemnity $200",
+        "Owner Policy Endorsements: ALTA 49 (5% of OP, $185 min), ALTA 49.1 (10% of OP, $200 min)"
+      ]
+    },
+    "bundlingNotes": "Document explicitly labeled 'This is not a complete Schedule of Fees' and excludes recording fees, mortgage registration tax, and conservation fee from the quoted premium/closing figures.",
+    "transactionContext": "Residential purchase and refinance; Cook, DuPage, Grundy, Kane, Kendall, Lake, McHenry, Will Counties (Chicago metro)."
+  },
+  {
+    "provider": "TitleStar, LLC (independent title/escrow company) — Cook & Collar Counties fee sheet",
+    "sourceUrl": "https://www.titlestarco.com/s/2026-Cook-Collar-Counties-Fee-Schedule-TitleStar-LLC.pdf",
+    "asOf": "2026-07-15",
+    "settlementFee": "Residential Closing Fee: $1,950 ($0-$150,000) to $2,250 ($400,001-$500,000); over $500,000 add $50/$50,000 increment",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": "Delivery Service Fee $55.00",
+      "wire": "Wire Transfer Service & Technology Fee $60.00",
+      "edoc": "Email Delivery Service Fee $55.00",
+      "eRecording": "Recording Service Fee $25.00",
+      "notarySigning": null,
+      "searchExam": "Tract Search Only $100.00; Foreclosure Tract Searches & Examination $450.00 (includes initial search + one later date); each additional later date $150.00",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Owner's Policy: $2,255 ($200,000 or less) up to $2,900 ($500,001-$510,000); +$20/$10,000 to $1,000,000; +$2/$1,000 above $1,000,000",
+        "Refinance Package Rate: 70% of card rate owner's policy amount, including loan policy, closing fee, standard email/express fee, and two endorsements",
+        "Simultaneously Issued Loan Policy $600.00; Endorsements/per $185.00; Simultaneously Issued 2nd LP $250.00",
+        "GAP Risk Fee $175.00; After Hours Closing Fee $175.00; Cancelled Closing Fee $150.00",
+        "Chicago Water Processing Fee $100.00; FinCEN Reporting Fee $175.00; Water Payment Fee $25.00; Tax Payment Service Fee $50.00; Title Indemnity Fee $200.00; Chain of Title Fee $250.00; IL APLD Processing Fee $100.00; Zoning (Cook) Service Fee $100.00",
+        "Review Client Provided Titles $45.00"
+      ]
+    },
+    "bundlingNotes": "Independent (non-underwriter) title company fee sheet, one of three regional cards published by the same company — Cook & Collar counties pricing is materially higher than the same company's Central and Southern Illinois cards (see companion entries), the single largest urban/rural differential found in this state's survey.",
+    "transactionContext": "Residential purchase and refinance; Cook, DuPage, Grundy, Kane, Kendall, Lake, McHenry, and Will Counties."
+  },
+  {
+    "provider": "TitleStar, LLC (independent title/escrow company) — Central Illinois fee sheet",
+    "sourceUrl": "https://www.titlestarco.com/s/TitleStar-2021-Central-Illinois-Counties-Rate-Card.pdf",
+    "asOf": "2021-02-15",
+    "settlementFee": "Residential Closing Fee: flat $500.00 for $300,001 or less; over $300,001 add $25.00 per $50,000 increment",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": "Overnight Express Fee $35.00",
+      "wire": "Wire Transfer & Technology Fee $35.00",
+      "edoc": "Email Fee $35.00",
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Tract Search Only $100.00",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Owner's Policy: $430 ($0-$50,000) up to $975 ($290,001-$300,000); over $300,001 add $25.00/$10,000 increment; refinance package rate 70% of owner's rate",
+        "Simultaneously Issued Loan Policy $350.00; Endorsements/per $100.00",
+        "GAP Risk Fee $75.00; After Hours Closing Fee $175.00; Cancelled Closing Fee $125.00",
+        "Tax Payment Service Fee $35.00; Title Indemnity Fee $150.00; Chain of Title Fee $100.00; IL APLD Processing Fee $100.00"
+      ]
+    },
+    "bundlingNotes": "Same company, same fee-sheet template as the Cook & Collar and Southern Illinois cards, but the flat $500 Central Illinois closing fee is roughly one-quarter of the $1,950+ Cook & Collar starting tier for an identically-structured transaction — a direct within-company urban/rural comparison covering LaSalle, Livingston, Bureau, Putnam, Peoria, and Champaign Counties.",
+    "transactionContext": "Residential purchase and refinance; LaSalle, Livingston, Bureau, Putnam, Peoria, and Champaign Counties (Central Illinois, incl. Peoria and Champaign-Urbana metro areas)."
+  },
+  {
+    "provider": "TitleStar, LLC (independent title/escrow company) — Southern Illinois fee sheet",
+    "sourceUrl": "https://www.titlestarco.com/s/TitleStar-2021-Southern-Illinois-Counties-Rate-Card.pdf",
+    "asOf": "2021-02-15",
+    "settlementFee": "Residential Closing Fee: flat $500.00 for $300,001 or less; over $300,001 add $25.00 per $50,000 increment",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": "Overnight Express Fee $35.00",
+      "wire": "Wire Transfer & Technology Fee $40.00",
+      "edoc": "Email Fee $35.00",
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Tract Search Only $100.00",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Owner's Policy: $350 ($0-$50,000) up to $755 ($450,001-$500,000); over $500,001 add $15.00/$50,000 increment; refinance package rate 70% of owner's rate",
+        "Simultaneously Issued Loan Policy $150.00 (lowest of any IL source found); Endorsements/per $50.00",
+        "GAP Risk Fee $75.00; After Hours Closing Fee $175.00; Cancelled Closing Fee $125.00",
+        "Tax Payment Service Fee $35.00; Title Indemnity Fee $150.00; Chain of Title Fee $50.00; IL APLD Processing Fee $100.00"
+      ]
+    },
+    "bundlingNotes": "Nearly identical structure to the Central Illinois card from the same company, confirming the flat, low downstate closing-fee pattern is not specific to one region — St. Clair/Madison Counties are the Metro-East (St. Louis-adjacent) submarket within this card's coverage.",
+    "transactionContext": "Residential purchase and refinance; Bond, Calhoun, St. Clair, Madison, Montgomery, and Crawford Counties (Southern/Metro-East Illinois)."
+  },
+  {
+    "provider": "WFG National Title Insurance Company (underwriter rate manual)",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/illinois/rates/WFG%20Rate%20Manual%20IL%20revised%204-28-2015%20(002)%20(002).pdf",
+    "asOf": "2015-04-28",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Homeowner's Policy: $3.85/$1,000 up to $100,000; +$3.30/$1,000 to $250,000; +$2.20/$1,000 to $5,000,000; +$2.00/$1,000 to $10,000,000; minimum premium $100",
+        "Owner's Policy: $3.50/$1,000 up to $100,000; +$3.00/$1,000 to $250,000; +$2.00/$1,000 to $5,000,000; +$1.75/$1,000 to $10,000,000; minimum premium $100",
+        "Loan Policy: $2.50/$1,000 up to $100,000; +$2.00/$1,000 to $500,000; +$1.75/$1,000 to $1,000,000; +$1.50/$1,000 to $10,000,000; minimum premium $100",
+        "Re-issue rate: 60% of original customer charge (owner's/homeowner's/loan policy, prior policy within 10 years)",
+        "Simultaneous issue: Loan Policy charge is flat $100.00 for amount of insurance not in excess of the Owner's Policy",
+        "Master Home Equity Loan Policy certificates: $45.00/loan up to $100,000; $65.00 ($100,000-$250,000); $120.00 ($250,000-$500,000)",
+        "No customer charge for endorsements on 1-4 family residential transactions; multi-family/commercial endorsements charged separately"
+      ]
+    },
+    "bundlingNotes": "Document states explicitly: 'The rates hereinafter set out are basic charges for title insurance only, and do not include charges for searches, abstracts, attorney's fees, escrow or closing services, inspections or other services charged by local attorneys, surveyors, abstractors or abstract companies' — title-premium-only by design; oldest verified source in this state's dataset (2015), included for its still-current re-issue and simultaneous-issue structural rules.",
+    "transactionContext": "Statewide Illinois; residential and commercial purchase/refinance premium rates; no settlement/service fee published in this document by design."
+  },
+  {
+    "provider": "Chicago Title Insurance Company (Chicago Metropolitan Area)",
+    "sourceUrl": "https://cmetro.ctic.com",
+    "asOf": "2026-01-01",
+    "settlementFee": "Residential Closing Fee: $1,950 ($150,000 or less) to $2,250 ($400,001-$500,000); over $500,000 add $50/$50,000 increment",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": "APLD Processing Fee $100",
+      "courier": "Overnight Delivery Service Fee $60",
+      "wire": "Wire Transfer Fee $60",
+      "edoc": "Email Delivery Service Fee $60",
+      "eRecording": "E-Recording Service Fee $35",
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "Refinance CPL Fee Borrower $50; Sale Lender/Buyer $25 each; Sale CPL Seller $50",
+      "binder": null,
+      "other": [
+        "Owner's Policy: $2,250 ($200,000 or less) up to $3,875 ($990,001-$1,000,000); over $1,000,000 quoted on request",
+        "Mortgage Policy (each) $595; ARML/Condominium/Comprehensive/EPA/Location/PUD/Revolving Credit Mortgage Endorsements $185 each",
+        "Joint Order Escrows $500.00",
+        "For closing services on multiple loans, additional $225 per lender's closing statement; closings outside normal workday add minimum $150",
+        "APLD Processing Fee $100; Chain of Title Fee (6-12 months) $250; Chicago Utility Certification Fee $100; Commitment Update Fee $175; Delinquent Tax Processing Fee $125; Dry Closing Fee $150; Escrow Maintenance Yearly Fee $200; Policy Update Fee $175; Tax Payment Service Fee $60; Title Indemnity Processing Fee $200"
+      ]
+    },
+    "bundlingNotes": "Combined 'Schedule of Rates' publication covering both Chicago Title's residential title insurance premium schedule and The Land Trust Company's residential closing/escrow fee schedule as companion products on the same rate card — the closing-fee figures are numerically identical to Fidelity National Title's contemporaneous Chicago-area schedule (see companion entry), consistent with both being Fidelity National Financial family brands.",
+    "transactionContext": "Residential purchase and refinance; Cook, DuPage, Grundy, Kane, Kendall, Lake, McHenry, and Will Counties (Chicago metro)."
+  },
+  {
+    "provider": "Fidelity National Title (Chicago area)",
+    "sourceUrl": "https://wasserlaw.net/images/ratecardscurrent/Fidelity_National_Title_Rates.pdf",
+    "asOf": "2026-01-01",
+    "settlementFee": "Closing Fee: $1,950 ($150,000 or less) to $2,250 ($500,000); $100 discount for cash closing",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": "Overnight Delivery Service Fee $60",
+      "wire": "Wire Transfer Fee $60",
+      "edoc": "Email Delivery Service Fee $60",
+      "eRecording": "Recording Service Fee $35",
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "Refinance CPL Fee Borrower $50; Sale/Refi CPL Fee Lender $25; Sale CPL Fee Buyer $25; Sale CPL Fee Seller $50",
+      "binder": null,
+      "other": [
+        "Insurance premium: $2,250 ($200,000) up to $3,875 ($1,000,000); over $1,000,000 add $2.00/thousand",
+        "Mortgage Policy (each) $595; ALTA 9-06/ARML/Condominium/EPA/Location/PUD/Revolving Credit Mortgage Endorsements $185 each",
+        "For insurance amounts over $500,000 add $50/$50,000 increment; multiple-loan closings outside normal workday add $225 per lender closing statement",
+        "APLD Processing Fee $100; Chain of Title Fee $250; Water Cert. Processing Fee $100; Zoning Cert. Processing Fee $100; Commitment Update Fee $175; Dry Closing Fee $150; Escrow Maintenance Yearly Fee $200; Policy Update Fee $175; Tax Processing Fee $60; Title Indemnity Processing Fee $200; Joint Order Escrows (minimum) $300; Delinquent Tax Processing Fee $125"
+      ]
+    },
+    "bundlingNotes": "Fee figures are numerically identical to Chicago Title's contemporaneous (2026-01-01) Chicago-metro schedule, a direct cross-brand corroboration of the same Chicago-market pricing floor between two Fidelity National Financial family underwriters.",
+    "transactionContext": "Residential purchase and refinance; Chicago metropolitan area."
+  },
+  {
+    "provider": "Proper Title, LLC (independent title/escrow company)",
+    "sourceUrl": "https://wasserlaw.net/images/ratecardscurrent/Proper_Title_Title_Rates.pdf",
+    "asOf": "2026-01-01",
+    "settlementFee": "Residential Closing Fee (Escrow Services): $1,950 ($150,000 or less) to $2,895 ($950,001-$1,000,000)",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": "Courier Fee $25.00; Package Delivery Fee $45.00; Payoff Delivery Fee $50.00",
+      "wire": "Wire Transfer Fee $60.00",
+      "edoc": "Email Fee $55.00",
+      "eRecording": "E-Recording Fee $30.00",
+      "notarySigning": "Remote Closing Fee $175.00; RON Coordination Fee (per person) $100.00",
+      "searchExam": "Title Search & Commitment Fee $290.00; Tract Search Fee $195.00",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Owner's Policy premium: $2,250 ($200,000 or less) up to $3,875 ($990,001-$1,000,000)",
+        "Escrow Services closing fee tiers: $150,001-200,000 $2,050; 200,001-250,000 $2,100; 250,001-300,000 $2,175; 300,001-400,000 $2,375; 400,001-500,000 $2,395; then $2,445-$2,895 in $50,000 bands to $1,000,000",
+        "Lender Policy $595; ARML/Balloon/Condominium/Comprehensive/EPA/Location/PUD/Revolving Credit Endorsements $195 each",
+        "2nd Mortgage Policy $350; 2nd Mortgage Closing Fee $255; 2nd Mortgage Condo/Location Endorsements $75 each",
+        "For multiple-loan closings, additional $225 per lender closing statement; outside-business-hours closings add minimum $150",
+        "After Hours Closing Fee $150; APLD Fee $100; Chain of Title (24 months) $260; Commitment Update Fee $190; Delinquent Tax Processing Fee $140; Dry Closing Fee $165; Later Date Fee $150; Open Item Bill $50; Policy Update Fee $190; Recording Accommodation Fee $250; Split Closing Fee $25; Tax Payment Fee $55; Title Indemnity Processing Fee $230",
+        "Escrow Maintenance Annual Fee $250; Joint Order Escrow/Deed Escrow $310; Survey Service Fee $75; Transfer Stamp Service Fee $160; Water Certification Service Fee $115; Zoning Certification Service Fee $110"
+      ]
+    },
+    "bundlingNotes": "Publishes the richest itemized escrow-fee list of any Illinois source found (23+ distinct line items) under an explicit 'Residential Title Insurance, Escrow and Closing Services' heading; the $250,001-300,000 closing tier ($2,175) is the single highest of the 8 Chicago-metro sources found, roughly 1% above TitleStar's Cook & Collar figure at the same tier ($2,150).",
+    "transactionContext": "Residential purchase and refinance; Cook, Kane, Kendall, Lake, McHenry, DuPage, and Will Counties, plus NW Indiana offices (Schererville, Valparaiso)."
+  },
+  {
+    "provider": "Truly Title, Inc. (independent title/escrow company)",
+    "sourceUrl": "https://wasserlaw.net/images/ratecardscurrent/Truly_Title_Title_Rates.pdf",
+    "asOf": "2026-01-01",
+    "settlementFee": "Amount of Escrow (Closing Fee): $1,950 ($150,000 or less) to $2,750 ($950,001-$1,000,000)",
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": "Express Delivery, Verification and/or Handling Fee $60",
+      "wire": "$60",
+      "edoc": "Email package fee (per loan) $60",
+      "eRecording": "Electronic recording service fee $30",
+      "notarySigning": null,
+      "searchExam": "Proceedings examinations $400",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        "Owner's Policy premium: $2,250 ($200,000 or less) up to $3,875 ($990,001-$1,000,000); over $1,000,000 call for quote",
+        "Closing Fee tiers: 150,001-200,000 $2,050; 200,001-250,000 $2,100; 250,001-300,000 $2,150; 300,001-400,000 $2,200; 400,001-500,000 $2,250; then $2,300-$2,750 in $50,000 bands to $1,000,000",
+        "After hours (additional) $250; Dry closing fee $225; Joint order escrows $350 joint; multiple-loan closings add $350 per lender closing statement",
+        "Loan Policy (each) $595; Location Note/Condominium/Adjustable Rate/Revolving Credit/PUD/EPL Endorsements $185 each",
+        "Accommodation recording fee $90; Title indemnity processing fee $200; Chicago water certification processing fee $100; Chicago zoning certification processing fee $100; Commitment updates $175; Policy update/later date fee $175; Tax payment fee $60; Chain of title $250; IL-APLD processing fee $95; Delinquent Tax Processing Fee $125"
+      ]
+    },
+    "bundlingNotes": "Two Illinois office locations (The Loop, Chicago and Gurnee, IL); its $150,000-or-less through $500,000 closing-fee tier figures ($1,950-$2,250) are identical to Chicago Title's and Fidelity National's contemporaneous schedules, again converging on the same Chicago-market benchmark seen across 4 of the 8 Chicago-metro sources in this dataset.",
+    "transactionContext": "Residential purchase and refinance; Chicago (The Loop) and Gurnee, IL (Lake County)."
+  }
+]

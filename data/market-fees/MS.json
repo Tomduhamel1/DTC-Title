@@ -1,0 +1,138 @@
+[
+  {
+    "provider": "Stewart Title Guaranty Company",
+    "sourceUrl": "https://www.virtualunderwriter.com/-/media/files/virtualunderwriter/imported/pdfs/mississippi-manual-092418-eff-100118.pdf",
+    "asOf": "Last Updated September 24, 2018; Effective October 1, 2018",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "$50.00 per loan; additional $50.00 if a second mortgage/HELOC by a different lender",
+      "binder": null,
+      "other": [
+        "Original Owner's/Leasehold Policy: $4.00/thousand up to $1M, $2.00/thousand over $1M, $150 minimum",
+        "ALTA Homeowner's Policy: 120% of the Owner's Policy charge",
+        "Reissue Owner's/Leasehold: $2.40/thousand up to $1M, $1.20/thousand over $1M, $150 minimum",
+        "Original Loan Policy: $3.00/thousand up to $1M, $1.50/thousand over $1M, $150 minimum",
+        "Refinance Loan Policy: 60% of original charge if within 10 years, up to unpaid balance",
+        "Simultaneous issue (Owner's + Loan, loan not exceeding owner's amount): $75 flat for the loan policy",
+        "Assignment of Loans endorsement: $50 (or per-thousand schedule for new policy)",
+        "Extension of Mortgage Loan: 20% of original loan charge, $50 minimum"
+      ]
+    },
+    "bundlingNotes": "Explicitly states: 'The charges hereinafter set out are basic charges for title insurance only and do not include charges for searches, abstracts, attorney's fees, escrow or closing services, inspections or other services charged by local attorneys, title companies, surveyors, abstractors, or abstract companies.' Definitions section further clarifies a 'Charge' does not include 'any settlement fee, trustee fee, attorney fee, surveying fee, inspection fee, document fee, closing fee, escrow fee or any other fee associated with escrow.' Zero settlement/service-fee dollar figures anywhere in the document.",
+    "transactionContext": "Owner's policy (purchase), loan policy (purchase and refinance), simultaneous issue, reissue/substitution — premium calculation only."
+  },
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/mississippi/rate-manuals/Mississippi Title Rate Manual effective December 4, 2023.pdf",
+    "asOf": "Effective as of December 4, 2023",
+    "settlementFee": null,
+    "itemizedFees": {
+      "docPrep": null,
+      "processing": null,
+      "courier": null,
+      "wire": null,
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": null,
+      "cpl": "$50.00, remitted entirely to the Company (not shared with the agent)",
+      "binder": null,
+      "other": [
+        "Owner's & Leasehold Owner's Policy: $4.00/thousand up to $1M, $2.00/thousand over $1M, $150 minimum",
+        "Loan Policy: $3.00/thousand up to $1M, $1.50/thousand over $1M, $150 minimum",
+        "Expanded Coverage (Homeowner's/ALTA Expanded Loan): 110% of the Basic Rate",
+        "Residential construction loan rate: $1.00/thousand, $150 minimum",
+        "Simultaneous issue: Standard Coverage loan policy $100 flat, Expanded Coverage loan policy $125 flat (when loan liability does not exceed owner's liability)",
+        "Reissue/substitution rate (owner's or loan): 60% of the Basic Rate, up to prior policy amount, $150 minimum",
+        "Residential Limited Coverage Mortgage Modification Policy: $0.50/thousand, $125 minimum"
+      ]
+    },
+    "bundlingNotes": "Explicitly states: 'The rates shown are the all-inclusive title insurance fees and charges and include both the risk portion and the service or work portion, but do not include charges for title search, surveys, escrow, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant.' Zero settlement/service-fee dollar figures anywhere in the document (19-page manual with extensive endorsement fee schedule, all title-insurance-related).",
+    "transactionContext": "Owner's policy (purchase), loan policy (purchase, refinance/substitution, construction), simultaneous issue, reissue — premium calculation only."
+  },
+  {
+    "provider": "Commonwealth Land Title Insurance Company (national FNF-family underwriter; ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine -- this tool's pre-selected default underwriter brand varies by request; prior sessions (CT, AR) confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=MS",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=MS (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-06",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Hinds County (MS's most-populous county per the standard scenario), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions. No Loan Policy line appeared despite the $400,000 loan amount entered.",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback) against the classic __doPostBack/__VIEWSTATE WebForms flow, replaying the recipe already on file in this project's CALCULATORS.md (FNF family section) and previously used for CT/CO/AR: (1) GET ?ID=FNF&state=MS to capture hidden __VIEWSTATE/__EVENTVALIDATION fields and the county dropdown; (2) POST the county selection (own __EVENTTARGET); (3) POST the tool's own pre-selected default underwriter plus btnGeneralNext=Next to advance to the Amounts step; (4) POST TranType$ddl=PropertyPurchase (own __EVENTTARGET) to reveal the Purchase Amount field; (5) POST AmountPurchase$txt=500000 and AmountLoan1$txt=400000 together (own __EVENTTARGET on the loan field) to reveal any further conditional questions; (6) auto-answered any newly-revealed required Yes/No radio question with its first listed option, then POST btnFinish=Finish for the final Rate Summary. No personal data fields exist anywhere in this flow (only county/underwriter/transaction-type/dollar-amount fields).",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,250.00 (ALTA Standard/Homeowner's Coverage Owner's Policy, $500,000 liability amount)",
+      "loanPolicyPremium": null,
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence."
+    },
+    "sectionTotals": "Total Charges for the Policy: $2,250.00. Grand Total: $2,250.00.",
+    "bundlingNotes": "Part of this project's ongoing 2026-08-06 calculator-harvest pass applying the FNF national rate calculator (already confirmed in-scope for premium-only evidence as of the 2026-08-05 CT session) across every remaining below-threshold scarce state where the tool's own county dropdown confirms coverage.",
+    "transactionContext": "Owner's Policy premium for a $500,000 residential purchase, Hinds County, MS. No Loan Policy line appeared despite the $400,000 loan amount entered."
+  },
+  {
+    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-08",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Hinds County (MS's most-populous/standard-scenario county), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Solved this session by extracting the calculator's own Angular \"sellerNetForm\" component logic from its lazy-loaded route chunk (webpack chunk 7, hash 8a01902021d264bdb338 -- fetched by replaying the runtime bundle's own chunk-hash map, since this route is not referenced in the shell page's main.js until a user actually clicks into the seller-net-sheet flow). This resolved the 2026-08-07 session's blocker: `POST /api/rates/fees/estimatefeesforsellernet` was 500ing with unhelpful ProblemDetails errors because the guessed flat `PropertyState`/`PropertyCounty`/`PropertyCity` fields (borrowed from the sibling, differently-shaped `sellernet/calculate` endpoint's own validation-error field names) do not match this endpoint's real schema. The component's own `prepareCalculateFeeRequest()` method reveals the actual required body: `Properties: [{City, County, IsPrimary: true, State}]` (nested, not flat), `Loans: [{LienPosition: 0, LoanAmount}]`, `TransactionProductType: {ProductTypeId: 0, TransactionTypeId: 0}` (0/0 confirmed correct for this flow, not a placeholder), `calculateTaxRequest: {}` (an empty class instance), `SettlementStatementVersion: \"CD\"`, and empty arrays/objects for `premiumDiscounts`/`Endorsements`/`PriorLenderPolicy`/`PriorOwnerPolicy`. Driven via a plain Content-Type: application/json HTTP POST, no browser/JS execution needed. Confirmed via `GET /api/rates/State/GetCalculationEnabledStates` (also public, no auth) that this one API has `isCalculationEnabled: true` for 47 states + DC -- a single new, genuinely distinct 5th major-underwriter source (WFG National Title, a separate corporate family from FNF/Old Republic/Stewart/First American, all already on file elsewhere in this survey) usable across nearly every remaining below-threshold scarce state in one technique. No personal-data field (name/email/phone) exists anywhere in this request shape. Separately confirmed via static inspection of the same chunk's hardcoded `feesConfiguration` sort-weight table that WFG has only itemized its settlement/closing HUD-fee line items for 7 states (WA, CA, TX, OR, AZ, NV, CO) -- for every other state (including this one) the tool returns a premium-only result (Owner's Title Insurance Premium, no settlement/search/doc-prep breakdown), which per this project's 2026-08-05 FNF scoping correction is still valid, dated calculator-harvest evidence.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,200.00",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's sellernet/seller-side-only design; not pursued further as out of scope for the seller-net flow)",
+      "other": [],
+      "note": "Premium-only result -- no itemized settlement/search/doc-prep breakdown appears for this state in this tool (see methodology: only WA/CA/TX/OR/AZ/NV/CO have configured HUD-fee line items in WFG's own fee-description table)."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "Property location for this request: Jackson, MS (Hinds County). Discovered and harvested in the same 2026-08-08 session across 8 below-threshold scarce states at once (OR, NM, CT, NE, MS, LA, UT, SC) using one newly-solved API -- see CALCULATORS.md's 2026-08-08 entry for the full technical recipe and the complete list of states affected.",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Hinds County, MS."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company — Rate Calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.oldrepublictitle.com/rate-calculator/mississippi",
+    "calculatorUrl": "https://ortratecalculator.oldrepublictitle.com/EmbedRateCalc.aspx?Location=MS (ASP.NET WebForms __doPostBack/__VIEWSTATE flow)",
+    "retrievalDate": "2026-08-09",
+    "scenario": "$500,000 purchase price (OWNERS category) and $400,000 loan amount (LOAN category), statewide, computed as two separate standalone quotes -- see methodology.",
+    "methodology": "This is Old Republic's *second* calculator tool (distinct from `ortconline.com/Web2`, whose own footprint does not include MS -- see CALCULATORS.md's state-coverage note). This state was not previously known to be NoBot-blocked or otherwise tried on this tool; harvested for the first time this session as part of the same NoBot-loosening follow-up that unlocked SC/LA (see those states' parallel entries). MS's `RadPolicyCategory` radio group offers only 4 categories (OWNERS, LOAN, HOME EQUITY, MISCELLANEOUS) -- unlike SC's dedicated \"SIMULTANEOUS LOAN & OWNERS\" option or LA's combined \"PURCHASE/SALE\" category, MS has no simultaneous-issue category, so Owner's and Lender's premiums had to be queried as two separate single-category calculations rather than one combined quote: (1) OWNERS category (default-checked), POST `txtLiabilityAmt=500000` (own __EVENTTARGET) then `btnCalculate=Calculate`; (2) fresh POST selecting `RadPolicyCategory=2` (LOAN, own __EVENTTARGET, which swaps the visible liability field from `txtLiabilityAmt` to `txtCrLiabilityAmt`), POST `txtCrLiabilityAmt=400000` (own __EVENTTARGET) then `btnCalculate=Calculate`. **Gotcha**: posting `txtCrLiabilityAmt` while the OWNERS category is still selected (i.e. without first switching to LOAN) throws a hard HTTP 500 (`ErrorPage500.aspx`) -- the field genuinely does not exist in that category's rendered DOM, the same 'posting a field not in the DOM breaks the postback' failure mode already documented elsewhere in this project (Old Republic's `ortconline.com` ReoList/OR-county gotchas). No county selector was required or offered by this tool for MS (statewide pricing). No personal-data fields anywhere in this flow.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,000.00 (OWNERS POLICY, Insurance Amount $500,000.00, Grand Total Policy & Endorsement Premium, standalone -- not a simultaneous-issue quote, this tool has no combined category for MS)",
+      "loanPolicyPremium": "$1,200.00 (LOAN - BASIC, Insurance Amount $400,000.00, Grand Total Policy & Endorsement Premium, standalone)",
+      "other": [],
+      "note": "Premium-only result (no settlement/search/doc-prep line items), consistent with this tool's other state entries already on file (e.g. CT, KY, NM, SC, LA) elsewhere in this survey. Unlike SC/LA, these two figures are NOT additively combinable into one simultaneous-issue total -- MS's category structure on this tool does not expose a simultaneous-discount rate, so no Grand Total or Closing-Disclosure-allocation figure is available here (contrast with SC/LA's richer output)."
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "Crosses MS to 3 calculator-basis providers (FNF, WFG, Old Republic) -- calculator-quoted status. MS's $2,000.00 Owner's Premium sits below both the existing FNF ($2,250.00 Total Policy Premium) and WFG ($2,200.00 Owner's Premium) figures already on file for Hinds County -- a plausible, moderate spread across 3 independently-operated calculator sources for a state with no rating bureau.",
+    "transactionContext": "Old Republic's rate-calculator standalone Owner's Policy quote ($500,000 purchase) and standalone Lender's Policy quote ($400,000 loan), statewide Mississippi (no county tiering in this tool)."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company -- Stewart Rate Calculator, matched settlement office: Watson Jones PLLC (2829 Lakeland Drive, Suite 1502, Jackson, MS 39225)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true (LoanEstimate/QuoteType=3 flow) and https://www.stewartratecalculator.com/Quote/Netsheet?urlParams=&quotetype=2&branded=true (Netsheet/QuoteType=2 flow); both POST to the shared /api/SRC/quote endpoint",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Hinds County (Jackson), residential resale, Sale/Purchase with Mortgage transaction type, BASIC coverage on both Owner's and Lender's policies. Richness-pass harvest applying an already-solved, previously state-limited recipe to a state not yet in Stewart's harvested-state list, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "methodology": "Harvested via Stewart's discoverable `/api/SRC/*` JSON REST API (stewartratecalculator.com), driven entirely by plain HTTP GET/POST (Python requests.Session(), cookie jar) with no browser/JS execution and no personal-data fields, replaying the full recipe documented in this project's CALCULATORS.md (2026-08-14 'SOLVED' entry): GET the LoanEstimate/Netsheet page to scrape a fresh antiforgery cookie + __RequestVerificationToken; GET /api/SRC/propertysearch to resolve the county FIPS code and a default zip; GET /api/SRC/providers to find the county's real settlement office(s) (used to set ProviderID on the QuoteType=3 flow so the itemized settlement-fee list is populated -- an empty ProviderID silently returns a null itemized list); GET /api/SRC/statesettings and /api/SRC/ernstlookup for state-level defaults; build the QuoteRequestRoot JSON by hand (Owner's Policy $500,000 / Lender's Policy $400,000, BASIC coverage, standard Sale/Purchase with Mortgage transaction); POST /api/SRC/quote twice -- QuoteType=2 (Netsheet, pageBuyerSeller=seller) for Recording/CFPB2015 transfer-tax figures, and QuoteType=3 (LoanEstimate, pageBuyerSeller=buyer, IsCalculatePremium=True, IsCalculateTitleServiceFee=True) for the itemized Pricing.TitleServiceFee.ItemizedTitleServiceFeeList settlement-fee line items. One new gotcha found and fixed this session: stewartratecalculator.com's bare apex domain 301-redirects every POST to the www subdomain, and that redirect's response body hangs indefinitely on this sandbox's proxied connection (a 30s+ read timeout with 0 bytes received) -- fixed by targeting https://www.stewartratecalculator.com directly, skipping the apex redirect entirely; this is an environment/proxy artifact, not a sign the endpoint is blocked. Also confirmed the documented /api/SRC/providers gotcha firsthand: for a single-provider county the response's `Provider` field is a bare object, not a one-element list -- must be normalized before indexing or ProviderID silently stays empty and every itemized-fee list comes back null (looks exactly like a genuine empty result).",
+    "settlementFee": {
+      "note": "No itemized settlement/closing-fee line items returned for this settlement office (QuoteType=3's ItemizedTitleServiceFeeList was null/empty) -- a genuine result the recipe has documented before for markets where Stewart's local office has nothing configured through this tool (e.g. attorney-closing states), not a fetch failure."
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$2,200.00",
+      "loanPolicyPremium": "$1,320.00",
+      "other": [],
+      "note": "Premium-only result for this settlement office/state (see settlementFee note)."
+    },
+    "sectionTotals": "Owner's Policy Premium $2,200.00; Lender's Policy Premium $1,320.00",
+    "bundlingNotes": "No deed/transfer/mortgage recording tax returned by this tool for this state (consistent with states known to levy no such tax, or the tax simply isn't configured in this tool).",
+    "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Hinds County, Mississippi."
+  }
+]

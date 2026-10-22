@@ -1,0 +1,261 @@
+[
+  {
+    "provider": "First National Title Insurance Company (FNTI)",
+    "sourceUrl": "https://documentpub.fnti.com/Documents/Missouri/Rate%20Manual/FNTI%20MO%20Rate%20Manual%20Effective%202021-09-01.pdf",
+    "asOf": "Effective 2021-09-01",
+    "settlementFee": {
+      "note": "Title insurance premium/risk-rate schedule, filed per 381.181 RS Mo. Not a settlement/service fee schedule.",
+      "ownersLeaseholdPolicy_perThousand": "Up to $50,000->$1.40/thousand; $50,001-$100,000 add $1.20/thousand; $100,001-$500,000 add $0.80/thousand; $500,001-$1,000,000 add $0.75/thousand; $1,000,001-$5,000,000 add $0.60/thousand; $5,000,001-$10,000,000 add $0.40/thousand; over $10,000,000 add $0.35/thousand. Minimum premium $4.00.",
+      "loanPolicy_perThousand": "Up to $50,000->$1.00/thousand; $50,001-$100,000 add $0.80/thousand; $100,001-$500,000 add $0.70/thousand; $500,001-$1,000,000 add $0.60/thousand; $1,000,001-$5,000,000 add $0.50/thousand; $5,000,001-$10,000,000 add $0.40/thousand; over $10,000,000 add $0.35/thousand. Minimum premium $4.00.",
+      "altaHomeownersPolicy_perThousand": "Up to $50,000->$1.61/thousand; $50,001-$100,000 add $1.38/thousand; $100,001-$500,000 add $0.92/thousand; $500,001-$5,000,000 add $0.92/thousand; $5,000,001+ add $0.46/thousand. Minimum premium $5.00.",
+      "centralizedRefinanceRate": "$1-$100,000->$90; $100,001-$200,000->$160; $200,001-$250,000->$195; $250,001-$500,000->$370; $500,001-$1,000,000->$670; $1,000,001-$1,500,000->$920."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "Closing Protection Letter (buyer/lender, per RSMo 381.022.5)",
+          "amount": "$25 per real estate transaction"
+        },
+        {
+          "name": "Closing Protection Letter (seller, per RSMo 381.022.6)",
+          "amount": "$25 per real estate transaction"
+        },
+        {
+          "name": "Limited Coverage Junior Loan Policy (up to $100,000)",
+          "amount": "$110 (tiered up to $275 at $300,000)"
+        },
+        {
+          "name": "Chain of Title Guarantee",
+          "amount": "$50"
+        }
+      ]
+    },
+    "bundlingNotes": "General Rule F: 'The rates set forth herein do not include any charge made for title search, title examination, closing, or escrow services performed by the Insurer, or any of its approved attorneys or agents. Charges made for such services are in addition to the rates and charges set forth herein.' [Note: same manual's Applicability clause elsewhere states rates apply to 'land located in Missouri' with MO county codes and MO-specific form numbers -- this is the correct-state FNTI filing, unlike the MI manual's Alabama text artifact.] The Closing Protection Letter fee ($25/side, statutorily mandated) is the only true settlement-adjacent dollar figure in the manual.",
+    "transactionContext": "Owner's, Leasehold, Homeowner's, and Loan policy premium schedules for all Missouri counties; also centralized refinance rate table and closing protection letter fees mandated by Missouri statute."
+  },
+  {
+    "provider": "WFG National Title Insurance Company",
+    "sourceUrl": "https://wfgunderwriting.com/wp-content/uploads/filebase/missouri/rate-manuals/Missouri%20Title%20Rate%20Manual%20Effective%20July%201,%202025.pdf",
+    "asOf": "Effective 2025-07-01",
+    "settlementFee": {
+      "note": "Title insurance premium/risk-rate schedule (Uniform Premium/Risk Rate Report filed per 381.181 RSMo & 20 CSR 500-7.100). Not a settlement/service fee schedule.",
+      "ownersLeaseholdPolicy_perThousand": "Up to $50,000->$1.40/thousand; $50,001-$100,000 add $1.20/thousand; $100,001-$500,000 add $0.80/thousand; $500,001-$10,000,000 add $0.70/thousand; $10,000,001-$15,000,000 add $0.60/thousand; over $15,000,000 add $0.50/thousand. Minimum premium $10.00 (raised from $4.00 in the prior format).",
+      "loanPolicy_perThousand": "Up to $50,000->$1.00/thousand; $50,001-$100,000 add $0.80/thousand; $100,001-$500,000 add $0.70/thousand; $500,001-$10,000,000 add $0.60/thousand; $10,000,001-$15,000,000 add $0.50/thousand; over $15,000,000 add $0.40/thousand. Minimum premium $10.00.",
+      "expandedCoverageHomeownersPolicy": "115% of the Owner's/Leasehold premium at the same liability tier.",
+      "lendersSpecialRate_financeLoanOnly": "$0-$250,000->$100; $250,001-$500,000->$200; $500,001-$750,000->$300; $750,001-$1,000,000->$400; $1,000,001-$1,250,000->$500; $1,250,001-$1,500,000->$600."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "Closing Protection Letter (Seller, Buyer, and/or Lender)",
+          "amount": "$25.00"
+        },
+        {
+          "name": "ALTA Residential Limited Coverage Junior Loan Policy (flat, up to $250,000 liability)",
+          "amount": "$110.00"
+        },
+        {
+          "name": "Mortgage Protection Guarantee / Mortgage Modification Policy",
+          "amount": "$125-$350 tiered by liability"
+        }
+      ]
+    },
+    "bundlingNotes": "Section 1 Introduction: 'The rates shown do not include charges for title search, surveys, escrow, closing services, settlement services, recording fees, other charges, or other monies advanced on behalf of an applicant.' Explicit and unambiguous exclusion. The $25.00 Closing Protection Letter fee exactly matches FNTI's $25/side CPL fee (both citing the same RSMo 381.022 statutory basis) -- a clean cross-underwriter corroboration on the one line item both manuals actually price.",
+    "transactionContext": "Owner's, Leasehold, Expanded/Homeowner's, and Loan policy premium schedules for all Missouri counties, plus Lender's Special (finance-loan-only) rate tiers and Closing Protection Letter fee. No purchase/refinance settlement-service-fee breakdown."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company — Estimated Rate/Fee Calculator (ortconline.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
+    "calculatorUrl": "https://www.ortconline.com/Web2/productsservices/informationservices/ratefeecalc/default.aspx",
+    "retrievalDate": "2026-07-22",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, residential resale, Sale transaction type, Loan Estimate calculation. Property location: Kansas City, MO 64106 (Jackson County). City/zip used: Kansas City, MO 64106 (Jackson County, MO's most populous county).",
+    "methodology": "Harvested via direct HTTP GET/POST against the calculator's ASP.NET WebForms postback mechanism (__VIEWSTATE/__EVENTVALIDATION), replicating the same sequential form submissions the browser's JS performs (state select -> county/city select -> Sales Price/Loan Amount -> Submit); no browser/JS execution was used or required. The 'Your Name', 'Your Company', and 'This estimate is being prepared for' fields were left blank throughout -- confirmed optional (no required-symbol asterisk in the form) -- no fabricated personal information was entered at any step.",
+    "settlementFee": {
+      "note": "Not a single line item in this tool's output; the closest analog is the 'Settlement Agent Fee' shown in Section C, split buyer/seller (buyer's share shown here). Settlement Agent Fee total (both parties): Title - Settlement Agent Fee (Total: $1,094.00)."
+    },
+    "itemizedFees": {
+      "processing": "$547.00 (Settlement Agent Fee, Total: $1,094.00)",
+      "other": [
+        {
+          "name": "Title - Lender's Title Policy (Total: $3.00) [buyer's lender's title policy premium]",
+          "amount": "$3.00"
+        }
+      ]
+    },
+    "sectionTotals": "C: Services You Can Shop For: $550.00; H: Other: $294.50",
+    "bundlingNotes": "The city-only dropdown resolved to a specific zip code (64106, downtown Kansas City) to disambiguate Jackson County from the multi-county KC metro; MO's other zips for 'Kansas City' were not tested. The near-zero $3.00 Lender's Title Policy figure is a striking data point -- Old Republic's own MO premium appears to be quoted as a nominal/reissue-eligible rate for this scenario, consistent with this state's file noting Missouri settlement/premium pricing is filed privately rather than published; this is the first MO-specific Old Republic premium figure obtained in this survey (the two rate manuals already on file are First National Title Insurance and WFG National, not Old Republic). Owner's Title Policy* (Total: $294.50, fully buyer-charged here) calculated from full Homeowner's Policy rate of $294.50, plus concurrent lender's-issue charge of $3, less full lender's policy premium of $3.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k purchase scenario; City/zip used: Kansas City, MO 64106 (Jackson County, MO's most populous county)."
+  },
+  {
+    "provider": "Elite Title Company (independent title agency; Des Peres, MO [St. Louis County], 12231 Manchester Road) - via app.netsheetcalc.com/TitleTap platform, app_id 438",
+    "basis": "calculator",
+    "sourceUrl": "https://app.netsheetcalc.com/company/quickquote.php?appid=438",
+    "calculatorUrl": "https://app.netsheetcalc.com/company/quickquote.php?appid=438",
+    "endpointOrParams": "Config: GET https://app.netsheetcalc.com/company/non-auth-ajax.php?action=getNetSheetConfig&app_id=438 (plain, unauthenticated) returns the full fee-form schema per scenario type. Price-tiered fields resolved via GET https://app.netsheetcalc.com/api/index.php/rate/<amount>/<rate-key>: rate/500000/Owner437 (Owner's Title Insurance Premium), rate/500000/PurchaseTitle437 (Title Service Fee), rate/400000/Lender437 (Lender's Title Insurance Premium). Flat-dollar fields (Closing Fee, CPL, E-Recording, Delivery & Handling, Recording Fee Estimate) are literal initial_val constants in the config JSON.",
+    "retrievalDate": "2026-08-02",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Finance (purchase-with-loan) scenario, St. Louis County (this tenant's own address/service area; St. Louis is MO's most-populous metro, distinct from the existing Old Republic entry's Kansas City/Jackson County scenario).",
+    "methodology": "IMPORTANT MISATTRIBUTION CORRECTION: the 2026-07-26 session's VA/MD/CT/MA parallel harvest logged TitleTap app_id=438 as a gated Massachusetts-area instance ('Elite Title Company') based on a search-snippet association; this session verified the tenant's own fetched config JSON directly (per the standing misattribution-guard technique) and found its embedded company address is '12231 Manchester Road, Des Peres, MO 63131' -- a Missouri company, not Massachusetts. Logging correctly under MO instead. Also confirmed not gated: the platform's newer getNetSheetConfig backend (same discovery as this session's AZ/MI harvests) works cleanly for this tenant with no login required, no personal data anywhere in the schema.",
+    "itemizedFees": {
+      "cpl": "$25.00 (Closing Protection Letter)",
+      "processing": null,
+      "notarySigning": null,
+      "docPrep": null,
+      "searchExam": null,
+      "other": [
+        {
+          "name": "Closing Fee",
+          "amount": "$395.00"
+        },
+        {
+          "name": "Title Service Fee (title search/examination-equivalent, price-tiered at $500,000 purchase price)",
+          "amount": "$1,302.49"
+        },
+        {
+          "name": "Owner's Title Insurance Premium ($500,000)",
+          "amount": "$450.00"
+        },
+        {
+          "name": "Lender's Title Insurance Premium ($400,000 loan)",
+          "amount": "$300.00"
+        },
+        {
+          "name": "E-Recording Fee",
+          "amount": "$10.00"
+        },
+        {
+          "name": "Delivery & Handling",
+          "amount": "$35.00"
+        },
+        {
+          "name": "Recording Fee Estimate",
+          "amount": "$100.00"
+        }
+      ]
+    },
+    "sectionTotals": null,
+    "bundlingNotes": "This tenant separates a 'Title Service Fee' ($1,302.49 at $500k, price-tiered via its own rate-table key distinct from the Owner's Title Insurance Premium rate table) from the Owner's Title Insurance Premium itself ($450.00) -- an unusual split versus most calculator-basis providers on file, where title search/exam work is either bundled into the premium or into a flat closing/settlement fee. Confirms MO's calculator-basis market has genuine structural diversity between its 2 providers (Old Republic's premium+fee bundling vs. this tenant's explicit Title Service Fee line item).",
+    "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, St. Louis County/Des Peres -- MO's most-populous metro area, complementing the existing Old Republic entry's Kansas City-area scenario. This is MO's 2nd calculator-basis provider, still below the 3-provider threshold."
+  },
+  {
+    "provider": "Secured Title of Kansas City (independent title agency; Kansas City, MO [Jackson County]) - via forms.titlemidwest.com's RateCalculator platform, tenant slug 'SecuredTitleKC'",
+    "basis": "calculator",
+    "sourceUrl": "https://forms.titlemidwest.com/titlemidwestForms/RateCalculator/SecuredTitleKC/MstCalculator.asp",
+    "calculatorUrl": "https://forms.titlemidwest.com/titlemidwestForms/RateCalculator/SecuredTitleKC/MstCalculator.asp",
+    "endpointOrParams": "Plain unauthenticated JSON GET: https://forms.titlemidwest.com/titlemidwestForms/RateCalculator/SecuredTitleKC/ajax.asp?loantype=p&purchamt=500000&loanamt=400000&state=MO&county=JA (county=JA is Jackson County per the page's own <select id=\"loc_county\"> option list, MO's most populous county / Kansas City). Found this shared platform (forms.titlemidwest.com, 'Title Midwest') via its own open directory listing at /titlemidwestForms/RateCalculator/, discovered while investigating Minnesota Secured Title's calculator (same platform operator, tenant slug 'mnSecured') -- the directory listing exposes 25+ tenant slugs across KS, MO, NE, TX in addition to MN, a significant new multi-state platform find. The remaining fee breakdown (closing fees, wire fee, delivery fee) is a set of flat dollar constants embedded directly in the page's own inline <script> and HTML (not returned by the ajax.asp JSON) -- read directly from view-source, no execution needed.",
+    "retrievalDate": "2026-08-02",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, Purchase transaction, Jackson County (Kansas City, MO's most populous county / metro -- same county as the existing Old Republic entry, giving a same-market cross-provider comparison point).",
+    "methodology": "Found via this session's Title Midwest platform discovery (see Minnesota Secured Title's MN.json entry for the initial find). This specific tenant (Secured Title of Kansas City) was located directly in the platform's own open directory listing rather than via a targeted web search. No personal data fields exist anywhere in the calculator's HTML form (only Purchase Price, Loan Amount, State, County).",
+    "itemizedFees": {
+      "cpl": "$50.00 (CPL Fee, both Owner's-side and Lender's-side policy charges)",
+      "processing": null,
+      "notarySigning": null,
+      "docPrep": null,
+      "searchExam": "Missouri Title Service Fee: $665.50 (Owner's-side) / $372.00 (Lender's-side)",
+      "other": [
+        {
+          "name": "Filed Premium (Owner's-side)",
+          "amount": "$294.50"
+        },
+        {
+          "name": "Filed Premium (Lender's-side, simultaneous issue)",
+          "amount": "$3.00"
+        },
+        {
+          "name": "Seller closing fee",
+          "amount": "$500.00"
+        },
+        {
+          "name": "Buyer / borrower closing fee",
+          "amount": "$400.00"
+        },
+        {
+          "name": "Wire / Banking service fee",
+          "amount": "$25.00"
+        },
+        {
+          "name": "Overnight / Delivery Service fee",
+          "amount": "$45.00"
+        }
+      ]
+    },
+    "sectionTotals": "Net Owner's Title Policy Charge: $1,010.00 (CPL $50 + MO Title Service Fee $665.50 + Filed Premium $294.50). Net Lender's Title Policy Charge: $425.00 (CPL $50 + MO Title Service Fee $372.00 + Filed Premium $3.00). Total Other Title Charges: $970.00 (Seller closing fee $500 + Buyer/borrower closing fee $400 + Wire fee $25 + Delivery fee $45).",
+    "bundlingNotes": "This tenant explicitly splits 'closing fee' into a Seller closing fee ($500) and a separate Buyer/borrower closing fee ($400) -- a genuine buyer/seller-asymmetric closing-fee structure, distinct from Elite Title Company's (also on file for MO, harvested this session) single flat $395 Closing Fee, and from Old Republic's bundled escrow product. The 'Missouri Title Service Fee' + 'Filed Premium' split (rather than a single title insurance premium line) matches the same platform's Minnesota Secured Title tenant structure (which uses 'Title Evidence'/'Title Examination' instead) -- confirms the Title Midwest platform's schema is genuinely per-tenant-configured, not a copy-paste demo, despite the shared backend.",
+    "transactionContext": "Calculator-derived itemized quote for the standard $500k/$400k purchase scenario, Jackson County/Kansas City -- the same metro area as the existing Old Republic entry, giving a direct same-market comparison point. This is MO's 3rd calculator-basis provider, crossing the 3-provider threshold."
+  },
+  {
+    "provider": "FNF-family underwriter (Chicago Title/Fidelity National Title/Commonwealth Land Title -- ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine; this tool's pre-selected default underwriter brand varies by request, and prior sessions confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=MO",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=MO (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-19",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Jackson County (Kansas City) (matching this state's existing calculator entries' county), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions.",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback), following this project's existing FNF recipe documented in CALCULATORS.md: GET the county-selection page, POST the county (own __EVENTTARGET), POST btnGeneralNext=Next, POST TranType$ddl=PropertyPurchase, POST AmountPurchase$txt=500000 then AmountLoan1$txt=400000 (each with its own __EVENTTARGET), tool defaults for all remaining policy questions, then POST btnFinish=Finish for the final Rate Summary. No personal-data fields exist anywhere in this flow. This is a richness pass applying the already-solved FNF recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$450.00 (Owner's Policy Premium, concurrent-issue rate -- this tool does not itemize a Disclosure/Adjustment split for MO, unlike most other states in this recipe)",
+      "loanPolicyPremium": "$4.00 (Loan Policy Premium, concurrent-issue rate)",
+      "other": [
+        {
+          "name": "Closing Protection Letter Coverage - Lender/Buyer",
+          "amount": "$25.00"
+        },
+        {
+          "name": "Closing Protection Letter Coverage - Seller",
+          "amount": "$25.00"
+        }
+      ],
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence. The unusually low Owner's/Loan premiums ($450.00/$4.00) are recorded exactly as returned by the tool per this project's evidence rules (exact figures only, never estimated or corrected)."
+    },
+    "sectionTotals": "Grand Total: $504.00.",
+    "bundlingNotes": "Harvested this session as a richness pass -- MO had already crossed the 3-provider threshold (Old Republic, Elite Title Company, Secured Title of Kansas City); this FNF entry is a 4th corroborating provider, applying the same generalized recipe already used for AR/CT/CO/MA/ND/VT/WY/RI/DE/SD/AK/NH/WV/ME/OH.",
+    "transactionContext": "Owner's + Loan Policy concurrent-issue premiums plus dual Closing Protection Letter charges for a $500,000 residential purchase / $400,000 loan, Jackson County (Kansas City)."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company -- Stewart Rate Calculator, matched settlement office: Stewart Title Company-Midwest Division (1116 Remington Plaza, Suite B, Raymore, MO 64083)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true (LoanEstimate/QuoteType=3 flow) and https://www.stewartratecalculator.com/Quote/Netsheet?urlParams=&quotetype=2&branded=true (Netsheet/QuoteType=2 flow); both POST to the shared /api/SRC/quote endpoint",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Jackson County (Kansas City), residential resale, Sale/Purchase with Mortgage transaction type, BASIC coverage on both Owner's and Lender's policies. Richness-pass harvest applying an already-solved, previously state-limited recipe to a state not yet in Stewart's harvested-state list, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "methodology": "Harvested via Stewart's discoverable `/api/SRC/*` JSON REST API (stewartratecalculator.com), driven entirely by plain HTTP GET/POST (Python requests.Session(), cookie jar) with no browser/JS execution and no personal-data fields, replaying the full recipe documented in this project's CALCULATORS.md (2026-08-14 'SOLVED' entry): GET the LoanEstimate/Netsheet page to scrape a fresh antiforgery cookie + __RequestVerificationToken; GET /api/SRC/propertysearch to resolve the county FIPS code and a default zip; GET /api/SRC/providers to find the county's real settlement office(s) (used to set ProviderID on the QuoteType=3 flow so the itemized settlement-fee list is populated -- an empty ProviderID silently returns a null itemized list); GET /api/SRC/statesettings and /api/SRC/ernstlookup for state-level defaults; build the QuoteRequestRoot JSON by hand (Owner's Policy $500,000 / Lender's Policy $400,000, BASIC coverage, standard Sale/Purchase with Mortgage transaction); POST /api/SRC/quote twice -- QuoteType=2 (Netsheet, pageBuyerSeller=seller) for Recording/CFPB2015 transfer-tax figures, and QuoteType=3 (LoanEstimate, pageBuyerSeller=buyer, IsCalculatePremium=True, IsCalculateTitleServiceFee=True) for the itemized Pricing.TitleServiceFee.ItemizedTitleServiceFeeList settlement-fee line items. One new gotcha found and fixed this session: stewartratecalculator.com's bare apex domain 301-redirects every POST to the www subdomain, and that redirect's response body hangs indefinitely on this sandbox's proxied connection (a 30s+ read timeout with 0 bytes received) -- fixed by targeting https://www.stewartratecalculator.com directly, skipping the apex redirect entirely; this is an environment/proxy artifact, not a sign the endpoint is blocked. Also confirmed the documented /api/SRC/providers gotcha firsthand: for a single-provider county the response's `Provider` field is a bare object, not a one-element list -- must be normalized before indexing or ProviderID silently stays empty and every itemized-fee list comes back null (looks exactly like a genuine empty result).",
+    "settlementFee": {
+      "note": "$690.00 total, split buyer $395.00 / seller $295.00 (line item: 'Title Closing Fee')"
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$1,149.00",
+      "loanPolicyPremium": "$1,006.00",
+      "other": [
+        {
+          "name": "Title Closing Fee",
+          "amount": "$690.00 (buyer $395.00 / seller $295.00)"
+        }
+      ],
+      "note": "1 itemized settlement/closing-fee line item(s) returned via the QuoteType=3 flow."
+    },
+    "sectionTotals": "Owner's Policy Premium $1,149.00; Lender's Policy Premium $1,006.00; itemized settlement fees sum $690.00",
+    "bundlingNotes": "No deed/transfer/mortgage recording tax returned by this tool for this state (consistent with states known to levy no such tax, or the tax simply isn't configured in this tool).",
+    "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Jackson County, Missouri."
+  },
+  {
+    "provider": "WFG National Title Insurance Company — Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Jackson County (Kansas City), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Harvested via WFG National Title's own public JSON API, `POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet`, fully solved and documented in this project's CALCULATORS.md (2026-08-08 entry) -- no browser/JS execution needed, no personal-data fields in the request shape (nested Properties/Loans arrays, TransactionProductType, SettlementStatementVersion: \"CD\"). Confirmed via the same API's public `GET /api/rates/State/GetCalculationEnabledStates` that MO is `isCalculationEnabled: true` before harvesting. Richness-pass application of an already-solved, previously-untried-for-this-state recipe, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "settlementFee": {
+      "note": "Premium-only result (no itemized settlement/search/doc-prep line items) -- consistent with WFG's own hardcoded fee-description table, which only itemizes HUD-style settlement fees for 7 states (WA, CA, TX, OR, AZ, NV, CO); every other state, including this one, returns only the Owner's Title Insurance Premium."
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$518.00",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's seller-net-sheet-only design)",
+      "other": [],
+      "note": "Premium-only result for this state (see settlementFee note)."
+    },
+    "sectionTotals": "Owner's Title Insurance Premium $518.00",
+    "bundlingNotes": "Discovered and solved 2026-08-08; applied here as a richness-pass 4th/5th calculator-basis provider for Missouri (already at 3-4 providers via other tools) since no prior session had run this already-solved recipe against this state. Property location for this request: Kansas City, Missouri (Jackson County).",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Jackson County, Missouri."
+  }
+]

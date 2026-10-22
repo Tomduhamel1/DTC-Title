@@ -1,0 +1,357 @@
+[
+  {
+    "provider": "Title Insurance Rating Bureau of Pennsylvania (TIRBOP) \u2014 Manual of the Title Insurance Rating Bureau of Pennsylvania (REGULATORY/RATING-BUREAU-UNIFORM, not provider-set)",
+    "sourceUrl": "https://patitleratingbureau.org/wp-content/uploads/2024/07/TIRBOP-Manual-FINAL-APPROVED-08-01-2024-4857-2336-2733-v2.pdf (current 08/01/24 manual, fetched and machine-read this session via PDF text extraction after WebFetch's native PDF parsing failed on garbled binary); cross-checked against the prior 04/01/23 vintage at https://patitleratingbureau.org/wp-content/uploads/2023/04/TIRBOP-Manual-FINAL-APPROVED-04-01-2023.pdf (identical Sale/Non-Sale/Approved-Attorney rate tables -- only endorsement-form additions changed between vintages, confirming the rate has been unchanged since at least 04/01/23) and against https://patitleratingbureau.org/pennsylvania-is-an-all-inclusive-rate-state/ and https://patitleratingbureau.org/other-allowable-charges/",
+    "asOf": "Approved by the Pennsylvania Insurance Department, amended through 08/01/24; members list as of 08/01/24 includes 22 title insurers (Chicago Title, Commonwealth Land Title, Fidelity National, First American, Old Republic National, Stewart Title Guaranty, WFG National, Westcor, Doma, Alliant National, and others), all bound to the identical rate table",
+    "settlementFee": {
+      "note": "PENNSYLVANIA IS A RATING-BUREAU-UNIFORM, ALL-INCLUSIVE-RATE STATE: TIRBOP's Manual, filed with and approved by the PA Insurance Department under The Insurance Company Law of 1921 (40 P.S. section 910-41), sets a single 'Charge' that under the COMPANY OR AGENT PROCEDURE legally BUNDLES the title insurance premium together with title search, examination, escrow, and settlement/closing services into ONE all-inclusive rate (Section 1.6: 'Charge(s) ... includes premium, examination and settlement or closing fee and every other Charge'). This is the regulatory backbone -- not a provider-set price -- and is the same byte-for-byte across every TIRBOP member/agent in the state. HOWEVER, TIRBOP's Manual also creates the exact structural carve-out the task brief anticipated: under the ALTERNATIVE 'APPROVED ATTORNEY PROCEDURE' (Section 5.1.B), the Approved Attorney -- not the Insurer/Agent -- personally certifies title and conducts settlement, and Section 5.1.C states in so many words: 'The charge for the search, examination of title and the settlement by the Approved Attorney is NOT governed by this Manual.' That attorney-side settlement charge is therefore entirely unregulated and left to the individual attorney/market, exactly matching this survey's target. TIRBOP additionally lists, in Section 2.1(a)-(e), five specific categories explicitly EXCLUDED from even the all-inclusive Company/Agent rate and therefore separately, unregulated-ly chargeable by ANY provider type: (a) document preparation other than the commitment/closing statement/policy, (b) government recording charges, (c) overnight delivery, (d) bank wire transfer, and (e) receipt/printing of electronically-transmitted documents other than the commitment/closing statement/policy -- i.e., doc prep, courier/overnight, and wire fees are NOT part of the regulated rate anywhere in Pennsylvania, confirming the brief's framing that these service-fee categories vary by provider even though the core premium does not.",
+      "saleRateTable_representativeTiers": "Company/Agent Procedure, Sale Rate (owner's policies): $0-$30,000 = $569.00 flat; add $7.41/thousand from $30,001-$45,000; $6.27/thousand from $45,001-$100,000 (so $100,000 total = $1,025.00); $5.70/thousand from $100,001-$500,000 (so $200,000 = $1,595.00; $500,000 = $2,850.00 -- reconstructed from the per-tier formula); $4.56/thousand from $500,001-$1,000,000 (so $1,000,000 = $5,130.00); further tiers to $30,000,000+.",
+      "nonSaleRateTable_representativeTiers": "Company/Agent Procedure, Non-Sale Rate (loan policies): $0-$30,000 = $512.00 flat; add $5.98/thousand from $30,001-$45,000; $5.41/thousand from $45,001-$100,000 (so $100,000 = $899.25); $4.84/thousand from $100,001-$500,000 (so $200,000 = $1,383.25); $4.27/thousand from $500,001-$1,000,000; further tiers to $30,000,000+.",
+      "approvedAttorneyRateTable_representativeTiers": "Approved Attorney Procedure (Section 5.51): $0-$30,000 = $142.00 flat; add $3.70/thousand from $30,001-$100,000 (so $100,000 = $401.00 -- Manual's own worked example shows $200,000 = $714.00); add $3.13/thousand from $100,001-$500,000; add $2.85/thousand from $500,001-$1,000,000; further tiers to $7,000,000+. NOTE: the Approved Attorney Rate is dramatically lower than the Company/Agent Sale Rate at every tier (e.g., $200,000: $714.00 Approved Attorney vs. $1,595.00 Company/Agent Sale Rate) precisely BECAUSE it excludes the settlement/search/exam work the Approved Attorney performs and bills separately, unregulated, per Section 5.1.C -- the rate differential is the clearest quantitative proof in this survey of how much of the 'all-inclusive' Company/Agent charge is actually attributable to settlement services.",
+      "closingProtectionLetter": "$125.00 per transaction, regardless of number of letters issued (Section 3.5), remitted entirely to the Insurer (not the Agent or Approved Attorney)",
+      "escrowServiceCharge": "$25.00 minimum for the first 6 months funds are held, plus $25.00 for each additional year (Section 3.2)",
+      "cancellationCharge": "$100.00 minimum (Company/Agent Procedure, Section 3.1)",
+      "recordOwnerAndLienCertificate": "$350.00 per chain of title (1-4 family residential, $2,500 liability) or $750.00 per chain of title (non-residential, $5,000 liability) (Section 3.6)",
+      "approvedAttorneyCommitmentCharge": "$25.00 minimum, creditable toward the title insurance rate (Section 3.3)"
+    },
+    "itemizedFees": {
+      "docPrep": "NOT included in the all-inclusive Company/Agent rate (Section 2.1(a) -- document preparation other than the commitment, closing statement, and policy is excluded and separately, unregulated-ly chargeable)",
+      "processing": null,
+      "courier": "NOT included in the all-inclusive rate (Section 2.1(c) -- overnight delivery requested by an interested party is excluded)",
+      "wire": "NOT included in the all-inclusive rate (Section 2.1(d) -- bank wire transfer requested by an interested party is excluded)",
+      "edoc": "NOT included in the all-inclusive rate for documents other than the commitment/closing statement/policy (Section 2.1(e))",
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "Included in the Sale/Non-Sale Rate under the Company or Agent Procedure only (Section 3.4); under the Approved Attorney Procedure, search/examination/settlement charges are billed separately and unregulated (Section 5.1.C)",
+      "cpl": "$125.00 flat per transaction (Section 3.5, see settlementFee above)",
+      "binder": null,
+      "other": [
+        {
+          "name": "ALTA Short Form Residential Loan Policy surcharge",
+          "amount": "$200.00 in addition to the otherwise applicable Charge"
+        },
+        {
+          "name": "Homeowner's Policy of Title Insurance surcharge",
+          "amount": "additional 10% of the Sale Rate (e.g., $200,000 Company/Agent: $1,595.00 + $159.50 = $1,754.50; Approved Attorney: $714.00 + $159.50 = $873.50)"
+        },
+        {
+          "name": "Expanded Coverage Residential Loan Policy flat endorsement fee",
+          "amount": "$400.00 flat, plus additional 10% of Non-Sale Rate"
+        },
+        {
+          "name": "Sheriff's Distribution Policy (judicial sale, non-tax)",
+          "amount": "$142.00 up to $2,000, tiered per-thousand thereafter"
+        },
+        {
+          "name": "Sheriff's Distribution Policy (tax sale, entire fund)",
+          "amount": "$227.00 flat"
+        },
+        {
+          "name": "Additional/difficult-title-matter work charge",
+          "amount": "Insurer-set, must bear 'reasonable relationship' to services performed; filed quarterly with the Department"
+        }
+      ]
+    },
+    "bundlingNotes": "PA's TIRBOP structure is the single clearest illustration in this survey of the task brief's core distinction: the Company/Agent Procedure's 'all-inclusive' Sale/Non-Sale Rate is rating-bureau-uniform and covers premium + search + exam + escrow + settlement as ONE regulated Charge (confirmed identical across the 04/01/23 and 08/01/24 manual vintages, and independently cross-verified against a 2019-vintage Old Republic Title/Carbon Search and Settlement Services Inc. republication of the same Sale/Non-Sale table at https://cdn.hibuwebsites.com/f29812e7658842deae54ba229abe69a8/files/uploaded/Carbon-Search-And-Settlement-Services-Inc-Title-Insurance-Rates.pdf -- byte-for-byte identical base rates back to at least August 2019, meaning the TIRBOP rate table has been stable for 5+ years). But TIRBOP itself creates two distinct escape hatches from that bundling: (1) the Approved Attorney Procedure, where the attorney's own search/exam/settlement charge is expressly NOT governed by the Manual at all (Section 5.1.C) -- and PA's real-world mix of title-agent-run and attorney-run closings (the 'table funding'/attorney-involvement-varies pattern flagged in the task brief) means a meaningful share of PA closings are priced this way; and (2) Section 2.1(a)-(e)'s carve-outs for doc prep, recording, overnight delivery, wire transfer, and e-doc printing, which apply to EVERY provider type regardless of procedure and are the primary channel through which PA providers actually compete on price even under the Company/Agent Procedure.",
+    "transactionContext": "Applies uniformly to Owner's and Loan policy premiums statewide, all counties, all provider types that are TIRBOP members/agents. No purchase-vs-refinance rate distinction (rate depends only on liability/loan amount, and on which of the two Procedures -- Company/Agent vs. Approved Attorney -- is used for a given transaction)."
+  },
+  {
+    "provider": "Associates Land Transfer Company, LLC (d/b/a ALT Title) (independent, North Wales, PA -- Montgomery County/Philadelphia metro, serving statewide PA)",
+    "sourceUrl": "https://alttitle.com/pa-title-deed-services/ (Deed Preparation Fee) and https://alttitle.com/pa-settlement-private-sale-conveyancing-fsbo/ (FSBO/private-sale seller title-clearing fee schedule with itemized competitor comparison)",
+    "asOf": "Retrieved 2026-07-22; no explicit effective date stated on either page (described as current pricing)",
+    "settlementFee": {
+      "sellerTitleClearingSettlementFee_FSBOprivateSale": "$375.00 total, itemized as 'Order mortgage payoff, tax & municipal certifications' -- explicitly bundling deed preparation, courier/wire, and in-person notary at no additional charge (all marked 'Included')",
+      "buyerAdditionalProcessingFees": "$0.00 (page states 'Additional fees to process your transaction: $0' when the buyer selects ALT for title insurance and settlement)",
+      "competitorComparison_selfReported": "ALT's own page states an 'Average Real Estate Broker/In-House Title' competitor charges $620-$920 total for the same seller-side services, itemized as: mortgage payoff/tax/municipal certifications $395-$595, deed preparation $150 (separately charged, vs. included at ALT), courier and wire fees $50-$100 (separately charged, vs. included at ALT), notary fees (in-person) $25-$75 (separately charged, vs. included at ALT) -- this competitor-side figure is ALT's own self-reported market comparison, not independently verified against a named competitor's own site this session, so it is weighted as softer evidence than ALT's own $375/$250 prices"
+    },
+    "itemizedFees": {
+      "docPrep": "Deed Preparation Fee: $250.00 (per alttitle.com/pa-title-deed-services/, stated as 'Deed Preparation Fee $250'); bundled/included at no extra charge within the $375 FSBO seller settlement package on the other page",
+      "processing": "$0 additional buyer-side processing fees (explicitly stated)",
+      "courier": "Included in the $375 seller settlement fee (no separate charge); competitor comparison cites $50-$100 for courier+wire combined",
+      "wire": "Included in the $375 seller settlement fee (no separate charge); competitor comparison cites $50-$100 for courier+wire combined",
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": "Included in the $375 seller settlement fee (no separate charge); competitor comparison cites $25-$75 for in-person notary",
+      "searchExam": null,
+      "cpl": null,
+      "binder": null,
+      "other": [
+        {
+          "name": "Recording Fee",
+          "amount": "varies by municipality (no flat figure stated)"
+        },
+        {
+          "name": "Transfer Tax",
+          "amount": "subject to PA Department of Revenue guidelines (no flat figure stated)"
+        }
+      ]
+    },
+    "bundlingNotes": "ALT explicitly positions itself as the no-junk-fee, all-inclusive-pricing outlier in the PA independent-title market, bundling deed prep, courier, wire, and in-person notary into a single $375 seller-side settlement fee for FSBO/private-sale transactions where the buyer is separately using ALT for title insurance -- directly analogous to the no-junk-fee positioning seen from Valero Title (TX) and FTIC (FL) in prior sessions of this survey. This is a genuine, provider-published, dollar-denominated PA settlement-fee schedule -- a notably rarer find in PA than in TX/FL given TIRBOP's all-inclusive-rate structure, which appears to suppress most PA providers' incentive to publish a standalone settlement-fee number (see PA.md search log for the many calculator-only/no-figures pages found instead).",
+    "transactionContext": "FSBO ('for sale by owner')/private-sale conveyancing specifically (seller side); separately, a standalone $250 deed preparation fee applies to deed-only services. Statewide PA reach from a North Wales, Montgomery County (Philadelphia metro) office."
+  },
+  {
+    "provider": "Pride Abstract & Settlement Services, LLC (independent, Coopersburg/Quakertown/Bethlehem/Whitehall, PA + Stroudsburg, PA -- Lehigh Valley/Poconos metro, also serving NJ)",
+    "sourceUrl": "https://prideabstract.com/the-most-overlooked-real-estate-closing-fees/",
+    "asOf": "Retrieved 2026-07-22; no explicit effective date stated on the page (described as current/typical pricing)",
+    "settlementFee": {
+      "settlementEscrowFee_range": "$1,000-$2,500 (provider's own stated range for 'Settlement/Escrow Fee,' not a single flat quoted figure -- weighted as softer evidence than a flat number, but this is the provider's own published range, quoted exactly, not an estimate created by this survey)"
+    },
+    "itemizedFees": {
+      "docPrep": "Grouped under a broader 'Document Processing/Admin Fees' category with no precise standalone figure stated",
+      "processing": "Same as docPrep -- no precise standalone figure",
+      "courier": "$25-$75 or more ('Courier/Overnight Mail Fees')",
+      "wire": "$15-$50 per transfer ('Wire Transfer Fees')",
+      "edoc": null,
+      "eRecording": null,
+      "notarySigning": null,
+      "searchExam": "$150-$500 ('Title Search/Admin Fee')",
+      "cpl": null,
+      "binder": null,
+      "other": [
+        {
+          "name": "Recording Fees",
+          "amount": "$50-$300"
+        },
+        {
+          "name": "Title Insurance (each policy)",
+          "amount": "0.5%-1% of sale price (this is the provider's own stated shorthand for the TIRBOP-set, rating-bureau-uniform premium -- not a provider-set figure, included here only because Pride Abstract's own page states it this way)"
+        },
+        {
+          "name": "Attorney Fees (when applicable)",
+          "amount": "$150-$400 per hour"
+        }
+      ]
+    },
+    "bundlingNotes": "Pride Abstract's own consumer-education blog post is the only other PA source located this session with dollar-denominated settlement-fee content, but it publishes RANGES rather than a single flat quoted fee for its own services -- softer evidence than ALT Title's exact $375/$250 figures, though still the provider's own exact published language (quoted verbatim, not extrapolated by this survey). The range's low end ($1,000) and high end ($2,500) for the core settlement/escrow fee are far above ALT Title's $375 FSBO figure, though the two are not a clean apples-to-apples comparison (Pride Abstract's range appears to describe a full-service buyer/seller-side closing generally, not the same FSBO-specific service ALT prices at $375).",
+    "transactionContext": "General/typical PA (and NJ) residential closing, not broken out by purchase vs. refinance or by buyer vs. seller side. Lehigh Valley (Coopersburg, Quakertown, Bethlehem, Whitehall) and Poconos (Stroudsburg) offices."
+  },
+  {
+    "basis": "calculator",
+    "provider": "ALT Title / Associates Land Transfer Company LLC (independent, North Wales/Montgomery County PA, policy-issuing agent for Old Republic National Title)",
+    "sourceUrl": "https://alttitle.com/pa-title-insurance-quote-title-calculator/",
+    "calculatorUrl": "https://alttitle.com/pa-title-insurance-quote-title-calculator/",
+    "endpoint": "POST https://alttitle.com/wp-json/tiq/v1/quote (WordPress REST API, X-WP-Nonce header read from the page's embedded TIQ_SETTINGS.nonce; GET https://alttitle.com/wp-json/tiq/v1/settings for the county/municipality/school_district list, no auth)",
+    "retrievalDate": "2026-07-25",
+    "scenario": "$500,000 purchase price, $400,000 loan, Philadelphia County (PA's most populous county), residential purchase, quote_type=quick (no personal data entered -- ALT's own 'Custom' quote type would require insured_name/property_address, avoided per hard rule), policy_type=standard, owners_policy=included",
+    "methodology": "ALT Title's own site embeds a first-party React app (WordPress plugin 'tiq') that calls a genuine, unauthenticated (nonce-only) JSON REST API on ALT's own domain -- no browser/JS execution needed, driven via plain POST with a JSON body ({policy_type, owners_policy, transaction_type, quote_type, county, sale_price, loan_amount, ...}, all enum values lowercase e.g. 'standard'/'included'/'purchase'/'quick'). Response is a fully itemized quote object.",
+    "settlementFee": {
+      "closingFee": "$0.00 (ALT's own charge; explicitly $0 -- see bundlingNotes)",
+      "note": "ALT Title markets a $0 in-house closing/notary/courier/wire/e-doc fee model; its calculator separately shows a 'competitor' comparison range for the same line items"
+    },
+    "itemizedFees": {
+      "closing": "$0.00 (ALT) vs. competitor range $0-$225",
+      "notary": "$0.00 (ALT) vs. competitor range $25-$75",
+      "courier": "$0.00 (ALT) vs. competitor range $10-$35 (each)",
+      "wire": "$0.00 (ALT) vs. competitor range $10-$35 (each)",
+      "edoc": "$0.00 (ALT, labeled 'Electronic Doc') vs. competitor range $75-$125",
+      "brokerAdmin": "$0.00 (ALT, labeled 'Broker Admin') vs. competitor range $345-$700",
+      "searchExam": null,
+      "docPrep": null,
+      "eRecording": null,
+      "cpl": "$125.00 (Lender's Closing Protection Letter, standard policy)",
+      "recordingDeed": "$277.75 (paid by ALT per the quote)",
+      "recordingMortgage": "$247.75 (paid by ALT per the quote)",
+      "transferTax": "$11,445.00 (buyer's portion; Philadelphia transfer tax, not an ALT fee)",
+      "titleInsurancePremium": {
+        "ownersPolicy_standard": "$570.00",
+        "lendersPolicy_standard": "$2,735.00",
+        "lendersEndorsements_standard": "$300.00 (100/300/900 package)",
+        "ownersPolicy_enhanced": "$627.00",
+        "lendersPolicy_enhanced": "$3,008.50",
+        "lendersEndorsements_enhanced": "$400.00"
+      }
+    },
+    "sectionTotals": "Standard coverage, with owner's policy: $3,730.00 total quote (ALT's own figure) vs. average competitor range $4,195.00-$4,925.00 (ALT's own marketing comparison, not independently verified by this survey). Without owner's policy: $3,160.00 vs. competitor $3,625.00-$4,355.00.",
+    "bundlingNotes": "ALT Title's calculator explicitly zeroes out its own miscellaneous/ancillary fees (closing, notary, courier, wire, e-doc, broker admin all show 'alt': 0) while displaying a 'min_competition'/'max_competition' range for the same line items as a sales/marketing comparison -- these competitor ranges are ALT's own stated figures, not independently verified by this survey, and are recorded here as such. Government recording fees (deed/mortgage) are stated as 'Paid By ALT' for Philadelphia County specifically. This corroborates and extends the existing published-schedule ALT Title entry in this file (which found a $375 FSBO settlement fee + $250 deed prep fee on a different ALT page) -- the calculator shows ALT's full-service (non-FSBO) pricing model instead, which is materially different ($0 ancillary fees vs. $375/$250), suggesting ALT prices FSBO/full-service transactions on separate fee schedules.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k Philadelphia County purchase scenario, standard (non-enhanced) coverage, with owner's policy."
+  },
+  {
+    "basis": "calculator",
+    "provider": "TitleWorks (independent title/settlement company; embeds a MyTitleRates.com white-label calculator instance, agency id a=24, serving PA/NJ/FL)",
+    "sourceUrl": "https://www.titleworks.com/pennsylvania-title-insurance-calculator/",
+    "calculatorUrl": "https://calculator.mytitlerates.com/rateCalculator.php?a=24&results=3",
+    "endpoint": "POST https://calculator.mytitlerates.com/rateCalculator.php (plain HTML form POST, no JS/auth needed; county=85 is Philadelphia County's option value in this agency's own county list)",
+    "retrievalDate": "2026-07-25",
+    "scenario": "$500,000 purchase price, $400,000 loan, Philadelphia County, residential purchase, standard (non-enhanced) coverage, default endorsement set (100/300/900)",
+    "methodology": "TitleWorks embeds a shared third-party SaaS platform (mytitlerates.com/MyTitleRates.com LLC) via an iframe, but the platform computes and displays TitleWorks's OWN configured fee schedule (agency id a=24) -- a HUD-1/Closing-Disclosure-style itemized breakdown, not a generic template (contrast with the out-of-scope alphaadv.net aggregator already logged in CALCULATORS.md). Driven via a single plain POST to rateCalculator.php with all form fields (state_picked, county, financeType, purchasePrice, loanAmount, enhancedCoverage, endorsement checkboxes) -- no session/cookie state needed, no personal data entered. This platform is shared infrastructure used by multiple independent agencies (see CALCULATORS.md) -- MyTitleRates.com itself is the reusable technique, not a single-provider find.",
+    "settlementFee": {
+      "totalClosingCosts_buyerSide": "$16,109.00 (J. Total Closing Costs, includes title charges + government fees + optional owner's policy)"
+    },
+    "itemizedFees": {
+      "docPrep": "$295.00 (Title - Document Prep, buyer side)",
+      "docPrep_sellerSide": "$175.00 (Title - Seller Deed Prep)",
+      "notarySigning": "$50.00 (Title - Notary Fee)",
+      "courier": "$42.50 (Title - Courier Fees)",
+      "cpl": "$125.00 (Title - Closing Service Letter)",
+      "endorsements": "$100.00 each for endorsements 100 (No Apparent Violation), 300 (Survey Exception), 900 (Environmental Protection Lien) = $300.00 total",
+      "eRecording": null,
+      "wire": null,
+      "searchExam": null,
+      "recordingDeed": "$288.75",
+      "recordingMortgage": "$257.75",
+      "transferTax_buyerPortion": "$11,445.00",
+      "transferTax_sellerPortion": "$11,445.00 (labeled identically to the buyer-side line in the tool's own output; recorded exactly as displayed, not corrected)",
+      "titleInsurancePremium": {
+        "lendersPolicy": "$2,735.00",
+        "ownersPolicy_optional": "$570.00"
+      }
+    },
+    "sectionTotals": "C. Services You Can Shop For: $3,547.50. E. Taxes and Other Government Fees: $11,991.50. H. Other (optional owner's policy): $570.00. I. Total Other Costs: $12,561.50. J. Total Closing Costs: $16,109.00. Seller Fees (separate section): $11,620.00 (deed prep $175 + transfer tax $11,445).",
+    "bundlingNotes": "This is a full HUD-1/Closing-Disclosure-style itemization, the richest single calculator result found in this survey to date. Notable structural quirk: the tool's own output labels both the buyer- and seller-side transfer tax lines identically ('Title - Transfer Tax - Consumer Portion') at the same $11,445 figure -- recorded exactly as the tool displays it since PA/Philadelphia transfer tax is customarily split between buyer and seller, and this may reflect a display bug in the shared platform rather than an actual doubled tax.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k Philadelphia County purchase scenario, standard (non-enhanced) coverage."
+  },
+  {
+    "basis": "calculator",
+    "provider": "Trident Land Transfer Company (independent title/settlement company; embeds a MyTitleRates.com white-label calculator instance, agency id a=15, serving NJ/PA)",
+    "sourceUrl": "https://tridentland.com/title-rate-calculator/",
+    "calculatorUrl": "https://calculator.mytitlerates.com/rateCalculator.php?a=15&state=52&results=1",
+    "endpoint": "POST https://calculator.mytitlerates.com/rateCalculator.php (plain HTML form POST, no JS/auth needed; state_picked=52 and county=85 are Pennsylvania/Philadelphia County's option values in this agency's own lists)",
+    "retrievalDate": "2026-07-25",
+    "scenario": "$500,000 purchase price, $400,000 loan, Philadelphia County, residential purchase, standard (non-enhanced) coverage, default endorsement set (100/300/900)",
+    "methodology": "Same MyTitleRates.com shared platform as the TitleWorks entry above, but a distinct agency instance (a=15) with Trident's own configured fee schedule -- confirms the platform serves multiple independent agencies with materially different fee figures, not a shared template. Driven via a single plain POST, no personal data entered.",
+    "settlementFee": {
+      "sellerFeesTotal": "$11,578.80 (includes transfer tax; core seller-side service fees are Document Preparation $99.00 + Notary $25.00 + Wire $9.80 = $133.80 excluding transfer tax)"
+    },
+    "itemizedFees": {
+      "docPrep_sellerSide": "$99.00",
+      "notarySigning": "$55.00 (buyer side, labeled 'Notary Fee - Estimate - actual charge based on number of documents notarized at closing') / $25.00 (seller side)",
+      "eRecording": "$125.00 (Title - E Doc Fee)",
+      "cpl": "$125.00 (Title - Closing Service Letter)",
+      "courier": "$20.00 (Title - Overnight Charges)",
+      "wire": "$7.80 (buyer side) / $9.80 (seller side)",
+      "endorsements": "$100.00 each for endorsements 100/300/900 = $300.00 total",
+      "searchExam": null,
+      "recordingDeed": "$277.75",
+      "recordingMortgage": "$247.75",
+      "transferTax": "$11,445.00 (consumer portion, shown once under seller fees)",
+      "titleInsurancePremium": {
+        "lendersPolicy": "$2,735.00",
+        "ownersPolicy_optional": "$570.00"
+      }
+    },
+    "sectionTotals": "C. Services You Can Shop For: $3,367.80. E. Taxes and Other Government Fees: $11,970.50. H. Other (optional owner's policy): $570.00. Seller Fees: $11,578.80.",
+    "bundlingNotes": "Same underlying platform as TitleWorks (a=24) but a distinct, materially different fee schedule for Trident's own business (e.g. E Doc Fee $125 vs. TitleWorks's Document Prep $295 on the buyer side; Trident charges a small $7.80-$9.80 wire fee where TitleWorks charges none) -- confirms MyTitleRates.com genuinely reflects each agency's own configured pricing rather than a single shared template, satisfying the 'providers' own public quote calculators' mandate for each instance separately.",
+    "transactionContext": "Calculator-derived point estimate for the standard $500k/$400k Philadelphia County purchase scenario, standard (non-enhanced) coverage."
+  },
+  {
+    "provider": "FNF-family underwriter (Chicago Title/Fidelity National Title/Commonwealth Land Title -- ratecalculator.fnf.com shared ASP.NET WebForms rate-calculator engine; this tool's pre-selected default underwriter brand varies by request, and prior sessions confirmed byte-identical output across the FNF-family brands sharing this one engine, so only one entry is recorded per this project's dedup rule for shared engines)",
+    "basis": "calculator",
+    "sourceUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=PA",
+    "calculatorUrl": "https://ratecalculator.fnf.com/?ID=FNF&state=PA (ASP.NET WebForms postback flow, form id 'aspnetForm', control prefix ctl00$BodyContent$UcRateCalc1)",
+    "retrievalDate": "2026-08-19",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Philadelphia County (matching this state's existing calculator entries' county), Property Purchase (with or without financing) transaction type, Residential property type, tool defaults for all other policy questions.",
+    "methodology": "Driven via plain HTTP POST (Python requests.Session(), not WebFetch -- WebFetch's HTML-to-markdown conversion strips the raw hidden ASP.NET fields needed to replay the postback), following this project's existing FNF recipe documented in CALCULATORS.md: GET the county-selection page, POST the county (own __EVENTTARGET), POST btnGeneralNext=Next, POST TranType$ddl=PropertyPurchase, POST AmountPurchase$txt=500000 then AmountLoan1$txt=400000 (each with its own __EVENTTARGET), tool defaults for all remaining policy questions, then POST btnFinish=Finish for the final Rate Summary. No personal-data fields exist anywhere in this flow. This is a richness pass applying the already-solved FNF recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers -- the 2026-07-25 session that originally solved this recipe used PA/Philadelphia as its verification case, so this entry also serves as a same-session-recipe corroboration (figures byte-identical to that original writeup: Owner's Disclosure $570/Adjustment $2,735/Total $3,305).",
+    "settlementFee": null,
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$3305.00 (Owner's Policy Total Policy Premium: Disclosure Amount $570.00 + Adjustment $2,735.00, concurrent-issue rate)",
+      "loanPolicyPremium": "$0.00 (Loan Policy Total Policy Premium, concurrent-issue rate -- $0 under the Concurrent Owner's & Loan rate)",
+      "other": [],
+      "note": "Premium-only tool by design -- its own disclaimer explicitly excludes title search, examination, additional work, certification, or closing/inspection charges. Per this project's 2026-08-05 scoping correction, premium-only output from this tool IS valid calculator-harvest evidence. No separate CPL charge appeared for this state/scenario."
+    },
+    "sectionTotals": "Grand Total (Owner's Policy Purchased): $3305.00.",
+    "bundlingNotes": "Harvested this session as a richness pass -- PA had already crossed the 3-provider threshold (ALT Title, TitleWorks, Trident Land Transfer); this FNF entry is a 4th corroborating provider, applying the same generalized recipe already used for AR/CT/CO/MA/ND/VT/WY/RI/DE/SD/AK/NH/WV/ME/OH/MO/MI.",
+    "transactionContext": "Owner's + Loan Policy concurrent-issue premiums for a $500,000 residential purchase / $400,000 loan, Philadelphia County."
+  },
+  {
+    "provider": "Stewart Title Guaranty Company -- Stewart Rate Calculator, matched settlement office: Signature Abstract (1100 Berkshire Blvd., Wyomissing, PA 19610)",
+    "basis": "calculator",
+    "sourceUrl": "https://www.stewartratecalculator.com/",
+    "calculatorUrl": "https://www.stewartratecalculator.com/Quote/LoanEstimate?urlParams=&quotetype=3&branded=true (LoanEstimate/QuoteType=3 flow) and https://www.stewartratecalculator.com/Quote/Netsheet?urlParams=&quotetype=2&branded=true (Netsheet/QuoteType=2 flow); both POST to the shared /api/SRC/quote endpoint",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Philadelphia County (Philadelphia), residential resale, Sale/Purchase with Mortgage transaction type, BASIC coverage on both Owner's and Lender's policies. Richness-pass harvest applying an already-solved, previously state-limited recipe to a state not yet in Stewart's harvested-state list, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "methodology": "Harvested via Stewart's discoverable `/api/SRC/*` JSON REST API (stewartratecalculator.com), driven entirely by plain HTTP GET/POST (Python requests.Session(), cookie jar) with no browser/JS execution and no personal-data fields, replaying the full recipe documented in this project's CALCULATORS.md (2026-08-14 'SOLVED' entry): GET the LoanEstimate/Netsheet page to scrape a fresh antiforgery cookie + __RequestVerificationToken; GET /api/SRC/propertysearch to resolve the county FIPS code and a default zip; GET /api/SRC/providers to find the county's real settlement office(s) (used to set ProviderID on the QuoteType=3 flow so the itemized settlement-fee list is populated -- an empty ProviderID silently returns a null itemized list); GET /api/SRC/statesettings and /api/SRC/ernstlookup for state-level defaults; build the QuoteRequestRoot JSON by hand (Owner's Policy $500,000 / Lender's Policy $400,000, BASIC coverage, standard Sale/Purchase with Mortgage transaction); POST /api/SRC/quote twice -- QuoteType=2 (Netsheet, pageBuyerSeller=seller) for Recording/CFPB2015 transfer-tax figures, and QuoteType=3 (LoanEstimate, pageBuyerSeller=buyer, IsCalculatePremium=True, IsCalculateTitleServiceFee=True) for the itemized Pricing.TitleServiceFee.ItemizedTitleServiceFeeList settlement-fee line items. One new gotcha found and fixed this session: stewartratecalculator.com's bare apex domain 301-redirects every POST to the www subdomain, and that redirect's response body hangs indefinitely on this sandbox's proxied connection (a 30s+ read timeout with 0 bytes received) -- fixed by targeting https://www.stewartratecalculator.com directly, skipping the apex redirect entirely; this is an environment/proxy artifact, not a sign the endpoint is blocked. Also confirmed the documented /api/SRC/providers gotcha firsthand: for a single-provider county the response's `Provider` field is a bare object, not a one-element list -- must be normalized before indexing or ProviderID silently stays empty and every itemized-fee list comes back null (looks exactly like a genuine empty result).",
+    "settlementFee": {
+      "note": "No itemized settlement/closing-fee line items returned for this settlement office (QuoteType=3's ItemizedTitleServiceFeeList was null/empty) -- a genuine result the recipe has documented before for markets where Stewart's local office has nothing configured through this tool (e.g. attorney-closing states), not a fetch failure."
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$3,305.00",
+      "loanPolicyPremium": "$2,735.00",
+      "other": [
+        {
+          "name": "Title Fed Ex Fee",
+          "amount": "$60.00 (buyer $30.00 / seller $30.00)"
+        },
+        {
+          "name": "Title Deed Preparation Fee",
+          "amount": "$150.00 (buyer $0.00 / seller $150.00)"
+        },
+        {
+          "name": "Title Document Preparation Fee",
+          "amount": "$230.00 (buyer $180.00 / seller $50.00)"
+        },
+        {
+          "name": "Title Notary Fee",
+          "amount": "$80.00 (buyer $50.00 / seller $30.00)"
+        },
+        {
+          "name": "Title Wire Transfer Fee",
+          "amount": "$60.00 (buyer $30.00 / seller $30.00)"
+        }
+      ],
+      "note": "5 itemized settlement/closing-fee line item(s) returned via the QuoteType=3 flow."
+    },
+    "sectionTotals": "Owner's Policy Premium $3,305.00; Lender's Policy Premium $2,735.00; itemized settlement fees sum $580.00",
+    "bundlingNotes": "Combined deed/transfer/mortgage tax on QuoteType=2 (Netsheet) flow: $22,890.00 total -- DeedTax $22,890.00.",
+    "transactionContext": "Stewart Rate Calculator quote for a $500,000 residential purchase with a $400,000 loan, Philadelphia County, Pennsylvania."
+  },
+  {
+    "provider": "WFG National Title Insurance Company \u2014 Seller Net Sheet Rate Calculator (rates.wfgnationaltitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1",
+    "calculatorUrl": "https://rates.wfgnationaltitle.com/rate-calculator/step1 (public JSON API: POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet)",
+    "retrievalDate": "2026-08-20",
+    "scenario": "$500,000 purchase price, $400,000 loan amount, Philadelphia County (Philadelphia), residential resale (SettlementStatementVersion: CD).",
+    "methodology": "Harvested via WFG National Title's own public JSON API, `POST https://rates.wfgnationaltitle.com/api/rates/fees/estimatefeesforsellernet`, fully solved and documented in this project's CALCULATORS.md (2026-08-08 entry) -- no browser/JS execution needed, no personal-data fields in the request shape (nested Properties/Loans arrays, TransactionProductType, SettlementStatementVersion: \"CD\"). Confirmed via the same API's public `GET /api/rates/State/GetCalculationEnabledStates` that PA is `isCalculationEnabled: true` before harvesting. Richness-pass application of an already-solved, previously-untried-for-this-state recipe, per the standing 'check tracker coverage before hunting a new platform' recommendation (CALCULATORS.md, 2026-08-19 session).",
+    "settlementFee": {
+      "note": "Premium-only result (no itemized settlement/search/doc-prep line items) -- consistent with WFG's own hardcoded fee-description table, which only itemizes HUD-style settlement fees for 7 states (WA, CA, TX, OR, AZ, NV, CO); every other state, including this one, returns only the Owner's Title Insurance Premium."
+    },
+    "itemizedFees": {
+      "ownersTitleInsurancePremium": "$3,635.50",
+      "loanPolicyPremium": "$0.00 (lendersPremium/fullLendersPremium both returned $0 despite the $400,000 loan amount entered -- consistent with this tool's seller-net-sheet-only design)",
+      "other": [],
+      "note": "Premium-only result for this state (see settlementFee note)."
+    },
+    "sectionTotals": "Owner's Title Insurance Premium $3,635.50",
+    "bundlingNotes": "Discovered and solved 2026-08-08; applied here as a richness-pass 4th/5th calculator-basis provider for Pennsylvania (already at 3-4 providers via other tools) since no prior session had run this already-solved recipe against this state. Property location for this request: Philadelphia, Pennsylvania (Philadelphia County).",
+    "transactionContext": "WFG National Title's own seller-net-sheet Owner's Title Insurance Premium for a $500,000 residential purchase, Philadelphia County, Pennsylvania."
+  },
+  {
+    "provider": "Old Republic Title Insurance Company \u2014 second rate calculator (ortratecalculator.oldrepublictitle.com)",
+    "basis": "calculator",
+    "sourceUrl": "https://oldrepublictitle.com/rate-calculator/?location=pennsylvania",
+    "calculatorUrl": "https://oldrepublictitle.com/rate-calculator/?location=pennsylvania",
+    "endpointOrParams": "Classic ASP.NET WebForms postback app (RateCalc.aspx?CallingApp=PUBLIC&Location=PA, redirects to a session-scoped (S(...)F(...))/RateCalc.aspx?...Location=37..., statewide, no county selector). GET the page with Referer https://oldrepublictitle.com/rate-calculator/?location=pennsylvania (capture __VIEWSTATE/__EVENTVALIDATION), POST __EVENTTARGET=ddlPolicyCategory value 127 (SIMULTANEOUS), POST __EVENTTARGET=ddlPolicyType1 value 10705 (OWNERS - STANDARD), POST __EVENTTARGET=ddlPolicyType2 value 10717 (LENDERS - STANDARD), then POST __EVENTTARGET=btnCalculate with txtLiabilityAmt=500000, txtCrLiabilityAmt=400000. Same Referer-header-throughout fix documented for NH/WV/MI; no personal data entered.",
+    "retrievalDate": "2026-08-21",
+    "scenario": "$500,000 purchase price / $400,000 loan amount, statewide (no county selector in this tool), SIMULTANEOUS OWNERS-STANDARD/LENDERS-STANDARD policy category.",
+    "methodology": "Direct HTTP GET/POST against the ASP.NET WebForms postback mechanism (Python requests.Session()), no browser/JS execution. No personal data entered. Richness pass applying this project's already-solved Old Republic 2nd-tool recipe to a state that had already crossed the 3-provider calculator-quoted threshold via other providers.",
+    "settlementFee": {
+      "note": "This tool prices title insurance premiums only -- no settlement/closing/escrow service-fee line items are itemized (same structural limitation observed for this tool's other state entries elsewhere in this project)."
+    },
+    "itemizedFees": {
+      "other": [
+        {
+          "name": "LENDERS - STANDARD, insured amount $400,000.00 -- Lenders-Only standalone premium",
+          "amount": "$2,735.00"
+        },
+        {
+          "name": "LENDERS - STANDARD, Owners+Lenders combined (simultaneous) premium",
+          "amount": "$0.00"
+        },
+        {
+          "name": "OWNERS - STANDARD, insured amount $500,000.00, Owners+Lenders combined premium",
+          "amount": "$3,305.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, standalone-lenders-only",
+          "amount": "$2,735.00"
+        },
+        {
+          "name": "Grand Total Policy & Endorsement Premium, Owners+Lenders combined",
+          "amount": "$3,305.00"
+        }
+      ]
+    },
+    "bundlingNotes": "Grand Total (Owners+Lenders combined $3,305.00 / Lenders-only standalone $2,735.00) is byte-identical to this state's already-on-file FNF entry (Grand Total $3,305.00) and Stewart entry (Owner's $3,305.00/Lender's $2,735.00) -- a 3-way convergence consistent with PA's TIRBOP bureau-promulgated rate structure, where every underwriter/tool must file the same rate.",
+    "transactionContext": "Simultaneous Owner's Standard + Lender's Standard policy, statewide Pennsylvania, purchase with financing."
+  }
+]
